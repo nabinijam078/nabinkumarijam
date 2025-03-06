@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column Interaction Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Column Interaction Diagram</h2>
+    <label>Concrete Strength (fck in MPa): <input type="number" id="fck" value="30"></label><br>
+    <label>Steel Strength (fy in MPa): <input type="number" id="fy" value="500"></label><br>
+    <label>Column Width (b in mm): <input type="number" id="b" value="300"></label><br>
+    <label>Column Depth (d in mm): <input type="number" id="d" value="500"></label><br>
+    <label>Steel Area (Asc in mm²): <input type="number" id="Asc" value="3000"></label><br>
+    <button onclick="generateDiagram()">Generate Diagram</button>
+    <canvas id="interactionChart"></canvas>
+    <pre id="calculations"></pre>
+    
+    <script>
+        function calculateNeutralAxis(controlPoint, d) {
+            switch (controlPoint) {
+                case "Neutral Axis at Infinity": return d * 1.5;
+                case "Axial Load with Min Eccentricity": return d * 1.0;
+                case "Neutral Axis Outside Section": return d * 0.9;
+                case "Neutral Axis Inside - 0.4fy": return d * 0.7;
+                case "Neutral Axis Inside - 0.8fy": return d * 0.5;
+                case "Neutral Axis Inside - fy": return d * 0.3;
+                case "Column Acting as Beam": return d * 0.1;
+                default: return d * 0.5;
+            }
+        }
+
+        function calculateStressStrain(NA, fck, fy, d) {
+            let strain_top = 0.0035 * (NA / d);
+            let stress_top = Math.min(fck, strain_top * fck / 0.0035);
+            let strain_bottom = 0.002 * (NA / d);
+            let stress_bottom = Math.min(0.87 * fy, strain_bottom * fy / 0.002);
+            return { stress_top, stress_bottom };
+        }
+
+        function calculateForceMoment(NA, b, d, Asc, stress) {
+            let P_concrete = 0.45 * stress.stress_top * b * NA;
+            let P_steel = Asc * stress.stress_bottom;
+            let P_total = P_concrete + P_steel;
+            let M_total = P_steel * (d - NA / 2) / 1e6;
+            return { P_total, M_total };
+        }
+
+        function generateDiagram() {
+            const fck = parseFloat(document.getElementById("fck").value);
+            const fy = parseFloat(document.getElementById("fy").value);
+            const b = parseFloat(document.getElementById("b").value);
+            const d = parseFloat(document.getElementById("d").value);
+            const Asc = parseFloat(document.getElementById("Asc").value);
+            const interactionData = [];
+            let calculationSteps = "";
+
+            const controlPoints = [
+                "Neutral Axis at Infinity",
+                "Axial Load with Min Eccentricity",
+                "Neutral Axis Outside Section",
+                "Neutral Axis Inside - 0.4fy",
+                "Neutral Axis Inside - 0.8fy",
+                "Neutral Axis Inside - fy",
+                "Column Acting as Beam"
+            ];
+            
+            controlPoints.forEach(point => {
+                let NA = calculateNeutralAxis(point, d);
+                let stress = calculateStressStrain(NA, fck, fy, d);
+                let { P_total, M_total } = calculateForceMoment(NA, b, d, Asc, stress);
+                interactionData.push({ x: M_total, y: P_total / 1e3, label: point });
+                calculationSteps += `${point}: NA = ${NA.toFixed(2)} mm, P = ${(P_total / 1e3).toFixed(2)} kN, M = ${M_total.toFixed(2)} kNm\n`;
+            });
+
+            document.getElementById("calculations").textContent = calculationSteps;
+            
+            const ctx = document.getElementById("interactionChart").getContext("2d");
+            if (window.interactionChartInstance) {
+                window.interactionChartInstance.destroy();
+            }
+            window.interactionChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Interaction Diagram',
+                        data: interactionData,
+                        borderColor: 'blue',
+                        fill: false,
+                        pointRadius: 5,
+                        pointBackgroundColor: 'red',
+                        showLine: true,
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: { title: { display: true, text: 'Moment (kNm)' } },
+                        y: { title: { display: true, text: 'Axial Load (kN)' } }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return `${tooltipItem.raw.label}: M = ${tooltipItem.raw.x.toFixed(2)} kNm, P = ${tooltipItem.raw.y.toFixed(2)} kN`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        generateDiagram();
+    </script>
+</body>
+</html>
