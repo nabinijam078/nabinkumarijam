@@ -2,20 +2,112 @@
 <html>
   <head>
     <style>
-      h1{ background-color: blue;text-align: center;color:white; font-family: Arial;
-        font-size: 25px;}
-      h2{ background-color: green ;font-family: Arial;font-size: 20px;text-align: center;color:white;}
-      
-      a{background-color: CYAN;font-family: Arial;font-size:15px;color:black}
-      
-	footer {position: fixed;font-family: Arial;font-size:15px;
-  	left: 0;
-  	bottom: 0;
-  	width: 100%;
-  	background-color: blue;
-  	color: white;
-  	text-align: Left;
-	}
+       /* General Styles */
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #0078d7;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #0078d7;
+      }
+
+      /* Main Content */
+      .content {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .content img {
+        float: right;
+        margin: 0 0 20px 20px;
+        border-radius: 10px;
+        width: 250px;
+        height: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .content h2 {
+        color: #0078d7;
+        font-size: 2rem;
+        margin-top: 0;
+      }
+
+      .content p {
+        font-size: 1rem;
+        text-align: justify;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content img {
+          float: none;
+          display: block;
+          margin: 0 auto 20px;
+        }
+
+        nav a {
+          display: block;
+          margin: 10px 0;
+        }
+      }
 
       
       td{font-family:Arial;text-align:left;font-size:13px;}
