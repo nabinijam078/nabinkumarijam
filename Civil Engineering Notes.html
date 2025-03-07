@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title> My website </title>
+    <title>Home - Nabin Kumar Ijam</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
       body {
-        font-family: 'Arial', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background-color: #E5E4E2; /* Light gray background */
         color: #333;
         line-height: 1.6;
+      }
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: #0078d7;
       }
 
       /* Header Styles */
@@ -59,24 +67,23 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 250px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
       .content h2 {
         color: #0078d7;
         font-size: 2rem;
         margin-top: 0;
       }
 
-      .content p {
-        font-size: 1rem;
-        text-align: justify;
+      .content a {
+        display: block;
+        color: #0078d7;
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin: 10px 0;
+        transition: color 0.3s ease;
+      }
+
+      .content a:hover {
+        color: #333;
       }
 
       /* Footer Styles */
@@ -108,15 +115,16 @@
           display: block;
           margin: 10px 0;
         }
-      img{align-content: center;}
+      }
     </style>
   </head>
-  <body style="background-color:#E5E4E2;">
+  <body>
     <!-- Header -->
     <header>
       <h1>Welcome to My Portfolio</h1>
     </header>
-     <!-- Navigation Bar -->
+
+    <!-- Navigation Bar -->
     <nav>
       <a href="Home.html"><b>HOME</b></a>
       <a href="My background.html"><b>MY BACKGROUND</b></a>
@@ -127,21 +135,19 @@
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
-      <p> </p>
+    <!-- Main Content -->
+    <div class="content">
       <h2><b>CIVIL ENGINEERING NOTES</b></h2>
-	
-      </Center>
-	<a href="Beam.html"> 1.CONCRETE BEAM DESIGN AS PER IS 456:2000</a>
-	<a href="Footing.html"> <BR>2.ISOLATED FOOTING DESIGN AS PER IS 456:2000</a>
-      <a href="#"><br> 3. INTERACTION DIAGRAM OF A COLUMN AS PER IS456:2000</a>
-      <a href="Retainingwall.html"><br> 4. RETAINING WALL</a>
-	<a href="Corbel.html"><br> 5. CORBEL</a>
-	
-	
-	<!-- Footer -->
+      <a href="Beam.html">1. CONCRETE BEAM DESIGN AS PER IS 456:2000</a>
+      <a href="Footing.html">2. ISOLATED FOOTING DESIGN AS PER IS 456:2000</a>
+      <a href="#">3. INTERACTION DIAGRAM OF A COLUMN AS PER IS456:2000</a>
+      <a href="Retainingwall.html">4. RETAINING WALL</a>
+      <a href="Corbel.html">5. CORBEL</a>
+    </div>
+
+    <!-- Footer -->
     <footer>
       <p><i>Copyright © Nabin Kumar Ijam</i></p>
     </footer>
-
   </body>
 </html>
