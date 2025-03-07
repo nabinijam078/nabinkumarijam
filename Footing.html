@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footing design</title>
-    <!-- Import Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Import Font Awesome for Icons -->
+    <meta name="description" content="Mr. Nabin Kumar Ijam's professional portfolio as a Civil Engineer specializing in Structural and Hydropower projects.">
+    <title>Footing Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
@@ -19,35 +17,24 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes full height */
+            min-height: 100vh;
         }
 
-        h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif; /* Heading font */
-            color: #0078d7;
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: bold;
         }
 
-        p {
-            font-family: 'Open Sans'sans-serif;
-            font-size: 15px;
-            text-align: justify;
-        }
-
-        h2 {
-            background-color: green;
-            text-align: center;
-            color: white;
-            font-family: Arial;
-            font-size: 20px;
-        }
-
-        /* Header Styles */
         header {
             background-color: #0078d7;
             color: white;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         header h1 {
@@ -55,12 +42,10 @@
             font-size: 1.5rem;
         }
 
-        /* Navigation Bar */
         nav {
             background-color: #333;
             padding: 10px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -73,87 +58,42 @@
             transition: background-color 0.3s ease;
         }
 
-        nav a:hover {
+        nav a:hover, nav a.active {
             background-color: #0078d7;
         }
 
-        /* Main Content */
         .content {
             max-width: 1200px;
-            margin: 20px;
+            margin: 20px auto;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow content to grow and push footer down */
+            flex: 1;
         }
-        .content h2 {
+
+        h2 {
             color: #0078d7;
             font-size: 1.2rem;
-            margin-top: 0;
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
+            text-align: center;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
+        p {
+            font-size: 15px;
+            text-align: justify;
         }
 
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: darkblue;
-        }
-	 /* Footer Styles */
         footer {
             background-color: #E0FFFF;
-            color: white;
+            color: #333;
             text-align: center;
             padding: 10px;
             width: 100%;
+            margin-top: auto;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0; /* Prevent footer from shrinking */
-        }
-
-        .social-links {
-            margin-bottom: 10px;
-        }
-
-        .social-links a {
-            color: #333; /* Dark color for icons */
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.8rem; /* Icon size */
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #0078d7; /* Change color on hover */
         }
 
         .copyright {
-            background-color: #E0FFFF;
             padding: 5px;
             border-radius: 5px;
             display: inline-block;
@@ -163,55 +103,41 @@
         .copyright p {
             margin: 0;
             font-size: 0.7rem;
-            color: #333; /* Dark text for contrast */
         }
 
-        /* Time and Date Styles */
-        #datetime {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.9rem;
-            color: #333;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .content img {
-                float: none;
-                display: block;
-                margin: 0 auto 20px;
-            }
-
             nav a {
                 display: block;
-                margin: 10px 0;
+                margin: 5px 0;
+            }
+            #datetime {
+                position: static;
+                text-align: center;
+                margin-top: 10px;
             }
         }
-
     </style>
-    <body> 
-	    <!-- Current Time and Date -->
+</head>
+<body>
     <div id="datetime"></div>
 
-    <!-- Header -->
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
-      <!-- Navigation Bar -->
-    <nav> 
-      <a href="Home.html"><b>HOME</b></a>
-      <a href="My background.html"><b> MY BACKGROUND</b></a>
-      <a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
-	    <a href="Others.html"><b> OTHERS</b></a>
-      <a href="Downloads.html"><b> DOWNLOADS</b></a>
-	    <a href="images.html"><b> IMAGES</b></a>
-      <a href="Contacts.html"><b> CONTACTS</b></a>
-	</nav>
-      <p> </p>
 
-    </body>
-    <script>
+    <nav> 
+        <a href="Home.html" class="active"><b>HOME</b></a>
+        <a href="My background.html"><b>MY BACKGROUND</b></a>
+        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b>OTHERS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <div class="content">
+        <h2>Footing Design</h2>
+        <script>
         function calculateMainRebar() {
             // Read fck and fy from the select elements
             let fck = parseFloat(document.getElementById("fck").value) || 0;
@@ -509,35 +435,24 @@
             <p>Check for punching strength: <span id="check_tw"></span></p>
         </div>
     </div>
-	<!-- Footer -->
+
     <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
-            </a>
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
-            </a>
-        </div>
         <div class="copyright">
-            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+            <p>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
     <script>
-        function updateDateTime() {
+        function updateTime() {
             const now = new Date();
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleString();
+            const date = now.toLocaleDateString();
+            const time = now.toLocaleTimeString();
+            document.getElementById("datetime").innerText = `${date} ${time}`;
         }
+        setInterval(updateTime, 1000);
+        updateTime();
 
-        // Update the time and date every second
-        setInterval(updateDateTime, 1000);
-
-        // Initial call to display the time and date immediately
-        updateDateTime();
+        document.getElementById('year').innerText = new Date().getFullYear();
     </script>
-
 </body>
 </html>
