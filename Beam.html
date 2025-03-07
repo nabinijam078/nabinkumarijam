@@ -5,10 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beam Section Design as per IS 456:2000</title>
+	<!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-	 h1{ background-color: blue;text-align: center;color:white; font-family: Arial;
-        font-size: 25px;
+	body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
       }
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: #0078d7;
+      }
+
       p{font-family:Arial; font-size:15px; text-align:justify}
       a{background-color: CYAN;font-family: Arial;font-size:15px;color:black}
 
@@ -22,17 +37,62 @@
 	}
 
       
-      h2{ background-color: green;text-align: center;color:white; font-family: Arial;
-        font-size: 20px;}
+       /* Header Styles */
+      header {
+        background-color: #0078d7;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+      header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #0078d7;
+      }
+	    /* Main Content */
+      .content {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding-bottom: 80px; /* Add padding to avoid footer overlap */
+      }
+
         .container {
             max-width: 600px;
             margin: auto;
         }
+	    .content h2 {
+        color: #0078d7;
+        font-size: 1.0rem;
+        margin-top: 0;
+      }
+
         .input-group {
             margin-bottom: 15px;
         }
@@ -51,10 +111,80 @@
             background-color: #f4f4f4;
             border: 1px solid #ccc;
         }
+	/* Footer Styles */
+      footer {
+        background-color: #E0FFFF;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative; /* Change from fixed to relative */
+        width: 100%;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333; /* Dark color for icons */
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem; /* Icon size */
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7; /* Change color on hover */
+      }
+
+      .copyright {
+        background-color: #E0FFFF; 
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
+        margin: 0;
+        font-size: 0.7rem;
+        color: #333; /* Dark text for contrast */
+      }
+
+      /* Time and Date Styles */
+      #datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content img {
+          float: none;
+          display: block;
+          margin: 0 auto 20px;
+        }
+
+        nav a {
+          display: block;
+          margin: 10px 0;
+        }
+      }
     </style>
 </head>
-<body style="background-color:#E5E4E2;">
-	<h1 class="title">WELCOME TO MY PORTFOLIO </h1>
+<body>
+	<!-- Current Time and Date -->
+    <div id="datetime"></div>
+
+    <!-- Header -->
+    <header>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    </header>
+<nav>
       <a href="Home.html"><b>HOME</b></a>
       <a href="My background.html"><b> MY BACKGROUND</b></a>
       <a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
@@ -63,7 +193,7 @@
 	<a href="images.html"><b> IMAGES</b></a>
       <a href="Contacts.html"><b> CONTACTS</b></a>
       <p> </p>
-
+</nav>
 
 <div class="container">
     <h2>BEAM DESIGN AS PER IS 456:2000</h2>
