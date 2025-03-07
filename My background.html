@@ -16,7 +16,7 @@ body {
         color: #333;
         line-height: 1.6;
       }
-      h2, h3, h4, h5, h6 {
+      h2, h3, h4, h5, h6,td {
         font-family: 'Roboto', sans-serif; /* Heading font */
         color: #0078d7;
       }
@@ -152,15 +152,18 @@ body {
           margin: 10px 0;
         }
       }   
-      td{font-family:Arial;text-align:left;font-size:13px;}
+      td{text-align:left;font-size:10px;}
     </style>
   </head>
-  <body style="background-color:#E5E4E2;">
-    
-     <!-- Header -->
+  <body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
+    <!-- Header -->
     <header>
-      <h1>Welcome to My Portfolio</h1>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
+
       <!-- Navigation Bar -->
     <nav>
       <a href="Home.html"><b>HOME</b></a>
@@ -172,7 +175,7 @@ body {
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
     <h2>
-      <b>PERSONAL INFORMATION</b>
+      <b><U>PERSONAL INFORMATION</U></b>
     </h2>
       <table>
         <tr>
@@ -220,8 +223,34 @@ body {
 	<P></P>
 	<b>ACADEMIC BACKGROUND</b>
 	<!-- Footer -->
+     <!-- Footer -->
     <footer>
-      <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
+
   </body>
 </html>
