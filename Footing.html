@@ -490,10 +490,6 @@
             <p>σ4: <span id="sigma4"></span> kN/m²</p>
             <p>Check for maximum bearing Stress: <span id="check1"></span></p>
             <p>Check for minimum bearing Stress: <span id="check2"></span></p>
-
-		
-
-		
             <p><b>1. REINFORCEMENT DESIGN</b></p>
             <p>Limiting moment, Mu_lim: <span id="Mu_lim"></span> kNm</p>
             <p>Moment at edge of column, Mx: <span id="Mu"></span> kNm</p>
@@ -513,9 +509,35 @@
             <p>Check for punching strength: <span id="check_tw"></span></p>
         </div>
     </div>
-	<div class="footer">
-        <p><i>Copyright @ Nabin Kumar Ijam</i><p>
-      </div>
+	<!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+    </script>
 
 </body>
 </html>
