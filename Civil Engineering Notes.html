@@ -119,9 +119,12 @@
     </style>
   </head>
   <body>
+     <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
     <!-- Header -->
     <header>
-      <h1>Welcome to My Portfolio</h1>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
 
     <!-- Navigation Bar -->
@@ -147,7 +150,33 @@
 
     <!-- Footer -->
     <footer>
-      <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
+    </script>
+
   </body>
 </html>
