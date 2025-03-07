@@ -68,16 +68,6 @@
         padding-bottom: 80px; /* Add padding to avoid footer overlap */
       }
 
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 150px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 5px solid #555;
-      }
-
       .content h2 {
         color: #0078d7;
         font-size: 1.2rem;
@@ -88,7 +78,18 @@
         font-size: 0.8rem;
         text-align: justify;
       }
+      .content a {
+        display: block;
+        color: #333; /* Link color */
+        text-decoration: none;
+        font-size: 1.2rem; /* Link font size */
+        margin: 10px 0;
+        transition: color 0.3s ease;
+      }
 
+      .content a:hover {
+        color: #0078d7; /* Link hover color */
+      }
       /* Footer Styles */
       footer {
         background-color: #E0FFFF;
