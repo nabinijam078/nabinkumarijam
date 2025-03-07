@@ -2,15 +2,23 @@
 <html>
   <head>
     <title>Home - Nabin Kumar Ijam</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
       body {
-        font-family: 'Arial', sans-serif;
+        font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
         background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
+      }
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: #0078d7;
       }
 
       /* Header Styles */
@@ -24,7 +32,7 @@
 
       header h1 {
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
       }
 
       /* Navigation Bar */
@@ -57,43 +65,78 @@
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding-bottom: 80px; /* Add padding to avoid footer overlap */
       }
 
       .content img {
         float: right;
         margin: 0 0 20px 20px;
         border-radius: 10px;
-        width: 300px;
+        width: 150px;
         height: auto;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 5px solid #555;
       }
 
       .content h2 {
         color: #0078d7;
-        font-size: 2rem;
+        font-size: 1.2rem;
         margin-top: 0;
       }
 
       .content p {
-        font-size: 1rem;
+        font-size: 0.8rem;
         text-align: justify;
       }
 
       /* Footer Styles */
       footer {
-        background-color: #333;
+        background-color: #E0FFFF;
         color: white;
         text-align: center;
         padding: 10px;
-        position: fixed;
-        bottom: 0;
+        position: relative; /* Change from fixed to relative */
         width: 100%;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      footer p {
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333; /* Dark color for icons */
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem; /* Icon size */
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7; /* Change color on hover */
+      }
+
+      .copyright {
+        background-color: #E0FFFF; 
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
         margin: 0;
+        font-size: 0.7rem;
+        color: #333; /* Dark text for contrast */
+      }
+
+      /* Time and Date Styles */
+      #datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
         font-size: 0.9rem;
+        color: #333;
       }
 
       /* Responsive Design */
@@ -112,9 +155,12 @@
     </style>
   </head>
   <body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
     <!-- Header -->
     <header>
-      <h1>Welcome to My Portfolio</h1>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
 
     <!-- Navigation Bar -->
@@ -131,15 +177,45 @@
     <!-- Main Content -->
     <div class="content">
       <img src="unnamed.jpg" alt="Nabin Kumar Ijam">
-      <h2>About Me</h2>
-      <p>Hello! I am <b>Nabin Kumar Ijam</b>, a Civil Engineer specializing in Structural and Hydropower Engineering. This is my personal portfolio website where you can learn more about my work and expertise.</p>
-      <p>I have extensive experience in designing hydraulic structures, buildings, and steel structures. My expertise includes concrete design based on Indian Standard, British Standard, Euro codes, and ACI.</p>
+      <h2><u>ABOUT ME</u></h2>
+      <p>Hello! I am <b>Nabin Kumar Ijam</b>, from Nepal. I am a Civil Engineer specializing in Structural and Hydropower Engineering. This is my personal portfolio website where you can get some information about my work and expertise.I have added some calculation sheets which can be helpful for the Civil engineers who are pursuing their career in designing.</p>
+      <p>I born in small village located in Jhapa district of Nepal. I completed by school education from Bhanu Secondary School, Shivagunj-4 (now Shivasatakshi municipality -7). Then, I moved to Kathmandu to pursue higher education. I completed Diploma of Civil Engineering from Institute of Engineering, Thapathali Campus. After one year of preparation, I started Bachelor of Engineering from Tribhuvan University, Institute of Engineering, Pulchowk Campus.</p>
+      <p>My professional career started from Khwopa Engineering College (KEC), Bhaktapur where I taught to Bachelor students for one semester. When I got an opportunity to work in Sanima Hydropwer, I left KEC and started working in Sanima Hydro. My career at hydropower emerged and grew in Sanima where I got change to work at construction site. 22MW Mai hydropwer Project had given me the vast knowledge on construction methodologies starting from site in-charge to frequent opportunity to work as Act. Resident Engineer.</p>
+      <p>After doing work in Sanima for 7 years, I felt this is the best to pursue graduate. I applied for ADB-JSP Scholarship in Japan and fortunately I got scholarship to study in Saitama University, Japan. At the end of academic year, I was awarded as the "Best Research Award".</p>
+      <p>Luck favoured again. I got the chance the work in Japan. But my imagition about work environement in Japanese company was not found true, therefore, I couldn't continue and left and return to Nepal. In Nepal, I got best place to work in hydropower. I worked with Pushpa Chitrakar sir where I learnt so many things about hydropower. That was my turning point as a Design Engineer. </p>
+     <p>Now, I am in SMEC (Malaysia) for better opportunity and financial stability.</p>
+      <p>As I explained earlier, I have extensive experience in designing hydraulic structures, buildings, and steel structures. My expertise includes concrete design based on Indian Standard, British Standard, Euro codes, and ACI. You can contact me, if you have such works to be carried out.</p>
       <p>Feel free to explore the site and get in touch with me for any inquiries or collaborations!</p>
     </div>
 
     <!-- Footer -->
     <footer>
-      <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
+    </script>
   </body>
 </html>
