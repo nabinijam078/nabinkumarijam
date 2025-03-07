@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
-      body {
+   body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #E5E4E2; /* Light gray background */
+        background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
       }
@@ -32,7 +32,7 @@
 
       header h1 {
         margin: 0;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
       }
 
       /* Navigation Bar */
@@ -48,7 +48,7 @@
         text-decoration: none;
         padding: 10px 15px;
         margin: 0 5px;
-        font-size: 1rem; /* Navigation font size */
+        font-size: 1rem;
         border-radius: 5px;
         transition: background-color 0.3s ease;
       }
@@ -65,42 +65,78 @@
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding-bottom: 80px; /* Add padding to avoid footer overlap */
+      }
+
+      .content img {
+        float: right;
+        margin: 0 0 20px 20px;
+        border-radius: 10px;
+        width: 150px;
+        height: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 5px solid #555;
       }
 
       .content h2 {
-        color: #0078d7; /* Heading color */
-        font-size: 2rem; /* Heading font size */
+        color: #0078d7;
+        font-size: 1.2rem;
         margin-top: 0;
       }
 
-      .content a {
-        display: block;
-        color: #333; /* Link color */
-        text-decoration: none;
-        font-size: 0.8rem; /* Link font size */
-        margin: 10px 0;
-        transition: color 0.3s ease;
-      }
-
-      .content a:hover {
-        color: #0078d7; /* Link hover color */
+      .content p {
+        font-size: 0.8rem;
+        text-align: justify;
       }
 
       /* Footer Styles */
       footer {
-        background-color: #333;
+        background-color: #E0FFFF;
         color: white;
         text-align: center;
         padding: 10px;
-        position: fixed;
-        bottom: 0;
+        position: relative; /* Change from fixed to relative */
         width: 100%;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      footer p {
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333; /* Dark color for icons */
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem; /* Icon size */
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7; /* Change color on hover */
+      }
+
+      .copyright {
+        background-color: #E0FFFF; 
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
         margin: 0;
+        font-size: 0.7rem;
+        color: #333; /* Dark text for contrast */
+      }
+
+      /* Time and Date Styles */
+      #datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
         font-size: 0.9rem;
+        color: #333;
       }
 
       /* Responsive Design */
@@ -115,7 +151,8 @@
           display: block;
           margin: 10px 0;
         }
-      }
+      
+
     </style>
   </head>
   <body>
