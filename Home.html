@@ -91,19 +91,33 @@
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
 
-      footer p {
-        margin: 0;
-        font-size: 0.9rem;
+      .social-links {
+        margin-bottom: 10px;
       }
 
-      footer a {
+      .social-links a {
         color: white;
         text-decoration: none;
         margin: 0 10px;
+        font-size: 1rem;
       }
 
-      footer a:hover {
+      .social-links a:hover {
         color: #0078d7;
+      }
+
+      .copyright {
+        background-color: lightgreen; /* Light green background */
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #333; /* Dark text for contrast */
       }
 
       /* Time and Date Styles */
@@ -161,11 +175,13 @@
 
     <!-- Footer -->
     <footer>
-      <p>
-        <i>Copyright © Nabin Kumar Ijam</i> | 
-        <a href="https://www.facebook.com/nabin.ijam" target="_blank">Facebook</a> | 
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">Facebook</a>
         <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">LinkedIn</a>
-      </p>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
 
     <!-- JavaScript for Time and Date -->
