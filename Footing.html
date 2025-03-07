@@ -108,7 +108,7 @@
         /* Target the labels for "Grade of Concrete" and "Grade of Steel" */
         label[for="fck"],
         label[for="fy"] {
-        font-size: 0.8rem; /* Adjust the font size as needed */
+        font-size: 0.9rem; /* Adjust the font size as needed */
         }
         .result {
             margin-top: 20px;
@@ -118,7 +118,7 @@
         }
 
         p {
-            font-size: 15px;
+            font-size: 12px;
             text-align: justify;
         }
 
@@ -177,8 +177,8 @@
     <div class="content">
         <h2><u>ISOLATED FOOTING FOR BIAXIAL LOADING</u></h2>
         <form>
-            <h3>Material grade</h3>
-            <label for="fck">Grade of Concrete (fck in MPa): </label>
+            <h3><u>Material grade</u></h3>
+            <label for="fck">Grade of Concrete (f<sub>ck</sub> in MPa): </label>
             <select id="fck">
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -187,17 +187,17 @@
                 <option value="35">35</option>
                 <option value="40">40</option>
             </select>
-            <label for="fy"><br><br>Grade of Steel (fy in MPa): </label>
+            <label for="fy"><br><br>Steel grade (f<sub>y</sub> in MPa): </label>
             <select id="fy">
                 <option value="250">250</option>
                 <option value="415">415</option>
                 <option value="500">500</option>
             </select>
             <div class="input-group">
-                <label for="σb"><br>Bearing capacity of soil (σb in kN/m²):</label>
+                <label for="σb"><br>Bearing capacity of soil (σ<sub>b</sub> in kN/m²):</label>
                 <input type="number" id="σb" required>
             </div>
-            <h4>Column and Footing Dimensions</h4>
+            <h4><u>Column and Footing Dimensions</u></h4>
             <div class="input-group">
                 <label for="width">Width of Column (b in mm):</label>
                 <input type="number" id="width" required>
