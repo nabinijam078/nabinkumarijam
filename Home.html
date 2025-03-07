@@ -4,6 +4,8 @@
     <title>Home - Nabin Kumar Ijam</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
       body {
@@ -26,7 +28,6 @@
         padding: 20px;
         text-align: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        
       }
 
       header h1 {
@@ -64,6 +65,7 @@
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding-bottom: 80px; /* Add padding to avoid footer overlap */
       }
 
       .content img {
@@ -92,8 +94,7 @@
         color: white;
         text-align: center;
         padding: 10px;
-        position: relative;
-        bottom: 0;
+        position: relative; /* Change from fixed to relative */
         width: 100%;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
@@ -103,14 +104,15 @@
       }
 
       .social-links a {
-        color: blue;
+        color: #333; /* Dark color for icons */
         text-decoration: none;
         margin: 0 10px;
-        font-size: 1rem;
+        font-size: 1.5rem; /* Icon size */
+        transition: color 0.3s ease;
       }
 
       .social-links a:hover {
-        color: #0078d7;
+        color: #0078d7; /* Change color on hover */
       }
 
       .copyright {
@@ -188,8 +190,12 @@
     <!-- Footer -->
     <footer>
       <div class="social-links">
-        <a href="https://www.facebook.com/nabin.ijam" target="_blank">Facebook</a>
-        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">LinkedIn</a>
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
       </div>
       <div class="copyright">
         <p><i>Copyright © Nabin Kumar Ijam</i></p>
