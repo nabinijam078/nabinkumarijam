@@ -64,33 +64,65 @@
       .content {
         max-width: 1200px;
         margin: 20px auto;
-        padding-left: 40px;
+        padding: 20px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         flex: 1; /* Allow content to grow and push footer down */
-        text-align: left; /* Ensure content is left-aligned */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
 
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 150px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 5px solid #555;
+      /* Age Calculator Styles */
+      .container {
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
       }
 
-      .content h2 {
+      .container h2 {
         color: #0078d7;
-        font-size: 1.2rem;
-        margin-top: 0;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
       }
 
-      .content p {
-        font-size: 0.8rem;
-        text-align: justify;
+      .container label {
+        display: block;
+        margin: 10px 0 5px;
+        font-size: 1rem;
+        color: #333;
+      }
+
+      .container input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .container button {
+        padding: 10px 20px;
+        background-color: #0078d7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .container button:hover {
+        background-color: #005bb5;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #0078d7;
       }
 
       /* Footer Styles */
@@ -145,27 +177,18 @@
 
       /* Responsive Design */
       @media (max-width: 768px) {
-        .content img {
-          float: none;
-          display: block;
-          margin: 0 auto 20px;
+        .content {
+          padding: 10px;
         }
 
-        nav a {
-          display: block;
-          margin: 10px 0;
+        .container {
+          max-width: 90%;
         }
       }
-
-      td {
-        font-family: Open Sans;
-        text-align: left;
-        font-size: 13px;
-      }
-
     </style>
 </head>
-<!-- Current Time and Date -->
+<body>
+    <!-- Current Time and Date -->
     <div id="datetime"></div>
 
     <!-- Header -->
@@ -175,90 +198,31 @@
 
     <!-- Navigation Bar -->
     <nav>
-
-    <a href="Home.html"><b>HOME</b></a>
-    <a href="My background.html"><b>MY BACKGROUND</b></a>
-    <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
-    <a href="Others.html"><b>OTHERS</b></a>
-    <a href="Downloads.html"><b>DOWNLOADS</b></a>
-    <a href="images.html"><b>IMAGES</b></a>
-    <a href="Contacts.html"><b>CONTACTS</b></a>
+      <a href="Home.html"><b>HOME</b></a>
+      <a href="My background.html"><b>MY BACKGROUND</b></a>
+      <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+      <a href="Others.html"><b>OTHERS</b></a>
+      <a href="Downloads.html"><b>DOWNLOADS</b></a>
+      <a href="images.html"><b>IMAGES</b></a>
+      <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
-	
-	<p></p>
-	<p></p>
-	<p></p>
-	<p></p>
 
-  <div class="container">
-    <h2><u>AGE CALCULATOR</u></h2>
-	
-    <label for="startDate">Date of birth:</label>
-    <input type="date" id="startDate" name="startDate">
-    
-    <label for="finishDate">Current date:</label>
-    <input type="date" id="finishDate" name="finishDate">
-    
-    <button onclick="calculateAge()">Calculate Age</button>
-    <div class="result" id="result"></div>
-</div>
+    <!-- Main Content -->
+    <div class="content">
+      <div class="container">
+        <h2><u>AGE CALCULATOR</u></h2>
+        <label for="startDate">Date of birth:</label>
+        <input type="date" id="startDate" name="startDate">
+        
+        <label for="finishDate">Current date:</label>
+        <input type="date" id="finishDate" name="finishDate">
+        
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div class="result" id="result"></div>
+      </div>
+    </div>
 
-<script>
-    function calculateAge() {
-        const startDate = document.getElementById('startDate').value;
-        const finishDate = document.getElementById('finishDate').value;
-
-        if (!startDate || !finishDate) {
-            alert("Please enter both start and finish dates.");
-            return;
-        }
-
-        const start = new Date(startDate);
-        const finish = new Date(finishDate);
-
-        if (start > finish) {
-            alert("Start date must be before the finish date.");
-            return;
-        }
-
-        // Calculate the difference in milliseconds
-        const timeDifference = finish - start;
-
-        // Convert milliseconds to days
-        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-        // Calculate years, months, and days
-        let years = finish.getFullYear() - start.getFullYear();
-        let months = finish.getMonth() - start.getMonth();
-        let days = finish.getDate() - start.getDate();
-
-        if (days < 0) {
-            months--;
-            days += new Date(finish.getFullYear(), finish.getMonth(), 0).getDate();
-        }
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        // Determine the output format
-        let output;
-        if (daysDifference < 30) {
-            output = `${daysDifference} day${daysDifference !== 1 ? 's' : ''}`;
-        } else if (years === 0) {
-            output = `${months} month${months !== 1 ? 's' : ''} and ${days} day${days !== 1 ? 's' : ''}`;
-        } else {
-            output = `${years} year${years !== 1 ? 's' : ''}, ${months} month${months !== 1 ? 's' : ''}, and ${days} day${days !== 1 ? 's' : ''}`;
-        }
-	
-
-        // Display the result
-        document.getElementById('result').innerHTML = `
-            <p>Age: <strong>${output}</strong></p>
-        `;
-    }
-</script>
- <!-- Footer -->
+    <!-- Footer -->
     <footer>
       <div class="social-links">
         <a href="https://www.facebook.com/nabin.ijam" target="_blank">
@@ -287,8 +251,60 @@
 
       // Initial call to display the time and date immediately
       updateDateTime();
-    </script>
-	
 
+      // JavaScript for Age Calculator
+      function calculateAge() {
+        const startDate = document.getElementById('startDate').value;
+        const finishDate = document.getElementById('finishDate').value;
+
+        if (!startDate || !finishDate) {
+          alert("Please enter both start and finish dates.");
+          return;
+        }
+
+        const start = new Date(startDate);
+        const finish = new Date(finishDate);
+
+        if (start > finish) {
+          alert("Start date must be before the finish date.");
+          return;
+        }
+
+        // Calculate the difference in milliseconds
+        const timeDifference = finish - start;
+
+        // Convert milliseconds to days
+        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+        // Calculate years, months, and days
+        let years = finish.getFullYear() - start.getFullYear();
+        let months = finish.getMonth() - start.getMonth();
+        let days = finish.getDate() - start.getDate();
+
+        if (days < 0) {
+          months--;
+          days += new Date(finish.getFullYear(), finish.getMonth(), 0).getDate();
+        }
+        if (months < 0) {
+          years--;
+          months += 12;
+        }
+
+        // Determine the output format
+        let output;
+        if (daysDifference < 30) {
+          output = `${daysDifference} day${daysDifference !== 1 ? 's' : ''}`;
+        } else if (years === 0) {
+          output = `${months} month${months !== 1 ? 's' : ''} and ${days} day${days !== 1 ? 's' : ''}`;
+        } else {
+          output = `${years} year${years !== 1 ? 's' : ''}, ${months} month${months !== 1 ? 's' : ''}, and ${days} day${days !== 1 ? 's' : ''}`;
+        }
+
+        // Display the result
+        document.getElementById('result').innerHTML = `
+          <p>Age: <strong>${output}</strong></p>
+        `;
+      }
+    </script>
 </body>
 </html>
