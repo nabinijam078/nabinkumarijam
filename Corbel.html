@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Mr. Nabin Kumar Ijam's professional portfolio as a Civil Engineer specializing in Structural and Hydropower projects.">
-
     <title>CORBEL</title>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -63,7 +61,6 @@
             background-color: #0078d7;
         }
 
-        
         /* Main Content */
         .content {
             max-width: 1200px;
@@ -73,12 +70,30 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+
+        .inputs {
+            flex: 1;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
         }
 
         h2 {
             color: #0078d7;
             font-size: 1.2rem;
-            text-align: center;
+            text-align: left;
         }
 
         .input-group {
@@ -89,7 +104,7 @@
             display: block;
             margin-bottom: 5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for labels */
+            font-size: 0.8rem;
         }
 
         .input-group input {
@@ -97,55 +112,32 @@
             padding: 8px;
             box-sizing: border-box;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem; /* Reduced font size for inputs */
+            font-size: 0.9rem;
         }
 
+        button {
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-	
-      p{font-family:Open Sans; font-size:13px; text-align:justify}
-       label{font-family:Open Sans; font-size:13px; text-align:justify}
-	
-     
-	body {
-            font-family: Open Sans, sans-serif;
-            margin: 15px;
+        button:hover {
+            background-color: #005bb5;
         }
-        .container {
-            max-width: 200px;
-            max-height: 90vh; /* Adjust this percentage as needed */
-            margin: auto;
-            overflow-y: auto; /* Add scroll if content overflows */
-        }
-                    font-family: Open Sans, sans-serif;
-        .result {font-size:12px;
-            margin-top: 10px;
-            padding: 10px;
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
             background-color: white;
-            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .image-container {
-            position: relative;
-            flex-shrink: 0;
-        }
-        .dimension {
-            position: absolute;
-            background-color: white;
-            color: black;
-            padding: 2px 5px;
-            font-size: 12px;
-            border-radius: 3px;
-            white-space: nowrap;
-        }
-        .dimension.rotated {
-            transform: rotate(-90deg);
-            transform-origin: left top;
-        }
-        input {
-            padding: 5px;
-            width: 100px;
-        }
-	    footer {
+        footer {
             background-color: #E0FFFF;
             color: #333;
             text-align: center;
@@ -168,36 +160,41 @@
         }
 
         @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
             nav a {
                 display: block;
                 margin: 5px 0;
             }
+
             #datetime {
                 position: static;
                 text-align: center;
                 margin-top: 10px;
             }
-
-        
+        }
     </style>
 </head>
 <body>
-	<div id="datetime"></div>
+    <div id="datetime"></div>
 
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
 
     <nav>
-    <a href="Home.html"><b>HOME</b></a>
-    <a href="My background.html"><b>MY BACKGROUND</b></a>
-    <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
-    <a href="Others.html"><b>OTHERS</b></a>
-    <a href="Downloads.html"><b>DOWNLOADS</b></a>
-    <a href="images.html"><b>IMAGES</b></a>
-    <a href="Contacts.html"><b>CONTACTS</b></a>
-</nav>
-    <div class="container">
+        <a href="Home.html"><b>HOME</b></a>
+        <a href="My background.html"><b>MY BACKGROUND</b></a>
+        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b>OTHERS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <div class="content">
         <!-- Inputs on the left -->
         <div class="inputs">
             <h2>CORBEL</h2>
@@ -246,26 +243,31 @@
 
         <!-- Image on the right -->
         <div class="image-container">
-            <img src="corbel_drawing.png" alt="Corbel Drawing" style="width: 400px; height: 400px;">
-            <div id="a-label" class="dimension" style="top: 60px; left: 140px;"></div>
-            <div id="V-label" class="dimension" style="top: 20px; left: 200px;"></div>
-            <div id="d-label" class="dimension rotated" style="top: 180px; left: 260px;"></div>
-            <div id="D-label" class="dimension rotated" style="top: 250px; left: 310px;"></div>
+            <img src="corbel_drawing.png" alt="Corbel Drawing">
         </div>
     </div>
 
     <!-- Result Display -->
-    <h2>DESIGN RESULTS</h2>
-	<p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
-    <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
-    <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
-    <p>Area of tensile reinforcement (Ast): <span id="Ast"></span>mm²</p>
-    <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
-    <p>Area of compression reinforcement (Asc): <span id="Asc"></span>mm²</p>
-    <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
-    <p><u>CHECK FOR SHEAR CAPACITY</u></p>
-    <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
-    <p>Check for Shear capacity of corbel: <span id="check"></span></p>
+    <div class="result">
+        <h2>DESIGN RESULTS</h2>
+        <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
+        <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
+        <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
+        <p>Area of tensile reinforcement (Ast): <span id="Ast"></span> mm²</p>
+        <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
+        <p>Area of compression reinforcement (Asc): <span id="Asc"></span> mm²</p>
+        <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
+        <p><u>CHECK FOR SHEAR CAPACITY</u></p>
+        <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
+        <p>Check for Shear capacity of corbel: <span id="check"></span></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+        </div>
+    </footer>
 
     <script>
         // Modulus of elasticity for steel
@@ -282,12 +284,6 @@
             const b = parseFloat(document.getElementById('b').value) || 0;
             const Phit = parseFloat(document.getElementById('Phit').value) || 0;
             const Phic = parseFloat(document.getElementById('Phic').value) || 0;
-
-            // Update dimension labels
-            document.getElementById('a-label').textContent = `a = ${a}mm`;
-            document.getElementById('V-label').textContent = `V = ${V}kN`;
-            document.getElementById('d-label').textContent = `d = ${d}mm`;
-            document.getElementById('D-label').textContent = `D = ${D}mm`;
 
             // Input validation
             if (fck <= 0 || fy <= 0 || c <= 0 || a <= 0 || V <= 0 || d <= 0 || D <= 0 || b <= 0 || Phit <= 0 || Phic <= 0) {
@@ -420,14 +416,17 @@
 
             return s1.stress + ((strain - s1.strain) / (s2.strain - s1.strain)) * (s2.stress - s1.stress);
         }
-    </script>
- <!-- Copyright -->
-        <div class="copyright">
-            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+ 	<!-- Social Network Links -->
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
         </div>
-    </footer>
 
-    <script>
         // Update Time
         function updateTime() {
             const now = new Date();
@@ -442,6 +441,5 @@
         // Update Copyright Year
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>
-
 </body>
 </html>
