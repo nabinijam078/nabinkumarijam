@@ -2,41 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mr. Nabin Kumar Ijam's professional portfolio as a Civil Engineer specializing in Structural and Hydropower projects.">
+
     <title>CORBEL</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 15px;
-            background-color: #E5E4E2;
-        }
-        h1 {
-            background-color: blue;
-            text-align: center;
-            color: white;
-            font-size: 25px;
-        }
-        h2 {
-            background-color: green;
-            text-align: center;
-            color: white;
-            font-size: 20px;
-        }
-        .container {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-        .inputs {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            min-height: 100vh;
         }
+
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #0078d7;
+        }
+
+        
+        /* Main Content */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        h2 {
+            color: #0078d7;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
         .input-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 15px;
         }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem; /* Reduced font size for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+
+	
+      p{font-family:Open Sans; font-size:13px; text-align:justify}
+       label{font-family:Open Sans; font-size:13px; text-align:justify}
+	
+     
+	body {
+            font-family: Open Sans, sans-serif;
+            margin: 15px;
+        }
+        .container {
+            max-width: 200px;
+            max-height: 90vh; /* Adjust this percentage as needed */
+            margin: auto;
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+                    font-family: Open Sans, sans-serif;
+        .result {font-size:12px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+
         .image-container {
             position: relative;
             flex-shrink: 0;
@@ -58,16 +145,50 @@
             padding: 5px;
             width: 100px;
         }
-        .result {
-            margin-top: 20px;
-            font-size: 10px;
-            font-weight: bold;
-            color: green;
+	    footer {
+            background-color: #E0FFFF;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            margin-top: auto;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        .copyright {
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+            #datetime {
+                position: static;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+        
     </style>
 </head>
 <body>
-    <h1 class="title">WELCOME TO MY PORTFOLIO</h1>
+	<div id="datetime"></div>
+
+    <header>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    </header>
+
+    <nav>
     <a href="Home.html"><b>HOME</b></a>
     <a href="My background.html"><b>MY BACKGROUND</b></a>
     <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
@@ -75,7 +196,7 @@
     <a href="Downloads.html"><b>DOWNLOADS</b></a>
     <a href="images.html"><b>IMAGES</b></a>
     <a href="Contacts.html"><b>CONTACTS</b></a>
-
+</nav>
     <div class="container">
         <!-- Inputs on the left -->
         <div class="inputs">
