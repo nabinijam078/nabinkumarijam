@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<title>Downloads - Nabin Kumar Ijam</title>
+    <title>Downloads - Nabin Kumar Ijam</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
     <STYLE>
-       /* General Styles */
+      /* General Styles */
       body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
@@ -16,6 +16,9 @@
         background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
       }
       h2, h3, h4, h5, h6 {
         font-family: 'Roboto', sans-serif; /* Heading font */
@@ -67,6 +70,7 @@
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         flex: 1; /* Allow content to grow and push footer down */
+        text-align: left; /* Ensure content is left-aligned */
       }
 
       .content img {
@@ -96,10 +100,9 @@
         color: white;
         text-align: center;
         padding: 10px;
-        position: relative; /* Change from fixed to relative */
         width: 100%;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-	margin-top: auto; /* Push footer to the bottom */
+        margin-top: auto; /* Push footer to the bottom */
       }
 
       .social-links {
@@ -155,7 +158,11 @@
         }
       }
 
-      td{font-family:Open Sans;text-align:left;font-size:13px;}
+      td {
+        font-family: Open Sans;
+        text-align: left;
+        font-size: 13px;
+      }
     </STYLE>
   </head>
   <body>
@@ -169,34 +176,35 @@
 
     <!-- Navigation Bar -->
     <nav>
-
       <a href="Home.html"><b>HOME</b></a>
       <a href="My background.html"><b> MY BACKGROUND</b></a>
       <a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
-	<a href="Others.html"><b> OTHERS</b></a>
+      <a href="Others.html"><b> OTHERS</b></a>
       <a href="Downloads.html"><b> DOWNLOADS</b></a>
-	<a href="images.html"><b> IMAGES</b></a>
+      <a href="images.html"><b> IMAGES</b></a>
       <a href="Contacts.html"><b> CONTACTS</b></a>
-   </nav>
-      <p> </p>
-    </h1>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
       <h2><b><u>DOWNLOADS</u></b></h2>
       <table>
         <tr>
           <td>1.IS 456:2000-</td>
           <td>
-            <a href="IS 456-2000.pdf" >Download</a>
+            <a href="IS 456-2000.pdf">Download</a>
           </td> 
-          
         </tr>
-	<tr>
-	<td>2.BEAM DESIGN AS PER IS 456:2000-</td>
+        <tr>
+          <td>2.BEAM DESIGN AS PER IS 456:2000-</td>
           <td>
-            <a href="2. Beams.xlsm" Download="BEAM DESIGN" >Download</a>
+            <a href="2. Beams.xlsm" Download="BEAM DESIGN">Download</a>
           </td>
-	</tr>
+        </tr>
       </table>
-	<!-- Footer -->
+    </div>
+
+    <!-- Footer -->
     <footer>
       <div class="social-links">
         <a href="https://www.facebook.com/nabin.ijam" target="_blank">
@@ -206,10 +214,10 @@
           <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
         </a>
       </div>
-        <!-- Copyright -->
-        <div class="copyright">
-            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-        </div>
+      <!-- Copyright -->
+      <div class="copyright">
+        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+      </div>
     </footer>
 
     <!-- JavaScript for Time and Date -->
@@ -226,8 +234,5 @@
       // Initial call to display the time and date immediately
       updateDateTime();
     </script>
-
-
-
   </body>
 </html>
