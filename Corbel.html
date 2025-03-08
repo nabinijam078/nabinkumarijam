@@ -19,15 +19,6 @@
             min-height: 100vh;
         }
 
-        #datetime {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 0.9rem;
-            color: #333;
-            font-weight: bold;
-        }
-
         header {
             background-color: #0078d7;
             color: white;
@@ -39,6 +30,15 @@
         header h1 {
             margin: 0;
             font-size: 1.5rem;
+        }
+
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: bold;
         }
 
         nav {
@@ -147,6 +147,21 @@
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7;
+        }
+
         .copyright {
             padding: 5px;
             border-radius: 5px;
@@ -178,10 +193,9 @@
     </style>
 </head>
 <body>
-    <div id="datetime"></div>
-
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+        <div id="datetime"></div>
     </header>
 
     <nav>
@@ -264,6 +278,17 @@
 
     <!-- Footer -->
     <footer>
+        <!-- Social Network Links -->
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+
+        <!-- Copyright -->
         <div class="copyright">
             <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
         </div>
@@ -416,30 +441,8 @@
 
             return s1.stress + ((strain - s1.strain) / (s2.strain - s1.strain)) * (s2.stress - s1.stress);
         }
- 	<!-- Social Network Links -->
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
 
         // Update Time
         function updateTime() {
             const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById("datetime").innerText = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call
-
-        // Update Copyright Year
-        document.getElementById('year').innerText = new Date().getFullYear();
-    </script>
-</body>
-</html>
+            const hours = now.getHours().
