@@ -135,6 +135,11 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Open Sans', sans-serif; /* Ensure Open Sans is applied */
+        }
+
+        .result p {
+            font-family: 'Open Sans', sans-serif; /* Ensure Open Sans is applied to paragraphs */
         }
 
         footer {
@@ -445,4 +450,16 @@
         // Update Time
         function updateTime() {
             const now = new Date();
-            const hours = now.getHours().
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("datetime").innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+
+        // Update Copyright Year
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>
