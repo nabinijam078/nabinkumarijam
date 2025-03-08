@@ -123,38 +123,68 @@
         }
 
         footer {
-            background-color: #E0FFFF;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            width: 100%;
-            margin-top: auto;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #E0FFFF;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative; /* Change from fixed to relative */
+        width: 100%;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333; /* Dark color for icons */
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem; /* Icon size */
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7; /* Change color on hover */
+      }
+
+      .copyright {
+        background-color: #E0FFFF; 
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
+        margin: 0;
+        font-size: 0.7rem;
+        color: #333; /* Dark text for contrast */
+      }
+
+      /* Time and Date Styles */
+      #datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content img {
+          float: none;
+          display: block;
+          margin: 0 auto 20px;
         }
 
-        .copyright {
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
+        nav a {
+          display: block;
+          margin: 10px 0;
         }
-
-        .copyright p {
-            margin: 0;
-            font-size: 0.7rem;
-        }
-
-        @media (max-width: 768px) {
-            nav a {
-                display: block;
-                margin: 5px 0;
-            }
-            #datetime {
-                position: static;
-                text-align: center;
-                margin-top: 10px;
-            }
-        }
+      }   
+        
     </style>
 </head>
 <body>
