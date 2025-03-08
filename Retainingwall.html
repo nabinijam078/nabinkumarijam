@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Mr. Nabin Kumar Ijam's professional portfolio as a Civil Engineer specializing in Structural and Hydropower projects.">
-
     <title>RETAINING WALL</title>
-	 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-       body {
+        body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
@@ -71,6 +70,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex: 1;
+            overflow-y: auto; /* Add scroll if content overflows */
         }
 
         h2 {
@@ -98,42 +98,34 @@
             font-size: 0.9rem; /* Reduced font size for inputs */
         }
 
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
 
-	
-      p{font-family:Open Sans; font-size:13px; text-align:justify}
-       label{font-family:Open Sans; font-size:13px; text-align:justify}
-	
-     
-	body {
-            font-family: Open Sans, sans-serif;
-            margin: 15px;
-        }
         .container {
             max-width: 200px;
             max-height: 90vh; /* Adjust this percentage as needed */
             margin: auto;
             overflow-y: auto; /* Add scroll if content overflows */
         }
-                    font-family: Open Sans, sans-serif;
-        .result {font-size:12px;
+
+        .result {
+            font-size: 12px;
             margin-top: 10px;
             padding: 10px;
             background-color: white;
             border: 1px solid #ccc;
         }
 
-      table, th, td{
-      border: 1px solid;border-collapse: collapse;
-      }
-      th {
-      font-size: 12px;
-    }
-    td {
-      font-size: 12px;
-    }
-    td span { font-size: 12px; }
-      
-	footer {
+        table, th, td {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+
+        th { font-size: 12px; }
+        td { font-size: 12px; }
+        td span { font-size: 12px; }
+
+        footer {
             background-color: #E0FFFF;
             color: #333;
             text-align: center;
@@ -165,142 +157,134 @@
                 text-align: center;
                 margin-top: 10px;
             }
-
-	
-
+        }
     </style>
 </head>
-<body >
-	<div id="datetime"></div>
+<body>
+    <div id="datetime"></div>
 
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
-<nav>
-	
-      	<a href="Home.html"><b>HOME</b></a>
-      	<a href="My background.html"><b> MY BACKGROUND</b></a>
-      	<a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
-	<a href="Others.html"><b> OTHERS</b></a>
-      	<a href="Downloads.html"><b> DOWNLOADS</b></a>
-	<a href="images.html"><b> IMAGES</b></a>
-      	<a href="Contacts.html"><b> CONTACTS</b></a>
- </nav>
-	
-    <form id="Stemdimension">
-      <h2>STABILITY ANALYSIS OF RETAINING WALL</h2>
-    <P><b>1. GEOMTERY OF WALL</b> </P>
-	  <p>STEM DIMENSION</p>
-        <div class="input-row">
-            <label for="topwidth">Top width (t<sub>w</sub> in m):</label>
-            <input type="number" id="tw" required>
-        </div>
-        <div class="input-row">
-            <label for="bottomwidth">Bottom width (b<sub>w</sub> in m):</label>
-            <input type="number" id="bw"  required>
-        </div>
-	      <div class="input-row">
-            <label for="height">Height of stem (h in m):</label>
-            <input type="number" id="hw"  required>
-        </div>
-	  <p>TOE SLAB DIMENSION</p>
-	      <div class="input-row">
-            <label for="lengthtoe">Length of toe (L<sub>t</sub> in m):</label>
-            <input type="number" id="lengthtoe"  required>
-        </div>
-	      <div class="input-row">
-            <label for="ThicknessToe">Thickness of toe(h<sub>t</sub> in m):</label>
-            <input type="number" id="ThicknessToe"  required>
-        </div>
-    <p>HEEL SLAB DIMENSION</p>
-	      <div class="input-row">
-            <label for="lengthheel">Length of heel (L<sub>h</sub> in m):</label>
-            <input type="number" id="lengthheel"  required>
-        </div>
-	      <div class="input-row">
-            <label for="Thicknessheel">Thickness of toe(h<sub>h </sub>in m):</label>
-            <input type="number" id="Thicknessheel"  required>
-        </div>
-        
-    <P><b>2. GEOTECHNICAL PARAMETER </b></P>
-        <p><b>2.1 Foundation material</b></p>
-        <div class="input-row">
-            <label for="BearingF">Bearing Capacity of foundation material (σ<sub>b</sub> in kN/m<sup>2</sup>):</label>
-            <input type="number" id="σb"  required>
-        </div>
-        <div class="input-row">
-            <label for="Frictionf">Angle of internal friction of foundation material (φ<sub>f</sub> in degree):</label>
-            <input type="number" id="φf"  required>
-        </div>
-        
-        <div class="input-row">
-            <label for="Cohesionf">Cohesion of foundation material (C<sub>f</sub> in kN/m<sup>2</sup>):</label>
-            <input type="number" id="Cf"  required>
-        </div>
-        <p><b>2.2 Backfill material</b></p>
-        <div class="input-row">
-            <label for="Density of soil">Density of soil (Y<sub>s</sub> in kN/m<sup>3</sup>):</label>
-            <input type="number" id="Ys"  required>
-        </div>
-        <div class="input-row">
-            <label for="Saturated Density of soil">Saturated Density of soil (Y<sub>sat</sub> in kN/m<sup>3</sup>):</label>
-            <input type="number" id="Ysat"  required>
-        </div>
-        <div class="input-row">
-            <label for="InclinationHeel"> Inclination of slope at hill side (i<sub>h</sub> in degree):</label>
-            <input type="number" id="ih"  required>
-        </div>
-        <div class="input-row">
-            <label for="FricAngle">Angle of internal friction (φ in degree):</label>
-            <input type="number" id="Phi"  required>
-        </div>
-        <div class="input-row">
-            <label for="SoilDepthheel">Depth of soil in heel side from top of slab (h<sub>s</sub> in m):</label>
-            <input type="number" id="hs"  required>
-        </div>
-        <div class="input-row">
-            <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (h<sub>toe</sub> in m):</label>
-            <input type="number" id="htoe"  required>
-        </div>
-        
-    <p><b>3. WATER LEVELS</b></p>
-        <div class="input-row">
-            <label for="WTh">Water depth in heel side from top of slab (WT<sub>h</sub> in m):</label>
-            <input type="number" id="WTh"  required>
-        </div>
-        <div class="input-row">
-            <label for="WTt">Water depth in toe side from top of slab (WT<sub>t</sub> in m):</label>
-            <input type="number" id="WTt"  required>
-        </div>
-    <p><b>4. OTHERS</b></p>
-          <div class="input-row">
-            <label for="Yc">Density of concrete (Y<sub>c</sub> in kN/m<sup>3</sup>):</label>
-            <input type="number" id="Yc"  required>
-          </div>
-          <div class="input-row">
-            <label for="Ah">Horizontal seismic coefficient (A<sub>h</sub>):</label>
-            <input type="number" id="Ah"  required>
-          </div>
-         <label for="EPT">Consideration of earth pressure(1-Active & Passive and 2-At rest): </label>
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <a href="My background.html"><b> MY BACKGROUND</b></a>
+        <a href="Civil Engineering Notes.html"><b> CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b> OTHERS</b></a>
+        <a href="Downloads.html"><b> DOWNLOADS</b></a>
+        <a href="images.html"><b> IMAGES</b></a>
+        <a href="Contacts.html"><b> CONTACTS</b></a>
+    </nav>
+
+    <div class="content">
+        <form id="Stemdimension">
+            <h2>STABILITY ANALYSIS OF RETAINING WALL</h2>
+            <p><b>1. GEOMETRY OF WALL</b></p>
+            <p>STEM DIMENSION</p>
+            <div class="input-row">
+                <label for="topwidth">Top width (t<sub>w</sub> in m):</label>
+                <input type="number" id="tw" required>
+            </div>
+            <div class="input-row">
+                <label for="bottomwidth">Bottom width (b<sub>w</sub> in m):</label>
+                <input type="number" id="bw" required>
+            </div>
+            <div class="input-row">
+                <label for="height">Height of stem (h in m):</label>
+                <input type="number" id="hw" required>
+            </div>
+            <p>TOE SLAB DIMENSION</p>
+            <div class="input-row">
+                <label for="lengthtoe">Length of toe (L<sub>t</sub> in m):</label>
+                <input type="number" id="lengthtoe" required>
+            </div>
+            <div class="input-row">
+                <label for="ThicknessToe">Thickness of toe (h<sub>t</sub> in m):</label>
+                <input type="number" id="ThicknessToe" required>
+            </div>
+            <p>HEEL SLAB DIMENSION</p>
+            <div class="input-row">
+                <label for="lengthheel">Length of heel (L<sub>h</sub> in m):</label>
+                <input type="number" id="lengthheel" required>
+            </div>
+            <div class="input-row">
+                <label for="Thicknessheel">Thickness of heel (h<sub>h</sub> in m):</label>
+                <input type="number" id="Thicknessheel" required>
+            </div>
+            <p><b>2. GEOTECHNICAL PARAMETER</b></p>
+            <p><b>2.1 Foundation material</b></p>
+            <div class="input-row">
+                <label for="BearingF">Bearing Capacity of foundation material (σ<sub>b</sub> in kN/m<sup>2</sup>):</label>
+                <input type="number" id="σb" required>
+            </div>
+            <div class="input-row">
+                <label for="Frictionf">Angle of internal friction of foundation material (φ<sub>f</sub> in degree):</label>
+                <input type="number" id="φf" required>
+            </div>
+            <div class="input-row">
+                <label for="Cohesionf">Cohesion of foundation material (C<sub>f</sub> in kN/m<sup>2</sup>):</label>
+                <input type="number" id="Cf" required>
+            </div>
+            <p><b>2.2 Backfill material</b></p>
+            <div class="input-row">
+                <label for="Density of soil">Density of soil (Y<sub>s</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Ys" required>
+            </div>
+            <div class="input-row">
+                <label for="Saturated Density of soil">Saturated Density of soil (Y<sub>sat</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Ysat" required>
+            </div>
+            <div class="input-row">
+                <label for="InclinationHeel">Inclination of slope at hill side (i<sub>h</sub> in degree):</label>
+                <input type="number" id="ih" required>
+            </div>
+            <div class="input-row">
+                <label for="FricAngle">Angle of internal friction (φ in degree):</label>
+                <input type="number" id="Phi" required>
+            </div>
+            <div class="input-row">
+                <label for="SoilDepthheel">Depth of soil in heel side from top of slab (h<sub>s</sub> in m):</label>
+                <input type="number" id="hs" required>
+            </div>
+            <div class="input-row">
+                <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (h<sub>toe</sub> in m):</label>
+                <input type="number" id="htoe" required>
+            </div>
+            <p><b>3. WATER LEVELS</b></p>
+            <div class="input-row">
+                <label for="WTh">Water depth in heel side from top of slab (WT<sub>h</sub> in m):</label>
+                <input type="number" id="WTh" required>
+            </div>
+            <div class="input-row">
+                <label for="WTt">Water depth in toe side from top of slab (WT<sub>t</sub> in m):</label>
+                <input type="number" id="WTt" required>
+            </div>
+            <p><b>4. OTHERS</b></p>
+            <div class="input-row">
+                <label for="Yc">Density of concrete (Y<sub>c</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Yc" required>
+            </div>
+            <div class="input-row">
+                <label for="Ah">Horizontal seismic coefficient (A<sub>h</sub>):</label>
+                <input type="number" id="Ah" required>
+            </div>
+            <label for="EPT">Consideration of earth pressure (1-Active & Passive and 2-At rest):</label>
             <select id="EPT">
                 <option value="1">1</option>
                 <option value="2">2</option>
             </select>
-          <div class="input-row">
-            <label for="Ps">Passive pressure coefficient (P<sub>s</sub>in %):</label>
-            <input type="number" id="Ps"  required>
-          </div>  
-            
-          <p></p>
-        <button type="button" onclick="RetainingWallCalc()">Design Section</button>
-</form>
-      
+            <div class="input-row">
+                <label for="Ps">Passive pressure coefficient (P<sub>s</sub> in %):</label>
+                <input type="number" id="Ps" required>
+            </div>
+            <p></p>
+            <button type="button" onclick="RetainingWallCalc()">Design Section</button>
+        </form>
         <div class="result" id="result">
             <h3>DESIGN RESULTS</h3>
-            
             <p><b>LOAD CALCULATION</b></p>
-          <table>
-            <tr>
+            <table>
+                <tr>
               <th>SN</th>
               <th>Load name</th>
               <th>Symbol</th>
@@ -452,10 +436,11 @@
               <td></td>
               <td><p><span id="M6"></span></span></strong></p></td>
             </tr>
-        </table>
-        <P><b>STABILITY ANALYSIS</b></P>
-        <table>
-          <tr>
+
+            </table>
+            <p><b>STABILITY ANALYSIS</b></p>
+            <table>
+                <tr>
             <th>SN</th>
             <th>Combination</th>
             <th>FOS against Sliding</th>
@@ -482,12 +467,28 @@
             <td><p><span id="sigmamin2"></span></span></strong></p></td>
             <td><p><span id="sigmamax2"></span></span></strong></p></td>
           </tr>
-        </table>
+
+            </table>
         </div>
-        
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+        </div>
+    </footer>
+
     <script>
         function RetainingWallCalc() {
-            // Get user inputs
+             // Get user inputs
             const tw = parseFloat(document.getElementById('tw').value);
             const bw = parseFloat(document.getElementById('bw').value);
             const h = parseFloat(document.getElementById('hw').value);
@@ -717,26 +718,8 @@
             document.getElementById('sigmamin2').textContent = sigmamin2.toFixed(2);
             document.getElementById('sigmamax2').textContent = sigmamax2.toFixed(2);
         }
-	 <!-- Footer -->
-    <footer>
-        <!-- Social Network Links -->
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
 
-        <!-- Copyright -->
-        <div class="copyright">
-            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-        </div>
-    </footer>
 
-    <script>
         // Update Time
         function updateTime() {
             const now = new Date();
