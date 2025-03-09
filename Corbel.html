@@ -322,6 +322,12 @@
             const Phit = parseFloat(document.getElementById('Phit').value) || 0;
             const Phic = parseFloat(document.getElementById('Phic').value) || 0;
 
+              // Update dimension labels
+            document.getElementById('a-label').textContent = `a = ${a}mm`;
+            document.getElementById('V-label').textContent = `V = ${V}kN`;
+            document.getElementById('d-label').textContent = `d = ${d}mm`;
+            document.getElementById('D-label').textContent = `D = ${D}mm`;
+
             // Input validation
             if (fck <= 0 || fy <= 0 || c <= 0 || a <= 0 || V <= 0 || d <= 0 || D <= 0 || b <= 0 || Phit <= 0 || Phic <= 0) {
                 alert("All input values must be positive numbers.");
