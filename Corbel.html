@@ -89,6 +89,24 @@
             max-width: 100%;
             height: auto;
         }
+        .image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .dimension {
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        .dimension.rotated {
+            transform: rotate(-90deg);
+            transform-origin: left top;
+        }
+
 
         h2 {
             color: #0078d7;
