@@ -315,33 +315,190 @@
 
         // Calculate Main Rebar
         function calculateMainRebar() {
-            // Get input values
-            const fck = parseFloat(document.getElementById('fck').value);
-            const fy = parseFloat(document.getElementById('fy').value);
-            const σb = parseFloat(document.getElementById('σb').value);
-            const width = parseFloat(document.getElementById('width').value);
-            const depth = parseFloat(document.getElementById('depth').value);
-            const Length = parseFloat(document.getElementById('Length').value);
-            const Breadth = parseFloat(document.getElementById('Breadth').value);
-            const Thickness = parseFloat(document.getElementById('Thickness').value);
-            const AxialLoad = parseFloat(document.getElementById('AxialLoad').value);
-            const Mx = parseFloat(document.getElementById('Mx').value);
-            const My = parseFloat(document.getElementById('My').value);
+           // Read fck and fy from the select elements
+            let fck = parseFloat(document.getElementById("fck").value) || 0;
+            let fy = parseFloat(document.getElementById("fy").value) || 0;
 
-            // Perform calculations (placeholder calculations)
-            const sigma1 = (AxialLoad / (Length * Breadth)) + (Mx / (Length * Breadth * Breadth / 6)) + (My / (Length * Length * Breadth / 6));
-            const sigma2 = (AxialLoad / (Length * Breadth)) + (Mx / (Length * Breadth * Breadth / 6)) - (My / (Length * Length * Breadth / 6));
-            const sigma3 = (AxialLoad / (Length * Breadth)) - (Mx / (Length * Breadth * Breadth / 6)) + (My / (Length * Length * Breadth / 6));
-            const sigma4 = (AxialLoad / (Length * Breadth)) - (Mx / (Length * Breadth * Breadth / 6)) - (My / (Length * Length * Breadth / 6));
+            // Read other inputs
+            let σb = parseFloat(document.getElementById("σb").value) || 0;
+            let F = parseFloat(document.getElementById("AxialLoad").value) || 0;
+            let Mx = parseFloat(document.getElementById("Mx").value) || 0;
+            let My = parseFloat(document.getElementById("My").value) || 0;
+            let L = parseFloat(document.getElementById("Length").value) || 0;
+            let B = parseFloat(document.getElementById("Breadth").value) || 0;
+            let thickness = parseFloat(document.getElementById("Thickness").value) || 0;
+            let col_b = parseFloat(document.getElementById("width").value) || 0;
+            let col_d = parseFloat(document.getElementById("depth").value) || 0;
 
-            const maxBearingStress = Math.max(sigma1, sigma2, sigma3, sigma4);
-            const minBearingStress = Math.min(sigma1, sigma2, sigma3, sigma4);
+            // Ensure fck and fy are valid
+            if (fck === 0 || fy === 0) {
+                alert("Please select valid values for fck and fy.");
+                return;
+            }
 
-            const Mu_lim = 0.138 * fck * width * depth * depth; // Example calculation
-            const Mu = Mx; // Example calculation
-            const Muy = My; // Example calculation
-            const Astx = (Mu * 1e6) / (0.87 * fy * 0.8 * depth); // Example calculation
-            const Asty = (Muy * 1e6) / (0.87 * fy * 0.8 * width); // Example calculation
+            if (F === 0 || L === 0 || B === 0) {
+                alert("Please enter valid values for load and dimensions.");
+                return;
+            }
+
+            // Calculate eccentricities
+            let ex = Mx / F;
+            let ey = My / F;
+
+            // Calculate bearing stresses at four corners
+            let sigma1 = (F / (L * B)) * (1 + (6 * ex / L) + (6 * ey / B)) * 1.1;
+            let sigma2 = (F / (L * B)) * (1 - (6 * ex / L) + (6 * ey / B)) * 1.1;
+            let sigma3 = (F / (L * B)) * (1 + (6 * ex / L) - (6 * ey / B)) * 1.1;
+            let sigma4 = (F / (L * B)) * (1 - (6 * ex / L) - (6 * ey / B)) * 1.1;
+
+            // Check for maximum and minimum bearing stresses
+            let check1;
+            if (Math.max(sigma1, sigma2, sigma3, sigma4) < σb) {
+                check1 = "OK";
+            } else {
+                check1 = "NOT OK";
+            }
+            let check2;
+            if (Math.min(sigma1, sigma2, sigma3, sigma4) > 0) {
+                check2 = "OK";
+            } else {
+                check2 = "NOT OK";
+            }
+
+            // Calculate moments of inertia
+            let Ixx = L * Math.pow(B, 3) / 12;
+            let Iyy = B * Math.pow(L, 3) / 12;
+
+            // REINFORCEMENT DESIGN AT X-AXIS
+            // Calculate bearing stress at specific points
+            let x11 = col_b / 2000;
+            let y11 = B / 2;
+            let x12 = col_b / 2000;
+            let y12 = -B / 2;
+
+            let sigma11 = (F / (L * B) + Mx / Ixx * y11 + My / Iyy * x11) * 1.1;
+            let sigma12 = (F / (L * B) + Mx / Ixx * y12 + My / Iyy * x12) * 1.1;
+
+            // Calculate Ax1, Ax2, Vx1, and cenx
+            let Ax1 = (sigma1 + sigma11) / 2 * B;
+            let Ax2 = (sigma2 + sigma12) / 2 * B;
+            let Vx1 = (L / 2 - x11) / 3 * (Ax1 + Ax2 + Math.sqrt(Ax1 * Ax2));
+            let cenx;
+            if (Ax1 < Ax2) {
+                cenx = (L / 2 - x11) / 4 * (Ax1 + 2 * Math.sqrt(Ax1 * Ax2) + 3 * Ax2) / (Ax1 + Ax2 + Math.sqrt(Ax1 * Ax2));
+            } else {
+                cenx = L / 2 - (L / 2 - x11) / 4 * (Ax1 + 2 * Math.sqrt(Ax1 * Ax2) + 3 * Ax2) / (Ax1 + Ax2 + Math.sqrt(Ax1 * Ax2));
+            }
+
+            // Calculate moment (Mu)
+            let Mu = Vx1 * cenx;
+
+            // Constants
+            const Es = 2e5;
+
+            // Calculate limiting moment (Mu_lim)
+            const k = 0.0035 / (0.0055 + 0.87 * fy / Es);
+            const Xu_max = k * thickness; // For Fe 415 steel
+            const Mu_lim = 0.36 * fck * (B * 1000) * Xu_max * (thickness - 0.42 * Xu_max) / 1e6;
+
+            // Area of reinforcement
+            let Astx1;
+            if (Mu <= Mu_lim) { // Singly reinforced section
+                Astx1 = (1 - Math.sqrt(1 - (4.598 * Mu * 1e6) / (fck * (B * 1000) * thickness * thickness))) * (fck / (2 * fy)) * (B * 1000) * thickness;
+            } else {
+                Astx1 = 0;
+            }
+            // Check for minimum reinforcement
+            const Astx = Math.max(Astx1, 0.85 / fy * B * thickness * 1000);
+
+            // REINFORCEMENT DESIGN AT Y-AXIS
+            // Calculate bearing stress at specific points
+            let x21 = L / 2;
+            let y21 = col_d / 2000;
+            let x22 = -L / 2;
+            let y22 = col_d / 2000;
+
+            let sigma21 = (F / (L * B) + Mx / Ixx * y21 + My / Iyy * x21) * 1.1;
+            let sigma22 = (F / (L * B) + Mx / Ixx * y22 + My / Iyy * x22) * 1.1;
+
+            // Calculate Ax11, Ax21, Vy, and ceny
+            let Ax11 = (sigma1 + sigma21) / 2 * L;
+            let Ax21 = (sigma3 + sigma22) / 2 * L;
+            let Vy = (B / 2 - y21) / 3 * (Ax11 + Ax21 + Math.sqrt(Ax11 * Ax21));
+
+            let ceny;
+            if (Ax11 < Ax21) {
+                ceny = (B / 2 - y21) / 4 * (Ax11 + 2 * Math.sqrt(Ax11 * Ax21) + 3 * Ax21) / (Ax11 + Ax21 + Math.sqrt(Ax11 * Ax21));
+            } else {
+                ceny = B / 2 - (B / 2 - y21) / 4 * (Ax11 + 2 * Math.sqrt(Ax11 * Ax21) + 3 * Ax21) / (Ax11 + Ax21 + Math.sqrt(Ax11 * Ax21));
+            }
+
+            // Calculate moment (Muy)
+            let Muy = Vy * ceny;
+
+            // Calculate limiting moment (Mu_limy)
+            const Mu_limy = 0.36 * fck * (L * 1000) * Xu_max * (thickness - 0.42 * Xu_max) / 1e6;
+
+            // Area of reinforcement
+            let Asty1;
+            if (Muy <= Mu_limy) { // Singly reinforced section
+                Asty1 = (1 - Math.sqrt(1 - (4.598 * Muy * 1e6) / (fck * (L * 1000) * thickness * thickness))) * (fck / (2 * fy)) * (L * 1000) * thickness;
+            } else {
+                Asty1 = 0;
+            }
+            // Check for minimum reinforcement
+            const Asty = Math.max(Asty1, 0.85 / fy * L * thickness * 1000);
+            
+            //ONE-WAY SHEAR
+            //in x-axis
+            let x31=x11+thickness/1000;
+            let y31=B/2;
+            let x32=x12+thickness/1000;
+            let y32=-B/2;
+            
+            let sigma31 = (F / (L * B) + Mx / Ixx * y31 + My / Iyy * x31) * 1.1;
+            let sigma32 = (F / (L * B) + Mx / Ixx * y32 + My / Iyy * x32) * 1.1;
+            let A1 = (sigma1 + sigma31) / 2 * B;
+            let A2 = (sigma2 + sigma32) / 2 * B;
+            
+            let Fx = (L / 2 - x31) / 3 * (A1 + A2 + Math.sqrt(A1 * A2));
+            const tau_vx=Fx*1000/(B*thickness*1000);
+            const betax = Math.max(0.8 * fck / (6.89 * (Astx / (B * thickness*1000)) * 100),1); 
+            const tau_cx = 0.85 * Math.sqrt(0.8 * fck) * (Math.sqrt(1 + 5 * betax) - 1) / (6 * betax); // Shear stress
+            //Shear reinforcement requirement
+            let checkx;
+            if (tau_vx<tau_cx){checkx="No requirement";}
+            else{checkx="Change thickness";}
+            
+            //in Y-AXIS
+            let x41=L/2;
+            let y41=y21+thickness/1000;
+            let x42=-L/2;
+            let y42=y22+thickness/1000;
+            
+            let sigma41 = (F / (L * B) + Mx / Ixx * y41 + My / Iyy * x41) * 1.1;
+            let sigma42 = (F / (L * B) + Mx / Ixx * y42 + My / Iyy * x42) * 1.1;
+            let A3 = (sigma1 + sigma41) / 2 * L;
+            let A4 = (sigma3 + sigma42) / 2 * L;
+            
+            let Fy = (B/ 2 - y41) / 3 * (A3 + A3 + Math.sqrt(A3 * A4));
+            const tau_vy=Fy*1000/(L*thickness*1000);
+            const betay = Math.max(0.8 * fck / (6.89 * (Asty / (L * thickness*1000)) * 100),1); 
+            const tau_cy = 0.85 * Math.sqrt(0.8 * fck) * (Math.sqrt(1 + 5 * betay) - 1) / (6 * betay); // Shear stress
+            
+            //Shear reinforcement requirement
+            let checky;
+            if (tau_vy<tau_cy){checky="No requirement";}
+            else{checky="Change thickness";}
+            
+            //3. TWO-WAY SHEAR STRENGTH
+            let Ap=(col_b+2*thickness+col_d)*thickness;
+            let Ftw=1.1*F*1000/Ap;
+            let tau_tw=Math.min(0.25*Math.sqrt(fck),5);
+            let check_tw;
+            if (tau_tw>Ftw){check_tw="OK";}
+            else {check_tw="Change thickness";}
+
 
             const Fx = AxialLoad / 2; // Example calculation
             const Fy = AxialLoad / 2; // Example calculation
