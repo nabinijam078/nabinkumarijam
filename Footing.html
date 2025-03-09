@@ -8,7 +8,163 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Your CSS styles remain unchanged */
+        /* General Styles */
+      body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+      }
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: #0078d7;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #0078d7;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.3rem;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #0078d7;
+      }
+
+      /* Main Content */
+      .content {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex: 1; /* Allow content to grow and push footer down */
+        text-align: left; /* Ensure content is left-aligned */
+      }
+
+      .content img {
+        float: right;
+        margin: 0 0 20px 20px;
+        border-radius: 10px;
+        width: 150px;
+        height: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 5px solid #555;
+      }
+
+      .content h2 {
+        color: #0078d7;
+        font-size: 1.2rem;
+        margin-top: 0;
+      }
+
+      .content p {
+        font-size: 0.8rem;
+        text-align: justify;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #E0FFFF;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: auto; /* Push footer to the bottom */
+      }
+
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333; /* Dark color for icons */
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem; /* Icon size */
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7; /* Change color on hover */
+      }
+
+      .copyright {
+        background-color: #E0FFFF; 
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
+        margin: 0;
+        font-size: 0.7rem;
+        color: #333; /* Dark text for contrast */
+      }
+
+      /* Time and Date Styles */
+      #datetime {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content img {
+          float: none;
+          display: block;
+          margin: 0 auto 20px;
+        }
+
+        nav a {
+          display: block;
+          margin: 10px 0;
+        }
+      }
+
+      td {
+        font-family: Open Sans;
+        text-align: left;
+        font-size: 13px;
+      }
+
+
     </style>
 </head>
 <body>
