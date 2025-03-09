@@ -62,7 +62,6 @@
             background-color: #0078d7;
         }
 
-        /* Main Content */
         .content {
             max-width: 1200px;
             margin: 20px auto;
@@ -87,7 +86,7 @@
             display: block;
             margin-bottom: 5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for labels */
+            font-size: 0.8rem;
         }
 
         .input-group input {
@@ -95,21 +94,22 @@
             padding: 8px;
             box-sizing: border-box;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for inputs */
+            font-size: 0.8rem;
         }
 
         select {
-            font-size: 0.8rem; /* Adjust the font size for the dropdown */
+            font-size: 0.8rem;
         }
 
         select option {
-            font-size: 0.8rem; /* Adjust the font size for the options */
+            font-size: 0.8rem;
         }
-        /* Target the labels for "Grade of Concrete" and "Grade of Steel" */
+
         label[for="fck"],
         label[for="fy"] {
-        font-size: 0.8rem; /* Adjust the font size as needed */
+            font-size: 0.8rem;
         }
+
         .result {
             margin-top: 20px;
             padding: 10px;
@@ -123,79 +123,74 @@
         }
 
         footer {
-        background-color: #E0FFFF;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        position: relative; /* Change from fixed to relative */
-        width: 100%;
-        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .social-links {
-        margin-bottom: 10px;
-      }
-
-      .social-links a {
-        color: #333; /* Dark color for icons */
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 1.8rem; /* Icon size */
-        transition: color 0.3s ease;
-      }
-
-      .social-links a:hover {
-        color: #0078d7; /* Change color on hover */
-      }
-
-      .copyright {
-        background-color: #E0FFFF; 
-        padding: 5px;
-        border-radius: 5px;
-        display: inline-block;
-        margin-top: 10px;
-      }
-
-      .copyright p {
-        margin: 0;
-        font-size: 0.7rem;
-        color: #333; /* Dark text for contrast */
-      }
-
-      /* Time and Date Styles */
-      #datetime {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 0.7rem;
-        color: white;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .content img {
-          float: none;
-          display: block;
-          margin: 0 auto 20px;
+            background-color: #E0FFFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        nav a {
-          display: block;
-          margin: 10px 0;
+        .social-links {
+            margin-bottom: 10px;
         }
-      }   
-        
+
+        .social-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7;
+        }
+
+        .copyright {
+            background-color: #E0FFFF;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #333;
+        }
+
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .content img {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
-    
-
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
         <div id="datetime"></div>
     </header>
 
-    <nav> 
+    <nav>
         <a href="Home.html" class="active"><b>HOME</b></a>
         <a href="My background.html"><b>MY BACKGROUND</b></a>
         <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
@@ -279,13 +274,11 @@
             <p>Moment at edge of column, My: <span id="Muy"></span> kNm</p>
             <p>Area of main reinforcement at x-axis, A<sub>stx</sub>: <span id="Astx"></span> mm²</p>
             <p>Area of main reinforcement at y-axis, A<sub>sty</sub>: <span id="Asty"></span> mm²</p>
-            
             <p><b>2. ONE-WAY SHEAR CHECK</b></p>
             <p>One-way shear force in x-axis, Fx: <span id="Fx"></span> kN</p>
             <p>One-way shear force in y-axis, Fy: <span id="Fy"></span> kN</p>
             <p>Shear reinforcement check in x-axis: <span id="checkx"></span></p>
             <p>Shear reinforcement check in y-axis: <span id="checky"></span></p>
-            
             <p><b>3. TWO-WAY SHEAR CHECK</b></p>
             <p>Punching stress, Fp: <span id="Ftw"></span> N/mm²</p>
             <p>Punching strength, tau_tw: <span id="tau_tw"></span> N/mm²</p>
@@ -293,20 +286,15 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <!-- Social Network Links -->
         <div class="social-links">
             <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
                 <i class="fab fa-facebook"></i>
             </a>
-            
             <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
                 <i class="fab fa-linkedin"></i>
             </a>
         </div>
-
-        <!-- Copyright -->
         <div class="copyright">
             <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
         </div>
@@ -324,6 +312,60 @@
 
         // Update Copyright Year
         document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Calculate Main Rebar
+        function calculateMainRebar() {
+            // Get input values
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const σb = parseFloat(document.getElementById('σb').value);
+            const width = parseFloat(document.getElementById('width').value);
+            const depth = parseFloat(document.getElementById('depth').value);
+            const Length = parseFloat(document.getElementById('Length').value);
+            const Breadth = parseFloat(document.getElementById('Breadth').value);
+            const Thickness = parseFloat(document.getElementById('Thickness').value);
+            const AxialLoad = parseFloat(document.getElementById('AxialLoad').value);
+            const Mx = parseFloat(document.getElementById('Mx').value);
+            const My = parseFloat(document.getElementById('My').value);
+
+            // Perform calculations (placeholder calculations)
+            const sigma1 = (AxialLoad / (Length * Breadth)) + (Mx / (Length * Breadth * Breadth / 6)) + (My / (Length * Length * Breadth / 6));
+            const sigma2 = (AxialLoad / (Length * Breadth)) + (Mx / (Length * Breadth * Breadth / 6)) - (My / (Length * Length * Breadth / 6));
+            const sigma3 = (AxialLoad / (Length * Breadth)) - (Mx / (Length * Breadth * Breadth / 6)) + (My / (Length * Length * Breadth / 6));
+            const sigma4 = (AxialLoad / (Length * Breadth)) - (Mx / (Length * Breadth * Breadth / 6)) - (My / (Length * Length * Breadth / 6));
+
+            const maxBearingStress = Math.max(sigma1, sigma2, sigma3, sigma4);
+            const minBearingStress = Math.min(sigma1, sigma2, sigma3, sigma4);
+
+            const Mu_lim = 0.138 * fck * width * depth * depth; // Example calculation
+            const Mu = Mx; // Example calculation
+            const Muy = My; // Example calculation
+            const Astx = (Mu * 1e6) / (0.87 * fy * 0.8 * depth); // Example calculation
+            const Asty = (Muy * 1e6) / (0.87 * fy * 0.8 * width); // Example calculation
+
+            const Fx = AxialLoad / 2; // Example calculation
+            const Fy = AxialLoad / 2; // Example calculation
+            const Ftw = AxialLoad / (Length * Breadth); // Example calculation
+            const tau_tw = 0.25 * Math.sqrt(fck); // Example calculation
+
+            // Update the DOM with the results
+            document.getElementById('sigma1').textContent = sigma1.toFixed(2);
+            document.getElementById('sigma2').textContent = sigma2.toFixed(2);
+            document.getElementById('sigma3').textContent = sigma3.toFixed(2);
+            document.getElementById('sigma4').textContent = sigma4.toFixed(2);
+            document.getElementById('check1').textContent = maxBearingStress <= σb ? 'OK' : 'Not OK';
+            document.getElementById('check2').textContent = minBearingStress >= 0 ? 'OK' : 'Not OK';
+            document.getElementById('Mu_lim').textContent = Mu_lim.toFixed(2);
+            document.getElementById('Mu').textContent = Mu.toFixed(2);
+            document.getElementById('Muy').textContent = Muy.toFixed(2);
+            document.getElementById('Astx').textContent = Astx.toFixed(2);
+            document.getElementById('Asty').textContent = Asty.toFixed(2);
+            document.getElementById('Fx').textContent = Fx.toFixed(2);
+            document.getElementById('Fy').textContent = Fy.toFixed(2);
+            document.getElementById('Ftw').textContent = Ftw.toFixed(2);
+            document.getElementById('tau_tw').textContent = tau_tw.toFixed(2);
+            document.getElementById('check_tw').textContent = Ftw <= tau_tw ? 'OK' : 'Not OK';
+        }
     </script>
 </body>
 </html>
