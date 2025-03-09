@@ -30,7 +30,62 @@
     <div class="content">
         <h2><u>ISOLATED FOOTING FOR BIAXIAL LOADING</u></h2>
         <form>
-            <!-- Your form inputs remain unchanged -->
+              <h3>Material grade</h3>
+            <label for="fck">Grade of Concrete (fck in MPa): </label>
+            <select id="fck">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+            </select>
+            <label for="fy"><br><br>Grade of Steel (fy in MPa): </label>
+            <select id="fy">
+                <option value="250">250</option>
+                <option value="415">415</option>
+                <option value="500">500</option>
+            </select>
+            <div class="input-group">
+                <label for="σb"><br>Bearing capacity of soil (σb in kN/m²):</label>
+                <input type="number" id="σb" required>
+            </div>
+            <h4>Column and Footing Dimensions</h4>
+            <div class="input-group">
+                <label for="width">Width of Column (b in mm):</label>
+                <input type="number" id="width" required>
+            </div>
+            <div class="input-group">
+                <label for="depth">Depth of Column (d in mm):</label>
+                <input type="number" id="depth" required>
+            </div>
+            <div class="input-group">
+                <label for="Length">Length of footing (L in m):</label>
+                <input type="number" id="Length" required>
+            </div>
+            <div class="input-group">
+                <label for="Breadth">Breadth of footing (B in m):</label>
+                <input type="number" id="Breadth" required>
+            </div>
+            <div class="input-group">
+                <label for="Thickness">Thickness of footing (h in mm):</label>
+                <input type="number" id="Thickness" required>
+            </div>
+            <h5>Factored Loadings</h5>
+            <div class="input-group">
+                <label for="AxialLoad">Axial Loading (F in kN):</label>
+                <input type="number" id="AxialLoad" required>
+            </div>
+            <div class="input-group">
+                <label for="Mx">Moment at x-axis (Mx in kNm):</label>
+                <input type="number" id="Mx" required>
+            </div>
+            <div class="input-group">
+                <label for="My">Moment at y-axis (My in kNm):</label>
+                <input type="number" id="My" required>
+            </div>
+            <button type="button" onclick="calculateMainRebar()">Design Section</button>
+
         </form>
         <div class="result" id="result">
             <h2>DESIGN RESULTS</h2>
