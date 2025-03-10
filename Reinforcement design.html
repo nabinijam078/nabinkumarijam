@@ -289,7 +289,7 @@
             const fy_design = fy; // Design steel strength
             const depth_e = depth - cover; // Effective depth
             const Es = 2e5; // Modulus of elasticity of steel
-		const width=1000; width of slab
+		const width=1000; //width of slab
 
             // Calculate limiting moment (Mu_lim)
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
@@ -315,7 +315,7 @@
             let shearReinforcement;
             if (tau_v <= tau_c) {
                 shearReinforcement = "NO";
-            } else (tau_v <= tau_c_max) {
+            } else {
                 shearReinforcement = "YES"; 
             } 
 
