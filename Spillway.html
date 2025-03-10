@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spillway design</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes full height */
+        }
+
+        h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif; /* Heading font */
+            color: #0078d7;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0078d7;
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow content to grow and push footer down */
+        }
+
+        .content h2 {
+            color: #0078d7;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem; /* Reduced font size for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #E0FFFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333; /* Dark color for icons */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.8rem; /* Icon size */
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7; /* Change color on hover */
+        }
+
+        .copyright {
+            background-color: #E0FFFF;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #333; /* Dark text for contrast */
+        }
+
+        /* Time and Date Styles */
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content img {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <a href="My background.html"><b>MY BACKGROUND</b></a>
+        <a href="My works.html"><b>MY WORKS</b></a>
+        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b>OTHERS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>SPILLWAY DESIGN</h2>
+        <form id="beamSectionForm">
+             <div class="input-group">
+                <label for="Q">Flood discharge(Q in m<sup>3</sup>s):</label>
+                <input type="number" id="Q" required>
+            </div>
+            <div class="input-group">
+                <label for="L">Length of spillway (L in m):</label>
+                <input type="number" id="L" required>
+            </div>
+            <div class="input-group">
+                <label for="P">Upstream depth of spillway from bottom (P in m):</label>
+                <input type="number" id="P" required>
+            </div>
+            <label for="iu">Inclination of upstream face (i<sub>u</sub>): </label>
+            <select id="iu">
+                <option value="Vertical">Vertical</option>
+                <option value="1 in 3">1 in 3</option>
+                <option value="2 in 3">2 in 3</option>
+                <option value="1 in 1">1 in 1</option>
+                
+            </select>
+            <div class="input-group">
+                <label for="np">Number of pier (n<sub>p</sub>):</label>
+                <input type="number" id="np" required>
+            </div>
+            <label for="Tp">Types of Pier (T<sub>p</sub>): </label>
+            <select id="Tp">
+                <option value="1">Square-nose piers with rounded corners on a radius of about 0.1 times the pier thickness</option>
+                <option value="2">Round-nosed piers</option>
+                <option value="3">Pointed-nosed piers</option>
+            </select>
+
+		<label for="Ta">Types of Abutment (T<sub>a</sub>): </label>
+            <select id="Ta">
+                <option value="1">Square abutments with head wall at 90 degree to direction of flow</option>
+                <option value="2">Rounded abutment with head wall at 90 degree to direction of flow, when 0.5Hd>R>0.15Hd</option>
+                <option value="3">Rounded abutment where R>0.5Hd and head wall is placed not more than 45defree to the direction of flow</option>
+            </select>
+
+            <button type="button" onclick="calculateHeadovercrest()">HeadOverCrest</button>
+        </form>
+
+        <div class="result" id="result">
+            <h2>Design Results</h2>
+            <p><strong>Head over crest (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
+            <p><strong>High flood level:</strong> <span id="H"></span>m</p>
+            
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+
+        function calculateHeadovercrest() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
+            const L = parseFloat(document.getElementById('L').value); // Length of spillway
+            const P = parseFloat(document.getElementById('P').value); // Upstream depth
+            const np = parseFloat(document.getElementById('np').value); // Number of pier
+            
+	
+
+
+            // Design parameters
+            const fck_design = fck; // Design concrete strength
+            const fy_design = fy; // Design steel strength
+            const depth_e = depth - cover; // Effective depth
+            const Es = 2e5; // Modulus of elasticity of steel
+		const width=1000; width of slab
+
+            // Calculate limiting moment (Mu_lim)
+            const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+            const Xu_max = k * depth_e; // For Fe 415 steel
+            const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+
+                // Singly reinforced section
+            const Ast = (1 - (1 - Math.sqrt(1 - (4.6 * Mu) / (fck_design * width * depth_e * depth_e)))) * (fck_design / (2 * fy_design)) * width * depth_e;
+                
+
+            // Calculate number of steel bars
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+            const s1 = A1/Ast*width; // Spacing of reinforcement bar
+            
+
+            // Shear reinforcement calculation
+            
+            const tau_v = Vu / (width * depth_e); // Shear stress
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+            
+
+            let shearReinforcement;
+            if (tau_v <= tau_c) {
+                shearReinforcement = "NO";
+            } else (tau_v <= tau_c_max) {
+                shearReinforcement = "YES"; 
+            } 
+
+            // Display results
+            document.getElementById('steelArea').textContent = Ast.toFixed(1);
+            document.getElementById('s1').textContent = s1;
+            
+            document.getElementById('shearReinforcement').textContent = shearReinforcement;
+            
+        }
+    </script>
+</body>
+</html>
