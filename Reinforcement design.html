@@ -299,9 +299,8 @@
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
 
                 // Singly reinforced section
-            const Ast = Math.max((1 - (1 - Math.sqrt(1 - (4.6 * Mu) / (fck_design * width * depth_e * depth_e)))) * (fck_design / (2 * fy_design)) * width * depth_e,0.85/fy*width*depth_e);
+            const Ast = Math.max((1 - Math.pow(1 - 4.598 * M * (10) ^ 6 / (fck * width * 1000 * depth_e*depth_e)),0.5) * (fck / (2 * fy)) * width * depth_e,0.85/fy*width*depth_e);
                 
-
             // Calculate number of steel bars
             const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
             const s1 = A1/Ast*width; // Spacing of reinforcement bar
@@ -325,7 +324,7 @@
             document.getElementById('steelArea').textContent = Ast.toFixed(1);
             document.getElementById('s1').textContent = s1.toFixed(0);
             document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-		document.getElementById('tau_c').textContent = tau_ctoFixed(2);
+		document.getElementById('tau_c').textContent = tau_c.toFixed(2);
             document.getElementById('shearReinforcement').textContent = shearReinforcement;
             
         }
