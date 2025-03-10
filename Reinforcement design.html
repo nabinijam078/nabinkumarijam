@@ -234,7 +234,7 @@
         <div class="result" id="result">
             <h2>Design Results</h2>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
-            <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span></p>
+            <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span>mm</p>
 		 <p><strong>Nominal stress:</strong> <span id="tau_v"></span>N/mm²</p>
 		<p><strong>Nominal stress:</strong> <span id="tau_c"></span>N/mm²</p>
             <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span></p>
@@ -299,7 +299,7 @@
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
 
                 // Singly reinforced section
-            const Ast = Math.max((1 - Math.pow(1 - 4.598 * M * (10) ^ 6 / (fck * width * 1000 * depth_e*depth_e),0.5)) * (fck / (2 * fy)) * width * depth_e,0.85/fy*width*depth_e);
+            const Ast = Math.max((1 - Math.pow(1 - 4.598 * Mu/ (fck_design * width * 1000 * depth_e*depth_e),0.5)) * (fck_design / (2 * fy_design)) * width * depth_e,0.85/fy_design*width*depth_e);
                 
             // Calculate number of steel bars
             const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
