@@ -80,10 +80,8 @@
             width: 60%; /* Input section takes 60% of the width */
         }
 
-       
-
         .drawing-section {
-            width: 40%; /* Drawing section takes 35% of the width */
+            width: 35%; /* Drawing section takes 35% of the width */
             position: relative;
         }
 
@@ -98,7 +96,7 @@
         .drawing-section .p-value,
         .drawing-section .h-value {
             position: absolute;
-            font-size: 0.8rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #0078d7;
             background-color: rgba(255, 255, 255, 0.8);
@@ -106,16 +104,15 @@
             border-radius: 5px;
         }
 
-        .drawing-section .P-value {
-            top: 8%; /* Adjust as needed */
-            left: 10%; /* Adjust as needed */
+        .drawing-section .p-value {
+            top: 30%; /* Adjust as needed */
+            left: 20%; /* Adjust as needed */
         }
 
         .drawing-section .h-value {
-            top: 5%; /* Adjust as needed */
-            left: 15%; /* Adjust as needed */
+            top: 8%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
         }
-
 
         .input-group {
             margin-bottom: 15px;
@@ -278,15 +275,14 @@
             <div class="result" id="result">
                 <h2>Design Results</h2>
                 <p><strong>Head over crest (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                
                 <p><strong>High flood level:</strong> <span id="H"></span> m</p>
             </div>
         </div>
 
         <!-- Drawing Section -->
         <div class="drawing-section">
-            <img src="Spillway.png" alt="Spillway Drawing">
-            <div class="P-value" id="P-value">P = <span id="P-display"></span> m</div>
+            <img src="spillway-drawing.png" alt="Spillway Drawing">
+            <div class="p-value" id="p-value">P = <span id="p-display"></span> m</div>
             <div class="h-value" id="h-value">H = <span id="h-display"></span> m</div>
         </div>
     </div>
@@ -361,9 +357,10 @@
             if (isNaN(H)) {
                 alert("Calculation failed. Please check input values.");
             } else {
-                document.getElementById('hs').textContent = H.toFixed(3);
-                document.getElementById('H').textContent = (WCL + H).toFixed(3);
-                document.getElementById('h-display').textContent = H.toFixed(3); // Update H on the drawing
+                document.getElementById('hs').textContent = H.toFixed(4);
+                document.getElementById('H').textContent = (WCL + H).toFixed(4);
+                document.getElementById('p-display').textContent = P.toFixed(4); // Update P on the drawing
+                document.getElementById('h-display').textContent = H.toFixed(4); // Update H on the drawing
             }
         }
 
