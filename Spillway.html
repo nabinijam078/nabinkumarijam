@@ -296,7 +296,7 @@
     while (iteration < maxIterations) {
         const rat1 = P / H;
         const C = interpolateC(iu, rat1);
-        const Q_calculated = C * (L - np * tp) * Math.pow(H, 1.5);
+        const Q_calculated = 2/3*Math.pow(2*9.81,0.5)*C * (L - np * tp) * Math.pow(H, 1.5);
 
         if (Math.abs(Q_calculated - Q) < tolerance) {
             break; // Converged
@@ -312,8 +312,8 @@
     if (isNaN(H)) {
         alert("Calculation failed. Please check input values.");
     } else {
-        document.getElementById('hs').textContent = H.toFixed(4);
-        document.getElementById('H').textContent = (WCL + H).toFixed(4);
+        document.getElementById('hs').textContent = H.toFixed(3);
+        document.getElementById('H').textContent = (WCL + H).toFixed(3);
     }
 }
 
