@@ -93,7 +93,7 @@
         }
 
         /* Position P and H on the image */
-        
+        .drawing-section .p-value,
         .drawing-section .h-value {
             position: absolute;
             font-size: 1rem;
@@ -103,6 +103,12 @@
             padding: 5px 10px;
             border-radius: 5px;
         }
+
+        .drawing-section .p-value {
+            top: 20%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
+        }
+
         .drawing-section .h-value {
             top: 5%; /* Adjust as needed */
             left: 10%; /* Adjust as needed */
@@ -237,7 +243,7 @@
                 </div>
                 <div class="input-group">
                     <label for="Qa">Additional discharge for flushing (in %):</label>
-                    <input type="number" id="Qa" required>
+                    <input type="number" id="Qf" required>
                 </div>
                 <div class="input-group">
                     <label for="ht">Targeted headloss (h<sub>t</sub> in m):</label>
@@ -278,8 +284,8 @@
 
             <div class="result" id="result">
                 <h2>Design Results</h2>
-                <p><strong>Depth of intake opening (h<sub>w</sub>) : </strong> <span id="hw1"></span> m</p>
-                <p><strong>Check for approach velcity : </strong> <span id="Check"></span> </p>
+                <p><strong>Depth of intake opening (h<sub>w</sub>):</strong> <span id="hw1"></span> m</p>
+                <p><strong>Check for approach velcity:</strong> <span id="Check"></span> </p>
             </div>
         </div>
 
@@ -287,7 +293,7 @@
         <div class="drawing-section">
             <img src="Intake.png" alt="Spillway Drawing">
             
-            <div class="hw-value" id="hw-value">hw = <span id="hw-display"></span> m</div>
+            <div class="hw-value" id="h-value">hw = <span id="hw-display"></span> m</div>
         </div>
     </div>
 
@@ -302,7 +308,7 @@
             </a>
         </div>
         <div class="copyright">
-            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+            <p><i>Copyright © Nabin Kumar Ijam.All right researved.</i></p>
         </div>
     </footer>
 
@@ -320,95 +326,106 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-       function Intakedesign() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const Qa = parseFloat(document.getElementById('Qf').value); // Additional discharge
-    const ht = parseFloat(document.getElementById('ht').value); // Targeted headloss
-    const t = parseFloat(document.getElementById('t').value); // Thickness of rack
-    const b = parseFloat(document.getElementById('b').value); // Spacing of rack
-    const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
-    const ns = parseFloat(document.getElementById('ns').value); // Number of intake openings
-    const w = parseFloat(document.getElementById('w').value); // Width of intake opening
-    const BarType = document.getElementById('BarType').value; // Bar type
+        function Intakedesign() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Qa = parseFloat(document.getElementById('Qf').value); // Additional discharge
+            const ht = parseFloat(document.getElementById('ht').value); // Targeted headloss
+            const t = parseFloat(document.getElementById('t').value); // Thickness of rack (mm)
+            const b = parseFloat(document.getElementById('b').value); // Spacing of rack (mm)
+            const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
+            const ns = parseFloat(document.getElementById('ns').value); // Number of intake openings
+            const w = parseFloat(document.getElementById('w').value); // Width of intake opening
+            const BarType = document.getElementById('BarType').value; // Bar type
 
-    // Input validation
-    if (Q <= 0 || Qa <= 0 || ht <= 0 || t <= 0 || b <= 0 || theta <= 0 || ns <= 0 || w <= 0) {
-        alert("All input values must be positive and non-zero.");
-        return;
-    }
+            // Input validation
+            if (Q <= 0 || Qa <= 0 || ht <= 0 || t <= 0 || b <= 0 || theta <= 0 || ns <= 0 || w <= 0) {
+                alert("All input values must be positive and non-zero.");
+                return;
+            }
 
-    // Calculate total discharge (Qf)
-    const Qf = (1 + Qa / 100) * Q;
+            // Calculate total discharge (Qf)
+            const Qf = (1 + Qa / 100) * Q;
 
-    // Settling maximum velocity of 0.8 m/s
-    let vf;
-    if (0.5 * Math.pow(Qf, 0.5) >= 0.8) {
-        vf = 0.8;
-    } else {
-        vf = 0.5 * Math.pow(Qf, 0.5);
-    }
+            // Settling maximum velocity of 0.8 m/s
+            let vf;
+            if (0.5 * Math.pow(Qf, 0.5) >= 0.8) {
+                vf = 0.8;
+            } else {
+                vf = 0.5 * Math.pow(Qf, 0.5);
+            }
 
-    // BAR SHAPE COEFFICIENTS
-    let beta;
-    if (BarType === "One end round") { beta = 1.6; }
-    else if (BarType === "Both ends round") { beta = 1.77; }
-    else if (BarType === "Square") { beta = 2.34; }
-    else if (BarType === "Circle") { beta = 1.73; }
-    else {
-        alert("Invalid bar type selected.");
-        return;
-    }
+            // BAR SHAPE COEFFICIENTS
+            let beta;
+            if (BarType === "One end round") { beta = 1.6; }
+            else if (BarType === "Both ends round") { beta = 1.77; }
+            else if (BarType === "Square") { beta = 2.34; }
+            else if (BarType === "Circle") { beta = 1.73; }
+            else {
+                alert("Invalid bar type selected.");
+                return;
+            }
 
-    // Goal seek for hw
-    let hw = 1.0; // Initial guess (start with a smaller value)
-    const tolerance = 0.0001; // Tolerance for convergence
-    const maxIterations = 1000; // Maximum iterations
-    let iteration = 0;
+            // Function to calculate head loss
+            function calculateHeadLoss(hw) {
+                const v = Qf / (hw * ns * w); // Velocity through the intake
+                return beta * Math.sin(theta * Math.PI / 180) * Math.pow(t / b, 4 / 3) * Math.pow(v, 2) / (2 * 9.81);
+            }
 
-    while (iteration < maxIterations) {
-        const v = Qf / (hw * ns * w); // Velocity through the intake
-        const ht_calculated = beta * Math.sin(theta * Math.PI / 180) * Math.pow(t / b, 4 / 3) * Math.pow(v, 2) / (2 * 9.81);
+            // Bisection method to solve for hw
+            let lower = 0.1; // Lower bound for hw
+            let upper = 10.0; // Upper bound for hw
+            const tolerance = 0.0001; // Tolerance for convergence
+            const maxIterations = 1000; // Maximum iterations
+            let iteration = 0;
+            let hw;
 
-        // Check for convergence
-        if (Math.abs(ht_calculated - ht) < tolerance) {
-            break; // Converged
+            while (iteration < maxIterations) {
+                hw = (lower + upper) / 2; // Midpoint
+                const ht_calculated = calculateHeadLoss(hw);
+
+                if (Math.abs(ht_calculated - ht) < tolerance) {
+                    break; // Converged
+                }
+
+                // Adjust bounds
+                if (ht_calculated < ht) {
+                    upper = hw;
+                } else {
+                    lower = hw;
+                }
+
+                iteration++;
+            }
+
+            // Check if the calculation converged
+            if (iteration >= maxIterations) {
+                alert("Calculation did not converge. Please check input values.");
+                return;
+            }
+
+            // Round hw to 2 decimal places
+            const hw1 = Math.round(hw * 100) / 100;
+
+            // Calculate approach velocity
+            const v1 = Qf / (ns * w * hw1);
+            let Check;
+            if (v1 < vf) {
+                Check = "OK";
+            } else {
+                Check = "NOT OK";
+            }
+
+            // Display results
+            if (isNaN(hw1) || !isFinite(hw1)) {
+                alert("Invalid result. Please check input values.");
+                return;
+            } else {
+                document.getElementById('hw1').textContent = hw1.toFixed(2);
+                document.getElementById('Check').textContent = Check;
+                document.getElementById('hw-display').textContent = hw1.toFixed(2); // Update hw on the drawing
+            }
         }
-
-        // Adjust hw based on the difference (use a smaller adjustment factor)
-        hw = hw + (ht - ht_calculated) * 0.01; // Adjusted factor for better convergence
-
-        iteration++;
-    }
-
-    // Check if the calculation converged
-    if (iteration >= maxIterations) {
-        alert("Calculation did not converge. Please check input values.");
-        return;
-    }
-
-    // Round hw to 2 decimal places
-    const hw1 = Math.round(hw * 100) / 100;
-
-    // Calculate approach velocity
-    const v1 = Qf / (ns * w * hw1);
-    let Check;
-    if (v1 < vf) {
-        Check = "OK";
-    } else {
-        Check = "NOT OK";
-    }
-
-    // Display results
-    if (isNaN(hw1) || !isFinite(hw1)) {
-        alert("Invalid result. Please check input values.");
-        return;
-    } else {
-        document.getElementById('hw1').textContent = hw1.toFixed(2);
-        document.getElementById('Check').textContent = Check;
-        document.getElementById('hw-display').textContent = hw1.toFixed(2); // Update hw on the drawing
-    }
-}
     </script>
 </body>
 </html>
