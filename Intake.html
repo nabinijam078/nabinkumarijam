@@ -326,73 +326,89 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-function Intakedesign() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const Qa = parseFloat(document.getElementById('Qf').value); // Additional discharge
-    const ht = parseFloat(document.getElementById('ht').value); // Targeted headloss
-    const t = parseFloat(document.getElementById('t').value); // Thickness of rack
-    const b = parseFloat(document.getElementById('b').value); // Spacing of rack
-    const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
-    const ns = parseFloat(document.getElementById('ns').value); // Number of intake openings
-    const w = parseFloat(document.getElementById('w').value); // Width of intake opening
-    const BarType = document.getElementById('BarType').value; // Bar type
+        function Intakedesign() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Qa = parseFloat(document.getElementById('Qf').value); // Additional discharge
+            const ht = parseFloat(document.getElementById('ht').value); // Targeted headloss
+            const t = parseFloat(document.getElementById('t').value); // Thickness of rack
+            const b = parseFloat(document.getElementById('b').value); // Spacing of rack
+            const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
+            const ns = parseFloat(document.getElementById('ns').value); // Number of intake openings
+            const w = parseFloat(document.getElementById('w').value); // Width of intake opening
+            const BarType = document.getElementById('BarType').value; // Bar type
 
-    const Qf = (1 + Qa / 100) * Q;
+            // Input validation
+            if (Q <= 0 || Qa <= 0 || ht <= 0 || t <= 0 || b <= 0 || theta <= 0 || ns <= 0 || w <= 0) {
+                alert("All input values must be positive and non-zero.");
+                return;
+            }
 
-    // Settling maximum velocity of 0.8 m/s
-    let vf;
-    if (0.5 * Math.pow(Qf, 0.5) >= 0.8) {
-        vf = 0.8;
-    } else {
-        vf = 0.5 * Math.pow(Qf, 0.5);
-    }
+            const Qf = (1 + Qa / 100) * Q;
 
-    // BAR SHAPE COEFFICIENTS
-    let beta;
-    if (BarType == "One end round") { beta = 1.6; }
-    else if (BarType == "Both ends round") { beta = 1.77; }
-    else if (BarType == "Square") { beta = 2.34; }
-    else { beta = 1.73; }
+            // Settling maximum velocity of 0.8 m/s
+            let vf;
+            if (0.5 * Math.pow(Qf, 0.5) >= 0.8) {
+                vf = 0.8;
+            } else {
+                vf = 0.5 * Math.pow(Qf, 0.5);
+            }
 
-    // Goal seek for hw
-    let hw = 3.0; // Initial guess
-    const tolerance = 0.0001; // Tolerance for convergence
-    const maxIterations = 1000; // Maximum iterations
-    let iteration = 0;
+            // BAR SHAPE COEFFICIENTS
+            let beta;
+            if (BarType === "One end round") { beta = 1.6; }
+            else if (BarType === "Both ends round") { beta = 1.77; }
+            else if (BarType === "Square") { beta = 2.34; }
+            else if (BarType === "Circle") { beta = 1.73; }
+            else {
+                alert("Invalid bar type selected.");
+                return;
+            }
 
-    while (iteration < maxIterations) {
-        const v = Qf / (hw * ns * w);
-        const ht_calculated = beta * Math.sin(theta * Math.PI / 180) * Math.pow(t / b, 4 / 3) * Math.pow(v, 2) / (2 * 9.81);
+            // Goal seek for hw
+            let hw = 3.0; // Initial guess
+            const tolerance = 0.0001; // Tolerance for convergence
+            const maxIterations = 1000; // Maximum iterations
+            let iteration = 0;
 
-        if (Math.abs(ht_calculated - ht) < tolerance) {
-            break; // Converged
+            while (iteration < maxIterations) {
+                const v = Qf / (hw * ns * w);
+                const ht_calculated = beta * Math.sin(theta * Math.PI / 180) * Math.pow(t / b, 4 / 3) * Math.pow(v, 2) / (2 * 9.81);
+
+                if (Math.abs(ht_calculated - ht) < tolerance) {
+                    break; // Converged
+                }
+
+                // Adjust hw based on the difference
+                hw = hw + (ht - ht_calculated) * 0.1;
+
+                iteration++;
+            }
+
+            if (iteration >= maxIterations) {
+                alert("Calculation did not converge. Please check input values.");
+                return;
+            }
+
+            const hw1 = Math.ceil(hw / 0.5) * 0.5;
+            const v1 = Qf / (ns * w * hw1);
+            let Check;
+            if (v1 < vf) {
+                Check = "OK";
+            } else {
+                Check = "NOT OK";
+            }
+
+            // Display results
+            if (isNaN(hw1) || !isFinite(hw1)) {
+                alert("Invalid result. Please check input values.");
+                return;
+            } else {
+                document.getElementById('hw1').textContent = hw1.toFixed(2);
+                document.getElementById('Check').textContent = Check;
+                document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
+            }
         }
-
-        // Adjust hw based on the difference
-        hw = hw + (ht - ht_calculated) * 0.1;
-
-        iteration++;
-    }
-
-    const hw1 = Math.ceil(hw / 0.5) * 0.5;
-    const v1 = Qf / (ns * w * hw1);
-    let Check;
-    if (v1 < vf) {
-        Check = "OK";
-    } else {
-        Check = "NOT OK";
-    }
-
-    // Display results
-    if (isNaN(hw)) {
-        alert("Calculation failed. Please check input values.");
-    } else {
-        document.getElementById('hw1').textContent = hw1.toFixed(2);
-        document.getElementById('Check').textContent = Check;
-        document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-    }
-} 
     </script>
 </body>
 </html>
