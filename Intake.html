@@ -242,12 +242,12 @@
                     <input type="number" id="Q" required>
                 </div>
                 <div class="input-group">
-                    <label for="Qf">Flood discharge(Q in m<sup>3</sup>s):</label>
+                    <label for="Qa">Additional discharge for flushing (in %):</label>
                     <input type="number" id="Qf" required>
                 </div>
                 <div class="input-group">
-                    <label for="Qa">Additional discharge for flushing (in %):</label>
-                    <input type="number" id="Qa" required>
+                    <label for="ht">Targeted headloss (h<sub>t</sub> in m):</label>
+                    <input type="number" id="ht" required>
                 </div>
                <p><u>TRASHRACK DETAIL</u></p>
                 <div class="input-group">
@@ -320,13 +320,14 @@
 
         function calculateHeadovercrest() {
             // Input values
-            const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
-            const L = parseFloat(document.getElementById('L').value); // Length of spillway
-            const P = parseFloat(document.getElementById('P').value); // Upstream depth
-            const np = parseFloat(document.getElementById('np').value); // Number of pier
-            const tp = parseFloat(document.getElementById('tp').value); // Thickness of pier
-            const WCL = parseFloat(document.getElementById('WCL').value); // Weir Crest level
-            const iu = document.getElementById('iu').value; // Inclination of upstream face
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Qa = parseFloat(document.getElementById('Qa').value); // Additional discharge
+            const ht = parseFloat(document.getElementById('P').value); // Targeted headloss
+            const t = parseFloat(document.getElementById('t').value); // Thickness of rack
+            const b = parseFloat(document.getElementById('tp').value); // spacing of rack
+            const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
+            const ns = document.getElementById('ns').value; // Number of intake opening.
+            const w = document.getElementById('w').value; // Width of intake opening
 
             // Validate inputs
             if (isNaN(Q) || isNaN(L) || isNaN(P) || isNaN(np) || isNaN(tp) || isNaN(WCL)) {
@@ -359,8 +360,8 @@
             if (isNaN(H)) {
                 alert("Calculation failed. Please check input values.");
             } else {
-                document.getElementById('hs').textContent = H.toFixed(3);
-                document.getElementById('H').textContent = (WCL + H).toFixed(2);
+                document.getElementById('hw').textContent = hw.toFixed(3);
+                document.getElementById('Check').textContent = Check;
                 document.getElementById('p-display').textContent = P.toFixed(2); // Update P on the drawing
                 document.getElementById('h-display').textContent = H.toFixed(2); // Update H on the drawing
             }
