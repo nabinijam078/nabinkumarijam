@@ -104,15 +104,20 @@ s<!DOCTYPE html>
             border-radius: 5px;
         }
 
-        .drawing-section .p-value {
+        .drawing-section .w-value {
             top: 20%; /* Adjust as needed */
             left: 10%; /* Adjust as needed */
         }
 
-        .drawing-section .h-value {
+        .drawing-section .hw-value {
             top: 5%; /* Adjust as needed */
             left: 10%; /* Adjust as needed */
         }
+        .drawing-section .hu-value {
+            top: 5%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
+        }
+
 
         .input-group {
             margin-bottom: 15px;
@@ -254,7 +259,12 @@ s<!DOCTYPE html>
                     <label for="hu">Haunch size (h<sub>u</sub>):</label>
                     <input type="number" id="hu" required>
                 </div>
-                
+                <br>
+                <label for="MatType">Material Type : </label>
+                <select id="MatType">
+                    <option value="Concrete">Concrete</option>
+                    <option value="Steel">Steel</option>
+                </select>
                 <br>
                 <button type="button" onclick="calculateCulvert()">CULVERT DESIGN</button>
             </form>
@@ -262,15 +272,17 @@ s<!DOCTYPE html>
             <div class="result" id="result">
                 <h2>Design Results</h2>
                 <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                <p><strong>Velocity of flow (v) :</strong> <span id="H"></span> m/s</p>
+                <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
+                <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
             </div>
         </div>
 
         <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Culvert.png" alt="Spillway Drawing">
-            <div class="p-value" id="p-value">P = <span id="p-display"></span> m</div>
-            <div class="h-value" id="h-value">H = <span id="h-display"></span> m</div>
+            <div class="w-value" id="p-value">w = <span id="p-display"></span> m</div>
+            <div class="hw-value" id="hw-value">hw = <span id="hw-display"></span> m</div>
+            <div class="hu-value" id="hu-value">hu = <span id="hu-display"></span> m</div>
         </div>
     </div>
 
@@ -303,123 +315,47 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-        function calculateHeadovercrest() {
+        function calculateCulvert() {
             // Input values
-            const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
-            const L = parseFloat(document.getElementById('L').value); // Length of spillway
-            const P = parseFloat(document.getElementById('P').value); // Upstream depth
-            const np = parseFloat(document.getElementById('np').value); // Number of pier
-            const tp = parseFloat(document.getElementById('tp').value); // Thickness of pier
-            const WCL = parseFloat(document.getElementById('WCL').value); // Weir Crest level
-            const iu = document.getElementById('iu').value; // Inclination of upstream face
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const ds = parseFloat(document.getElementById('ds').value); //Size of sediments to be settled.
+            const w = parseFloat(document.getElementById('w').value); // Assumed width of column
+            const hu = parseFloat(document.getElementById('hu').value); // Hunch size
+            
 
             // Validate inputs
-            if (isNaN(Q) || isNaN(L) || isNaN(P) || isNaN(np) || isNaN(tp) || isNaN(WCL)) {
+            if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu) || isNaN(tp) || isNaN(WCL)) {
                 alert("Please enter valid numeric values for all fields.");
                 return;
             }
-
-            // Goal seek for H
-            let H = Q / (L * Math.sqrt(P)); // Improved initial guess
-            const tolerance = 0.0001; // Tolerance for convergence
-            const maxIterations = 1000; // Maximum number of iterations
-            let iteration = 0;
-
-            while (iteration < maxIterations) {
-                const rat1 = P / H;
-                const C = interpolateC(iu, rat1);
-                const Q_calculated = 2/3*Math.pow(2*9.81,0.5)*C * (L - np * tp) * Math.pow(H, 1.5);
-
-                if (Math.abs(Q_calculated - Q) < tolerance) {
-                    break; // Converged
-                }
-
-                // Adjust H based on the difference
-                H = H * Math.pow(Q / Q_calculated, 2 / 3);
-
-                iteration++;
-            }
-
+            // Limiting velocity of flow
+            const v=0.44*Math.pow(ds,0.5);
+            let vlim;
+            if (MatType=="Concrete"){vlim=2.5;}
+            else {vlim=3.5;}
+            const va=Math.Max(v,vlim);
+            // Area of flow
+            const Af=Q/va;
+            const hs=(Af+2*Math.pow(hu,2))/w;
+            const hw=Math.ceil(hs/0.1)*0.1;
+            const vf=Q/(hw*w-2*hu*hu);
+            let check;
+            if (vf<=va){check="OK";}
+            else {check="NOT OK";}
+            
+            
             // Display results
-            if (isNaN(H)) {
-                alert("Calculation failed. Please check input values.");
-            } else {
-                document.getElementById('hs').textContent = H.toFixed(3);
-                document.getElementById('H').textContent = (WCL + H).toFixed(2);
-                document.getElementById('p-display').textContent = P.toFixed(2); // Update P on the drawing
-                document.getElementById('h-display').textContent = H.toFixed(2); // Update H on the drawing
-            }
+            
+                document.getElementById('hw').textContent = hw.toFixed(1);
+                document.getElementById('vf').textContent = vf.toFixed(2);
+                document.getElementById('check').textContent = check;
+                document.getElementById('w-display').textContent = w.toFixed(2); // Update P on the drawing
+                document.getElementById('hw-display').textContent = hw.toFixed(2); // Update H on the drawing
+                document.getElementById('hu-display').textContent = hu.toFixed(2); // Update H on the drawing
+           
         }
 
-        function interpolateC(iu, rat1) {
-            const table = {
-                Vertical: [
-                    { rat1: 0.165, C: 0.648 }, { rat1: 0.17, C: 0.65 },
-                    { rat1: 0.18, C: 0.66 }, { rat1: 0.2, C: 0.67 },
-                    { rat1: 0.25, C: 0.68 }, { rat1: 0.3, C: 0.69 },
-                    { rat1: 0.36, C: 0.7 }, { rat1: 0.40, C: 0.704 },
-                    { rat1: 0.50, C: 0.71 }, { rat1: 0.6, C: 0.715 },
-                    { rat1: 0.70, C: 0.72 }, { rat1: 0.80, C: 0.725 },
-                    { rat1: 1.00, C: 0.728 }, { rat1: 1.50, C: 0.735 },
-                    { rat1: 2.0, C: 0.738 }, { rat1: 3.00, C: 0.742 },
-                    { rat1: 5.00, C: 0.744 }, { rat1: 10.00, C: 0.745 },
-                ],
-                '1 in 3': [
-                    { rat1: 0.158, C: 0.648 }, { rat1: 0.16, C: 0.65 },
-                    { rat1: 0.162, C: 0.66 }, { rat1: 0.162, C: 0.67 },
-                    { rat1: 0.165, C: 0.67 }, { rat1: 0.190, C: 0.68 },
-                    { rat1: 0.20, C: 0.682 }, { rat1: 0.22, C: 0.69 },
-                    { rat1: 0.28, C: 0.70 }, { rat1: 0.36, C: 0.71 },
-                    { rat1: 0.4, C: 0.713 }, { rat1: 0.56, C: 0.72 },
-                    { rat1: 0.60, C: 0.722 }, { rat1: 0.80, C: 0.726 },
-                    { rat1: 1.0, C: 0.730 }, { rat1: 1.5, C: 0.735 },
-                    { rat1: 2.00, C: 0.736 }, { rat1: 3.00, C: 0.740 },
-                    { rat1: 5.00, C: 0.742 }, { rat1: 10.00, C: 0.744 },
-                ],
-                '2 in 3': [
-                    { rat1: 0.150, C: 0.648 }, { rat1: 0.152, C: 0.65 },
-                    { rat1: 0.160, C: 0.66 }, { rat1: 0.17, C: 0.67 },
-                    { rat1: 0.180, C: 0.68 }, { rat1: 0.20, C: 0.682 },
-                    { rat1: 0.25, C: 0.70 }, { rat1: 0.32, C: 0.710 },
-                    { rat1: 0.40, C: 0.716 }, { rat1: 0.60, C: 0.727 },
-                    { rat1: 0.800, C: 0.734 }, { rat1: 1.0, C: 0.736 },
-                    { rat1: 1.55, C: 0.740 }, { rat1: 2.00, C: 0.742 },
-                    { rat1: 3.00, C: 0.743 }, { rat1: 5.00, C: 0.744 },
-                    { rat1: 10.00, C: 0.74 }
-                ],
-                '1 in 1': [
-                    { rat1: 0.140, C: 0.648 }, { rat1: 0.141, C: 0.65 },
-                    { rat1: 0.150, C: 0.66 }, { rat1: 0.16, C: 0.67 },
-                    { rat1: 0.180, C: 0.68 }, { rat1: 0.20, C: 0.69 },
-                    { rat1: 0.26, C: 0.70 }, { rat1: 0.34, C: 0.710 },
-                    { rat1: 0.40, C: 0.716 }, { rat1: 0.48, C: 0.720 },
-                    { rat1: 0.60, C: 0.724 }, { rat1: 0.8, C: 0.727 },
-                    { rat1: 1.00, C: 0.728 }, { rat1: 2.00, C: 0.731 },
-                    { rat1: 3.00, C: 0.732 }, { rat1: 5.00, C: 0.732 },
-                    { rat1: 10.00, C: 0.732 }
-                ]
-            };
-
-            const data = table[iu];
-            if (!data) return 0; // Default value if no data found
-
-            // Find the two closest points for interpolation
-            let lower = data[0];
-            let upper = data[data.length - 1];
-
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].rat1 <= rat1) {
-                    lower = data[i];
-                } else {
-                    upper = data[i];
-                    break;
-                }
-            }
-
-            // Linear interpolation
-            const C = lower.C + (upper.C - lower.C) * (rat1 - lower.rat1) / (upper.rat1 - lower.rat1);
-            return C;
-        }
+        
     </script>
 </body>
 </html>
