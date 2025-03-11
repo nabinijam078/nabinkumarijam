@@ -292,7 +292,7 @@
         <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Intake.png" alt="Spillway Drawing">
-            <div class="p-value" id="p-value">P = <span id="p-display"></span> m</div>
+            
             <div class="hw-value" id="h-value">hw = <span id="hw-display"></span> m</div>
         </div>
     </div>
@@ -390,7 +390,6 @@ function Intakedesign() {
     } else {
         document.getElementById('hw1').textContent = hw1.toFixed(2);
         document.getElementById('Check').textContent = Check;
-        document.getElementById('p-display').textContent = ht.toFixed(2); // Update P on the drawing
         document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
     }
 } 
