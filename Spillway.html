@@ -85,6 +85,11 @@
             position: relative;
         }
 
+        .drawing-section {
+            width: 35%; /* Drawing section takes 35% of the width */
+            position: relative;
+        }
+
         .drawing-section img {
             width: 100%;
             height: auto;
@@ -92,18 +97,28 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* Position P and H on the image */
+        .drawing-section .p-value,
         .drawing-section .h-value {
             position: absolute;
-            top: 50%; /* Adjust as needed */
-            left: 50%; /* Adjust as needed */
-            transform: translate(-50%, -50%);
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             font-weight: bold;
             color: #0078d7;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 5px 10px;
             border-radius: 5px;
         }
+
+        .drawing-section .p-value {
+            top: 30%; /* Adjust as needed */
+            left: 20%; /* Adjust as needed */
+        }
+
+        .drawing-section .h-value {
+            top: 50%; /* Adjust as needed */
+            left: 50%; /* Adjust as needed */
+        }
+
 
         .input-group {
             margin-bottom: 15px;
