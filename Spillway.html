@@ -225,18 +225,15 @@
                 <input type="number" id="np" required>
             </div>
             <label for="Tp">Types of Pier (T<sub>p</sub>): </label>
-            <select id="Tp">
-                <option value="1">Square-nose piers with rounded corners on a radius of about 0.1 times the pier thickness</option>
-                <option value="2">Round-nosed piers</option>
-                <option value="3">Pointed-nosed piers</option>
-            </select>
+            <div class="input-group">
+                <label for="tp">Thickness of pier (t<sub>p</sub>):</label>
+                <input type="number" id="tp" required>
+            </div>
+	<div class="input-group">
+                <label for="WCL">Weir Crest level (WCL):</label>
+                <input type="number" id="WCL" required>
+            </div>
 		<br>
-		<label for="Ta">Types of Abutment (T<sub>a</sub>): </label>
-            <select id="Ta">
-                <option value="1">Square abutments with head wall at 90 degree to direction of flow</option>
-                <option value="2">Rounded abutment with head wall at 90 degree to direction of flow, when 0.5Hd>R>0.15Hd</option>
-                <option value="3">Rounded abutment where R>0.5Hd and head wall is placed not more than 45defree to the direction of flow</option>
-            </select>
 		<br>
             <button type="button" onclick="calculateHeadovercrest()">HeadOverCrest</button>
         </form>
@@ -286,8 +283,8 @@
     const L = parseFloat(document.getElementById('L').value); // Length of spillway
     const P = parseFloat(document.getElementById('P').value); // Upstream depth
     const np = parseFloat(document.getElementById('np').value); // Number of pier
-    const Tp = parseFloat(document.getElementById('Tp').value); // Type of pier
-    const Ta = parseFloat(document.getElementById('Ta').value); // Type of abutment
+    const tp = parseFloat(document.getElementById('tp').value); // Thickness of pier
+    const WCL = parseFloat(document.getElementById('WCL').value); // Weir Crest level
     const iu = document.getElementById('iu').value; // Inclination of upstream face
 
     // Goal seek for H
@@ -299,7 +296,7 @@
     while (iteration < maxIterations) {
         const rat1 = P / H;
         const C = interpolateC(iu, rat1);
-        const Q_calculated = C * L * Math.pow(H, 1.5);
+        const Q_calculated = C * (L-np*tp) * Math.pow(H, 1.5);
 
         if (Math.abs(Q_calculated - Q) < tolerance) {
             break; // Converged
@@ -313,7 +310,7 @@
 
     // Display results
     document.getElementById('hs').textContent = H.toFixed(4);
-    document.getElementById('H').textContent = (P + H).toFixed(4);
+    document.getElementById('H').textContent = (WCL + H).toFixed(4);
 }
 
 function interpolateC(iu, rat1) {
