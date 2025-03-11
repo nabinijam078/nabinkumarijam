@@ -248,7 +248,7 @@ s<!DOCTYPE html>
                 </div>
                 <div class="input-group">
                     <label for="ds">Size of sediments to be transported (ds in mm):</label>
-                    <input type="number" id="L" required>
+                    <input type="number" id="ds" required>
                 </div>
                 <p>CULVERT SIZE</p>
                 <div class="input-group">
@@ -333,7 +333,7 @@ s<!DOCTYPE html>
             let vlim;
             if (MatType=="Concrete"){vlim=2.5;}
             else {vlim=3.5;}
-            const va=Math.Max(v,vlim);
+            const va=Math.max(v,vlim);
             // Area of flow
             const Af=Q/va;
             const hs=(Af+2*Math.pow(hu,2))/w;
