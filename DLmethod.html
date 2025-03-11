@@ -71,6 +71,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex: 1; /* Allow content to grow and push footer down */
             text-align: left; /* Ensure content is left-aligned */
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
         }
 
         .content img {
@@ -210,10 +213,11 @@
             padding-left: 4px;
             border: 1px #ffffff solid;
         }
-        #predictor, #calculator {
-            position: absolute;
-            top: 150px;
-            left: 20px;
+        #predictor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
         #help_window_1, #help_window_2 {
             position: absolute;
