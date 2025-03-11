@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+s<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spillway Design</title>
+    <title>Pressurized Culvert</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -235,53 +235,40 @@
     <div class="content">
         <!-- Input Section -->
         <div class="input-section">
-            <h2>SPILLWAY DESIGN</h2>
+            <h2>PRESSURIZED CULVERT</h2>
             <form id="beamSectionForm">
                 <div class="input-group">
-                    <label for="Q">Flood discharge(Q in m<sup>3</sup>s):</label>
+                    <label for="Q">Design discharge(Q in m<sup>3</sup>s):</label>
                     <input type="number" id="Q" required>
                 </div>
                 <div class="input-group">
-                    <label for="L">Length of spillway (L in m):</label>
+                    <label for="ds">Size of sediments to be transported (ds in mm):</label>
                     <input type="number" id="L" required>
                 </div>
+                <p>CULVERT SIZE</p>
                 <div class="input-group">
-                    <label for="P">Upstream depth of spillway from bottom (P in m):</label>
-                    <input type="number" id="P" required>
-                </div>
-                <label for="iu">Inclination of upstream face (i<sub>u</sub>): </label>
-                <select id="iu">
-                    <option value="Vertical">Vertical</option>
-                    <option value="1 in 3">1 in 3</option>
-                    <option value="2 in 3">2 in 3</option>
-                    <option value="1 in 1">1 in 1</option>
-                </select>
-                <div class="input-group">
-                    <label for="np">Number of pier (n<sub>p</sub>):</label>
-                    <input type="number" id="np" required>
+                    <label for="w">Width of culvert (w in m):</label>
+                    <input type="number" id="w" required>
                 </div>
                 <div class="input-group">
-                    <label for="tp">Thickness of pier (t<sub>p</sub>):</label>
-                    <input type="number" id="tp" required>
+                    <label for="hu">Haunch size (h<sub>u</sub>):</label>
+                    <input type="number" id="hu" required>
                 </div>
-                <div class="input-group">
-                    <label for="WCL">Weir Crest level (WCL):</label>
-                    <input type="number" id="WCL" required>
-                </div>
+                
                 <br>
-                <button type="button" onclick="calculateHeadovercrest()">Calculate Head Over Crest</button>
+                <button type="button" onclick="calculateCulvert()">CULVERT DESIGN</button>
             </form>
 
             <div class="result" id="result">
                 <h2>Design Results</h2>
-                <p><strong>Head over crest (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                <p><strong>High flood level:</strong> <span id="H"></span> m</p>
+                <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
+                <p><strong>Velocity of flow (v) :</strong> <span id="H"></span> m/s</p>
             </div>
         </div>
 
         <!-- Drawing Section -->
         <div class="drawing-section">
-            <img src="Spillway.png" alt="Spillway Drawing">
+            <img src="Culvert.png" alt="Spillway Drawing">
             <div class="p-value" id="p-value">P = <span id="p-display"></span> m</div>
             <div class="h-value" id="h-value">H = <span id="h-display"></span> m</div>
         </div>
