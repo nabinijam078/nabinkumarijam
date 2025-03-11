@@ -259,7 +259,7 @@
                     <input type="number" id="b" required>
                 </div>
                  <label for="BarType">Bar Type : </label>
-                <select id="iu">
+                <select id="BarType">
                     <option value="One end round">One end round</option>
                     <option value="Both ends round">Both ends round</option>
                     <option value="Square">Square</option>
@@ -326,65 +326,74 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-        function Intakedesign() {
-            // Input values
-            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-            const Qa = parseFloat(document.getElementById('Qa').value); // Additional discharge
-            const ht = parseFloat(document.getElementById('P').value); // Targeted headloss
-            const t = parseFloat(document.getElementById('t').value); // Thickness of rack
-            const b = parseFloat(document.getElementById('tp').value); // spacing of rack
-            const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
-            const ns = document.getElementById('ns').value; // Number of intake opening.
-            const w = document.getElementById('w').value; // Width of intake opening
+function Intakedesign() {
+    // Input values
+    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+    const Qa = parseFloat(document.getElementById('Qf').value); // Additional discharge
+    const ht = parseFloat(document.getElementById('ht').value); // Targeted headloss
+    const t = parseFloat(document.getElementById('t').value); // Thickness of rack
+    const b = parseFloat(document.getElementById('b').value); // Spacing of rack
+    const theta = parseFloat(document.getElementById('theta').value); // Inclination of rack
+    const ns = parseFloat(document.getElementById('ns').value); // Number of intake openings
+    const w = parseFloat(document.getElementById('w').value); // Width of intake opening
+    const BarType = document.getElementById('BarType').value; // Bar type
 
-            const Qf=(1+Qa/100)*Q;
-            // Settling maximum velocity of 0.8m/s.
-            let vf;
-            if (0.5*Math.pow(Qf,0.5)>=0.8){vf=0.8;}
-            else {vf=0.5*Math.pow(Qf,0.5);}
-            
-            //BAR SHAPE COEFFICIENTS
-            let beta;
-            if (BarType=="One end round"){beta=1.6;}
-            if else (BarType=="Both ends round"){beta=1.77;}
-            if else (BarType=="Square"){beta=2.34;}
-            else {beta=1.73;}
+    const Qf = (1 + Qa / 100) * Q;
 
-            // Goal seek for hw
-            let hw = 1.0; // Improved initial guess
-            const tolerance = 0.0001; // Tolerance for convergence
-            const maxIterations = 1000; // Maximum number of iterations
-            let iteration = 0;
-            
-            while (iteration < maxIterations) {
-                const v=Qf/(hw*ns*w);
-                const ht_calculated = beta*Math.sin(theta*3.1416/180)*Math.pow(t/b,4/3)*Math.pow(v,2)/(2*9.81);
+    // Settling maximum velocity of 0.8 m/s
+    let vf;
+    if (0.5 * Math.pow(Qf, 0.5) >= 0.8) {
+        vf = 0.8;
+    } else {
+        vf = 0.5 * Math.pow(Qf, 0.5);
+    }
 
-                if (Math.abs(ht_calculated - ht) < tolerance) {
-                    break; // Converged
-                }
+    // BAR SHAPE COEFFICIENTS
+    let beta;
+    if (BarType == "One end round") { beta = 1.6; }
+    else if (BarType == "Both ends round") { beta = 1.77; }
+    else if (BarType == "Square") { beta = 2.34; }
+    else { beta = 1.73; }
 
-                // Adjust H based on the difference
-                hw = hw;
+    // Goal seek for hw
+    let hw = 1.0; // Initial guess
+    const tolerance = 0.0001; // Tolerance for convergence
+    const maxIterations = 1000; // Maximum iterations
+    let iteration = 0;
 
-                iteration++;
-            }
-            const hw1=Math.ceil(ht/.5,0)*0.5;
-            const v1=Qf/(ns*w*hw1);
-            let Check;
-            if (v1<vf){Check="OK";}
-            else {Check="NOT OK";}
+    while (iteration < maxIterations) {
+        const v = Qf / (hw * ns * w);
+        const ht_calculated = beta * Math.sin(theta * Math.PI / 180) * Math.pow(t / b, 4 / 3) * Math.pow(v, 2) / (2 * 9.81);
 
-            // Display results
-            if (isNaN(H)) {
-                alert("Calculation failed. Please check input values.");
-            } else {
-                document.getElementById('hw1').textContent = hw.toFixed(2);
-                document.getElementById('Check').textContent = Check;
-                document.getElementById('p-display').textContent = P.toFixed(2); // Update P on the drawing
-                document.getElementById('h-display').textContent = H.toFixed(2); // Update H on the drawing
-            }
-        } 
+        if (Math.abs(ht_calculated - ht) < tolerance) {
+            break; // Converged
+        }
+
+        // Adjust hw based on the difference
+        hw = hw + (ht - ht_calculated) * 0.1;
+
+        iteration++;
+    }
+
+    const hw1 = Math.ceil(ht / 0.5) * 0.5;
+    const v1 = Qf / (ns * w * hw1);
+    let Check;
+    if (v1 < vf) {
+        Check = "OK";
+    } else {
+        Check = "NOT OK";
+    }
+
+    // Display results
+    if (isNaN(hw)) {
+        alert("Calculation failed. Please check input values.");
+    } else {
+        document.getElementById('hw1').textContent = hw.toFixed(2);
+        document.getElementById('Check').textContent = Check;
+        document.getElementById('p-display').textContent = ht.toFixed(2); // Update P on the drawing
+        document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
+    }
+} 
     </script>
 </body>
 </html>
