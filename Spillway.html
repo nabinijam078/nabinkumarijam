@@ -238,18 +238,16 @@
         <div class="input-section">
             <h3><u>HYDRAULIC DESIGN OF SPILLWAY DESIGN</u></h3>
             <form id="beamSectionForm">
-                <div class="input-group">
+              
                     <label for="Q">Flood discharge(Q in m<sup>3</sup>/s):</label>
                     <input type="number" id="Q" required>
-                </div>
-                <div class="input-group">
+                <br>
                     <label for="L">Length of spillway (L in m):</label>
                     <input type="number" id="L" required>
-                </div>
-                <div class="input-group">
+                <br>
                     <label for="P">Upstream depth of spillway from bottom (P in m):</label>
                     <input type="number" id="P" required>
-                </div>
+                <br>
                 <label for="iu">Inclination of upstream face (i<sub>u</sub>): </label>
                 <select id="iu">
                     <option value="Vertical">Vertical</option>
@@ -257,18 +255,16 @@
                     <option value="2 in 3">2 in 3</option>
                     <option value="1 in 1">1 in 1</option>
                 </select>
-                <div class="input-group">
+                <br>
                     <label for="np">Number of pier (n<sub>p</sub>):</label>
                     <input type="number" id="np" required>
-                </div>
-                <div class="input-group">
+                <br>
                     <label for="tp">Thickness of pier (t<sub>p</sub>):</label>
                     <input type="number" id="tp" required>
-                </div>
-                <div class="input-group">
+                <br>
                     <label for="WCL">Weir Crest level (WCL):</label>
                     <input type="number" id="WCL" required>
-                </div>
+               
                 <br>
                 <button type="button" onclick="calculateHeadovercrest()">Calculate Head Over Crest</button>
             </form>
