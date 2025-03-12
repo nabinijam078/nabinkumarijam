@@ -555,6 +555,62 @@
   bendingMomentResultsDiv.innerHTML += `<h5>Maximum Support Moment: ${Math.max(...supportMoments).toFixed(2)} kN·m</h5>`;
   shearForceResultsDiv.innerHTML += `<h5>Maximum Shear Force: ${Math.max(...shearForces).toFixed(2)} kN</h5>`;
 }
+	  function Reinforcementdesign() {
+            // Input values
+            const depth = parseFloat(document.getElementById('depth').value); // D in mm
+            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+            const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
+            const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+            const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+            
+            const Mmax = parseFloat(document.getElementById('Mmax').value); // Mu in kNm
+            const Fmax = parseFloat(document.getElementById('Fmax').value); // Vu in kN
+
+            // Convert moment to Nmm and shear to N
+            const Mu = moment * 1e6; // kNm to Nmm
+            const Vu = shear * 1e3; // kN to N
+
+            // Design parameters
+            const fck_design = fck; // Design concrete strength
+            const fy_design = fy; // Design steel strength
+            const depth_e = depth - cover; // Effective depth
+            const Es = 2e5; // Modulus of elasticity of steel
+		const width=1000; //width of slab
+
+            // Calculate limiting moment (Mu_lim)
+            const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+            const Xu_max = k * depth_e; // For Fe 415 steel
+            const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+
+                // Singly reinforced section
+             const Ast = Math.max(((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e),0.85/fy_design*width*depth_e);
+                
+            // Calculate number of steel bars
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+            const s1 = A1/Ast*width; // Spacing of reinforcement bar
+            
+
+            // Shear reinforcement calculation
+            
+            const tau_v = Vu / (width * depth_e); // Shear stress
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+            
+
+            let shearReinforcement;
+            if (tau_v <= tau_c) {
+                shearReinforcement = "NO";
+            } else {
+                shearReinforcement = "YES"; 
+            } 
+
+            // Display results
+            document.getElementById('steelArea').textContent = Ast.toFixed(1);
+            document.getElementById('s1').textContent = s1.toFixed(0);
+            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
+		document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+            document.getElementById('shearReinforcement').textContent = shearReinforcement; 
+        }
 
     // Initialize span inputs and drawing
     createSpanInputs();
