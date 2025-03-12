@@ -289,6 +289,7 @@
         </form>
     <button onclick="updateDrawing()">DESIGN ONE-WAY SLAB</button>
     <br>
+	<button onclick="Reinforcementdesign()">REINFORCEMENT DESIGN</button>
     <!-- Canvas for drawing -->
     <canvas id="slabCanvas" width="800" height="200"></canvas>
     
@@ -405,8 +406,6 @@
       // Calculate and display bending moments and shear forces using IS 456:2000 coefficients
       const { spanMoments, supportMoments, shearForces } = calculateMomentsAndShearForces(spanLengths, DL, LL, loadType);
       calculateAndDisplayResults(spanLengths, spanMoments, supportMoments, shearForces);
-	// Call the Reinforcementdesign function
- 	 Reinforcementdesign();
     }
 
     // Function to draw supports
