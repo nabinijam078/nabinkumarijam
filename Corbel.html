@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-            body {
+        body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
@@ -38,7 +38,6 @@
             right: 20px;
             font-size: 0.7rem;
             color: white;
-            
         }
 
         nav {
@@ -61,53 +60,170 @@
             background-color: #0078d7;
         }
 
-        /* Main Content */
-    
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
 
-    .content {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        flex: 1;
-        display: flex;
-        gap: 20px;
-    }
+        .inputs {
+            flex: 1;
+            max-width: 50%; /* Adjust as needed */
+        }
 
-    .inputs {
-        flex: 1;
-        max-width: 50%; /* Adjust as needed */
-    }
+        .image-container {
+            flex: 1;
+            max-width: 50%; /* Adjust as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .image-container {
-        flex: 1;
-        max-width: 50%; /* Adjust as needed */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
 
-    .result {
-        flex: 1;
-        max-width: 50%; /* Adjust as needed */
-        margin: auto;
-        padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        font-family: 'Open Sans', sans-serif; 
-        font-size: 0.8rem; /* Adjusted for better readability */
-    }
+        .image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
 
-    .result p {
-        font-family: 'Open Sans', sans-serif; 
-        font-size: 0.8rem; /* Adjusted for better readability */
-    }
+        .dimension {
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
 
-    
-</style>
+        .dimension.rotated {
+            transform: rotate(-90deg);
+            transform-origin: left top;
+        }
+
+        h2 {
+            color: #0078d7;
+            font-size: 1.2rem;
+            text-align: left;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .result {
+            flex: 1;
+            max-width: 50%; /* Adjust as needed */
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Open Sans', sans-serif; 
+            font-size: 0.8rem; /* Adjusted for better readability */
+        }
+
+        .result p {
+            font-family: 'Open Sans', sans-serif; 
+            font-size: 0.8rem; /* Adjusted for better readability */
+        }
+
+        footer {
+            background-color: #E0FFFF;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            margin-top: auto;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333;
+            margin: 0 10px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7;
+        }
+
+        .copyright {
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .inputs, .image-container, .result {
+                max-width: 100%; /* Full width on small screens */
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+
+            #datetime {
+                position: static;
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -130,7 +246,8 @@
         <!-- Inputs on the left -->
         <div class="inputs">
             <h2><b><u>CORBEL DESIGN</u></b></h2>
-                <div class="input-group">
+            
+            <div class="input-group">
                 <label for="fck">Concrete grade, fck (N/mm<sup>2</sup>):</label>
                 <input type="number" id="fck">
             </div>
@@ -175,12 +292,11 @@
 
         <!-- Image on the right -->
         <div class="image-container">
-            <img src="corbel_drawing.png" alt="Corbel Drawing"style="width: 400px; height: 300px;">
-             <div id="a-label" class="dimension" style="top: 330px; left: 100px;"></div>
+            <img src="corbel_drawing.png" alt="Corbel Drawing" style="width: 400px; height: 300px;">
+            <div id="a-label" class="dimension" style="top: 330px; left: 100px;"></div>
             <div id="V-label" class="dimension" style="top: 300px; left: 150px;"></div>
             <div id="d-label" class="dimension rotated" style="top: 450px; left: 210px;"></div>
             <div id="D-label" class="dimension rotated" style="top: 480px; left: 260px;"></div>
-
         </div>
     </div>
 
@@ -233,7 +349,7 @@
             const Phit = parseFloat(document.getElementById('Phit').value) || 0;
             const Phic = parseFloat(document.getElementById('Phic').value) || 0;
 
-              // Update dimension labels
+            // Update dimension labels
             document.getElementById('a-label').textContent = `a = ${a}mm`;
             document.getElementById('V-label').textContent = `V = ${V}kN`;
             document.getElementById('d-label').textContent = `d = ${d}mm`;
