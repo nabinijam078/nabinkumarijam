@@ -262,7 +262,7 @@
     </select>
     <br>
     <p><U><b>OPTION FOR LOADS</b></U> </p>
-    <label for="Option">Option for load calculation : </label>
+    <label for="Option">Input option for load calculation : </label>
                 <select id="iu">
                     <option value="Calculated">Calculated</option>
                     <option value="Manual">Manual</option>
@@ -494,7 +494,19 @@
         }
       }
 
-      return { spanMoments, supportMoments, shearForces };
+      // Find maximum bending moment and shear force
+  const maxSpanMoment = Math.max(...spanMoments);
+  const maxSupportMoment = Math.max(...supportMoments);
+  const maxShearForce = Math.max(...shearForces);
+
+  return {
+    spanMoments,
+    supportMoments,
+    shearForces,
+    maxSpanMoment,
+    maxSupportMoment,
+    maxShearForce,
+  };
     }
 
     // Function to calculate and display results
