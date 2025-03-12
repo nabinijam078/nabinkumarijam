@@ -257,6 +257,11 @@
 		<label for="LL">Dead Load ( in kN/m<sup>2</sup>):</label>
                 <input type="number" id="LL" required>
             <br>
+		<p>Input for maximum moment</p>
+		<label for="Moment">Maximum moment  ( in kN/m<sup>2</sup>):</label>
+                <input type="number" id="Moment" required>
+            <br>
+		
             <button type="button" onclick="Bendingmoment()">BENDING MOMENT & SHEAR FORCE</button>
 		<br>
 		<button type="button" onclick="Reinforcementarea()">REINFORCEMENT DESIGN</button>
@@ -398,7 +403,7 @@
 		const depth = parseFloat(document.getElementById('depth').value); // D in mm
             const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
             const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
-            const moment=parseFloat(document.getElementById('Mmax').value); // 
+            const moment=parseFloat(document.getElementById('Moment').value); // 
             
 
             // Convert moment to Nmm and shear to N
