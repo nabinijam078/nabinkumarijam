@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Two-way slab</title>
+    <title>Two-way Slab Design</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -19,11 +19,11 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes full height */
+            min-height: 100vh;
         }
 
         h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif; /* Heading font */
+            font-family: 'Roboto', sans-serif;
             color: #0078d7;
         }
 
@@ -39,10 +39,6 @@
         header h1 {
             margin: 0;
             font-size: 1.3rem;
-	}
-	header h3 {
-            margin: 0;
-            font-size: .8rem;
         }
 
         /* Navigation Bar */
@@ -75,13 +71,7 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow content to grow and push footer down */
-        }
-
-        .content h2 {
-            color: #0078d7;
-            font-size: 1.2rem;
-            margin-top: 0;
+            flex: 1;
         }
 
         .input-group {
@@ -92,7 +82,7 @@
             display: block;
             margin-bottom: 5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for labels */
+            font-size: 0.8rem;
         }
 
         .input-group input {
@@ -100,18 +90,15 @@
             padding: 8px;
             box-sizing: border-box;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem; /* Reduced font size for inputs */
+            font-size: 0.9rem;
         }
-
-        p { color: black;font-family: Open Sans; font-size: 13px; text-align: justify; }
-        label { color: black;font-family: Open Sans; font-size: 13px; text-align: justify; }
 
         .result {
             margin-top: 20px;
             padding: 10px;
             background-color: #f4f4f4;
             border: 1px solid #ccc;
-            font-size: 0.9rem; /* Reduced font size for inputs */
+            font-size: 0.9rem;
         }
 
         /* Footer Styles */
@@ -122,67 +109,29 @@
             padding: 10px;
             width: 100%;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0; /* Prevent footer from shrinking */
-        }
-
-        .social-links {
-            margin-bottom: 10px;
+            flex-shrink: 0;
         }
 
         .social-links a {
-            color: #333; /* Dark color for icons */
+            color: #333;
             text-decoration: none;
             margin: 0 10px;
-            font-size: 1.8rem; /* Icon size */
+            font-size: 1.8rem;
             transition: color 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #0078d7; /* Change color on hover */
-        }
-
-        .copyright {
-            background-color: #E0FFFF;
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
+            color: #0078d7;
         }
 
         .copyright p {
             margin: 0;
             font-size: 0.7rem;
-            color: #333; /* Dark text for contrast */
-        }
-
-        /* Time and Date Styles */
-        #datetime {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.9rem;
             color: #333;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .content img {
-                float: none;
-                display: block;
-                margin: 0 auto 20px;
-            }
-
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Current Time and Date -->
-    <div id="datetime"></div>
-
     <!-- Header -->
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
@@ -204,87 +153,75 @@
     <div class="content">
         <h3><u>TWO-WAY SLAB (RESTRAINED AT CORNERS)</u></h3>
         <form id="beamSectionForm">
-            	<label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
-                <input type="number" id="fck" step="0.1" required>
+            <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+            <input type="number" id="fck" step="0.1" required>
             <br>
-                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
-                <input type="number" id="fy" step="0.1" required>
-             <br>
-                <label for="depth">Overall Depth of slab(d in mm):</label>
-                <input type="number" id="depth" required>
+            <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+            <input type="number" id="fy" step="0.1" required>
             <br>
-                <label for="cover">Effective cover (c in mm):</label>
-                <input type="number" id="cover" required>
-             <br>
-                <label for="lx">Longer length (l<sub>x</sub> m):</label>
-                <input type="number" id="lx" step="0.01" required>
+            <label for="depth">Overall Depth of slab (d in mm):</label>
+            <input type="number" id="depth" required>
             <br>
-                <label for="ly">Shorter length (l<sub>y</sub> m):</label>
-                <input type="number" id="ly" step="0.01" required>
+            <label for="cover">Effective cover (c in mm):</label>
+            <input type="number" id="cover" required>
             <br>
-
-	<label for="E1">Boundary condition at edge 1 (E1):</label>
+            <label for="lx">Longer length (l<sub>x</sub> in m):</label>
+            <input type="number" id="lx" step="0.01" required>
+            <br>
+            <label for="ly">Shorter length (l<sub>y</sub> in m):</label>
+            <input type="number" id="ly" step="0.01" required>
+            <br>
+            <label for="E1">Boundary condition at edge 1 (E1):</label>
             <select id="E1">
-                <option value="C">Continuous(C)</option>
-                <option value="D">Discontinuous(D)</option>
+                <option value="C">Continuous (C)</option>
+                <option value="D">Discontinuous (D)</option>
             </select>
-	<br>
-	<label for="E2">Boundary condition at edge 2 (E2):</label>
+            <br>
+            <label for="E2">Boundary condition at edge 2 (E2):</label>
             <select id="E2">
-               <option value="C">Continuous(C)</option>
-                <option value="D">Discontinuous(D)</option>
+                <option value="C">Continuous (C)</option>
+                <option value="D">Discontinuous (D)</option>
             </select>
-	<br>
-	<label for="E3">Boundary condition at edge 3 (E3):</label>
+            <br>
+            <label for="E3">Boundary condition at edge 3 (E3):</label>
             <select id="E3">
-                <option value="C">Continuous(C)</option>
-                <option value="D">Discontinuous(D)</option>
+                <option value="C">Continuous (C)</option>
+                <option value="D">Discontinuous (D)</option>
             </select>
-	<br>
-		<label for="E4">Boundary condition at edge 4 (E4):</label>
+            <br>
+            <label for="E4">Boundary condition at edge 4 (E4):</label>
             <select id="E4">
-               <option value="C">Continuous(C)</option>
-                <option value="D">Discontinuous(D)</option>
+                <option value="C">Continuous (C)</option>
+                <option value="D">Discontinuous (D)</option>
             </select>
-	<br>
-		<label for="dm">Diameter of main Reinforcement (dm in mm):</label>
-                <input type="number" id="dm" required>
             <br>
-	<p>LOAD INPUTS</p>
-		<label for="DL">Dead Load ( in kN/m<sup>2</sup>):</label>
-                <input type="number" id="DL" required>
+            <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
+            <input type="number" id="dm" required>
             <br>
-		<label for="LL">Dead Load ( in kN/m<sup>2</sup>):</label>
-                <input type="number" id="LL" required>
+            <p>LOAD INPUTS</p>
+            <label for="DL">Dead Load (in kN/m<sup>2</sup>):</label>
+            <input type="number" id="DL" required>
             <br>
-		<p>Input for maximum moment</p>
-		<label for="Moment">Maximum moment( in kN.m):</label>
-                <input type="number" id="Moment" required>
+            <label for="LL">Live Load (in kN/m<sup>2</sup>):</label>
+            <input type="number" id="LL" required>
             <br>
-		
-            <button type="button" onclick="Bendingmoment()">BENDING MOMENT & SHEAR FORCE</button>
-		<br>
-		<button type="button" onclick="Reinforcementarea()">REINFORCEMENT DESIGN</button>
+            <button type="button" onclick="calculateDesign()">CALCULATE DESIGN</button>
         </form>
- 	<!-- Image on the right -->
-        <div class="image-container">
-            <img src="Slab.png" alt="Slab" style="width: 300px; height: 200px;">
-        </div>
+
+        <!-- Results Section -->
         <div class="result" id="result">
             <h3>DESIGN RESULT</h3>
-		<P>1. BENDING MOMENTS</P>
-		<p>Moment in edge-1 (M<sub>1</sub>): <span id="M1"></span> kNm</p>
-		<p>Moment in edge-2 (M<sub>2</sub>): <span id="M2"></span> kNm</p>
-		<p>Moment in edge-3 (M<sub>3</sub>): <span id="M3"></span> kNm</p>
-		<p>Moment in edge-4 (M<sub>4</sub>): <span id="M4"></span> kNm</p>
-		<p>Moment in x-direction (M<sub>x</sub>): <span id="Mx"></span> kNm</p>
-		<p>Moment in y-axis (M<sub>y</sub>): <span id="My"></span> kNm</p>
-		<p>Maximum moment (M<sub>max</sub>): <span id="Mmax"></span> kNm</p>
-		
-	<P>2. REINFORCEMENT DESIGN</P>
-            <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
-            <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
-            
+            <p>1. BENDING MOMENTS</p>
+            <p>Moment in edge-1 (M<sub>1</sub>): <span id="M1"></span> kN·m</p>
+            <p>Moment in edge-2 (M<sub>2</sub>): <span id="M2"></span> kN·m</p>
+            <p>Moment in edge-3 (M<sub>3</sub>): <span id="M3"></span> kN·m</p>
+            <p>Moment in edge-4 (M<sub>4</sub>): <span id="M4"></span> kN·m</p>
+            <p>Moment in x-direction (M<sub>x</sub>): <span id="Mx"></span> kN·m</p>
+            <p>Moment in y-direction (M<sub>y</sub>): <span id="My"></span> kN·m</p>
+            <p>Maximum moment (M<sub>max</sub>): <span id="Mmax"></span> kN·m</p>
+            <p>2. REINFORCEMENT DESIGN</p>
+            <p>Area of Steel Required (A<sub>st</sub>): <span id="steelArea"></span> mm²</p>
+            <p>Spacing of reinforcement (s): <span id="s1"></span> mm</p>
         </div>
     </div>
 
@@ -292,10 +229,10 @@
     <footer>
         <div class="social-links">
             <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+                <i class="fab fa-facebook"></i>
             </a>
             <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+                <i class="fab fa-linkedin"></i>
             </a>
         </div>
         <div class="copyright">
@@ -303,134 +240,96 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
+    <!-- JavaScript -->
     <script>
-        function updateDateTime() {
-            const now = new Date();
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleString();
-        }
-
-        // Update the time and date every second
-        setInterval(updateDateTime, 1000);
-
-        // Initial call to display the time and date immediately
-        updateDateTime();
-// BENDING MOMENT CALCULATIONS
-	    function Bendingmoment(){
-		const E1 = document.getElementById('E1').value;
-        const E2 = document.getElementById('E2').value;
-        const E3 = document.getElementById('E3').value;
-        const E4 = document.getElementById('E4').value;
-        const lx = parseFloat(document.getElementById('lx').value);
-        const ly = parseFloat(document.getElementById('ly').value);
-        const DL = parseFloat(document.getElementById('DL').value);
-        const LL = parseFloat(document.getElementById('LL').value);
-
-        // Calculate Nd values
-        const Nd1 = E1 === "D" ? 1 : 0;
-        const Nd2 = E2 === "D" ? 1 : 0;
-        const Nd3 = E3 === "D" ? 1 : 0;
-        const Nd4 = E4 === "D" ? 1 : 0;
-
-        const Nd = Nd1 + Nd2 + Nd3 + Nd4;
-        const betay = (24 + 2 * Nd + 1.5 * Math.pow(Nd, 2)) / 1000;
-
-        // Calculate beta1 and beta2
-        const beta1 = Nd1 === 0 ? (4 / 3) * betay : 0;
-        const beta2 = Nd2 === 0 ? (4 / 3) * betay : 0;
-
-        // Calculate Gamma
-        const Gamma = (2 / 9) * (3 - Math.sqrt(18) * (lx / ly) * (Math.sqrt(betay + beta1) + Math.sqrt(betay + beta2)));
-
-        // Calculate betax, beta3, and beta4
-        let betax, beta3, beta4;
-        if (Nd3 === 0) {
-            if (Nd4 === 0) {
-                betax = (Gamma / 28) * 3;
-                beta3 = (4 / 3) * betax;
-                beta4 = (4 / 3) * betax;
-            } else {
-                betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
-                beta3 = (4 / 3) * betax;
-                beta4 = 0;
-            }
-        } else {
-            if (Nd4 === 1) {
-                betax = Gamma / 4;
-                beta3 = 0;
-                beta4 = 0;
-            } else {
-                betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
-                beta3 = 0;
-                beta4 = (4 / 3) * betax;
-            }
-        }
-
-        // Calculate total factored load
-        const totalFactoredLoad = 1.5 * (DL + LL);
-
-        // Calculate moments
-        const Mx = betax * totalFactoredLoad * Math.pow(lx, 2); // Moment in x-direction
-        const My = betay * totalFactoredLoad * Math.pow(lx, 2); // Moment in y-direction
-	const M1 = beta1 * totalFactoredLoad * Math.pow(lx, 2); 
-        const M2 = beta2 * totalFactoredLoad * Math.pow(lx, 2); 
-	const M3 = beta3 * totalFactoredLoad * Math.pow(lx, 2); 
-        const M4 = beta4 * totalFactoredLoad * Math.pow(lx, 2); 
-	const Mmax=Math.max(Mx,My,M1,M2,M3,M4);
-        // Display the results
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `
-            <h2>RESULTS:</h2>
-            
-            <h3>MOMENTS:</h3>
-            <p>Moment in x-direction (Mx): ${Mx.toFixed(2)} kN·m</p>
-            <p>Moment in y-direction (My): ${My.toFixed(2)} kN·m</p>
-	    <p>Moment in Edge-1(M1): ${M1.toFixed(2)} kN·m</p>
-            <p>Moment in Edge-2(M1): ${M2.toFixed(2)} kN·m</p>
-	    <p>Moment in Edge-3(M3): ${M3.toFixed(2)} kN·m</p>
-     	    <p>Moment in Edge-4(M4): ${M4.toFixed(2)} kN·m</p>
-	  <p>Maximum moment(Mmax): ${Mmax.toFixed(2)} kN·m</p>
-        `;
-    }		    
-        function Reinforcementarea() {
+        function calculateDesign() {
             // Input values
-            
-            const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
-            const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
-		const depth = parseFloat(document.getElementById('depth').value); // D in mm
-            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
-            const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
-            const moment=parseFloat(document.getElementById('Moment').value); // 
-            
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const depth = parseFloat(document.getElementById('depth').value);
+            const cover = parseFloat(document.getElementById('cover').value);
+            const lx = parseFloat(document.getElementById('lx').value);
+            const ly = parseFloat(document.getElementById('ly').value);
+            const DL = parseFloat(document.getElementById('DL').value);
+            const LL = parseFloat(document.getElementById('LL').value);
+            const dm = parseFloat(document.getElementById('dm').value);
 
-            // Convert moment to Nmm and shear to N
-            const Mu = moment * 1e6; // kNm to Nmm
-            
-            // Design parameters
-            const fck_design = fck; // Design concrete strength
-            const fy_design = fy; // Design steel strength
-            const depth_e = depth - cover; // Effective depth
-            const Es = 2e5; // Modulus of elasticity of steel
-		const width=1000; //width of slab
+            // Boundary conditions
+            const E1 = document.getElementById('E1').value;
+            const E2 = document.getElementById('E2').value;
+            const E3 = document.getElementById('E3').value;
+            const E4 = document.getElementById('E4').value;
 
-            // Calculate limiting moment (Mu_lim)
-            const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
-            const Xu_max = k * depth_e; // For Fe 415 steel
-            const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+            // Calculate moments
+            const Nd1 = E1 === "D" ? 1 : 0;
+            const Nd2 = E2 === "D" ? 1 : 0;
+            const Nd3 = E3 === "D" ? 1 : 0;
+            const Nd4 = E4 === "D" ? 1 : 0;
+            const Nd = Nd1 + Nd2 + Nd3 + Nd4;
 
-                // Singly reinforced section
-             const Ast = Math.max(((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e),0.85/fy_design*width*depth_e);
-                
-            // Calculate number of steel bars
-            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
-            const s1 = A1/Ast*width; // Spacing of reinforcement bar
-            
+            const betay = (24 + 2 * Nd + 1.5 * Math.pow(Nd, 2)) / 1000;
+            const beta1 = Nd1 === 0 ? (4 / 3) * betay : 0;
+            const beta2 = Nd2 === 0 ? (4 / 3) * betay : 0;
+            const Gamma = (2 / 9) * (3 - Math.sqrt(18) * (lx / ly) * (Math.sqrt(betay + beta1) + Math.sqrt(betay + beta2)));
+
+            let betax, beta3, beta4;
+            if (Nd3 === 0) {
+                if (Nd4 === 0) {
+                    betax = (Gamma / 28) * 3;
+                    beta3 = (4 / 3) * betax;
+                    beta4 = (4 / 3) * betax;
+                } else {
+                    betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
+                    beta3 = (4 / 3) * betax;
+                    beta4 = 0;
+                }
+            } else {
+                if (Nd4 === 1) {
+                    betax = Gamma / 4;
+                    beta3 = 0;
+                    beta4 = 0;
+                } else {
+                    betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
+                    beta3 = 0;
+                    beta4 = (4 / 3) * betax;
+                }
+            }
+
+            // Total factored load
+            const totalFactoredLoad = 1.5 * (DL + LL);
+
+            // Moments
+            const Mx = betax * totalFactoredLoad * Math.pow(lx, 2);
+            const My = betay * totalFactoredLoad * Math.pow(lx, 2);
+            const M1 = beta1 * totalFactoredLoad * Math.pow(lx, 2);
+            const M2 = beta2 * totalFactoredLoad * Math.pow(lx, 2);
+            const M3 = beta3 * totalFactoredLoad * Math.pow(lx, 2);
+            const M4 = beta4 * totalFactoredLoad * Math.pow(lx, 2);
+            const Mmax = Math.max(Mx, My, M1, M2, M3, M4);
+
+            // Reinforcement design
+            const Mu = Mmax * 1e6; // kN·m to N·mm
+            const depth_e = depth - cover;
+            const width = 1000; // Width of slab
+
+            const Ast = Math.max(
+                ((1 - Math.pow(1 - 4.598 * Mu / (fck * width * Math.pow(depth_e, 2)), 0.5)) * (fck / (2 * fy)) * width * depth_e,
+                (0.85 / fy) * width * depth_e
+            );
+
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one bar
+            const s1 = (A1 / Ast) * width; // Spacing
+
             // Display results
-            document.getElementById('steelArea').textContent = Ast.toFixed(1);
+            document.getElementById('M1').textContent = M1.toFixed(2);
+            document.getElementById('M2').textContent = M2.toFixed(2);
+            document.getElementById('M3').textContent = M3.toFixed(2);
+            document.getElementById('M4').textContent = M4.toFixed(2);
+            document.getElementById('Mx').textContent = Mx.toFixed(2);
+            document.getElementById('My').textContent = My.toFixed(2);
+            document.getElementById('Mmax').textContent = Mmax.toFixed(2);
+            document.getElementById('steelArea').textContent = Ast.toFixed(2);
             document.getElementById('s1').textContent = s1.toFixed(0);
-           
-            
         }
     </script>
 </body>
