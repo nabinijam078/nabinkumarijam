@@ -72,7 +72,7 @@
             gap: 20px;
         }
 
-        .inputs, .result {
+        .inputs {
             flex: 1;
             max-width: 50%;
         }
@@ -150,6 +150,8 @@
         }
 
         .result {
+            flex: 1;
+            max-width: 50%;
             margin: auto;
             padding: 20px;
             background-color: white;
@@ -299,20 +301,18 @@
     </div>
 
     <!-- Result Display -->
-    <div class="content">
-        <div class="result">
-            <h2><U>DESIGN RESULTS</U></h2>
-            <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
-            <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
-            <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
-            <p>Area of tensile reinforcement (Ast): <span id="Ast"></span> mm²</p>
-            <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
-            <p>Area of compression reinforcement (Asc): <span id="Asc"></span> mm²</p>
-            <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
-            <p><u>CHECK FOR SHEAR CAPACITY</u></p>
-            <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
-            <p>Check for Shear capacity of corbel: <span id="check"></span></p>
-        </div>
+    <div class="result">
+        <h2><U>DESIGN RESULTS</U></h2>
+        <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
+        <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
+        <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
+        <p>Area of tensile reinforcement (Ast): <span id="Ast"></span> mm²</p>
+        <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
+        <p>Area of compression reinforcement (Asc): <span id="Asc"></span> mm²</p>
+        <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
+        <p><u>CHECK FOR SHEAR CAPACITY</u></p>
+        <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
+        <p>Check for Shear capacity of corbel: <span id="check"></span></p>
     </div>
 
     <!-- Footer -->
