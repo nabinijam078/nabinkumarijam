@@ -317,6 +317,18 @@
     </footer>
 
   <script>
+    function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+
     // Function to create span length inputs dynamically
     function createSpanInputs() {
       const spans = parseInt(document.getElementById('spans').value);
