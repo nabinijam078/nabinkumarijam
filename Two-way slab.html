@@ -207,7 +207,8 @@
             <label for="LL">Live Load (in kN/m<sup>2</sup>):</label>
             <input type="number" id="LL" required>
             <br>
-            <button type="button" onclick="calculateDesign()">CALCULATE DESIGN</button>
+            <button type="button" onclick="Bendingmoment()">BENDINGMOMENT</button>
+            <button type="button" onclick="Reinforcementdesign()">REINFORCEMENTDESIGN</button>
         </form>
 
         <!-- Results Section -->
@@ -244,12 +245,9 @@
 
     <!-- JavaScript -->
     <script>
-        function calculateDesign() {
+        function Bendingmoment() {
             // Input values
-            const fck = parseFloat(document.getElementById('fck').value);
-            const fy = parseFloat(document.getElementById('fy').value);
-            const depth = parseFloat(document.getElementById('depth').value);
-            const cover = parseFloat(document.getElementById('cover').value);
+           
             const lx = parseFloat(document.getElementById('lx').value);
             const ly = parseFloat(document.getElementById('ly').value);
             const DL = parseFloat(document.getElementById('DL').value);
@@ -308,8 +306,24 @@
             const M3 = beta3 * totalFactoredLoad * Math.pow(lx, 2);
             const M4 = beta4 * totalFactoredLoad * Math.pow(lx, 2);
             const Mmax = Math.max(Mx, My, M1, M2, M3, M4);
-
+            
+            //Display result
+            document.getElementById('M1').textContent = M1.toFixed(2);
+            document.getElementById('M2').textContent = M2.toFixed(2);
+            document.getElementById('M3').textContent = M3.toFixed(2);
+            document.getElementById('M4').textContent = M4.toFixed(2);
+            document.getElementById('Mx').textContent = Mx.toFixed(2);
+            document.getElementById('My').textContent = My.toFixed(2);
+            document.getElementById('Mmax').textContent = Mmax.toFixed(2);
+        }
             // Reinforcement design
+            function reinforcementdesign(){
+             const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const depth = parseFloat(document.getElementById('depth').value);
+            const cover = parseFloat(document.getElementById('cover').value);
+            const Mmax = parseFloat(document.getElementById('Mmax').value);  
+                
             const Mu = Mmax * 1e6; // kN·m to N·mm
             const depth_e = depth - cover;
             const width = 1000; // Width of slab
@@ -321,18 +335,11 @@
 
             const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one bar
             const s1 = (A1 / Ast) * width; // Spacing
-
+           
             // Display results
-            document.getElementById('M1').textContent = M1.toFixed(2);
-            document.getElementById('M2').textContent = M2.toFixed(2);
-            document.getElementById('M3').textContent = M3.toFixed(2);
-            document.getElementById('M4').textContent = M4.toFixed(2);
-            document.getElementById('Mx').textContent = Mx.toFixed(2);
-            document.getElementById('My').textContent = My.toFixed(2);
-            document.getElementById('Mmax').textContent = Mmax.toFixed(2);
             document.getElementById('steelArea').textContent = Ast.toFixed(2);
             document.getElementById('s1').textContent = s1.toFixed(0);
-        }
+            }
     </script>
 </body>
 </html>
