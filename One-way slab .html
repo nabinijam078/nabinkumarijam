@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beam Section Design as per IS 456:2000</title>
+  <!-- Import Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Import Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure the body takes full height */
+    }
+
+    h2, h3, h4, h5, h6 {
+      font-family: 'Roboto', sans-serif; /* Heading font */
+      color: #0078d7;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #0078d7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #0078d7;
+    }
+
+    /* Main Content */
+    .content {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 1; /* Allow content to grow and push footer down */
+    }
+
+    .content h2 {
+      color: #0078d7;
+      font-size: 1.2rem;
+      margin-top: 0;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem; /* Reduced font size for labels */
+    }
+
+    .input-group input {
+      width: 80%;
+      padding: 8px;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem; /* Reduced font size for inputs */
+    }
+
+    p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+    label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      font-size: 0.9rem; /* Reduced font size for inputs */
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #E0FFFF;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0; /* Prevent footer from shrinking */
+    }
+
+    .social-links {
+      margin-bottom: 10px;
+    }
+
+    .social-links a {
+      color: #333; /* Dark color for icons */
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.8rem; /* Icon size */
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #0078d7; /* Change color on hover */
+    }
+
+    .copyright {
+      background-color: #E0FFFF;
+      padding: 5px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .copyright p {
+      margin: 0;
+      font-size: 0.7rem;
+      color: #333; /* Dark text for contrast */
+    }
+
+    /* Time and Date Styles */
+    #datetime {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .content img {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+    canvas {
+      border: 1px solid black;
+      margin-top: 20px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    input, select, button {
+      margin-right: 20px;
+      margin-bottom: 10px;
+    }
+    .span-inputs {
+      margin-bottom: 20px;
+    }
+    .results {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Current Time and Date -->
+  <div id="datetime"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="Home.html"><b>HOME</b></a>
+    <a href="My background.html"><b>MY BACKGROUND</b></a>
+    <a href="My works.html"><b>MY WORKS</b></a>
+    <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+    <a href="Others.html"><b>OTHERS</b></a>
+    <a href="Downloads.html"><b>DOWNLOADS</b></a>
+    <a href="images.html"><b>IMAGES</b></a>
+    <a href="Contacts.html"><b>CONTACTS</b></a>
+  </nav>
+
+  <h3><u>ONE-WAY SLAB</u> </h3>
+  <!-- Input fields -->
+  <label for="spans">Number of Spans:</label>
+  <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
+  
+  <div id="spanInputs" class="span-inputs">
+    <!-- Span length inputs will be dynamically added here -->
+  </div>
+  
+  <label for="DL">Dead load (kN/m):</label>
+  <input type="number" id="DL" min="1" value="10">
+
+  <label for="LL">Live load (kN/m):</label>
+  <input type="number" id="LL" min="1" value="10">
+
+  <label for="loadType">Load Type:</label>
+  <select id="loadType">
+    <option value="fixed">Dead Load + Imposed Load (Fixed)</option>
+    <option value="notFixed">Imposed Load (Not Fixed)</option>
+  </select>
+  
+  <button onclick="updateDrawing()">Update Drawing</button>
+  
+  <!-- Canvas for drawing -->
+  <canvas id="slabCanvas" width="800" height="200"></canvas>
+  
+  <!-- Results -->
+  <div id="results" class="results">
+    <h2>Results</h2>
+    <div id="bendingMomentResults"></div>
+    <div id="shearForceResults"></div>
+  </div>
+  
+  <script>
+    // Function to create span length inputs dynamically
+    function createSpanInputs() {
+      const spans = parseInt(document.getElementById('spans').value);
+      const spanInputsDiv = document.getElementById('spanInputs');
+      spanInputsDiv.innerHTML = ''; // Clear previous inputs
+
+      for (let i = 0; i < spans; i++) {
+        const label = document.createElement('label');
+        label.innerText = `Span ${i + 1} Length (m):`;
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = 1;
+        input.value = 3; // Default span length in meters
+        input.id = `spanLength${i}`;
+        spanInputsDiv.appendChild(label);
+        spanInputsDiv.appendChild(input);
+        spanInputsDiv.appendChild(document.createElement('br'));
+      }
+    }
+
+    // Function to update the drawing and calculations
+    function updateDrawing() {
+      const canvas = document.getElementById('slabCanvas');
+      const ctx = canvas.getContext('2d');
+      const spans = parseInt(document.getElementById('spans').value);
+      const DL = parseFloat(document.getElementById('DL').value); // Dead load
+      const LL = parseFloat(document.getElementById('LL').value); // Live load
+      const loadType = document.getElementById('loadType').value; // Load type (fixed or not fixed)
+
+      // Get span lengths
+      const spanLengths = [];
+      let totalLength = 0;
+      for (let i = 0; i < spans; i++) {
+        const spanLength = parseFloat(document.getElementById(`spanLength${i}`).value);
+        spanLengths.push(spanLength);
+        totalLength += spanLength;
+      }
+
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the slab
+      let currentX = 0;
+      ctx.beginPath();
+      ctx.moveTo(currentX, 100);
+      for (let i = 0; i < spans; i++) {
+        const spanWidth = (spanLengths[i] / totalLength) * canvas.width; // Scale span width proportionally
+        currentX += spanWidth;
+        ctx.lineTo(currentX, 100);
+      }
+      ctx.stroke();
+
+      // Draw supports
+      drawSupport(ctx, 0, 100, 'fixed'); // Left support (fixed by default)
+      drawSupport(ctx, canvas.width, 100, 'fixed'); // Right support (fixed by default)
+      let supportX = 0;
+      for (let i = 0; i < spans - 1; i++) {
+        const spanWidth = (spanLengths[i] / totalLength) * canvas.width; // Scale span width proportionally
+        supportX += spanWidth;
+        drawSupport(ctx, supportX, 100, 'fixed'); // Intermediate supports (fixed by default)
+      }
+
+      // Calculate and display bending moments and shear forces using IS 456:2000 coefficients
+      const { spanMoments, supportMoments, shearForces } = calculateMomentsAndShearForces(spanLengths, DL, LL, loadType);
+      calculateAndDisplayResults(spanLengths, spanMoments, supportMoments, shearForces);
+    }
+
+    // Function to draw supports
+    function drawSupport(ctx, x, y, type) {
+      ctx.beginPath();
+      if (type === 'fixed') {
+        // Draw a fixed support (triangle)
+        ctx.moveTo(x - 10, y + 20);
+        ctx.lineTo(x + 10, y + 20);
+        ctx.lineTo(x, y);
+        ctx.closePath();
+        ctx.fillStyle = 'black';
+        ctx.fill();
+      } else if (type === 'pinned') {
+        // Draw a pinned support (circle)
+        ctx.arc(x, y + 10, 10, 0, Math.PI * 2);
+        ctx.fillStyle = 'black';
+        ctx.fill();
+      } else if (type === 'free') {
+        // Draw a free support (no support)
+        ctx.moveTo(x, y);
+        ctx.lineTo(x, y + 20);
+        ctx.stroke();
+      }
+      ctx.stroke();
+    }
+
+    // Function to calculate moments and shear forces using IS 456:2000 coefficients
+    function calculateMomentsAndShearForces(spanLengths, DL, LL, loadType) {
+      const spanMoments = [];
+      const supportMoments = [];
+      const shearForces = [];
+
+      // Coefficients from IS 456:2000 Table 12 and Table 13
+      const momentCoefficients = {
+        fixed: {
+          nearMiddleEndSpan: 1 / 12,
+          middleInteriorSpan: 1 / 16,
+          nextToEndSupport: -1 / 10,
+          otherInteriorSupports: -1 / 12,
+        },
+        notFixed: {
+          nearMiddleEndSpan: 1 / 10,
+          middleInteriorSpan: 1 / 12,
+          nextToEndSupport: -1 / 9,
+          otherInteriorSupports: -1 / 9,
+        },
+      };
+
+      const shearCoefficients = {
+        fixed: {
+          endSupport: 0.4,
+          nextToEndSupport: 0.6,
+          otherInteriorSupports: 0.55,
+        },
+        notFixed: {
+          endSupport: 0.45,
+          nextToEndSupport: 0.6,
+          otherInteriorSupports: 0.6,
+        },
+      };
+
+      // Calculate total load (w = DL + LL) with a load factor of 1.5
+      const w = (DL + LL) * 1.5;
+
+      // Calculate span moments
+      for (let i = 0; i < spanLengths.length; i++) {
+        const L = spanLengths[i];
+
+        if (i === 0 || i === spanLengths.length - 1) {
+          // End spans
+          spanMoments.push(momentCoefficients[loadType].nearMiddleEndSpan * w * L * L);
+        } else {
+          // Interior spans
+          spanMoments.push(momentCoefficients[loadType].middleInteriorSpan * w * L * L);
+        }
+      }
+
+      // Calculate support moments
+      for (let i = 0; i < spanLengths.length - 1; i++) {
+        const L = spanLengths[i];
+
+        if (i === 0) {
+          // Support next to the end support
+          supportMoments.push(momentCoefficients[loadType].nextToEndSupport * w * L * L);
+        } else {
+          // Other interior supports
+          supportMoments.push(momentCoefficients[loadType].otherInteriorSupports * w * L * L);
+        }
+      }
+
+      // Calculate shear forces
+      for (let i = 0; i < spanLengths.length; i++) {
+        const L = spanLengths[i];
+
+        if (i === 0) {
+          // End support
+          shearForces.push(shearCoefficients[loadType].endSupport * w * L);
+        } else if (i === spanLengths.length - 1) {
+          // End support (last span)
+          shearForces.push(shearCoefficients[loadType].endSupport * w * L);
+        } else {
+          // Interior supports
+          shearForces.push(shearCoefficients[loadType].nextToEndSupport * w * L);
+        }
+      }
+
+      return { spanMoments, supportMoments, shearForces };
+    }
+
+    // Function to calculate and display results
+    function calculateAndDisplayResults(spanLengths, spanMoments, supportMoments, shearForces) {
+      const bendingMomentResultsDiv = document.getElementById('bendingMomentResults');
+      const shearForceResultsDiv = document.getElementById('shearForceResults');
+
+      // Display span moments
+      bendingMomentResultsDiv.innerHTML = '<h3>Bending Moments (kN·m):</h3>';
+      bendingMomentResultsDiv.innerHTML += '<h4>Span Moments:</h4>';
+      for (let i = 0; i < spanLengths.length; i++) {
+        bendingMomentResultsDiv.innerHTML += `<p>Span ${i + 1}: ${spanMoments[i].toFixed(2)} kN·m</p>`;
+      }
+
+      // Display support moments
+      bendingMomentResultsDiv.innerHTML += '<h4>Support Moments:</h4>';
+      for (let i = 0; i < supportMoments.length; i++) {
+        bendingMomentResultsDiv.innerHTML += `<p>Support ${i + 1}: ${supportMoments[i].toFixed(2)} kN·m</p>`;
+      }
+
+      // Display shear forces
+      shearForceResultsDiv.innerHTML = '<h3>Shear Forces (kN):</h3>';
+      for (let i = 0; i < spanLengths.length; i++) {
+        shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} kN</p>`;
+      }
+    }
+
+    // Initialize span inputs and drawing
+    createSpanInputs();
+    updateDrawing();
+  </script>
+</body>
+</html>
