@@ -208,7 +208,7 @@
             <input type="number" id="LL" required>
             <br>
             <button type="button" onclick="Bendingmoment()">BENDINGMOMENT</button>
-            <button type="button" onclick="Reinforcementdesign()">REINFORCEMENTDESIGN</button>
+           
         </form>
 
         <!-- Results Section -->
@@ -252,7 +252,7 @@
             const ly = parseFloat(document.getElementById('ly').value);
             const DL = parseFloat(document.getElementById('DL').value);
             const LL = parseFloat(document.getElementById('LL').value);
-            const dm = parseFloat(document.getElementById('dm').value);
+           
 
             // Boundary conditions
             const E1 = document.getElementById('E1').value;
@@ -316,30 +316,7 @@
             document.getElementById('My').textContent = My.toFixed(2);
             document.getElementById('Mmax').textContent = Mmax.toFixed(2);
         }
-            // Reinforcement design
-            function reinforcementdesign(){
-             const fck = parseFloat(document.getElementById('fck').value);
-            const fy = parseFloat(document.getElementById('fy').value);
-            const depth = parseFloat(document.getElementById('depth').value);
-            const cover = parseFloat(document.getElementById('cover').value);
-            const Mmax = parseFloat(document.getElementById('Mmax').value);  
-                
-            const Mu = Mmax * 1e6; // kN·m to N·mm
-            const depth_e = depth - cover;
-            const width = 1000; // Width of slab
-
-            const Ast = Math.max(
-                ((1 - Math.pow(1 - 4.598 * Mu / (fck * width * Math.pow(depth_e, 2)), 0.5)) * (fck / (2 * fy)) * width * depth_e,
-                (0.85 / fy) * width * depth_e
-            );
-
-            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one bar
-            const s1 = (A1 / Ast) * width; // Spacing
-           
-            // Display results
-            document.getElementById('steelArea').textContent = Ast.toFixed(2);
-            document.getElementById('s1').textContent = s1.toFixed(0);
-            }
+            
     </script>
 </body>
 </html>
