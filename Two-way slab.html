@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reinforcement design</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes full height */
+        }
+
+        h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif; /* Heading font */
+            color: #0078d7;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.3rem;
+	}
+	header h3 {
+            margin: 0;
+            font-size: .8rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0078d7;
+        }
+
+        /* Main Content */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow content to grow and push footer down */
+        }
+
+        .content h2 {
+            color: #0078d7;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem; /* Reduced font size for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #E0FFFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333; /* Dark color for icons */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.8rem; /* Icon size */
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7; /* Change color on hover */
+        }
+
+        .copyright {
+            background-color: #E0FFFF;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #333; /* Dark text for contrast */
+        }
+
+        /* Time and Date Styles */
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content img {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <a href="My background.html"><b>MY BACKGROUND</b></a>
+        <a href="My works.html"><b>MY WORKS</b></a>
+        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b>OTHERS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h3><u>REINFORCEMENT DESIGN</u></h3>
+        <form id="beamSectionForm">
+             <div class="input-group">
+                <label for="depth">Overall Depth of slab(d in mm):</label>
+                <input type="number" id="depth" required>
+            </div>
+            <div class="input-group">
+                <label for="cover">Effective cover (c in mm):</label>
+                <input type="number" id="cover" required>
+            </div>
+            <div class="input-group">
+                <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
+                <input type="number" id="dm" required>
+            </div>
+             <div class="input-group">
+                <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+                <input type="number" id="fck" step="0.1" required>
+            </div>
+            <div class="input-group">
+                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+                <input type="number" id="fy" step="0.1" required>
+            </div>
+            <div class="input-group">
+                <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
+                <input type="number" id="moment" step="0.01" required>
+            </div>
+            <div class="input-group">
+                <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
+                <input type="number" id="shear" step="0.01" required>
+            </div>
+            <button type="button" onclick="calculateBeamSection()">Design Section</button>
+        </form>
+
+        <div class="result" id="result">
+            <h2>Design Results</h2>
+            <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
+            <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
+		 <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
+		<p><strong>Nominal shear strength:</strong> <span id="tau_c"></span> N/mm²</p>
+            <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+
+        function calculateBeamSection() {
+            // Input values
+            const depth = parseFloat(document.getElementById('depth').value); // D in mm
+            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+            const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
+            const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+            const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+            
+            const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
+            const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
+
+            // Convert moment to Nmm and shear to N
+            const Mu = moment * 1e6; // kNm to Nmm
+            const Vu = shear * 1e3; // kN to N
+
+            // Design parameters
+            const fck_design = fck; // Design concrete strength
+            const fy_design = fy; // Design steel strength
+            const depth_e = depth - cover; // Effective depth
+            const Es = 2e5; // Modulus of elasticity of steel
+		const width=1000; //width of slab
+
+            // Calculate limiting moment (Mu_lim)
+            const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+            const Xu_max = k * depth_e; // For Fe 415 steel
+            const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+
+                // Singly reinforced section
+             const Ast = Math.max(((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e),0.85/fy_design*width*depth_e);
+                
+            // Calculate number of steel bars
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+            const s1 = A1/Ast*width; // Spacing of reinforcement bar
+            
+
+            // Shear reinforcement calculation
+            
+            const tau_v = Vu / (width * depth_e); // Shear stress
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+            
+
+            let shearReinforcement;
+            if (tau_v <= tau_c) {
+                shearReinforcement = "NO";
+            } else {
+                shearReinforcement = "YES"; 
+            } 
+
+            // Display results
+            document.getElementById('steelArea').textContent = Ast.toFixed(1);
+            document.getElementById('s1').textContent = s1.toFixed(0);
+            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
+		document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+            document.getElementById('shearReinforcement').textContent = shearReinforcement;
+            
+        }
+    </script>
+</body>
+</html>
