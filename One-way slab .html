@@ -341,6 +341,11 @@
       const DL = parseFloat(document.getElementById('DL').value); // Dead load
       const LL = parseFloat(document.getElementById('LL').value); // Live load
       const loadType = document.getElementById('loadType').value; // Load type (fixed or not fixed)
+      const depth = parseFloat(document.getElementById('depth').value); // D in mm
+      const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+      const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
+      const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+      const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
 
       // Get span lengths
       const spanLengths = [];
