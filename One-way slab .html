@@ -68,7 +68,7 @@
     }
 
     /* Main Content */
-    .content {
+    .main-content {
       max-width: 1200px;
       margin: 20px auto;
       padding: 20px;
@@ -76,12 +76,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       flex: 1; /* Allow content to grow and push footer down */
-    }
-
-    .content h2 {
-      color: #0078d7;
-      font-size: 1.2rem;
-      margin-top: 0;
+      width: 80%; /* Adjust width to leave space on left and right */
     }
 
     .input-group {
@@ -166,6 +161,10 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
+      .main-content {
+        width: 95%; /* Increase width for smaller screens */
+      }
+
       .content img {
         float: none;
         display: block;
@@ -217,39 +216,54 @@
     <a href="Contacts.html"><b>CONTACTS</b></a>
   </nav>
 
-  <h3><u>ONE-WAY SLAB</u> </h3>
-  <!-- Input fields -->
-  <label for="spans">Number of Spans:</label>
-  <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
-  
-  <div id="spanInputs" class="span-inputs">
-    <!-- Span length inputs will be dynamically added here -->
-  </div>
-  
-  <label for="DL">Dead load (kN/m):</label>
-  <input type="number" id="DL" min="1" value="10">
+  <!-- Main Content -->
+  <div class="main-content">
+    <h3><u>ONE-WAY SLAB</u> </h3>
+    <!-- Input fields -->
+    <label for="spans">Number of Spans:</label>
+    <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
+    
+    <div id="spanInputs" class="span-inputs">
+      <!-- Span length inputs will be dynamically added here -->
+    </div>
+    
+    <label for="DL">Dead load (kN/m):</label>
+    <input type="number" id="DL" min="1" value="10">
 
-  <label for="LL">Live load (kN/m):</label>
-  <input type="number" id="LL" min="1" value="10">
+    <label for="LL">Live load (kN/m):</label>
+    <input type="number" id="LL" min="1" value="10">
 
-  <label for="loadType">Load Type:</label>
-  <select id="loadType">
-    <option value="fixed">Dead Load + Imposed Load (Fixed)</option>
-    <option value="notFixed">Imposed Load (Not Fixed)</option>
-  </select>
-  
-  <button onclick="updateDrawing()">Update Drawing</button>
-  
-  <!-- Canvas for drawing -->
-  <canvas id="slabCanvas" width="800" height="200"></canvas>
-  
-  <!-- Results -->
-  <div id="results" class="results">
-    <h2>Results</h2>
-    <div id="bendingMomentResults"></div>
-    <div id="shearForceResults"></div>
+    <label for="loadType">Load Type:</label>
+    <select id="loadType">
+      <option value="fixed">Dead Load + Imposed Load (Fixed)</option>
+      <option value="notFixed">Imposed Load (Not Fixed)</option>
+    </select>
+    
+    <button onclick="updateDrawing()">Update Drawing</button>
+    
+    <!-- Canvas for drawing -->
+    <canvas id="slabCanvas" width="800" height="200"></canvas>
+    
+    <!-- Results -->
+    <div id="results" class="results">
+      <h2>Results</h2>
+      <div id="bendingMomentResults"></div>
+      <div id="shearForceResults"></div>
+    </div>
   </div>
-  
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 Mr. Nabin Kumar Ijam. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
     // Function to create span length inputs dynamically
     function createSpanInputs() {
