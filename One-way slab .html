@@ -532,6 +532,12 @@
       for (let i = 0; i < spanLengths.length; i++) {
         shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} kN</p>`;
       }
+      // Display Maximum Values
+  bendingMomentResultsDiv.innerHTML += `<h4>Maximum Span Moment: ${Math.max(...spanMoments).toFixed(2)} kN·m</h4>`;
+  bendingMomentResultsDiv.innerHTML += `<h4>Maximum Support Moment: ${Math.max(...supportMoments).toFixed(2)} kN·m</h4>`;
+  shearForceResultsDiv.innerHTML += `<h4>Maximum Shear Force: ${Math.max(...shearForces).toFixed(2)} kN</h4>`;
+}
+
     }
 
     // Initialize span inputs and drawing
