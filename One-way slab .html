@@ -405,6 +405,8 @@
       // Calculate and display bending moments and shear forces using IS 456:2000 coefficients
       const { spanMoments, supportMoments, shearForces } = calculateMomentsAndShearForces(spanLengths, DL, LL, loadType);
       calculateAndDisplayResults(spanLengths, spanMoments, supportMoments, shearForces);
+	// Call the Reinforcementdesign function
+ 	 Reinforcementdesign();
     }
 
     // Function to draw supports
@@ -567,8 +569,8 @@
             const Fmax = parseFloat(document.getElementById('Fmax').value); // Vu in kN
 
             // Convert moment to Nmm and shear to N
-            const Mu = moment * 1e6; // kNm to Nmm
-            const Vu = shear * 1e3; // kN to N
+            const Mu = Mmax * 1e6; // kNm to Nmm
+            const Vu = Fmax * 1e3; // kN to N
 
             // Design parameters
             const fck_design = fck; // Design concrete strength
