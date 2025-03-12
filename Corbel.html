@@ -74,12 +74,12 @@
 
         .inputs {
             flex: 1;
-            max-width: 50%; /* Adjust as needed */
+            max-width: 50%;
         }
 
         .image-container {
             flex: 1;
-            max-width: 50%; /* Adjust as needed */
+            max-width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -151,19 +151,19 @@
 
         .result {
             flex: 1;
-            max-width: 50%; /* Adjust as needed */
+            max-width: 50%;
             margin: auto;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-family: 'Open Sans', sans-serif; 
-            font-size: 0.8rem; /* Adjusted for better readability */
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
         }
 
         .result p {
-            font-family: 'Open Sans', sans-serif; 
-            font-size: 0.8rem; /* Adjusted for better readability */
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
         }
 
         footer {
@@ -209,7 +209,7 @@
             }
 
             .inputs, .image-container, .result {
-                max-width: 100%; /* Full width on small screens */
+                max-width: 100%;
             }
 
             nav a {
@@ -393,7 +393,7 @@
             const Asc1 = 3.1416 * Math.pow(Phic, 2) / 4; // Area of one compression bar
             const nc = Math.ceil(Asc / Asc1); // Number of compression bars
 
-            const beta = Math.max(0.8 * fck / (6.89 * (Ast / (b * de)) * 100), 1);
+            const beta = Math.max(0.8 * fck / (6.89 * (Ast / (b * de)) * 100, 1);
             const tau_c = 0.85 * Math.sqrt(0.8 * fck) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
             const taum = tau_c * (2 * de / a);
             const sc = taum * b * de / 1000; // Shear capacity from concrete
@@ -451,7 +451,7 @@
         }
 
         function interpolateStress(fy, strain) {
-            const table = {
+            const table =
                 415: [
                     { strain: 0.00144, stress: 288.7 }, { strain: 0.00163, stress: 306.7 },
                     { strain: 0.00192, stress: 324.8 }, { strain: 0.00241, stress: 342.8 },
