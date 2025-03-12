@@ -44,6 +44,14 @@
       margin: 0;
       font-size: 0.8rem;
     }
+    header h4 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    header h5 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
 
     /* Navigation Bar */
     nav {
@@ -196,12 +204,14 @@
   </style>
 </head>
 <body>
-  <!-- Current Time and Date -->
-  <div id="datetime"></div>
+  
+  
 
   <!-- Header -->
   <header>
     <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
   </header>
 
   <!-- Navigation Bar -->
@@ -449,8 +459,8 @@
       const shearForceResultsDiv = document.getElementById('shearForceResults');
 
       // Display span moments
-      bendingMomentResultsDiv.innerHTML = '<h3>Bending Moments (kN·m):</h3>';
-      bendingMomentResultsDiv.innerHTML += '<h4>Span Moments:</h4>';
+      bendingMomentResultsDiv.innerHTML = '<h4>Bending Moments (kN·m):</h4>';
+      bendingMomentResultsDiv.innerHTML += '<h5>Span Moments:</h5>';
       for (let i = 0; i < spanLengths.length; i++) {
         bendingMomentResultsDiv.innerHTML += `<p>Span ${i + 1}: ${spanMoments[i].toFixed(2)} kN·m</p>`;
       }
@@ -462,7 +472,7 @@
       }
 
       // Display shear forces
-      shearForceResultsDiv.innerHTML = '<h3>Shear Forces (kN):</h3>';
+      shearForceResultsDiv.innerHTML = '<h4>Shear Forces (kN):</h4>';
       for (let i = 0; i < spanLengths.length; i++) {
         shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} kN</p>`;
       }
