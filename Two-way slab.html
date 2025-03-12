@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reinforcement design</title>
+    <title>Two-way slab</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -202,7 +202,7 @@
 
     <!-- Main Content -->
     <div class="content">
-        <h3><u>REINFORCEMENT DESIGN</u></h3>
+        <h3><u>TWO-WAY SLAB (RESTRAINED AT CORNERS)</u></h3>
         <form id="beamSectionForm">
             	<label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
                 <input type="number" id="fck" step="0.1" required>
@@ -225,30 +225,37 @@
 
 	<label for="E1">Boundary condition at edge 1 (E1):</label>
             <select id="E1">
-                <option value="Continuous">Continuous</option>
-                <option value="Discontinuous">Discontinuous</option>
+                <option value="C">Continuous(C)</option>
+                <option value="D">Discontinuous(D)</option>
             </select>
 	<br>
 	<label for="E2">Boundary condition at edge 2 (E2):</label>
             <select id="E2">
-                <option value="Continuous">Continuous</option>
-                <option value="Discontinuous">Discontinuous</option>
+               <option value="C">Continuous(C)</option>
+                <option value="D">Discontinuous(D)</option>
             </select>
 	<br>
 	<label for="E3">Boundary condition at edge 3 (E3):</label>
             <select id="E3">
-                <option value="Continuous">Continuous</option>
-                <option value="Discontinuous">Discontinuous</option>
+                <option value="C">Continuous(C)</option>
+                <option value="D">Discontinuous(D)</option>
             </select>
 	<br>
 		<label for="E4">Boundary condition at edge 4 (E4):</label>
             <select id="E4">
-                <option value="Continuous">Continuous</option>
-                <option value="Discontinuous">Discontinuous</option>
+               <option value="C">Continuous(C)</option>
+                <option value="D">Discontinuous(D)</option>
             </select>
 	<br>
 		<label for="dm">Diameter of main Reinforcement (dm in mm):</label>
                 <input type="number" id="dm" required>
+            <br>
+	<p>LOAD INPUTS</p>
+		<label for="DL">Dead Load ( in kN/m<sup>2</sup>):</label>
+                <input type="number" id="DL" required>
+            <br>
+		<label for="LL">Dead Load ( in kN/m<sup>2</sup>):</label>
+                <input type="number" id="LL" required>
             <br>
             <button type="button" onclick="Bendingmoment()">BENDING MOMENT & SHEAR FORCE</button>
 		<br>
@@ -259,7 +266,17 @@
             <img src="Slab.png" alt="Slab" style="width: 300px; height: 200px;">
         </div>
         <div class="result" id="result">
-            <h2>Design Results</h2>
+            <h3>DESIGN RESULT</h>
+		<P>1. BENDING MOMENTS</P>
+		<p>Moment in edge-1 (M<sub>1</sub>): <span id="M1"></span> kNm</p>
+		<p>Moment in edge-2 (M<sub>2</sub>): <span id="M2"></span> kNm</p>
+		<p>Moment in edge-3 (M<sub>3</sub>): <span id="M3"></span> kNm</p>
+		<p>Moment in edge-4 (M<sub>4</sub>): <span id="M4"></span> kNm</p>
+		<p>Moment in x-direction (M<sub>x</sub>): <span id="Mx"></span> kNm</p>
+		<p>Moment in y-axis (M<sub>y</sub>): <span id="My"></span> kNm</p>
+		<p>Maximum moment (M<sub>max</sub>): <span id="Mmax"></span> kNm</p>
+		
+	<P>2. REINFORCEMENT DESIGN</P>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
             <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
 		 <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
@@ -297,22 +314,100 @@
 
         // Initial call to display the time and date immediately
         updateDateTime();
+// BENDING MOMENT CALCULATIONS
+	    function Bendingmoment(){
+		const E1 = document.getElementById('E1').value;
+        const E2 = document.getElementById('E2').value;
+        const E3 = document.getElementById('E3').value;
+        const E4 = document.getElementById('E4').value;
+        const lx = parseFloat(document.getElementById('lx').value);
+        const ly = parseFloat(document.getElementById('ly').value);
+        const DL = parseFloat(document.getElementById('DL').value);
+        const LL = parseFloat(document.getElementById('LL').value);
 
-        function calculateBeamSection() {
+        // Calculate Nd values
+        const Nd1 = E1 === "D" ? 1 : 0;
+        const Nd2 = E2 === "D" ? 1 : 0;
+        const Nd3 = E3 === "D" ? 1 : 0;
+        const Nd4 = E4 === "D" ? 1 : 0;
+
+        const Nd = Nd1 + Nd2 + Nd3 + Nd4;
+        const betay = (24 + 2 * Nd + 1.5 * Math.pow(Nd, 2)) / 1000;
+
+        // Calculate beta1 and beta2
+        const beta1 = Nd1 === 0 ? (4 / 3) * betay : 0;
+        const beta2 = Nd2 === 0 ? (4 / 3) * betay : 0;
+
+        // Calculate Gamma
+        const Gamma = (2 / 9) * (3 - Math.sqrt(18) * (lx / ly) * (Math.sqrt(betay + beta1) + Math.sqrt(betay + beta2)));
+
+        // Calculate betax, beta3, and beta4
+        let betax, beta3, beta4;
+        if (Nd3 === 0) {
+            if (Nd4 === 0) {
+                betax = (Gamma / 28) * 3;
+                beta3 = (4 / 3) * betax;
+                beta4 = (4 / 3) * betax;
+            } else {
+                betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
+                beta3 = (4 / 3) * betax;
+                beta4 = 0;
+            }
+        } else {
+            if (Nd4 === 1) {
+                betax = Gamma / 4;
+                beta3 = 0;
+                beta4 = 0;
+            } else {
+                betax = 3 / (2 * (5 + Math.sqrt(21))) * Gamma;
+                beta3 = 0;
+                beta4 = (4 / 3) * betax;
+            }
+        }
+
+        // Calculate total factored load
+        const totalFactoredLoad = 1.5 * (DL + LL);
+
+        // Calculate moments
+        const Mx = betax * totalFactoredLoad * Math.pow(lx, 2); // Moment in x-direction
+        const My = betay * totalFactoredLoad * Math.pow(lx, 2); // Moment in y-direction
+	const M1 = beta1 * totalFactoredLoad * Math.pow(lx, 2); 
+        const M2 = beta2 * totalFactoredLoad * Math.pow(lx, 2); 
+	const M3 = beta3 * totalFactoredLoad * Math.pow(lx, 2); 
+        const M4 = beta4 * totalFactoredLoad * Math.pow(lx, 2); 
+	const Mmax=Math.max(Mx,My,M1,M2,M3,M4);
+        // Display the results
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <h2>RESULTS:</h2>
+            
+            <h3>MOMENTS:</h3>
+            <p>Moment in x-direction (Mx): ${Mx.toFixed(2)} kN·m</p>
+            <p>Moment in y-direction (My): ${My.toFixed(2)} kN·m</p>
+	    <p>Moment in Edge-1(M1): ${M1.toFixed(2)} kN·m</p>
+            <p>Moment in Edge-2(M1): ${M2.toFixed(2)} kN·m</p>
+	    <p>Moment in Edge-3(M3): ${M3.toFixed(2)} kN·m</p>
+     	    <p>Moment in Edge-4(M4): ${M4.toFixed(2)} kN·m</p>
+	  <p>Maximum moment(Mmax): ${Mmax.toFixed(2)} kN·m</p>
+        `;
+    }
+
+		    
+	    }
+        function Reinforcementarea() {
             // Input values
-            const depth = parseFloat(document.getElementById('depth').value); // D in mm
-            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+            
             const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
             const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+		const depth = parseFloat(document.getElementById('depth').value); // D in mm
+            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
             const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+            const moment=parseFloat(document.getElementById('Mmax').value); // 
             
-            const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
-            const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
 
             // Convert moment to Nmm and shear to N
             const Mu = moment * 1e6; // kNm to Nmm
-            const Vu = shear * 1e3; // kN to N
-
+            
             // Design parameters
             const fck_design = fck; // Design concrete strength
             const fy_design = fy; // Design steel strength
@@ -332,27 +427,10 @@
             const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
             const s1 = A1/Ast*width; // Spacing of reinforcement bar
             
-
-            // Shear reinforcement calculation
-            
-            const tau_v = Vu / (width * depth_e); // Shear stress
-            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
-            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
-            
-
-            let shearReinforcement;
-            if (tau_v <= tau_c) {
-                shearReinforcement = "NO";
-            } else {
-                shearReinforcement = "YES"; 
-            } 
-
             // Display results
             document.getElementById('steelArea').textContent = Ast.toFixed(1);
             document.getElementById('s1').textContent = s1.toFixed(0);
-            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-		document.getElementById('tau_c').textContent = tau_c.toFixed(2);
-            document.getElementById('shearReinforcement').textContent = shearReinforcement;
+           
             
         }
     </script>
