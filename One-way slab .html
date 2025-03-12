@@ -261,15 +261,17 @@
       <option value="notFixed">Imposed Load (Not Fixed)</option>
     </select>
     <br>
-    <p><U><b>OPTION FOR LOADS</b></U> </p>
-    <label for="Option">Input option for load calculation : </label>
-                <select id="iu">
-                    <option value="Calculated">Calculated</option>
-                    <option value="Manual">Manual</option>
-                </select>
-    <br>
+   
+   
     <P><u><b>INPUT FOR REINFORCEMENT DESIGN</b></u></P>
     <form id="beamSectionForm">
+                <p><u>Input Maximum moment either your input or maximum of calculated value</u></p>
+                <label for="Mmax">Input for maximum moment (M<sub>max</sub> in kNm):</label>
+                <input type="number" id="Mmax" step="0.1" required>
+                <br>
+                <label for="Fmax">Input for maximum Shear force (F<sub>max</sub> in kNm):</label>
+                <input type="number" id="Fmax" step="0.1" required>
+                <br>
                 <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
                 <input type="number" id="fck" step="0.1" required>
                 <br>
@@ -279,7 +281,6 @@
                 <label for="depth">Overall Depth of slab(d in mm):</label>
                 <input type="number" id="depth" required>
                <br>
-            
                 <label for="cover">Effective cover (c in mm):</label>
                 <input type="number" id="cover" required>
               <br>
