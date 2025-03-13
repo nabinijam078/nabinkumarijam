@@ -88,6 +88,11 @@
         font-size: 1.2rem;
         margin-top: 0;
       }
+        .content h4 {
+        color: black;
+        font-size: 1.0rem;
+        margin-top: 0;
+      }
           .input-group {
             margin-bottom: 15px;
         }
@@ -208,7 +213,7 @@
     <div class="content">
         <h2><u>ISOLATED FOOTING FOR BIAXIAL LOADING</u></h2>
         <form>
-              <h4>Material grade</h4>
+              <h4><u>MATERIAL GRADE</u></h4>
             <label for="fck">Grade of Concrete (fck in MPa): </label>
             <select id="fck">
                 <option value="15">15</option>
@@ -228,7 +233,7 @@
                 <label for="σb"><br>Bearing capacity of soil (σb in kN/m²):</label>
                 <input type="number" id="σb" required>
             <br>
-            <h4>Column and Footing Dimensions</h4>
+            <h4><u>COLUMN AND FOOTING DIMENSIONS</u></h4>
            
                 <label for="width">Width of Column (b in mm):</label>
                 <input type="number" id="width" required>
@@ -245,7 +250,7 @@
                 <label for="Thickness">Thickness of footing (h in mm):</label>
                 <input type="number" id="Thickness" required>
             <br>
-            <h4>Factored Loadings</h4>
+            <h4><u>FACTORED LOADS</u></h4>
             
                 <label for="AxialLoad">Axial Loading (F in kN):</label>
                 <input type="number" id="AxialLoad" required>
@@ -257,11 +262,11 @@
                 <input type="number" id="My" required>
             <br>
             <button type="button" onclick="calculateMainRebar()">Design Section</button>
-
+            <br>
         </form>
         <div class="result" id="result">
-            <h2>DESIGN RESULTS</h2>
-            <p><strong>Bearing Stress at Four Corners:</strong></p>
+            <h2><u>DESIGN RESULTS</u></h2>
+            <p><strong><u>BEARING STRESSES AT FOUR CORNERS:</u></strong></p>
             <p>σ<sub>1</sub>: <span id="sigma1"></span> kN/m²</p>
             <p>σ<sub>2</sub>: <span id="sigma2"></span> kN/m²</p>
             <p>σ<sub>3</sub>: <span id="sigma3"></span> kN/m²</p>
