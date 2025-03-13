@@ -219,6 +219,8 @@
     <!-- Header -->
     <header>
         <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+        <!-- Current Time and Date -->
+        <div id="datetime"></div>
     </header>
 
     <!-- Navigation Bar -->
@@ -329,6 +331,17 @@
 
     <!-- JavaScript -->
     <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
         function Bendingmoment() {
             // Input values
             const fck = parseFloat(document.getElementById('fck').value);
