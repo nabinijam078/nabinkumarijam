@@ -241,6 +241,7 @@
 
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
+            <p><strong>Moment of resistance (M<sub>lim</sub>):</strong> <span id="Mlim"></span> kN.m</p>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
             <p><strong>Number of Tensile steel(n<sub>s</sub>):</strong> <span id="n1"></span></p>
             <p><strong>Area of Compression Steel (A<sub>sc</sub>):</strong> <span id="compSteelArea"></span> mm²</p>
@@ -306,7 +307,7 @@
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
             const Xu_max = k * depth_e; // For Fe 415 steel
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
-
+            const Mlim=M_lim/2e6;
             // Check for singly or doubly reinforced section
             let Ast, Asc, sectionType;
             if (Mu <= Mu_lim) {
@@ -355,6 +356,7 @@
             } 
 
             // Display results
+            document.getElementById('Mulim').textContent = Mulim.toFixed(3);
             document.getElementById('steelArea').textContent = Ast.toFixed(1);
             document.getElementById('n1').textContent = n1;
             document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
