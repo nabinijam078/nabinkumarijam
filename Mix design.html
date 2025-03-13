@@ -345,8 +345,8 @@
     <label for="mfa">Free surface moisture  of fine aggregate (m<sub>fa</sub>):</label>
     <input type="number" id="mfa" required>
 	<br>
-    <label for="ZoneC">Zone of Coarse aggregate:</label>
-    <select id="ZoneC">
+    <label for="ZoneS">Zone of Coarse aggregate:</label>
+    <select id="ZoneS">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -373,7 +373,7 @@
       <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
       <p><strong>Water content (W):</strong> <span id="W"></span> litre</p>
       <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
-      <p><strong>Fine Aggregate (FA) :</strong> <span id="fac"></span> Kg</p>
+      <p><strong>Fine Aggregate (FA) :</strong> <span id="FA"></span> Kg</p>
       <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span> </p>
      
     </div>
@@ -430,7 +430,7 @@ function Mixdesign() {
     const wfa = parseFloat(document.getElementById('wfa').value); // Water absorption of fine aggregate
     const mca = parseFloat(document.getElementById('mca').value); // Free surface moisture of Coarse aggregate
     const mfa = parseFloat(document.getElementById('mfa').value); // Free surface moisture of fine aggregate
-    const ZoneC = document.getElementById('ZoneC').value; // Zone of Coarse aggregate
+    const ZoneS = document.getElementById('ZoneS').value; // Zone of Coarse aggregate
     const ZoneF = document.getElementById('ZoneF').value; // Zone of Fine aggregate
 
     // Minimum cement content for 20mm size of aggregate.
@@ -463,7 +463,7 @@ function Mixdesign() {
         else if (ConcGrade === 40) { CC2 = 360; }
     }
 
-    const CC = Math.max(CC1, CC2);
+    const C = Math.max(CC1, CC2);
 
     // Adjustment of cement content as per size of aggregate ----------------<MAXIMUM CEMENT CONTENTS>------------------------
     let mcc;
