@@ -266,6 +266,12 @@
       <option value="OPC">OPC</option>
       <option value="PPC">PPC</option>
   </select>
+<label for="mwc">Maximum water cement ratio provided:</label>
+    <input type="number" id="mwc" required>
+	  <br>
+<label for="maxC">Maximum cement content provided:</label>
+    <input type="number" id="maxC" required>
+	  <br>
 <br>
  <label for="CementAgg">Types of Aggregates:</label>
     <select id="CementAgg">
@@ -353,9 +359,13 @@
     <!-- Results -->
     <div id="results" class="results">
       <h3><u>RESULTS</u></h3>
-      <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span></p>
-      
+      <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span>MPa</p>
+      <p><strong>Targeted Strength (fs):</strong> <span id="fs"></span> MPa</p>
+      <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
       <p><strong>Water content (W):</strong> <span id="W"></span> litre</p>
+      <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
+      <p><strong>Fine Aggregate (FA) :</strong> <span id="fac"></span> Kg</p>
+      <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span> </p>
      
     </div>
   </div>
@@ -395,6 +405,8 @@ function Mixdesign() {
     const ConcGrade = parseInt(document.getElementById('ConcGrade').value); // Concrete grade
     const ConcType = document.getElementById('ConcType').value; // Concrete Type Plain or RCC
     const CementType = document.getElementById('CementType').value; // Cement Type, OPC/PPC
+    const mwc = document.getElementById('mwc').value; // Cement Type, OPC/PPC
+    const maxC = document.getElementById('maxC').value; // Cement Type, OPC/PPC
     const CementAgg = document.getElementById('CementAgg').value; // Type of Aggregate Crushed, Sub-angular, gravel
     const AggSize = parseInt(document.getElementById('AggSize').value); // Aggregate size 10, 20, 40mm
     const TransMeth = document.getElementById('TransMeth').value; // Transportation method Pumping, Manual
@@ -444,7 +456,7 @@ function Mixdesign() {
 
     const CC = Math.max(CC1, CC2);
 
-    // Adjustment of cement content as per size of aggregate
+    // Adjustment of cement content as per size of aggregate ----------------<MAXIMUM CEMENT CONTENTS>------------------------
     let mcc;
     if (AggSize === 10) { mcc = CC + 40; }
     else if (AggSize === 20) { mcc = CC; }
@@ -497,7 +509,7 @@ function Mixdesign() {
     }
 
     // Water cement ratio
-    const wc5 = Math.max(wc3, wc4);
+    const wc5 = Math.max(wc3, wc4);    // maximum water/cement ratio
 
     // Maximum water content
     let wc1;
@@ -520,9 +532,68 @@ function Mixdesign() {
     // Targeted strength
     const fs = ConcGrade + 1.65 * SD;
 
+   // Water cement ratio
+	let rwcr;
+	if (mwc<wc5){rwcr=mwc;}
+	else {rwcr=wc5;}
+ // Cement contents
+   const wcn1=W/rwcr;
+   let wcn;
+   if (wcn1>mwc){wcn=wc1;}
+   else {wcn=mwc;}
+   const C=mwc;
+	
+ // Proportion of volume of coarse and fine aggregate
+	let rat;
+	if (ZoneS===1){
+	if (AggSize===10){rat=0.44;}
+	else if (AggSize===20){rat=0.6;}
+	else {rat=0.69;}
+	}
+	else if (ZoneS===2){
+	if (AggSize===10){rat=0.46;}
+	else if (AggSize===20){rat=0.62;}
+	else {rat=0.71;}
+	}
+	else if (ZoneS===3){
+	if (AggSize===10){rat=0.48;}
+	else if (AggSize===20){rat=0.64;}
+	else {rat=0.73;}
+	}
+	else{
+	if (AggSize===10){rat=0.48;}
+	else if (AggSize===20){rat=0.64;}
+	else {rat=0.73;}	
+	}
+
+	// 
+	let rat1;
+	if (rwcr===0.5){rat1=rat;}
+	else if (rwcr<0.5) {rat1=rat+(0.5-rwcr)/0.05*0.01;}
+	{rat1=rat-(0.5-rwcr)/0.05*0.01;}
+
+	// Proportion of coarse aggregate
+	let rat2;
+	if (TransMeth==="Pumping"){rat2=0.9*rat1;}
+	else {rat2=rat1;}
+	const rat3=1-rat2;
+	// volume of concrete
+	const Vconc=C/Sc/1000;
+	const Vw=W/1000;
+	const Vagg=1-Vconc-Vw;
+	// Weight of coarse aggregate
+	const CA=Vagg*rat2*Sca*1000;
+	const FA=Vagg*rat3*Sfa*1000;
+	
+		
     // Display results
     document.getElementById('TargetC').textContent = TargetC;
+    document.getElementById('fs').textContent = fs.toFixed(2);
+    document.getElementById('C').textContent = C.toFixed(2);
     document.getElementById('W').textContent = W.toFixed(2);
+    document.getElementById('CA').textContent = CA.toFixed(2);
+    document.getElementById('FA').textContent = FA.toFixed(2); 
+    document.getElementById('mwcr').textContent = mwcr.toFixed(2);
 }
     	
   </script>
