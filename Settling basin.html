@@ -1,4 +1,5 @@
-s<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +26,6 @@ s<!DOCTYPE html>
         h2, h3, h4, h5, h6 {
             font-family: 'Roboto', sans-serif; /* Heading font */
             color: #0078d7;
-        
         }
 
         /* Header Styles */
@@ -78,16 +78,20 @@ s<!DOCTYPE html>
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex: 1; /* Allow content to grow and push footer down */
             display: flex;
-            justify-content: space-between;
+            
+            align-items: center; /* Center content vertically */
+            flex-direction: column; /* Stack children vertically */
         }
 
         .input-section {
-            width: 40%; /* Input section takes 60% of the width */
+            width: 100%; /* Full width */
+            
         }
 
         .drawing-section {
-            width: 80%; /* Drawing section takes 35% of the width */
+            width: 100%; /* Full width */
             position: relative;
+            
         }
 
         .drawing-section img {
@@ -97,13 +101,11 @@ s<!DOCTYPE html>
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-       
         .drawing-section .w-value,
         .drawing-section .hu-value,
         .drawing-section .hw-value {
             position: absolute;
             font-size: .8rem;
-            
             color: black;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 5px 10px;
@@ -123,7 +125,6 @@ s<!DOCTYPE html>
             top: 10%; /* Adjust as needed */
             left: 35%; /* Adjust as needed */
         }
-
 
         .input-group {
             margin-bottom: 15px;
@@ -153,6 +154,7 @@ s<!DOCTYPE html>
             background-color: #f4f4f4;
             border: 1px solid #ccc;
             font-size: 0.9rem; /* Reduced font size for inputs */
+            text-align: center; /* Center the result text */
         }
 
         /* Footer Styles */
@@ -248,34 +250,33 @@ s<!DOCTYPE html>
         <div class="input-section">
             <h3><u>HYDRAULIC DESIGN OF SETTLING BASIN</u></h3>
             <form id="beamSectionForm">
-                
-                    <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
-                    <input type="number" id="Q" required>
+                <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
+                <input type="number" id="Q" required>
                 <br>
                 <label for="Qa">Additional design discharge for flushing(in %):</label>
-                    <input type="number" id="Qa" required>
+                <input type="number" id="Qa" required>
                 <br>
-                    <label for="ds">Size of sediments to be settled (d<sub>s</sub> in mm):</label>
-                    <input type="number" id="ds" required>
+                <label for="ds">Size of sediments to be settled (d<sub>s</sub> in mm):</label>
+                <input type="number" id="ds" required>
                 <br>
-                 <label for="T">Average water temperature (T in degree):</label>
-                    <input type="number" id="T" required>
+                <label for="T">Average water temperature (T in degree):</label>
+                <input type="number" id="T" required>
                 <br>
-              <label for="S">Longitudinal slope for flushing (1 in S):</label>
-                    <input type="number" id="S" required>
+                <label for="S">Longitudinal slope for flushing (1 in S):</label>
+                <input type="number" id="S" required>
                 <br>
                 <label for="nb">Number of bays (n<sub>b</sub>):</label>
-                    <input type="number" id="nb" required>
+                <input type="number" id="nb" required>
                 <br>
                 <label for="SC">Sediment concentration (SC in Kg/m<sup>3</sup>):</label>
-                    <input type="number" id="SC" required>
+                <input type="number" id="SC" required>
                 <br>
                 <label for="SF">Swelling factor (SF):</label>
-                    <input type="number" id="SF" required>
+                <input type="number" id="SF" required>
                 <br>
                 <label for="FI">Flushing Interval (FI in hours):</label>
-                    <input type="number" id="FI" required>
-            <br>
+                <input type="number" id="FI" required>
+                <br>
                 <label for="Meth">Method used : </label>
                 <select id="Math">
                     <option value="Particle">Particle</option>
@@ -284,26 +285,30 @@ s<!DOCTYPE html>
                 </select>
                 <br>
                 <label for="niu">Vetter's trap efficiency (η in %):</label>
-                    <input type="number" id="niu" required>
+                <input type="number" id="niu" required>
                 <br>
                 <label for="Ys">Density of sediments (Ys in Kg/m<sup>3</sup>):</label>
-                    <input type="number" id="Ys" required>
+                <input type="number" id="Ys" required>
                 <br>
                 <button type="button" onclick="Settingbasin()">SETTLING BASIN DESIGN</button>
-                
             </form>
-            
-            <!-- Drawing Section -->
+        </div>
+
+        <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Settling basin.png" alt="Settling basin Drawing">
-       </div>
-            <div class="result" id="result">
-                <h3><u>DESIGN RESULTS</u></h3>
-                <p><u>1. SETTLING ZONE</u></p>
-                <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
-                <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
-            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result" id="result">
+            <h3><u>DESIGN RESULTS</u></h3>
+            <p><u>1. SETTLING ZONE</u></p>
+            <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
+            <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
+            <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="social-links">
@@ -333,40 +338,44 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-    function Settingbasin() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
-    const w = parseFloat(document.getElementById('w').value); // Assumed width of column
-    const hu = parseFloat(document.getElementById('hu').value); // Haunch size
-    const MatType = document.getElementById('MatType').value; // Material type
+        function Settingbasin() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
+            const w = parseFloat(document.getElementById('w').value); // Assumed width of column
+            const hu = parseFloat(document.getElementById('hu').value); // Haunch size
+            const MatType = document.getElementById('MatType').value; // Material type
 
-    // Validate inputs
-    if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu)) {
-        alert("Please enter valid numeric values for all fields.");
-        return;
-    }
+            // Validate inputs
+            if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu)) {
+                alert("Please enter valid numeric values for all fields.");
+                return;
+            }
 
-    // Limiting velocity of flow
-    const v = 0.44 * Math.pow(ds, 0.5);
-    let vlim;
-    if (MatType === "Concrete") {
-        vlim = 1.5;
-    } else {
-        vlim = 2.5;
-    }
-    const va = Math.max(v, vlim);
+            // Limiting velocity of flow
+            const v = 0.44 * Math.pow(ds, 0.5);
+            let vlim;
+            if (MatType === "Concrete") {
+                vlim = 1.5;
+            } else {
+                vlim = 2.5;
+            }
+            const va = Math.max(v, vlim);
 
-    // Display results
-    document.getElementById('hs').textContent = hs.toFixed(2);
-    document.getElementById('vf').textContent = vf.toFixed(2);
-    document.getElementById('check').textContent = check;
-    document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
-    document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-    document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
-}
-
-        
+            // Display results
+            document.getElementById('hs').textContent = hs.toFixed(2);
+            document.getElementById('vf').textContent = vf.toFixed(2);
+            document.getElementById('check').textContent = check;
+            document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
+            document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
+            document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
+        }
     </script>
 </body>
 </html>
+
+
+
+
+
+
