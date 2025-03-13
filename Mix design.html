@@ -242,15 +242,75 @@
     <h3><u>MIX DESIGN</u> </h3>
     
     <!-- Input fields -->
-    <label for="spans">Number of Spans:</label>
-    <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
+<p><u><b>A.1 STIPULATIONS FOR PROPORTIONING</b></u></p>
+<label for="ConcGrade">Grade of concrete:</label>
+    <select id="ConcGrade">
+      <option value="15">15</option>
+      <option value="20">20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="35">35</option>
+      <option value="40">40</option>
+      <option value="45">45</option>
+      <option value="50">50</option>
+  </select>
+  <br>
+    <label for="ConcType">Types of concrete:</label>
+    <select id="ConcType">
+      <option value="Plain">Plain</option>
+      <option value="Reinforced">Reinforced</option>
+  </select>
+<br>
+  <label for="CementType">Types of Cement:</label>
+    <select id="CementType">
+      <option value="OPC">OPC</option>
+      <option value="PPC">PPC</option>
+  </select>
+<br>
+ <label for="CementAgg">Types of Aggregates:</label>
+    <select id="CementAgg">
+      <option value="Crushed">Crushed</option>
+      <option value="Sub-angular">Sub-angular</option>
+      <option value="gravel">gravel</option>
+  </select>
+	  <br>
+<label for="AggSize">Nominal size of Aggregates (in mm):</label>
+    <select id="AggSize">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="40">40</option>
+  </select>
+	  <br>
+<label for="TransMeth">Method of transporting and placing:</label>
+    <select id="TransMeth">
+      <option value="Pumping">Pumping</option>
+      <option value="Manual">Manual</option>
+  </select>
+	  <br>
+<label for="ExpoCond">Exposure condition:</label>
+    <select id="ExpoCond">
+      <option value="Mild">Mild</option>
+      <option value="Moderate">Moderate</option>
+      <option value="Severe">Severe</option>
+      <option value="Very Severe">Very Severe</option>
+      <option value="Very Severe">Very Severe</option>    
+      <option value="Extreme">Extreme</option>  
+  </select>
+	  
     
-    <div id="spanInputs" class="span-inputs">
-      <!-- Span length inputs will be dynamically added here -->
-    </div>
-    <p><u><b>LOADS</b></u></p>
-    <label for="DL">Dead load (kN/m):</label>
-    <input type="number" id="DL" min="1" value="10">
+    
+    <p><u><b>A.2 TEST DATA FOR MATERIAL</b></u></p>
+    <label for="Sc">Specific gravity of cement (S<sub>c</sub>):</label>
+    <input type="number" id="Sc" required>
+	  <br>
+    <label for="Chem">Chemical plasticizer:</label>
+    <select id="Chem">
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+  </select>
+     <br>
+    <label for="Sa">Specific gravity of admixture (S<sub>a</sub>):</label>
+    <input type="number" id="Sa" required>
 
     <label for="LL">Live load (kN/m):</label>
     <input type="number" id="LL" min="1" value="10">
