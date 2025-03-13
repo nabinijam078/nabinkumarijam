@@ -238,6 +238,7 @@
     <!-- Main Content -->
     <div class="content">
         <h3><u>TWO-WAY SLAB (RESTRAINED AT CORNERS)</u></h3>
+        <p><u><b>INPUTS</b></u></p>
         <form id="beamSectionForm">
             <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
             <input type="number" id="fck" step="0.1" required>
@@ -284,7 +285,7 @@
             <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
             <input type="number" id="dm" required>
             <br>
-            <p>LOAD INPUTS</p>
+            <p><u>LOAD INPUTS</u></p>
             <label for="DL">Dead Load (in kN/m<sup>2</sup>):</label>
             <input type="number" id="DL" required>
             <br>
@@ -292,14 +293,14 @@
             <input type="number" id="LL" required>
             <br>
             
-            <button type="button" onclick="Bendingmoment()">BENDINGMOMENT</button>
+            <button type="button" onclick="Bendingmoment()">DESIGN</button>
            <br>
            
         </form>
 
         <!-- Results Section -->
         <div class="result" id="result">
-            <h3>DESIGN RESULT</h3>
+            <h3><u>DESIGN RESULT</u></h3>
             <p><u>1. BENDING MOMENTS</u></p>
             <p>Moment in edge-1 (M<sub>1</sub>): <span id="M1"></span> kN·m</p>
             <p>Moment in edge-2 (M<sub>2</sub>): <span id="M2"></span> kN·m</p>
