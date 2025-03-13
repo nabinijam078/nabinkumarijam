@@ -236,7 +236,7 @@
                 <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
                 <input type="number" id="shear" step="0.01" required>
                <br>
-            <button type="button" onclick="calculateBeamSection()">Design Section</button>
+            <button type="button" onclick="calculateBeamSection()">DESIGN SECTION</button>
         </form>
 
         <div class="result" id="result">
@@ -305,9 +305,9 @@
 
             // Calculate limiting moment (Mu_lim)
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
-            const Xu_max = k * depth_e; // For Fe 415 steel
+            const Xu_max = k * depth_e; 
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
-            const Mlim=M_lim/2e6;
+            const Mlim = M_lim/2e6;
             // Check for singly or doubly reinforced section
             let Ast, Asc, sectionType;
             if (Mu <= Mu_lim) {
