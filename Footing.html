@@ -20,9 +20,13 @@
         flex-direction: column;
         min-height: 100vh; /* Ensure the body takes at least the full viewport height */
       }
-      h2, h3, h4, h5, h6 {
+      h2, h3, h5, h6 {
         font-family: 'Roboto', sans-serif; /* Heading font */
         color: #0078d7;
+      }
+        h4{
+        font-family: 'Open Sans', sans-serif; /* Heading font */
+        color: black;
       }
 
       /* Header Styles */
@@ -90,7 +94,7 @@
       }
         .content h4 {
         color: black;
-        font-size: 1.0rem;
+        font-size: 0.8rem;
         margin-top: 0;
       }
           .input-group {
@@ -229,7 +233,7 @@
                 <option value="415">415</option>
                 <option value="500">500</option>
             </select>
-            
+            <br>
                 <label for="σb"><br>Bearing capacity of soil (σb in kN/m²):</label>
                 <input type="number" id="σb" required>
             <br>
@@ -251,7 +255,6 @@
                 <input type="number" id="Thickness" required>
             <br>
             <h4><u>FACTORED LOADS</u></h4>
-            
                 <label for="AxialLoad">Axial Loading (F in kN):</label>
                 <input type="number" id="AxialLoad" required>
             <br>
