@@ -307,7 +307,7 @@
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
             const Xu_max = k * depth_e; 
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
-            const Mlim = M_lim/2e6;
+            const Mlim = Mu_lim/2e6;
             // Check for singly or doubly reinforced section
             let Ast, Asc, sectionType;
             if (Mu <= Mu_lim) {
