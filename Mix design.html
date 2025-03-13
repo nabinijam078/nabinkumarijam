@@ -287,6 +287,10 @@
       <option value="Manual">Manual</option>
   </select>
 	  <br>
+     <label for="sl">Workability (Slump in mm) :</label>
+    <input type="number" id="sl" required>
+	  
+	  <br>
 <label for="ExpoCond">Exposure condition:</label>
     <select id="ExpoCond">
       <option value="Mild">Mild</option>
@@ -397,6 +401,7 @@
       const CementAgg = document.getElementById('CementAgg').value; 			// Type of Aggregate Crushed, Sub-angular, gravel
       const AggSize = parseFloat(document.getElementById('AggSize').value);		// Aggregate size 10, 20, 40mm
       const TransMeth = parseFloat(document.getElementById('TransMeth').value);		// Transportation method Pumping, Manual 
+      const sl = parseFloat(document.getElementById('sl').value); 			// Slump 
       const ExpoCond = parseFloat(document.getElementById('ExpoCond').value); 		//Exposure condition Mild, moderate, Severe, Very Severe, Extreme
       const Sc = parseFloat(document.getElementById('Sc').value); 			// Specific gravity of concrete
       const wd = parseFloat(document.getElementById('wd').value); 			// Amount of water decreased by Plastisizer
@@ -458,8 +463,72 @@
             		else if (ExpoCond === "Severe") { TargetC=30; }
             		else if (ExpoCond === "Very Severe") { TargetC=35; }
             		else {TargetC=40;}}  
-    }
-      // Display results
+    
+      
+	    
+	// Maximum free water cement ratio
+	    let wc3;
+	    if (ConcType === "Plain") {
+		if (ExpoCond=== "Mild"){wc3=15;}
+            		else if (ExpoCond === "Moderate") { wc3=0.6; }
+            		else if (ExpoCond === "Severe") { wc3=0.6; }
+            		else if (ExpoCond === "Very Severe") { wc3=0.45; }
+            		else {wc3=0.4;}}
+           	else {if (ExpoCond === "Mild"){wc3=0.55;}
+            		else if (ExpoCond === "Moderate") { wc3=0.5; }
+            		else if (ExpoCond === "Severe") { Twc3=0.45; }
+            		else if (ExpoCond === "Very Severe") { wc3=0.45; }
+            		else {wc3=0.4;}}  
+
+	// Maximum Free water cement ratio in term of concrete grade
+	    let wc4;
+	   if (ConcType === "Plain"){
+		if (ConcGrade === 15){wc4=0.6;}
+		   else if (ConcGrade === 20){wc4=0.5;}
+		   else if (ConcGrade === 25){wc4=0.4;}
+	   }
+	  else {if (ConcGrade === 20){CC2=0.55;}
+		   else if (ConcGrade === 25){wc4=0.5;}
+		   else if (ConcGrade === 30){wc4=0.45;}
+		   else if (ConcGrade === 35){wc4=0.45;}
+		  else if (ConcGrade === 40){wc4=0.4;}
+	       }
+	// Water cement ratio
+	    const wc5=Math.max(wc3,wc4);
+
+	// Maximum water content
+	    let wc1;
+	    if (AggSize===10){wc1=208;}
+	    else if (AggSize===20){wc1=186;}
+	    else (AggSize===40){wc1=165;}
+	
+	let wc2;
+	    if (sl<=50){wc2=wc1;}
+	    else {wc2=Math.ceil((sl-50)/25)*3/100*wc1+wc1;}
+
+	    const W=wc2*(1-wd/100);
+	    
+	// Standard deviation
+	    let SD;
+	    if (ConcGrade<=15){SD=3.5;}
+	    else if (ConcGrade<=25){SD=4;}
+	    else {SD=5;}
+
+	// Targeted strength
+	    const fs=ConcGrade+1.65*SD;
+	    
+	    
+
+
+
+
+
+
+
+
+
+
+	    // Display results
             document.getElementById('TargetC').textContent = TargetC;
             document.getElementById('C').textContent = C.toFixed(2);
             document.getElementById('W').textContent = W.toFixed(2);
@@ -467,12 +536,7 @@
             document.getElementById('FA').textContent = FA.toFixed(2); 
 	    document.getElementById('wcr').textContent = wcr.toFixed(2);
         }
-    
-   
-
-           
-
-   
+    	
   </script>
 </body>
 </html>
