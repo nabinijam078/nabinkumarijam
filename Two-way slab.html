@@ -10,128 +10,207 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* General Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Ensure the body takes full height */
+    }
 
-        h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif;
-            color: #0078d7;
-        }
+    h2 {
+      font-family: 'Roboto', sans-serif; /* Heading font */
+      color: #0078d7;
+    }
+    h3 {
+      font-family: 'Roboto', sans-serif; /* Heading font */
+      color: #0078d7;
+    }
+   h4, h5, h6 {
+      font-family: 'Roboto', sans-serif; /* Heading font */
+      color: black;
+    }
+    /* Header Styles */
+    header {
+      background-color: #0078d7;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Header Styles */
-        header {
-            background-color: #0078d7;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+     header h2 {
+      margin: 0;
+      font-size: 1.0rem;
+    }
+    header h3 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    header h4 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    header h5 {
+      margin: 0;
+      font-size: 0.65rem;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.3rem;
-        }
+    /* Navigation Bar */
+    nav {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    nav a:hover {
+      background-color: #0078d7;
+    }
 
-        nav a:hover {
-            background-color: #0078d7;
-        }
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex: 1; /* Allow content to grow and push footer down */
+      width: 60%; /* Adjust width to leave space on left and right */
+    }
 
-        /* Main Content */
-        .content {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1;
-        }
+    .input-group {
+      margin-bottom: 15px;
+    }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem; /* Reduced font size for labels */
+    }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem;
-        }
+    .input-group input {
+      width: 80%;
+      padding: 8px;
+      box-sizing: border-box;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem; /* Reduced font size for inputs */
+    }
 
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem;
-        }
-        p { font-family: Open Sans; font-size: 12px; text-align: justify; }
-        label { font-family: Open Sans; font-size: 12px; text-align: justify; }
+    p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+    label { font-family: Open Sans; font-size: 13px; text-align: justify; }
 
-        .result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
-            font-size: 0.8rem;
-        }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f4f4f4;
+      border: 1px solid #ccc;
+      font-size: 0.9rem; /* Reduced font size for inputs */
+    }
 
-        /* Footer Styles */
-        footer {
-            background-color: #E0FFFF;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-        }
+    /* Footer Styles */
+    footer {
+      background-color: #E0FFFF;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0; /* Prevent footer from shrinking */
+    }
 
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.8rem;
-            transition: color 0.3s ease;
-        }
+    .social-links {
+      margin-bottom: 10px;
+    }
 
-        .social-links a:hover {
-            color: #0078d7;
-        }
+    .social-links a {
+      color: #333; /* Dark color for icons */
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1.8rem; /* Icon size */
+      transition: color 0.3s ease;
+    }
 
-        .copyright {
+    .social-links a:hover {
+      color: #0078d7; /* Change color on hover */
+    }
+
+    .copyright {
       background-color: #E0FFFF;
       padding: 5px;
       border-radius: 5px;
       display: inline-block;
       margin-top: 10px;
+    }
+
+    .copyright p {
+      margin: 0;
+      font-size: 0.7rem;
+      color: #333; /* Dark text for contrast */
+    }
+
+    /* Time and Date Styles */
+    #datetime {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .main-content {
+        width: 95%; /* Increase width for smaller screens */
+      }
+
+      .content img {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+    canvas {
+      border: 1px solid black;
+      margin-top: 20px;
+    }
+    label {
+      margin-right: 10px;
+    }
+    input, select, button {
+      margin-right: 20px;
+      margin-bottom: 10px;
+    }
+    .span-inputs {
+      margin-bottom: 20px;
+    }
+    .results {
+      margin-top: 20px;
     }
     </style>
 </head>
@@ -251,7 +330,13 @@
     <script>
         function Bendingmoment() {
             // Input values
-           
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const depth = parseFloat(document.getElementById('depth').value);
+            const cover = parseFloat(document.getElementById('cover').value);
+            
+            const dm = parseFloat(document.getElementById('dm').value);
+
             const lx = parseFloat(document.getElementById('lx').value);
             const ly = parseFloat(document.getElementById('ly').value);
             const DL = parseFloat(document.getElementById('DL').value);
@@ -310,7 +395,19 @@
             const M3 = beta3 * totalFactoredLoad * Math.pow(lx, 2);
             const M4 = beta4 * totalFactoredLoad * Math.pow(lx, 2);
             const Mmax = Math.max(Mx, My, M1, M2, M3, M4);
-            
+
+            const Mu = Mmax * 1e6; // kN·m to N·mm
+            const depth_e = depth - cover;
+            const width = 1000; // Width of slab
+
+            const Ast = Math.max(
+                (1 - Math.pow(1 - 4.598 * Mu / (fck * width * Math.pow(depth_e, 2)), 0.5)) * (fck / (2 * fy)) * width * depth_e,
+                (0.85 / fy) * width * depth_e
+            );
+
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one bar
+            const s1 = (A1 / Ast) * width; // Spacing
+
             //Display result
             document.getElementById('M1').textContent = M1.toFixed(2);
             document.getElementById('M2').textContent = M2.toFixed(2);
@@ -319,6 +416,9 @@
             document.getElementById('Mx').textContent = Mx.toFixed(2);
             document.getElementById('My').textContent = My.toFixed(2);
             document.getElementById('Mmax').textContent = Mmax.toFixed(2);
+            document.getElementById('steelArea').textContent = Ast.toFixed(2);
+            document.getElementById('s1').textContent = s1.toFixed(0);
+
         }
          
     </script>
