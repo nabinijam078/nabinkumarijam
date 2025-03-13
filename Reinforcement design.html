@@ -204,6 +204,12 @@
     <div class="content">
         <h3><u>REINFORCEMENT DESIGN</u></h3>
         <form id="beamSectionForm">
+		 <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+                <input type="number" id="fck" step="0.1" required>
+            <br>
+                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+                <input type="number" id="fy" step="0.1" required>
+            <br>
              
                 <label for="depth">Overall Depth of slab(d in mm):</label>
                 <input type="number" id="depth" required>
@@ -214,12 +220,7 @@
                 <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
                 <input type="number" id="dm" required>
             <br>
-                <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
-                <input type="number" id="fck" step="0.1" required>
-            <br>
-                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
-                <input type="number" id="fy" step="0.1" required>
-            <br>
+               
                 <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
                 <input type="number" id="moment" step="0.01" required>
             <br>
@@ -230,7 +231,7 @@
         </form>
 
         <div class="result" id="result">
-            <h2>Design Results</h2>
+            <h2><u>DESIGN RESULT</u></h2>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
             <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
 		 <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
