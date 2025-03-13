@@ -351,7 +351,7 @@
             if (tau_v <= tau_c) {
                 shearReinforcement = (0.87 * fy_design * A3) / (0.4 * width); 
             } else  {
-                shearReinforcement = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e).toFixed(0); 
+                shearReinforcement = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e); 
             } 
 
             // Display results
@@ -359,7 +359,7 @@
             document.getElementById('n1').textContent = n1;
             document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
             document.getElementById('n2').textContent = n2;
-            document.getElementById('shearReinforcement').textContent = shearReinforcement;
+            document.getElementById('shearReinforcement').textContent = shearReinforcement.toFixed(0);
             document.getElementById('sectionType').textContent = sectionType;
         }
     </script>
