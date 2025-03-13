@@ -43,6 +43,13 @@
 	header h3 {
             margin: 0;
             font-size: .8rem;
+		
+        }
+	    header h4 {
+            margin: 0;
+            font-size: .7rem;
+	color: black;
+		
         }
 
         /* Navigation Bar */
@@ -227,15 +234,15 @@
                 <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
                 <input type="number" id="shear" step="0.01" required>
             <br>
-            <button type="button" onclick="calculateBeamSection()">Design Section</button>
+            <button type="button" onclick="calculateBeamSection()">CALCULATE</button>
         </form>
 
         <div class="result" id="result">
-            <h2><u>DESIGN RESULT</u></h2>
+            <h3><u>DESIGN RESULT</u></h3>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
             <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
-		 <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
-		<p><strong>Nominal shear strength:</strong> <span id="tau_c"></span> N/mm²</p>
+	    <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
+	    <p><strong>Nominal shear strength:</strong> <span id="tau_c"></span> N/mm²</p>
             <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
             
         </div>
@@ -290,14 +297,14 @@
             const fy_design = fy; // Design steel strength
             const depth_e = depth - cover; // Effective depth
             const Es = 2e5; // Modulus of elasticity of steel
-		const width=1000; //width of slab
+	    const width=1000; //width of slab
 
             // Calculate limiting moment (Mu_lim)
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
             const Xu_max = k * depth_e; // For Fe 415 steel
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
 
-                // Singly reinforced section
+            // Singly reinforced section
              const Ast = Math.max(((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e),0.85/fy_design*width*depth_e);
                 
             // Calculate number of steel bars
@@ -323,7 +330,7 @@
             document.getElementById('steelArea').textContent = Ast.toFixed(1);
             document.getElementById('s1').textContent = s1.toFixed(0);
             document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-		document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+	    document.getElementById('tau_c').textContent = tau_c.toFixed(2);
             document.getElementById('shearReinforcement').textContent = shearReinforcement;
             
         }
