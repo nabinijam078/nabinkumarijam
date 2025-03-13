@@ -349,7 +349,7 @@
     <!-- Results -->
     <div id="results" class="results">
       <h3><u>RESULTS</u></h3>
-      
+      <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span></p>
       <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
       <p><strong>Water content (W):</strong> <span id="wc"></span> litre</p>
       <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
@@ -414,31 +414,58 @@
 	    let CC1;
             if (ConcType === "Plain") {
 		if (ExpoCond=== "Mild"){CC1=220;}
-            	else if (ExpoCond === "Moderate") { CC1=240; }
-            	else if (ExpoCond === "Severe") { CC1=250; }
-            	else if (ExpoCond === "Very Severe") { CC1=260; }
-            	else {CC=280;}}
-           else {if (ExpoCond=== "Mild"){CC1=300;}
-            	else if (ExpoCond === "Moderate") { CC1=300; }
-            	else if (ExpoCond === "Severe") { CC1=320; }
-            	else if (ExpoCond === "Very Severe") { CC1=340; }
-            	else {CC1=360;}}
+            		else if (ExpoCond === "Moderate") { CC1=240; }
+            		else if (ExpoCond === "Severe") { CC1=250; }
+            		else if (ExpoCond === "Very Severe") { CC1=260; }
+            		else {CC=280;}}
+           	else {if (ExpoCond === "Mild"){CC1=300;}
+            		else if (ExpoCond === "Moderate") { CC1=300; }
+            		else if (ExpoCond === "Severe") { CC1=320; }
+            		else if (ExpoCond === "Very Severe") { CC1=340; }
+            		else {CC1=360;}}
 
 	// Minimum cement content in term of concrete grade
-	    
-	   // const CC2=Math.max
+	   let CC2;
+	   if (ConcType === "Plain"){
+		if (ConcGrade === 15){CC2=240;}
+		   else if (ConcGrade === 20){CC2=250;}
+		   else if (ConcGrade === 25){CC2=280;}
+	   }
+	  else {if (ConcGrade === 20){CC2=300;}
+		   else if (ConcGrade === 25){CC2=300;}
+		   else if (ConcGrade === 30){CC2=320;}
+		   else if (ConcGrade === 35){CC2=340;}
+		  else if (ConcGrade === 40){CC2=360;}
+	       }
+		   
+	const CC=Math.max(CC1,CC2);
         // Adjustment of cement content as per size of aggregate
 	    let mcc;
-	    if (AggSize===10){
-	    mcc=CC2+40;}
+	    if (AggSize===10){mcc=CC+40;}
+	    else if (AggSize===20){mcc=CC;}
+	    else (AggSize===40){mcc=CC-30;}
 	    
+	  // Grade of concrete required in term of exposure condition  
+	let TargetC;
+	  if (ConcType === "Plain") {
+		if (ExpoCond=== "Mild"){TargetC=15;}
+            		else if (ExpoCond === "Moderate") { TargetC=15; }
+            		else if (ExpoCond === "Severe") { TargetC=20; }
+            		else if (ExpoCond === "Very Severe") { TargetC=20; }
+            		else {TargetC=20;}}
+           	else {if (ExpoCond === "Mild"){TargetC=20;}
+            		else if (ExpoCond === "Moderate") { TargetC=25; }
+            		else if (ExpoCond === "Severe") { TargetC=30; }
+            		else if (ExpoCond === "Very Severe") { TargetC=35; }
+            		else {TargetC=40;}}  
     }
       // Display results
-            document.getElementById('steelArea').textContent = Ast.toFixed(1);
-            document.getElementById('s1').textContent = s1.toFixed(0);
-            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-	document.getElementById('tau_c').textContent = tau_c.toFixed(2);
-            document.getElementById('shearReinforcement').textContent = shearReinforcement; 
+            document.getElementById('TargetC').textContent = TargetC;
+            document.getElementById('C').textContent = C.toFixed(2);
+            document.getElementById('W').textContent = W.toFixed(2);
+	    document.getElementById('CA').textContent = CA.toFixed(2);
+            document.getElementById('FA').textContent = FA.toFixed(2); 
+	    document.getElementById('wcr').textContent = wcr.toFixed(2);
         }
     
    
