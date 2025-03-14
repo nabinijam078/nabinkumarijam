@@ -153,10 +153,10 @@
             padding: 10px;
             background-color: #f4f4f4;
             border: 1px solid #ccc;
-            font-size: 0.9rem; /* Reduced font size for inputs */
-            text-align: center; /* Center the result text */
-            width: 100%; /* Ensure the result section takes full width */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            font-size: 0.9rem; 
+            text-align: center;
+            width: 100%; 
+            box-sizing: border-box; 
         }
 
         /* Footer Styles */
@@ -305,9 +305,8 @@
         <div class="result" id="result">
             <h3><u>DESIGN RESULTS</u></h3>
             <p><u>1. SETTLING ZONE</u></p>
-            <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-            <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
-            <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
+            <p><strong>Fall velocity(w in mm/s):</strong> <span id="w"></span> mm/s</p>
+            
         </div>
     </div>
 
@@ -343,34 +342,88 @@
         function Settingbasin() {
             // Input values
             const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Qa = parseFloat(document.getElementById('Qa').value); // Additional discharge for flushing
             const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
-            const w = parseFloat(document.getElementById('w').value); // Assumed width of column
-            const hu = parseFloat(document.getElementById('hu').value); // Haunch size
-            const MatType = document.getElementById('MatType').value; // Material type
-
-            // Validate inputs
-            if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu)) {
-                alert("Please enter valid numeric values for all fields.");
-                return;
-            }
+            const T = parseFloat(document.getElementById('T').value); // Temperature of water
+            const S = parseFloat(document.getElementById('S').value); // Longitudinal slope for flushing
+            const nb = document.getElementById('nb').value; // Number of bays
+            const SC = document.getElementById('SC').value; // Sediment concentration
+            const SF = document.getElementById('SF').value; // Swelling factor
+            const FI = document.getElementById('FI').value; // Flushing interval
+            const Meth = document.getElementById('Meth').value; // Design method
+            const niu = document.getElementById('niu').value; // Vetter's trap efficiency
+            const Ys = document.getElementById('Ys').value; // Sediment density
 
             // Limiting velocity of flow
             const v = 0.44 * Math.pow(ds, 0.5);
-            let vlim;
-            if (MatType === "Concrete") {
-                vlim = 1.5;
-            } else {
-                vlim = 2.5;
-            }
-            const va = Math.max(v, vlim);
+           // Calculation of fall velocity
+            // script.js
+const data = {
+    T: [0.00, 10.00, 15.00, 20.00, 25.00, 30.00, 40.00],
+    ds: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 2, 4, 7, 10],
+    w: [
+        [0.13, 0.50, 1.00, 1.70, 2.10, 3.00, 4.20, 5.60, 7.00, 10.00, 13.00, 26.00, 42.00, 60.00, 72.50],
+        [0.18, 0.63, 1.33, 1.97, 2.70, 3.67, 4.93, 6.63, 8.33, 11.33, 14.33, 27.00, 42.67, 60.00, 72.50],
+        [0.20, 0.70, 1.50, 2.10, 3.00, 4.00, 5.30, 7.15, 9.00, 12.00, 15.00, 27.50, 43.00, 60.00, 72.50],
+        [0.27, 0.80, 1.83, 2.70, 3.67, 4.67, 6.10, 8.22, 10.33, 13.33, 16.33, 29.17, 43.67, 60.00, 72.50],
+        [0.22, 0.90, 1.56, 2.31, 3.13, 4.11, 5.46, 7.34, 9.22, 12.22, 15.22, 28.00, 43.11, 60.00, 72.50],
+        [0.24, 0.97, 1.67, 2.46, 3.34, 4.33, 5.71, 7.69, 9.67, 12.67, 15.67, 28.44, 43.33, 60.00, 72.50],
+        [0.30, 1.20, 2.00, 3.00, 4.00, 5.00, 6.50, 8.75, 11.00, 14.00, 17.00, 30.00, 44.00, 60.00, 72.50]
+    ]
+};
+
+function interpolate(x, x0, x1, y0, y1) {
+    return y0 + (x - x0) * (y1 - y0) / (x1 - x0);
+}
+
+function findClosestIndices(sortedArray, value) {
+    let low = 0, high = sortedArray.length - 1;
+    while (low <= high) {
+        const mid = Math.floor((low + high) / 2);
+        if (sortedArray[mid] < value) low = mid + 1;
+        else high = mid - 1;
+    }
+    return [high, low];
+}
+
+function calculateFallVelocity() {
+    const temperature = parseFloat(document.getElementById('T').value);
+    const particleSize = parseFloat(document.getElementById('ds').value);
+
+    if (isNaN(T) || isNaN(ds)) {
+        document.getElementById('result').textContent = "Please enter valid numbers.";
+        return;
+    }
+
+    const tempIndices = findClosestIndices(data.temperatures, T);
+    const sizeIndices = findClosestIndices(data.particleSizes, ds);
+
+    if (tempIndices[0] < 0 || tempIndices[1] >= data.temperatures.length || 
+        sizeIndices[0] < 0 || sizeIndices[1] >= data.particleSizes.length) {
+        document.getElementById('result').textContent = "Input values are out of range.";
+        return;
+    }
+
+    const t0 = data.temperatures[tempIndices[0]];
+    const t1 = data.temperatures[tempIndices[1]];
+    const s0 = data.particleSizes[sizeIndices[0]];
+    const s1 = data.particleSizes[sizeIndices[1]];
+
+    const v00 = data.fallVelocities[tempIndices[0]][sizeIndices[0]];
+    const v01 = data.fallVelocities[tempIndices[0]][sizeIndices[1]];
+    const v10 = data.fallVelocities[tempIndices[1]][sizeIndices[0]];
+    const v11 = data.fallVelocities[tempIndices[1]][sizeIndices[1]];
+
+    const v0 = interpolate(ds, s0, s1, v00, v01);
+    const v1 = interpolate(ds, s0, s1, v10, v11);
+    const velocity = interpolate(T, t0, t1, v0, v1);
+
+    document.getElementById('result').textContent = `Fall Velocity: ${velocity.toFixed(2)} mm/s`;
+}
 
             // Display results
-            document.getElementById('hs').textContent = hs.toFixed(2);
-            document.getElementById('vf').textContent = vf.toFixed(2);
-            document.getElementById('check').textContent = check;
-            document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
-            document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-            document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
+            document.getElementById('w').textContent = w.toFixed(2);
+            
         }
     </script>
 </body>
