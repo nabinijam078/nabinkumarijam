@@ -310,7 +310,7 @@
             <p><u>1. SETTLING ZONE</u></p>
             <p><strong>Fall velocity (w in mm/s):</strong> <span id="w"></span> mm/s</p>
             <p><strong>Width of basin (B in m):</strong> <span id="B"></span> m</p>
-            <p><strong>Length of basin (L in m):</strong> <span id="L"></span> m</p>
+            <p><strong>Length of basin (L in m):</strong> <span id="Ls"></span> m</p>
         </div>
     </div>
 
@@ -447,11 +447,12 @@
                 const L4 = Math.max(4 * Bs, L3);
                 L1 = Math.max(L2, L4);
             }
-
+            const Ls=L;
+            
             // Display the results
             document.getElementById('w').textContent = w.toFixed(2);
             document.getElementById('B').textContent = B.toFixed(2);
-            document.getElementById('L').textContent = L.toFixed(2);
+            document.getElementById('Ls').textContent = Ls.toFixed(2);
         }
     </script>
 </body>
