@@ -435,14 +435,14 @@
             // Calculate L1 based on the selected method
             let L1;
             if (Meth === "Particle") {
-                L1 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w));
+                L1 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w/1000));
             } else if (Meth === "Vetter") {
-                const Asu = (Q * (1 + Qa / 100) / w) * Math.log(1 / (1 - niu / 100));
+                const Asu = (Q * (1 + Qa / 100) / w/1000) * Math.log(1 / (1 - niu / 100));
                 const L2 = Asu / (Bs * nb);
                 L1 = Math.max(4 * Bs, L2);
             } else if (Meth === "Both") {
-                const L2 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w));
-                const Asu = (Q * (1 + Qa / 100) / w) * Math.log(1 / (1 - niu / 100));
+                const L2 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w/1000));
+                const Asu = (Q * (1 + Qa / 100) / w/1000) * Math.log(1 / (1 - niu / 100));
                 const L3 = Asu / (Bs * nb);
                 const L4 = Math.max(4 * Bs, L3);
                 L1 = Math.max(L2, L4);
