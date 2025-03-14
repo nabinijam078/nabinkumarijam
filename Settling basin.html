@@ -385,7 +385,9 @@
             <p><strong>Width of basin (Bs in m):</strong> <span id="Bs"></span> m</p>
             <p><strong>Length of basin (L in m):</strong> <span id="L"></span> m</p>
             <p><strong>Depth of flow (h<sub>w</sub> in m):</strong> <span id="hw"></span> m</p>
-            <p><strong>Depth of sediment (h<sub>sed</sub> in m):</strong> <span id="hsed"></span> m</p>
+            <p><strong>Depth of sediment* (h<sub>sed</sub> in m):</strong> <span id="hsed"></span> m</p>
+            <p><i>(*Depth of sediments means the sediment is below wall bottom)</i></p>
+            <p><strong>Length of inlet transition(L<sub>in</sub> in m):</strong> <span id="Lin"></span> m</p>
         </div>
     </div>
 
@@ -556,6 +558,9 @@
             
             // Total depth of settling basin
             const htotal=hw+hsed;
+
+            // DESIGN OF INLET TRANSITION
+            const Lin=(Bs-ba)/2/Math.tan(theta/2*3.1416/180);
             
 
             // Display the results
@@ -565,7 +570,7 @@
             document.getElementById('L').textContent = L.toFixed(2);
             document.getElementById('hw').textContent = hw.toFixed(2);
             document.getElementById('hsed').textContent = hsed.toFixed(2);
-            
+            document.getElementById('Lin').textContent = Lin.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
