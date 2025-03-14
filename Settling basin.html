@@ -567,10 +567,19 @@
             const Lin=(Bs-ba)/2/Math.tan(theta/2*3.1416/180);
 
             // DESIGN OF OUTLET OPENING
-           
+           const ho=(Q+(1+Qa/100))/(0.62*bout*nout*Math.pow(2*9.81*hopen,0.5));
            
             
-            
+            // DESIGN OF FORBAY
+
+            // Discharge coefficient 
+             let Co;
+                if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
+                else if (ShapeOpen==="Broad round edges"){Co=1.6;}
+                else if (ShapeOpen==="Round overall"){Co=2.1;}
+                else if (ShapeOpen==="Sharp-edges"){Co=1.9;}
+                else if (ShapeOpen==="Rounded"){Co=2.2;}
+                else {Co=2.3;}
 
 
 
