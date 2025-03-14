@@ -295,8 +295,8 @@
                 <input type="number" id="bh" required>
                 <br>
                 <p><u>REVISED SIZE OF BASIN</u></p>
-                <label for="Bs">Revised width of basin (Bs in m):</label>
-                <input type="number" id="Bs" required>
+                <label for="Bs_input">Revised width of basin (Bs in m):</label>
+                <input type="number" id="Bs_input" required>
                 <br>
                 <label for="L_input">Revised length of basin (L in m):</label>
                 <input type="number" id="L_input" required>
@@ -431,7 +431,7 @@
             const Ys = parseFloat(document.getElementById('Ys').value); // Sediment density
             const z = parseFloat(document.getElementById('z').value); // Side slope of base slab of basin
             const bh = parseFloat(document.getElementById('bh').value); // Hoppers width
-            const Bs = parseFloat(document.getElementById('Bs').value); // Revised width of basin
+            const Bs = parseFloat(document.getElementById('Bs_input').value); // Revised width of basin
             const L = parseFloat(document.getElementById('L_input').value); // Revised width of basin
             
             // Calculate fall velocity
