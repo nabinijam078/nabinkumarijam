@@ -97,30 +97,25 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .drawing-section .w-value,
-        .drawing-section .hu-value,
-        .drawing-section .hw-value {
-            position: absolute;
-            font-size: .8rem;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
+        .drawing-section .L-value,
+.drawing-section .Bs-value {
+    position: absolute;
+    font-size: 0.8rem;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
-        .drawing-section .w-value {
-            top: 35%; /* Adjust as needed */
-            left: 40%; /* Adjust as needed */
-        }
+.drawing-section .L-value {
+    top: 50%; /* Adjust as needed */
+    left: 10%; /* Adjust as needed */
+}
 
-        .drawing-section .hw-value {
-            top: 20%; /* Adjust as needed */
-            left: 60%; /* Adjust as needed */
-        }
-        .drawing-section .hu-value {
-            top: 10%; /* Adjust as needed */
-            left: 35%; /* Adjust as needed */
-        }
+.drawing-section .Bs-value {
+    top: 60%; /* Adjust as needed */
+    left: 10%; /* Adjust as needed */
+}
 
         .input-group {
             margin-bottom: 15px;
@@ -314,10 +309,10 @@
         <div class="result" id="result">
             <h3><u>DESIGN RESULTS</u></h3>
             <p><u>1. SETTLING ZONE</u></p>
-            <p><u>Calculated</u></p>
+            <p><u>CALCULATED</u></p>
             <p><strong>Width of basin (B in m):</strong> <span id="B"></span> m</p>
            <p><strong>Length of basin (L in m):</strong> <span id="L1"></span> m</p>
-            <p><u>Final</u></p>
+            <p><u>PROVIDED</u></p>
             <p><strong>Width of basin (Bs in m):</strong> <span id="Bs"></span> m</p>
            <p><strong>Length of basin (L in m):</strong> <span id="L"></span> m</p>
         </div>
@@ -471,6 +466,10 @@
             document.getElementById('L1').textContent = L1.toFixed(2);
             document.getElementById('Bs').textContent = Bs.toFixed(2);
             document.getElementById('L').textContent = L.toFixed(2);
+
+            // Update L and Bs on the image
+            document.querySelector('.L-value').textContent = `L = ${L.toFixed(2)} m`;
+            document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(2)} m`;
         }
     </script>
 </body>
