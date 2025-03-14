@@ -334,7 +334,7 @@
                 <input type="number" id="hfopen" required>
                 <br>
                 <label for="ShapeOpen">Shape of opening (Shape<sub>open</sub>):</label>
-                <select id="Sh">
+                <select id="ShapeOpen">
                     <option value="Broad Sharp edges">Broad Sharp edges</option>
                     <option value="Broad round edges">Broad round edges</option>
                     <option value="Round overall">Round overall</option>
@@ -538,6 +538,7 @@
             const hw=(Q + (Qa/100 + 1)) / (v * Bs * nb);
             // Sediment concentration volume
             const Vs = (Q + (1 + Qa/100)) * FI * 3600 * SC / Ys / SF;
+            // Depth of sediments
             
 
             // Display the results
