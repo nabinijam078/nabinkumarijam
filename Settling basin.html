@@ -288,6 +288,12 @@
                 <label for="Ys">Density of sediments (Ys in Kg/m<sup>3</sup>):</label>
                 <input type="number" id="Ys" required>
                 <br>
+                <label for="Bs">Revised width of basin (Bs in m):</label>
+                <input type="number" id="Bs" required>
+                <br>
+                <label for="L">Length of basin (L in m):</label>
+                <input type="number" id="L" required>
+                <br>
                 <button type="button" onclick="Settingbasin()">SETTLING BASIN DESIGN</button>
             </form>
         </div>
@@ -301,7 +307,9 @@
         <div class="result" id="result">
             <h3><u>DESIGN RESULTS</u></h3>
             <p><u>1. SETTLING ZONE</u></p>
-            <p><strong>Fall velocity(w in mm/s):</strong> <span id="w"></span> mm/s</p>
+            <p><strong>Fall velocity (w in mm/s):</strong> <span id="w"></span> mm/s</p>
+            <p><strong>Maximum width of basin (B in m):</strong> <span id="B"></span> m</p>
+            <p><strong>Revised length of basin (L1 in m):</strong> <span id="L1"></span> m</p>
         </div>
     </div>
 
@@ -399,14 +407,52 @@
         // Main function to calculate and display results
         function Settingbasin() {
             // Input values
-            const T = parseFloat(document.getElementById('T').value); // Temperature
-            const ds = parseFloat(document.getElementById('ds').value); // Particle size
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Qa = parseFloat(document.getElementById('Qa').value); // Additional discharge for flushing
+            const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
+            const T = parseFloat(document.getElementById('T').value); // Temperature of water
+            const S = parseFloat(document.getElementById('S').value); // Longitudinal slope for flushing
+            const nb = parseFloat(document.getElementById('nb').value); // Number of bays
+            const SC = parseFloat(document.getElementById('SC').value); // Sediment concentration
+            const SF = parseFloat(document.getElementById('SF').value); // Swelling factor
+            const FI = parseFloat(document.getElementById('FI').value); // Flushing interval
+            const Meth = document.getElementById('Meth').value; // Design method
+            const niu = parseFloat(document.getElementById('niu').value); // Vetter's trap efficiency
+            const Ys = parseFloat(document.getElementById('Ys').value); // Sediment density
+            const Bs = parseFloat(document.getElementById('Bs').value); // Revised width of basin
 
             // Calculate fall velocity
             const w = calculateFallVelocity(T, ds);
 
-            // Display the result
+            // Calculate approach velocity
+            const v = 0.44 * Math.pow(ds, 0.5);
+
+            // Calculate maximum width of basin (B)
+            const B = (4.83 * Math.sqrt(Q * (1 + Qa / 100))) / nb;
+
+            // Calculate L1 based on the selected method
+            let L1;
+            if (Meth === "Particle") {
+                L1 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w));
+            } else if (Meth === "Vetter") {
+                const Asu = (Q * (1 + Qa / 100) / w) * Math.log(1 / (1 - niu / 100));
+                const L2 = Asu / (Bs * nb);
+                L1 = Math.max(4 * Bs, L2);
+            } else if (Meth === "Both") {
+                const L2 = Math.max(Bs * 4, (Q * (1 + Qa / 100)) / (Bs * nb * w));
+                const Asu = (Q * (1 + Qa / 100) / w) * Math.log(1 / (1 - niu / 100));
+                const L3 = Asu / (Bs * nb);
+                const L4 = Math.max(4 * Bs, L3);
+                L1 = Math.max(L2, L4);
+            }
+
+            // Update L in the inputs
+            document.getElementById('L').value = L1.toFixed(2);
+
+            // Display the results
             document.getElementById('w').textContent = w.toFixed(2);
+            document.getElementById('B').textContent = B.toFixed(2);
+            document.getElementById('L1').textContent = L1.toFixed(2);
         }
     </script>
 </body>
