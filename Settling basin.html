@@ -242,7 +242,8 @@
         <!-- Input Section -->
         <div class="input-section">
             <h3><u>HYDRAULIC DESIGN OF SETTLING BASIN</u></h3>
-            <form id="beamSectionForm">
+            <form id="SBform">
+                <p><u>1. INPUTS</u></p>
                 <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
                 <input type="number" id="Q" required>
                 <br>
@@ -289,11 +290,21 @@
                 <label for="bh">Hopper width (b<sub>h</sub>):</label>
                 <input type="number" id="bh" required>
                 <br>
-                <p><u>INPUT FOR INLET TRANSITION</u></p>
+
+                <p><u> REVISED SIZE OF BASIN</u></p>
+                <label for="Bs_input">Revised width of basin (Bs in m):</label>
+                <input type="number" id="Bs_input" required>
+                <br>
+                <label for="L_input">Revised length of basin (L in m):</label>
+                <input type="number" id="L_input" required>
+                <br>
+
+                
+                <p><u>2. INPUT FOR INLET TRANSITION</u></p>
                 <label for="theta">Horizontal transition angle (10<sup>o</sup>-20<sup>o</sup>) (θ):</label>
                 <input type="number" id="theta" required>
                 <br>
-                <p><u>INPUT FOR FORBAY</u></p>
+                <p><u>3. INPUT FOR FORBAY</u></p>
                 <label for="tr">Retention time (t<sub>r</sub>):</label>
                 <input type="number" id="tr" required>
                 <br>
@@ -309,7 +320,7 @@
                 <label for="Do">Diameter or width of canal (Square) (D<sub>o</sub>):</label>
                 <input type="number" id="Do" required>
                 <br>
-                <p><u>INPUT FOR OUTLET OPENING</u></p>
+                <p><u>4. INPUT FOR OUTLET OPENING</u></p>
                 <label for="nout">Number of outlet opening (n<sub>out</sub>):</label>
                 <input type="number" id="nout" required>
                 <br>
@@ -322,7 +333,7 @@
                 <label for="hfopen">Headloss at opening (hf<sub>open</sub>):</label>
                 <input type="number" id="hfopen" required>
                 <br>
-                <label for="ShapeOpen">Headloss at opening (Shape<sub>open</sub>):</label>
+                <label for="ShapeOpen">Shape of opening (Shape<sub>open</sub>):</label>
                 <select id="Sh">
                     <option value="Broad Sharp edges">Broad Sharp edges</option>
                     <option value="Broad round edges">Broad round edges</option>
@@ -333,14 +344,16 @@
                     
                 </select>
                 <br>
-                <p><u>SIDE SPILLWAY</u></p>
-                
-                <p><u>REVISED SIZE OF BASIN</u></p>
-                <label for="Bs_input">Revised width of basin (Bs in m):</label>
-                <input type="number" id="Bs_input" required>
+                <p><u>5. SIDE SPILLWAY</u></p>
+                <label for="Cs">Discharge coefficient of side spillway (C<sub>s</sub>):</label>
+                <input type="number" id="Cs" required>
                 <br>
-                <label for="L_input">Revised length of basin (L in m):</label>
-                <input type="number" id="L_input" required>
+                <label for="Lside">Discharge coefficient of side spillway (L<sub>side</sub>):</label>
+                <input type="number" id="Lside" required>
+                <br>
+                <p><u>6. SEDIMENT FLUSHING CANAL</u></p>
+                <label for="hsf">Depth of canal (h<sub>sf</sub>):</label>
+                <input type="number" id="hsf" required>
                 <br>
                 <button type="button" onclick="Settingbasin()">SETTLING BASIN DESIGN</button>
             </form>
@@ -477,7 +490,26 @@
             const bh = parseFloat(document.getElementById('bh').value); // Hoppers width
             const Bs = parseFloat(document.getElementById('Bs_input').value); // Revised width of basin
             const L = parseFloat(document.getElementById('L_input').value); // Revised length of basin
+            // INPUT FOR INLET TRANSITION
+            const theta = parseFloat(document.getElementById('theta').value); // Horizontal transition angle
+            //INPUT FOR FORBAY
+            const tr = parseFloat(document.getElementById('tr').value); // Retention time
+            const Hf = parseFloat(document.getElementById('Hf').value); // Average height
+            const Sh = parseFloat(document.getElementById('Sh').value); // Shape of outlet canal
+            const Do = parseFloat(document.getElementById('Do').value); // Diameter or width of canal
+            // INPUT FOR OUTLET OPENING
+            const nout = parseFloat(document.getElementById('nout').value); // Number of outlet opening
+            const bout = parseFloat(document.getElementById('bout').value); // Width of outlet opening
+            const hopen = parseFloat(document.getElementById('hopen').value); // Head over outlet opening
+            const hfopen = parseFloat(document.getElementById('hfopen').value); // Headloss at opening
+            const ShapeOpen = parseFloat(document.getElementById('ShapeOpen').value); // Headloss at opening
+            // INPUT FOR SIDE SPILLWAY
+             const Cs = parseFloat(document.getElementById('Cs').value); // Coefficient of discharge of side spillway
+             const Lside = parseFloat(document.getElementById('Lside').value); // Length of side spillway
+            // INPUT FOR SEDIMENT FLUSHING CANAL
+             const hsf = parseFloat(document.getElementById('hsf').value); // Depth of canal
 
+            
             // Calculate fall velocity
             const w = calculateFallVelocity(T, ds);
 
