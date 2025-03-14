@@ -310,7 +310,7 @@
             <p><u>1. SETTLING ZONE</u></p>
             <p><u>Calculated</u></p>
             <p><strong>Width of basin (B in m):</strong> <span id="B"></span> m</p>
-            <p><strong>Length of basin (L in m):</strong> <span id="L1"></span> m</p>
+           <p><strong>Length of basin (L in m):</strong> <span id="L1"></span> m</p>
         </div>
     </div>
 
@@ -421,7 +421,7 @@
             const niu = parseFloat(document.getElementById('niu').value); // Vetter's trap efficiency
             const Ys = parseFloat(document.getElementById('Ys').value); // Sediment density
             const Bs = parseFloat(document.getElementById('Bs').value); // Revised width of basin
-            const L = parseFloat(document.getElementById('L').value); // Revised width of basin
+            //const L = parseFloat(document.getElementById('L').value); // Revised width of basin
             
             // Calculate fall velocity
             const w = calculateFallVelocity(T, ds);
@@ -447,10 +447,10 @@
                 const L4 = Math.max(4 * Bs, L3);
                 L1 = Math.max(L2, L4);
             }
-            const Ls=L;
+            
             
             // Display the results
-            document.getElementById('w').textContent = w.toFixed(2);
+            
             document.getElementById('B').textContent = B.toFixed(2);
             document.getElementById('L1').textContent = L1.toFixed(2);
         }
