@@ -298,6 +298,7 @@
                 <p> <i>During the calculation, Basin width is updated. Therefore, click on "SETTLING BASIN DESIGN" after updating Width.</i></p>
                 <p> <i> Similarly, Settling basin length is also updated and after that update click again on "SETTLING BASIN DESIGN" </i></p>
                 <p><u> REVISED SIZE OF BASIN</u></p>
+                <BR>
                 <label for="Bs_input">Revised width of basin (Bs in m):</label>
                 <input type="number" id="Bs_input" required>
                 <br>
@@ -368,6 +369,7 @@
             <img src="Settling basin.png" alt="Settling basin Drawing">
             <div class="L-value"></div>
             <div class="Bs-value"></div>
+            <div class="hw-value"></div>
         </div>
 
         <!-- Result Section -->
@@ -387,7 +389,7 @@
             <p><u>2. INLET TRANSITION</u></p>
             <p><strong>Length of inlet transition(L<sub>in</sub> in m):</strong> <span id="Lin"></span> m</p>
             <p><u>2. OUTLET OPENING</u></p>
-            <p><strong>Depth of opening( in m):</strong> <span id="ho"></span> m</p>
+            <p><strong>Depth of opening(in m):</strong> <span id="ho"></span> m</p>
         </div>
     </div>
 
@@ -573,13 +575,7 @@
 
 
             
-             let Co;
-            if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
-            else if (ShapeOpen==="Broad round edges"){Co=1.6;}
-            else if (ShapeOpen==="Round overall"){Co=2.1;}
-            else if (ShapeOpen==="Sharp-edges"){Co=1.9;}
-            else if (ShapeOpen==="Rounded"){Co=2.2;}
-            else {Co=2.3;}
+            
                 
 
             // Display the results
