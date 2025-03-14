@@ -289,6 +289,52 @@
                 <label for="bh">Hopper width (b<sub>h</sub>):</label>
                 <input type="number" id="bh" required>
                 <br>
+                <p><u>INPUT FOR INLET TRANSITION</u></p>
+                <label for="theta">Horizontal transition angle (10<sup>o</sup>-20<sup>o</sup>) (θ):</label>
+                <input type="number" id="theta" required>
+                <br>
+                <p><u>INPUT FOR FORBAY</u></p>
+                <label for="tr">Retention time (t<sub>r</sub>):</label>
+                <input type="number" id="tr" required>
+                <br>
+                <label for="Hf">Average height (H<sub>r</sub>):</label>
+                <input type="number" id="Hf" required>
+                <br>
+                <label for="Sh">Shape of outlet Canal/Culvert (S<sub>h</sub>):</label>
+                <select id="Sh">
+                    <option value="Circular">Circular</option>
+                    <option value="Rectangular">Rectangular</option>
+                </select>
+                <br>
+                <label for="Do">Diameter or width of canal (Square) (D<sub>o</sub>):</label>
+                <input type="number" id="Do" required>
+                <br>
+                <p><u>INPUT FOR OUTLET OPENING</u></p>
+                <label for="nout">Number of outlet opening (n<sub>out</sub>):</label>
+                <input type="number" id="nout" required>
+                <br>
+                <label for="bout">Width of outlet opening (b<sub>out</sub>):</label>
+                <input type="number" id="bout" required>
+                <br>
+                <label for="hopen">Headover from opening (h<sub>open</sub>):</label>
+                <input type="number" id="hopen" required>
+                <br>
+                <label for="hfopen">Headloss at opening (hf<sub>open</sub>):</label>
+                <input type="number" id="hfopen" required>
+                <br>
+                <label for="ShapeOpen">Headloss at opening (Shape<sub>open</sub>):</label>
+                <select id="Sh">
+                    <option value="Broad Sharp edges">Broad Sharp edges</option>
+                    <option value="Broad round edges">Broad round edges</option>
+                    <option value="Round overall">Round overall</option>
+                    <option value="Sharp-edges">Sharp-edges</option>
+                    <option value="Rounded">Rounded</option>
+                    <option value="Roof-shaped">Roof-shaped</option>
+                    
+                </select>
+                <br>
+                <p><u>SIDE SPILLWAY</u></p>
+                
                 <p><u>REVISED SIZE OF BASIN</u></p>
                 <label for="Bs_input">Revised width of basin (Bs in m):</label>
                 <input type="number" id="Bs_input" required>
