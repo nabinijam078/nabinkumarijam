@@ -288,6 +288,12 @@
                 <label for="Ys">Density of sediments (Ys in Kg/m<sup>3</sup>):</label>
                 <input type="number" id="Ys" required>
                 <br>
+                <label for="z">Side slope of settling basin slab (z in 1H;zV>):</label>
+                <input type="number" id="z" required>
+                <br>
+                <label for="bh">Hopper width (b<sub>h</sub>):</label>
+                <input type="number" id="bh" required>
+                <br>
                 <p><u>REVISED SIZE OF BASIN</u></p>
                 <label for="Bs">Revised width of basin (Bs in m):</label>
                 <input type="number" id="Bs" required>
@@ -311,6 +317,9 @@
             <p><u>Calculated</u></p>
             <p><strong>Width of basin (B in m):</strong> <span id="B"></span> m</p>
            <p><strong>Length of basin (L in m):</strong> <span id="L1"></span> m</p>
+            <p><u>Final</u></p>
+            <p><strong>Width of basin (Bs in m):</strong> <span id="Bs"></span> m</p>
+           <p><strong>Length of basin (L in m):</strong> <span id="L"></span> m</p>
         </div>
     </div>
 
@@ -420,8 +429,10 @@
             const Meth = document.getElementById('Meth').value; // Design method
             const niu = parseFloat(document.getElementById('niu').value); // Vetter's trap efficiency
             const Ys = parseFloat(document.getElementById('Ys').value); // Sediment density
+            const z = parseFloat(document.getElementById('z').value); // Side slope of base slab of basin
+            const bh = parseFloat(document.getElementById('bh').value); // Hoppers width
             const Bs = parseFloat(document.getElementById('Bs').value); // Revised width of basin
-            //const L = parseFloat(document.getElementById('L').value); // Revised width of basin
+            const L = parseFloat(document.getElementById('L').value); // Revised width of basin
             
             // Calculate fall velocity
             const w = calculateFallVelocity(T, ds);
@@ -447,12 +458,19 @@
                 const L4 = Math.max(4 * Bs, L3);
                 L1 = Math.max(L2, L4);
             }
+            // depth of flow
+            const hf=(Q*(1+Qa/100))/(v*Bs*nb);
+            // volume of sediments
+            const Vs = (Q + (1 + Qa/100)) * FI * 3600 * SC / Ys / SF;
+            // Depth of sediments
             
             
             // Display the results
             
             document.getElementById('B').textContent = B.toFixed(2);
             document.getElementById('L1').textContent = L1.toFixed(2);
+            document.getElementById('Bs').textContent = Bs.toFixed(2);
+            document.getElementById('L').textContent = L.toFixed(2);
         }
     </script>
 </body>
