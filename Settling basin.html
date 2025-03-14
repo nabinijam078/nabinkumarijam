@@ -339,8 +339,11 @@
                 <label for="hopen">Headover from opening (h<sub>open</sub>):</label>
                 <input type="number" id="hopen" required>
                 <br>
-                <label for="hfopen">Headloss at opening (hf<sub>open</sub>):</label>
-                <input type="number" id="hfopen" required>
+                              
+               
+                <p><u>5. SIDE SPILLWAY</u></p>
+                <label for="Cs">Discharge coefficient of side spillway (C<sub>s</sub>):</label>
+                <input type="number" id="Cs" required>
                 <br>
                 <label for="ShapeOpen">Shape of opening (Shape<sub>open</sub>):</label>
                 <select id="ShapeOpen">
@@ -350,15 +353,7 @@
                     <option value="Sharp-edges">Sharp-edges</option>
                     <option value="Rounded">Rounded</option>
                     <option value="Roof-shaped">Roof-shaped</option>
-                    
                 </select>
-                <br>
-                <p><u>5. SIDE SPILLWAY</u></p>
-                <label for="Cs">Discharge coefficient of side spillway (C<sub>s</sub>):</label>
-                <input type="number" id="Cs" required>
-                <br>
-                <label for="Lside">Discharge coefficient of side spillway (L<sub>side</sub>):</label>
-                <input type="number" id="Lside" required>
                 <br>
                 <p><u>6. SEDIMENT FLUSHING CANAL</u></p>
                 <label for="hsf">Depth of canal (h<sub>sf</sub>):</label>
@@ -388,7 +383,11 @@
             <p><strong>Depth of flow (h<sub>w</sub> in m):</strong> <span id="hw"></span> m</p>
             <p><strong>Depth of sediment* (h<sub>sed</sub> in m):</strong> <span id="hsed"></span> m</p>
             <p><i>(*Depth of sediments zero means the sediment is below wall bottom)</i></p>
+            <p><strong>Depth of Settling basin excluding freeboard (h<sub>s</sub> in m):</strong> <span id="htotal"></span> m</p>
+            <p><u>2. INLET TRANSITION</u></p>
             <p><strong>Length of inlet transition(L<sub>in</sub> in m):</strong> <span id="Lin"></span> m</p>
+            <p><u>2. OUTLET OPENING</u></p>
+            <p><strong>Depth of opening( in m):</strong> <span id="ho"></span> m</p>
         </div>
     </div>
 
@@ -562,7 +561,26 @@
 
             // DESIGN OF INLET TRANSITION
             const Lin=(Bs-ba)/2/Math.tan(theta/2*3.1416/180);
+
+            // DESIGN OF OUTLET OPENING
+            // Discharge coefficient 
+           
+            const ho=(Q+(1+Qa/100))/(0.62*bout*nout*Math.pow(2*9.81*hopen,0.5));
+            // DESIGN OF FORBAY
             
+
+
+
+
+            
+             let Co;
+            if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
+            else if (ShapeOpen==="Broad round edges"){Co=1.6;}
+            else if (ShapeOpen==="Round overall"){Co=2.1;}
+            else if (ShapeOpen==="Sharp-edges"){Co=1.9;}
+            else if (ShapeOpen==="Rounded"){Co=2.2;}
+            else {Co=2.3;}
+                
 
             // Display the results
             document.getElementById('B').textContent = B.toFixed(2);
@@ -571,7 +589,9 @@
             document.getElementById('L').textContent = L.toFixed(2);
             document.getElementById('hw').textContent = hw.toFixed(2);
             document.getElementById('hsed').textContent = hsed.toFixed(2);
+            document.getElementById('htotal').textContent = htotal.toFixed(2);
             document.getElementById('Lin').textContent = Lin.toFixed(2);
+            document.getElementById('ho').textContent = ho.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
