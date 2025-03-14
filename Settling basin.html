@@ -98,7 +98,8 @@
         }
 
         .drawing-section .L-value,
-        .drawing-section .Bs-value {
+        .drawing-section .Bs-value,
+        .drawing-section .hw-value {
             position: absolute;
             font-size: 0.8rem;
             color: black;
@@ -113,8 +114,12 @@
         }
 
         .drawing-section .Bs-value {
-            top: 55%; /* Adjust as needed */
+            top: 25%; /* Adjust as needed */
             left: 30%; /* Adjust as needed */
+        }
+        .drawing-section .hw-value {
+            top: 40%; /* Adjust as needed */
+            left: 45%; /* Adjust as needed */
         }
 
         .input-group {
@@ -551,6 +556,7 @@
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
             document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(1)} m`;
+            document.querySelector('.hw-value').textContent = `hw = ${Bs.toFixed(1)} m`;
         }
     </script>
 </body>
