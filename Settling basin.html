@@ -99,7 +99,7 @@
 
         .drawing-section .L-value,
         .drawing-section .Bs-value,
-        .drawing-section .htotal-value {
+        .drawing-section .hw-value {
             position: absolute;
             font-size: 0.8rem;
             color: black;
@@ -117,7 +117,7 @@
             top: 25%; /* Adjust as needed */
             left: 30%; /* Adjust as needed */
         }
-        .drawing-section .htotal-value {
+        .drawing-section .hw-value {
             top: 40%; /* Adjust as needed */
             left: 45%; /* Adjust as needed */
         }
@@ -343,9 +343,7 @@
                               
                
                 <p><u>5. SIDE SPILLWAY</u></p>
-                <label for="Cs">Discharge coefficient of side spillway (C<sub>s</sub>):</label>
-                <input type="number" id="Cs" required>
-                <br>
+                
                 <label for="ShapeOpen">Shape of opening (Shape<sub>open</sub>):</label>
                 <select id="ShapeOpen">
                     <option value="Broad Sharp edges">Broad Sharp edges</option>
@@ -515,10 +513,10 @@
             const nout = parseFloat(document.getElementById('nout').value); // Number of outlet opening
             const bout = parseFloat(document.getElementById('bout').value); // Width of outlet opening
             const hopen = parseFloat(document.getElementById('hopen').value); // Head over outlet opening
-            const hfopen = parseFloat(document.getElementById('hfopen').value); // Headloss at opening
-            const ShapeOpen = parseFloat(document.getElementById('ShapeOpen').value); // Headloss at opening
+            
+            
             // INPUT FOR SIDE SPILLWAY
-             const Cs = parseFloat(document.getElementById('Cs').value); // Coefficient of discharge of side spillway
+             const ShapeOpen = parseFloat(document.getElementById('ShapeOpen').value); // Headloss at opening
              const Lside = parseFloat(document.getElementById('Lside').value); // Length of side spillway
             // INPUT FOR SEDIMENT FLUSHING CANAL
              const hsf = parseFloat(document.getElementById('hsf').value); // Depth of canal
