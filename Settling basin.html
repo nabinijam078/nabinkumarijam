@@ -599,10 +599,10 @@
             A0 = Do * Do;
             }
             const V0 = Q / A0;
-            //const Su1 = 1.5*Math.pow(V0,2)/(2*9.81);
-            //const Su2 = (0.545 * V0) / Dc;
-            //const Su3 = 2 * Dc;
-            //const Su = Math.max(Su1, Su2, Su3);
+            const Su1 = 1.5*Math.pow(V0,2)/(2*9.81);
+            const Su2 = (0.545 * V0) / Dc;
+            const Su3 = 2 * Dc;
+            const Su = Math.max(Su1, Su2, Su3);
 
            
             
@@ -629,7 +629,7 @@
             document.getElementById('ho').textContent = ho.toFixed(2);
             document.getElementById('Lfb').textContent = Lfb.toFixed(2);
             document.getElementById('Su').textContent = Su.toFixed(2);
-            //document.getElementById('A0').textContent = A0.toFixed(2);
+            document.getElementById('A0').textContent = A0.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
