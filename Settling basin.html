@@ -325,7 +325,7 @@
                 <label for="tr">Retention time (t<sub>r</sub> in minute):</label>
                 <input type="number" id="tr" required>
                 <br>
-                <label for="Hf">Average height (H<sub>r</sub>):</label>
+                <label for="Hf">Average height (H<sub>r</sub> in m):</label>
                 <input type="number" id="Hf" required>
                 <br>
                 <label for="Sh">Shape of outlet Canal/Culvert (S<sub>h</sub>):</label>
@@ -334,17 +334,17 @@
                     <option value="Rectangular">Rectangular</option>
                 </select>
                 <br>
-                <label for="Do">Diameter or width of canal (Square) (D<sub>o</sub>):</label>
+                <label for="Do">Diameter or width of canal (Square) (D<sub>o</sub> in m):</label>
                 <input type="number" id="Do" required>
                 <br>
                 <p><u>4. INPUT FOR OUTLET OPENING</u></p>
                 <label for="nout">Number of outlet opening (n<sub>out</sub>):</label>
                 <input type="number" id="nout" required>
                 <br>
-                <label for="bout">Width of outlet opening (b<sub>out</sub>):</label>
+                <label for="bout">Width of outlet opening (b<sub>out</sub> in m):</label>
                 <input type="number" id="bout" required>
                 <br>
-                <label for="hopen">Headover from opening (h<sub>open</sub>):</label>
+                <label for="hopen">Headover from opening (h<sub>open</sub> in m):</label>
                 <input type="number" id="hopen" required>
                 <br>
                               
@@ -361,13 +361,16 @@
                     <option value="Roof-shaped">Roof-shaped</option>
                 </select>
                 <br>
-                 <label for="Lside">Length of side spillway (L<sub>side</sub>):</label>
+                 <label for="Lside">Length of side spillway (L<sub>side</sub> in m):</label>
                 <input type="number" id="Lside" required>
                 <br>
                 
                 <p><u>6. SEDIMENT FLUSHING CANAL</u></p>
-                <label for="hsf">Depth of canal (h<sub>sf</sub>):</label>
+                <label for="hsf">Depth of canal (h<sub>sf</sub> in m):</label>
                 <input type="number" id="hsf" required>
+                <br>
+                <label for="Ssf">Longitudinal slope of flushing canal ( (S<sub>sf</sub>):</label>
+                <input type="number" id="Ssf" required>
                 <br>
                 <button type="button" onclick="Settingbasin()">SETTLING BASIN DESIGN</button>
             </form>
@@ -403,7 +406,10 @@
             <p><u>4. FORBAY</u></p>
             <p><strong>Length of forbay:</strong> <span id="Lfb"></span> m</p>
             <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> m</p>
-            <p><strong>Water depth at side spillway (h<sub>spill</sub> in m):</strong> <span id="hspill"></span> m</p>
+            <p><strong>Water depth at side spillway (h<sub>spill</sub>):</strong> <span id="hspill"></span> m</p>
+            <p><u>4. SEDIMENT FLUSHING CANAL</u></p>
+            <p><strong>Velocity at flushing canal (v<sub>f</sub>):</strong> <span id="vflush"></span> m/s</p>
+            <p><strong>Size of sediment to be transported along flushing canal (d<sub>m</sub>):</strong> <span id="SS"></span> m</p>
         </div>
     </div>
 
@@ -536,7 +542,7 @@
              const Lside = parseFloat(document.getElementById('Lside').value); // Length of side spillway
             // INPUT FOR SEDIMENT FLUSHING CANAL
              const hsf = parseFloat(document.getElementById('hsf').value); // Depth of canal
-
+             const Ssf = parseFloat(document.getElementById('Ssf').value); // Longitudinal slope of canal
             
             // Calculate fall velocity
             const w = calculateFallVelocity(T, ds);
@@ -615,8 +621,15 @@
                 else {Co=2.3;}
             
             const hspill=Math.pow(1.5*Q/(Co*Lside),(2/3));
+
+            // DESIGN OF SEDIMENT FLUSHING
+            const hflush=L/S+htotal;
+            const vflush = 0.62 * Math.pow(2 * 9.81 * hflush, 0.5);
+            const Aflush=hsf*bh;
+            const Pflush=2*(hsf+bh);
+            const Rflush=Aflush/Pflush;
+            const SS=11*Rflush/Ssf*1000;
             
-           
 
 
 
@@ -638,7 +651,9 @@
             document.getElementById('Lfb').textContent = Lfb.toFixed(2);
             document.getElementById('Su').textContent = Su.toFixed(2);
             document.getElementById('hspill').textContent = hspill.toFixed(2);
-            
+
+            document.getElementById('vflush').textContent = vflush.toFixed(2);
+            document.getElementById('SS').textContent = SS.toFixed(2);
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
             document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(1)} m`;
