@@ -390,8 +390,11 @@
             <p><strong>Depth of Settling basin excluding freeboard (h<sub>s</sub> in m):</strong> <span id="htotal"></span> m</p>
             <p><u>2. INLET TRANSITION</u></p>
             <p><strong>Length of inlet transition(L<sub>in</sub> in m):</strong> <span id="Lin"></span> m</p>
-            <p><u>2. OUTLET OPENING</u></p>
+            <p><u>3. OUTLET OPENING</u></p>
             <p><strong>Depth of opening(in m):</strong> <span id="ho"></span> m</p>
+            <p><u>4. FORBAY</u></p>
+            <p><strong>Length of forbay:</strong> <span id="Lfb"></span> m</p>
+            <p><strong>Sumbergence height at oulet:</strong> <span id="S"></span> m</p>
         </div>
     </div>
 
@@ -571,7 +574,24 @@
            
             
             // DESIGN OF FORBAY
-
+            const bfb=nb*Bs;
+            const Lfb=(Q + (1 + Qa/100)) * tf * 60 / (bfb*Hf);
+            // submergence head
+            let Dc;
+            if (Sh="Circular"){Dc=Do;}
+            else {
+                Dc=Math.pow(Do*Do*4/3.1416,.5);}
+            let A0;
+            if (Sh="Circular"){A0=3.1416*Do*Do/4;}
+            else {
+                A0=(Do*Do;}
+            const V0=Q/A0;
+            const S1=1.5*V0*V0/19.62;
+            const S2=0.545*V0/Do;
+            const S3=2*D1;
+            const S=Math.max(S1,S2,S3);
+            
+            
             // Discharge coefficient 
              let Co;
                 if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
@@ -598,6 +618,8 @@
             document.getElementById('htotal').textContent = htotal.toFixed(2);
             document.getElementById('Lin').textContent = Lin.toFixed(2);
             document.getElementById('ho').textContent = ho.toFixed(2);
+            document.getElementById('Lfb').textContent = Lfb.toFixed(2);
+            document.getElementById('S').textContent = S.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
