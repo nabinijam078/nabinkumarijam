@@ -394,7 +394,7 @@
             <p><strong>Depth of opening(in m):</strong> <span id="ho"></span> m</p>
             <p><u>4. FORBAY</u></p>
             <p><strong>Length of forbay:</strong> <span id="Lfb"></span> m</p>
-            <p><strong>Sumbergence height at oulet:</strong> <span id="S"></span> m</p>
+           
         </div>
     </div>
 
@@ -577,36 +577,10 @@
            const bfb = nb * Bs;
             const Lfb = (Q * (1 + Qa / 100)) * tr * 60 / (bfb * Hf);
 
-            // submergence head
-            let Dc;
-            if (Sh === "Circular") {
-             Dc = Do;
-            } else {
-            Dc = Math.sqrt((Do * Do * 4) / Math.PI); // Using Math.PI for better precision
-            }
-
-            let A0;
-            if (Sh === "Circular") {
-                A0 = (Math.PI * Do * Do) / 4;
-            } else {
-            A0 = Do * Do;
-            }
-
-            const V0 = Q / A0;
-            const S1 = (1.5 * V0 * V0) / 19.62;
-            const S2 = (0.545 * V0) / Dc;
-            const S3 = 2 * Dc;
-            const S = Math.max(S1, S2, S3);
             
             
-            // Discharge coefficient 
-             let Co;
-                if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
-                else if (ShapeOpen==="Broad round edges"){Co=1.6;}
-                else if (ShapeOpen==="Round overall"){Co=2.1;}
-                else if (ShapeOpen==="Sharp-edges"){Co=1.9;}
-                else if (ShapeOpen==="Rounded"){Co=2.2;}
-                else {Co=2.3;}
+            
+           
 
 
 
@@ -626,7 +600,7 @@
             document.getElementById('Lin').textContent = Lin.toFixed(2);
             document.getElementById('ho').textContent = ho.toFixed(2);
             document.getElementById('Lfb').textContent = Lfb.toFixed(2);
-            document.getElementById('S').textContent = S.toFixed(2);
+           
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
