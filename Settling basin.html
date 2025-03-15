@@ -578,11 +578,11 @@
             const Lfb=(Q + (1 + Qa/100)) * tr * 60 / (bfb*Hf);
             // submergence head
             let Dc;
-            if (Sh="Circular"){Dc=Do;}
+            if (Sh==="Circular"){Dc=Do;}
             else {
                 Dc=Math.pow(Do*Do*4/3.1416,.5);}
             let A0;
-            if (Sh="Circular"){A0=3.1416*Do*Do/4;}
+            if (Sh==="Circular"){A0=3.1416*Do*Do/4;}
             else {
                 A0=Do*Do;}
             const V0=Q/A0;
