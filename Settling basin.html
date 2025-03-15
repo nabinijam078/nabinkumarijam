@@ -403,7 +403,7 @@
             <p><u>4. FORBAY</u></p>
             <p><strong>Length of forbay:</strong> <span id="Lfb"></span> m</p>
             <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> m</p>
-           
+            <p><strong>Water depth at side spillway (h<sub>spill</sub> in m):</strong> <span id="hspill"></span> m</p>
         </div>
     </div>
 
@@ -604,9 +604,17 @@
             const Su3 = 2 * Dc;
             const Su = Math.max(Su1, Su2, Su3);
 
-           
+           // DESIGN OF SIDE SPILLWAY 
+            // Discharge coefficient 
+             let Co;
+                if (ShapeOpen==="Broad Sharp edges"){Co=1.5;}
+                else if (ShapeOpen==="Broad round edges"){Co=1.6;}
+                else if (ShapeOpen==="Round overall"){Co=2.1;}
+                else if (ShapeOpen==="Sharp-edges"){Co=1.9;}
+                else if (ShapeOpen==="Rounded"){Co=2.2;}
+                else {Co=2.3;}
             
-            
+            const hspill=Math.pow(1.5*Q/(Co*Lside),(2/3));
             
            
 
@@ -629,7 +637,7 @@
             document.getElementById('ho').textContent = ho.toFixed(2);
             document.getElementById('Lfb').textContent = Lfb.toFixed(2);
             document.getElementById('Su').textContent = Su.toFixed(2);
-            document.getElementById('A0').textContent = A0.toFixed(2);
+            document.getElementById('hspill').textContent = hspill.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
