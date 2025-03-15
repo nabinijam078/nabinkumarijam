@@ -121,6 +121,10 @@
             top: 47%; /* Adjust as needed */
             left: 42%; /* Adjust as needed */
         }
+         .drawing-section .Lin-value {
+            top: 5%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
+        }
 
         .input-group {
             margin-bottom: 15px;
@@ -295,9 +299,11 @@
                 <label for="bh">Hopper width (b<sub>h</sub>):</label>
                 <input type="number" id="bh" required>
                 <br>
-                <p> <i>During the calculation, Basin width is updated. Therefore, click on "SETTLING BASIN DESIGN" after updating Width.</i></p>
-                <p> <i> Similarly, Settling basin length is also updated and after that update click again on "SETTLING BASIN DESIGN" </i></p>
-                <p><i>Input all the input data except width and length of basin, updated these values according to calculated value and click on  "SETTLING BASIN DESIGN" again</i></p>
+                <p><u>METHOD TO USE THIS CALCULATOR</u></p>
+                 <p><i>Input all the input data except width and length of basin, update these values according to calculated value and click on  "SETTLING BASIN DESIGN". </i></p>
+                <p> <i>Then update <b>Basin width (Bs)</b> and again click on "SETTLING BASIN DESIGN" after updating Width.</i></p>
+                <p> <i> Similarly, update <b>Settling basin length (L)</b> after getting calculated L and then click on "SETTLING BASIN DESIGN" again.</i></p>
+               
                 <p><u> REVISED SIZE OF BASIN</u></p>
                 <br>
                 <label for="Bs_input">Revised width of basin (Bs in m):</label>
@@ -373,6 +379,7 @@
             <div class="L-value"></div>
             <div class="Bs-value"></div>
             <div class="hw-value"></div>
+            <div class="Lin-value"></div>
         </div>
 
         <!-- Result Section -->
@@ -624,6 +631,7 @@
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
             document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(1)} m`;
             document.querySelector('.hw-value').textContent = `hw = ${hw.toFixed(1)} m`;
+            document.querySelector('.Lin-value').textContent = `Lin = ${Lin.toFixed(2)} m`;
         }
     </script>
 </body>
