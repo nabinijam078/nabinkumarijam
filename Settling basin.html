@@ -125,18 +125,20 @@
             top: 5%; /* Adjust as needed */
             left: 10%; /* Adjust as needed */
         }
-        .drawing-section .Lfb-value {
-            top: 5%; /* Adjust as needed */
-            left: 10%; /* Adjust as needed */
-        }
-        .drawing-section .Lfb-value {
-            top: 5%; /* Adjust as needed */
-            left: 60%; /* Adjust as needed */
-        }
         .drawing-section .theta-value {
-            top: 10%; /* Adjust as needed */
-            left: 10%; /* Adjust as needed */
-        }
+    top: 10%; /* Adjust as needed */
+    left: 10%; /* Adjust as needed */
+}
+
+.drawing-section .Lin-value {
+    top: 20%; /* Adjust as needed */
+    left: 10%; /* Adjust as needed */
+}
+
+.drawing-section .Lfb-value {
+    top: 30%; /* Adjust as needed */
+    left: 10%; /* Adjust as needed */
+}
 
         .input-group {
             margin-bottom: 15px;
@@ -325,7 +327,7 @@
                 <input type="number" id="L_input" required>
                 <br>
                 <p><u>2. INPUT FOR INLET TRANSITION</u></p>
-                <label for="theta">Horizontal transition angle (10<sup>o</sup>-20<sup>o</sup>) (θ):</label>
+                <label for="theta">Horizontal transition angle (10°-20°) (θ):</label>
                 <input type="number" id="theta" required>
                 <br>
                 <label for="ba">Width of approach culvert (b<sub>a</sub>):</label>
@@ -668,7 +670,7 @@
             document.querySelector('.hw-value').textContent = `hw = ${hw.toFixed(1)} m`;
             document.querySelector('.Lin-value').textContent = `Lin = ${Lin.toFixed(2)} m`;
             document.querySelector('.Lfb-value').textContent = `Lfb = ${Lfb.toFixed(2)} m`;
-            document.querySelector('.theta-value').textContent = `θ = ${theta.toFixed(2)} m`;
+            document.querySelector('.theta-value').textContent = `θ = ${theta.toFixed(2)} °`;
         }
     </script>
 </body>
