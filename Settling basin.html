@@ -322,7 +322,7 @@
                 <input type="number" id="ba" required>
                 <br>
                 <p><u>3. INPUT FOR FORBAY</u></p>
-                <label for="tr">Retention time (t<sub>r</sub>):</label>
+                <label for="tr">Retention time (t<sub>r</sub> in minute):</label>
                 <input type="number" id="tr" required>
                 <br>
                 <label for="Hf">Average height (H<sub>r</sub>):</label>
@@ -393,8 +393,8 @@
             <p><strong>Width of basin (Bs in m):</strong> <span id="Bs"></span> m</p>
             <p><strong>Length of basin (L in m):</strong> <span id="L"></span> m</p>
             <p><strong>Depth of flow (h<sub>w</sub> in m):</strong> <span id="hw"></span> m</p>
-            <p><strong>Depth of sediment* (h<sub>sed</sub> in m):</strong> <span id="hsed"></span> m</p>
-            <p><i>(*Depth of sediments zero means the sediment is below wall bottom)</i></p>
+            
+            
             <p><strong>Depth of Settling basin excluding freeboard (h<sub>s</sub> in m):</strong> <span id="htotal"></span> m</p>
             <p><u>2. INLET TRANSITION</u></p>
             <p><strong>Length of inlet transition(L<sub>in</sub> in m):</strong> <span id="Lin"></span> m</p>
@@ -402,7 +402,7 @@
             <p><strong>Depth of opening(in m):</strong> <span id="ho"></span> m</p>
             <p><u>4. FORBAY</u></p>
             <p><strong>Length of forbay:</strong> <span id="Lfb"></span> m</p>
-            <p><strong>Sumbergence height at oulet:</strong> <span id="S1"></span> m</p>
+            <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> m</p>
            
         </div>
     </div>
@@ -599,8 +599,11 @@
             A0 = Do * Do;
             }
             const V0 = Q / A0;
-            const Su1 = 1.5*Math.pow(V0,2)/(2*9.81);
-            
+            //const Su1 = 1.5*Math.pow(V0,2)/(2*9.81);
+            const Su2 = (0.545 * V0) / Dc;
+            const Su3 = 2 * Dc;
+            //const Su = Math.max(Su1, Su2, Su3);
+
            
             
             
@@ -620,13 +623,13 @@
             document.getElementById('Bs').textContent = Bs.toFixed(2);
             document.getElementById('L').textContent = L.toFixed(2);
             document.getElementById('hw').textContent = hw.toFixed(2);
-            document.getElementById('hsed').textContent = hsed.toFixed(2);
+            
             document.getElementById('htotal').textContent = htotal.toFixed(2);
             document.getElementById('Lin').textContent = Lin.toFixed(2);
             document.getElementById('ho').textContent = ho.toFixed(2);
             document.getElementById('Lfb').textContent = Lfb.toFixed(2);
-            document.getElementById('S1').textContent = S1.toFixed(2);
-            document.getElementById('A0').textContent = A0.toFixed(2);
+            document.getElementById('Su').textContent = Su.toFixed(2);
+            //document.getElementById('A0').textContent = A0.toFixed(2);
             
             // Update L and Bs on the image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
