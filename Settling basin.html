@@ -125,6 +125,18 @@
             top: 5%; /* Adjust as needed */
             left: 10%; /* Adjust as needed */
         }
+        .drawing-section .Lfb-value {
+            top: 5%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
+        }
+        .drawing-section .Lfb-value {
+            top: 5%; /* Adjust as needed */
+            left: 60%; /* Adjust as needed */
+        }
+        .drawing-section .theta-value {
+            top: 10%; /* Adjust as needed */
+            left: 10%; /* Adjust as needed */
+        }
 
         .input-group {
             margin-bottom: 15px;
@@ -377,6 +389,8 @@
             <div class="Bs-value"></div>
             <div class="hw-value"></div>
             <div class="Lin-value"></div>
+             <div class="Lfb-value"></div>
+            <div class="theta-value"></div>
         </div>
 
         <!-- Result Section -->
@@ -653,6 +667,8 @@
             document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(1)} m`;
             document.querySelector('.hw-value').textContent = `hw = ${hw.toFixed(1)} m`;
             document.querySelector('.Lin-value').textContent = `Lin = ${Lin.toFixed(2)} m`;
+            document.querySelector('.Lfb-value').textContent = `Lfb = ${Lin.toFixed(2)} m`;
+            document.querySelector('.theta-value').textContent = `θ = ${Lin.toFixed(2)} m`;
         }
     </script>
 </body>
