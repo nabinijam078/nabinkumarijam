@@ -1,9 +1,9 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stilling basin</title>
+    <title>Stilling Basin Design</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -25,7 +25,6 @@ s<!DOCTYPE html>
         h2, h3, h4, h5, h6 {
             font-family: 'Roboto', sans-serif; /* Heading font */
             color: #0078d7;
-        
         }
 
         /* Header Styles */
@@ -220,23 +219,22 @@ s<!DOCTYPE html>
         <div class="input-section">
             <h3><u>HYDRAULIC DESIGN OF STILLING BASIN</u></h3>
             <form id="beamSectionForm">
-                
-                    <label for="Q">Flood discharge(Q in m<sup>3</sup>/s):</label>
-                    <input type="number" id="Q" required>
+                <label for="Q">Flood discharge (Q in m<sup>3</sup>/s):</label>
+                <input type="number" id="Q" required>
                 <br>
-                    <label for="HFL">Upstream water level ( HFL in m):</label>
-                    <input type="number" id="HFL" required>
+                <label for="HFL">Upstream water level (HFL in m):</label>
+                <input type="number" id="HFL" required>
                 <br>
-                    <label for="WIL">Upstream water level ( WIL in m):</label>
-                    <input type="number" id="WIL" required>
+                <label for="WIL">Weir invert level (WIL in m):</label>
+                <input type="number" id="WIL" required>
                 <br>
-                    <label for="TWL">Tail water level ( TWL in m):</label>
-                    <input type="number" id="TWL" required>
+                <label for="TWL">Tail water level (TWL in m):</label>
+                <input type="number" id="TWL" required>
                 <br>
-                    <label for="B">Length of spillway ( B in m):</label>
-                    <input type="number" id="B" required>
-            <br>
-                <label for="Type">Type of basin : </label>
+                <label for="B">Length of spillway (B in m):</label>
+                <input type="number" id="B" required>
+                <br>
+                <label for="Type">Type of basin:</label>
                 <select id="Type">
                     <option value="I">I</option>
                     <option value="II">II</option>
@@ -244,21 +242,18 @@ s<!DOCTYPE html>
                 <br>
                 <br>
                 <button type="button" onclick="Stillingbasin()">STILLING BASIN DESIGN</button>
-                
             </form>
 
+            <!-- Results Section -->
             <div class="result" id="result">
                 <h2>Design Results</h2>
-                
-                <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
-                <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
+                <!-- Results will be dynamically inserted here -->
             </div>
         </div>
 
         <!-- Drawing Section -->
         <div class="drawing-section">
-            <img src="Stillingbasin.png" alt="Stillingbasin Drawing">
+            <img src="Stillingbasin.png" alt="Stilling Basin Drawing">
         </div>
     </div>
 
@@ -291,31 +286,62 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-    function Stillingbasin() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
-    const HFL = parseFloat(document.getElementById('HFL').value); // High flood level
-    const WIL = parseFloat(document.getElementById('w').value); // Weir invert level
-    const TWL = parseFloat(document.getElementById('TWL').value); // Tail Water level
-    const B = parseFloat(document.getElementById('B').value); // Tail Water level    
-    const Type = document.getElementById('Type').value; // Type of stilling basin I or II
+        function Stillingbasin() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
+            const HFL = parseFloat(document.getElementById('HFL').value); // High flood level
+            const WIL = parseFloat(document.getElementById('WIL').value); // Weir invert level
+            const TWL = parseFloat(document.getElementById('TWL').value); // Tail Water level
+            const B = parseFloat(document.getElementById('B').value); // Length of spillway
+            const Type = document.getElementById('Type').value; // Type of stilling basin I or II
 
-    // Validate inputs
-    if (isNaN(Q) || isNaN(HFL) || isNaN(WIL) || isNaN(TWL))|| isNaN(B)) {
-        alert("Please enter valid numeric values for all fields.");
-        return;
-    }
+            // Validate inputs
+            if (isNaN(Q) || isNaN(HFL) || isNaN(WIL) || isNaN(TWL) || isNaN(B)) {
+                alert("Please enter valid numeric values for all fields.");
+                return;
+            }
 
-    // Display results
-    document.getElementById('hs').textContent = hs.toFixed(2);
-    document.getElementById('vf').textContent = vf.toFixed(2);
-    document.getElementById('check').textContent = check;
-    document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
-    document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-    document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
-}
+            // Common calculations
+            const g = 9.81; // Acceleration due to gravity
+            const hs = HFL - WIL; // Depth of flow
+            const vf = Q / (B * hs); // Velocity of flow
 
-        
+            // Initialize variables for results
+            let y1, y2, Lj, chuteHeight, sillHeight;
+
+            // Conditional logic based on the type of basin
+            if (Type === 'I') {
+                // Calculations for Type I basin
+                y1 = hs; // Incoming flow depth (example calculation)
+                y2 = y1 * 2; // Secondary flow depth (example calculation)
+                Lj = y2 * 5; // Length of jump (example calculation)
+
+                // Display results for Type I
+                document.getElementById('result').innerHTML = `
+                    <h2>Design Results for Type I Basin</h2>
+                    <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
+                    <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
+                    <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+                `;
+            } else if (Type === 'II') {
+                // Calculations for Type II basin
+                y1 = hs; // Incoming flow depth (example calculation)
+                y2 = y1 * 2.5; // Secondary flow depth (example calculation)
+                Lj = y2 * 6; // Length of jump (example calculation)
+                chuteHeight = y1 * 0.5; // Chute height (example calculation)
+                sillHeight = y2 * 0.3; // Sill height (example calculation)
+
+                // Display results for Type II
+                document.getElementById('result').innerHTML = `
+                    <h2>Design Results for Type II Basin</h2>
+                    <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
+                    <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
+                    <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+                    <p><strong>Chute height:</strong> ${chuteHeight.toFixed(2)} m</p>
+                    <p><strong>Sill height:</strong> ${sillHeight.toFixed(2)} m</p>
+                `;
+            }
+        }
     </script>
 </body>
 </html>
