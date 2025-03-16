@@ -252,26 +252,38 @@ s<!DOCTYPE html>
                     <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
                     <input type="number" id="Q" required>
                 <br>
-                    <label for="ds">Size of sediments to be transported (d<sub>s</sub> in mm):</label>
-                    <input type="number" id="ds" required>
-                
-                <p><u>CULVERT SIZE</u></p>
-                
-                    <label for="w">Width of culvert (w in m):</label>
-                    <input type="number" id="w" required>
-                 <br>
-                    <label for="hu">Haunch size (h<sub>u</sub>):</label>
-                    <input type="number" id="hu" required>
-                
-            <br>
-                <label for="MatType">Material Type : </label>
-                <select id="MatType">
-                    <option value="Concrete">Concrete</option>
-                    <option value="Steel">Steel</option>
+                    <label for="Lt">Length of tunnel (L<sub>t</sub> in m):</label>
+                    <input type="number" id="Lt" required>
+                <br>
+                 <label for="ShapeTunnel">Shape of tunnel : </label>
+                <select id="ShapeTunnel">
+                    <option value="Circular">Circular</option>
+                    <option value="Inverted D">Inverted D</option>
+                    <option value="Horse-Shoe">Horse-Shoe</option>
                 </select>
+                
+                    <label for="Dt">Diameter of Tunnel(D<sub>t</sub> in m):</label>
+                    <input type="number" id="Dt" required>
+                 <br>
+                    <label for="n">Manning's Constant (n):</label>
+                    <input type="number" id="n" required>
+                <br>
+                    <label for="NWL">Normal Water level at Forbay (NWL in m):</label>
+                    <input type="number" id="NWL" required>
+                <br>
+                    <label for="FS">Factor of Safety (F<sub>s</sub>):</label>
+                    <input type="number" id="FS" required>
+                <br>
+                    <label for="H">Gross Head (H in m):</label>
+                    <input type="number" id="H" required>
+                <br>
+                    <label for="T">Closing Time (T in s):</label>
+                    <input type="number" id="T" required>
+           
+               
                 <br>
                 <br>
-                <button type="button" onclick="calculateCulvert()">CULVERT DESIGN</button>
+                <button type="button" onclick="SurgeShaft()">SURGE SHAFT DESIGN</button>
                 
             </form>
 
@@ -321,7 +333,7 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-    function calculateCulvert() {
+    function SurgeShaft() {
     // Input values
     const Q = parseFloat(document.getElementById('Q').value); // Design discharge
     const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
