@@ -303,15 +303,65 @@
 
             // Common calculations
             const g = 9.81; // Acceleration due to gravity
-            const hs = HFL - WIL; // Depth of flow
-            const vf = Q / (B * hs); // Velocity of flow
-
+            const H = HFL - WIL; // Depth of flow
+            const HL=HFL-TWL; // Headloss 
+            'Critical depth
+            const qs =Qf/B; 
+            const yc = Math.pow(qs / (9.81),(1/3));
+            
             // Initialize variables for results
             let y1, y2, Lj, chuteHeight, sillHeight;
 
             // Conditional logic based on the type of basin
             if (Type === 'I') {
                 // Calculations for Type I basin
+                const z=HL/yc;
+                let y;
+                if (z<1){y=1+0.935562*Math.pow(z,0.368);}
+                else {y=1+0.935562*Math.pow(z,0.24;}
+
+                if (isNaN(z) || isNaN(y) || y === 0) {
+        console.error("Invalid input. Please ensure y is not zero.");
+        return null; // Return null for invalid inputs
+    }
+
+        // Define the function and its derivative
+        const f = (x) => Math.pow(y - x, 3) - 4 * x * y * z;
+        const df = (x) => -3 * Math.pow(y - x, 2) - 4 * y * z;
+
+        // Initial guess for x to calculate x
+        let x = y / 2; // You can adjust the initial guess as needed
+        let tolerance = 1e-6;
+        let maxIterations = 100;
+        let iteration = 0;
+
+        // Newton-Raphson iteration
+        while (iteration < maxIterations) {
+            const fx = f(x);
+            const dfx = df(x);
+
+            if (Math.abs(fx) < tolerance) {
+                break; // Converged to a solution
+            }
+
+            if (dfx === 0) {
+                console.error("No solution found.");
+                return null; // Return null if no solution is found
+            }
+
+            x = x - fx / dfx; // Update x
+            iteration++;
+            }
+
+            if (iteration >= maxIterations) {
+            console.error("Solution did not converge.");
+            return null; // Return null if the solution does not converge
+            } else {
+                return x; // Return the calculated value of x
+            }
+            
+
+                
                 y1 = hs; // Incoming flow depth 
                 y2 = y1 * 2; // Secondary flow depth 
                 Lj = y2 * 5; // Length of jump 
