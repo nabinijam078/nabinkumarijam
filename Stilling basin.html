@@ -367,7 +367,7 @@ function Stillingbasin() {
             <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
             <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
             <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
-            <p><strong>Basin Floor level (BFL>):</strong> ${BFL.toFixed(2)} m</p>
+            <p><strong>Basin Floor level (BFL):</strong> ${BFL.toFixed(2)} m</p>
         `;
     } else if (Type === 'II') {
         // Calculations for Type II basin
@@ -384,13 +384,13 @@ function Stillingbasin() {
         const H2 = 0.2 * y2;
         // Display results for Type II
         document.getElementById('result').innerHTML = `
-            <h2>Design Results for Type II Basin</h2>
+            <h3>DESIGN RESULT FOR TYPE-II</h3>
             <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
             <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
             <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
-            <p><strong>Chute height (H1>):</strong> ${H1.toFixed(2)} m</p>
-            <p><strong>Sill height (H2>):</strong> ${H2.toFixed(2)} m</p>
-            <p><strong>Basin Floor level (BFL>):</strong> ${BFL.toFixed(2)} m</p>
+            <p><strong>Chute height (H<sub>1</sub>):</strong> ${H1.toFixed(2)} m</p>
+            <p><strong>Sill height (H<sub>2</sub>>):</strong> ${H2.toFixed(2)} m</p>
+            <p><strong>Basin Floor level (BFL):</strong> ${BFL.toFixed(2)} m</p>
         `;
     }
 }
