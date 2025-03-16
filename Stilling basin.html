@@ -376,7 +376,7 @@ function Stillingbasin() {
         const Fr1=v1/Math.pow(9.81*y1,0.5);
         const y2=y1/2*(Math.pow((1+8*Fr1*Fr1),0.5)-1);
         //Length of jump
-        const Lj=(-0.0122*Fr1.Fr1+0.2877*Fr1+2.7002)*y1;
+        Lj=(-0.0122*Fr1.Fr1+0.2877*Fr1+2.7002)*y1;
         const BFL = TWL - y2;
         //Chute height
         const H1 = y1;
@@ -389,7 +389,7 @@ function Stillingbasin() {
             <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
             <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
             <p><strong>Chute height (H<sub>1</sub>):</strong> ${H1.toFixed(2)} m</p>
-            <p><strong>Sill height (H<sub>2</sub>>):</strong> ${H2.toFixed(2)} m</p>
+            <p><strong>Sill height (H<sub>2</sub>):</strong> ${H2.toFixed(2)} m</p>
             <p><strong>Basin Floor level (BFL):</strong> ${BFL.toFixed(2)} m</p>
         `;
     }
