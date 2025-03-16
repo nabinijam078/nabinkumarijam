@@ -291,40 +291,19 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-    function calculateCulvert() {
+    function Stillingbasin() {
     // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
-    const w = parseFloat(document.getElementById('w').value); // Assumed width of column
-    const hu = parseFloat(document.getElementById('hu').value); // Haunch size
-    const MatType = document.getElementById('MatType').value; // Material type
+    const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
+    const HFL = parseFloat(document.getElementById('HFL').value); // High flood level
+    const WIL = parseFloat(document.getElementById('w').value); // Weir invert level
+    const TWL = parseFloat(document.getElementById('TWL').value); // Tail Water level
+    const B = parseFloat(document.getElementById('B').value); // Tail Water level    
+    const Type = document.getElementById('Type').value; // Type of stilling basin I or II
 
     // Validate inputs
-    if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu)) {
+    if (isNaN(Q) || isNaN(HFL) || isNaN(WIL) || isNaN(TWL))|| isNaN(B)) {
         alert("Please enter valid numeric values for all fields.");
         return;
-    }
-
-    // Limiting velocity of flow
-    const v = 0.44 * Math.pow(ds, 0.5);
-    let vlim;
-    if (MatType === "Concrete") {
-        vlim = 1.5;
-    } else {
-        vlim = 2.5;
-    }
-    const va = Math.max(v, vlim);
-
-    // Area of flow
-    const Af = Q / va;
-    const hs = (Af + 2 * Math.pow(hu, 2)) / w;
-    const hw = Math.ceil(hs / 0.1) * 0.1;
-    const vf = Q / (hw * w - 2 * hu * hu);
-    let check;
-    if (vf <= va) {
-        check = "OK";
-    } else {
-        check = "NOT OK";
     }
 
     // Display results
