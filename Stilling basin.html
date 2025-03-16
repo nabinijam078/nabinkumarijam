@@ -357,6 +357,7 @@ function Stillingbasin() {
 
         y1 = x * yc;
         y2 = y * yc;
+        const BFL=TWL-y2;
         const Fr1 = Math.sqrt((Math.pow((2 * y2 / y1 + 1), 2) - 1) / 8); // Froude number
         Lj = (-0.146 * Math.pow(Fr1, 2) + 11.215 * Fr1 - 12.305) * y1; // Length of jump
 
@@ -366,21 +367,30 @@ function Stillingbasin() {
             <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
             <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
             <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+            <p><strong>Basin Floor level (BFL>):</strong> ${BFL.toFixed(2)} m</p>
         `;
     } else if (Type === 'II') {
         // Calculations for Type II basin
-        // Define how hs is calculated or provide the correct formula
-        const hs = 0; // Placeholder, replace with actual calculation
-        y1 = hs; // Incoming flow depth
-        y2 = y1 * 2.5; // Secondary flow depth
-        Lj = y2 * 6; // Length of jump
-
+        const v1=Math.pow(19.62*HL,0.5);
+        const y1=qs/v1;
+        const Fr1=v1/Math.pow(9.81*y1,0.5);
+        const y2=y1/2*(Math.pow((1+8*Fr1*Fr1),0.5)-1);
+        //Length of jump
+        const Lj=(-0.0122*Fr1.Fr1+0.2877*Fr1+2.7002)*y1;
+        const BFL = TWL - y2;
+        //Chute height
+        const H1 = y1;
+        //Sill height
+        const H2 = 0.2 * y2;
         // Display results for Type II
         document.getElementById('result').innerHTML = `
             <h2>Design Results for Type II Basin</h2>
             <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
             <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
             <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+            <p><strong>Chute height (H1>):</strong> ${H1.toFixed(2)} m</p>
+            <p><strong>Sill height (H2>):</strong> ${H2.toFixed(2)} m</p>
+            <p><strong>Basin Floor level (BFL>):</strong> ${BFL.toFixed(2)} m</p>
         `;
     }
 }
