@@ -38,10 +38,12 @@
 
         header h1 {
             margin: 0;
+            
             font-size: 1.3rem;
         }
         header h3 {
             margin: 0;
+            color: black;
             font-size: 0.9rem;
         }
 
@@ -318,7 +320,7 @@
                 const z=HL/yc;
                 let y;
                 if (z<1){y=1+0.935562*Math.pow(z,0.368);}
-                else {y=1+0.935562*Math.pow(z,0.24;}
+                else {y=1+0.935562*Math.pow(z,0.24);}
 
                 if (isNaN(z) || isNaN(y) || y === 0) {
         console.error("Invalid input. Please ensure y is not zero.");
@@ -359,16 +361,16 @@
             } else {
                 return x; // Return the calculated value of x
             }
-            
-
-                
-                y1 = hs; // Incoming flow depth 
-                y2 = y1 * 2; // Secondary flow depth 
-                Lj = y2 * 5; // Length of jump 
+            const y1=x*yc;
+                const y2=y*yc;
+                //Froude number of incoming flow
+                const Fr1=Math.pow(((Math.pow((2*y2/y1+1),2)-1)/8),0.5);
+                //Length of jump
+                const Lj=(-0.146*Fr1*Fr1+11.215*Fr1-12.305)*y1; 
 
                 // Display results for Type I
                 document.getElementById('result').innerHTML = `
-                    <h2>Design Results for Type I Basin</h2>
+                    <h3><u>DESIGN RESULT FOR TYPE I</u></h3>
                     <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
                     <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
                     <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
