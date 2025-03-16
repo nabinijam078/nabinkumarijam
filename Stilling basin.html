@@ -3,7 +3,7 @@ s<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pressurized Culvert</title>
+    <title>Stilling basin</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -96,34 +96,6 @@ s<!DOCTYPE html>
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-       
-        .drawing-section .w-value,
-        .drawing-section .hu-value,
-        .drawing-section .hw-value {
-            position: absolute;
-            font-size: .8rem;
-            
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .drawing-section .w-value {
-            top: 35%; /* Adjust as needed */
-            left: 40%; /* Adjust as needed */
-        }
-
-        .drawing-section .hw-value {
-            top: 20%; /* Adjust as needed */
-            left: 60%; /* Adjust as needed */
-        }
-        .drawing-section .hu-value {
-            top: 10%; /* Adjust as needed */
-            left: 35%; /* Adjust as needed */
-        }
-
 
         .input-group {
             margin-bottom: 15px;
@@ -246,37 +218,38 @@ s<!DOCTYPE html>
     <div class="content">
         <!-- Input Section -->
         <div class="input-section">
-            <h3><u>HYDRAULIC DESIGN OF PRESSURIZED CULVERT</u></h3>
+            <h3><u>HYDRAULIC DESIGN OF STILLING BASIN</u></h3>
             <form id="beamSectionForm">
                 
-                    <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
+                    <label for="Q">Flood discharge(Q in m<sup>3</sup>/s):</label>
                     <input type="number" id="Q" required>
                 <br>
-                    <label for="ds">Size of sediments to be transported (d<sub>s</sub> in mm):</label>
-                    <input type="number" id="ds" required>
-                
-                <p><u>CULVERT SIZE</u></p>
-                
-                    <label for="w">Width of culvert (w in m):</label>
-                    <input type="number" id="w" required>
-                 <br>
-                    <label for="hu">Haunch size (h<sub>u</sub>):</label>
-                    <input type="number" id="hu" required>
-                
+                    <label for="HFL">Upstream water level ( HFL in m):</label>
+                    <input type="number" id="HFL" required>
+                <br>
+                    <label for="WIL">Upstream water level ( WIL in m):</label>
+                    <input type="number" id="WIL" required>
+                <br>
+                    <label for="TWL">Tail water level ( TWL in m):</label>
+                    <input type="number" id="TWL" required>
+                <br>
+                    <label for="B">Length of spillway ( B in m):</label>
+                    <input type="number" id="B" required>
             <br>
-                <label for="MatType">Material Type : </label>
-                <select id="MatType">
-                    <option value="Concrete">Concrete</option>
-                    <option value="Steel">Steel</option>
+                <label for="Type">Type of basin : </label>
+                <select id="Type">
+                    <option value="I">I</option>
+                    <option value="II">II</option>
                 </select>
                 <br>
                 <br>
-                <button type="button" onclick="calculateCulvert()">CULVERT DESIGN</button>
+                <button type="button" onclick="Stillingbasin()">STILLING BASIN DESIGN</button>
                 
             </form>
 
             <div class="result" id="result">
                 <h2>Design Results</h2>
+                
                 <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
                 <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
                 <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
@@ -285,10 +258,7 @@ s<!DOCTYPE html>
 
         <!-- Drawing Section -->
         <div class="drawing-section">
-            <img src="Culvert.png" alt="Spillway Drawing">
-            <div class="w-value" id="p-value">w = <span id="p-display"></span> m</div>
-            <div class="hw-value" id="hw-value">hw = <span id="hw-display"></span> m</div>
-            <div class="hu-value" id="hu-value">hu = <span id="hu-display"></span> m</div>
+            <img src="Stillingbasin.png" alt="Stillingbasin Drawing">
         </div>
     </div>
 
