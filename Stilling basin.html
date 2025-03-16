@@ -288,56 +288,51 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-        function Stillingbasin() {
-            // Input values
-            const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
-            const HFL = parseFloat(document.getElementById('HFL').value); // High flood level
-            const WIL = parseFloat(document.getElementById('WIL').value); // Weir invert level
-            const TWL = parseFloat(document.getElementById('TWL').value); // Tail Water level
-            const B = parseFloat(document.getElementById('B').value); // Length of spillway
-            const Type = document.getElementById('Type').value; // Type of stilling basin I or II
+function Stillingbasin() {
+    // Input values
+    const Q = parseFloat(document.getElementById('Q').value); // Flood discharge
+    const HFL = parseFloat(document.getElementById('HFL').value); // High flood level
+    const WIL = parseFloat(document.getElementById('WIL').value); // Weir invert level
+    const TWL = parseFloat(document.getElementById('TWL').value); // Tail Water level
+    const B = parseFloat(document.getElementById('B').value); // Length of spillway
+    const Type = document.getElementById('Type').value; // Type of stilling basin I or II
 
-            // Validate inputs
-            if (isNaN(Q) || isNaN(HFL) || isNaN(WIL) || isNaN(TWL) || isNaN(B)) {
-                alert("Please enter valid numeric values for all fields.");
-                return;
-            }
-
-            // Common calculations
-            const g = 9.81; // Acceleration due to gravity
-            const H = HFL - WIL; // Depth of flow
-            const HL=HFL-TWL; // Headloss 
-            'Critical depth
-            const qs =Qf/B; 
-            const yc = Math.pow(qs / (9.81),(1/3));
-            
-            // Initialize variables for results
-            let y1, y2, Lj, chuteHeight, sillHeight;
-
-            // Conditional logic based on the type of basin
-            if (Type === 'I') {
-                // Calculations for Type I basin
-                const z=HL/yc;
-                let y;
-                if (z<1){y=1+0.935562*Math.pow(z,0.368);}
-                else {y=1+0.935562*Math.pow(z,0.24);}
-
-                if (isNaN(z) || isNaN(y) || y === 0) {
-        console.error("Invalid input. Please ensure y is not zero.");
-        return null; // Return null for invalid inputs
+    // Validate inputs
+    if (isNaN(Q) || isNaN(HFL) || isNaN(WIL) || isNaN(TWL) || isNaN(B)) {
+        alert("Please enter valid numeric values for all fields.");
+        return;
     }
 
-        // Define the function and its derivative
+    // Common calculations
+    const g = 9.81; // Acceleration due to gravity
+    const H = HFL - WIL; // Depth of flow
+    const HL = HFL - TWL; // Headloss
+    const qs = Q / B; // Discharge per unit width
+    const yc = Math.pow((Math.pow(qs, 2) / g), 1/3); // Critical depth
+
+    // Initialize variables for results
+    let y1, y2, Lj;
+
+    // Conditional logic based on the type of basin
+    if (Type === 'I') {
+        // Calculations for Type I basin
+        const z = HL / yc;
+        let y;
+        if (z < 1) {
+            y = 1 + 0.935562 * Math.pow(z, 0.368);
+        } else {
+            y = 1 + 0.935562 * Math.pow(z, 0.24);
+        }
+
+        // Newton-Raphson iteration to solve for x
         const f = (x) => Math.pow(y - x, 3) - 4 * x * y * z;
         const df = (x) => -3 * Math.pow(y - x, 2) - 4 * y * z;
 
-        // Initial guess for x to calculate x
-        let x = y / 2; // You can adjust the initial guess as needed
+        let x = y / 2; // Initial guess
         let tolerance = 1e-6;
         let maxIterations = 100;
         let iteration = 0;
 
-        // Newton-Raphson iteration
         while (iteration < maxIterations) {
             const fx = f(x);
             const dfx = df(x);
@@ -348,52 +343,47 @@
 
             if (dfx === 0) {
                 console.error("No solution found.");
-                return null; // Return null if no solution is found
+                return;
             }
 
             x = x - fx / dfx; // Update x
             iteration++;
-            }
-
-            if (iteration >= maxIterations) {
-            console.error("Solution did not converge.");
-            return null; // Return null if the solution does not converge
-            } else {
-                return x; // Return the calculated value of x
-            }
-            const y1=x*yc;
-                const y2=y*yc;
-                //Froude number of incoming flow
-                const Fr1=Math.pow(((Math.pow((2*y2/y1+1),2)-1)/8),0.5);
-                //Length of jump
-                const Lj=(-0.146*Fr1*Fr1+11.215*Fr1-12.305)*y1; 
-
-                // Display results for Type I
-                document.getElementById('result').innerHTML = `
-                    <h3><u>DESIGN RESULT FOR TYPE I</u></h3>
-                    <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
-                    <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
-                    <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
-                `;
-            } else if (Type === 'II') {
-                // Calculations for Type II basin
-                y1 = hs; // Incoming flow depth (example calculation)
-                y2 = y1 * 2.5; // Secondary flow depth (example calculation)
-                Lj = y2 * 6; // Length of jump (example calculation)
-                chuteHeight = y1 * 0.5; // Chute height (example calculation)
-                sillHeight = y2 * 0.3; // Sill height (example calculation)
-
-                // Display results for Type II
-                document.getElementById('result').innerHTML = `
-                    <h2>Design Results for Type II Basin</h2>
-                    <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
-                    <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
-                    <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
-                    <p><strong>Chute height:</strong> ${chuteHeight.toFixed(2)} m</p>
-                    <p><strong>Sill height:</strong> ${sillHeight.toFixed(2)} m</p>
-                `;
-            }
         }
+
+        if (iteration >= maxIterations) {
+            console.error("Solution did not converge.");
+            return;
+        }
+
+        y1 = x * yc;
+        y2 = y * yc;
+        const Fr1 = Math.sqrt((Math.pow((2 * y2 / y1 + 1), 2) - 1) / 8); // Froude number
+        Lj = (-0.146 * Math.pow(Fr1, 2) + 11.215 * Fr1 - 12.305) * y1; // Length of jump
+
+        // Display results for Type I
+        document.getElementById('result').innerHTML = `
+            <h3><u>DESIGN RESULT FOR TYPE I</u></h3>
+            <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
+            <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
+            <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+        `;
+    } else if (Type === 'II') {
+        // Calculations for Type II basin
+        // Define how hs is calculated or provide the correct formula
+        const hs = 0; // Placeholder, replace with actual calculation
+        y1 = hs; // Incoming flow depth
+        y2 = y1 * 2.5; // Secondary flow depth
+        Lj = y2 * 6; // Length of jump
+
+        // Display results for Type II
+        document.getElementById('result').innerHTML = `
+            <h2>Design Results for Type II Basin</h2>
+            <p><strong>Incoming flow depth (y<sub>1</sub>):</strong> ${y1.toFixed(2)} m</p>
+            <p><strong>Secondary flow depth (y<sub>2</sub>):</strong> ${y2.toFixed(2)} m</p>
+            <p><strong>Length of jump (L<sub>j</sub>):</strong> ${Lj.toFixed(2)} m</p>
+        `;
+    }
+}
     </script>
 </body>
 </html>
