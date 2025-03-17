@@ -306,7 +306,6 @@
                 <h3>DESIGN RESULT</h3>
                 <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
                 <p><strong>Normal Water level in Surge Shaft (NWLs):</strong> <span id="NWLs"></span> m</p>
-                <p><strong>Maximum upsurge (Z<sub>up</sub>):</strong> <span id="Zup"></span> m</p>
                 <p><strong>Maximum water level (MWL):</strong> <span id="MWL"></span> m</p>
                 <p><strong>Upsurge level (USL):</strong> <span id="MWLnormal"></span> m</p>
                 <p><strong>Downsurge level (DSL):</strong> <span id="DSL"></span> m</p>
@@ -317,12 +316,12 @@
         <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Surgeshaft.png" alt="Spillway Drawing">
-            <div class="Ds_input-value" id="p-value">Ds = <span id="Ds_input-display"></span> m</div>
-            <div class="NWLs-value" id="hw-value">NWL = <span id="NWLs-display"></span> m</div>
-            <div class="MWL-value" id="hu-value">MWL = <span id="MWL-display"></span> m</div>
-            <div class="USL-value" id="hu-value">USL = <span id="MWLnormal-display"></span> m</div>
-            <div class="DSL-value" id="hu-value">DSL = <span id="DSL-display"></span> m</div>
-            <div class="TCL-value" id="hu-value">DSL = <span id="TCL-display"></span> m</div>
+            <div class="Ds_input-value" id="Ds_input-value">Ds = <span id="Ds_input-display"></span> m</div>
+            <div class="NWLs-value" id="NWLs-value">NWL = <span id="NWLs-display"></span> m</div>
+            <div class="MWL-value" id="MWL-value">MWL = <span id="MWL-display"></span> m</div>
+            <div class="USL-value" id="USL-value">USL = <span id="MWLnormal-display"></span> m</div>
+            <div class="DSL-value" id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
+            <div class="TCL-value" id="TCL-value">DSL = <span id="TCL-display"></span> m</div>
         </div>
     </div>
 
@@ -487,7 +486,6 @@ function SurgeShaft() {
     // Display results
     document.getElementById('Ds').textContent = Ds.toFixed(2);
     document.getElementById('NWLs').textContent = NWLs.toFixed(2);
-    document.getElementById('Zup').textContent = Zup.toFixed(2);
     document.getElementById('MWL').textContent = MWL.toFixed(2);
     document.getElementById('MWLnormal').textContent = MWLnormal.toFixed(2);
     document.getElementById('DSL').textContent = DSL.toFixed(2);
