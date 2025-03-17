@@ -301,7 +301,7 @@ s<!DOCTYPE html>
         <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Surgeshaft.png" alt="Spillway Drawing">
-            <div class="w-value" id="p-value">w = <span id="p-display"></span> m</div>
+            <div class="Ds_input-value" id="p-value">Ds = <span id="Ds_input-display"></span> m</div>
             <div class="hw-value" id="hw-value">hw = <span id="hw-display"></span> m</div>
             <div class="hu-value" id="hu-value">hu = <span id="hu-display"></span> m</div>
         </div>
@@ -396,7 +396,7 @@ s<!DOCTYPE html>
     document.getElementById('Ds').textContent = Ds.toFixed(2);
 
     // Update drawing values (if needed)
-    // document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
+    document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
     // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
     // document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
 }
