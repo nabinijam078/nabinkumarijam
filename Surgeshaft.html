@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple surge shaft</title>
+    <title>Simple Surge Shaft</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -19,11 +19,11 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes full height */
+            min-height: 100vh;
         }
 
         h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif; /* Heading font */
+            font-family: 'Roboto', sans-serif;
             color: #0078d7;
         }
 
@@ -39,11 +39,6 @@
         header h1 {
             margin: 0;
             font-size: 1.3rem;
-        }
-        header h3 {
-            margin: 0;
-            color: black;
-            font-size: 0.9rem;
         }
 
         /* Navigation Bar */
@@ -76,17 +71,17 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow content to grow and push footer down */
+            flex: 1;
             display: flex;
             justify-content: space-between;
         }
 
         .input-section {
-            width: 40%; /* Input section takes 60% of the width */
+            width: 40%;
         }
 
         .drawing-section {
-            width: 35%; /* Drawing section takes 35% of the width */
+            width: 35%;
             position: relative;
         }
 
@@ -102,11 +97,11 @@
         .drawing-section .MWL-value,
         .drawing-section .USL-value,
         .drawing-section .DSL-value,
+        .drawing-section .TCL-value,
         .drawing-section .SST-value,
-        .drawing-section .Hss-value,
-        .drawing-section .TCL-value {
+        .drawing-section .Hss-value {
             position: absolute;
-            font-size: .8rem;
+            font-size: 0.8rem;
             color: black;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 5px 10px;
@@ -114,38 +109,45 @@
         }
 
         .drawing-section .Ds_input-value {
-            top: 15%; /* Adjust as needed */
-            left: 40%; /* Adjust as needed */
+            top: 15%;
+            left: 40%;
         }
+
         .drawing-section .NWLs-value {
-            top: 8%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 8%;
+            left: 65%;
         }
 
         .drawing-section .MWL-value {
-            top: 2%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 2%;
+            left: 65%;
         }
+
         .drawing-section .USL-value {
-            top: 5%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 5%;
+            left: 65%;
         }
+
         .drawing-section .DSL-value {
-            top: 12%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 12%;
+            left: 65%;
         }
+
         .drawing-section .TCL-value {
-            top: 17%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 17%;
+            left: 65%;
         }
+
         .drawing-section .SST-value {
-            top: 0.5%; /* Adjust as needed */
-            left: 65%; /* Adjust as needed */
+            top: 0.05%;
+            left: 65%;
         }
+
         .drawing-section .Hss-value {
-            top: 7.5%; /* Adjust as needed */
-            left: 15%; /* Adjust as needed */
+            top: 7.5%;
+            left: 15%;
         }
+
         .input-group {
             margin-bottom: 15px;
         }
@@ -154,7 +156,7 @@
             display: block;
             margin-bottom: 5px;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for labels */
+            font-size: 0.8rem;
         }
 
         .input-group input {
@@ -162,18 +164,21 @@
             padding: 8px;
             box-sizing: border-box;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem; /* Reduced font size for inputs */
+            font-size: 0.9rem;
         }
 
-        p { font-family: 'Open Sans', sans-serif; font-size: 13px; text-align: justify; }
-        label { font-family: 'Open Sans', sans-serif; font-size: 13px; text-align: justify; }
+        p, label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            text-align: justify;
+        }
 
         .result {
             margin-top: 20px;
             padding: 10px;
             background-color: #f4f4f4;
             border: 1px solid #ccc;
-            font-size: 0.9rem; /* Reduced font size for inputs */
+            font-size: 0.9rem;
         }
 
         /* Footer Styles */
@@ -184,7 +189,7 @@
             padding: 10px;
             width: 100%;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            flex-shrink: 0; /* Prevent footer from shrinking */
+            flex-shrink: 0;
         }
 
         .social-links {
@@ -192,15 +197,15 @@
         }
 
         .social-links a {
-            color: #333; /* Dark color for icons */
+            color: #333;
             text-decoration: none;
             margin: 0 10px;
-            font-size: 1.8rem; /* Icon size */
+            font-size: 1.8rem;
             transition: color 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #0078d7; /* Change color on hover */
+            color: #0078d7;
         }
 
         .copyright {
@@ -214,7 +219,7 @@
         .copyright p {
             margin: 0;
             font-size: 0.7rem;
-            color: #333; /* Dark text for contrast */
+            color: #333;
         }
 
         /* Time and Date Styles */
@@ -270,7 +275,7 @@
             <h3 style="text-decoration: underline;">SIMPLE SURGE SHAFT</h3>
             <form id="beamSectionForm">
                 <div class="input-group">
-                    <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
+                    <label for="Q">Design discharge (Q in m<sup>3</sup>/s):</label>
                     <input type="number" id="Q" required>
                 </div>
                 <div class="input-group">
@@ -278,7 +283,7 @@
                     <input type="number" id="Lt" required>
                 </div>
                 <div class="input-group">
-                    <label for="ShapeTunnel">Shape of tunnel : </label>
+                    <label for="ShapeTunnel">Shape of tunnel:</label>
                     <select id="ShapeTunnel">
                         <option value="Circular">Circular</option>
                         <option value="Inverted D">Inverted D</option>
@@ -286,7 +291,7 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="Dt">Diameter of Tunnel(D<sub>t</sub> in m):</label>
+                    <label for="Dt">Diameter of Tunnel (D<sub>t</sub> in m):</label>
                     <input type="number" id="Dt" required>
                 </div>
                 <div class="input-group">
@@ -306,7 +311,7 @@
                     <input type="number" id="H" required>
                 </div>
                 <div class="input-group">
-                    <label for="T">Free board(T in m):</label>
+                    <label for="T">Free board (T in m):</label>
                     <input type="number" id="T" required>
                 </div>
                 <div class="input-group">
@@ -337,7 +342,7 @@
             <div class="DSL-value" id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
             <div class="TCL-value" id="TCL-value">TCL = <span id="TCL-display"></span> m</div>
             <div class="SST-value" id="SST-value">Top = <span id="SST-display"></span> m</div>
-            <div class="Hss-value" id="SST-value">H = <span id="Hss-display"></span> m</div>
+            <div class="Hss-value" id="Hss-value">H = <span id="Hss-display"></span> m</div>
         </div>
     </div>
 
@@ -345,10 +350,10 @@
     <footer>
         <div class="social-links">
             <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+                <i class="fab fa-facebook"></i>
             </a>
             <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+                <i class="fab fa-linkedin"></i>
             </a>
         </div>
         <div class="copyright">
@@ -364,167 +369,157 @@
             datetimeElement.textContent = now.toLocaleString();
         }
 
-        // Update the time and date every second
         setInterval(updateDateTime, 1000);
-
-        // Initial call to display the time and date immediately
         updateDateTime();
 
-function f(Zup, L, g, beta, Phi, v) {
-    const term1 = L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2));
-    const term2 = Zup / (beta * Math.pow(v, 2));
-    const term3 = term1 * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
-    return term1 - term2 - term3;
-}
+        function SurgeShaft() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value);
+            const Lt = parseFloat(document.getElementById('Lt').value);
+            const ShapeTunnel = document.getElementById('ShapeTunnel').value;
+            const Dt = parseFloat(document.getElementById('Dt').value);
+            const n = parseFloat(document.getElementById('n').value);
+            const NWL = parseFloat(document.getElementById('NWL').value);
+            const FS = parseFloat(document.getElementById('FS').value);
+            const H = parseFloat(document.getElementById('H').value);
+            const T = parseFloat(document.getElementById('T').value);
+            const Ds_input = parseFloat(document.getElementById('Ds_input').value);
 
-function fPrime(Zup, L, g, beta, Phi, v) {
-    const term1 = -1 / (beta * Math.pow(v, 2));
-    const term2 = (2 * g * Phi / L) * (L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2))) * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
-    return term1 - term2;
-}
+            // Validate inputs
+            if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(NWL) || isNaN(FS) || isNaN(H) || isNaN(T) || isNaN(Ds_input)) {
+                alert("Please enter valid numeric values for all fields.");
+                return;
+            }
 
-function newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations) {
-    let Zup = initialGuess;
-    for (let i = 0; i < maxIterations; i++) {
-        const fValue = f(Zup, L, g, beta, Phi, v);
-        const fDerivative = fPrime(Zup, L, g, beta, Phi, v);
-        const ZupNew = Zup - fValue / fDerivative;
+            // Area of tunnel
+            let f;
+            if (ShapeTunnel === "Circular") {
+                f = (3.1416 * Math.pow(Dt, 2)) / 4;
+            } else if (ShapeTunnel === "Inverted D") {
+                f = (Dt * Dt) / 2 + (3.1416 * Math.pow(Dt, 2)) / 8;
+            } else {
+                f = (3.3169 * Dt * Dt) / 4;
+            }
 
-        if (Math.abs(ZupNew - Zup) < tolerance) {
-            return ZupNew;
+            // Perimeter of tunnel
+            let Pt;
+            if (ShapeTunnel === "Circular") {
+                Pt = 3.1416 * Dt;
+            } else if (ShapeTunnel === "Inverted D") {
+                Pt = 2 * Dt + (3.1416 * Dt) / 2;
+            } else {
+                Pt = (6.5331 * Dt) / 2;
+            }
+
+            // Hydraulic radius
+            const Rf = f / Pt;
+
+            // Calculate beta
+            const beta = (n * n * Lt) / Math.pow(Rf, 4 / 3);
+
+            // Velocity in the tunnel
+            const vo = Q / f;
+
+            // Head loss
+            const Ho = H - beta * vo * vo;
+
+            // Area of surge shaft according to Thoma
+            const Athoma = (FS * Lt * f) / (19.62 * beta * Ho);
+
+            // Diameter of Surge shaft
+            const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
+            const hf = beta * (vo * vo);
+            const NWLs = NWL - hf;
+
+            // Area of surge shaft
+            const Asurge = 3.1416 * Math.pow(Ds_input, 2) / 4;
+
+            const Phi1 = Asurge / f;
+
+            // Calculation of Maximum upsurge
+            const tolerance = 0.00001;
+            const maxIterations = 100;
+            const initialGuess = 4.0;
+
+            // Solve using Newton-Raphson method
+            const L = Lt;
+            const g = 9.81;
+            const v = vo;
+            const Phi = Phi1;
+
+            const Zup = newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations);
+            const Zmax = v * Math.pow(L * f / (g * Asurge), 0.5);
+            const MWL = NWL + Zmax;
+            const P0 = hf / Zmax;
+            const USL = NWL + Zup;
+
+            // Downsurge calculations
+            const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo * vo / (9.81 * Asurge), 0.5);
+            const Zd2 = -(0.333 * hf + Math.pow(Math.pow(0.133 * hf, 2) + L * f * vo * vo / (9.81 * Asurge), 0.5);
+            const Zd3 = -(1 + 0.125 * P0) * Zmax;
+            const Zd = Math.min(Zd1, Zd2, Zd3);
+            const DSL = NWL + Zd;
+
+            // Tunnel crown level
+            const S1 = 1.5 * Math.pow(vo, 2) / 19.62;
+            const S2 = 0.545 * vo * (Dt) * Dt;
+            const S3 = 1.5 * Dt;
+            const S = -Math.max(S1, S2, S3);
+            const TCL = DSL + S;
+
+            // Surge shaft height
+            const SST = MWL + T;
+            const Hss = SST - TCL;
+
+            // Display results
+            document.getElementById('Ds').textContent = Ds.toFixed(2);
+            document.getElementById('NWLs').textContent = NWLs.toFixed(2);
+            document.getElementById('MWL').textContent = MWL.toFixed(2);
+            document.getElementById('USL').textContent = USL.toFixed(2);
+            document.getElementById('DSL').textContent = DSL.toFixed(2);
+            document.getElementById('TCL').textContent = TCL.toFixed(2);
+            document.getElementById('SST').textContent = SST.toFixed(2);
+            document.getElementById('Hss').textContent = Hss.toFixed(2);
+
+            // Update drawing values
+            document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2);
+            document.getElementById('NWLs-display').textContent = NWLs.toFixed(2);
+            document.getElementById('MWL-display').textContent = MWL.toFixed(2);
+            document.getElementById('USL-display').textContent = USL.toFixed(2);
+            document.getElementById('DSL-display').textContent = DSL.toFixed(2);
+            document.getElementById('TCL-display').textContent = TCL.toFixed(2);
+            document.getElementById('SST-display').textContent = SST.toFixed(2);
+            document.getElementById('Hss-display').textContent = Hss.toFixed(2);
         }
 
-        Zup = ZupNew;
-    }
-    return Zup; // Return the last approximation if maxIterations is reached
-}
+        function newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations) {
+            let Zup = initialGuess;
+            for (let i = 0; i < maxIterations; i++) {
+                const fValue = f(Zup, L, g, beta, Phi, v);
+                const fDerivative = fPrime(Zup, L, g, beta, Phi, v);
+                const ZupNew = Zup - fValue / fDerivative;
 
-function SurgeShaft() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const Lt = parseFloat(document.getElementById('Lt').value); // Length of tunnel
-    const ShapeTunnel = document.getElementById('ShapeTunnel').value; // Tunnel Shape
-    const Dt = parseFloat(document.getElementById('Dt').value); // Diameter of tunnel
-    const n = parseFloat(document.getElementById('n').value); // Manning's constant
-    const NWL = parseFloat(document.getElementById('NWL').value); // Normal Water level
-    const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
-    const H = parseFloat(document.getElementById('H').value); // Gross head
-    const Ds_input = parseFloat(document.getElementById('Ds_input').value); // Revised diameter of surge shaft
+                if (Math.abs(ZupNew - Zup) < tolerance) {
+                    return ZupNew;
+                }
 
-    // Validate inputs
-    if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
-        alert("Please enter valid numeric values for all fields.");
-        return;
-    }
+                Zup = ZupNew;
+            }
+            return Zup;
+        }
 
-    // Area of tunnel
-    let f;
-    if (ShapeTunnel === "Circular") {
-        f = (3.1416 * Math.pow(Dt, 2)) / 4;
-    } else if (ShapeTunnel === "Inverted D") {
-        f = (Dt * Dt) / 2 + (3.1416 * Math.pow(Dt, 2)) / 8;
-    } else {
-        f = (3.3169 * Dt * Dt) / 4;
-    }
+        function f(Zup, L, g, beta, Phi, v) {
+            const term1 = L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2));
+            const term2 = Zup / (beta * Math.pow(v, 2));
+            const term3 = term1 * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2 - term3;
+        }
 
-    // Perimeter of tunnel
-    let Pt;
-    if (ShapeTunnel === "Circular") {
-        Pt = 3.1416 * Dt;
-    } else if (ShapeTunnel === "Inverted D") {
-        Pt = 2*Dt  + (3.1416 * Dt) / 2;
-    } else {
-        Pt = (6.5331 * Dt) / 2;
-    }
-
-    // Hydraulic radius
-    const Rf = f / Pt;
-
-    // Calculate beta
-    const beta = (n * n * Lt) / Math.pow(Rf, 4 / 3);
-
-    // Velocity in the tunnel
-    const vo = Q / f;
-
-    // Head loss
-    const Ho = H - beta * vo * vo;
-
-    // Area of surge shaft according to Thoma
-    const Athoma = (FS * Lt * f) / (19.62 * beta * Ho);
-
-    // Diameter of Surge shaft
-    const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
-    const hf = beta * (vo * vo);
-    const NWLs = NWL - hf;
-
-    // Area of surge shaft
-    const Asurge = 3.1416 * Math.pow(Ds_input, 2) / 4;
-
-    const Phi1 = Asurge / f;
-
-    // Calculation of Maximum upsurge
-    const tolerance = 0.00001;
-    const maxIterations = 100;
-
-    // Hardcoded initial assumption for Zup
-    const initialGuess = 4.0; // You can change this value as needed
-
-    // Solve using Newton-Raphson method
-    const L = Lt; // Assuming L is the length of the tunnel
-    const g = 9.81; // Acceleration due to gravity
-    const v = vo; // Velocity in the tunnel
-    const Phi = Phi1; 
-
-    const Zup = newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations);
-    //Maximum surge
-    const Zmax=v*Math.pow(L*f/(g*Asurge),.5);
-    const MWL=NWL+Zmax;
-    const P0=hf/Zmax;
-    const USL=NWL+Zup;
-    // DOWNSURGE
-    //1. Ph. Forchheimer formula
-    const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
-    //2. A. Schafer
-    const Zd2 = -(0.333 * hf + Math.pow(Math.pow(0.133 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
-    // 3. Calame and Gaden formula
-    const Zd3 = -(1 + 0.125 * P0) * Zmax;
-    const Zd=Math.min(Zd1,Zd2,Zd3);
-    const DSL=NWL+Zd;
-
-    // Tunnel crown level
-    const S1=1.5*Math.pow(vo,2)/19.62;
-    const S2=0.545*vo*(Dt)*Dt;
-    const S3=1.5*Dt;
-    const S=-Math.max(S1,S2,S3);
-    const TCL=DSL+S;
-
-    // Surge shaft height
-    const SST=MWL+T;
-    const Hss=SST-TCL;
-    
-    
-    // 3. Calame and Gaden formula
-    // Display results
-    document.getElementById('Ds').textContent = Ds.toFixed(2);
-    document.getElementById('Ds_input').textContent = Ds_input.toFixed(2);
-    document.getElementById('NWLs').textContent = NWLs.toFixed(2);
-    document.getElementById('MWL').textContent = MWL.toFixed(2);
-    document.getElementById('USL').textContent = USL.toFixed(2);
-    document.getElementById('DSL').textContent = DSL.toFixed(2);
-     document.getElementById('TCL').textContent = TCL.toFixed(2);
-    document.getElementById('SST').textContent = SST.toFixed(2);
-    document.getElementById('Hss').textContent = Hss.toFixed(2);
-    
-    // Update drawing values (if needed)
-    document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Diameter of surge shaft
-    document.getElementById('NWLs-display').textContent = NWLs.toFixed(2); // Normal water level
-    document.getElementById('MWL-display').textContent = MWL.toFixed(2); // Maximum water level
-    document.getElementById('USL-display').textContent = USL.toFixed(2); // Upsurge level
-    document.getElementById('DSL-display').textContent = DSL.toFixed(2); // Downsurge level
-    document.getElementById('TCL-display').textContent = TCL.toFixed(2); // Upsurge level
-    document.getElementById('SST-display').textContent = SST.toFixed(2); // Top level of surge shaft
-    document.getElementById('Hss-display').textContent = Hss.toFixed(2); // Top level of surge shaft
-}
+        function fPrime(Zup, L, g, beta, Phi, v) {
+            const term1 = -1 / (beta * Math.pow(v, 2));
+            const term2 = (2 * g * Phi / L) * (L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2))) * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2;
+        }
     </script>
 </body>
 </html>
