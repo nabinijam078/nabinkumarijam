@@ -333,59 +333,67 @@ s<!DOCTYPE html>
         // Initial call to display the time and date immediately
         updateDateTime();
 
-    function SurgeShaft() {
+   function SurgeShaft() {
     // Input values
     const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const Lt = parseFloat(document.getElementById('Lt').value); // Diameter of tunnel
-    const ShapeTunnel = parseFloat(document.getElementById('ShapeTunnel').value); // Tunnel Shape
+    const Lt = parseFloat(document.getElementById('Lt').value); // Length of tunnel
+    const ShapeTunnel = document.getElementById('ShapeTunnel').value; // Tunnel Shape
     const Dt = parseFloat(document.getElementById('Dt').value); // Diameter of tunnel
-    const n = document.getElementById('n').value; // Manning's constant
-    const NWL = document.getElementById('NWL').value; // Manning's constant
-    const FS = document.getElementById('FS').value; // Factor of safety
-    const H = document.getElementById('H').value; //Gross head
-    const T = document.getElementById('T').value; // Closing time
-        
+    const n = parseFloat(document.getElementById('n').value); // Manning's constant
+    const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
+    const H = parseFloat(document.getElementById('H').value); // Gross head
+
     // Validate inputs
-    if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n)|| isNaN(FS)|| isNaN(H)|| isNaN(T)) {
+    if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
         alert("Please enter valid numeric values for all fields.");
         return;
     }
 
     // Area of tunnel
-    
     let f;
     if (ShapeTunnel === "Circular") {
-        f = 3.1416*Math.pow(Dt,2)/4;
-    } else if (ShapeTunnel === "Inverted D"){
-        f = Dt * Dt / 2 + 3.1416*Math.pow(Dt,2)/8;
-    }else {f=3.3169*Dt*Dt/4;}
+        f = (3.1416 * Math.pow(Dt, 2)) / 4;
+    } else if (ShapeTunnel === "Inverted D") {
+        f = (Dt * Dt) / 2 + (3.1416 * Math.pow(Dt, 2)) / 8;
+    } else {
+        f = (3.3169 * Dt * Dt) / 4;
+    }
 
+    // Perimeter of tunnel
     let Pt;
     if (ShapeTunnel === "Circular") {
-        Pt = 3.1416*Dt;
-    } else if (ShapeTunnel === "Inverted D"){
-        Pt = Dt/2+3.1416*Dt/2;
-    }else {Pt=6.5331*Dt/2;} 
-    const Rf=f/Pt;
-        
-    //Area of surge shaft according to Thoma
-    const beta = n*n*L/Math.pow(Rf,4/3);
-    const vo=Q/f;
-    const Ho=H-beta*vo*vo;
-    const Athoma=Fs*L*f/(19.62*beta*Ho);
-    // Diameter of Surge shaft
-    const Ds=Math.pow((4*Athoma/3.1416),0.5);
-    
+        Pt = 3.1416 * Dt;
+    } else if (ShapeTunnel === "Inverted D") {
+        Pt = Dt / 2 + (3.1416 * Dt) / 2;
+    } else {
+        Pt = (6.5331 * Dt) / 2;
+    }
 
-    
+    // Hydraulic radius
+    const Rf = f / Pt;
+
+    // Calculate beta
+    const beta = (n * n * Lt) / Math.pow(Rf, 4 / 3);
+
+    // Velocity in the tunnel
+    const vo = Q / f;
+
+    // Head loss
+    const Ho = H - beta * vo * vo;
+
+    // Area of surge shaft according to Thoma
+    const Athoma = (FS * Lt * f) / (19.62 * beta * Ho);
+
+    // Diameter of Surge shaft
+    const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
 
     // Display results
     document.getElementById('Ds').textContent = Ds.toFixed(2);
-    document.getElementById('hf').textContent = hf.toFixed(2);
-    
-    document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
-    document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-    document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
+
+    // Update drawing values (if needed)
+    // document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
+    // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
+    // document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
 }
 
         
