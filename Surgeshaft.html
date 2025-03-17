@@ -467,7 +467,7 @@ function SurgeShaft() {
     const S1=1.5*Math.pow(vo,2)/19.62;
     const S2=0.545*vo*(Dt)*Dt;
     const S3=1.5*Dt;
-    const S=-Math.pow(S1,S2,S3);
+    const S=-Math.max(S1,S2,S3);
     const TCL=DSL+S;
     
     // 3. Calame and Gaden formula
