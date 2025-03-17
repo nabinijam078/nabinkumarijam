@@ -300,7 +300,7 @@
                 <p><strong>Maximum water level (MWL):</strong> <span id="MWL"></span> m</p>
                 <p><strong>Upsurge level (USL):</strong> <span id="MWLnormal"></span> m</p>
                 <p><strong>Downsurge level (DSL):</strong> <span id="DSL"></span> m</p>
-                
+                <p><strong>Tunnel Crown Level (TCL):</strong> <span id="TCL"></span> m</p>
             </div>
         </div>
 
@@ -462,6 +462,13 @@ function SurgeShaft() {
     const Zd3 = -(1 + 0.125 * P0) * Zmax;
     const Zd=Math.min(Zd1,Zd2,Zd3);
     const DSL=NWL+Zd;
+
+    // Tunnel crown level
+    const S1=1.5*Math.pow(vo,2)/19.62;
+    const S2=0.545*vo*(Dt)*Dt;
+    const S3=1.5*Dt;
+    const S=-Math.pow(S1,S2,S3);
+    const TCL=DSL+S;
     
     // 3. Calame and Gaden formula
     // Display results
@@ -471,6 +478,7 @@ function SurgeShaft() {
     document.getElementById('MWL').textContent = MWL.toFixed(2);
     document.getElementById('MWLnormal').textContent = MWLnormal.toFixed(2);
     document.getElementById('DSL').textContent = DSL.toFixed(2);
+     document.getElementById('TCL').textContent = TCL.toFixed(2);
     
     // Update drawing values (if needed)
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
