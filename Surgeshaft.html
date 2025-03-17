@@ -202,6 +202,15 @@
             color: #333;
         }
 
+        /* Oscillation Curve Canvas */
+        #oscillationCurve {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .content {
@@ -302,6 +311,10 @@
                 <p><strong>Downsurge level (DSL):</strong> <span id="DSL"></span> m</p>
                 <p><strong>Tunnel Crown Level (TCL):</strong> <span id="TCL"></span> m</p>
             </div>
+
+            <!-- Oscillation Curve -->
+            <h3>Oscillation Curve</h3>
+            <canvas id="oscillationCurve"></canvas>
         </div>
 
         <!-- Drawing Section -->
@@ -342,149 +355,216 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-function f(Zup, L, g, beta, Phi, v) {
-    const term1 = L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2));
-    const term2 = Zup / (beta * Math.pow(v, 2));
-    const term3 = term1 * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
-    return term1 - term2 - term3;
-}
-
-function fPrime(Zup, L, g, beta, Phi, v) {
-    const term1 = -1 / (beta * Math.pow(v, 2));
-    const term2 = (2 * g * Phi / L) * (L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2))) * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
-    return term1 - term2;
-}
-
-function newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations) {
-    let Zup = initialGuess;
-    for (let i = 0; i < maxIterations; i++) {
-        const fValue = f(Zup, L, g, beta, Phi, v);
-        const fDerivative = fPrime(Zup, L, g, beta, Phi, v);
-        const ZupNew = Zup - fValue / fDerivative;
-
-        if (Math.abs(ZupNew - Zup) < tolerance) {
-            return ZupNew;
+        function f(Zup, L, g, beta, Phi, v) {
+            const term1 = L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2));
+            const term2 = Zup / (beta * Math.pow(v, 2));
+            const term3 = term1 * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2 - term3;
         }
 
-        Zup = ZupNew;
-    }
-    return Zup; // Return the last approximation if maxIterations is reached
-}
+        function fPrime(Zup, L, g, beta, Phi, v) {
+            const term1 = -1 / (beta * Math.pow(v, 2));
+            const term2 = (2 * g * Phi / L) * (L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2))) * Math.exp(-2 * g * Phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2;
+        }
 
-function SurgeShaft() {
-    // Input values
-    const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const Lt = parseFloat(document.getElementById('Lt').value); // Length of tunnel
-    const ShapeTunnel = document.getElementById('ShapeTunnel').value; // Tunnel Shape
-    const Dt = parseFloat(document.getElementById('Dt').value); // Diameter of tunnel
-    const n = parseFloat(document.getElementById('n').value); // Manning's constant
-    const NWL = parseFloat(document.getElementById('NWL').value); // Normal Water level
-    const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
-    const H = parseFloat(document.getElementById('H').value); // Gross head
-    const Ds_input = parseFloat(document.getElementById('Ds_input').value); // Revised diameter of surge shaft
+        function newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations) {
+            let Zup = initialGuess;
+            for (let i = 0; i < maxIterations; i++) {
+                const fValue = f(Zup, L, g, beta, Phi, v);
+                const fDerivative = fPrime(Zup, L, g, beta, Phi, v);
+                const ZupNew = Zup - fValue / fDerivative;
 
-    // Validate inputs
-    if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
-        alert("Please enter valid numeric values for all fields.");
-        return;
-    }
+                if (Math.abs(ZupNew - Zup) < tolerance) {
+                    return ZupNew;
+                }
 
-    // Area of tunnel
-    let f;
-    if (ShapeTunnel === "Circular") {
-        f = (3.1416 * Math.pow(Dt, 2)) / 4;
-    } else if (ShapeTunnel === "Inverted D") {
-        f = (Dt * Dt) / 2 + (3.1416 * Math.pow(Dt, 2)) / 8;
-    } else {
-        f = (3.3169 * Dt * Dt) / 4;
-    }
+                Zup = ZupNew;
+            }
+            return Zup; // Return the last approximation if maxIterations is reached
+        }
 
-    // Perimeter of tunnel
-    let Pt;
-    if (ShapeTunnel === "Circular") {
-        Pt = 3.1416 * Dt;
-    } else if (ShapeTunnel === "Inverted D") {
-        Pt = 2*Dt  + (3.1416 * Dt) / 2;
-    } else {
-        Pt = (6.5331 * Dt) / 2;
-    }
+        function SurgeShaft() {
+            // Input values
+            const Q = parseFloat(document.getElementById('Q').value); // Design discharge
+            const Lt = parseFloat(document.getElementById('Lt').value); // Length of tunnel
+            const ShapeTunnel = document.getElementById('ShapeTunnel').value; // Tunnel Shape
+            const Dt = parseFloat(document.getElementById('Dt').value); // Diameter of tunnel
+            const n = parseFloat(document.getElementById('n').value); // Manning's constant
+            const NWL = parseFloat(document.getElementById('NWL').value); // Normal Water level
+            const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
+            const H = parseFloat(document.getElementById('H').value); // Gross head
+            const Ds_input = parseFloat(document.getElementById('Ds_input').value); // Revised diameter of surge shaft
 
-    // Hydraulic radius
-    const Rf = f / Pt;
+            // Validate inputs
+            if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
+                alert("Please enter valid numeric values for all fields.");
+                return;
+            }
 
-    // Calculate beta
-    const beta = (n * n * Lt) / Math.pow(Rf, 4 / 3);
+            // Area of tunnel
+            let f;
+            if (ShapeTunnel === "Circular") {
+                f = (3.1416 * Math.pow(Dt, 2)) / 4;
+            } else if (ShapeTunnel === "Inverted D") {
+                f = (Dt * Dt) / 2 + (3.1416 * Math.pow(Dt, 2)) / 8;
+            } else {
+                f = (3.3169 * Dt * Dt) / 4;
+            }
 
-    // Velocity in the tunnel
-    const vo = Q / f;
+            // Perimeter of tunnel
+            let Pt;
+            if (ShapeTunnel === "Circular") {
+                Pt = 3.1416 * Dt;
+            } else if (ShapeTunnel === "Inverted D") {
+                Pt = 2 * Dt + (3.1416 * Dt) / 2;
+            } else {
+                Pt = (6.5331 * Dt) / 2;
+            }
 
-    // Head loss
-    const Ho = H - beta * vo * vo;
+            // Hydraulic radius
+            const Rf = f / Pt;
 
-    // Area of surge shaft according to Thoma
-    const Athoma = (FS * Lt * f) / (19.62 * beta * Ho);
+            // Calculate beta
+            const beta = (n * n * Lt) / Math.pow(Rf, 4 / 3);
 
-    // Diameter of Surge shaft
-    const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
-    const hf = beta * (vo * vo);
-    const NWLs = NWL - hf;
+            // Velocity in the tunnel
+            const vo = Q / f;
 
-    // Area of surge shaft
-    const Asurge = 3.1416 * Math.pow(Ds_input, 2) / 4;
+            // Head loss
+            const Ho = H - beta * vo * vo;
 
-    const Phi1 = Asurge / f;
+            // Area of surge shaft according to Thoma
+            const Athoma = (FS * Lt * f) / (19.62 * beta * Ho);
 
-    // Calculation of Maximum upsurge
-    const tolerance = 0.00001;
-    const maxIterations = 100;
+            // Diameter of Surge shaft
+            const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
+            const hf = beta * (vo * vo);
+            const NWLs = NWL - hf;
 
-    // Hardcoded initial assumption for Zup
-    const initialGuess = 4.0; // You can change this value as needed
+            // Area of surge shaft
+            const Asurge = 3.1416 * Math.pow(Ds_input, 2) / 4;
 
-    // Solve using Newton-Raphson method
-    const L = Lt; // Assuming L is the length of the tunnel
-    const g = 9.81; // Acceleration due to gravity
-    const v = vo; // Velocity in the tunnel
-    const Phi = Phi1; 
+            const Phi1 = Asurge / f;
 
-    const Zup = newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations);
-    //Maximum surge
-    const Zmax=v*Math.pow(L*f/(g*Asurge),.5);
-    const MWL=NWL+Zmax;
-    const P0=hf/Zmax;
-    const MWLnormal=NWL+Zup;
-    // DOWNSURGE
-    //1. Ph. Forchheimer formula
-    const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
-    //2. A. Schafer
-    const Zd2 = -(0.333 * hf + Math.pow(Math.pow(0.133 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
-    // 3. Calame and Gaden formula
-    const Zd3 = -(1 + 0.125 * P0) * Zmax;
-    const Zd=Math.min(Zd1,Zd2,Zd3);
-    const DSL=NWL+Zd;
+            // Calculation of Maximum upsurge
+            const tolerance = 0.00001;
+            const maxIterations = 100;
 
-    // Tunnel crown level
-    const S1=1.5*Math.pow(vo,2)/19.62;
-    const S2=0.545*vo*(Dt)*Dt;
-    const S3=1.5*Dt;
-    const S=-Math.max(S1,S2,S3);
-    const TCL=DSL+S;
-    
-    // 3. Calame and Gaden formula
-    // Display results
-    document.getElementById('Ds').textContent = Ds.toFixed(2);
-    document.getElementById('NWLs').textContent = NWLs.toFixed(2);
-    document.getElementById('Zup').textContent = Zup.toFixed(2);
-    document.getElementById('MWL').textContent = MWL.toFixed(2);
-    document.getElementById('MWLnormal').textContent = MWLnormal.toFixed(2);
-    document.getElementById('DSL').textContent = DSL.toFixed(2);
-     document.getElementById('TCL').textContent = TCL.toFixed(2);
-    
-    // Update drawing values (if needed)
-    document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
-    // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
-    // document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
-}
+            // Hardcoded initial assumption for Zup
+            const initialGuess = 4.0; // You can change this value as needed
+
+            // Solve using Newton-Raphson method
+            const L = Lt; // Assuming L is the length of the tunnel
+            const g = 9.81; // Acceleration due to gravity
+            const v = vo; // Velocity in the tunnel
+            const Phi = Phi1;
+
+            const Zup = newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations);
+            // Maximum surge
+            const Zmax = v * Math.pow(L * f / (g * Asurge), 0.5);
+            const MWL = NWL + Zmax;
+            const P0 = hf / Zmax;
+            const MWLnormal = NWL + Zup;
+            // DOWNSURGE
+            // 1. Ph. Forchheimer formula
+            const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo * vo / (9.81 * Asurge), 0.5);
+            // 2. A. Schafer
+            const Zd2 = -(0.333 * hf + Math.pow(Math.pow(0.133 * hf, 2) + L * f * vo * vo / (9.81 * Asurge), 0.5);
+            // 3. Calame and Gaden formula
+            const Zd3 = -(1 + 0.125 * P0) * Zmax;
+            const Zd = Math.min(Zd1, Zd2, Zd3);
+            const DSL = NWL + Zd;
+
+            // Tunnel crown level
+            const S1 = 1.5 * Math.pow(vo, 2) / 19.62;
+            const S2 = 0.545 * vo * (Dt) * Dt;
+            const S3 = 1.5 * Dt;
+            const S = -Math.max(S1, S2, S3);
+            const TCL = DSL + S;
+
+            // Display results
+            document.getElementById('Ds').textContent = Ds.toFixed(2);
+            document.getElementById('NWLs').textContent = NWLs.toFixed(2);
+            document.getElementById('Zup').textContent = Zup.toFixed(2);
+            document.getElementById('MWL').textContent = MWL.toFixed(2);
+            document.getElementById('MWLnormal').textContent = MWLnormal.toFixed(2);
+            document.getElementById('DSL').textContent = DSL.toFixed(2);
+            document.getElementById('TCL').textContent = TCL.toFixed(2);
+
+            // Update drawing values (if needed)
+            document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
+            // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
+            // document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
+
+            // Draw Oscillation Curve
+            drawOscillationCurve(Lt, g, beta, Phi1, vo, Zup);
+        }
+
+        function drawOscillationCurve(L, g, beta, Phi, v, Zup) {
+            const canvas = document.getElementById('oscillationCurve');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw axes
+            ctx.beginPath();
+            ctx.moveTo(50, height - 50);
+            ctx.lineTo(width - 50, height - 50);
+            ctx.moveTo(50, 50);
+            ctx.lineTo(50, height - 50);
+            ctx.strokeStyle = '#000';
+            ctx.stroke();
+
+            // Draw labels
+            ctx.fillText('Time (s)', width / 2, height - 10);
+            ctx.fillText('Water Level (m)', 10, height / 2);
+
+            // Oscillation data
+            const dt = 0.1;
+            const n = 500;
+            let velocity = v;
+            let changeInLevels = 0;
+            let flowDepth = Zup;
+            let headLoss = beta * Math.pow(velocity, 2);
+            let changeInVelocity = 0;
+
+            const levels = [];
+            for (let i = 0; i < n; i++) {
+                levels.push(NWL - flowDepth);
+
+                // Update velocity
+                velocity += changeInVelocity;
+
+                // Update change in levels
+                changeInLevels = -velocity * f / Asurge * dt;
+
+                // Update flow depth
+                flowDepth += changeInLevels;
+
+                // Update head loss
+                headLoss = beta * Math.pow(velocity, 2);
+
+                // Update change in velocity
+                if (velocity < 0) {
+                    changeInVelocity = g / L * (flowDepth + headLoss + Math.pow(velocity, 2) / (2 * g)) * dt;
+                } else {
+                    changeInVelocity = g / L * (flowDepth - headLoss - Math.pow(velocity, 2) / (2 * g)) * dt;
+                }
+            }
+
+            // Draw curve
+            ctx.beginPath();
+            ctx.moveTo(50, height - 50 - (levels[0] * 10)); // Scale levels for visibility
+            for (let i = 1; i < n; i++) {
+                ctx.lineTo(50 + i * (width - 100) / n, height - 50 - (levels[i] * 10));
+            }
+            ctx.strokeStyle = '#0078d7';
+            ctx.stroke();
+        }
     </script>
 </body>
 </html>
