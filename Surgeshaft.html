@@ -404,7 +404,7 @@ function SurgeShaft() {
     if (ShapeTunnel === "Circular") {
         Pt = 3.1416 * Dt;
     } else if (ShapeTunnel === "Inverted D") {
-        Pt = Dt / 2 + (3.1416 * Dt) / 2;
+        Pt = 2*Dt  + (3.1416 * Dt) / 2;
     } else {
         Pt = (6.5331 * Dt) / 2;
     }
