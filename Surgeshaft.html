@@ -290,7 +290,8 @@ s<!DOCTYPE html>
 
             <div class="result" id="result">
                 <h3>DESIGN RESULT</h3>
-                <p><strong>Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
+                
+                <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
                 
             </div>
         </div>
@@ -342,7 +343,7 @@ s<!DOCTYPE html>
     const n = parseFloat(document.getElementById('n').value); // Manning's constant
     const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
     const H = parseFloat(document.getElementById('H').value); // Gross head
-
+    
     // Validate inputs
     if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
         alert("Please enter valid numeric values for all fields.");
