@@ -455,9 +455,9 @@ function SurgeShaft() {
     const MWLnormal=NWL+Zup;
     // DOWNSURGE
     //1. Ph. Forchheimer formula
-    const Zd1 = -(0.178 * hf + (Math.pow(0.178 * hf, 2) + L * f * vo*vo / Math.pow(9.81 * Asurge,  0.5)));
+    const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
     //2. A. Schafer
-    const Zd2 = -(0.333 * hf + (Math.pow(0.333 * hf, 2) + L * f * vo*vo / Math.pow(9.81 * Asurge,  0.5)));
+    const Zd2 = -(0.333 * hf + Math.pow(Math.pow(0.133 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
     // 3. Calame and Gaden formula
     const Zd3 = -(1 + 0.125 * P0) * Zmax;
     const Zd=Math.min(Zd1,Zd2,Zd3);
