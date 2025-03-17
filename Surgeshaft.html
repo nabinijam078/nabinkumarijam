@@ -295,6 +295,7 @@ s<!DOCTYPE html>
                 
                 <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
                 <p><strong>Normal Water level in Surge Shaft (NWLs):</strong> <span id="NWLs"></span> m</p>
+                <p><strong>Maximum upsurge (Z<sub>up</sub>):</strong> <span id="Zup"></span> m</p>
             </div>
         </div>
 
@@ -335,7 +336,37 @@ s<!DOCTYPE html>
 
         // Initial call to display the time and date immediately
         updateDateTime();
+        // Define the function and its derivative
+        function f(Zup, L, g, beta, Phi, v, phi) {
+            const term1 = L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2));
+            const term2 = Zup / (beta * Math.pow(v, 2));
+            const term3 = term1 * Math.exp(-2 * g * phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2 - term3;
+        }
 
+        function fPrime(Zup, L, g, beta, Phi, v, phi) {
+            const term1 = -1 / (beta * Math.pow(v, 2));
+            const term2 = (2 * g * phi / L) * (L / (2 * g * Math.pow(beta, 2) * Phi * Math.pow(v, 2))) * Math.exp(-2 * g * phi / L * (Zup + beta * Math.pow(v, 2)));
+            return term1 - term2;
+        }
+
+        // Newton-Raphson method implementation
+        function newtonRaphson(L, g, beta, Phi, v, phi, initialGuess, tolerance, maxIterations) {
+            let Zup = initialGuess;
+            for (let i = 0; i < maxIterations; i++) {
+                const fValue = f(Zup, L, g, beta, Phi, v, phi);
+                const fDerivative = fPrime(Zup, L, g, beta, Phi, v, phi);
+                const ZupNew = Zup - fValue / fDerivative;
+
+                if (Math.abs(ZupNew - Zup) < tolerance) {
+                    return ZupNew;
+                }
+
+                Zup = ZupNew;
+            }
+            return Zup; // Return the last approximation if maxIterations is reached
+        }
+        
    function SurgeShaft() {
     // Input values
     const Q = parseFloat(document.getElementById('Q').value); // Design discharge
@@ -399,10 +430,20 @@ s<!DOCTYPE html>
        const Asurge=3.1416*Math.pow(Ds_input,2)/4;
        
        const Phi=Asurge/f;
+    // Calculation of Maximum upsurge
+        const tolerance = 0.00001;
+            const maxIterations = 100;
+
+            // Hardcoded initial assumption for Zup
+            const initialGuess = 4.0; // You can change this value as needed
+
+            // Solve using Newton-Raphson method
+            const result = newtonRaphson(L, g, beta, Phi, v, phi, initialGuess, tolerance, maxIterations);
        
     // Display results
     document.getElementById('Ds').textContent = Ds.toFixed(2);
     document.getElementById('NWLs').textContent = NWLs.toFixed(2);
+    document.getElementById('Zup').textContent = Zup.toFixed(2);
     // Update drawing values (if needed)
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
     // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
