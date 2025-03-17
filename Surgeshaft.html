@@ -102,6 +102,8 @@
         .drawing-section .MWL-value,
         .drawing-section .USL-value,
         .drawing-section .DSL-value,
+        .drawing-section .SST-value,
+        .drawing-section .Hss-value,
         .drawing-section .TCL-value {
             position: absolute;
             font-size: .8rem;
@@ -136,7 +138,14 @@
             top: 17%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
-
+        .drawing-section .SST-value {
+            top: 1%; /* Adjust as needed */
+            left: 65%; /* Adjust as needed */
+        }
+        .drawing-section .Hss-value {
+            top: 12%; /* Adjust as needed */
+            left: 20%; /* Adjust as needed */
+        }
         .input-group {
             margin-bottom: 15px;
         }
@@ -297,7 +306,7 @@
                     <input type="number" id="H" required>
                 </div>
                 <div class="input-group">
-                    <label for="T">Closing Time (T in s):</label>
+                    <label for="T">Free board(T in m):</label>
                     <input type="number" id="T" required>
                 </div>
                 <div class="input-group">
@@ -327,6 +336,8 @@
             <div class="USL-value" id="USL-value">USL = <span id="USL-display"></span> m</div>
             <div class="DSL-value" id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
             <div class="TCL-value" id="TCL-value">TCL = <span id="TCL-display"></span> m</div>
+            <div class="SST-value" id="SST-value">Top = <span id="SST-display"></span> m</div>
+            <div class="Hss-value" id="SST-value">H = <span id="Hss-display"></span> m</div>
         </div>
     </div>
 
@@ -486,6 +497,11 @@ function SurgeShaft() {
     const S3=1.5*Dt;
     const S=-Math.max(S1,S2,S3);
     const TCL=DSL+S;
+
+    // Surge shaft height
+    const SST=MWL+T;
+    const Hss=SST-TCL;
+    
     
     // 3. Calame and Gaden formula
     // Display results
@@ -496,6 +512,8 @@ function SurgeShaft() {
     document.getElementById('USL').textContent = USL.toFixed(2);
     document.getElementById('DSL').textContent = DSL.toFixed(2);
      document.getElementById('TCL').textContent = TCL.toFixed(2);
+    document.getElementById('SST').textContent = SST.toFixed(2);
+    document.getElementById('Hss').textContent = Hss.toFixed(2);
     
     // Update drawing values (if needed)
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Diameter of surge shaft
@@ -504,6 +522,8 @@ function SurgeShaft() {
     document.getElementById('USL-display').textContent = USL.toFixed(2); // Upsurge level
     document.getElementById('DSL-display').textContent = DSL.toFixed(2); // Downsurge level
     document.getElementById('TCL-display').textContent = TCL.toFixed(2); // Upsurge level
+    document.getElementById('SST-display').textContent = SST.toFixed(2); // Top level of surge shaft
+    document.getElementById('Hss-display').textContent = Hss.toFixed(2); // Top level of surge shaft
 }
     </script>
 </body>
