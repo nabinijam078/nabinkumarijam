@@ -43,6 +43,7 @@ s<!DOCTYPE html>
         }
         header h3 {
             margin: 0;
+            color: black;
             font-size: 0.9rem;
         }
 
@@ -288,10 +289,9 @@ s<!DOCTYPE html>
             </form>
 
             <div class="result" id="result">
-                <h2>Design Results</h2>
-                <p><strong>Depth of flow (h<sub>s</sub>):</strong> <span id="hs"></span> m</p>
-                <p><strong>Velocity of flow (vf) :</strong> <span id="vf"></span> m/s</p>
-                <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
+                <h3>DESIGN RESULT</h3>
+                <p><strong>Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
+                
             </div>
         </div>
 
@@ -336,43 +336,53 @@ s<!DOCTYPE html>
     function SurgeShaft() {
     // Input values
     const Q = parseFloat(document.getElementById('Q').value); // Design discharge
-    const ds = parseFloat(document.getElementById('ds').value); // Size of sediments to be settled
-    const w = parseFloat(document.getElementById('w').value); // Assumed width of column
-    const hu = parseFloat(document.getElementById('hu').value); // Haunch size
-    const MatType = document.getElementById('MatType').value; // Material type
-
+    const Lt = parseFloat(document.getElementById('Lt').value); // Diameter of tunnel
+    const ShapeTunnel = parseFloat(document.getElementById('ShapeTunnel').value); // Tunnel Shape
+    const Dt = parseFloat(document.getElementById('Dt').value); // Diameter of tunnel
+    const n = document.getElementById('n').value; // Manning's constant
+    const NWL = document.getElementById('NWL').value; // Manning's constant
+    const FS = document.getElementById('FS').value; // Factor of safety
+    const H = document.getElementById('H').value; //Gross head
+    const T = document.getElementById('T').value; // Closing time
+        
     // Validate inputs
-    if (isNaN(Q) || isNaN(ds) || isNaN(w) || isNaN(hu)) {
+    if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n)|| isNaN(FS)|| isNaN(H)|| isNaN(T)) {
         alert("Please enter valid numeric values for all fields.");
         return;
     }
 
-    // Limiting velocity of flow
-    const v = 0.44 * Math.pow(ds, 0.5);
-    let vlim;
-    if (MatType === "Concrete") {
-        vlim = 1.5;
-    } else {
-        vlim = 2.5;
-    }
-    const va = Math.max(v, vlim);
+    // Area of tunnel
+    
+    let f;
+    if (ShapeTunnel === "Circular") {
+        f = 3.1416*Math.pow(Dt,2)/4;
+    } else if (ShapeTunnel === "Inverted D"){
+        f = Dt * Dt / 2 + 3.1416*Math.pow(Dt,2)/8;
+    }else {f=3.3169*Dt*Dt/4;}
 
-    // Area of flow
-    const Af = Q / va;
-    const hs = (Af + 2 * Math.pow(hu, 2)) / w;
-    const hw = Math.ceil(hs / 0.1) * 0.1;
-    const vf = Q / (hw * w - 2 * hu * hu);
-    let check;
-    if (vf <= va) {
-        check = "OK";
-    } else {
-        check = "NOT OK";
-    }
+    let Pt;
+    if (ShapeTunnel === "Circular") {
+        Pt = 3.1416*Dt;
+    } else if (ShapeTunnel === "Inverted D"){
+        Pt = Dt/2+3.1416*Dt/2;
+    }else {Pt=6.5331*Dt/2;} 
+    const Rf=f/Pt;
+        
+    //Area of surge shaft according to Thoma
+    const beta = n*n*L/Math.pow(Rf,4/3);
+    const vo=Q/f;
+    const Ho=H-beta*vo*vo;
+    const Athoma=Fs*L*f/(19.62*beta*Ho);
+    // Diameter of Surge shaft
+    const Ds=Math.pow((4*Athoma/3.1416),0.5);
+    
+
+    
 
     // Display results
-    document.getElementById('hs').textContent = hs.toFixed(2);
-    document.getElementById('vf').textContent = vf.toFixed(2);
-    document.getElementById('check').textContent = check;
+    document.getElementById('Ds').textContent = Ds.toFixed(2);
+    document.getElementById('hf').textContent = hf.toFixed(2);
+    
     document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
     document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
     document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
