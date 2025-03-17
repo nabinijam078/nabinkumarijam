@@ -97,10 +97,10 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .drawing-section .Ds-value,
+        .drawing-section .Ds_input-value,
         .drawing-section .NWLs-value,
         .drawing-section .MWL-value,
-        .drawing-section .MWLnormal-value,
+        .drawing-section .USL-value,
         .drawing-section .DSL-value,
         .drawing-section .TCL-value {
             position: absolute;
@@ -111,7 +111,7 @@
             border-radius: 5px;
         }
 
-        .drawing-section .Ds-value {
+        .drawing-section .Ds_input-value {
             top: 20%; /* Adjust as needed */
             left: 45%; /* Adjust as needed */
         }
@@ -124,7 +124,7 @@
             top: 2%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
-        .drawing-section .MWLnormal-value {
+        .drawing-section .USL-value {
             top: 5%; /* Adjust as needed */
             left: 35%; /* Adjust as needed */
         }
@@ -324,7 +324,7 @@
             <div class="Ds_input-value" id="Ds_input-value">Ds = <span id="Ds_input-display"></span> m</div>
             <div class="NWLs-value" id="NWLs-value">NWL = <span id="NWLs-display"></span> m</div>
             <div class="MWL-value" id="MWL-value">MWL = <span id="MWL-display"></span> m</div>
-            <div class="USL-value" id="USL-value">USL = <span id="MWLnormal-display"></span> m</div>
+            <div class="USL-value" id="USL-value">USL = <span id="USL"></span> m</div>
             <div class="DSL-value" id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
             <div class="TCL-value" id="TCL-value">TCL = <span id="TCL-display"></span> m</div>
         </div>
@@ -469,7 +469,7 @@ function SurgeShaft() {
     const Zmax=v*Math.pow(L*f/(g*Asurge),.5);
     const MWL=NWL+Zmax;
     const P0=hf/Zmax;
-    const MWLnormal=NWL+Zup;
+    const USL=NWL+Zup;
     // DOWNSURGE
     //1. Ph. Forchheimer formula
     const Zd1 = -(0.178 * hf + Math.pow(Math.pow(0.178 * hf, 2) + L * f * vo*vo / (9.81 * Asurge)),  0.5);
@@ -492,7 +492,7 @@ function SurgeShaft() {
     document.getElementById('Ds').textContent = Ds.toFixed(2);
     document.getElementById('NWLs').textContent = NWLs.toFixed(2);
     document.getElementById('MWL').textContent = MWL.toFixed(2);
-    document.getElementById('MWLnormal').textContent = MWLnormal.toFixed(2);
+    document.getElementById('USL').textContent = USL.toFixed(2);
     document.getElementById('DSL').textContent = DSL.toFixed(2);
      document.getElementById('TCL').textContent = TCL.toFixed(2);
     
@@ -500,7 +500,7 @@ function SurgeShaft() {
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Diameter of surge shaft
     document.getElementById('NWLs-display').textContent = NWLs.toFixed(2); // Normal water level
     document.getElementById('MWL-display').textContent = MWL.toFixed(2); // Maximum water level
-    document.getElementById('MWLnormal-display').textContent = MWLnormal.toFixed(2); // Upsurge level
+    document.getElementById('USL-display').textContent = USL.toFixed(2); // Upsurge level
     document.getElementById('DSL-display').textContent = DSL.toFixed(2); // Downsurge level
     document.getElementById('TCL-display').textContent = TCL.toFixed(2); // Upsurge level
 }
