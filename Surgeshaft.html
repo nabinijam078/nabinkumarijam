@@ -391,10 +391,12 @@ s<!DOCTYPE html>
 
     // Diameter of Surge shaft
     const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
+    const hf=beta*(vo*vo);
+    const NWLs=NWL-hf;
+       
     // Area of surge shaft
        const Asurge=3.1416*Math.pow(Ds_input,2)/4;
-       const hf=beta*(vo*vo);
-       const NWLs=NWL-hf;
+       
        const Phi=Asurge/f;
        
     // Display results
