@@ -294,7 +294,7 @@ s<!DOCTYPE html>
                 <h3>DESIGN RESULT</h3>
                 
                 <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
-                
+                <p><strong>Normal Water level in Surge Shaft (NWLs):</strong> <span id="NWLs"></span> m</p>
             </div>
         </div>
 
@@ -391,10 +391,15 @@ s<!DOCTYPE html>
 
     // Diameter of Surge shaft
     const Ds = Math.pow((4 * Athoma) / 3.1416, 0.5);
-
+    // Area of surge shaft
+       const Asurge=3.1416*Math.pow(Ds_input,2)/4;
+       const hf=beta*(vo*vo);
+       const NWLs=NWL-hf;
+       const Phi=Asurge/f;
+       
     // Display results
     document.getElementById('Ds').textContent = Ds.toFixed(2);
-
+    document.getElementById('NWLs').textContent = NWLs.toFixed(2);
     // Update drawing values (if needed)
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
     // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
