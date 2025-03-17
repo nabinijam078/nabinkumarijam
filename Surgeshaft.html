@@ -297,6 +297,10 @@
                 <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
                 <p><strong>Normal Water level in Surge Shaft (NWLs):</strong> <span id="NWLs"></span> m</p>
                 <p><strong>Maximum upsurge (Z<sub>up</sub>):</strong> <span id="Zup"></span> m</p>
+                <p><strong>Maximum water level (MWL):</strong> <span id="MWL"></span> m</p>
+                <p><strong>Upsurge level (USL):</strong> <span id="MWLnormal"></span> m</p>
+                
+                
             </div>
         </div>
 
@@ -444,12 +448,20 @@ function SurgeShaft() {
     const Phi = Phi1; 
 
     const Zup = newtonRaphson(L, g, beta, Phi, v, initialGuess, tolerance, maxIterations);
-
+    //Maximum surge
+    const Zmax=v*Math.pow(L*f/(g*Asurge),.5);
+    const MWL=NWL+Zmax;
+    const P0=hf/Zmax;
+    const MWLnormal=NWL+Zup;
+    
     // Display results
     document.getElementById('Ds').textContent = Ds.toFixed(2);
     document.getElementById('NWLs').textContent = NWLs.toFixed(2);
     document.getElementById('Zup').textContent = Zup.toFixed(2);
+    document.getElementById('MWL').textContent = MWL.toFixed(2);
+    document.getElementById('NWLnormal').textContent = NWLnormal.toFixed(2);
 
+    
     // Update drawing values (if needed)
     document.getElementById('Ds_input-display').textContent = Ds_input.toFixed(2); // Update w on the drawing
     // document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
