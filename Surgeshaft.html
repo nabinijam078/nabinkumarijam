@@ -280,7 +280,9 @@ s<!DOCTYPE html>
                 <br>
                     <label for="T">Closing Time (T in s):</label>
                     <input type="number" id="T" required>
-           
+               <br>
+                <label for="Ds_input">Revised Diameter of Surge Shaft (D<sub>rs</sub> in m):</label>
+
                
                 <br>
                 <br>
@@ -343,6 +345,8 @@ s<!DOCTYPE html>
     const n = parseFloat(document.getElementById('n').value); // Manning's constant
     const FS = parseFloat(document.getElementById('FS').value); // Factor of safety
     const H = parseFloat(document.getElementById('H').value); // Gross head
+
+    const Ds_input = parseFloat(document.getElementById('Ds_input').value); // Revised diameter of surge shaft
     
     // Validate inputs
     if (isNaN(Q) || isNaN(Lt) || isNaN(Dt) || isNaN(n) || isNaN(FS) || isNaN(H)) {
