@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stilling Basin Design</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes full height */
+        }
 
+        h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif; /* Heading font */
+            color: #0078d7;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        header h3 {
+            margin: 0;
+            color: black;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0078d7;
+        }
+      table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"] {
+            width: 80px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: inline-block;
+            width: 150px;
+        }
+
+
+        /* Main Content */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow content to grow and push footer down */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-section {
+            width: 40%; /* Input section takes 60% of the width */
+        }
+
+        .drawing-section {
+            width: 35%; /* Drawing section takes 35% of the width */
+            position: relative;
+        }
+
+        .drawing-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem; /* Reduced font size for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #E0FFFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0; /* Prevent footer from shrinking */
+        }
+
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333; /* Dark color for icons */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.8rem; /* Icon size */
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7; /* Change color on hover */
+        }
+
+        .copyright {
+            background-color: #E0FFFF;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.7rem;
+            color: #333; /* Dark text for contrast */
+        }
+
+        /* Time and Date Styles */
+        #datetime {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .input-section, .drawing-section {
+                width: 100%;
+            }
+
+            .drawing-section {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <a href="My background.html"><b>MY BACKGROUND</b></a>
+        <a href="My works.html"><b>MY WORKS</b></a>
+        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+        <a href="Others.html"><b>OTHERS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Input Section -->
+        <div class="input-section">
+            <h3><u>ENERGY CALCULATION</u></h3>
+<!-- Input Group for Global Inputs -->
+<div class="input-group">
+    <label for="efficiency">Efficiency (η):</label>
+    <input type="number" id="efficiency" value="0.85" step="0.01" min="0" max="1">
+</div>
+<div class="input-group">
+    <label for="designDischarge">Design Discharge (Qd):</label>
+    <input type="number" id="designDischarge" value="0" step="0.01">
+</div>
+<div class="input-group">
+    <label for="riparianFlow">Riparian Flow (Qr):</label>
+    <input type="number" id="riparianFlow" value="0" step="0.01">
+</div>
+<div class="input-group">
+    <label for="grossHead">Gross Head (Hg):</label>
+    <input type="number" id="grossHead" value="0" step="0.01">
+</div>
+<div class="input-group">
+    <label for="headLossPercent">Head Loss (%):</label>
+    <input type="number" id="headLossPercent" value="0" step="0.01">
+</div>
+
+<h2>Input Table</h2>
+
+<!-- Input Table for Monthly Discharge -->
+<table id="inputTable">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Average Discharge (Q)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be populated dynamically -->
+    </tbody>
+</table>
+
+<button onclick="calculateEnergy()">Calculate Energy</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+
+       <h2>Calculation Table</h2>
+
+<!-- Calculation Table -->
+<table id="calculationTable">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Discharge (Q)</th>
+            <th>Design Discharge (Qd)</th>
+            <th>Riparian Flow (Qr)</th>
+            <th>Gross Head (Hg)</th>
+            <th>Head Loss (Hl)</th>
+            <th>Net Head (Hn)</th>
+            <th>Capacity (P)</th>
+            <th>Days</th>
+            <th>Energy (E)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be populated dynamically -->
+    </tbody>
+</table>
+
+<script>
+    // Sample data for each month
+    const months = [
+        { name: "January", days: 31 },
+        { name: "February", days: 28 },
+        { name: "March", days: 31 },
+        { name: "April", days: 30 },
+        { name: "May", days: 31 },
+        { name: "June", days: 30 },
+        { name: "July", days: 31 },
+        { name: "August", days: 31 },
+        { name: "September", days: 30 },
+        { name: "October", days: 31 },
+        { name: "November", days: 30 },
+        { name: "December", days: 31 }
+    ];
+
+    // Constants
+    const gravity = 9.81; // Acceleration due to gravity (m/s²)
+
+    // Function to calculate energy
+    function calculateEnergy() {
+        const inputTableBody = document.querySelector("#inputTable tbody");
+        const calculationTableBody = document.querySelector("#calculationTable tbody");
+        inputTableBody.innerHTML = ""; // Clear previous inputs
+        calculationTableBody.innerHTML = ""; // Clear previous results
+
+        // Get global input values
+        const efficiency = parseFloat(document.getElementById("efficiency").value);
+        const designDischarge = parseFloat(document.getElementById("designDischarge").value);
+        const riparianFlow = parseFloat(document.getElementById("riparianFlow").value);
+        const grossHead = parseFloat(document.getElementById("grossHead").value);
+        const headLossPercent = parseFloat(document.getElementById("headLossPercent").value);
+
+        months.forEach(month => {
+            const { name, days } = month;
+
+            // Generate input fields for each month's discharge
+            const inputRow = document.createElement("tr");
+            inputRow.innerHTML = `
+                <td>${name}</td>
+                <td><input type="number" id="discharge-${name.toLowerCase()}" value="0" step="0.01"></td>
+            `;
+            inputTableBody.appendChild(inputRow);
+
+            // Get discharge value for the month
+            const discharge = parseFloat(document.getElementById(`discharge-${name.toLowerCase()}`).value);
+
+            // Calculate head loss
+            const headLoss = (headLossPercent / 100) * grossHead;
+
+            // Calculate net head
+            const netHead = grossHead - headLoss;
+
+            // Calculate effective discharge
+            const effectiveDischarge = designDischarge - riparianFlow;
+
+            // Calculate capacity (P) in kW
+            const capacity = (effectiveDischarge * netHead * gravity * efficiency) / 1000;
+
+            // Calculate energy (E) in kWh
+            const energy = capacity * days * 24;
+
+            // Create a new row for the calculation table
+            const calculationRow = document.createElement("tr");
+            calculationRow.innerHTML = `
+                <td>${name}</td>
+                <td>${discharge.toFixed(2)}</td>
+                <td>${designDischarge.toFixed(2)}</td>
+                <td>${riparianFlow.toFixed(2)}</td>
+                <td>${grossHead.toFixed(2)}</td>
+                <td>${headLoss.toFixed(2)}</td>
+                <td>${netHead.toFixed(2)}</td>
+                <td>${capacity.toFixed(2)}</td>
+                <td>${days}</td>
+                <td>${energy.toFixed(2)}</td>
+            `;
+            calculationTableBody.appendChild(calculationRow);
+        });
+    }
+
+    // Populate input table on page load
+    calculateEnergy();
+
+    </script>
+</body>
+</html>
