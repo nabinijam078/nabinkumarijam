@@ -331,7 +331,23 @@
             { name: "November", days: 30 },
             { name: "December", days: 31 }
         ];
+        // Function to populate the input table with input fields
+        function populateInputTable() {
+            const inputTableBody = document.querySelector("#inputTable tbody");
+            inputTableBody.innerHTML = ""; // Clear previous inputs
 
+            months.forEach(month => {
+                const { name } = month;
+
+                // Create a new row for the input table
+                const inputRow = document.createElement("tr");
+                inputRow.innerHTML = `
+                    <td>${name}</td>
+                    <td><input type="number" id="discharge-${name.toLowerCase()}" value="0" step="0.01"></td>
+                `;
+                inputTableBody.appendChild(inputRow);
+            });
+        }
         // Constants
         const gravity = 9.81; // Acceleration due to gravity (m/s²)
 
