@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home - Nabin Kumar Ijam</title>
+    <title>Information - Nabin Kumar Ijam</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
@@ -246,6 +246,18 @@
         color: #333;
       }
 
+      /* Main Content Container */
+      .main-container {
+        padding: 0 80px; /* Increased padding on both sides */
+        max-width: 1200px; /* Optional: Limit the maximum width of the content */
+        margin: 0 auto; /* Center the container */
+      }
+
+      /* Justify text in paragraphs */
+      .main-container p {
+        text-align: justify;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         .hero h2 {
@@ -274,6 +286,10 @@
         .card {
           width: 80%;
         }
+
+        .main-container {
+          padding: 0 20px; /* Adjust padding for smaller screens */
+        }
       }
     </style>
   </head>
@@ -285,7 +301,7 @@
 
     <!-- Navigation Bar -->
      <nav>
-       <a href="Home.html"><b>HOME</b></a>
+      <a href="Home.html"><b>HOME</b></a>
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
         <div class="dropdown-content">
