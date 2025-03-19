@@ -373,6 +373,19 @@
         <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
       </div>
     </footer>
+<!-- JavaScript for Time and Date -->
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
 
     <!-- JavaScript for Year -->
     <script>
