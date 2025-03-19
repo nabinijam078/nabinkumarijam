@@ -12,10 +12,26 @@
         font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
         color: #333;
         line-height: 1.6;
+        /* Dynamic Gradient Background */
+        background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
+        background-size: 400% 400%;
+        animation: GradientBackground 15s ease infinite;
       }
+
+      @keyframes GradientBackground {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
       h2, h3, h4, h5, h6 {
         font-family: 'Roboto', sans-serif; /* Heading font */
         color: #0078d7;
@@ -23,7 +39,7 @@
 
       /* Header Styles */
       header {
-        background-color: #0078d7;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
         color: white;
         padding: 20px;
         text-align: center;
@@ -32,12 +48,12 @@
 
       header h1 {
         margin: 0;
-        font-size: 1.3rem;
+        font-size: 1.8rem;
       }
 
       /* Navigation Bar */
       nav {
-        background-color: #333;
+        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
         padding: 10px;
         text-align: center;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -57,46 +73,146 @@
         background-color: #0078d7;
       }
 
-      /* Main Content */
-      .content {
-        max-width: 1200px;
-        margin: 20px auto;
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #0078d7;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
         padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding-bottom: 80px; /* Add padding to avoid footer overlap */
       }
 
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 150px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 5px solid #555;
+      .hero h2 {
+        font-size: 3rem;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       }
 
-      .content h2 {
-        color: #0078d7;
+      .hero p {
+        font-size: 1.5rem;
+        margin: 10px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero .btn {
+        background-color: #0078d7;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
         font-size: 1.2rem;
-        margin-top: 0;
+        transition: background-color 0.3s ease;
       }
 
-      .content p {
-        font-size: 0.8rem;
-        text-align: justify;
+      .hero .btn:hover {
+        background-color: #0056b3;
+      }
+
+      /* About Section */
+      .about {
+        display: flex;
+        align-items: center;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .about img {
+        width: 200px;
+        height: auto;
+        border-radius: 10px;
+        margin-right: 30px;
+        border: 5px solid #0078d7;
+      }
+
+      .about h2 {
+        font-size: 2rem;
+        margin: 0 0 10px;
+      }
+
+      .about p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      /* Cards Section */
+      .cards {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 20px auto;
+        max-width: 1200px;
+      }
+
+      .card {
+        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        margin: 0 0 10px;
+      }
+
+      .card p {
+        font-size: 1rem;
+        color: #555;
       }
 
       /* Footer Styles */
       footer {
-        background-color: #E0FFFF;
+        background-color: rgba(224, 255, 255, 0.8); /* Semi-transparent background */
         color: white;
         text-align: center;
-        padding: 10px;
-        position: relative; /* Change from fixed to relative */
-        width: 100%;
+        padding: 20px;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
 
@@ -105,19 +221,19 @@
       }
 
       .social-links a {
-        color: #333; /* Dark color for icons */
+        color: #333;
         text-decoration: none;
         margin: 0 10px;
-        font-size: 1.8rem; /* Icon size */
+        font-size: 1.8rem;
         transition: color 0.3s ease;
       }
 
       .social-links a:hover {
-        color: #0078d7; /* Change color on hover */
+        color: #0078d7;
       }
 
       .copyright {
-        background-color: #E0FFFF; 
+        background-color: rgba(224, 255, 255, 0.8);
         padding: 5px;
         border-radius: 5px;
         display: inline-block;
@@ -126,98 +242,136 @@
 
       .copyright p {
         margin: 0;
-        font-size: 0.7rem;
-        color: #333; /* Dark text for contrast */
-      }
-
-      /* Time and Date Styles */
-      #datetime {
-        position: absolute;
-        top: 10px;
-        right: 10px;
         font-size: 0.9rem;
         color: #333;
       }
 
       /* Responsive Design */
       @media (max-width: 768px) {
-        .content img {
-          float: none;
-          display: block;
-          margin: 0 auto 20px;
+        .hero h2 {
+          font-size: 2rem;
         }
 
-        nav a {
-          display: block;
-          margin: 10px 0;
+        .hero p {
+          font-size: 1.2rem;
+        }
+
+        .about {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .about img {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+
+        .cards {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .card {
+          width: 80%;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Current Time and Date -->
-    <div id="datetime"></div>
-
     <!-- Header -->
     <header>
       <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
 
     <!-- Navigation Bar -->
-    <nav>
-      <a href="Home.html"><b>HOME</b></a>
-      <a href="My background.html"><b>MY BACKGROUND</b></a>
-      <a href="My works.html"><b>MY WORKS</b></a>
-      <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
-      <a href="Others.html"><b>OTHERS</b></a>
+     <nav>
+       <a href="Home.html"><b>HOME</b></a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+        <div class="dropdown-content">
+          <a href="Information.html">My information</a>
+          <a href="My background.html">My Background</a>
+	  <a href="My works.html"><b>MY WORKS</b></a>
+        </div>
+      </div>
+      
+	<div class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+        	<div class="dropdown-content">
+      		<a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
+      		<a href="Others.html"><b>OTHERS</b></a>
+	</div>
+      </div>
+
       <a href="Downloads.html"><b>DOWNLOADS</b></a>
       <a href="images.html"><b>IMAGES</b></a>
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
-    <!-- Main Content -->
-    <div class="content">
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div>
+        <h2>Welcome to My Portfolio</h2>
+        <p>Discover my journey, expertise, and projects in Civil Engineering.</p>
+        <a href="#about" class="btn">Learn More</a>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
       <img src="unnamed.jpg" alt="Nabin Kumar Ijam">
-      <h2><u>ABOUT ME</u></h2>
-      <p>Hello! I am <b>Nabin Kumar Ijam</b>, from Nepal. I am a Civil Engineer specializing in Structural and Hydropower Engineering. This is my personal portfolio website where you can get some information about my work and expertise.I have added some calculation sheets which can be helpful for the Civil engineers who are pursuing their career in designing.</p>
-      <p>I born in small village located in Jhapa district of Nepal. I completed by school education from Bhanu Secondary School, Shivagunj-4 (now Shivasatakshi municipality -7). Then, I moved to Kathmandu to pursue higher education. I completed Diploma of Civil Engineering from Institute of Engineering, Thapathali Campus. After one year of preparation, I started Bachelor of Engineering from Tribhuvan University, Institute of Engineering, Pulchowk Campus.</p>
-      <p>My professional career started from Khwopa Engineering College (KEC), Bhaktapur where I taught to Bachelor students for one semester. When I got an opportunity to work in Sanima Hydropwer, I left KEC and started working in Sanima Hydro. My career at hydropower emerged and grew in Sanima where I got change to work at construction site. 22MW Mai hydropwer Project had given me the vast knowledge on construction methodologies starting from site in-charge to frequent opportunity to work as Act. Resident Engineer.</p>
-      <p>After doing work in Sanima for 7 years, I felt this is the best to pursue graduate. I applied for ADB-JSP Scholarship in Japan and fortunately I got scholarship to study in Saitama University, Japan. At the end of academic year, I was awarded as the "Best Research Award".</p>
-      <p>Luck favoured again. I got the chance the work in Japan. But my imagition about work environement in Japanese company was not found true, therefore, I couldn't continue and left and return to Nepal. In Nepal, I got best place to work in hydropower. I worked with many experienced hydropower professionals which sharpened my knowledge on hydropower. That was my turning point as a Design Engineer. </p>
-     <p>Now, I am in SMEC (Malaysia) for better opportunity and financial stability.</p>
-      <p>As I explained earlier, I have extensive experience in designing hydraulic structures, buildings, and steel structures. My expertise includes concrete design based on Indian Standard, British Standard, Euro codes, and ACI. Whereas, Steel design based on Indian and Euro Standards. You can contact me, if you have such works to be carried out.</p>
-      <p>Feel free to explore the site and get in touch with me for any inquiries or collaborations!</p>
+      <div>
+        <h2>About Me</h2>
+        <p>
+          Name: Nabin Kumar Ijam (NEPAL)
+        </p>
+	<p>
+          Qaulification: Master of Engineering (Civil)
+        </p>
+	<p>
+          Experience: More than 16 years in Hydropower
+        </p>
+	<p>
+          Experties: Hydraulic and Structural design of Hydraulic structure and Structural design
+        </p>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="cards">
+      <div class="card">
+        <h3>My Background</h3>
+        <p>Learn about my education, experience, and skills in Civil Engineering.</p>
+      </div>
+      <div class="card">
+        <h3>My Works</h3>
+        <p>Explore the projects I've worked on in Structural and Hydropower Engineering.</p>
+      </div>
+      <div class="card">
+        <h3>Contact Me</h3>
+        <p>Get in touch for collaborations or inquiries.</p>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer>
       <div class="social-links">
         <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+          <i class="fab fa-facebook"></i>
         </a>
         <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+          <i class="fab fa-linkedin"></i>
         </a>
       </div>
-        <!-- Copyright -->
-        <div class="copyright">
-            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-        </div>
+      <div class="copyright">
+        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+      </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
+    <!-- JavaScript for Year -->
     <script>
-      function updateDateTime() {
-        const now = new Date();
-        const datetimeElement = document.getElementById('datetime');
-        datetimeElement.textContent = now.toLocaleString();
-      }
-
-      // Update the time and date every second
-      setInterval(updateDateTime, 1000);
-
-      // Initial call to display the time and date immediately
-      updateDateTime();
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
