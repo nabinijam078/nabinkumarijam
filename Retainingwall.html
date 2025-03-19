@@ -11,7 +11,7 @@
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0 20px; /* Added padding on both sides */
             color: #333;
             line-height: 1.6;
             display: flex;
@@ -155,6 +155,26 @@
             color: #333;
         }
 
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #333; /* Added border to table, th, and td */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2; /* Light gray background for headers */
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .main-container {
@@ -162,594 +182,576 @@
             }
         }
     </style>
-  </head>
-  <body>
-	<!-- Current Time and Date -->
+</head>
+<body>
+    <!-- Current Time and Date -->
     <div id="datetime"></div>
     <!-- Header -->
     <header>
-      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
     </header>
 
     <!-- Navigation Bar -->
-     <nav>
-      <a href="Home.html"><b>HOME</b></a>
-      <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
-        <div class="dropdown-content">
-          <a href="Information.html">MY INFORMATION</a>
-          <a href="My background.html">MY BACKGROUND</a>
-	  <a href="My works.html">MY WORKS</a>
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+            <div class="dropdown-content">
+                <a href="Information.html">MY INFORMATION</a>
+                <a href="My background.html">MY BACKGROUND</a>
+                <a href="My works.html">MY WORKS</a>
+            </div>
         </div>
-      </div>
-      
-	<div class="dropdown">
-         <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
-        	<div class="dropdown-content">
-      		<a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
-      		<a href="Others.html">OTHER CALCULATION</a>
-	</div>
-      </div>
+        
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+            <div class="dropdown-content">
+                <a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
+                <a href="Others.html">OTHER CALCULATION</a>
+            </div>
+        </div>
 
-      <a href="Downloads.html"><b>DOWNLOADS</b></a>
-      <a href="images.html"><b>IMAGES</b></a>
-      <a href="Contacts.html"><b>CONTACTS</b></a>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
-     <div class="content">
-         <form id="Stemdimension">
-             <h2><u>STABILITY ANALYSIS OF RETAINING WALL</u></h2>
-             <p><b>1. GEOMETRY OF WALL</b></p>
-             <p>STEM DIMENSION</p>
-             <div class="input-row">
-                 <label for="topwidth">Top width (t<sub>w</sub> in m):</label>
-                 <input type="number" id="tw" required>
-             </div>
-             <div class="input-row">
-                 <label for="bottomwidth">Bottom width (b<sub>w</sub> in m):</label>
-                 <input type="number" id="bw" required>
-             </div>
-             <div class="input-row">
-                 <label for="height">Height of stem (h in m):</label>
-                 <input type="number" id="hw" required>
-             </div>
-             <p>TOE SLAB DIMENSION</p>
-             <div class="input-row">
-                 <label for="lengthtoe">Length of toe (L<sub>t</sub> in m):</label>
-                 <input type="number" id="lengthtoe" required>
-             </div>
-             <div class="input-row">
-                 <label for="ThicknessToe">Thickness of toe (h<sub>t</sub> in m):</label>
-                 <input type="number" id="ThicknessToe" required>
-             </div>
-             <p>HEEL SLAB DIMENSION</p>
-             <div class="input-row">
-                 <label for="lengthheel">Length of heel (L<sub>h</sub> in m):</label>
-                 <input type="number" id="lengthheel" required>
-             </div>
-             <div class="input-row">
-                 <label for="Thicknessheel">Thickness of heel (h<sub>h</sub> in m):</label>
-                 <input type="number" id="Thicknessheel" required>
-             </div>
-             <p><b>2. GEOTECHNICAL PARAMETER</b></p>
-             <p><b>2.1 Foundation material</b></p>
-             <div class="input-row">
-                 <label for="BearingF">Bearing Capacity of foundation material (σ<sub>b</sub> in kN/m<sup>2</sup>):</label>
-                 <input type="number" id="σb" required>
-             </div>
-             <div class="input-row">
-                 <label for="Frictionf">Angle of internal friction of foundation material (φ<sub>f</sub> in degree):</label>
-                 <input type="number" id="φf" required>
-             </div>
-             <div class="input-row">
-                 <label for="Cohesionf">Cohesion of foundation material (C<sub>f</sub> in kN/m<sup>2</sup>):</label>
-                 <input type="number" id="Cf" required>
-             </div>
-             <p><b>2.2 Backfill material</b></p>
-             <div class="input-row">
-                 <label for="Density of soil">Density of soil (Y<sub>s</sub> in kN/m<sup>3</sup>):</label>
-                 <input type="number" id="Ys" required>
-             </div>
-             <div class="input-row">
-                 <label for="Saturated Density of soil">Saturated Density of soil (Y<sub>sat</sub> in kN/m<sup>3</sup>):</label>
-                 <input type="number" id="Ysat" required>
-             </div>
-             <div class="input-row">
-                 <label for="InclinationHeel">Inclination of slope at hill side (i<sub>h</sub> in degree):</label>
-                 <input type="number" id="ih" required>
-             </div>
-             <div class="input-row">
-                 <label for="FricAngle">Angle of internal friction (φ in degree):</label>
-                 <input type="number" id="Phi" required>
-             </div>
-             <div class="input-row">
-                 <label for="SoilDepthheel">Depth of soil in heel side from top of slab (h<sub>s</sub> in m):</label>
-                 <input type="number" id="hs" required>
-             </div>
-             <div class="input-row">
-                 <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (h<sub>toe</sub> in m):</label>
-                 <input type="number" id="htoe" required>
-             </div>
-             <p><b>3. WATER LEVELS</b></p>
-             <div class="input-row">
-                 <label for="WTh">Water depth in heel side from top of slab (WT<sub>h</sub> in m):</label>
-                 <input type="number" id="WTh" required>
-             </div>
-             <div class="input-row">
-                 <label for="WTt">Water depth in toe side from top of slab (WT<sub>t</sub> in m):</label>
-                 <input type="number" id="WTt" required>
-             </div>
-             <p><b>4. OTHERS</b></p>
-             <div class="input-row">
-                 <label for="Yc">Density of concrete (Y<sub>c</sub> in kN/m<sup>3</sup>):</label>
-                 <input type="number" id="Yc" required>
-             </div>
-             <div class="input-row">
-                 <label for="Ah">Horizontal seismic coefficient (A<sub>h</sub>):</label>
-                 <input type="number" id="Ah" required>
-             </div>
-             <label for="EPT">Consideration of earth pressure (1-Active & Passive and 2-At rest):</label>
-             <select id="EPT">
-                 <option value="1">1</option>
-                 <option value="2">2</option>
-             </select>
-             <div class="input-row">
-                 <label for="Ps">Passive pressure coefficient (P<sub>s</sub> in %):</label>
-                 <input type="number" id="Ps" required>
-             </div>
-             <p></p>
-             <button type="button" onclick="RetainingWallCalc()">Design Section</button>
-         </form>
-         <div class="result" id="result">
-             <h3>DESIGN RESULTS</h3>
-             <p><b>LOAD CALCULATION</b></p>
-             <table>
-                 <tr>
-               <th>SN</th>
-               <th>Load name</th>
-               <th>Symbol</th>
-               <th>Load Intensity</th>
-               <th>Unit</th>
-               <th>Load (kN)</th>
-               <th>Center of Gravity</th>
-               <th>LoadType</th>
-               <th>Resisting moment(kNm)</th>
-               <th>Overturning moment(kNm)</th>
- 
-             </tr>
- 
-             <tr>
-               <td>1.</td>
-               <td>Self-weight of the structure</td>
-               <td>F1</td>
-               <td><p><span id="F1"></span></span></strong></p></td>
-               <td>kN</td>
-               <td><p><span id="P1"></span></span></strong></p></td>
-               <td><p><span id="x1"></span></span></strong></p></td>
-               <td>Vertical</td>
-               <td><p><span id="M1"></span></span></strong></p></td>
-               <td></td>
-             </tr>
- 
-             <tr>
-               <td>2.1</td>
-               <td>Earth pressure above WT in hill side</td>
-               <td>F2h1</td>
-               <td><p><span id="F2h1"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P2h1"></span></span></strong></p></td>
-               <td><p><span id="x2h1"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td></td>
-               <td><p><span id="M2h1"></span></span></strong></p></td>
-             </tr>
- 
-             <tr>
-               <td>2.2</td>
-               <td>Earth pressure below WT in river side</td>
-               <td>F2h2</td>
-               <td><p><span id="F2h2"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P2h2"></span></span></strong></p></td>
-               <td><p><span id="x2h2"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td></td>
-               <td><p><span id="M2h2"></span></span></strong></p></td>
-             </tr>
- 
-             <tr>
-               <td>2.3</td>
-               <td>Earth pressure above WT in river side</td>
-               <td>F2r1</td>
-               <td><p><span id="F2r1"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P2r1"></span></span></strong></p></td>
-               <td><p><span id="x2r1"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td><p><span id="M2r1"></span></span></strong></p></td>
-               <td></td>
-             </tr>
- 
-             <tr>
-               <td>2.4</td>
-               <td>Earth pressure below WT in river side</td>
-               <td>F2r2</td>
-               <td><p><span id="F2r2"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P2r2"></span></span></strong></p></td>
-               <td><p><span id="x2r2"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td><p><span id="M2r2"></span></span></strong></p></td>
-               <td></td>
-             </tr>
-             <tr>
-               <td>3.1</td>
-               <td>Soil load (including water) in hill side</td>
-               <td>F3h</td>
-               <td><p><span id="F3h"></span></span></strong></p></td>
-               <td>kN</td>
-               <td><p><span id="P3h"></span></span></strong></p></td>
-               <td><p><span id="x3h"></span></span></strong></p></td>
-               <td>Vertical</td>
-               <td><p><span id="M3h"></span></span></strong></p></td>
-               <td></td>
-             </tr>
-             <tr>
-               <td>3.2</td>
-               <td>Soil load (including water) in river side</td>
-               <td>F3r</td>
-               <td><p><span id="F3r"></span></span></strong></p></td>
-               <td>kN</td>
-               <td><p><span id="P3r"></span></span></strong></p></td>
-               <td><p><span id="x3r"></span></span></strong></p></td>
-               <td>Vertical</td>
-               <td><p><span id="M3r"></span></span></strong></p></td>
-               <td></td>
-             </tr>
- 
-             <tr>
-               <td>4.1</td>
-               <td>Hydrostatic pressure at hill side</td>
-               <td>F4h</td>
-               <td><p><span id="F4h"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P4h"></span></span></strong></p></td>
-               <td><p><span id="x4h"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td></td>
-               <td><p><span id="M4h"></span></span></strong></p></td>
-             </tr>
-             <tr>
-               <td>4.2</td>
-               <td>Hydrostatic pressure at river side</td>
-               <td>F4r</td>
-               <td><p><span id="F4r"></span></span></strong></p></td>
-               <td>kN/m</td>
-               <td><p><span id="P4r"></span></span></strong></p></td>
-               <td><p><span id="x4r"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td><p><span id="M4r"></span></span></strong></p></td>
-               <td></td>
-             </tr>
-             <tr>
-               <td>5</td>
-               <td>Uplift</td>
-               <td>F5</td>
-               <td><p><span id="F5"></span></span></strong></p></td>
-               <td>kN</td>
-               <td><p><span id="P5"></span></span></strong></p></td>
-               <td><p><span id="x5"></span></span></strong></p></td>
-               <td>Vertical</td>
-               <td></td>
-               <td><p><span id="M5"></span></span></strong></p></td>
-             </tr>
- 
-             <tr>
-               <td>6</td>
-               <td>Seismic load</td>
-               <td>F6</td>
-               <td><p><span id="F6"></span></span></strong></p></td>
-               <td>kN</td>
-               <td><p><span id="P6"></span></span></strong></p></td>
-               <td><p><span id="x6"></span></span></strong></p></td>
-               <td>Horizontal</td>
-               <td></td>
-               <td><p><span id="M6"></span></span></strong></p></td>
-             </tr>
- 
-             </table>
-             <p><b>STABILITY ANALYSIS</b></p>
-             <table>
-                 <tr>
-             <th>SN</th>
-             <th>Combination</th>
-             <th>FOS against Sliding</th>
-             <th>FOS against Overturning</th>
-             <th>Eccentricity(m)</th>
-             <th>Minimum bearing pressure(kNm<sup>2</sup>)</th>
-             <th>Maximum bearing pressure(kNm<sup>2</sup>)</th>
-           </tr>
-           <tr>
-             <td>1</td>
-             <td>Normal condition</td>
-             <td><p><span id="FOSs1"></span></span></strong></p></td>
-             <td><p><span id="FOSo1"></span></span></strong></p></td>
-             <td><p><span id="ec1"></span></span></strong></p></td>
-             <td><p><span id="sigmamin1"></span></span></strong></p></td>
-             <td><p><span id="sigmamax1"></span></span></strong></p></td>
-           </tr>
-           <tr>
-             <td>2</td>
-             <td>Seismic condition</td>
-             <td><p><span id="FOSs2"></span></span></strong></p></td>
-             <td><p><span id="FOSo2"></span></span></strong></p></td>
-             <td><p><span id="ec2"></span></span></strong></p></td>
-             <td><p><span id="sigmamin2"></span></span></strong></p></td>
-             <td><p><span id="sigmamax2"></span></span></strong></p></td>
-           </tr>
- 
-             </table>
-         </div>
-     </div>
- 
-     <footer>
-         <div class="social-links">
-             <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
-                 <i class="fab fa-facebook"></i>
-             </a>
-             <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
-                 <i class="fab fa-linkedin"></i>
-             </a>
-         </div>
-         <div class="copyright">
-             <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-         </div>
-     </footer>
- 
-     <script>
-         function RetainingWallCalc() {
-              // Get user inputs
-             const tw = parseFloat(document.getElementById('tw').value);
-             const bw = parseFloat(document.getElementById('bw').value);
-             const h = parseFloat(document.getElementById('hw').value);
-             const Lt = parseFloat(document.getElementById('lengthtoe').value);
-             const ht = parseFloat(document.getElementById('ThicknessToe').value);
-             const Lh = parseFloat(document.getElementById('lengthheel').value);
-             const hh = parseFloat(document.getElementById('Thicknessheel').value);
-             const σb = parseFloat(document.getElementById('σb').value);
-             const φf = parseFloat(document.getElementById('φf').value);
-             const Cf = parseFloat(document.getElementById('Cf').value);
-             const Ys = parseFloat(document.getElementById('Ys').value);
-             const Ysat = parseFloat(document.getElementById('Ysat').value);
-             const ih = parseFloat(document.getElementById('ih').value);
-             const φ = parseFloat(document.getElementById('Phi').value);
-             const hs = parseFloat(document.getElementById('hs').value);
-             const htoe = parseFloat(document.getElementById('htoe').value);
-             const WTh = parseFloat(document.getElementById('WTh').value);
-             const WTt = parseFloat(document.getElementById('WTt').value);
-             const Yc = parseFloat(document.getElementById('Yc').value);
-             const Ah = parseFloat(document.getElementById('Ah').value);
-             const EPT = parseFloat(document.getElementById('EPT').value);
-             const Ps = parseFloat(document.getElementById('Ps').value);
- 
-             //Total width of slab
-             const B=bw+Lt+Lh;
- 
-             //CALCULATIONS
-             //active pressure coefficients
-             const ka1=(Math.cos(3.1416*ih/180)-Math.sqrt(Math.pow((Math.cos(3.1416*ih/180)),2)-Math.pow(Math.cos(3.1416*φ/180),2)))/(Math.cos(3.1416*ih/180)+Math.sqrt(Math.pow((Math.cos(3.1416*ih/180)),2)-Math.pow(Math.cos(3.1416*φ/180),2)));
-             const kp1=1/ka1;
-             const kr=1-Math.sin(3.1416*φ/180);
- 
-             let ka;
-             if (EPT==1){ka=ka1;}
-             else {ka=kr;}
- 
-             let kp;
-             if (EPT==1){kp=Ps/100*kp1;}
-             else {kp=kr;}
- 
- 
-             //Cross-sectional area of retaining WALL
-             const Ar=(tw+bw)/2*h+B*ht;
-             const x11 = tw/2+Lt;
-             const y11=h/2+ht;
-             const A11=tw*h;
-             const x12=(bw-tw)/3+tw+Lt;
-             const y12=h/3+ht;
-             const A12=1/2*(bw-tw)*h;
-             const x2=B/2;
-             const y2=ht/2;
-             const A2=B*ht;
- 
-             const x1=(A11*x11+A12*x12+x2*A2)/Ar;
-             const y1=(A11*y11+A12*y12+y2*A2)/Ar;
- 
- 
-             //1. Weight of structure
-             const F1=Yc*Ar;
-             const P1=F1;
-             const M1=P1*x1;
- 
-             // 2. Soil pressure
-             // 2. Soil pressure
-             //2.1 Hill side
-             let hs1;
-             if (WTh>=hs){hs1=0;}
-             else {hs1=(hs-WTh);}
- 
-             const F2h1=Ys*ka*hs1;
-             const P2h1=0.5*F2h1*hs1;
- 
-             const x2h1=hs1/3+WTh+hh;
-             const M2h1=P2h1*x2h1;
-             const F2h2=F2h1+(Ysat-9.81)*ka*(hs+hh-hs1);
-             const P2h2=0.5*(F2h1+F2h2)*(hs+hh-hs1);
-             const x2h2=(2*F2h1+F2h2)/(F2h1+F2h2)*(WTh+hh)/3;
-             const M2h2=P2h2*x2h2;
- 
- 
-             //2.3 River side
-             let hr1;
-             if (WTt>=htoe){hr1=0;}
-             else {hr1=htoe-WTt;}
- 
-             const F2r1=Ys*kp*hr1;
-             const x2r1=hr1/3+WTt+ht;
-             const P2r1=0.5*F2r1*hr1;
-             const M2r1=P2r1*x2r1;
-             const F2r2=F2r1+(Ysat-9.81)*kp*(htoe+ht-hr1);
-             const x2r2=(2*F2r1+F2r2)/(F2r1+F2r2)*(WTt+ht)/3;
-             const P2r2=(F2r1+F2r2)/2*(htoe+ht-hr1);
-             const M2r2=P2r2*x2r2;
- 
-             //3.  weight of soil including Water
-             const F3h=(Ys*hs1+Ysat*WTh)*Lh;
-             const P3h=F3h;
-             const F3r=(Ys*hr1+Ysat*WTt)*Lt;
-             const P3r=F3r;
-             const x3h=B-Lh/2;
-             const x3r=Lt/2;
-             const M3h=P3h*x3h;
-             const M3r=P3r*x3r;
- 
- 
-             //4. Hydrostatic Loads
-             //4.1 Hill side
-             const F4h=9.81*(hh+WTh);
-             const P4h=0.5*F4h*(hh+WTh);
-             const F4r=9.81*(ht+WTt);
-             const P4r=0.5*F4r*(ht+WTt);
-             const x4h=(hh+WTh)/3;
-             const x4r=(ht+WTt)/3;
-             const M4h=P4h*x4h;
-             const M4r=P4r*x4r;
- 
- 
-             //5. Uplift
-             const F5=(F4h+F4r)/2*B;
- 
-             if (F4h>F4r){x5=(2*F4r+F4h)/(F4r+F4h)*B/3;}
-             else {x5=(F4r+2*F4h)/(F4r+F4h)*B/3;}
-             const P5=F5;
-             const M5=P5*x5;
- 
-             //6. Seismic Loads
-             const F6=Ah*F1;
-             const x6=y1;
-             const P6=F6;
-             const M6=P6*x6;
- 
-             //STABILITY ANALYSIS
-             //1. WITHOUT Seismic
-             //SUM OF VERTICAL FORCE
-             const VF1=P1+P3h+P3r-P5;
-             //Sum of horizontal force;
-             const HF1=P2h1+P2h2-P2r1-P2r2+P4h-P4r;
-             //sum of resisting moment
-             const MR1=M1+M2r1+M2r2+M3h+M3r+M4r;
-             //sum of overturning moment
-             const MO1=M2h1+M2h2+M4h+M5;
-             const FOSs1=(VF1*Math.tan(3.1416*φf/180)+B*Cf)/HF1;
-             const FOSo1=MR1/MO1;
-             const ec1=B/2-(MR1-MO1)/VF1;
-             const sigmamin1=VF1/B*(1-6*ec1/B);
-             const sigmamax1=VF1/B*(1+6*ec1/B);
- 
-             //2. WITH Seismic
-             //Sum of vertical force
-             const VF2=P1+P3h+P3r-P5;
-             const HF2=P2h1+P2h2-P2r1-P2r2+P4h-P4r-P6;
-             const MR2=M1+M2r1+M2r2+M3h+M3r+M4r;
-             const MO2=M2h1+M2h2+M4h+M5+M6;
-             const FOSs2=(VF2*Math.tan(3.1416*φf/180)+B*Cf)/HF2;
-             const FOSo2=MR2/MO2;
-             const ec2=B/2-(MR2-MO2)/VF2;
-             const sigmamin2=VF2/B*(1-6*ec2/B);
-             const sigmamax2=VF2/B*(1+6*ec2/B);
- 
- 
- 
-             // Display result
- 
-             document.getElementById('F1').textContent = F1.toFixed(2);
-             document.getElementById('x1').textContent = x1.toFixed(2);
-             document.getElementById('P1').textContent = P1.toFixed(2);
-             document.getElementById('M1').textContent = M1.toFixed(2);
-             document.getElementById('F2h1').textContent = F2h1.toFixed(2);
-             document.getElementById('x2h1').textContent = x2h1.toFixed(2);
-             document.getElementById('P2h1').textContent = P2h1.toFixed(2);
-             document.getElementById('M2h1').textContent = M2h1.toFixed(2);
- 
-             document.getElementById('F2h2').textContent = F2h2.toFixed(2);
-             document.getElementById('x2h2').textContent = x2h2.toFixed(2);
-             document.getElementById('P2h2').textContent = P2h2.toFixed(2);
-             document.getElementById('M2h2').textContent = M2h2.toFixed(2);
- 
-             document.getElementById('F2r1').textContent = F2r1.toFixed(2);
-             document.getElementById('x2r1').textContent = x2r1.toFixed(2);
-             document.getElementById('P2r1').textContent = P2r1.toFixed(2);
-             document.getElementById('M2r1').textContent = M2r1.toFixed(2);
- 
-             document.getElementById('F2r2').textContent = F2r2.toFixed(2);
-             document.getElementById('x2r2').textContent = x2r2.toFixed(2);
-             document.getElementById('P2r2').textContent = P2r2.toFixed(2);
-             document.getElementById('M2r2').textContent = M2r2.toFixed(2);
- 
-             document.getElementById('F3h').textContent = F3h.toFixed(2);
-             document.getElementById('F3r').textContent = F3r.toFixed(2);
-             document.getElementById('P3h').textContent = P3h.toFixed(2);
-             document.getElementById('M3h').textContent = M3h.toFixed(2);
- 
-             document.getElementById('x3h').textContent = x3h.toFixed(2);
-             document.getElementById('x3r').textContent = x3r.toFixed(2);
-             document.getElementById('P3r').textContent = P3r.toFixed(2);
-             document.getElementById('M3r').textContent = M3r.toFixed(2);
- 
-             document.getElementById('F4h').textContent = F4h.toFixed(2);
-             document.getElementById('F4r').textContent = F4r.toFixed(2);
-             document.getElementById('P4h').textContent = P4h.toFixed(2);
-             document.getElementById('P4r').textContent = P4r.toFixed(2);
- 
-             document.getElementById('x4h').textContent = x4h.toFixed(2);
-             document.getElementById('x4r').textContent = x4r.toFixed(2);
-             document.getElementById('M4h').textContent = M4h.toFixed(2);
-             document.getElementById('M4r').textContent = M4r.toFixed(2);
- 
-             document.getElementById('F5').textContent = F5.toFixed(2);
-             document.getElementById('x5').textContent = x5.toFixed(2);
-             document.getElementById('P5').textContent = P5.toFixed(2);
-             document.getElementById('M5').textContent = M5.toFixed(2);
- 
-             document.getElementById('F6').textContent = F6.toFixed(2);
-             document.getElementById('x6').textContent = x6.toFixed(2);
-             document.getElementById('P6').textContent = P6.toFixed(2);
-             document.getElementById('M6').textContent = M6.toFixed(2);
- 
-             document.getElementById('FOSs1').textContent = FOSs1.toFixed(2);
-             document.getElementById('FOSo1').textContent = FOSo1.toFixed(2);
-             document.getElementById('ec1').textContent = ec1.toFixed(2);
-             document.getElementById('sigmamin1').textContent = sigmamin1.toFixed(2);
-             document.getElementById('sigmamax1').textContent = sigmamax1.toFixed(2);
- 
-             document.getElementById('FOSs2').textContent = FOSs2.toFixed(2);
-             document.getElementById('FOSo2').textContent = FOSo2.toFixed(2);
-             document.getElementById('ec2').textContent = ec2.toFixed(2);
-             document.getElementById('sigmamin2').textContent = sigmamin2.toFixed(2);
-             document.getElementById('sigmamax2').textContent = sigmamax2.toFixed(2);
-         }
- 
- 
-         // Update Time
-         function updateTime() {
-             const now = new Date();
-             const datetimeElement = document.getElementById('datetime');
-             datetimeElement.textContent = now.toLocaleString();
-         }
-         setInterval(updateTime, 1000);
-         updateTime(); // Initial call
- 
-         // Update Copyright Year
-         document.getElementById('year').innerText = new Date().getFullYear();
-     </script>
- </body>
- </html>
+
+    <div class="content">
+        <form id="Stemdimension">
+            <h2><u>STABILITY ANALYSIS OF RETAINING WALL</u></h2>
+            <p><b>1. GEOMETRY OF WALL</b></p>
+            <p>STEM DIMENSION</p>
+            <div class="input-row">
+                <label for="topwidth">Top width (t<sub>w</sub> in m):</label>
+                <input type="number" id="tw" required>
+            </div>
+            <div class="input-row">
+                <label for="bottomwidth">Bottom width (b<sub>w</sub> in m):</label>
+                <input type="number" id="bw" required>
+            </div>
+            <div class="input-row">
+                <label for="height">Height of stem (h in m):</label>
+                <input type="number" id="hw" required>
+            </div>
+            <p>TOE SLAB DIMENSION</p>
+            <div class="input-row">
+                <label for="lengthtoe">Length of toe (L<sub>t</sub> in m):</label>
+                <input type="number" id="lengthtoe" required>
+            </div>
+            <div class="input-row">
+                <label for="ThicknessToe">Thickness of toe (h<sub>t</sub> in m):</label>
+                <input type="number" id="ThicknessToe" required>
+            </div>
+            <p>HEEL SLAB DIMENSION</p>
+            <div class="input-row">
+                <label for="lengthheel">Length of heel (L<sub>h</sub> in m):</label>
+                <input type="number" id="lengthheel" required>
+            </div>
+            <div class="input-row">
+                <label for="Thicknessheel">Thickness of heel (h<sub>h</sub> in m):</label>
+                <input type="number" id="Thicknessheel" required>
+            </div>
+            <p><b>2. GEOTECHNICAL PARAMETER</b></p>
+            <p><b>2.1 Foundation material</b></p>
+            <div class="input-row">
+                <label for="BearingF">Bearing Capacity of foundation material (σ<sub>b</sub> in kN/m<sup>2</sup>):</label>
+                <input type="number" id="σb" required>
+            </div>
+            <div class="input-row">
+                <label for="Frictionf">Angle of internal friction of foundation material (φ<sub>f</sub> in degree):</label>
+                <input type="number" id="φf" required>
+            </div>
+            <div class="input-row">
+                <label for="Cohesionf">Cohesion of foundation material (C<sub>f</sub> in kN/m<sup>2</sup>):</label>
+                <input type="number" id="Cf" required>
+            </div>
+            <p><b>2.2 Backfill material</b></p>
+            <div class="input-row">
+                <label for="Density of soil">Density of soil (Y<sub>s</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Ys" required>
+            </div>
+            <div class="input-row">
+                <label for="Saturated Density of soil">Saturated Density of soil (Y<sub>sat</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Ysat" required>
+            </div>
+            <div class="input-row">
+                <label for="InclinationHeel">Inclination of slope at hill side (i<sub>h</sub> in degree):</label>
+                <input type="number" id="ih" required>
+            </div>
+            <div class="input-row">
+                <label for="FricAngle">Angle of internal friction (φ in degree):</label>
+                <input type="number" id="Phi" required>
+            </div>
+            <div class="input-row">
+                <label for="SoilDepthheel">Depth of soil in heel side from top of slab (h<sub>s</sub> in m):</label>
+                <input type="number" id="hs" required>
+            </div>
+            <div class="input-row">
+                <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (h<sub>toe</sub> in m):</label>
+                <input type="number" id="htoe" required>
+            </div>
+            <p><b>3. WATER LEVELS</b></p>
+            <div class="input-row">
+                <label for="WTh">Water depth in heel side from top of slab (WT<sub>h</sub> in m):</label>
+                <input type="number" id="WTh" required>
+            </div>
+            <div class="input-row">
+                <label for="WTt">Water depth in toe side from top of slab (WT<sub>t</sub> in m):</label>
+                <input type="number" id="WTt" required>
+            </div>
+            <p><b>4. OTHERS</b></p>
+            <div class="input-row">
+                <label for="Yc">Density of concrete (Y<sub>c</sub> in kN/m<sup>3</sup>):</label>
+                <input type="number" id="Yc" required>
+            </div>
+            <div class="input-row">
+                <label for="Ah">Horizontal seismic coefficient (A<sub>h</sub>):</label>
+                <input type="number" id="Ah" required>
+            </div>
+            <label for="EPT">Consideration of earth pressure (1-Active & Passive and 2-At rest):</label>
+            <select id="EPT">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <div class="input-row">
+                <label for="Ps">Passive pressure coefficient (P<sub>s</sub> in %):</label>
+                <input type="number" id="Ps" required>
+            </div>
+            <p></p>
+            <button type="button" onclick="RetainingWallCalc()">Design Section</button>
+        </form>
+        <div class="result" id="result">
+            <h3>DESIGN RESULTS</h3>
+            <p><b>LOAD CALCULATION</b></p>
+            <table>
+                <tr>
+                    <th>SN</th>
+                    <th>Load name</th>
+                    <th>Symbol</th>
+                    <th>Load Intensity</th>
+                    <th>Unit</th>
+                    <th>Load (kN)</th>
+                    <th>Center of Gravity</th>
+                    <th>LoadType</th>
+                    <th>Resisting moment(kNm)</th>
+                    <th>Overturning moment(kNm)</th>
+                </tr>
+                <tr>
+                    <td>1.</td>
+                    <td>Self-weight of the structure</td>
+                    <td>F1</td>
+                    <td><p><span id="F1"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P1"></span></span></strong></p></td>
+                    <td><p><span id="x1"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M1"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2.1</td>
+                    <td>Earth pressure above WT in hill side</td>
+                    <td>F2h1</td>
+                    <td><p><span id="F2h1"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2h1"></span></span></strong></p></td>
+                    <td><p><span id="x2h1"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M2h1"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2.2</td>
+                    <td>Earth pressure below WT in river side</td>
+                    <td>F2h2</td>
+                    <td><p><span id="F2h2"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2h2"></span></span></strong></p></td>
+                    <td><p><span id="x2h2"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M2h2"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2.3</td>
+                    <td>Earth pressure above WT in river side</td>
+                    <td>F2r1</td>
+                    <td><p><span id="F2r1"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2r1"></span></span></strong></p></td>
+                    <td><p><span id="x2r1"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M2r1"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2.4</td>
+                    <td>Earth pressure below WT in river side</td>
+                    <td>F2r2</td>
+                    <td><p><span id="F2r2"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2r2"></span></span></strong></p></td>
+                    <td><p><span id="x2r2"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M2r2"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3.1</td>
+                    <td>Soil load (including water) in hill side</td>
+                    <td>F3h</td>
+                    <td><p><span id="F3h"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P3h"></span></span></strong></p></td>
+                    <td><p><span id="x3h"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M3h"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3.2</td>
+                    <td>Soil load (including water) in river side</td>
+                    <td>F3r</td>
+                    <td><p><span id="F3r"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P3r"></span></span></strong></p></td>
+                    <td><p><span id="x3r"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M3r"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4.1</td>
+                    <td>Hydrostatic pressure at hill side</td>
+                    <td>F4h</td>
+                    <td><p><span id="F4h"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P4h"></span></span></strong></p></td>
+                    <td><p><span id="x4h"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M4h"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>4.2</td>
+                    <td>Hydrostatic pressure at river side</td>
+                    <td>F4r</td>
+                    <td><p><span id="F4r"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P4r"></span></span></strong></p></td>
+                    <td><p><span id="x4r"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M4r"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Uplift</td>
+                    <td>F5</td>
+                    <td><p><span id="F5"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P5"></span></span></strong></p></td>
+                    <td><p><span id="x5"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td></td>
+                    <td><p><span id="M5"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Seismic load</td>
+                    <td>F6</td>
+                    <td><p><span id="F6"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P6"></span></span></strong></p></td>
+                    <td><p><span id="x6"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M6"></span></span></strong></p></td>
+                </tr>
+            </table>
+            <p><b>STABILITY ANALYSIS</b></p>
+            <table>
+                <tr>
+                    <th>SN</th>
+                    <th>Combination</th>
+                    <th>FOS against Sliding</th>
+                    <th>FOS against Overturning</th>
+                    <th>Eccentricity(m)</th>
+                    <th>Minimum bearing pressure(kNm<sup>2</sup>)</th>
+                    <th>Maximum bearing pressure(kNm<sup>2</sup>)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Normal condition</td>
+                    <td><p><span id="FOSs1"></span></span></strong></p></td>
+                    <td><p><span id="FOSo1"></span></span></strong></p></td>
+                    <td><p><span id="ec1"></span></span></strong></p></td>
+                    <td><p><span id="sigmamin1"></span></span></strong></p></td>
+                    <td><p><span id="sigmamax1"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Seismic condition</td>
+                    <td><p><span id="FOSs2"></span></span></strong></p></td>
+                    <td><p><span id="FOSo2"></span></span></strong></p></td>
+                    <td><p><span id="ec2"></span></span></strong></p></td>
+                    <td><p><span id="sigmamin2"></span></span></strong></p></td>
+                    <td><p><span id="sigmamax2"></span></span></strong></p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+        </div>
+    </footer>
+
+    <script>
+        function RetainingWallCalc() {
+            // Get user inputs
+            const tw = parseFloat(document.getElementById('tw').value);
+            const bw = parseFloat(document.getElementById('bw').value);
+            const h = parseFloat(document.getElementById('hw').value);
+            const Lt = parseFloat(document.getElementById('lengthtoe').value);
+            const ht = parseFloat(document.getElementById('ThicknessToe').value);
+            const Lh = parseFloat(document.getElementById('lengthheel').value);
+            const hh = parseFloat(document.getElementById('Thicknessheel').value);
+            const σb = parseFloat(document.getElementById('σb').value);
+            const φf = parseFloat(document.getElementById('φf').value);
+            const Cf = parseFloat(document.getElementById('Cf').value);
+            const Ys = parseFloat(document.getElementById('Ys').value);
+            const Ysat = parseFloat(document.getElementById('Ysat').value);
+            const ih = parseFloat(document.getElementById('ih').value);
+            const φ = parseFloat(document.getElementById('Phi').value);
+            const hs = parseFloat(document.getElementById('hs').value);
+            const htoe = parseFloat(document.getElementById('htoe').value);
+            const WTh = parseFloat(document.getElementById('WTh').value);
+            const WTt = parseFloat(document.getElementById('WTt').value);
+            const Yc = parseFloat(document.getElementById('Yc').value);
+            const Ah = parseFloat(document.getElementById('Ah').value);
+            const EPT = parseFloat(document.getElementById('EPT').value);
+            const Ps = parseFloat(document.getElementById('Ps').value);
+
+            //Total width of slab
+            const B = bw + Lt + Lh;
+
+            //CALCULATIONS
+            //active pressure coefficients
+            const ka1 = (Math.cos(3.1416 * ih / 180) - Math.sqrt(Math.pow((Math.cos(3.1416 * ih / 180)), 2) - Math.pow(Math.cos(3.1416 * φ / 180), 2))) / (Math.cos(3.1416 * ih / 180) + Math.sqrt(Math.pow((Math.cos(3.1416 * ih / 180)), 2) - Math.pow(Math.cos(3.1416 * φ / 180), 2)));
+            const kp1 = 1 / ka1;
+            const kr = 1 - Math.sin(3.1416 * φ / 180);
+
+            let ka;
+            if (EPT == 1) { ka = ka1; }
+            else { ka = kr; }
+
+            let kp;
+            if (EPT == 1) { kp = Ps / 100 * kp1; }
+            else { kp = kr; }
+
+            //Cross-sectional area of retaining WALL
+            const Ar = (tw + bw) / 2 * h + B * ht;
+            const x11 = tw / 2 + Lt;
+            const y11 = h / 2 + ht;
+            const A11 = tw * h;
+            const x12 = (bw - tw) / 3 + tw + Lt;
+            const y12 = h / 3 + ht;
+            const A12 = 1 / 2 * (bw - tw) * h;
+            const x2 = B / 2;
+            const y2 = ht / 2;
+            const A2 = B * ht;
+
+            const x1 = (A11 * x11 + A12 * x12 + x2 * A2) / Ar;
+            const y1 = (A11 * y11 + A12 * y12 + y2 * A2) / Ar;
+
+            //1. Weight of structure
+            const F1 = Yc * Ar;
+            const P1 = F1;
+            const M1 = P1 * x1;
+
+            // 2. Soil pressure
+            //2.1 Hill side
+            let hs1;
+            if (WTh >= hs) { hs1 = 0; }
+            else { hs1 = (hs - WTh); }
+
+            const F2h1 = Ys * ka * hs1;
+            const P2h1 = 0.5 * F2h1 * hs1;
+
+            const x2h1 = hs1 / 3 + WTh + hh;
+            const M2h1 = P2h1 * x2h1;
+            const F2h2 = F2h1 + (Ysat - 9.81) * ka * (hs + hh - hs1);
+            const P2h2 = 0.5 * (F2h1 + F2h2) * (hs + hh - hs1);
+            const x2h2 = (2 * F2h1 + F2h2) / (F2h1 + F2h2) * (WTh + hh) / 3;
+            const M2h2 = P2h2 * x2h2;
+
+            //2.3 River side
+            let hr1;
+            if (WTt >= htoe) { hr1 = 0; }
+            else { hr1 = htoe - WTt; }
+
+            const F2r1 = Ys * kp * hr1;
+            const x2r1 = hr1 / 3 + WTt + ht;
+            const P2r1 = 0.5 * F2r1 * hr1;
+            const M2r1 = P2r1 * x2r1;
+            const F2r2 = F2r1 + (Ysat - 9.81) * kp * (htoe + ht - hr1);
+            const x2r2 = (2 * F2r1 + F2r2) / (F2r1 + F2r2) * (WTt + ht) / 3;
+            const P2r2 = (F2r1 + F2r2) / 2 * (htoe + ht - hr1);
+            const M2r2 = P2r2 * x2r2;
+
+            //3.  weight of soil including Water
+            const F3h = (Ys * hs1 + Ysat * WTh) * Lh;
+            const P3h = F3h;
+            const F3r = (Ys * hr1 + Ysat * WTt) * Lt;
+            const P3r = F3r;
+            const x3h = B - Lh / 2;
+            const x3r = Lt / 2;
+            const M3h = P3h * x3h;
+            const M3r = P3r * x3r;
+
+            //4. Hydrostatic Loads
+            //4.1 Hill side
+            const F4h = 9.81 * (hh + WTh);
+            const P4h = 0.5 * F4h * (hh + WTh);
+            const F4r = 9.81 * (ht + WTt);
+            const P4r = 0.5 * F4r * (ht + WTt);
+            const x4h = (hh + WTh) / 3;
+            const x4r = (ht + WTt) / 3;
+            const M4h = P4h * x4h;
+            const M4r = P4r * x4r;
+
+            //5. Uplift
+            const F5 = (F4h + F4r) / 2 * B;
+
+            if (F4h > F4r) { x5 = (2 * F4r + F4h) / (F4r + F4h) * B / 3; }
+            else { x5 = (F4r + 2 * F4h) / (F4r + F4h) * B / 3; }
+            const P5 = F5;
+            const M5 = P5 * x5;
+
+            //6. Seismic Loads
+            const F6 = Ah * F1;
+            const x6 = y1;
+            const P6 = F6;
+            const M6 = P6 * x6;
+
+            //STABILITY ANALYSIS
+            //1. WITHOUT Seismic
+            //SUM OF VERTICAL FORCE
+            const VF1 = P1 + P3h + P3r - P5;
+            //Sum of horizontal force;
+            const HF1 = P2h1 + P2h2 - P2r1 - P2r2 + P4h - P4r;
+            //sum of resisting moment
+            const MR1 = M1 + M2r1 + M2r2 + M3h + M3r + M4r;
+            //sum of overturning moment
+            const MO1 = M2h1 + M2h2 + M4h + M5;
+            const FOSs1 = (VF1 * Math.tan(3.1416 * φf / 180) + B * Cf) / HF1;
+            const FOSo1 = MR1 / MO1;
+            const ec1 = B / 2 - (MR1 - MO1) / VF1;
+            const sigmamin1 = VF1 / B * (1 - 6 * ec1 / B);
+            const sigmamax1 = VF1 / B * (1 + 6 * ec1 / B);
+
+            //2. WITH Seismic
+            //Sum of vertical force
+            const VF2 = P1 + P3h + P3r - P5;
+            const HF2 = P2h1 + P2h2 - P2r1 - P2r2 + P4h - P4r - P6;
+            const MR2 = M1 + M2r1 + M2r2 + M3h + M3r + M4r;
+            const MO2 = M2h1 + M2h2 + M4h + M5 + M6;
+            const FOSs2 = (VF2 * Math.tan(3.1416 * φf / 180) + B * Cf) / HF2;
+            const FOSo2 = MR2 / MO2;
+            const ec2 = B / 2 - (MR2 - MO2) / VF2;
+            const sigmamin2 = VF2 / B * (1 - 6 * ec2 / B);
+            const sigmamax2 = VF2 / B * (1 + 6 * ec2 / B);
+
+            // Display result
+
+            document.getElementById('F1').textContent = F1.toFixed(2);
+            document.getElementById('x1').textContent = x1.toFixed(2);
+            document.getElementById('P1').textContent = P1.toFixed(2);
+            document.getElementById('M1').textContent = M1.toFixed(2);
+            document.getElementById('F2h1').textContent = F2h1.toFixed(2);
+            document.getElementById('x2h1').textContent = x2h1.toFixed(2);
+            document.getElementById('P2h1').textContent = P2h1.toFixed(2);
+            document.getElementById('M2h1').textContent = M2h1.toFixed(2);
+
+            document.getElementById('F2h2').textContent = F2h2.toFixed(2);
+            document.getElementById('x2h2').textContent = x2h2.toFixed(2);
+            document.getElementById('P2h2').textContent = P2h2.toFixed(2);
+            document.getElementById('M2h2').textContent = M2h2.toFixed(2);
+
+            document.getElementById('F2r1').textContent = F2r1.toFixed(2);
+            document.getElementById('x2r1').textContent = x2r1.toFixed(2);
+            document.getElementById('P2r1').textContent = P2r1.toFixed(2);
+            document.getElementById('M2r1').textContent = M2r1.toFixed(2);
+
+            document.getElementById('F2r2').textContent = F2r2.toFixed(2);
+            document.getElementById('x2r2').textContent = x2r2.toFixed(2);
+            document.getElementById('P2r2').textContent = P2r2.toFixed(2);
+            document.getElementById('M2r2').textContent = M2r2.toFixed(2);
+
+            document.getElementById('F3h').textContent = F3h.toFixed(2);
+            document.getElementById('F3r').textContent = F3r.toFixed(2);
+            document.getElementById('P3h').textContent = P3h.toFixed(2);
+            document.getElementById('M3h').textContent = M3h.toFixed(2);
+
+            document.getElementById('x3h').textContent = x3h.toFixed(2);
+            document.getElementById('x3r').textContent = x3r.toFixed(2);
+            document.getElementById('P3r').textContent = P3r.toFixed(2);
+            document.getElementById('M3r').textContent = M3r.toFixed(2);
+
+            document.getElementById('F4h').textContent = F4h.toFixed(2);
+            document.getElementById('F4r').textContent = F4r.toFixed(2);
+            document.getElementById('P4h').textContent = P4h.toFixed(2);
+            document.getElementById('P4r').textContent = P4r.toFixed(2);
+
+            document.getElementById('x4h').textContent = x4h.toFixed(2);
+            document.getElementById('x4r').textContent = x4r.toFixed(2);
+            document.getElementById('M4h').textContent = M4h.toFixed(2);
+            document.getElementById('M4r').textContent = M4r.toFixed(2);
+
+            document.getElementById('F5').textContent = F5.toFixed(2);
+            document.getElementById('x5').textContent = x5.toFixed(2);
+            document.getElementById('P5').textContent = P5.toFixed(2);
+            document.getElementById('M5').textContent = M5.toFixed(2);
+
+            document.getElementById('F6').textContent = F6.toFixed(2);
+            document.getElementById('x6').textContent = x6.toFixed(2);
+            document.getElementById('P6').textContent = P6.toFixed(2);
+            document.getElementById('M6').textContent = M6.toFixed(2);
+
+            document.getElementById('FOSs1').textContent = FOSs1.toFixed(2);
+            document.getElementById('FOSo1').textContent = FOSo1.toFixed(2);
+            document.getElementById('ec1').textContent = ec1.toFixed(2);
+            document.getElementById('sigmamin1').textContent = sigmamin1.toFixed(2);
+            document.getElementById('sigmamax1').textContent = sigmamax1.toFixed(2);
+
+            document.getElementById('FOSs2').textContent = FOSs2.toFixed(2);
+            document.getElementById('FOSo2').textContent = FOSo2.toFixed(2);
+            document.getElementById('ec2').textContent = ec2.toFixed(2);
+            document.getElementById('sigmamin2').textContent = sigmamin2.toFixed(2);
+            document.getElementById('sigmamax2').textContent = sigmamax2.toFixed(2);
+        }
+
+        // Update Time
+        function updateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+
+        // Update Copyright Year
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>
