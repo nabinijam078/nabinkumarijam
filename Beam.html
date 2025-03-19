@@ -351,11 +351,11 @@
 
         let shearReinforcement;
         if (tau_v <= tau_c) {
-          shearReinforcement1 = (0.87 * fy_design * A3) / (0.4 * width); 
+          shearReinforcement = (0.87 * fy_design * A3) / (0.4 * width); 
         } else  {
-          shearReinforcement1 = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e); 
+          shearReinforcement= (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e); 
         } 
-	const shearReinforcement=Math.pow(300,shearReinforcement1);
+	//const shearReinforcement=Math.pow(300,shearReinforcement1);
         // Display results
         document.getElementById('Mulim').textContent = Mulim.toFixed(3);
         document.getElementById('steelArea').textContent = Ast.toFixed(1);
