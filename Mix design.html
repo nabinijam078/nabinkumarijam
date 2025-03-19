@@ -115,49 +115,50 @@
 
       /* Main Content Container */
       .main-container {
-        padding: 20px 80px; /* Padding on top/bottom and sides */
+        padding: 20px 100px; /* Padding on top/bottom and sides */
         max-width: 1200px; /* Optional: Limit the maximum width of the content */
         margin: 0 auto; /* Center the container */
         flex: 1; /* Push footer to the bottom */
       }
-        /* Main Content */
-        .content {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow content to grow and push footer down */
-        }
 
-        .content h2 {
-            color: #0078d7;
-            font-size: 1.2rem;
-            margin-top: 0;
-        }
+      /* Main Content */
+      .content {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        flex: 1; /* Allow content to grow and push footer down */
+      }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
+      .content h2 {
+        color: #0078d7;
+        font-size: 1.2rem;
+        margin-top: 0;
+      }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.8rem; /* Reduced font size for labels */
-        }
+      .input-group {
+        margin-bottom: 15px;
+      }
 
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem; /* Reduced font size for inputs */
-        }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8rem; /* Reduced font size for labels */
+      }
 
-        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
-        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+      .input-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.9rem; /* Reduced font size for inputs */
+      }
+
+      p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+      label { font-family: Open Sans; font-size: 13px; text-align: justify; }
 
       /* Footer Styles */
       footer {
@@ -205,7 +206,7 @@
           padding: 20px; /* Adjust padding for smaller screens */
         }
       }
-   </style>
+    </style>
   </head>
   <body>
     <!-- Current Time and Date -->
@@ -240,368 +241,357 @@
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <h3><u>MIX DESIGN</u> </h3>
-    
-    <!-- Input fields -->
-<p><u><b>A.1 STIPULATIONS FOR PROPORTIONING</b></u></p>
-<label for="ConcGrade">Grade of concrete:</label>
-    <select id="ConcGrade">
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="25">25</option>
-      <option value="30">30</option>
-      <option value="35">35</option>
-      <option value="40">40</option>
-  </select>
-  <br>
-    <label for="ConcType">Types of concrete:</label>
-    <select id="ConcType">
-      <option value="Plain">Plain</option>
-      <option value="Reinforced">Reinforced</option>
-  </select>
-<br>
-  <label for="CementType">Types of Cement:</label>
-    <select id="CementType">
-      <option value="OPC">OPC</option>
-      <option value="PPC">PPC</option>
-  </select>
-	  <br>
-<label for="mwc">Maximum water cement ratio provided:</label>
-    <input type="number" id="mwc" required>
-	  <br>
-<label for="maxC">Maximum cement content provided (Kg/m<sup>3</sup>):</label>
-    <input type="number" id="maxC" required>
-	 
-<br>
- <label for="CementAgg">Types of Aggregates:</label>
-    <select id="CementAgg">
-      <option value="Crushed">Crushed</option>
-      <option value="Sub-angular">Sub-angular</option>
-      <option value="gravel">gravel</option>
-  </select>
-	  <br>
-<label for="AggSize">Nominal size of Aggregates (in mm):</label>
-    <select id="AggSize">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="40">40</option>
-  </select>
-	  <br>
-<label for="TransMeth">Method of transporting and placing:</label>
-    <select id="TransMeth">
-      <option value="Pumping">Pumping</option>
-      <option value="Manual">Manual</option>
-  </select>
-	  <br>
-     <label for="sl">Workability (Slump in mm) :</label>
-    <input type="number" id="sl" required>
-	  
-	  <br>
-<label for="ExpoCond">Exposure condition:</label>
-    <select id="ExpoCond">
-      <option value="Mild">Mild</option>
-      <option value="Moderate">Moderate</option>
-      <option value="Severe">Severe</option>
-      <option value="Very Severe">Very Severe</option>
-        
-      <option value="Extreme">Extreme</option>  
-  </select>
-	  
-    
-    
-    <p><u><b>A.2 TEST DATA FOR MATERIAL</b></u></p>
-    <label for="Sc">Specific gravity of cement (S<sub>c</sub>):</label>
-    <input type="number" id="Sc" required>
-	  <br>
-    <label for="Chem">Chemical plasticizer:</label>
-    <select id="Chem">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
-  </select>
-	
-     <br>
-    <label for="wd">Amount of water decreased by Plastisizer (in %):</label>
-    <input type="number" id="wd" required>
-	  <br>
-    <label for="Sa">Specific gravity of admixture (S<sub>a</sub>):</label>
-    <input type="number" id="Sa" required>
-	<br>
-    <label for="Sca">Specific gravity of coarse aggregate (S<sub>ca</sub>):</label>
-    <input type="number" id="Sca" required>
-	<br>
-    <label for="Sfa">Specific gravity of fine aggregate (S<sub>fa</sub>):</label>
-    <input type="number" id="Sfa" required>
-	<br>  
-    <label for="wca">Water absorption of Coarse aggregate (W<sub>ca</sub>):</label>
-    <input type="number" id="wca" required>
-	<br>
-    <label for="wfa">Water absorption of fine aggregate (W<sub>fa</sub>):</label>
-    <input type="number" id="wfa" required>
-	<br>
-    <label for="mca">Free surface moisture of Coarse aggregate (m<sub>ca</sub>):</label>
-    <input type="number" id="mca" required>
-	<br>
-    <label for="mfa">Free surface moisture  of fine aggregate (m<sub>fa</sub>):</label>
-    <input type="number" id="mfa" required>
-	<br>
-    <label for="ZoneC">Zone of Coarse aggregate:</label>
-    <select id="ZoneC">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select>
-	<br>
-   <label for="ZoneF">Zone of Fine aggregate:</label>
-    <select id="ZoneF">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-   </select>
-	<br>
-        </form>
-    <button onclick="Mixdesign()">MIX DESIGN</button>
-    <br>
-    
-    <!-- Results -->
-    <div id="results" class="results">
-      <h3><u>RESULTS</u></h3>
-      <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span>MPa</p>
-      <p><strong>Targeted Strength (fs):</strong> <span id="fs"></span> MPa</p>
-      <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
-      <p><strong>Water content (W):</strong> <span id="W"></span> litre</p>
-      <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
-      <p><strong>Fine Aggregate (FA) :</strong> <span id="fac"></span> Kg</p>
-      <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span> </p>
-     
+    <!-- Main Content -->
+    <div class="main-container">
+      <h3><u>MIX DESIGN</u></h3>
+      
+      <!-- Input fields -->
+      <p><u><b>A.1 STIPULATIONS FOR PROPORTIONING</b></u></p>
+      <label for="ConcGrade">Grade of concrete:</label>
+      <select id="ConcGrade">
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+      </select>
+      <br>
+      <label for="ConcType">Types of concrete:</label>
+      <select id="ConcType">
+        <option value="Plain">Plain</option>
+        <option value="Reinforced">Reinforced</option>
+      </select>
+      <br>
+      <label for="CementType">Types of Cement:</label>
+      <select id="CementType">
+        <option value="OPC">OPC</option>
+        <option value="PPC">PPC</option>
+      </select>
+      <br>
+      <label for="mwc">Maximum water cement ratio provided:</label>
+      <input type="number" id="mwc" required>
+      <br>
+      <label for="maxC">Maximum cement content provided (Kg/m<sup>3</sup>):</label>
+      <input type="number" id="maxC" required>
+      <br>
+      <label for="CementAgg">Types of Aggregates:</label>
+      <select id="CementAgg">
+        <option value="Crushed">Crushed</option>
+        <option value="Sub-angular">Sub-angular</option>
+        <option value="gravel">gravel</option>
+      </select>
+      <br>
+      <label for="AggSize">Nominal size of Aggregates (in mm):</label>
+      <select id="AggSize">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="40">40</option>
+      </select>
+      <br>
+      <label for="TransMeth">Method of transporting and placing:</label>
+      <select id="TransMeth">
+        <option value="Pumping">Pumping</option>
+        <option value="Manual">Manual</option>
+      </select>
+      <br>
+      <label for="sl">Workability (Slump in mm):</label>
+      <input type="number" id="sl" required>
+      <br>
+      <label for="ExpoCond">Exposure condition:</label>
+      <select id="ExpoCond">
+        <option value="Mild">Mild</option>
+        <option value="Moderate">Moderate</option>
+        <option value="Severe">Severe</option>
+        <option value="Very Severe">Very Severe</option>
+        <option value="Extreme">Extreme</option>
+      </select>
+      <br>
+      
+      <p><u><b>A.2 TEST DATA FOR MATERIAL</b></u></p>
+      <label for="Sc">Specific gravity of cement (S<sub>c</sub>):</label>
+      <input type="number" id="Sc" required>
+      <br>
+      <label for="Chem">Chemical plasticizer:</label>
+      <select id="Chem">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <br>
+      <label for="wd">Amount of water decreased by Plastisizer (in %):</label>
+      <input type="number" id="wd" required>
+      <br>
+      <label for="Sa">Specific gravity of admixture (S<sub>a</sub>):</label>
+      <input type="number" id="Sa" required>
+      <br>
+      <label for="Sca">Specific gravity of coarse aggregate (S<sub>ca</sub>):</label>
+      <input type="number" id="Sca" required>
+      <br>
+      <label for="Sfa">Specific gravity of fine aggregate (S<sub>fa</sub>):</label>
+      <input type="number" id="Sfa" required>
+      <br>
+      <label for="wca">Water absorption of Coarse aggregate (W<sub>ca</sub>):</label>
+      <input type="number" id="wca" required>
+      <br>
+      <label for="wfa">Water absorption of fine aggregate (W<sub>fa</sub>):</label>
+      <input type="number" id="wfa" required>
+      <br>
+      <label for="mca">Free surface moisture of Coarse aggregate (m<sub>ca</sub>):</label>
+      <input type="number" id="mca" required>
+      <br>
+      <label for="mfa">Free surface moisture of fine aggregate (m<sub>fa</sub>):</label>
+      <input type="number" id="mfa" required>
+      <br>
+      <label for="ZoneC">Zone of Coarse aggregate:</label>
+      <select id="ZoneC">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <br>
+      <label for="ZoneF">Zone of Fine aggregate:</label>
+      <select id="ZoneF">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <br>
+      <button onclick="Mixdesign()">MIX DESIGN</button>
+      <br>
+      
+      <!-- Results -->
+      <div id="results" class="results">
+        <h3><u>RESULTS</u></h3>
+        <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span>MPa</p>
+        <p><strong>Targeted Strength (fs):</strong> <span id="fs"></span> MPa</p>
+        <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
+        <p><strong>Water content (W):</strong> <span id="W"></span> litre</p>
+        <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
+        <p><strong>Fine Aggregate (FA):</strong> <span id="fac"></span> Kg</p>
+        <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span></p>
+      </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-   <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
-            </a>
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
-            </a>
-        </div>
-        <div class="copyright">
-            <p><i>Copyright © Nabin Kumar Ijam</i></p>
-        </div>
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
 
-  <script>
-    function updateDateTime() {
-            const now = new Date();
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleString();
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
+
+      // Function to update the drawing and calculations
+      function Mixdesign() {
+        const ConcGrade = parseInt(document.getElementById('ConcGrade').value); // Concrete grade
+        const ConcType = document.getElementById('ConcType').value; // Concrete Type Plain or RCC
+        const CementType = document.getElementById('CementType').value; // Cement Type, OPC/PPC
+        const mwc = parseFloat(document.getElementById('mwc').value); // Maximum water-cement ratio
+        const maxC = parseFloat(document.getElementById('maxC').value); // Maximum cement content
+        const CementAgg = document.getElementById('CementAgg').value; // Type of Aggregate Crushed, Sub-angular, gravel
+        const AggSize = parseInt(document.getElementById('AggSize').value); // Aggregate size 10, 20, 40mm
+        const TransMeth = document.getElementById('TransMeth').value; // Transportation method Pumping, Manual
+        const sl = parseFloat(document.getElementById('sl').value); // Slump
+        const ExpoCond = document.getElementById('ExpoCond').value; // Exposure condition Mild, moderate, Severe, Very Severe, Extreme
+        const Sc = parseFloat(document.getElementById('Sc').value); // Specific gravity of concrete
+        const wd = parseFloat(document.getElementById('wd').value); // Amount of water decreased by Plastisizer
+        const Sa = parseFloat(document.getElementById('Sa').value); // Specific gravity of admixture
+        const Sca = parseFloat(document.getElementById('Sca').value); // Specific gravity of Coarse aggregate
+        const Sfa = parseFloat(document.getElementById('Sfa').value); // Specific gravity of fine aggregate
+        const wca = parseFloat(document.getElementById('wca').value); // Water absorption of Coarse aggregate
+        const wfa = parseFloat(document.getElementById('wfa').value); // Water absorption of fine aggregate
+        const mca = parseFloat(document.getElementById('mca').value); // Free surface moisture of Coarse aggregate
+        const mfa = parseFloat(document.getElementById('mfa').value); // Free surface moisture of fine aggregate
+        const ZoneC = document.getElementById('ZoneC').value; // Zone of Coarse aggregate
+        const ZoneF = document.getElementById('ZoneF').value; // Zone of Fine aggregate
+
+        // Minimum cement content for 20mm size of aggregate.
+        let CC1;
+        if (ConcType === "Plain") {
+          if (ExpoCond === "Mild") { CC1 = 220; }
+          else if (ExpoCond === "Moderate") { CC1 = 240; }
+          else if (ExpoCond === "Severe") { CC1 = 250; }
+          else if (ExpoCond === "Very Severe") { CC1 = 260; }
+          else { CC1 = 280; }
+        } else {
+          if (ExpoCond === "Mild") { CC1 = 300; }
+          else if (ExpoCond === "Moderate") { CC1 = 300; }
+          else if (ExpoCond === "Severe") { CC1 = 320; }
+          else if (ExpoCond === "Very Severe") { CC1 = 340; }
+          else { CC1 = 360; }
         }
 
-        // Update the time and date every second
-        setInterval(updateDateTime, 1000);
+        // Minimum cement content in term of concrete grade
+        let CC2;
+        if (ConcType === "Plain") {
+          if (ConcGrade === 15) { CC2 = 240; }
+          else if (ConcGrade === 20) { CC2 = 250; }
+          else if (ConcGrade === 25) { CC2 = 280; }
+        } else {
+          if (ConcGrade === 20) { CC2 = 300; }
+          else if (ConcGrade === 25) { CC2 = 300; }
+          else if (ConcGrade === 30) { CC2 = 320; }
+          else if (ConcGrade === 35) { CC2 = 340; }
+          else if (ConcGrade === 40) { CC2 = 360; }
+        }
 
-        // Initial call to display the time and date immediately
-        updateDateTime();
+        const CC = Math.max(CC1, CC2);
 
-  
+        // Adjustment of cement content as per size of aggregate ----------------<MAXIMUM CEMENT CONTENTS>------------------------
+        let mcc;
+        if (AggSize === 10) { mcc = CC + 40; }
+        else if (AggSize === 20) { mcc = CC; }
+        else if (AggSize === 40) { mcc = CC - 30; }
 
-    // Function to update the drawing and calculations
-function Mixdesign() {
-    const ConcGrade = parseInt(document.getElementById('ConcGrade').value); // Concrete grade
-    const ConcType = document.getElementById('ConcType').value; // Concrete Type Plain or RCC
-    const CementType = document.getElementById('CementType').value; // Cement Type, OPC/PPC
-    const mwc = parseFloat(document.getElementById('mwc').value); // Maximum water-cement ratio
-    const maxC = parseFloat(document.getElementById('maxC').value); // Maximum cement content
-    const CementAgg = document.getElementById('CementAgg').value; // Type of Aggregate Crushed, Sub-angular, gravel
-    const AggSize = parseInt(document.getElementById('AggSize').value); // Aggregate size 10, 20, 40mm
-    const TransMeth = document.getElementById('TransMeth').value; // Transportation method Pumping, Manual
-    const sl = parseFloat(document.getElementById('sl').value); // Slump
-    const ExpoCond = document.getElementById('ExpoCond').value; // Exposure condition Mild, moderate, Severe, Very Severe, Extreme
-    const Sc = parseFloat(document.getElementById('Sc').value); // Specific gravity of concrete
-    const wd = parseFloat(document.getElementById('wd').value); // Amount of water decreased by Plastisizer
-    const Sa = parseFloat(document.getElementById('Sa').value); // Specific gravity of admixture
-    const Sca = parseFloat(document.getElementById('Sca').value); // Specific gravity of Coarse aggregate
-    const Sfa = parseFloat(document.getElementById('Sfa').value); // Specific gravity of fine aggregate
-    const wca = parseFloat(document.getElementById('wca').value); // Water absorption of Coarse aggregate
-    const wfa = parseFloat(document.getElementById('wfa').value); // Water absorption of fine aggregate
-    const mca = parseFloat(document.getElementById('mca').value); // Free surface moisture of Coarse aggregate
-    const mfa = parseFloat(document.getElementById('mfa').value); // Free surface moisture of fine aggregate
-    const ZoneC = document.getElementById('ZoneC').value; // Zone of Coarse aggregate
-    const ZoneF = document.getElementById('ZoneF').value; // Zone of Fine aggregate
+        // Grade of concrete required in term of exposure condition
+        let TargetC;
+        if (ConcType === "Plain") {
+          if (ExpoCond === "Mild") { TargetC = 15; }
+          else if (ExpoCond === "Moderate") { TargetC = 15; }
+          else if (ExpoCond === "Severe") { TargetC = 20; }
+          else if (ExpoCond === "Very Severe") { TargetC = 20; }
+          else { TargetC = 20; }
+        } else {
+          if (ExpoCond === "Mild") { TargetC = 20; }
+          else if (ExpoCond === "Moderate") { TargetC = 25; }
+          else if (ExpoCond === "Severe") { TargetC = 30; }
+          else if (ExpoCond === "Very Severe") { TargetC = 35; }
+          else { TargetC = 40; }
+        }
 
-    // Minimum cement content for 20mm size of aggregate.
-    let CC1;
-    if (ConcType === "Plain") {
-        if (ExpoCond === "Mild") { CC1 = 220; }
-        else if (ExpoCond === "Moderate") { CC1 = 240; }
-        else if (ExpoCond === "Severe") { CC1 = 250; }
-        else if (ExpoCond === "Very Severe") { CC1 = 260; }
-        else { CC1 = 280; }
-    } else {
-        if (ExpoCond === "Mild") { CC1 = 300; }
-        else if (ExpoCond === "Moderate") { CC1 = 300; }
-        else if (ExpoCond === "Severe") { CC1 = 320; }
-        else if (ExpoCond === "Very Severe") { CC1 = 340; }
-        else { CC1 = 360; }
-    }
+        // Maximum free water cement ratio
+        let wc3;
+        if (ConcType === "Plain") {
+          if (ExpoCond === "Mild") { wc3 = 0.6; }
+          else if (ExpoCond === "Moderate") { wc3 = 0.6; }
+          else if (ExpoCond === "Severe") { wc3 = 0.6; }
+          else if (ExpoCond === "Very Severe") { wc3 = 0.45; }
+          else { wc3 = 0.4; }
+        } else {
+          if (ExpoCond === "Mild") { wc3 = 0.55; }
+          else if (ExpoCond === "Moderate") { wc3 = 0.5; }
+          else if (ExpoCond === "Severe") { wc3 = 0.45; }
+          else if (ExpoCond === "Very Severe") { wc3 = 0.45; }
+          else { wc3 = 0.4; }
+        }
 
-    // Minimum cement content in term of concrete grade
-    let CC2;
-    if (ConcType === "Plain") {
-        if (ConcGrade === 15) { CC2 = 240; }
-        else if (ConcGrade === 20) { CC2 = 250; }
-        else if (ConcGrade === 25) { CC2 = 280; }
-    } else {
-        if (ConcGrade === 20) { CC2 = 300; }
-        else if (ConcGrade === 25) { CC2 = 300; }
-        else if (ConcGrade === 30) { CC2 = 320; }
-        else if (ConcGrade === 35) { CC2 = 340; }
-        else if (ConcGrade === 40) { CC2 = 360; }
-    }
+        // Maximum Free water cement ratio in term of concrete grade
+        let wc4;
+        if (ConcType === "Plain") {
+          if (ConcGrade === 15) { wc4 = 0.6; }
+          else if (ConcGrade === 20) { wc4 = 0.5; }
+          else if (ConcGrade === 25) { wc4 = 0.4; }
+        } else {
+          if (ConcGrade === 20) { wc4 = 0.55; }
+          else if (ConcGrade === 25) { wc4 = 0.5; }
+          else if (ConcGrade === 30) { wc4 = 0.45; }
+          else if (ConcGrade === 35) { wc4 = 0.45; }
+          else if (ConcGrade === 40) { wc4 = 0.4; }
+        }
 
-    const CC = Math.max(CC1, CC2);
+        // Water cement ratio
+        const wc5 = Math.max(wc3, wc4);    // maximum water/cement ratio
 
-    // Adjustment of cement content as per size of aggregate ----------------<MAXIMUM CEMENT CONTENTS>------------------------
-    let mcc;
-    if (AggSize === 10) { mcc = CC + 40; }
-    else if (AggSize === 20) { mcc = CC; }
-    else if (AggSize === 40) { mcc = CC - 30; }
+        // Maximum water content
+        let wc1;
+        if (AggSize === 10) { wc1 = 208; }
+        else if (AggSize === 20) { wc1 = 186; }
+        else if (AggSize === 40) { wc1 = 165; }
 
-    // Grade of concrete required in term of exposure condition
-    let TargetC;
-    if (ConcType === "Plain") {
-        if (ExpoCond === "Mild") { TargetC = 15; }
-        else if (ExpoCond === "Moderate") { TargetC = 15; }
-        else if (ExpoCond === "Severe") { TargetC = 20; }
-        else if (ExpoCond === "Very Severe") { TargetC = 20; }
-        else { TargetC = 20; }
-    } else {
-        if (ExpoCond === "Mild") { TargetC = 20; }
-        else if (ExpoCond === "Moderate") { TargetC = 25; }
-        else if (ExpoCond === "Severe") { TargetC = 30; }
-        else if (ExpoCond === "Very Severe") { TargetC = 35; }
-        else { TargetC = 40; }
-    }
+        let wc2;
+        if (sl <= 50) { wc2 = wc1; }
+        else { wc2 = Math.ceil((sl - 50) / 25) * 3 / 100 * wc1 + wc1; }
 
-    // Maximum free water cement ratio
-    let wc3;
-    if (ConcType === "Plain") {
-        if (ExpoCond === "Mild") { wc3 = 0.6; }
-        else if (ExpoCond === "Moderate") { wc3 = 0.6; }
-        else if (ExpoCond === "Severe") { wc3 = 0.6; }
-        else if (ExpoCond === "Very Severe") { wc3 = 0.45; }
-        else { wc3 = 0.4; }
-    } else {
-        if (ExpoCond === "Mild") { wc3 = 0.55; }
-        else if (ExpoCond === "Moderate") { wc3 = 0.5; }
-        else if (ExpoCond === "Severe") { wc3 = 0.45; }
-        else if (ExpoCond === "Very Severe") { wc3 = 0.45; }
-        else { wc3 = 0.4; }
-    }
+        const W = wc2 * (1 - wd / 100);
 
-    // Maximum Free water cement ratio in term of concrete grade
-    let wc4;
-    if (ConcType === "Plain") {
-        if (ConcGrade === 15) { wc4 = 0.6; }
-        else if (ConcGrade === 20) { wc4 = 0.5; }
-        else if (ConcGrade === 25) { wc4 = 0.4; }
-    } else {
-        if (ConcGrade === 20) { wc4 = 0.55; }
-        else if (ConcGrade === 25) { wc4 = 0.5; }
-        else if (ConcGrade === 30) { wc4 = 0.45; }
-        else if (ConcGrade === 35) { wc4 = 0.45; }
-        else if (ConcGrade === 40) { wc4 = 0.4; }
-    }
+        // Standard deviation
+        let SD;
+        if (ConcGrade <= 15) { SD = 3.5; }
+        else if (ConcGrade <= 25) { SD = 4; }
+        else { SD = 5; }
 
-    // Water cement ratio
-    const wc5 = Math.max(wc3, wc4);    // maximum water/cement ratio
+        // Targeted strength
+        const fs = ConcGrade + 1.65 * SD;
 
-    // Maximum water content
-    let wc1;
-    if (AggSize === 10) { wc1 = 208; }
-    else if (AggSize === 20) { wc1 = 186; }
-    else if (AggSize === 40) { wc1 = 165; }
+        // Water cement ratio
+        let rwcr;
+        if (mwc < wc5) { rwcr = mwc; }
+        else { rwcr = wc5; }
 
-    let wc2;
-    if (sl <= 50) { wc2 = wc1; }
-    else { wc2 = Math.ceil((sl - 50) / 25) * 3 / 100 * wc1 + wc1; }
+        // Cement contents
+        const C = W / rwcr;
 
-    const W = wc2 * (1 - wd / 100);
+        // Proportion of volume of coarse and fine aggregate
+        let rat;
+        if (ZoneF === 1) {
+          if (AggSize === 10) { rat = 0.44; }
+          else if (AggSize === 20) { rat = 0.6; }
+          else { rat = 0.69; }
+        } else if (ZoneF === 2) {
+          if (AggSize === 10) { rat = 0.46; }
+          else if (AggSize === 20) { rat = 0.62; }
+          else { rat = 0.71; }
+        } else if (ZoneF === 3) {
+          if (AggSize === 10) { rat = 0.48; }
+          else if (AggSize === 20) { rat = 0.64; }
+          else { rat = 0.73; }
+        } else {
+          if (AggSize === 10) { rat = 0.48; }
+          else if (AggSize === 20) { rat = 0.64; }
+          else { rat = 0.73; }
+        }
 
-    // Standard deviation
-    let SD;
-    if (ConcGrade <= 15) { SD = 3.5; }
-    else if (ConcGrade <= 25) { SD = 4; }
-    else { SD = 5; }
+        // 
+        let rat1;
+        if (rwcr === 0.5) { rat1 = rat; }
+        else if (rwcr < 0.5) { rat1 = rat + (0.5 - rwcr) / 0.05 * 0.01; }
+        else { rat1 = rat - (rwcr - 0.5) / 0.05 * 0.01; }
 
-    // Targeted strength
-    const fs = ConcGrade + 1.65 * SD;
+        // Proportion of coarse aggregate
+        let rat2;
+        if (TransMeth === "Pumping") { rat2 = 0.9 * rat1; }
+        else { rat2 = rat1; }
+        const rat3 = 1 - rat2;
 
-   // Water cement ratio
-	let rwcr;
-	if (mwc<wc5){rwcr=mwc;}
-	else {rwcr=wc5;}
- // Cement contents
-   const C = W / rwcr;
-	
- // Proportion of volume of coarse and fine aggregate
-	let rat;
-	if (ZoneF===1){
-	if (AggSize===10){rat=0.44;}
-	else if (AggSize===20){rat=0.6;}
-	else {rat=0.69;}
-	}
-	else if (ZoneF===2){
-	if (AggSize===10){rat=0.46;}
-	else if (AggSize===20){rat=0.62;}
-	else {rat=0.71;}
-	}
-	else if (ZoneF===3){
-	if (AggSize===10){rat=0.48;}
-	else if (AggSize===20){rat=0.64;}
-	else {rat=0.73;}
-	}
-	else{
-	if (AggSize===10){rat=0.48;}
-	else if (AggSize===20){rat=0.64;}
-	else {rat=0.73;}	
-	}
+        // Volume of concrete
+        const Vconc = C / Sc / 1000;
+        const Vw = W / 1000;
+        const Vagg = 1 - Vconc - Vw;
 
-	// 
-	let rat1;
-	if (rwcr===0.5){rat1=rat;}
-	else if (rwcr<0.5) {rat1=rat+(0.5-rwcr)/0.05*0.01;}
-	else {rat1=rat-(rwcr-0.5)/0.05*0.01;}
+        // Weight of coarse aggregate
+        const CA = Vagg * rat2 * Sca * 1000;
+        const FA = Vagg * rat3 * Sfa * 1000;
 
-	// Proportion of coarse aggregate
-	let rat2;
-	if (TransMeth==="Pumping"){rat2=0.9*rat1;}
-	else {rat2=rat1;}
-	const rat3=1-rat2;
-	// volume of concrete
-	const Vconc=C/Sc/1000;
-	const Vw=W/1000;
-	const Vagg=1-Vconc-Vw;
-	// Weight of coarse aggregate
-	const CA=Vagg*rat2*Sca*1000;
-	const FA=Vagg*rat3*Sfa*1000;
-	
-		
-    // Display results
-    document.getElementById('TargetC').textContent = TargetC;
-    document.getElementById('fs').textContent = fs.toFixed(2);
-    document.getElementById('cc').textContent = C.toFixed(2);
-    document.getElementById('W').textContent = W.toFixed(2);
-    document.getElementById('ca').textContent = CA.toFixed(2);
-    document.getElementById('fac').textContent = FA.toFixed(2); 
-    document.getElementById('mwcr').textContent = rwcr.toFixed(2);
-}
-    	
-  </script>
-</body>
+        // Display results
+        document.getElementById('TargetC').textContent = TargetC;
+        document.getElementById('fs').textContent = fs.toFixed(2);
+        document.getElementById('cc').textContent = C.toFixed(2);
+        document.getElementById('W').textContent = W.toFixed(2);
+        document.getElementById('ca').textContent = CA.toFixed(2);
+        document.getElementById('fac').textContent = FA.toFixed(2);
+        document.getElementById('mwcr').textContent = rwcr.toFixed(2);
+      }
+    </script>
+  </body>
 </html>
