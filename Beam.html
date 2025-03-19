@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
+      * {
+        box-sizing: border-box; /* Normalize box model */
+        margin: 0;
+        padding: 0;
+      }
+
       body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
         padding: 0;
         color: #333;
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
         /* Dynamic Gradient Background */
         background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
         background-size: 400% 400%;
@@ -31,11 +40,6 @@
           background-position: 0% 50%;
         }
       }
-	 {
-  box-sizing: border-box; /* Normalize box model */
-  margin: 0;
-  padding: 0;
-}
 
       h2, h3, h4, h5, h6 {
         font-family: 'Roboto', sans-serif; /* Heading font */
@@ -109,107 +113,12 @@
         display: block;
       }
 
-      /* Hero Section */
-      .hero {
-        background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .hero h2 {
-        font-size: 3rem;
-        margin: 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .hero p {
-        font-size: 1.5rem;
-        margin: 10px 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .hero .btn {
-        background-color: #0078d7;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        transition: background-color 0.3s ease;
-      }
-
-      .hero .btn:hover {
-        background-color: #0056b3;
-      }
-
-      /* About Section */
-      .about {
-        display: flex;
-        align-items: center;
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .about img {
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        margin-right: 30px;
-        border: 5px solid #0078d7;
-      }
-
-      .about h2 {
-        font-size: 2rem;
-        margin: 0 0 10px;
-      }
-
-      .about p {
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.8;
-      }
-
-      /* Cards Section */
-      .cards {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        margin: 20px auto;
-        max-width: 1200px;
-      }
-
-      .card {
-        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 10px;
-        padding: 20px;
-        width: 300px;
-        text-align: center;
-        transition: transform 0.3s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-      }
-
-      .card h3 {
-        font-size: 1.5rem;
-        margin: 0 0 10px;
-      }
-
-      .card p {
-        font-size: 1rem;
-        color: #555;
+      /* Main Content Container */
+      .main-container {
+        padding: 20px 80px; /* Padding on top/bottom and sides */
+        max-width: 1200px; /* Optional: Limit the maximum width of the content */
+        margin: 0 auto; /* Center the container */
+        flex: 1; /* Push footer to the bottom */
       }
 
       /* Footer Styles */
@@ -219,6 +128,7 @@
         text-align: center;
         padding: 20px;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: auto; /* Push the footer to the bottom */
       }
 
       .social-links {
@@ -251,56 +161,16 @@
         color: #333;
       }
 
-      /* Main Content Container */
-      .main-container {
-        padding: 20px 80px; /* Increased padding on both sides */
-        max-width: 1200px; /* Optional: Limit the maximum width of the content */
-        margin: 0 auto; /* Center the container */
-	flex: 1; /* Push footer to the bottom */
-      }
-
-      /* Justify text in paragraphs */
-      .main-container p {
-        text-align: justify;
-      }
-
       /* Responsive Design */
       @media (max-width: 768px) {
-        .hero h2 {
-          font-size: 2rem;
-        }
-
-        .hero p {
-          font-size: 1.2rem;
-        }
-
-        .about {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .about img {
-          margin-right: 0;
-          margin-bottom: 20px;
-        }
-
-        .cards {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .card {
-          width: 80%;
-        }
-
         .main-container {
-          padding: 0 20px; /* Adjust padding for smaller screens */
+          padding: 20px; /* Adjust padding for smaller screens */
         }
       }
     </style>
   </head>
   <body>
-	<!-- Current Time and Date -->
+    <!-- Current Time and Date -->
     <div id="datetime"></div>
     <!-- Header -->
     <header>
@@ -308,23 +178,23 @@
     </header>
 
     <!-- Navigation Bar -->
-     <nav>
+    <nav>
       <a href="Home.html"><b>HOME</b></a>
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
         <div class="dropdown-content">
           <a href="Information.html">MY INFORMATION</a>
           <a href="My background.html">MY BACKGROUND</a>
-	  <a href="My works.html">MY WORKS</a>
+          <a href="My works.html">MY WORKS</a>
         </div>
       </div>
       
-	<div class="dropdown">
-         <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
-        	<div class="dropdown-content">
-      		<a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
-      		<a href="Others.html">OTHER CALCULATION</a>
-	</div>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+        <div class="dropdown-content">
+          <a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
+          <a href="Others.html">OTHER CALCULATION</a>
+        </div>
       </div>
 
       <a href="Downloads.html"><b>DOWNLOADS</b></a>
@@ -333,169 +203,168 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="content">
-        <h2><u>BEAM DESIGN</u> </h2>
-        <form id="beamSectionForm">
-                <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
-                <input type="number" id="fck" step="0.1" required>
-                <br>
-                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
-                <input type="number" id="fy" step="0.1" required>
-                <br>
-                <label for="width">Width of Beam (b in mm):</label>
-                <input type="number" id="width" required>
-                <br>
-                <label for="depth">Overall Depth of Beam (d in mm):</label>
-                <input type="number" id="depth" required>
-                <br>
-                <label for="cover">Effective cover of beam (c in mm):</label>
-                <input type="number" id="cover" required>
-               <br>
-                <label for="dm">Diameter of main Reinforcement (Φ<sub>m</sub> in mm):</label>
-                <input type="number" id="dm" required>
-                <br>
-                <label for="ds">Diameter of Shear Reinforcement (Φ<sub>s</sub> in mm):</label>
-                <input type="number" id="ds" required>
-               <br>
-                <label for="nl">Number of legs of shear reinforcement (n<sub>l</sub>):</label>
-                <input type="number" id="nl" required>
-                <br>
-                
-                <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
-                <input type="number" id="moment" step="0.01" required>
-                <br>
-                <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
-                <input type="number" id="shear" step="0.01" required>
-               <br>
-            <button type="button" onclick="calculateBeamSection()">DESIGN SECTION</button>
-        </form>
+    <div class="main-container">
+      <h2><u>BEAM DESIGN</u></h2>
+      <form id="beamSectionForm">
+        <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+        <input type="number" id="fck" step="0.1" required>
+        <br>
+        <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+        <input type="number" id="fy" step="0.1" required>
+        <br>
+        <label for="width">Width of Beam (b in mm):</label>
+        <input type="number" id="width" required>
+        <br>
+        <label for="depth">Overall Depth of Beam (d in mm):</label>
+        <input type="number" id="depth" required>
+        <br>
+        <label for="cover">Effective cover of beam (c in mm):</label>
+        <input type="number" id="cover" required>
+        <br>
+        <label for="dm">Diameter of main Reinforcement (Φ<sub>m</sub> in mm):</label>
+        <input type="number" id="dm" required>
+        <br>
+        <label for="ds">Diameter of Shear Reinforcement (Φ<sub>s</sub> in mm):</label>
+        <input type="number" id="ds" required>
+        <br>
+        <label for="nl">Number of legs of shear reinforcement (n<sub>l</sub>):</label>
+        <input type="number" id="nl" required>
+        <br>
+        <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
+        <input type="number" id="moment" step="0.01" required>
+        <br>
+        <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
+        <input type="number" id="shear" step="0.01" required>
+        <br>
+        <button type="button" onclick="calculateBeamSection()">DESIGN SECTION</button>
+      </form>
 
-        <div class="result" id="result">
-            <h3><u>DESIGN RESULT</u></h3>
-            <p><strong>Moment of resistance (M<sub>ulim</sub>):</strong> <span id="Mulim"></span> kN.m</p>
-            <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
-            <p><strong>Number of Tensile steel(n<sub>s</sub>):</strong> <span id="n1"></span></p>
-            <p><strong>Area of Compression Steel (A<sub>sc</sub>):</strong> <span id="compSteelArea"></span> mm²</p>
-            <p><strong>Number of Compression steel(n<sub>c</sub>):</strong> <span id="n2"></span></p>
-            <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
-            <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
-        </div>
+      <div class="result" id="result">
+        <h3><u>DESIGN RESULT</u></h3>
+        <p><strong>Moment of resistance (M<sub>ulim</sub>):</strong> <span id="Mulim"></span> kN.m</p>
+        <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
+        <p><strong>Number of Tensile steel(n<sub>s</sub>):</strong> <span id="n1"></span></p>
+        <p><strong>Area of Compression Steel (A<sub>sc</sub>):</strong> <span id="compSteelArea"></span> mm²</p>
+        <p><strong>Number of Compression steel(n<sub>c</sub>):</strong> <span id="n2"></span></p>
+        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
+        <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
-            </a>
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
-            </a>
-        </div>
-        <div class="copyright">
-            <p><i>Copyright © Nabin Kumar Ijam</i></p>
-        </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <div class="copyright">
+        <p><i>Copyright © Nabin Kumar Ijam</i></p>
+      </div>
     </footer>
 
     <!-- JavaScript for Time and Date -->
     <script>
-        function updateDateTime() {
-            const now = new Date();
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleString();
-        }
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
 
-        // Update the time and date every second
-        setInterval(updateDateTime, 1000);
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
 
-        // Initial call to display the time and date immediately
-        updateDateTime();
+      // Initial call to display the time and date immediately
+      updateDateTime();
 
-function calculateBeamSection() {
-    // Input values
-    const width = parseFloat(document.getElementById('width').value); // b in mm
-    const depth = parseFloat(document.getElementById('depth').value); // D in mm
-    const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
-    const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
-    const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
-    const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
-    const ds = parseFloat(document.getElementById('ds').value); // Diameter of Shear reinforcement in mm
-    const nl = parseFloat(document.getElementById('nl').value); // Number of legs of shear reinforcement
-    const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
-    const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
+      function calculateBeamSection() {
+        // Input values
+        const width = parseFloat(document.getElementById('width').value); // b in mm
+        const depth = parseFloat(document.getElementById('depth').value); // D in mm
+        const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+        const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
+        const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+        const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+        const ds = parseFloat(document.getElementById('ds').value); // Diameter of Shear reinforcement in mm
+        const nl = parseFloat(document.getElementById('nl').value); // Number of legs of shear reinforcement
+        const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
+        const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
 
-    // Convert moment to Nmm and shear to N
-    const Mu = moment * 1e6; // kNm to Nmm
-    const Vu = shear * 1e3; // kN to N
+        // Convert moment to Nmm and shear to N
+        const Mu = moment * 1e6; // kNm to Nmm
+        const Vu = shear * 1e3; // kN to N
 
-    // Design parameters
-    const fck_design = fck; // Design concrete strength
-    const fy_design = fy; // Design steel strength
-    const depth_e = depth - cover; // Effective depth
-    const Es = 2e5; // Modulus of elasticity of steel
+        // Design parameters
+        const fck_design = fck; // Design concrete strength
+        const fy_design = fy; // Design steel strength
+        const depth_e = depth - cover; // Effective depth
+        const Es = 2e5; // Modulus of elasticity of steel
 
-    // Calculate limiting moment (Mu_lim)
-    const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
-    const Xu_max = k * depth_e; 
-    const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
-    const Mulim = Mu_lim / 1e6; // Convert Nmm to kNm
+        // Calculate limiting moment (Mu_lim)
+        const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+        const Xu_max = k * depth_e; 
+        const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+        const Mulim = Mu_lim / 1e6; // Convert Nmm to kNm
 
-    // Check for singly or doubly reinforced section
-    let Ast, Asc, sectionType;
-    if (Mu <= Mu_lim) {
-        // Singly reinforced section
-        Ast = (1 - (1 - Math.sqrt(1 - (4.6 * Mu) / (fck_design * width * depth_e * depth_e)))) * (fck_design / (2 * fy_design)) * width * depth_e;
-        Asc = 0; // No compression steel
-        sectionType = "Singly Reinforced Section";
-    } else {
-        // Doubly reinforced section
-        const ratio = cover / (depth - cover);
-        let fsc;
-        if (fy === 250) {
-            fsc = 217; // For Fe 250
-        } else if (fy === 415) {
-            fsc = 9333 * Math.pow(ratio, 3) - 4600 * Math.pow(ratio, 2) + 486.6 * ratio + 341; // Your original relation
+        // Check for singly or doubly reinforced section
+        let Ast, Asc, sectionType;
+        if (Mu <= Mu_lim) {
+          // Singly reinforced section
+          Ast = (1 - (1 - Math.sqrt(1 - (4.6 * Mu) / (fck_design * width * depth_e * depth_e)))) * (fck_design / (2 * fy_design)) * width * depth_e;
+          Asc = 0; // No compression steel
+          sectionType = "Singly Reinforced Section";
         } else {
+          // Doubly reinforced section
+          const ratio = cover / (depth - cover);
+          let fsc;
+          if (fy === 250) {
+            fsc = 217; // For Fe 250
+          } else if (fy === 415) {
+            fsc = 9333 * Math.pow(ratio, 3) - 4600 * Math.pow(ratio, 2) + 486.6 * ratio + 341; // Your original relation
+          } else {
             fsc = -1300 * Math.pow(ratio, 2) - 33 * ratio + 428.7; // Your original relation
+          }
+
+          const fcc = 0.416 * fck_design; // Stress in concrete at compression steel level
+          const Mu2 = Mu - Mu_lim; // Additional moment to be resisted by compression steel
+          Asc = Mu2 / (0.87 * (fsc - fcc) * (depth_e - cover)); // Compression steel area
+          const Ast1 = (0.36 * fck_design * width * Xu_max) / (0.87 * fy_design); // Tensile steel for balanced section
+          const Ast2 = (fsc * Asc) / (0.87 * fy_design); // Additional tensile steel for doubly reinforced section
+          Ast = Ast1 + Ast2; // Total tensile steel area
+          sectionType = "Doubly Reinforced Section";
         }
 
-        const fcc = 0.416 * fck_design; // Stress in concrete at compression steel level
-        const Mu2 = Mu - Mu_lim; // Additional moment to be resisted by compression steel
-        Asc = Mu2 / (0.87 * (fsc - fcc) * (depth_e - cover)); // Compression steel area
-        const Ast1 = (0.36 * fck_design * width * Xu_max) / (0.87 * fy_design); // Tensile steel for balanced section
-        const Ast2 = (fsc * Asc) / (0.87 * fy_design); // Additional tensile steel for doubly reinforced section
-        Ast = Ast1 + Ast2; // Total tensile steel area
-        sectionType = "Doubly Reinforced Section";
-    }
+        // Calculate number of steel bars
+        const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+        const n1 = Math.max(Math.ceil(Ast / A1), 2); // Number of tensile steel bars
+        const n2 = Math.max(Math.ceil(Asc / A1), 2); // Number of compression steel bars
 
-    // Calculate number of steel bars
-    const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
-    const n1 = Math.max(Math.ceil(Ast / A1), 2); // Number of tensile steel bars
-    const n2 = Math.max(Math.ceil(Asc / A1), 2); // Number of compression steel bars
+        // Shear reinforcement calculation
+        const A3 = (Math.PI * Math.pow(ds, 2) / 4) * nl; // Area of shear reinforcement legs
+        const tau_v = Vu / (width * depth_e); // Shear stress
+        const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
+        const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
+        const tau_c_max = 0.25 * Math.sqrt(fck_design); // Maximum shear stress as per IS 456
 
-    // Shear reinforcement calculation
-    const A3 = (Math.PI * Math.pow(ds, 2) / 4) * nl; // Area of shear reinforcement legs
-    const tau_v = Vu / (width * depth_e); // Shear stress
-    const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
-    const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
-    const tau_c_max = 0.25 * Math.sqrt(fck_design); // Maximum shear stress as per IS 456
-
-    let shearReinforcement;
-    if (tau_v <= tau_c) {
-        shearReinforcement = (0.87 * fy_design * A3) / (0.4 * width); 
-    } else  {
-        shearReinforcement = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e); 
-    } 
-
-    // Display results
-    document.getElementById('Mulim').textContent = Mulim.toFixed(3);
-    document.getElementById('steelArea').textContent = Ast.toFixed(1);
-    document.getElementById('n1').textContent = n1;
-    document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
-    document.getElementById('n2').textContent = n2;
-    document.getElementById('shearReinforcement').textContent = shearReinforcement.toFixed(0);
-    document.getElementById('sectionType').textContent = sectionType;
-}
+        let shearReinforcement;
+        if (tau_v <= tau_c) {
+          shearReinforcement1 = (0.87 * fy_design * A3) / (0.4 * width); 
+        } else  {
+          shearReinforcement1 = (0.87 * fy_design * A3 * depth_e) / (Vu - tau_c * width * depth_e); 
+        } 
+	const shearReinforcement=Math.pow(300,shearReinforcement1);
+        // Display results
+        document.getElementById('Mulim').textContent = Mulim.toFixed(3);
+        document.getElementById('steelArea').textContent = Ast.toFixed(1);
+        document.getElementById('n1').textContent = n1;
+        document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+        document.getElementById('n2').textContent = n2;
+        document.getElementById('shearReinforcement').textContent = shearReinforcement.toFixed(0);
+        document.getElementById('sectionType').textContent = sectionType;
+      }
     </script>
-</body>
+  </body>
 </html>
