@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy calculation</title>
+    <title>Energy Calculation</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* General Styles */
+          /* General Styles */
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
@@ -240,30 +240,26 @@
     <div class="content">
         <!-- Input Section -->
         <div class="input-section">
-            <h2><u>ENERGY CALCULATION-RUNOFF RIVER PROJECT</u></h2>
+            <h2><u>ENERGY CALCULATION - RUNOFF RIVER PROJECT</u></h2>
             <!-- Input Group for Global Inputs -->
-            <div class="input-group">
+            
                 <label for="efficiency">Efficiency (η):</label>
-                <input type="number" id="efficiency" value="0.85" step="0.01" min="0" max="1">
-            </div>
-            <div class="input-group">
+                <input type="number" id="efficiency" required>
+            <br>
                 <label for="designDischarge">Design Discharge (Qd):</label>
-                <input type="number" id="designDischarge" value="0" step="0.01">
-            </div>
-            <div class="input-group">
-                <label for="riparianFlow">Riparian Flow (Qr):</label>
-                <input type="number" id="riparianFlow" value="0" step="0.01">
-            </div>
-            <div class="input-group">
+                <input type="number" id="designDischarge" required>
+            <br>
+                <label for="riparianFlow">Riparian Flow (%):</label>
+                <input type="number" id="riparianFlow" required>
+            <br>
                 <label for="grossHead">Gross Head (Hg):</label>
-                <input type="number" id="grossHead" value="0" step="0.01">
-            </div>
-            <div class="input-group">
+                <input type="number" id="grossHead" required>
+            <br>
                 <label for="headLossPercent">Head Loss (%):</label>
-                <input type="number" id="headLossPercent" value="0" step="0.01">
-            </div>
+                <input type="number" id="headLossPercent" required>
+            <br>
 
-            <h3><u>INPUT TABLE</u></h3>
+            <h3><u>INPUT TABLE - AVERAGE MONTHLY DISCHARGE</u></h3>
             <!-- Input Table for Monthly Discharge -->
             <table id="inputTable">
                 <thead>
@@ -273,13 +269,82 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Rows will be populated dynamically -->
+                    <!-- Rows for all 12 months -->
+                    <tr>
+                        <td>January</td>
+                        <td><input type="number" id="discharge-january" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>February</td>
+                        <td><input type="number" id="discharge-february" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>March</td>
+                        <td><input type="number" id="discharge-march" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>April</td>
+                        <td><input type="number" id="discharge-april" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>May</td>
+                        <td><input type="number" id="discharge-may" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>June</td>
+                        <td><input type="number" id="discharge-june" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td><input type="number" id="discharge-july" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>August</td>
+                        <td><input type="number" id="discharge-august" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>September</td>
+                        <td><input type="number" id="discharge-september" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>October</td>
+                        <td><input type="number" id="discharge-october" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>November</td>
+                        <td><input type="number" id="discharge-november" value="0" step="0.01"></td>
+                    </tr>
+                    <tr>
+                        <td>December</td>
+                        <td><input type="number" id="discharge-december" value="0" step="0.01"></td>
+                    </tr>
                 </tbody>
             </table>
 
             <button onclick="calculateEnergy()">Calculate Energy</button>
         </div>
 
+        <!-- Results Section -->
+        <h3><u>CALCULATION RESULTS</u></h3>
+        <table id="calculationTable">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Average Discharge (Q)</th>
+                    <th>Design Discharge (Qd)</th>
+                    <th>Riparian Flow (Qr)</th>
+                    <th>Gross Head (Hg)</th>
+                    <th>Head Loss</th>
+                    <th>Net Head</th>
+                    <th>Capacity (kW)</th>
+                    <th>Days</th>
+                    <th>Energy (kWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
     </div>
 
     <!-- Footer -->
@@ -299,6 +364,7 @@
 
     <!-- JavaScript for Time and Date -->
     <script>
+        // Function to update date and time
         function updateDateTime() {
             const now = new Date();
             const datetimeElement = document.getElementById('datetime');
@@ -311,80 +377,62 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-        // Sample data for each month
-        const months = [
-            { name: "January", days: 31 },
-            { name: "February", days: 28 },
-            { name: "March", days: 31 },
-            { name: "April", days: 30 },
-            { name: "May", days: 31 },
-            { name: "June", days: 30 },
-            { name: "July", days: 31 },
-            { name: "August", days: 31 },
-            { name: "September", days: 30 },
-            { name: "October", days: 31 },
-            { name: "November", days: 30 },
-            { name: "December", days: 31 }
-        ];
-        // Function to populate the input table with input fields
-        function populateInputTable() {
-            const inputTableBody = document.querySelector("#inputTable tbody");
-            inputTableBody.innerHTML = ""; // Clear previous inputs
-
-            months.forEach(month => {
-                const { name } = month;
-
-                // Create a new row for the input table
-                const inputRow = document.createElement("tr");
-                inputRow.innerHTML = `
-                    <td>${name}</td>
-                    <td><input type="number" id="discharge-${name.toLowerCase()}" value="0" step="0.01"></td>
-                `;
-                inputTableBody.appendChild(inputRow);
-            });
-        }
         // Constants
         const gravity = 9.81; // Acceleration due to gravity (m/s²)
 
         // Function to calculate energy
         function calculateEnergy() {
-            const inputTableBody = document.querySelector("#inputTable tbody");
             const calculationTableBody = document.querySelector("#calculationTable tbody");
-            inputTableBody.innerHTML = ""; // Clear previous inputs
             calculationTableBody.innerHTML = ""; // Clear previous results
 
             // Get global input values
             const efficiency = parseFloat(document.getElementById("efficiency").value);
             const designDischarge = parseFloat(document.getElementById("designDischarge").value);
-            const riparianFlow = parseFloat(document.getElementById("riparianFlow").value);
+            const riparianFlowPercent = parseFloat(document.getElementById("riparianFlow").value);
             const grossHead = parseFloat(document.getElementById("grossHead").value);
             const headLossPercent = parseFloat(document.getElementById("headLossPercent").value);
+
+            // Calculate riparian flow as a percentage of the minimum discharge
+            const riparianFlow = (riparianFlowPercent / 100) * designDischarge;
+
+            // Array of months with their respective days
+            const months = [
+                { name: "January", days: 31 },
+                { name: "February", days: 28 },
+                { name: "March", days: 31 },
+                { name: "April", days: 30 },
+                { name: "May", days: 31 },
+                { name: "June", days: 30 },
+                { name: "July", days: 31 },
+                { name: "August", days: 31 },
+                { name: "September", days: 30 },
+                { name: "October", days: 31 },
+                { name: "November", days: 30 },
+                { name: "December", days: 31 }
+            ];
 
             months.forEach(month => {
                 const { name, days } = month;
 
-                // Generate input fields for each month's discharge
-                const inputRow = document.createElement("tr");
-                inputRow.innerHTML = `
-                    <td>${name}</td>
-                    <td><input type="number" id="discharge-${name.toLowerCase()}" value="0" step="0.01"></td>
-                `;
-                inputTableBody.appendChild(inputRow);
-
                 // Get discharge value for the month
                 const discharge = parseFloat(document.getElementById(`discharge-${name.toLowerCase()}`).value);
 
+                // Determine actual monthly discharge based on the condition
+                let actualMonthlyDischarge;
+                if (discharge > designDischarge) {
+                    actualMonthlyDischarge = designDischarge;
+                } else {
+                    actualMonthlyDischarge = discharge - riparianFlow;
+                }
+
                 // Calculate head loss
-                const headLoss = (headLossPercent / 100) * grossHead;
+                const headLoss = (headLossPercent / 100) * (actualMonthlyDischarge / designDischarge) * grossHead;
 
                 // Calculate net head
                 const netHead = grossHead - headLoss;
 
-                // Calculate effective discharge
-                const effectiveDischarge = designDischarge - riparianFlow;
-
                 // Calculate capacity (P) in kW
-                const capacity = (effectiveDischarge * netHead * gravity * efficiency) / 1000;
+                const capacity = (actualMonthlyDischarge * netHead * gravity * efficiency) / 1000;
 
                 // Calculate energy (E) in kWh
                 const energy = capacity * days * 24;
@@ -406,9 +454,9 @@
                 calculationTableBody.appendChild(calculationRow);
             });
         }
-
-        // Populate input table on page load
-        calculateEnergy();
     </script>
 </body>
 </html>
+ 
+
+            
