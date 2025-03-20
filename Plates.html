@@ -256,9 +256,12 @@
             <br>
             <label for="ConType">Types of Connection:</label>
             <select id="ConType">
-                <option value="Singly">Singly</option>
+                <option value="Single">Single</option>
                 <option value="Double-Butt">Double-Butt</option>
             </select>
+            <br>
+	    <label for="nn">Number of shear plane(n<sub>n</sub>):</label>
+            <input type="number" id="nn" required>
             <br>
             <p><u>SIZE OF PLATE-1</u></p>
             <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
@@ -314,24 +317,35 @@
             <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
             <input type="number" id="t3" required>
             <br>
+	    <p><u>PROVIDED DATA</u></p>
+	    <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+            <input type="number" id="pt" required>
+	    <br>
+	    <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+            <input type="number" id="ed" required>
+	    <br>
             <button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
         </form>
 
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
+	    <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
             <p>1. PITCH AND EDGE DISTANCE</p>
             <p>1.1 Pitch distance</p>
             <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
             <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
-            <p>1.1 Edge distance</p>
+            <p>1.2 Edge distance</p>
             <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
             <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
             <p>2. STRENGTH OF A BOLT</p>
             <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
-            <p>Bearing Strength (V<sub>dnb</sub>): <span id="Vdnb"></span> N</p>
+            <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
+	    <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
             <p>2. NUMBER OF BOLTS</p>
             <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
             <p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p>
+	   
+	    <p>Number of rows (n<sub>1</sub>): <span id="nr"></span> </p>
         </div>
     </div>
 
@@ -415,51 +429,84 @@
 		if(boltSubGrade==="4.6"){boltYieldStrength=240;}
 		else {boltYieldStrength=300;}
 		
+	// Determine plate thickness category
+            const plateThickness = Math.min(t1, t2, t3);
+            let thicknessCategory;
+            if (plateThickness < 20) {
+                thicknessCategory = "<20";
+            } else if (plateThickness >= 20 && plateThickness <= 40) {
+                thicknessCategory = "20-40";
+            } else {
+                thicknessCategory = ">40";
+            }
+
+		
             // Extract steel properties
             const steelYieldStrength = steelDetails.yieldStrength[plateThickness];
             const steelUltimateStrength = steelDetails.ultimateTensileStrength;
-
-	    let pmax;
-	    const tp=Math.min(t1,t2);
-	    const e1=16*tp;
-	
-	    if (e1<200){pmax=e1;}
-	    else {pmax=200;}
 		
-            // Minimum pitch distance
-	   let boltdia;
-	   if (boltGrade==="M12"){boltdia=12;}
-	   else if (boltGrade==="M14"){boltdia=14;}
-            else if (boltGrade==="M16"){boltdia=16;}
-		else if (boltGrade==="M18"){boltdia=18;}
-		else if (boltGrade==="M20"){boltdia=20;}
-		else if (boltGrade==="M22"){boltdia=22;}
-		else if (boltGrade==="M24"){boltdia=24;}
-		else if (boltGrade==="M27"){boltdia=27;}
-		else if (boltGrade==="M30"){boltdia=30;}
-		else {boltdia=37;}
-	const pmin=2.5*boltdia;
-		let Diahole;
-		if (boltdia>=12){
-			if (boltdia<=14){Diahole=boltdia+1;}}
-			else if (boltdia>=16){
-				if (boltdia<=22){Diahole=boltdia+2}
-				else if (boltdia===24){Diahole=boltdia+2;}
-				{Diahole=boltdia+3;}}
-		const emin=1.5*diahole;
-		const epsilon=Math.pow(250/steelYieldStrength,0.5);
-		const emax = 12 * tp * epsilon;
+	// Calculate pitch and edge distances
+            const tp = Math.min(t1, t2);
+            const e1 = 16 * tp;
+            const pmax = Math.min(e1, 200);
+            const boltdia = parseInt(boltGrade.substring(1));
+            const pmin = 2.5 * boltdia;
+
+            let Diahole;
+            if (boltdia >= 12 && boltdia <= 14) {
+                Diahole = boltdia + 1;
+            } else if (boltdia >= 16 && boltdia <= 22) {
+                Diahole = boltdia + 2;
+            } else if (boltdia === 24) {
+                Diahole = boltdia + 2;
+            } else {
+                Diahole = boltdia + 3;
+            }
+
+            const emin = 1.5 * Diahole;
+            const epsilon = Math.pow(250 / steelYieldStrength, 0.5);
+            const emax = 12 * tp * epsilon;
+
+	// Strength calculation
+		let Asb=3.1416*Math.pow(boltdia,2)/4;
+		let Anb=0.78*Asb;
+		let ns;
+		if(ConType==="Single"){ns=1-nn;}
+		{ns=2-nn;}
+	    const Ymb=1.5;
+	  // Shear strength of bolt
+	    const Vnsb=boltUltimateStrength*(Anb*nn+Asb*ns)/Math.pow(3,0.5);
+	    const Vdsb = Vnsb / Ymb;
+
+	  // Bearing strength of bolt
+	    const k1=ed/(3*Diahole);
+	    const k2=pt/(3*Diahole)-0.25;
+            const k3 = boltUltimateStrength / steelUltimateStrength;
+	    const k4=1;
+	    const kb=Math.min(k1,k2,k3,k4);
+	    const Vnpb = 2.5 * kb * boltdia  * tp * steelUltimateStrength;
+	    const Vdpb = Vnpb / Ymb;
+	    // Bolt strength
+	    const Vsb=Math.min(Vdpb,Vdsb);
+	    // NUmber of bolts
+	    const nb=Math.ceil(P*1000/Vsb);
+	    // Maximum numbers of bolts at each row
+	    const n1=Math.ceil((Math.min(b1,b2)-2*ed+pt)/pt);
+	    const nr=Math.ceil(nb/n1);
 		
             // Update the result section
+		    
+	    document.getElementById('Diahole').textContent = Diahole;
             document.getElementById('pmax').textContent = pmax;
             document.getElementById('pmin').textContent = pmin;
             document.getElementById('emax').textContent = emax;
             document.getElementById('emin').textContent = emin;
             document.getElementById('Vdsb').textContent = Vdsb;
-            document.getElementById('Vdnb').textContent = Vdnb;
+            document.getElementById('Vdpb').textContent = Vdpb;
+	    document.getElementById('Vsb').textContent = Vsb;
             document.getElementById('nb').textContent = nb;
             document.getElementById('n1').textContent = n1;
-        
+            document.getElementById('nr').textContent = nr;
 	            
 	    
 
