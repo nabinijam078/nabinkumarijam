@@ -258,43 +258,103 @@
         flex: 1; /* Allow content to grow and push footer down */
       }
 
-      /* Main Content */
-      .content {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        flex: 1; /* Allow content to grow and push footer down */
-        text-align: left; /* Ensure content is left-aligned */
-      }
-
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 150px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 5px solid #555;
-      }
-
-      .content h2 {
-        color: #0078d7;
-        font-size: 1.2rem;
-        margin-top: 0;
-      }
-
-      .content p {
-        font-size: 0.8rem;
-        text-align: justify;
-      }
-
-      /* Justify text in paragraphs */
-      .main-container p {
-        text-align: justify;
-      }
+        /* Basic styling for the gallery */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery .photo-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s;
+        }
+        .gallery .photo-container:hover img {
+            transform: scale(1.05);
+        }
+        .gallery .photo-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery .photo-container:hover .photo-title {
+            opacity: 1;
+        }
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .modal-title {
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #bbb;
+        }
+        /* Navigation arrows */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
 
       /* Responsive Design */
       @media (max-width: 768px) {
@@ -364,7 +424,77 @@
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav
       <p> </p>
-      <p>This page is under construction</p>
+      < <h1>IMAGES</h1>
+    <div class="gallery">
+        <div class="photo-container" onclick="openModal(0)">
+            <img src="photo1.jpg" alt="Photo 1">
+            <div class="photo-title">Sunset at the Beach</div>
+        </div>
+        <div class="photo-container" onclick="openModal(1)">
+            <img src="photo2.jpg" alt="Photo 2">
+            <div class="photo-title">Mountain Landscape</div>
+        </div>
+        <div class="photo-container" onclick="openModal(2)">
+            <img src="photo3.jpg" alt="Photo 3">
+            <div class="photo-title">City Lights at Night</div>
+        </div>
+        <!-- Add more images as needed -->
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="prev" onclick="changePhoto(-1)">&#10094;</div>
+        <div class="next" onclick="changePhoto(1)">&#10095;</div>
+        <img class="modal-content" id="img01">
+        <div class="modal-title" id="modalTitle"></div>
+    </div>
+
+    <script>
+        // Array to store photo data (src and title)
+        const photos = [
+            { src: "nabin.jpg", title: "Sunset at the Beach" },
+            { src: "AAVYA5.jpg", title: "Mountain Landscape" },
+            { src: "photo3.jpg", title: "City Lights at Night" },
+            // Add more photos as needed
+        ];
+
+        let currentIndex = 0; // Track the current photo index
+
+        // Function to open the modal and display the clicked image and title
+        function openModal(index) {
+            currentIndex = index;
+            updateModal();
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Function to change the photo in the modal
+        function changePhoto(direction) {
+            currentIndex += direction;
+            // Loop back to the first photo if at the end
+            if (currentIndex >= photos.length) {
+                currentIndex = 0;
+            }
+            // Loop to the last photo if at the beginning
+            if (currentIndex < 0) {
+                currentIndex = photos.length - 1;
+            }
+            updateModal();
+        }
+
+        // Function to update the modal content
+        function updateModal() {
+            const modalImg = document.getElementById("img01");
+            const modalTitle = document.getElementById("modalTitle");
+            modalImg.src = photos[currentIndex].src;
+            modalTitle.innerHTML = photos[currentIndex].title;
+        }
+
 	 <!-- Footer -->
     <footer>
       <div class="social-links">
