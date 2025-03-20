@@ -7,7 +7,7 @@
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-      /* General Styles */
+            /* General Styles */
       body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
@@ -392,7 +392,7 @@
     </style>
   </head>
   <body>
-    <!-- Current Time and Date -->
+       <!-- Current Time and Date -->
     <div id="datetime"></div>
     <!-- Header -->
     <header>
@@ -423,8 +423,8 @@
       <a href="images.html"><b>IMAGES</b></a>
       <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav
-      
-       <h1><u>IMAGES<b></b></u></h1>
+
+    <h1><u>IMAGES</u></h1>
     <div class="gallery">
         <div class="photo-container" onclick="openModal(0)">
             <img src="AAVYA5.jpg" alt="Photo 1">
@@ -450,11 +450,28 @@
         <div class="modal-title" id="modalTitle"></div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+      <!-- Copyright -->
+      <div class="copyright">
+        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for Modal Functionality -->
     <script>
         // Array to store photo data (src and title)
         const photos = [
-            { src: "nabin.jpg", title: "Sunset at the Beach" },
-            { src: "AAVYA5.jpg", title: "Mountain Landscape" },
+            { src: "AAVYA5.jpg", title: "Chhori Aavya" },
+            { src: "unnamed.jpg", title: "Nabin" },
             { src: "photo3.jpg", title: "City Lights at Night" },
             // Add more photos as needed
         ];
@@ -494,22 +511,7 @@
             modalImg.src = photos[currentIndex].src;
             modalTitle.innerHTML = photos[currentIndex].title;
         }
-
-	 <!-- Footer -->
-    <footer>
-      <div class="social-links">
-        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
-        </a>
-        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
-        </a>
-      </div>
-      <!-- Copyright -->
-      <div class="copyright">
-        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-      </div>
-    </footer>
+    </script>
 
     <!-- JavaScript for Time and Date -->
     <script>
@@ -525,7 +527,5 @@
       // Initial call to display the time and date immediately
       updateDateTime();
     </script>
-
-
   </body>
 </html>
