@@ -335,13 +335,63 @@
         <option value="Fe 570-D">Fe 570-D</option>
         <option value="Fe 590-E">Fe 590-E</option>
     </select>
-</form>
-    <br>
-    <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
+	<br>
+	 <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
          <input type="number" id="t3" required>
          <br>
-    <button id="submitBtn">DESIGN PLATE CONNECTION</button>
+	<button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
+</form>
+   
+   
+    
+	  
+      <div class="result" id="result">
+        <h3><u>DESIGN RESULT</u></h3>
+	<p>1. PITCH AND EDGE DISTANCE</p>
+	<p>1.1 Pitch distance</p>
+        <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
+	<p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+	<p>1.1 Edge distance</p>
+        <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
+	<p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+	<p>2. STRENGTH OF A BOLT</p>
+	<p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
+	<p>Bearing Strength (V<sub>dnb</sub>): <span id="Vdnb"></span> N</p>
+	<p>2. NUMBER OF BOLTS</p>
+	<p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
+	<p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p> 
+      </div>
+    </div>
 
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+          <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+        </a>
+        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+          <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+        </a>
+      </div>
+       <!-- Copyright -->
+        <div class="copyright">
+        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+      </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+      function updateDateTime() {
+        const now = new Date();
+        const datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleString();
+      }
+
+      // Update the time and date every second
+      setInterval(updateDateTime, 1000);
+
+      // Initial call to display the time and date immediately
+      updateDateTime();
     <div id="output"></div>
 
     <script>
