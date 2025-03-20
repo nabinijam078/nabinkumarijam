@@ -260,8 +260,8 @@
                 <option value="Double-Butt">Double-Butt</option>
             </select>
             <br>
-	    <label for="nn">Number of shear plane(n<sub>n</sub>):</label>
-            <input type="number" id="nn" required>
+	    <label for="ns">Number of shear plane(n<sub>n</sub>):</label>
+            <input type="number" id="ns" required>
             <br>
             <p><u>SIZE OF PLATE-1</u></p>
             <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
@@ -470,9 +470,9 @@
 	// Strength calculation
 		let Asb=3.1416*Math.pow(boltdia,2)/4;
 		let Anb=0.78*Asb;
-		let ns;
-		if(ConType==="Single"){ns=1-nn;}
-		{ns=2-nn;}
+		let nn;
+		if(ConType==="Single"){nn=1-ns;}
+		{nn=2-ns;}
 	    const Ymb=1.5;
 	  // Shear strength of bolt
 	    const Vnsb=boltUltimateStrength*(Anb*nn+Asb*ns)/Math.pow(3,0.5);
