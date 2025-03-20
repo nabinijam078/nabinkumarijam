@@ -289,6 +289,14 @@
                 <option value="M33">M33</option>
             </select>
             <br>
+		<label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
+            <select id="boltSubGrade">
+                <option value="4.6">4.6</option>
+                <option value="4.8">4.8</option>
+                <option value="5.6">5.6</option>
+                <option value="5.8">5.8</option>
+            </select>
+		<br>
             <p><u>STEEL PLATE SPECIFICATION</u></p>
             <label for="steelGrade">Choose a Steel Grade:</label>
             <select id="steelGrade">
@@ -352,61 +360,7 @@
 
         setInterval(updateDateTime, 1000);
         updateDateTime();
-
-        // Function to handle form submission
-        function designplate() {
-            const P = parseFloat(document.getElementById('P').value);
-            const t1 = parseFloat(document.getElementById('t1').value);
-            const b1 = parseFloat(document.getElementById('b1').value);
-            const t2 = parseFloat(document.getElementById('t2').value);
-            const b2 = parseFloat(document.getElementById('b2').value);
-            const t3 = parseFloat(document.getElementById('t3').value);
-            const boltGrade = document.getElementById('boltGrade').value;
-            const steelGrade = document.getElementById('steelGrade').value;
-
-            // Example calculations (replace with actual formulas)
-	    let pmax;
-	    const tp=Math.min(t1,t2);
-	    const e1=16*tp;
-	
-	    if (e1<200){pmax=e1;}
-	    else {pmax=200;}
-		
-            // Minimum pitch distance
-	   let boltdia;
-	   if (boltGrade==="M12"){boltdia=12;}
-	   else if (boltGrade==="M14"){boltdia=14;}
-            else if (boltGrade==="M16"){boltdia=16;}
-		else if (boltGrade==="M18"){boltdia=18;}
-		else if (boltGrade==="M20"){boltdia=20;}
-		else if (boltGrade==="M22"){boltdia=22;}
-		else if (boltGrade==="M24"){boltdia=24;}
-		else if (boltGrade==="M27"){boltdia=27;}
-		else if (boltGrade==="M30"){boltdia=30;}
-		else {boltdia=37;}
-	const pmin=2.5*boltdia;
-		let Diahole;
-		if (boltdia>=12){
-			if (boltdia<=14){Diahole=boltdia+1;}
-			else if (boltdia>=16){
-				if (boltdia<=22){Diahole=boltdia+2}
-				else if (boltdia===24){Diahole=boltdia+2;}
-				{Diahole=boltdia+3;}
-		const emin=1.5*diahole;
-
-            // Update the result section
-            document.getElementById('pmax').textContent = pmax;
-            document.getElementById('pmin').textContent = pmin;
-            document.getElementById('emax').textContent = emax;
-            document.getElementById('emin').textContent = emin;
-            document.getElementById('Vdsb').textContent = Vdsb;
-            document.getElementById('Vdnb').textContent = Vdnb;
-            document.getElementById('nb').textContent = nb;
-            document.getElementById('n1').textContent = n1;
-        }
-	            
-	    
-	    // Data for bolt grades
+	 // Data for bolt grades
         const boltData = {
             M12: { nominalArea: 84.3, ultimateTensileStrength: { "4.6": 33700, "4.8": 35400, "5.6": 42200, "5.8": 43800 } },
             M14: { nominalArea: 115, ultimateTensileStrength: { "4.6": 46000, "4.8": 48300, "5.6": 57500, "5.8": 59800 } },
@@ -432,6 +386,83 @@
             "Fe 570-D": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 570 },
             "Fe 590-E": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 590 },
         };
+
+        // Function to handle form submission
+        function designplate() {
+            const P = parseFloat(document.getElementById('P').value);
+            const t1 = parseFloat(document.getElementById('t1').value);
+            const b1 = parseFloat(document.getElementById('b1').value);
+            const t2 = parseFloat(document.getElementById('t2').value);
+            const b2 = parseFloat(document.getElementById('b2').value);
+            const t3 = parseFloat(document.getElementById('t3').value);
+            const boltGrade = document.getElementById('boltGrade').value;
+            const steelGrade = document.getElementById('steelGrade').value;
+	    const boltSubGrade = document.getElementById('boltSubGrade').value;
+
+		// Validate inputs
+            if (isNaN(P) || isNaN(t1) || isNaN(b1) || isNaN(t2) || isNaN(b2) || isNaN(t3)) {
+                alert("Please fill all the required fields with valid numbers.");
+                return;
+            }
+		 // Retrieve bolt and steel data
+            const boltDetails = boltData[boltGrade];
+            const steelDetails = steelData[steelGrade];
+		
+		// Extract bolt properties
+            const boltUltimateStrength = boltDetails.ultimateTensileStrength[boltSubGrade];
+		
+            let boltYieldStrength;
+		if(boltSubGrade==="4.6"){boltYieldStrength=240;}
+		else {boltYieldStrength=300;}
+		
+            // Extract steel properties
+            const steelYieldStrength = steelDetails.yieldStrength[plateThickness];
+            const steelUltimateStrength = steelDetails.ultimateTensileStrength;
+
+	    let pmax;
+	    const tp=Math.min(t1,t2);
+	    const e1=16*tp;
+	
+	    if (e1<200){pmax=e1;}
+	    else {pmax=200;}
+		
+            // Minimum pitch distance
+	   let boltdia;
+	   if (boltGrade==="M12"){boltdia=12;}
+	   else if (boltGrade==="M14"){boltdia=14;}
+            else if (boltGrade==="M16"){boltdia=16;}
+		else if (boltGrade==="M18"){boltdia=18;}
+		else if (boltGrade==="M20"){boltdia=20;}
+		else if (boltGrade==="M22"){boltdia=22;}
+		else if (boltGrade==="M24"){boltdia=24;}
+		else if (boltGrade==="M27"){boltdia=27;}
+		else if (boltGrade==="M30"){boltdia=30;}
+		else {boltdia=37;}
+	const pmin=2.5*boltdia;
+		let Diahole;
+		if (boltdia>=12){
+			if (boltdia<=14){Diahole=boltdia+1;}}
+			else if (boltdia>=16){
+				if (boltdia<=22){Diahole=boltdia+2}
+				else if (boltdia===24){Diahole=boltdia+2;}
+				{Diahole=boltdia+3;}}
+		const emin=1.5*diahole;
+		const epsilon=Math.pow(250/steelYieldStrength,0.5);
+		const emax = 12 * tp * epsilon;
+		
+            // Update the result section
+            document.getElementById('pmax').textContent = pmax;
+            document.getElementById('pmin').textContent = pmin;
+            document.getElementById('emax').textContent = emax;
+            document.getElementById('emin').textContent = emin;
+            document.getElementById('Vdsb').textContent = Vdsb;
+            document.getElementById('Vdnb').textContent = Vdnb;
+            document.getElementById('nb').textContent = nb;
+            document.getElementById('n1').textContent = n1;
+        
+	            
+	    
+
 
 
     </script>
