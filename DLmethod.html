@@ -1,66 +1,125 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>D/L Calculator - Nabin Kumar Ijam</title>
     <!-- Import Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-        }
-        h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif; /* Heading font */
-            color: #0078d7;
-        }
+      /* General Styles */
+      * {
+        box-sizing: border-box; /* Normalize box model */
+        margin: 0;
+        padding: 0;
+      }
 
-        /* Header Styles */
-        header {
-            background-color: #0078d7;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+        /* Dynamic Gradient Background */
+        background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
+        background-size: 400% 400%;
+        animation: GradientBackground 15s ease infinite;
+      }
 
-        header h1 {
-            margin: 0;
-            font-size: 1.3rem;
+      @keyframes GradientBackground {
+        0% {
+          background-position: 0% 50%;
         }
-
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        50% {
+          background-position: 100% 50%;
         }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        100% {
+          background-position: 0% 50%;
         }
+      }
 
-        nav a:hover {
-            background-color: #0078d7;
-        }
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: black;
+      }
 
+      /* Header Styles */
+      header {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #0078d7;
+      }
+
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #0078d7;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Main Content Container */
+      .main-container {
+        padding: 20px 80px; /* Padding on top/bottom and sides */
+        max-width: 1200px; /* Optional: Limit the maximum width of the content */
+        margin: 0 auto; /* Center the container */
+        flex: 1; /* Push footer to the bottom */
+      }
         /* Main Content */
         .content {
             max-width: 1200px;
@@ -97,163 +156,85 @@
             text-align: justify;
         }
 
-        /* Footer Styles */
-        footer {
-            background-color: #E0FFFF;
-            color: #333;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: auto; /* Push footer to the bottom */
-        }
+      /* Footer Styles */
+      footer {
+        background-color: rgba(224, 255, 255, 0.8); /* Semi-transparent background */
+        color: white;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: auto; /* Push the footer to the bottom */
+      }
 
-        .social-links {
-            margin-bottom: 10px;
-        }
+      .social-links {
+        margin-bottom: 10px;
+      }
 
-        .social-links a {
-            color: #333; /* Dark color for icons */
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.8rem; /* Icon size */
-            transition: color 0.3s ease;
-        }
+      .social-links a {
+        color: #333;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem;
+        transition: color 0.3s ease;
+      }
 
-        .social-links a:hover {
-            color: #0078d7; /* Change color on hover */
-        }
+      .social-links a:hover {
+        color: #0078d7;
+      }
 
-        .copyright {
-            background-color: #E0FFFF; 
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
+      .copyright {
+        background-color: rgba(224, 255, 255, 0.8);
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
 
-        .copyright p {
-            margin: 0;
-            font-size: 0.7rem;
-            color: #333; /* Dark text for contrast */
-        }
+      .copyright p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #333;
+      }
 
-        /* Time and Date Styles */
-        #datetime {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.9rem;
-            color: #333;
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-container {
+          padding: 20px; /* Adjust padding for smaller screens */
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .content img {
-                float: none;
-                display: block;
-                margin: 0 auto 20px;
-            }
-
-            nav a {
-                display: block;
-                margin: 10px 0;
-            }
-        }
-
-        td {
-            font-family: Open Sans;
-            text-align: left;
-            font-size: 13px;
-        }
-
-        /* Duckworth-Lewis Calculator Styles */
-        .scoreboard {
-            background-color: #87CEEB;
-            color: black;
-            font-family: Arial, sans-serif;
-            border: 2px #dadada double;
-            text-align: center;
-        }
-        .score { font-size: 15px; }
-        .text { font-size: 15px; }
-        .myhead {
-            font-size: 15px;
-            color: #ffffff;
-            padding: 8px;
-            margin: 18px;
-            background-color: #000000;
-        }
-        .sm_text { font-size: 14px; }
-        .target { font-size: 15px; }
-        .update {
-            font-size: 16px;
-            border: 1px solid #888888;
-            padding: 12px;
-        }
-        .sm_text a:link, .sm_text a:visited,
-        .up_down a:link, .up_down a:visited {
-            color: black;
-            text-decoration: none;
-        }
-        .sm_text a:hover,
-        .up_down a:hover {
-            color: #ffff00;
-            text-decoration: none;
-        }
-        .input_box {
-            background-color: #c8c8c8;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            position: relative;
-            top: 0px;
-            left: 0px;
-            width: 76px;
-            height: 24px;
-            padding-left: 4px;
-            border: 1px #ffffff solid;
-        }
-        #predictor {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        #help_window_1, #help_window_2 {
-            position: absolute;
-            top: 10px;
-            left: -1000px;
-            border: 1px solid #000000;
-        }
-        #help_window_1 { width: 704px; }
-        #help_window_2 { width: 704px; }
-        .up_down {
-            font-family: sans-serif;
-            font-size: 15px;
-            border: 1px solid #555555;
-            height: 24px;
-        }
-    </style>
-</head>
-<body>
+      }
+   </style>
+  </head>
+  <body>
     <!-- Current Time and Date -->
     <div id="datetime"></div>
-
     <!-- Header -->
     <header>
-        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structural & Hydropower Specialist</h1>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structure & Hydropower</h1>
     </header>
 
     <!-- Navigation Bar -->
     <nav>
-        <a href="Home.html"><b>HOME</b></a>
-        <a href="My background.html"><b>MY BACKGROUND</b></a>
-        <a href="My works.html"><b>MY WORKS</b></a>
-        <a href="Civil Engineering Notes.html"><b>CIVIL ENGINEERING NOTES</b></a>
-        <a href="Others.html"><b>OTHERS</b></a>
-        <a href="Downloads.html"><b>DOWNLOADS</b></a>
-        <a href="images.html"><b>IMAGES</b></a>
-        <a href="Contacts.html"><b>CONTACTS</b></a>
+      <a href="Home.html"><b>HOME</b></a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+        <div class="dropdown-content">
+          <a href="Information.html">MY INFORMATION</a>
+          <a href="My background.html">MY BACKGROUND</a>
+          <a href="My works.html">MY WORKS</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+        <div class="dropdown-content">
+          <a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
+          <a href="Others.html">OTHER CALCULATION</a>
+        </div>
+      </div>
+
+      <a href="Downloads.html"><b>DOWNLOADS</b></a>
+      <a href="images.html"><b>IMAGES</b></a>
+      <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
     <!-- Main Content -->
