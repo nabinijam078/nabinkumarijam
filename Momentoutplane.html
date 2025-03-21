@@ -364,7 +364,7 @@
                     <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
                     <p>Moment resisted by bolts in tension (M<sub>r</sub>): <span id="Mr"></span> Nmm </p>
                     <p>∑yi : <span id="sumy"></span> </p>
-                    <p>∑yi2 : <span id="sumy2"></span> </p>
+                    <p>∑yi<sup>2</sup> : <span id="sumy2"></span> </p>
                     <p>Tension due to moment (T<sub>b</sub>): <span id="Tb"></span> N </p>
                     
                     <p>Check for shear strength: <span id="check"></span> </p>
@@ -609,7 +609,7 @@
                     yn = parseFloat(cellB.textContent);
                 }
                 const sumy2=sum1+Math.pow(pt - yb1, 2); // Summation of y2
-                const sumy=sum2++pt - yb1;    // Summation of y
+                const sumy=sum2+pt - yb1;    // Summation of y
                 
                 
                 // Tensile force in extreme bolt
