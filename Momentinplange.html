@@ -261,6 +261,9 @@
             <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
             <input type="number" id="n1" required>
             <br>
+            <label for="xp">Horizontal spacing of adjacent rows (x<sub>p</sub>):</label>
+            <input type="number" id="xp" required>
+            <br>
             <p><u>SIZE OF PLATES</u></p>
             <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
             <input type="number" id="t1" required>
@@ -342,7 +345,9 @@
             
             <p><u>5. NUMBER OF BOLTS</u></p>
             <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
-            
+            <p><u>6. SIZE OF CONNECTING PLATE</u></p>
+            <p>Width (B): <span id="Bc"></span>m </p>
+            <p>Width (H): <span id="Hc"></span>m </p>
         </div>
     </div>
 
@@ -407,6 +412,7 @@
                 const x = document.getElementById('x').value;
                 const n1 = document.getElementById('n1').value;
                 const nn = parseFloat(document.getElementById('nn').value);
+                const xp = parseFloat(document.getElementById('xp').value);
                 const t1 = parseFloat(document.getElementById('t1').value);
                 
                 const t2 = parseFloat(document.getElementById('t2').value);
@@ -504,7 +510,9 @@
                 // const nr = Math.ceil(nb / n1);
 
                // Connecting plate size
-              
+                const Bc=ed*2+xp;
+                const Hc=pt*(nt/2-1)+ed*2;
+                
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
