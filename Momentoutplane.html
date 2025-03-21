@@ -363,6 +363,7 @@
                     
                     <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
                     <p>Moment resisted by bolts in tension (M<sub>r</sub>): <span id="Mr"></span> Nmm </p>
+                    <p>Distance of extreme bolt from NA : <span id="yn"></span>mm </p>
                     <p>∑yi : <span id="sumy"></span> </p>
                     <p>∑yi<sup>2</sup> : <span id="sumy2"></span> </p>
                     <p>Tension due to moment (T<sub>b</sub>): <span id="Tb"></span> N </p>
@@ -651,6 +652,7 @@
                 document.getElementById('Mr').textContent = Mr.toFixed(2);
                 document.getElementById('sumy').textContent = sumy.toFixed(2);
                 document.getElementById('sumy2').textContent = sumy2.toFixed(2);
+                document.getElementById('yn').textContent = yn.toFixed(2);
                 document.getElementById('Tb').textContent = Tb.toFixed(2);
                 document.getElementById('check').textContent = check;
             } catch (error) {
