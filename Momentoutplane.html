@@ -538,7 +538,7 @@
                 const k3 = boltMinUltimateStrength / steelUltimateStrength;
                 const k4 = 1;
                 const kb = Math.min(k1, k2, k3, k4);
-                const Vnpb = 2.5 * kb * boltdia * tp * steelUltimateStrength;
+                const Vnpb = 2.5 * kb * boltdia * tp * boltMinUltimateStrength;
                 const Vdpb = Vnpb / Ymb;
 
                 // Bolt strength
