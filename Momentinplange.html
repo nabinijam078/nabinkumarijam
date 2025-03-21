@@ -348,6 +348,9 @@
             <p><u>6. SIZE OF CONNECTING PLATE</u></p>
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
+
+            <p>Sum: <span id="sum"></span>m </p>
+            <p>yn: <span id="syn"></span>m </p>
         </div>
     </div>
 
@@ -511,7 +514,61 @@
                // Connecting plate size
                 const Bc=ed*2+xp;
                 const Hc=pt*(nb/2-1)+ed*2;
+
+                // Centroid of bolts
+                const yb=Hc/2;
+                // Initialize variables
+
+                let sum = 0;
+
+                // Get the table body and sum element
+                let tableBody = document.querySelector("#dataTable tbody");
+                let sumValueElement = document.getElementById("sumValue");
+
+                // First row calculation
+                let firstRow = document.createElement("tr");
+                let cellA1 = document.createElement("td");
+                let cellB1 = document.createElement("td");
+                let cellC1 = document.createElement("td");
+                let cellD1 = document.createElement("td");
+
+                cellA1.textContent = 1;
+                cellB1.textContent = xp / 2;
+                cellC1.textContent = pt / 2;
+                cellD1.textContent = Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2);
+
+                firstRow.appendChild(cellA1);
+                firstRow.appendChild(cellB1);
+                firstRow.appendChild(cellC1);
+                firstRow.appendChild(cellD1);
+                tableBody.appendChild(firstRow);
+
+                // Loop for the remaining rows
+                for (let i = 2; i <= nt / 2; i++) {
+                let row = document.createElement("tr");
+                let cellA = document.createElement("td");
+                let cellB = document.createElement("td");
+                let cellC = document.createElement("td");
+                let cellD = document.createElement("td");
+
+                cellA.textContent = i;
+                cellB.textContent = xp / 2;
+                cellC.textContent = (i - 1) * pt + (pt / 2);
+                cellD.textContent = Math.pow(xp / 2, 2) + Math.pow((i - 1) * pt + (pt / 2), 2);
+
+                row.appendChild(cellA);
+                row.appendChild(cellB);
+                row.appendChild(cellC);
+                row.appendChild(cellD);
+                tableBody.appendChild(row);
+
+                // Accumulate the sum of column D
+                sum += parseFloat(cellD.textContent);
+                    yn = parseFloat(cellC.textContent)
+                }
+
                 
+
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
@@ -531,7 +588,8 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                
+                document.getElementById('Hc').textContent = sum;
+                document.getElementById('Hc').textContent = yn;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
                 console.error(error);
