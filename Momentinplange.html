@@ -593,7 +593,7 @@
                 const F3=F1*x/sum1*R1;
                 
                 // Angle between extreme bolt and CG
-                const theta=Math.Acot(xn/yn);
+                const theta=Math.atan(yn/xn);
 
                 // Resultant force
                 const Vs=Math.pow((Math.pow(F2,2)+Math.pow(F3,2)+F2*F3*Math,cos(theta)),0.5);
