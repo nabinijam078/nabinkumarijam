@@ -608,8 +608,8 @@
                     sum2 += parseFloat(cellB.textContent);
                     yn = parseFloat(cellB.textContent);
                 }
-                const sumy=sum1+pt - yb1; // Summation of y
-                const sumy2=sum2+Math.pow(pt - yb1, 2);
+                const sumy2=sum1+Math.pow(pt - yb1, 2); // Summation of y2
+                const sumy=sum2++pt - yb1;    // Summation of y
                 
                 
                 // Tensile force in extreme bolt
