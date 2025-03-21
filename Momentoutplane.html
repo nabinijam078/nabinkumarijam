@@ -261,7 +261,7 @@
                     <label for="P">Designed factored load(P in kN):</label>
                     <input type="number" id="P" required>
                     <br>
-                    <label for="x">Eccentricity of load(x in m):</label>
+                    <label for="x">Eccentricity of load(x in mm):</label>
                     <input type="number" id="x" required>
                     <br>
                     <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
@@ -362,6 +362,7 @@
                     <p><u>5. CHECK FOR SHEAR</u></p>
                     
                     <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
+                    <p>Moment resisted by bolts in tension (M<sub>r</sub>): <span id="Mr"></span> Nmm </p>
                     <p>Tension due to moment (T<sub>b</sub>): <span id="Tb"></span> N </p>
                     
                     <p>Check for shear strength: <span id="check"></span> </p>
@@ -519,7 +520,7 @@
                 // Factored force at each plate of bracket in N
                 const F1 = P * 1000 / 2;
                 // Factored moment at each node in Nmm
-                const M1 = F1 * x * 1000;
+                const M1 = F1 * x;
 
                 // Strength calculation
                 const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
