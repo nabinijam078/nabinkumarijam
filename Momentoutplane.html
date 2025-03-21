@@ -621,7 +621,7 @@
                 
                 // Tensile force in extreme bolt
                 const Tb = Mr * yn / (sumy2 * n1);
-                const rat = Math.pow((F1 / Vsb), 2) + Math.pow((Tb / Tdb), 2);
+                const rat = Math.pow((F2 / Vsb), 2) + Math.pow((Tb / Tdb), 2);
 
                 // Check for shear
                 let check;
@@ -641,21 +641,21 @@
                 document.getElementById('Diahole').textContent = Diahole;
                 document.getElementById('pmax').textContent = pmax;
                 document.getElementById('pmin').textContent = pmin;
-                document.getElementById('emax').textContent = emax.toFixed(2);
-                document.getElementById('emin').textContent = emin.toFixed(2);
-                document.getElementById('Vdsb').textContent = Vdsb.toFixed(2);
-                document.getElementById('Vdpb').textContent = Vdpb.toFixed(2);
-                document.getElementById('Tdb').textContent = Tdb.toFixed(2);
-                document.getElementById('Vsb').textContent = Vsb.toFixed(2);
+                document.getElementById('emax').textContent = emax.toFixed(1);
+                document.getElementById('emin').textContent = emin.toFixed(1);
+                document.getElementById('Vdsb').textContent = Vdsb.toFixed(1);
+                document.getElementById('Vdpb').textContent = Vdpb.toFixed(1);
+                document.getElementById('Tdb').textContent = Tdb.toFixed(1);
+                document.getElementById('Vsb').textContent = Vsb.toFixed(1);
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                document.getElementById('F2').textContent = F2.toFixed(2);
-                document.getElementById('Mr').textContent = Mr.toFixed(2);
-                document.getElementById('sumy').textContent = sumy.toFixed(2);
-                document.getElementById('sumy2').textContent = sumy2.toFixed(2);
-                document.getElementById('yn').textContent = yn.toFixed(2);
-                document.getElementById('Tb').textContent = Tb.toFixed(2);
+                document.getElementById('F2').textContent = F2.toFixed(1);
+                document.getElementById('Mr').textContent = Mr.toFixed(1);
+                document.getElementById('sumy').textContent = sumy.toFixed(1);
+                document.getElementById('sumy2').textContent = sumy2.toFixed(1);
+                document.getElementById('yn').textContent = yn.toFixed(1);
+                document.getElementById('Tb').textContent = Tb.toFixed(1);
                 document.getElementById('check').textContent = check;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
