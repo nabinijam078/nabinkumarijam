@@ -135,7 +135,8 @@
             width: 35%;
             position: relative;
         }
-          .drawing-section img {
+
+        .drawing-section img {
             width: 100%;
             height: auto;
             border-radius: 10px;
@@ -414,7 +415,7 @@
         updateDateTime();
 
         // Data for bolt grades
-      const boltData = {
+        const boltData = {
             M12: { nominalArea: 84.3, ultimateTensileStrength: { "4.6": 33700, "4.8": 35400, "5.6": 42200, "5.8": 43800 } },
             M14: { nominalArea: 115, ultimateTensileStrength: { "4.6": 46000, "4.8": 48300, "5.6": 57500, "5.8": 59800 } },
             M16: { nominalArea: 157, ultimateTensileStrength: { "4.6": 62800, "4.8": 65900, "5.6": 78500, "5.8": 81600 } },
@@ -426,7 +427,6 @@
             M30: { nominalArea: 561, ultimateTensileStrength: { "4.6": 224000, "4.8": 236000, "5.6": 280000, "5.8": 292000 } },
             M33: { nominalArea: 694, ultimateTensileStrength: { "4.6": 278000, "4.8": 292000, "5.6": 347000, "5.8": 361000 } },
         };
-
 
         // Data for steel grades
         const steelData = {
@@ -544,33 +544,29 @@
                 const Vsb = Math.min(Vdpb, Vdsb);
 
                 // Tensile capacity of a bolt
-                const Tdb1=0.9*boltUltimateStrength*Anb/Ymb;
-                const Tdb2=boltYieldStrength*Asb/1.1;
-                const Tdb=Math.min(Tdb1,Tdb2);
-                
-                
+                const Tdb1 = 0.9 * boltUltimateStrength * Anb / Ymb;
+                const Tdb2 = boltYieldStrength * Asb / 1.1;
+                const Tdb = Math.min(Tdb1, Tdb2);
 
                 // Number of bolts
                 const nb = Math.ceil(Math.pow(6 * M1 / (n1 * Vsb * pt), 0.5));
-                
 
                 // Distance of extreme bolt from bottom
                 const Bc = ed * 2 + xp;
-                const Hc = pt * (nb- 1) + ed * 2;
+                const Hc = pt * (nb - 1) + ed * 2;
 
                 // Position of NA from bottom
                 const yb = Hc / 7;
 
                 // Number of bolts below NA
-                const na=Math.ceil((yb-ed)/pt);
+                const na = Math.ceil((yb - ed) / pt);
 
-                //Position of first bolt below NA
-                
-                const yb1=yb-ed-(na-1)*pt;
+                // Position of first bolt below NA
+                const yb1 = yb - ed - (na - 1) * pt;
 
                 // Calculate sum of y² and yn
                 let sum1 = 0;
-                let sum2=0;
+                let sum2 = 0;
                 let yn = 0;
                 const tableBody = document.querySelector("#dataTable tbody");
                 tableBody.innerHTML = ""; // Clear previous table data
@@ -582,52 +578,48 @@
                 const cellC1 = document.createElement("td");
 
                 cellA1.textContent = 1;
-                cellB1.textContent = (pt -yb1).toFixed(1);
-                cellC1.textContent = (Math.pow(pt -yb1, 2)).toFixed(1);
+                cellB1.textContent = (pt - yb1).toFixed(1);
+                cellC1.textContent = (Math.pow(pt - yb1, 2)).toFixed(1);
                 firstRow.appendChild(cellA1);
                 firstRow.appendChild(cellB1);
                 firstRow.appendChild(cellC1);
                 tableBody.appendChild(firstRow);
 
                 // Loop for the remaining rows
-                for (let i = 2; i <= (nb-na); i++) {
+                for (let i = 2; i <= (nb - na); i++) {
                     const row = document.createElement("tr");
                     const cellA = document.createElement("td");
                     const cellB = document.createElement("td");
                     const cellC = document.createElement("td");
                     cellA.textContent = i;
-                    cellB.textContent = ((i - 1) * pt + pt -yb1).toFixed(1);
-                    cellC.textContent = (Math.pow(((i - 1) * pt + pt -yb1), 2)).toFixed(1);
+                    cellB.textContent = ((i - 1) * pt + pt - yb1).toFixed(1);
+                    cellC.textContent = (Math.pow(((i - 1) * pt + pt - yb1), 2)).toFixed(1);
 
                     row.appendChild(cellA);
                     row.appendChild(cellB);
                     row.appendChild(cellC);
-                    
                     tableBody.appendChild(row);
 
                     // Accumulate the sum of column D
-                    sum11 += parseFloat(cellC.textContent);
-                    sum21 += parseFloat(cellB.textContent);
+                    sum1 += parseFloat(cellC.textContent);
+                    sum2 += parseFloat(cellB.textContent);
                     yn = parseFloat(cellB.textContent);
                 }
-                    const sum2=sum21+pt -yb1;
-                    const sum1=sum11+(Math.pow(pt -yb1, 2));
-                
-                
+
                 // Tensile force in extreme bolt
-                const Tb=Mr*yn/(sum1*n1);
-                
+                const Tb = M1 * yn / (sum1 * n1);
+
                 // Direct shear force
                 const F2 = F1 / (n1 * nb);
-                const Mr=M1/(1+2*Hc/21*sum2*n1)/(sum1*n1);
-                const rat=Math.pow((F1/Vsb),2)+Math.pow((Tb/Tdb),2);
-                
+                const Mr = M1 / (1 + 2 * Hc / 21 * sum2 * n1) / (sum1 * n1);
+                const rat = Math.pow((F1 / Vsb), 2) + Math.pow((Tb / Tdb), 2);
+
                 // Check for shear
                 let check;
-               if (rat < 1) {
-                    /check = 'OK';
-               } else {
-                   check = 'Not OK';
+                if (rat < 1) {
+                    check = 'OK';
+                } else {
+                    check = 'Not OK';
                 }
 
                 // Update the result section
@@ -649,10 +641,8 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                
                 document.getElementById('F2').textContent = F2.toFixed(2);
                 document.getElementById('Mr').textContent = Mr.toFixed(2);
-                
                 document.getElementById('Tb').textContent = Tb.toFixed(2);
                 document.getElementById('check').textContent = check;
             } catch (error) {
