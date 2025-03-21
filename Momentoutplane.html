@@ -256,7 +256,7 @@
         <div class="content">
             <div class="input-section">
                 <form id="plateForm">
-                    <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
+                    <h3><u>MOMENT CONNECTION OUT OF A PLANE</u></h3>
                     <label for="P">Designed factored load(P in kN):</label>
                     <input type="number" id="P" required>
                     <br>
@@ -361,8 +361,8 @@
                     <p><u>5. CHECK FOR SHEAR</u></p>
                     
                     <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
-                    <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span> N </p>
-                    <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span> N </p>
+                    <p>Tension due to moment (T<sub>b</sub>): <span id="Tb"></span> N </p>
+                    
                     <p>Check for shear strength: <span id="check"></span> </p>
 
                     <!-- Table for displaying bolt positions -->
@@ -370,9 +370,8 @@
                         <thead>
                             <tr>
                                 <th>Bolt No.</th>
-                                <th>X (mm)</th>
                                 <th>Y (mm)</th>
-                                <th>r² (mm²)</th>
+                                <th>Y² (mm²)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -535,22 +534,24 @@
                 // Bearing strength of bolt
                 const k1 = ed / (3 * Diahole);
                 const k2 = pt / (3 * Diahole) - 0.25;
-                const k3 = boltUltimateStrength / steelUltimateStrength;
+                const k3 = boltMinUltimateStrength / steelUltimateStrength;
                 const k4 = 1;
                 const kb = Math.min(k1, k2, k3, k4);
                 const Vnpb = 2.5 * kb * boltdia * tp * steelUltimateStrength;
                 const Vdpb = Vnpb / Ymb;
+
+                // Bolt strength
+                const Vsb = Math.min(Vdpb, Vdsb);
 
                 // Tensile capacity of a bolt
                 const Tdb1=0.9*boltUltimateStrength*Anb/Ymb;
                 const Tdb2=boltYieldStrength*Asb/1.1;
                 const Tdb=Math.min(Tdb1,Tdb2);
                 
-                // Bolt strength
-                const Vsb = Math.min(Vdpb, Vdsb);
+                
 
                 // Number of bolts
-                const nb = Math.ceil(Math.pow(6 * M1 / (n1 * Vsb * pt), 0.5) / 4) * 4;
+                const nb = Math.ceil(Math.pow(6 * M1 / (n1 * Vsb * pt), 0.5));
                 
 
                 // Distance of extreme bolt from bottom
@@ -561,17 +562,15 @@
                 const yb = Hc / 7;
 
                 // Number of bolts below NA
-                const na=Math.floor((yb-ed)/pt);
+                const na=Math.ceil((yb-ed)/pt);
 
                 //Position of first bolt below NA
+                
                 const yb1=yb-ed-(na-1)*pt;
 
-                
-                
-
-                // Calculate sum of r² and yn
-                let sum = 0;
-                
+                // Calculate sum of y² and yn
+                let sum1 = 0;
+                let sum2=0;
                 let yn = 0;
                 const tableBody = document.querySelector("#dataTable tbody");
                 tableBody.innerHTML = ""; // Clear previous table data
@@ -579,19 +578,15 @@
                 // First row calculation
                 const firstRow = document.createElement("tr");
                 const cellA1 = document.createElement("td");
-                
                 const cellB1 = document.createElement("td");
                 const cellC1 = document.createElement("td");
 
                 cellA1.textContent = 1;
-                
                 cellB1.textContent = (pt -yb1).toFixed(1);
                 cellC1.textContent = (Math.pow(pt -yb1, 2)).toFixed(1);
-
                 firstRow.appendChild(cellA1);
                 firstRow.appendChild(cellB1);
                 firstRow.appendChild(cellC1);
-                
                 tableBody.appendChild(firstRow);
 
                 // Loop for the remaining rows
@@ -602,7 +597,7 @@
                     const cellC = document.createElement("td");
                     cellA.textContent = i;
                     cellB.textContent = ((i - 1) * pt + pt -yb1).toFixed(1);
-                    cellC.textContent = (Math.pow((i - 1) * pt + pt -yb1, 2)).toFixed(1);
+                    cellC.textContent = (Math.pow(((i - 1) * pt + pt -yb1), 2)).toFixed(1);
 
                     row.appendChild(cellA);
                     row.appendChild(cellB);
@@ -611,26 +606,29 @@
                     tableBody.appendChild(row);
 
                     // Accumulate the sum of column D
-                    sum += parseFloat(cellC.textContent);
-                    
+                    sum11 += parseFloat(cellC.textContent);
+                    sum21 += parseFloat(cellB.textContent);
                     yn = parseFloat(cellB.textContent);
                 }
-
-                const Mr=M1/(1+2*Hc/21*yn*n1)/(sum*n1);
+                    const sum2=sum21+pt -yb1;
+                    const sum1=sum11+(Math.pow(pt -yb1, 2));
                 
                 
-
+                // Tensile force in extreme bolt
+                const Tb=Mr*yn/(sum1*n1);
+                
                 // Direct shear force
                 const F2 = F1 / (n1 * nb);
-
+                const Mr=M1/(1+2*Hc/21*sum2*n1)/(sum1*n1);
+                const rat=Math.pow((F1/Vsb),2)+Math.pow((Tb/Tdb),2);
                 
                 // Check for shear
-                //let check;
-               // if (Vs < Vsb) {
-                    //check = 'OK';
-                //} else {
-                 //  check = 'Not OK';
-                //}
+                let check;
+               if (rat < 1) {
+                    /check = 'OK';
+               } else {
+                   check = 'Not OK';
+                }
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
@@ -653,9 +651,9 @@
                 document.getElementById('Hc').textContent = Hc;
                 
                 document.getElementById('F2').textContent = F2.toFixed(2);
-                document.getElementById('F3').textContent = F3.toFixed(2);
+                document.getElementById('Mr').textContent = Mr.toFixed(2);
                 
-                document.getElementById('Vs').textContent = Vs.toFixed(2);
+                document.getElementById('Tb').textContent = Tb.toFixed(2);
                 document.getElementById('check').textContent = check;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
