@@ -349,7 +349,7 @@
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
             <p><u>5. CHECK FOR SHEAR</u></p>
-            <p>Sum (F<sub>2</sub>): <span id="theta"></span> </p>
+            <p>theta: <span id="theta"></span> </p>
             <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span>N </p>
             <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span>N </p>
             <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span>N </p>
@@ -627,9 +627,9 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                document.getElementById('R1').textContent = R1.toFixed(0);
+                
                 document.getElementById('F2').textContent = F2.toFixed(2);
-                 document.getElementById('F3').textContent = F3.toFixed(2);
+                document.getElementById('F3').textContent = F3.toFixed(2);
                 document.getElementById('theta').textContent = theta.toFixed(2);
                 document.getElementById('Vs').textContent = Vs.toFixed(2);
                 document.getElementById('check').textContent = check;
