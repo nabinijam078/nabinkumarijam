@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moment in plane - Nabin Kumar Ijam</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
+            background-size: 400% 400%;
+            animation: GradientBackground 15s ease infinite;
+        }
+
+        @keyframes GradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif;
+            color: black;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0078d7;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #0078d7;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            padding: 20px 80px;
+            background-color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-section {
+            width: 60%;
+        }
+
+        .drawing-section {
+            width: 35%;
+            position: relative;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: rgba(224, 255, 255, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+
+        .social-links {
+            margin-bottom: 10px;
+        }
+
+        .social-links a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #0078d7;
+        }
+
+        .copyright {
+            background-color: rgba(224, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .copyright p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+    <!-- Header -->
+    <header>
+        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structure & Hydropower</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Home.html"><b>HOME</b></a>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+            <div class="dropdown-content">
+                <a href="Information.html">MY INFORMATION</a>
+                <a href="My background.html">MY BACKGROUND</a>
+                <a href="My works.html">MY WORKS</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+            <div class="dropdown-content">
+                <a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
+                <a href="Others.html">OTHER CALCULATION</a>
+            </div>
+        </div>
+        <a href="Downloads.html"><b>DOWNLOADS</b></a>
+        <a href="images.html"><b>IMAGES</b></a>
+        <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <form id="plateForm">
+            <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
+            <label for="P">Designed factored load(P in kN):</label>
+            <input type="number" id="P" required>
+            <br>
+            <label for="x">Eccentricity of load(x in m):</label>
+            <input type="number" id="x" required>
+            <br>
+            <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+            <input type="number" id="nn" required>
+             <br>
+            <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
+            <input type="number" id="n1" required>
+            <br>
+            <p><u>SIZE OF PLATES</u></p>
+            <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
+            <input type="number" id="t1" required>
+            <br>
+            <label for="t2">Thickness of connecting plate(t<sub>2</sub> in mm):</label>
+            <input type="number" id="t2" required>
+            <br>
+            
+            <p><u>BOLTS SPECIFICATION</u></p>
+            <label for="boltGrade">Choose a Bolt Grade:</label>
+            <select id="boltGrade">
+                <option value="M12">M12</option>
+                <option value="M14">M14</option>
+                <option value="M16">M16</option>
+                <option value="M18">M18</option>
+                <option value="M20">M20</option>
+                <option value="M22">M22</option>
+                <option value="M24">M24</option>
+                <option value="M27">M27</option>
+                <option value="M30">M30</option>
+                <option value="M33">M33</option>
+            </select>
+            <br>
+            <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
+            <select id="boltSubGrade">
+                <option value="4.6">4.6</option>
+                <option value="4.8">4.8</option>
+                <option value="5.6">5.6</option>
+                <option value="5.8">5.8</option>
+            </select>
+            <br>
+            <p><u>STEEL PLATE SPECIFICATION</u></p>
+            <label for="steelGrade">Choose a Steel Grade:</label>
+            <select id="steelGrade">
+                <option value="Fe 290">Fe 290</option>
+                <option value="Fe 410 W-A">Fe 410 W-A</option>
+                <option value="Fe 410 W-B">Fe 410 W-B</option>
+                <option value="Fe 410 W-C">Fe 410 W-C</option>
+                <option value="Fe 440">Fe 440</option>
+                <option value="Fe 490">Fe 490</option>
+                <option value="Fe 540">Fe 540</option>
+                <option value="Fe 570-D">Fe 570-D</option>
+                <option value="Fe 590-E">Fe 590-E</option>
+            </select>
+            
+            <br>
+            <p><u>PROVIDED DATA</u></p>
+            <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+            <input type="number" id="pt" required>
+            <br>
+            <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+            <input type="number" id="ed" required>
+            <br>
+            <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+        </form>
+
+        <div class="result" id="result">
+            <h3><u>DESIGN RESULT</u></h3>
+            <p><u>1. BOLT SPECIFICATION</u></p>
+            <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+            <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+            <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
+            <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
+            <p><u>2. PLATE SPECIFICATION</u></p>
+            <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+            <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+            <p><u>3. PITCH AND EDGE DISTANCE</u></p>
+            <p><u>3.1 Pitch distance</u></p>
+            <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
+            <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+            <p><u>3.2 Edge distance</u></p>
+            <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
+            <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+            <p><u>4. STRENGTH OF A BOLT</u></p>
+            <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
+            <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
+            <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
+            <p>Resultant Shear force (V<sub>s</sub>): <span id="Vs"></span> N</p>
+            <p><u>5. NUMBER OF BOLTS</u></p>
+            <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // Data for bolt grades
+        const boltData = {
+            M12: { nominalArea: 84.3, ultimateTensileStrength: { "4.6": 33700, "4.8": 35400, "5.6": 42200, "5.8": 43800 } },
+            M14: { nominalArea: 115, ultimateTensileStrength: { "4.6": 46000, "4.8": 48300, "5.6": 57500, "5.8": 59800 } },
+            M16: { nominalArea: 157, ultimateTensileStrength: { "4.6": 62800, "4.8": 65900, "5.6": 78500, "5.8": 81600 } },
+            M18: { nominalArea: 192, ultimateTensileStrength: { "4.6": 76800, "4.8": 80600, "5.6": 96000, "5.8": 99800 } },
+            M20: { nominalArea: 245, ultimateTensileStrength: { "4.6": 98000, "4.8": 103000, "5.6": 122000, "5.8": 127000 } },
+            M22: { nominalArea: 303, ultimateTensileStrength: { "4.6": 121000, "4.8": 127000, "5.6": 152000, "5.8": 158000 } },
+            M24: { nominalArea: 353, ultimateTensileStrength: { "4.6": 141000, "4.8": 148000, "5.6": 176000, "5.8": 184000 } },
+            M27: { nominalArea: 459, ultimateTensileStrength: { "4.6": 184000, "4.8": 193000, "5.6": 230000, "5.8": 239000 } },
+            M30: { nominalArea: 561, ultimateTensileStrength: { "4.6": 224000, "4.8": 236000, "5.6": 280000, "5.8": 292000 } },
+            M33: { nominalArea: 694, ultimateTensileStrength: { "4.6": 278000, "4.8": 292000, "5.6": 347000, "5.8": 361000 } },
+        };
+
+        // Data for steel grades
+        const steelData = {
+            "Fe 290": { yieldStrength: { "<20": 165, "20-40": 165, ">40": 165 }, ultimateTensileStrength: 290 },
+            "Fe 410 W-A": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 410 W-B": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 410 W-C": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 440": { yieldStrength: { "<20": 300, "20-40": 290, ">40": 280 }, ultimateTensileStrength: 440 },
+            "Fe 490": { yieldStrength: { "<20": 350, "20-40": 330, ">40": 320 }, ultimateTensileStrength: 490 },
+            "Fe 540": { yieldStrength: { "<20": 410, "20-40": 390, ">40": 380 }, ultimateTensileStrength: 540 },
+            "Fe 570-D": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 570 },
+            "Fe 590-E": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 590 },
+        };
+
+        // Function to handle form submission
+        function designplate() {
+            try {
+                // Retrieve input values
+                const P = parseFloat(document.getElementById('P').value);
+                const ConType = document.getElementById('ConType').value;
+                const nn = parseFloat(document.getElementById('nn').value);
+                const t1 = parseFloat(document.getElementById('t1').value);
+                const b1 = parseFloat(document.getElementById('b1').value);
+                const t2 = parseFloat(document.getElementById('t2').value);
+                const b2 = parseFloat(document.getElementById('b2').value);
+                const t3 = parseFloat(document.getElementById('t3').value);
+                const boltGrade = document.getElementById('boltGrade').value;
+                const boltSubGrade = document.getElementById('boltSubGrade').value;
+                const steelGrade = document.getElementById('steelGrade').value;
+                const pt = parseFloat(document.getElementById('pt').value);
+                const ed = parseFloat(document.getElementById('ed').value);
+
+                // Validate inputs
+                if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(b1) || b1 <= 0 ||
+                    isNaN(t2) || t2 <= 0 || isNaN(b2) || b2 <= 0 || isNaN(t3) || t3 <= 0 ||
+                    isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
+                    alert("Please fill all the required fields with valid positive numbers.");
+                    return;
+                }
+
+                // Retrieve bolt and steel properties
+                const boltDetails = boltData[boltGrade];
+                let boltUltimateStrength;
+                if (boltSubGrade==="4.6"){boltUltimateStrength=400;}
+                else if (boltSubGrade==="4.8"){boltUltimateStrength=420;}
+                else if (boltSubGrade==="5.6"){boltUltimateStrength=500;}
+                else {boltUltimateStrength=520;}
+                
+                const boltYieldStrength = boltSubGrade === "4.6" ? 240 : 300;
+
+                const plateThickness = Math.min(t1, t2);
+                const steelDetails = steelData[steelGrade];
+                let thicknessCategory;
+                if (plateThickness < 20) {
+                    thicknessCategory = "<20";
+                } else if (plateThickness >= 20 && plateThickness <= 40) {
+                    thicknessCategory = "20-40";
+                } else {
+                    thicknessCategory = ">40";
+                }
+                const steelYieldStrength = steelDetails.yieldStrength[thicknessCategory];
+                const steelUltimateStrength = steelDetails.ultimateTensileStrength;
+
+                // Calculate pitch and edge distances
+                const tp = Math.min(t1, t2);
+                const e1 = 16 * tp;
+                const pmax = Math.min(e1, 200);
+                const boltdia = parseInt(boltGrade.substring(1));
+                const pmin = 2.5 * boltdia;
+
+                let Diahole;
+                if (boltdia >= 12 && boltdia <= 14) {
+                    Diahole = boltdia + 1;
+                } else if (boltdia >= 16 && boltdia <= 22) {
+                    Diahole = boltdia + 2;
+                } else if (boltdia === 24) {
+                    Diahole = boltdia + 2;
+                } else {
+                    Diahole = boltdia + 3;
+                }
+
+                const emin = 1.5 * Diahole;
+                const epsilon = Math.pow(250 / steelYieldStrength, 0.5);
+                const emax = 12 * tp * epsilon;
+
+                // Strength calculation
+                const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
+                const Anb = 0.78 * Asb;
+                let ns;
+                if (ConType === "Single") {
+                    ns = 1-nn;
+                } else {
+                    ns = 2-nn;
+                }
+                const Ymb = 1.25;
+
+                // Shear strength of bolt
+                const Vnsb = boltUltimateStrength * (Anb * nn + Asb * ns) / Math.pow(3, 0.5);
+                const Vdsb = Vnsb / Ymb;
+
+                // Bearing strength of bolt
+                const k1 = ed / (3 * Diahole);
+                const k2 = pt / (3 * Diahole) - 0.25;
+                const k3 = boltUltimateStrength / steelUltimateStrength;
+                const k4 = 1;
+                const kb = Math.min(k1, k2, k3, k4);
+                const Vnpb = 2.5 * kb * boltdia * tp * steelUltimateStrength;
+                const Vdpb = Vnpb / Ymb;
+
+                // Bolt strength
+                const Vsb = Math.min(Vdpb, Vdsb);
+
+                // Number of bolts
+                const nb = Math.ceil(P * 1000 / Vsb);
+                const nr = Math.ceil(nb / n1);
+
+               // Connecting plate size
+              
+
+                // Update the result section
+                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
+                document.getElementById('boltYieldStrength').textContent = boltYieldStrength;
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
+                 document.getElementById('boltdia').textContent = boltdia;
+                document.getElementById('Diahole').textContent = Diahole;
+                document.getElementById('pmax').textContent = pmax;
+                document.getElementById('pmin').textContent = pmin;
+                document.getElementById('emax').textContent = emax.toFixed(2);
+                document.getElementById('emin').textContent = emin.toFixed(2);
+                document.getElementById('Vdsb').textContent = Vdsb.toFixed(2);
+                document.getElementById('Vdpb').textContent = Vdpb.toFixed(2);
+                document.getElementById('Vsb').textContent = Vsb.toFixed(2);
+                document.getElementById('Vs').textContent = Vs.toFixed(2);
+                document.getElementById('nb').textContent = nb;
+                
+            } catch (error) {
+                alert("An error occurred during calculation. Please check your inputs.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
