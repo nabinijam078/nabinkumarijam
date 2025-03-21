@@ -348,9 +348,9 @@
             <p><u>6. SIZE OF CONNECTING PLATE</u></p>
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
-
-            <p>Sum: <span id="sum1"></span>m </p>
-            <p>yn: <span id="syn"></span>m </p>
+            <p>5. Check for Shear</p>
+            <p>Shear strength due to combined Shear and moment <span id="Vs"></span>N </p>
+            <p>Check for shear strength <span id="check"></span> </p>
 
             <!-- Table for displaying bolt positions -->
             <table id="dataTable">
@@ -583,9 +583,25 @@
                     xn = parseFloat(cellB.textContent);
                     yn = parseFloat(cellC.textContent);
                 }
-                const sum1=sum+(Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2));
+                const sum1=(sum+(Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)))/(2*n1);
                 const R1=Math.pow((Math.pow(xn,2)+Math.pow(yn,2)),0.5);
+
+                // Direct shear force
+                const F2=F1/(n1*nb);
+
+                // Shear due to moment 
+                const F3=F1*x/sum1*R1;
                 
+                // Angle between extreme bolt and CG
+                const theta=Math.Acot(xn/yn);
+
+                // Resultant force
+                const Vs=Math.pow((Math.pow(F2,2)+Math.pow(F3,2)+F2*F3*Math,cos(theta)),0.5);
+                
+                //Check for shear
+                let check;
+                if (Vs<Vsb){check='OK';}
+                else {check='Not OK';}
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
@@ -604,8 +620,8 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                document.getElementById('sum1').textContent = sum1.toFixed(2);
-                document.getElementById('syn').textContent = yn.toFixed(2);
+                document.getElementById('Vs').textContent = Vs.toFixed(2);
+                document.getElementById('check').textContent = check;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
                 console.error(error);
