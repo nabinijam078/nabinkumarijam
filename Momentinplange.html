@@ -600,15 +600,15 @@
                 const theta = Math.atan(yn / xn);
 
                 // Resultant force
-                const Vs = Math.sqrt(Math.pow(F2, 2) + Math.pow(F3, 2) + 2 * F2 * F3 * Math.cos(theta));
+                //const Vs = Math.sqrt(Math.pow(F2, 2) + Math.pow(F3, 2) + 2 * F2 * F3 * Math.cos(theta));
 
                 // Check for shear
-                let check;
-                if (Vs < Vsb) {
-                    check = 'Not OK';
-                } else {
-                    check = 'OK';
-                }
+                //let check;
+                //if (Vs < Vsb) {
+                   // check = 'Not OK';
+               // } else {
+                  //  check = 'OK';
+               // }
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
