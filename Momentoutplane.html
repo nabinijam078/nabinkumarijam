@@ -613,12 +613,14 @@
                 const sumy=sum2+pt - yb1;    // Summation of y
                 
                 
-                // Tensile force in extreme bolt
-                const Tb = M1 * yn / (sumy2 * n1);
+                
 
                 // Direct shear force
                 const F2 = F1 / (n1 * nb);
                 const Mr = M1 / (1 + 2 * Hc / 21 * sumy * n1 / (sumy2 * n1));
+                
+                // Tensile force in extreme bolt
+                const Tb = Mr * yn / (sumy2 * n1);
                 const rat = Math.pow((F1 / Vsb), 2) + Math.pow((Tb / Tdb), 2);
 
                 // Check for shear
