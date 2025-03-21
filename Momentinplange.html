@@ -399,17 +399,17 @@
         };
 
         // Function to handle form submission
-        function designplate() {
+        function Momentinplane() {
             try {
                 // Retrieve input values
                 const P = parseFloat(document.getElementById('P').value);
-                const ConType = document.getElementById('ConType').value;
+                const x = document.getElementById('x').value;
+                const n1 = document.getElementById('n1').value;
                 const nn = parseFloat(document.getElementById('nn').value);
                 const t1 = parseFloat(document.getElementById('t1').value);
-                const b1 = parseFloat(document.getElementById('b1').value);
+                
                 const t2 = parseFloat(document.getElementById('t2').value);
-                const b2 = parseFloat(document.getElementById('b2').value);
-                const t3 = parseFloat(document.getElementById('t3').value);
+                
                 const boltGrade = document.getElementById('boltGrade').value;
                 const boltSubGrade = document.getElementById('boltSubGrade').value;
                 const steelGrade = document.getElementById('steelGrade').value;
@@ -468,16 +468,18 @@
                 const emin = 1.5 * Diahole;
                 const epsilon = Math.pow(250 / steelYieldStrength, 0.5);
                 const emax = 12 * tp * epsilon;
-
+                
+                // Factored force at each plate of bracket in N
+                const F1 = P * 1000 / 2;
+                // Factored moment at each node in Nmm
+                const M1 = F1 * x*1000;
+                
+                
                 // Strength calculation
                 const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
                 const Anb = 0.78 * Asb;
-                let ns;
-                if (ConType === "Single") {
-                    ns = 1-nn;
-                } else {
-                    ns = 2-nn;
-                }
+                const ns = 1-nn;
+              
                 const Ymb = 1.25;
 
                 // Shear strength of bolt
@@ -497,7 +499,7 @@
                 const Vsb = Math.min(Vdpb, Vdsb);
 
                 // Number of bolts
-                const nb = Math.ceil(P * 1000 / Vsb);
+                const nb = Math.ceil(Math.pow(6*M1/(n1*Vsb*pt),0.5)/4)*4;
                 const nr = Math.ceil(nb / n1);
 
                // Connecting plate size
