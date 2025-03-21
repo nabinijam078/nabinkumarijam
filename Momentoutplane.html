@@ -606,13 +606,16 @@
                     sum2 += parseFloat(cellB.textContent);
                     yn = parseFloat(cellB.textContent);
                 }
-
+                const sumy=sum1+pt - yb1; // Summation of y
+                const sumy2=sum2+Math.pow(pt - yb1, 2);
+                
+                
                 // Tensile force in extreme bolt
-                const Tb = M1 * yn / (sum1 * n1);
+                const Tb = M1 * yn / (sumy * n1);
 
                 // Direct shear force
                 const F2 = F1 / (n1 * nb);
-                const Mr = M1 / (1 + 2 * Hc / 21 * sum2 * n1) / (sum1 * n1);
+                const Mr = M1 / (1 + 2 * Hc / 21 * sumy * n1 / (sumy2 * n1));
                 const rat = Math.pow((F1 / Vsb), 2) + Math.pow((Tb / Tdb), 2);
 
                 // Check for shear
@@ -644,6 +647,7 @@
                 document.getElementById('Hc').textContent = Hc;
                 document.getElementById('F2').textContent = F2.toFixed(2);
                 document.getElementById('Mr').textContent = Mr.toFixed(2);
+               // document.getElementById('Mr').textContent = Mr.toFixed(2);
                 document.getElementById('Tb').textContent = Tb.toFixed(2);
                 document.getElementById('check').textContent = check;
             } catch (error) {
