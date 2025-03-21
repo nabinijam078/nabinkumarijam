@@ -258,7 +258,7 @@
                 <option value="Double-Butt">Double-Butt</option>
             </select>
             <br>
-            <label for="nn">Number of shear plane(n<sub>n</sub>):</label>
+            <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
             <input type="number" id="nn" required>
             <br>
             <p><u>SIZE OF PLATE-1</u></p>
@@ -405,7 +405,7 @@
                 // Retrieve input values
                 const P = parseFloat(document.getElementById('P').value);
                 const ConType = document.getElementById('ConType').value;
-                const ns = parseFloat(document.getElementById('ns').value);
+                const nn = parseFloat(document.getElementById('nn').value);
                 const t1 = parseFloat(document.getElementById('t1').value);
                 const b1 = parseFloat(document.getElementById('b1').value);
                 const t2 = parseFloat(document.getElementById('t2').value);
