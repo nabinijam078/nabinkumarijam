@@ -413,18 +413,19 @@
         updateDateTime();
 
         // Data for bolt grades
-        const boltData = {
-            M12: { nominalArea: 84.3 },
-            M14: { nominalArea: 115 },
-            M16: { nominalArea: 157 },
-            M18: { nominalArea: 192 },
-            M20: { nominalArea: 245 },
-            M22: { nominalArea: 303 },
-            M24: { nominalArea: 353 },
-            M27: { nominalArea: 459 },
-            M30: { nominalArea: 561 },
-            M33: { nominalArea: 694 },
+      const boltData = {
+            M12: { nominalArea: 84.3, ultimateTensileStrength: { "4.6": 33700, "4.8": 35400, "5.6": 42200, "5.8": 43800 } },
+            M14: { nominalArea: 115, ultimateTensileStrength: { "4.6": 46000, "4.8": 48300, "5.6": 57500, "5.8": 59800 } },
+            M16: { nominalArea: 157, ultimateTensileStrength: { "4.6": 62800, "4.8": 65900, "5.6": 78500, "5.8": 81600 } },
+            M18: { nominalArea: 192, ultimateTensileStrength: { "4.6": 76800, "4.8": 80600, "5.6": 96000, "5.8": 99800 } },
+            M20: { nominalArea: 245, ultimateTensileStrength: { "4.6": 98000, "4.8": 103000, "5.6": 122000, "5.8": 127000 } },
+            M22: { nominalArea: 303, ultimateTensileStrength: { "4.6": 121000, "4.8": 127000, "5.6": 152000, "5.8": 158000 } },
+            M24: { nominalArea: 353, ultimateTensileStrength: { "4.6": 141000, "4.8": 148000, "5.6": 176000, "5.8": 184000 } },
+            M27: { nominalArea: 459, ultimateTensileStrength: { "4.6": 184000, "4.8": 193000, "5.6": 230000, "5.8": 239000 } },
+            M30: { nominalArea: 561, ultimateTensileStrength: { "4.6": 224000, "4.8": 236000, "5.6": 280000, "5.8": 292000 } },
+            M33: { nominalArea: 694, ultimateTensileStrength: { "4.6": 278000, "4.8": 292000, "5.6": 347000, "5.8": 361000 } },
         };
+
 
         // Data for steel grades
         const steelData = {
