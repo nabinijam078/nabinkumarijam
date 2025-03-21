@@ -338,7 +338,7 @@
             <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
             <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
             <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
-            <p>Resultant Shear force (V<sub>s</sub>): <span id="Vs"></span> N</p>
+            
             <p><u>5. NUMBER OF BOLTS</u></p>
             <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
             
@@ -418,7 +418,7 @@
 
                 // Validate inputs
                 if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(x) || x<= 0 ||
-                    isNaN(t2) || t2 <= 0 ||  isNaN(t3) || 
+                    isNaN(t2) || t2 <= 0 || 
                     isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
                     alert("Please fill all the required fields with valid positive numbers.");
                     return;
@@ -519,7 +519,7 @@
                 document.getElementById('Vdsb').textContent = Vdsb.toFixed(2);
                 document.getElementById('Vdpb').textContent = Vdpb.toFixed(2);
                 document.getElementById('Vsb').textContent = Vsb.toFixed(2);
-                document.getElementById('Vs').textContent = Vs.toFixed(2);
+               // document.getElementById('Vs').textContent = Vs.toFixed(2);
                 document.getElementById('nb').textContent = nb;
                 
             } catch (error) {
