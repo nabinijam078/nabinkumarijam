@@ -349,7 +349,7 @@
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
             <p><u>5. CHECK FOR SHEAR</u></p>
-            <p>Sum (F<sub>2</sub>): <span id="sum1"></span>N </p>
+            <p>Sum (F<sub>2</sub>): <span id="R1"></span> </p>
             <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span>N </p>
             <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span>N </p>
             <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span>N </p>
@@ -587,7 +587,7 @@
                     yn = parseFloat(cellC.textContent);
                 }
 
-                const sum1 = sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2));
+                const sum1 = (sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)))*(2*n1);
                 const R1 = Math.sqrt(Math.pow(xn, 2) + Math.pow(yn, 2));
 
                 // Direct shear force
@@ -627,7 +627,7 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                document.getElementById('sum1').textContent = sum1.toFixed(0);
+                document.getElementById('R1').textContent = R1.toFixed(0);
                 document.getElementById('F2').textContent = F2.toFixed(2);
                  document.getElementById('F3').textContent = F3.toFixed(2);
                 document.getElementById('theta').textContent = theta.toFixed(2);
