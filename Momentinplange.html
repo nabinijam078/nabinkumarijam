@@ -349,10 +349,10 @@
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
             <p><u>5. CHECK FOR SHEAR</u></p>
-            <p>theta: <span id="theta"></span> </p>
-            <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span>N </p>
-            <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span>N </p>
-            <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span>N </p>
+            
+            <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
+            <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span> N </p>
+            <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span> N </p>
             <p>Check for shear strength <span id="check"></span> </p>
 
             <!-- Table for displaying bolt positions -->
@@ -603,12 +603,12 @@
                 const Vs = Math.sqrt(Math.pow(F2, 2) + Math.pow(F3, 2) + 2 * F2 * F3 * Math.cos(theta));
 
                 // Check for shear
-                //let check;
-                //if (Vs < Vsb) {
-                   // check = 'Not OK';
-               // } else {
-                  //  check = 'OK';
-               // }
+                let check;
+                if (Vs < Vsb) {
+                    check = 'Not OK';
+                } else {
+                   check = 'OK';
+                }
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
@@ -630,7 +630,7 @@
                 
                 document.getElementById('F2').textContent = F2.toFixed(2);
                 document.getElementById('F3').textContent = F3.toFixed(2);
-                document.getElementById('theta').textContent = theta.toFixed(2);
+                
                 document.getElementById('Vs').textContent = Vs.toFixed(2);
                 document.getElementById('check').textContent = check;
             } catch (error) {
