@@ -327,20 +327,26 @@
 
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
-            <p>Ultimate strength of bolt (D<sub>h</sub>): <span id="boltUltimateStrength"></span> N/mm2</p>
+            <p><u>1. BOLT SPECIFICATION</u></p>
+            <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+            <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+            <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
             <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
-            <p>1. PITCH AND EDGE DISTANCE</p>
-            <p>1.1 Pitch distance</p>
+            <p><u>2. PLATE SPECIFICATION</u></p>
+            <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+            <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+            <p><u>3. PITCH AND EDGE DISTANCE</u></p>
+            <p>3.1 Pitch distance</p>
             <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
             <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
-            <p>1.2 Edge distance</p>
+            <p>3.2 Edge distance</p>
             <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
             <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
-            <p>2. STRENGTH OF A BOLT</p>
+            <p><u>4. STRENGTH OF A BOLT</u></p>
             <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
             <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
             <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
-            <p>2. NUMBER OF BOLTS</p>
+            <p><u>5. NUMBER OF BOLTS</u></p>
             <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
             <p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p>
             <p>Number of rows (n<sub>r</sub>): <span id="nr"></span> </p>
@@ -505,6 +511,10 @@
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
+                document.getElementById('boltYieldStrength').textContent = boltYieldStrength;
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
+                 document.getElementById('boltdia').textContent = boltdia;
                 document.getElementById('Diahole').textContent = Diahole;
                 document.getElementById('pmax').textContent = pmax;
                 document.getElementById('pmin').textContent = pmin;
