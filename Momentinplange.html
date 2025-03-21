@@ -349,7 +349,7 @@
             <p>Width (B): <span id="Bc"></span>m </p>
             <p>Width (H): <span id="Hc"></span>m </p>
 
-            <p>Sum: <span id="sum"></span>m </p>
+            <p>Sum: <span id="sum1"></span>m </p>
             <p>yn: <span id="syn"></span>m </p>
 
             <!-- Table for displaying bolt positions -->
@@ -536,6 +536,7 @@
 
                 // Calculate sum of r² and yn
                 let sum = 0;
+                let xn=0;
                 let yn = 0;
                 const tableBody = document.querySelector("#dataTable tbody");
                 tableBody.innerHTML = ""; // Clear previous table data
@@ -548,9 +549,9 @@
                 const cellD1 = document.createElement("td");
 
                 cellA1.textContent = 1;
-                cellB1.textContent = (xp / 2).toFixed(2);
-                cellC1.textContent = (pt / 2).toFixed(2);
-                cellD1.textContent = (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)).toFixed(2);
+                cellB1.textContent = (xp / 2).toFixed(1);
+                cellC1.textContent = (pt / 2).toFixed(1);
+                cellD1.textContent = (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)).toFixed(1);
 
                 firstRow.appendChild(cellA1);
                 firstRow.appendChild(cellB1);
@@ -567,9 +568,9 @@
                     const cellD = document.createElement("td");
 
                     cellA.textContent = i;
-                    cellB.textContent = (xp / 2).toFixed(2);
-                    cellC.textContent = ((i - 1) * pt + (pt / 2)).toFixed(2);
-                    cellD.textContent = (Math.pow(xp / 2, 2) + Math.pow((i - 1) * pt + (pt / 2), 2)).toFixed(2);
+                    cellB.textContent = (xp / 2).toFixed(1);
+                    cellC.textContent = ((i - 1) * pt + (pt / 2)).toFixed(1);
+                    cellD.textContent = (Math.pow(xp / 2, 2) + Math.pow((i - 1) * pt + (pt / 2), 2)).toFixed(1);
 
                     row.appendChild(cellA);
                     row.appendChild(cellB);
@@ -579,8 +580,12 @@
 
                     // Accumulate the sum of column D
                     sum += parseFloat(cellD.textContent);
+                    xn = parseFloat(cellB.textContent);
                     yn = parseFloat(cellC.textContent);
                 }
+                const sum1=sum+(Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2));
+                const R1=Math.pow((Math.pow(xn,2)+Math.pow(yn,2)),0.5);
+                
 
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
@@ -599,7 +604,7 @@
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('Bc').textContent = Bc;
                 document.getElementById('Hc').textContent = Hc;
-                document.getElementById('sum').textContent = sum.toFixed(2);
+                document.getElementById('sum1').textContent = sum1.toFixed(2);
                 document.getElementById('syn').textContent = yn.toFixed(2);
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
