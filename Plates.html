@@ -327,6 +327,7 @@
 
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
+            <p>Ultimate strength of bolt (D<sub>h</sub>): <span id="boltUltimateStrength"></span> N/mm2</p>
             <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
             <p>1. PITCH AND EDGE DISTANCE</p>
             <p>1.1 Pitch distance</p>
@@ -498,6 +499,7 @@
                 const nr = Math.ceil(nb / n1);
 
                 // Update the result section
+                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
                 document.getElementById('Diahole').textContent = Diahole;
                 document.getElementById('pmax').textContent = pmax;
                 document.getElementById('pmin').textContent = pmin;
