@@ -350,7 +350,7 @@
                     <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
-                    <button type="button" onclick="Columnbase()"><b>DESIGN OF CONNECTION</b></button>
+                    <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
                 </form>
 
                 <div class="result" id="result">
@@ -447,7 +447,7 @@
         };
 
         // Function to handle form submission
-        function Columnbase() {
+        function Momentinplane() {
             try {
                 // Retrieve input values
                 const P = parseFloat(document.getElementById('P').value);
@@ -470,25 +470,34 @@
                 const ed = parseFloat(document.getElementById('ed').value);
 
                 // Validate inputs
-                if (isNaN(P) || P <= 0 || isNaN(Mx) || Mx <= 0 || isNaN(My) || My <= 0 || isNaN(Fx) || Fx <= 0 || isNaN(Fy) || Fy <= 0 ||isNaN(nn) || nn <= 0 ||
-                    isNaN(a) || a <= 0 || isNaN(b) || b <= 0 || isNaN(c1) || c1 <= 0 || isNaN(c2) || c2 <= 0 || isNaN(t) || t <= 0 || isNaN(fck) || fck <= 0 ||isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
+                if (isNaN(P) || P <= 0 || isNaN(a) || a <= 0 || isNaN(b) || b <= 0 || isNaN(c1) || c1 <= 0 || isNaN(c2) || c2 <= 0 || isNaN(t) || t <= 0 || isNaN(fck) || fck <= 0 || isNaN(nn) || nn <= 0 || isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
                     alert("Please fill all the required fields with valid positive numbers.");
                     return;
                 }
 
+                // Allow Mx, My, Fx, and Fy to be zero or positive
+                if (isNaN(Mx) || Mx < 0 || isNaN(My) || My < 0 || isNaN(Fx) || Fx < 0 || isNaN(Fy) || Fy < 0) {
+                    alert("Mx, My, Fx, and Fy must be zero or positive numbers.");
+                    return;
+                }
+
                 // Stresses at the four edges of the plate
-                const σ1=P*1000/(a*b)+6*Mx*1000*1000/(a*b*b)+6*My*1000*1000/(a*a*b);
-                const σ2=P*1000/(a*b)-6*Mx*1000*1000/(a*b*b)+6*My*1000*1000/(a*a*b);
-                const σ3=P*1000/(a*b)-6*Mx*1000*1000/(a*b*b)-6*My*1000*1000/(a*a*b);
-                const σ4=P*1000/(a*b)+6*Mx*1000*1000/(a*b*b)-6*My*1000*1000/(a*a*b);
-                const σmax=Math.max(σ1,σ2,σ3,σ4);
-                const σmin=Math.min(σ1,σ2,σ3,σ4);
-                const fb=0.45*fck;
+                const σ1 = P * 1000 / (a * b) + 6 * Mx * 1000 * 1000 / (a * b * b) + 6 * My * 1000 * 1000 / (a * a * b);
+                const σ2 = P * 1000 / (a * b) - 6 * Mx * 1000 * 1000 / (a * b * b) + 6 * My * 1000 * 1000 / (a * a * b);
+                const σ3 = P * 1000 / (a * b) - 6 * Mx * 1000 * 1000 / (a * b * b) - 6 * My * 1000 * 1000 / (a * a * b);
+                const σ4 = P * 1000 / (a * b) + 6 * Mx * 1000 * 1000 / (a * b * b) - 6 * My * 1000 * 1000 / (a * a * b);
+                const σmax = Math.max(σ1, σ2, σ3, σ4);
+                const σmin = Math.min(σ1, σ2, σ3, σ4);
+                const fb = 0.45 * fck;
+
                 // Check for concrete grade or size of base plate
                 let check;
-                if (fb>σmax && σmin>0){check="OK";}
-                else {check="Change size of plates or grade of concrete or both";}
-                
+                if (fb > σmax && σmin > 0) {
+                    check = "OK";
+                } else {
+                    check = "Change size of plates or grade of concrete or both";
+                }
+
                 // Retrieve bolt and steel properties
                 const boltDetails = boltData[boltGrade];
                 const boltUltimateStrength = boltDetails.ultimateTensileStrength[boltSubGrade];
