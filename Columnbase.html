@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -351,7 +350,7 @@
                     <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
-                    <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+                    <button type="button" onclick="Columnbase()"><b>DESIGN OF CONNECTION</b></button>
                 </form>
 
                 <div class="result" id="result">
@@ -448,7 +447,7 @@
         };
 
         // Function to handle form submission
-        function Momentinplane() {
+        function Columnbase() {
             try {
                 // Retrieve input values
                 const P = parseFloat(document.getElementById('P').value);
@@ -563,9 +562,6 @@
                 // Bolt strength
                 const Vsb = Math.min(Vdpb, Vdsb);
 
-               
-
-
                 // Update the result section
                 document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
                 document.getElementById('boltMinUltimateStrength').textContent = boltMinUltimateStrength;
@@ -580,7 +576,6 @@
                 document.getElementById('emin').textContent = emin.toFixed(1);
                 document.getElementById('Vdsb').textContent = Vdsb.toFixed(1);
                 document.getElementById('Vdpb').textContent = Vdpb.toFixed(1);
-                document.getElementById('Tdb').textContent = Tdb.toFixed(1);
                 document.getElementById('Vsb').textContent = Vsb.toFixed(1);
                 document.getElementById('σ1').textContent = σ1.toFixed(1);
                 document.getElementById('σ2').textContent = σ2.toFixed(1);
@@ -595,4 +590,3 @@
     </script>
 </body>
 </html>
-
