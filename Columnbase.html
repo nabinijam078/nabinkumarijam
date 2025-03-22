@@ -370,28 +370,18 @@
                     <p><u>3.2 Edge distance</u></p>
                     <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
                     <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
-                    <p><u>4. STRENGTH OF A BOLT</u></p>
+                    
+                    <p><u>4. STRESSES AT THE FOUR EDGES OF PLATES</u></p>
+                    <p>σ<sub>1</sub> : <span id="σ1"></span>N/mm<sup>2</sup> </p>
+                    <p>σ<sub>2</sub> : <span id="σ2"></span>N/mm<sup>2</sup> </p>
+                    <p>σ<sub>3</sub> : <span id="σ3"></span>N/mm<sup>2</sup> </p>
+                    <p>σ<sub>4</sub> : <span id="σ4"></span>N/mm<sup>2</sup> </p>
+                    
+                    <p><u>5. STRENGTH OF A BOLT</u></p>
                     <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
                     <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
-                    <p>Tensile Strength (T<sub>db</sub>): <span id="Tdb"></span> N</p>
                     <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
                     
-                    <p><u>5. NUMBER OF BOLTS</u></p>
-                    <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
-                    <p><u>6. SIZE OF CONNECTING PLATE</u></p>
-                    <p>Width (B): <span id="Bc"></span>m </p>
-                    <p>Width (H): <span id="Hc"></span>m </p>
-                    <p><u>5. CHECK FOR SHEAR</u></p>
-                    
-                    <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
-                    <p>Moment resisted by bolts in tension (M<sub>r</sub>): <span id="Mr"></span> Nmm </p>
-                    <p>Distance of extreme bolt from NA : <span id="yn"></span>mm </p>
-                    <p>∑yi : <span id="sumy"></span> </p>
-                    <p>∑yi<sup>2</sup> : <span id="sumy2"></span> </p>
-                    <p>Tension due to moment (T<sub>b</sub>): <span id="Tb"></span> N </p>
-                    
-                    <p>Check for shear strength: <span id="check"></span> </p>
-
                     
                 </div>
             </div>
@@ -460,12 +450,18 @@
             try {
                 // Retrieve input values
                 const P = parseFloat(document.getElementById('P').value);
-                const x = parseFloat(document.getElementById('x').value);
-                const n1 = parseFloat(document.getElementById('n1').value);
+                const Mx = parseFloat(document.getElementById('Mx').value);
+                const My = parseFloat(document.getElementById('My').value);
+                const Fx = parseFloat(document.getElementById('Fx').value);
+                const Fy = parseFloat(document.getElementById('Fy').value);
+                const a = parseFloat(document.getElementById('a').value);
+                const b = parseFloat(document.getElementById('b').value);
+                const c1 = parseFloat(document.getElementById('c1').value);
+                const c2 = parseFloat(document.getElementById('c2').value);
                 const nn = parseFloat(document.getElementById('nn').value);
-                const xp = parseFloat(document.getElementById('xp').value);
-                const t1 = parseFloat(document.getElementById('t1').value);
-                const t2 = parseFloat(document.getElementById('t2').value);
+                const fck = parseFloat(document.getElementById('fck').value);
+                
+                const t = parseFloat(document.getElementById('t').value);
                 const boltGrade = document.getElementById('boltGrade').value;
                 const boltSubGrade = document.getElementById('boltSubGrade').value;
                 const steelGrade = document.getElementById('steelGrade').value;
@@ -495,7 +491,7 @@
 
                 const boltYieldStrength = boltSubGrade === "4.6" ? 240 : 300; // Yield strength logic remains the same
 
-                const plateThickness = Math.min(t1, t2);
+                const plateThickness = t;
                 const steelDetails = steelData[steelGrade];
                 let thicknessCategory;
                 if (plateThickness < 20) {
@@ -509,7 +505,7 @@
                 const steelUltimateStrength = steelDetails.ultimateTensileStrength;
 
                 // Calculate pitch and edge distances
-                const tp = Math.min(t1, t2);
+                const tp = t;
                 const e1 = 16 * tp;
                 const pmax = Math.min(e1, 200);
                 const boltdia = parseInt(boltGrade.substring(1));
@@ -529,11 +525,6 @@
                 const emin = 1.5 * Diahole;
                 const epsilon = Math.pow(250 / steelYieldStrength, 0.5);
                 const emax = 12 * tp * epsilon;
-
-                // Factored force at each plate of bracket in N
-                const F1 = P * 1000;
-                // Factored moment at each node in Nmm
-                const M1 = F1 * x;
 
                 // Strength calculation
                 const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
@@ -557,11 +548,7 @@
                 // Bolt strength
                 const Vsb = Math.min(Vdpb, Vdsb);
 
-                // Tensile capacity of a bolt
-                const Tdb1 = 0.9 * boltUltimateStrength * Anb / Ymb;
-                const Tdb2 = boltYieldStrength * Asb / 1.1;
-                const Tdb = Math.min(Tdb1, Tdb2);
-
+               
 
 
                 // Update the result section
