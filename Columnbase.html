@@ -377,7 +377,7 @@
                     <p>σ<sub>2</sub> : <span id="σ2"></span>N/mm<sup>2</sup> </p>
                     <p>σ<sub>3</sub> : <span id="σ3"></span>N/mm<sup>2</sup> </p>
                     <p>σ<sub>4</sub> : <span id="σ4"></span>N/mm<sup>2</sup> </p>
-                    <p>Check for bearing stresses : <span id="check"></span>  </p>
+                    <p>Check for bearing stresses : <span id="check"></span> </p>
                     
                     <p><u>5. STRENGTH OF A BOLT</u></p>
                     <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
@@ -592,7 +592,7 @@
                 document.getElementById('σ2').textContent = σ2.toFixed(1);
                 document.getElementById('σ3').textContent = σ3.toFixed(1);
                 document.getElementById('σ4').textContent = σ4.toFixed(1);
-                document.getElementById('check').textContent = check.toFixed(1);
+                document.getElementById('check').textContent = check;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
                 console.error(error);
