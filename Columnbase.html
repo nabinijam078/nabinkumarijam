@@ -477,6 +477,19 @@
                     return;
                 }
 
+                // Stresses at the four edges of the plate
+                const σ1=P*1000/(a*b)+6*Mx*1000*1000/(a*b*b)+6*My*1000*1000/(a*a*b);
+                const σ2=P*1000/(a*b)-6*Mx*1000*1000/(a*b*b)+6*My*1000*1000/(a*a*b);
+                const σ3=P*1000/(a*b)-6*Mx*1000*1000/(a*b*b)-6*My*1000*1000/(a*a*b);
+                const σ4=P*1000/(a*b)+6*Mx*1000*1000/(a*b*b)-6*My*1000*1000/(a*a*b);
+                const σmax=Math.max(σ1,σ2,σ3,σ4);
+                const σmin=Math.min(σ1,σ2,σ3,σ4);
+                const fb=0.45*fck;
+                // Check for concrete grade or size of base plate
+                let check;
+                if (fb>σmax && σmin>0){check="OK";}
+                else {check="Change size of plates or grade of concrete or both";}
+                
                 // Retrieve bolt and steel properties
                 const boltDetails = boltData[boltGrade];
                 const boltUltimateStrength = boltDetails.ultimateTensileStrength[boltSubGrade];
@@ -569,6 +582,10 @@
                 document.getElementById('Vdpb').textContent = Vdpb.toFixed(1);
                 document.getElementById('Tdb').textContent = Tdb.toFixed(1);
                 document.getElementById('Vsb').textContent = Vsb.toFixed(1);
+                document.getElementById('σ1').textContent = σ1.toFixed(1);
+                document.getElementById('σ2').textContent = σ2.toFixed(1);
+                document.getElementById('σ3').textContent = σ3.toFixed(1);
+                document.getElementById('σ4').textContent = σ4.toFixed(1);
                 
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
