@@ -108,7 +108,7 @@
 
         /* Main Content Container */
         .main-container {
-            padding:  80px;
+            padding: 80px;
             background-color: white;
             max-width: 1200px;
             margin: 0 auto;
@@ -317,15 +317,14 @@
             <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
             <br>
             <p><u>3. SIZE OF WELD</u></p>
-            <p>Minimum size : <span id="smin"></span> </p>
-            <p>Maximum size: <span id="smax"></span> </p>
+            <p>Minimum size : <span id="tmin"></span> mm</p>
+            <p>Maximum size: <span id="tmax"></span> mm</p>
             <br>
             <p><u>4. STRENGTH OF WELD</u></p>
             <p>Design Shear Strength of weld (P<sub>w</sub>): <span id="Pw"></span> kN</p>
             <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
             <br>
-            <p>Length of weld : <span id="Lw"></span></p>
-            
+            <p>Length of weld : <span id="Lw"></span> mm</p>
         </div>
     </div>
 
@@ -355,8 +354,6 @@
         setInterval(updateDateTime, 1000);
         updateDateTime();
 
-
-
         // Data for steel grades
         const steelData = {
             "Fe 290": { yieldStrength: { "<20": 165, "20-40": 165, ">40": 165 }, ultimateTensileStrength: 290 },
@@ -379,7 +376,7 @@
                 const b1 = parseFloat(document.getElementById('b1').value);
                 const t2 = parseFloat(document.getElementById('t2').value);
                 const b2 = parseFloat(document.getElementById('b2').value);
-                const Weldtype = document.getElementById('boltGrade').value;
+                const Weldtype = document.getElementById('Weldtype').value;
                 const Designation = document.getElementById('Designation').value;
                 const WeldMeth = document.getElementById('WeldMeth').value;
                 const steelGrade = document.getElementById('steelGrade').value;
@@ -387,26 +384,25 @@
 
                 // Validate inputs
                 if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(b1) || b1 <= 0 ||
-                    isNaN(t2) || t2 <= 0 || isNaN(b2) || b2 <= 0 || isNaN(s) || s <= 0 ||
-                    ) {
+                    isNaN(t2) || t2 <= 0 || isNaN(b2) || b2 <= 0 || isNaN(s) || s <= 0) {
                     alert("Please fill all the required fields with valid positive numbers.");
                     return;
                 }
                 
                 // Partial load factor
                 let Ymw;
-                if (WeldMeth==="At site"){Ymw=1.5;}
-                else {Ymw=1.25;}
+                if (WeldMeth === "At site") { Ymw = 1.5; }
+                else { Ymw = 1.25; }
 
                 // Yield strength of weld
                 let fy;
-                if (Designation==="4"){fy=330;}
-                else {fy=400;}
+                if (Designation === "4") { fy = 330; }
+                else { fy = 400; }
 
                 // Ultimate strength of weld
                 let fu;
-                if (Designation==="4"){fu=410;}
-                else {fu=510;}
+                if (Designation === "4") { fu = 410; }
+                else { fu = 510; }
 
                 // Weld specification
                 const plateThickness = Math.min(t1, t2);
@@ -423,56 +419,50 @@
                 const steelUltimateStrength = steelDetails.ultimateTensileStrength;
                 
                 // Yield strength of weld
-                const fwn1=Math.max(fu,steelUltimateStrength);
-                const fwn=fwn1/Math.sqrt(3);
-                const fwd=fwn/Ymw;
+                const fwn1 = Math.max(fu, steelUltimateStrength);
+                const fwn = fwn1 / Math.sqrt(3);
+                const fwd = fwn / Ymw;
 
                 // Minimum size of weld
                 let tmin;
-                if (Weldtype==="Fillet"){
-                    if (plateThickness<=10){tmin=3;}
-                    else if (plateThickness<=20){tmin=5;}
-                    else if (plateThickness<=32){tmin=6;}
-                    else {tmin=8;}
+                if (Weldtype === "Fillet") {
+                    if (plateThickness <= 10) { tmin = 3; }
+                    else if (plateThickness <= 20) { tmin = 5; }
+                    else if (plateThickness <= 32) { tmin = 6; }
+                    else { tmin = 8; }
                 }
-                else {tmin=s*0.7;}
+                else { tmin = s * 0.7; }
 
                 // Maximum size of weld
-                const tmax=plateThickness-1.5;
+                const tmax = plateThickness - 1.5;
 
                 // Effective throat thickness
                 let s1;
-                if (Weldtype==="Fillet"){s1=0.7*s;}
-                else {s1=0.7*tmax;}
+                if (Weldtype === "Fillet") { s1 = 0.7 * s; }
+                else { s1 = 0.7 * tmax; }
 
                 // Thickness of throat
-                const tt=Math.max(s1,3);
+                const tt = Math.max(s1, 3);
 
                 // Strength of plate
-                const Pp=Math.min(b1,b2)*plateThickness*steelYieldStrength/1.1/1000;
-                
+                const Pp = Math.min(b1, b2) * plateThickness * steelYieldStrength / 1.1 / 1000;
 
                 // Length of weld
-                const Lw=P*1000/(tt*fwd);
-                
-                
-                
-                
+                const Lw = P * 1000 / (tt * fwd);
 
-               
+                // Design Shear Strength of weld
+                const Pw = (fwd * tt * Lw) / 1000;
 
-               
                 // Update the result section
                 document.getElementById('fy').textContent = fy;
                 document.getElementById('fu').textContent = fu;
                 document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
                 document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-                document.getElementById('smin').textContent = smin.toFixed(0);
-                document.getElementById('smax').textContent = smin.toFixed(0);
+                document.getElementById('smin').textContent = tmin.toFixed(0);
+                document.getElementById('smax').textContent = tmax.toFixed(0);
                 document.getElementById('Pp').textContent = Pp.toFixed(2);
                 document.getElementById('Pw').textContent = Pw.toFixed(2);
                 document.getElementById('Lw').textContent = Lw.toFixed(2);
-               
                 
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
