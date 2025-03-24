@@ -321,7 +321,7 @@
             <p>Maximum size: <span id="tmax"></span> mm</p>
             <br>
             <p><u>4. STRENGTH OF WELD</u></p>
-            <p>Design Shear Strength of weld (P<sub>w</sub>): <span id="Pw"></span> kN</p>
+            
             <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
             <br>
             <p>Length of weld : <span id="Lw"></span> mm</p>
@@ -450,8 +450,7 @@
                 // Length of weld
                 const Lw = P * 1000 / (tt * fwd);
 
-                // Design Shear Strength of weld
-                const Pw = (fwd * tt * Lw) / 1000;
+               
 
                 // Update the result section
                 document.getElementById('fy').textContent = fy;
@@ -461,7 +460,7 @@
                 document.getElementById('tmin').textContent = tmin.toFixed(0);
                 document.getElementById('tmax').textContent = tmax.toFixed(0);
                 document.getElementById('Pp').textContent = Pp.toFixed(2);
-                document.getElementById('Pw').textContent = Pw.toFixed(2);
+               
                 document.getElementById('Lw').textContent = Lw.toFixed(2);
                 
             } catch (error) {
