@@ -584,7 +584,7 @@
                 
                 const x1=(a-c1)/2;         
                 const Mom1=σav*Math.pow(x1,2)/2;
-                const sigmaplate = Mom / (b * t*t / 6);
+                const sigmaplate = Mom1 / (b * t*t / 6);
 
                 //Check for thickness
                 let check1;
@@ -593,7 +593,7 @@
 
                 // Anchor rods
                 let AnchRod;
-                if (check="OK"){AnchRod="4-20mm dia";}
+                if (check === "OK"){AnchRod="4-20mm dia";}
                 else {AnchRod="Check for tension strength";}
           
                       
