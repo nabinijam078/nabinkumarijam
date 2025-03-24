@@ -108,7 +108,7 @@
 
         /* Main Content Container */
         .main-container {
-            padding:  80px;
+            padding: 80px;
             background-color: white;
             max-width: 1200px;
             margin: 0 auto;
@@ -133,11 +133,13 @@
 
         .drawing-section {
             width: 35%;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .drawing-section img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
             border-radius: 10px;
         }
@@ -217,6 +219,18 @@
             .main-container {
                 padding: 20px;
             }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .input-section, .drawing-section {
+                width: 100%;
+            }
+
+            .drawing-section {
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -254,114 +268,118 @@
 
     <!-- Main Content -->
     <div class="main-container">
-        <form id="plateForm">
-            <h3><u>BOLTED CONNECTION BETWEEN TWO PLATES</u></h3>
-            <label for="P">Designed factored load(P in kN):</label>
-            <input type="number" id="P" required>
-            <br>
-            <label for="ConType">Types of Connection:</label>
-            <select id="ConType">
-                <option value="Single">Single</option>
-                <option value="Double-Butt">Double-Butt</option>
-            </select>
-            <br>
-            <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
-            <input type="number" id="nn" required>
-            <br>
-            <p><u>SIZE OF PLATE-1</u></p>
-            <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
-            <input type="number" id="t1" required>
-            <br>
-            <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
-            <input type="number" id="b1" required>
-            <br>
-            <p><u>SIZE OF PLATE-2</u></p>
-            <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
-            <input type="number" id="t2" required>
-            <br>
-            <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
-            <input type="number" id="b2" required>
-            <br>
-            <p><u>BOLTS SPECIFICATION</u></p>
-            <label for="boltGrade">Choose a Bolt Grade:</label>
-            <select id="boltGrade">
-                <option value="M12">M12</option>
-                <option value="M14">M14</option>
-                <option value="M16">M16</option>
-                <option value="M18">M18</option>
-                <option value="M20">M20</option>
-                <option value="M22">M22</option>
-                <option value="M24">M24</option>
-                <option value="M27">M27</option>
-                <option value="M30">M30</option>
-                <option value="M33">M33</option>
-            </select>
-            <br>
-            <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
-            <select id="boltSubGrade">
-                <option value="4.6">4.6</option>
-                <option value="4.8">4.8</option>
-                <option value="5.6">5.6</option>
-                <option value="5.8">5.8</option>
-            </select>
-            <br>
-            <p><u>STEEL PLATE SPECIFICATION</u></p>
-            <label for="steelGrade">Choose a Steel Grade:</label>
-            <select id="steelGrade">
-                <option value="Fe 290">Fe 290</option>
-                <option value="Fe 410 W-A">Fe 410 W-A</option>
-                <option value="Fe 410 W-B">Fe 410 W-B</option>
-                <option value="Fe 410 W-C">Fe 410 W-C</option>
-                <option value="Fe 440">Fe 440</option>
-                <option value="Fe 490">Fe 490</option>
-                <option value="Fe 540">Fe 540</option>
-                <option value="Fe 570-D">Fe 570-D</option>
-                <option value="Fe 590-E">Fe 590-E</option>
-            </select>
-            <br>
-            <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
-            <input type="number" id="t3" required>
-            <br>
-            <p><u>PROVIDED DATA</u></p>
-            <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
-            <input type="number" id="pt" required>
-            <br>
-            <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
-            <input type="number" id="ed" required>
-            <br>
-            <button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
-        </form>
+        <div class="content">
+            <div class="input-section">
+                <form id="plateForm">
+                    <h3><u>BOLTED CONNECTION BETWEEN TWO PLATES</u></h3>
+                    <label for="P">Designed factored load(P in kN):</label>
+                    <input type="number" id="P" required>
+                    <br>
+                    <label for="ConType">Types of Connection:</label>
+                    <select id="ConType">
+                        <option value="Single">Single</option>
+                        <option value="Double-Butt">Double-Butt</option>
+                    </select>
+                    <br>
+                    <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+                    <input type="number" id="nn" required>
+                    <br>
+                    <p><u>SIZE OF PLATE-1</u></p>
+                    <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
+                    <input type="number" id="t1" required>
+                    <br>
+                    <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
+                    <input type="number" id="b1" required>
+                    <br>
+                    <p><u>SIZE OF PLATE-2</u></p>
+                    <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
+                    <input type="number" id="t2" required>
+                    <br>
+                    <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
+                    <input type="number" id="b2" required>
+                    <br>
+                    <p><u>BOLTS SPECIFICATION</u></p>
+                    <label for="boltGrade">Choose a Bolt Grade:</label>
+                    <select id="boltGrade">
+                        <option value="M12">M12</option>
+                        <option value="M14">M14</option>
+                        <option value="M16">M16</option>
+                        <option value="M18">M18</option>
+                        <option value="M20">M20</option>
+                        <option value="M22">M22</option>
+                        <option value="M24">M24</option>
+                        <option value="M27">M27</option>
+                        <option value="M30">M30</option>
+                        <option value="M33">M33</option>
+                    </select>
+                    <br>
+                    <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
+                    <select id="boltSubGrade">
+                        <option value="4.6">4.6</option>
+                        <option value="4.8">4.8</option>
+                        <option value="5.6">5.6</option>
+                        <option value="5.8">5.8</option>
+                    </select>
+                    <br>
+                    <p><u>STEEL PLATE SPECIFICATION</u></p>
+                    <label for="steelGrade">Choose a Steel Grade:</label>
+                    <select id="steelGrade">
+                        <option value="Fe 290">Fe 290</option>
+                        <option value="Fe 410 W-A">Fe 410 W-A</option>
+                        <option value="Fe 410 W-B">Fe 410 W-B</option>
+                        <option value="Fe 410 W-C">Fe 410 W-C</option>
+                        <option value="Fe 440">Fe 440</option>
+                        <option value="Fe 490">Fe 490</option>
+                        <option value="Fe 540">Fe 540</option>
+                        <option value="Fe 570-D">Fe 570-D</option>
+                        <option value="Fe 590-E">Fe 590-E</option>
+                    </select>
+                    <br>
+                    <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
+                    <input type="number" id="t3" required>
+                    <br>
+                    <p><u>PROVIDED DATA</u></p>
+                    <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+                    <input type="number" id="pt" required>
+                    <br>
+                    <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+                    <input type="number" id="ed" required>
+                    <br>
+                    <button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
+                </form>
 
-        <div class="result" id="result">
-            <h3><u>DESIGN RESULT</u></h3>
-            <p><u>1. BOLT SPECIFICATION</u></p>
-            <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
-            <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
-            <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
-            <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
-            <p><u>2. PLATE SPECIFICATION</u></p>
-            <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-            <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
-            <p><u>3. PITCH AND EDGE DISTANCE</u></p>
-            <p><u>3.1 Pitch distance</u></p>
-            <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
-            <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
-            <p><u>3.2 Edge distance</u></p>
-            <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
-            <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
-            <p><u>4. STRENGTH OF A BOLT</u></p>
-            <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
-            <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
-            <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
-            <p><u>5. NUMBER OF BOLTS</u></p>
-            <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
-            <p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p>
-            <p>Number of rows (n<sub>r</sub>): <span id="nr"></span> </p>
-        </div>
+                <div class="result" id="result">
+                    <h3><u>DESIGN RESULT</u></h3>
+                    <p><u>1. BOLT SPECIFICATION</u></p>
+                    <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
+                    <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
+                    <p><u>2. PLATE SPECIFICATION</u></p>
+                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p><u>3. PITCH AND EDGE DISTANCE</u></p>
+                    <p><u>3.1 Pitch distance</u></p>
+                    <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
+                    <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+                    <p><u>3.2 Edge distance</u></p>
+                    <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
+                    <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+                    <p><u>4. STRENGTH OF A BOLT</u></p>
+                    <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
+                    <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
+                    <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
+                    <p><u>5. NUMBER OF BOLTS</u></p>
+                    <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
+                    <p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p>
+                    <p>Number of rows (n<sub>r</sub>): <span id="nr"></span> </p>
+                </div>
+            </div>
 
-        <!-- Drawing Section -->
-        <div class="drawing-section">
-            <img src="Boltedplate.png" alt="Bolted Plate Diagram">
+            <!-- Drawing Section -->
+            <div class="drawing-section">
+                <img src="Boltedplate.png" alt="Bolted Plate Diagram">
+            </div>
         </div>
     </div>
 
