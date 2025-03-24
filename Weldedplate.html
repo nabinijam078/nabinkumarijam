@@ -325,7 +325,7 @@
             <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
             <br>
             <p>Length of weld : <span id="Lw"></span></p>
-            <p>Check for strength of weld : <span id="check"></span></p>
+            
         </div>
     </div>
 
@@ -384,7 +384,6 @@
                 const WeldMeth = document.getElementById('WeldMeth').value;
                 const steelGrade = document.getElementById('steelGrade').value;
                 const s = parseFloat(document.getElementById('s').value);
-                
 
                 // Validate inputs
                 if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(b1) || b1 <= 0 ||
@@ -393,14 +392,22 @@
                     alert("Please fill all the required fields with valid positive numbers.");
                     return;
                 }
+                
+                // Partial load factor
+                let Ymw;
+                if (WeldMeth==="At site"){Ymw=1.5;}
+                else {Ymw=1.25;}
+
                 // Yield strength of weld
                 let fy;
                 if (Designation==="4"){fy=330;}
                 else {fy=400;}
+
+                // Ultimate strength of weld
                 let fu;
                 if (Designation==="4"){fu=410;}
                 else {fu=510;}
-                
+
                 // Weld specification
                 const plateThickness = Math.min(t1, t2);
                 const steelDetails = steelData[steelGrade];
@@ -414,6 +421,43 @@
                 }
                 const steelYieldStrength = steelDetails.yieldStrength[thicknessCategory];
                 const steelUltimateStrength = steelDetails.ultimateTensileStrength;
+                
+                // Yield strength of weld
+                const fwn1=Math.max(fu,steelUltimateStrength);
+                const fwn=fwn1/Math.sqrt(3);
+                const fwd=fwn/Ymw;
+
+                // Minimum size of weld
+                let tmin;
+                if (Weldtype==="Fillet"){
+                    if (plateThickness<=10){tmin=3;}
+                    else if (plateThickness<=20){tmin=5;}
+                    else if (plateThickness<=32){tmin=6;}
+                    else {tmin=8;}
+                }
+                else {tmin=s*0.7;}
+
+                // Maximum size of weld
+                const tmax=plateThickness-1.5;
+
+                // Effective throat thickness
+                let s1;
+                if (Weldtype==="Fillet"){s1=0.7*s;}
+                else {s1=0.7*tmax;}
+
+                // Thickness of throat
+                const tt=Math.max(s1,3);
+
+                // Strength of plate
+                const Pp=Math.min(b1,b2)*plateThickness*steelYieldStrength/1.1/1000;
+                
+
+                // Length of weld
+                const Lw=P*1000/(tt*fwd);
+                
+                
+                
+                
 
                
 
@@ -428,7 +472,7 @@
                 document.getElementById('Pp').textContent = Pp.toFixed(2);
                 document.getElementById('Pw').textContent = Pw.toFixed(2);
                 document.getElementById('Lw').textContent = Lw.toFixed(2);
-                document.getElementById('check').textContent = check;
+               
                 
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
