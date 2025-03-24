@@ -181,26 +181,6 @@
                 padding: 20px; /* Adjust padding for smaller screens */
             }
         }
-
-        /* Image Container */
-        .image-container {
-            float: right;
-            width: 40%; /* Adjust the width as needed */
-            margin-left: 20px; /* Space between the form and the image */
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px; /* Optional: Adds rounded corners to the image */
-        }
-
-        /* Clearfix to handle floating elements */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
     </style>
 </head>
 <body>
@@ -237,7 +217,7 @@
         <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
-    <div class="main-container clearfix">
+    <div class="content">
         <form id="Stemdimension">
             <h2><u>STABILITY ANALYSIS OF RETAINING WALL</u></h2>
             <p><b>1. GEOMETRY OF WALL</b></p>
@@ -341,10 +321,185 @@
             <p></p>
             <button type="button" onclick="RetainingWallCalc()"><u><b>RETAINING WALL DESIGN</b></u></button>
         </form>
-
-        <!-- Image Container -->
-        <div class="image-container">
-            <img src="Retaining wall.png" alt="Retaining Wall Image">
+        <div class="result" id="result">
+            <h3>DESIGN RESULTS</h3>
+            <p><b>LOAD CALCULATION</b></p>
+            <table>
+                <tr>
+                    <th>SN</th>
+                    <th>Load name</th>
+                    <th>Symbol</th>
+                    <th>Load Intensity</th>
+                    <th>Unit</th>
+                    <th>Load (kN)</th>
+                    <th>Center of Gravity</th>
+                    <th>LoadType</th>
+                    <th>Resisting moment(kNm)</th>
+                    <th>Overturning moment(kNm)</th>
+                </tr>
+                <tr>
+                    <td>1.</td>
+                    <td>Self-weight of the structure</td>
+                    <td>F1</td>
+                    <td><p><span id="F1"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P1"></span></span></strong></p></td>
+                    <td><p><span id="x1"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M1"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2.1</td>
+                    <td>Earth pressure above WT in hill side</td>
+                    <td>F2h1</td>
+                    <td><p><span id="F2h1"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2h1"></span></span></strong></p></td>
+                    <td><p><span id="x2h1"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M2h1"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2.2</td>
+                    <td>Earth pressure below WT in river side</td>
+                    <td>F2h2</td>
+                    <td><p><span id="F2h2"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2h2"></span></span></strong></p></td>
+                    <td><p><span id="x2h2"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M2h2"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2.3</td>
+                    <td>Earth pressure above WT in river side</td>
+                    <td>F2r1</td>
+                    <td><p><span id="F2r1"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2r1"></span></span></strong></p></td>
+                    <td><p><span id="x2r1"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M2r1"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2.4</td>
+                    <td>Earth pressure below WT in river side</td>
+                    <td>F2r2</td>
+                    <td><p><span id="F2r2"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P2r2"></span></span></strong></p></td>
+                    <td><p><span id="x2r2"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M2r2"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3.1</td>
+                    <td>Soil load (including water) in hill side</td>
+                    <td>F3h</td>
+                    <td><p><span id="F3h"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P3h"></span></span></strong></p></td>
+                    <td><p><span id="x3h"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M3h"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3.2</td>
+                    <td>Soil load (including water) in river side</td>
+                    <td>F3r</td>
+                    <td><p><span id="F3r"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P3r"></span></span></strong></p></td>
+                    <td><p><span id="x3r"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td><p><span id="M3r"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4.1</td>
+                    <td>Hydrostatic pressure at hill side</td>
+                    <td>F4h</td>
+                    <td><p><span id="F4h"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P4h"></span></span></strong></p></td>
+                    <td><p><span id="x4h"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M4h"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>4.2</td>
+                    <td>Hydrostatic pressure at river side</td>
+                    <td>F4r</td>
+                    <td><p><span id="F4r"></span></span></strong></p></td>
+                    <td>kN/m</td>
+                    <td><p><span id="P4r"></span></span></strong></p></td>
+                    <td><p><span id="x4r"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td><p><span id="M4r"></span></span></strong></p></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Uplift</td>
+                    <td>F5</td>
+                    <td><p><span id="F5"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P5"></span></span></strong></p></td>
+                    <td><p><span id="x5"></span></span></strong></p></td>
+                    <td>Vertical</td>
+                    <td></td>
+                    <td><p><span id="M5"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Seismic load</td>
+                    <td>F6</td>
+                    <td><p><span id="F6"></span></span></strong></p></td>
+                    <td>kN</td>
+                    <td><p><span id="P6"></span></span></strong></p></td>
+                    <td><p><span id="x6"></span></span></strong></p></td>
+                    <td>Horizontal</td>
+                    <td></td>
+                    <td><p><span id="M6"></span></span></strong></p></td>
+                </tr>
+            </table>
+            <p><b>STABILITY ANALYSIS</b></p>
+            <table>
+                <tr>
+                    <th>SN</th>
+                    <th>Combination</th>
+                    <th>FOS against Sliding</th>
+                    <th>FOS against Overturning</th>
+                    <th>Eccentricity(m)</th>
+                    <th>Minimum bearing pressure(kNm<sup>2</sup>)</th>
+                    <th>Maximum bearing pressure(kNm<sup>2</sup>)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Normal condition</td>
+                    <td><p><span id="FOSs1"></span></span></strong></p></td>
+                    <td><p><span id="FOSo1"></span></span></strong></p></td>
+                    <td><p><span id="ec1"></span></span></strong></p></td>
+                    <td><p><span id="sigmamin1"></span></span></strong></p></td>
+                    <td><p><span id="sigmamax1"></span></span></strong></p></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Seismic condition</td>
+                    <td><p><span id="FOSs2"></span></span></strong></p></td>
+                    <td><p><span id="FOSo2"></span></span></strong></p></td>
+                    <td><p><span id="ec2"></span></span></strong></p></td>
+                    <td><p><span id="sigmamin2"></span></span></strong></p></td>
+                    <td><p><span id="sigmamax2"></span></span></strong></p></td>
+                </tr>
+            </table>
         </div>
     </div>
 
