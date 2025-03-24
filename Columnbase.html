@@ -386,7 +386,7 @@
                     <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
 
                     <p><u>6. CHECK FOR THICKNESS OF PLATE</u></p>
-                    <p>Check for thickness of plage : <span id="check"></span></p>
+                    <p>Check for thickness of plage : <span id="check1"></span></p>
                     <p><u>7. ANCHOR RODS</u></p>
                     <p>Anchor rod design : <span id="AnchRod"></span></p>
                     
@@ -587,9 +587,9 @@
                 const sigmaplate = Mom / (b * t*t / 6);
 
                 //Check for thickness
-                let check;
-                if (sigmaplate>steelYieldStrength/1.5){check="OK";}
-                else {check="Not OK";}
+                let check1;
+                if (sigmaplate>steelYieldStrength/1.5){check1="OK";}
+                else {check1="Not OK";}
 
                 // Anchor rods
                 let AnchRod;
@@ -618,6 +618,7 @@
                 document.getElementById('σ3').textContent = σ3.toFixed(1);
                 document.getElementById('σ4').textContent = σ4.toFixed(1);
                 document.getElementById('check').textContent = check;
+                document.getElementById('check1').textContent = check1;
                 document.getElementById('AnchRod').textContent = AnchRod;
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
