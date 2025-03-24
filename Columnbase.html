@@ -339,9 +339,7 @@
                         <option value="Fe 570-D">Fe 570-D</option>
                         <option value="Fe 590-E">Fe 590-E</option>
                     </select>
-                    <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
-                    <input type="number" id="nn" required>
-                     <br>
+                    
                     <br>
                     <p><u>PROVIDED DATA</u></p>
                     <p><i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i></p>
@@ -465,9 +463,7 @@
                 const b = parseFloat(document.getElementById('b').value);
                 const c1 = parseFloat(document.getElementById('c1').value);
                 const c2 = parseFloat(document.getElementById('c2').value);
-                const nn = parseFloat(document.getElementById('nn').value);
                 const fck = parseFloat(document.getElementById('fck').value);
-                
                 const t = parseFloat(document.getElementById('t').value);
                 const boltGrade = document.getElementById('boltGrade').value;
                 const boltSubGrade = document.getElementById('boltSubGrade').value;
@@ -558,6 +554,7 @@
                 // Strength calculation
                 const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
                 const Anb = 0.78 * Asb;
+                const nn=1;
                 const ns = 1 - nn;
                 const Ymb = 1.25;
 
