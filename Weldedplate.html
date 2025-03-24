@@ -136,6 +136,13 @@
             position: relative;
         }
 
+        .drawing-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         .input-group {
             margin-bottom: 15px;
         }
@@ -248,83 +255,89 @@
 
     <!-- Main Content -->
     <div class="main-container">
-        <form id="plateForm">
-            <h3><u>WELDED CONNECTION BETWEEN TWO PLATES</u></h3>
-            <label for="P">Designed factored load(P in kN):</label>
-            <input type="number" id="P" required>
-            <br>
-            <p><u>SIZE OF PLATE-1</u></p>
-            <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
-            <input type="number" id="t1" required>
-            <br>
-            <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
-            <input type="number" id="b1" required>
-            <br>
-            <p><u>SIZE OF PLATE-2</u></p>
-            <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
-            <input type="number" id="t2" required>
-            <br>
-            <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
-            <input type="number" id="b2" required>
-            <br>
-            <label for="Weldtype">Weld Type:</label>
-            <select id="Weldtype">
-                <option value="Fillet">Fillet</option>
-                <option value="Butt">Butt</option>
-            </select>
-            <br>
-             <label for="Designation">Designation of weld:</label>
-            <select id="Designation">
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-             <br>
-             <label for="WeldMeth">Welding method:</label>
-            <select id="WeldMeth">
-                <option value="At site">At site</option>
-                <option value="Shop fabrication">Shop fabrication</option>
-            </select>
-            <br>
-            <p><u>STEEL PLATE SPECIFICATION</u></p>
-            <label for="steelGrade">Choose a Steel Grade:</label>
-            <select id="steelGrade">
-                <option value="Fe 290">Fe 290</option>
-                <option value="Fe 410 W-A">Fe 410 W-A</option>
-                <option value="Fe 410 W-B">Fe 410 W-B</option>
-                <option value="Fe 410 W-C">Fe 410 W-C</option>
-                <option value="Fe 440">Fe 440</option>
-                <option value="Fe 490">Fe 490</option>
-                <option value="Fe 540">Fe 540</option>
-                <option value="Fe 570-D">Fe 570-D</option>
-                <option value="Fe 590-E">Fe 590-E</option>
-            </select>
-            <br>
-            <label for="s">Provided size of weld(s in mm):</label>
-            <input type="number" id="s" required>
-            <br>
-            <button type="button" onclick="Weldeddesignplate()">DESIGN PLATE CONNECTION</button>
-        </form>
+        <div class="content">
+            <div class="input-section">
+                <form id="plateForm">
+                    <h3><u>WELDED CONNECTION BETWEEN TWO PLATES</u></h3>
+                    <label for="P">Designed factored load(P in kN):</label>
+                    <input type="number" id="P" required>
+                    <br>
+                    <p><u>SIZE OF PLATE-1</u></p>
+                    <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
+                    <input type="number" id="t1" required>
+                    <br>
+                    <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
+                    <input type="number" id="b1" required>
+                    <br>
+                    <p><u>SIZE OF PLATE-2</u></p>
+                    <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
+                    <input type="number" id="t2" required>
+                    <br>
+                    <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
+                    <input type="number" id="b2" required>
+                    <br>
+                    <label for="Weldtype">Weld Type:</label>
+                    <select id="Weldtype">
+                        <option value="Fillet">Fillet</option>
+                        <option value="Butt">Butt</option>
+                    </select>
+                    <br>
+                    <label for="Designation">Designation of weld:</label>
+                    <select id="Designation">
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br>
+                    <label for="WeldMeth">Welding method:</label>
+                    <select id="WeldMeth">
+                        <option value="At site">At site</option>
+                        <option value="Shop fabrication">Shop fabrication</option>
+                    </select>
+                    <br>
+                    <p><u>STEEL PLATE SPECIFICATION</u></p>
+                    <label for="steelGrade">Choose a Steel Grade:</label>
+                    <select id="steelGrade">
+                        <option value="Fe 290">Fe 290</option>
+                        <option value="Fe 410 W-A">Fe 410 W-A</option>
+                        <option value="Fe 410 W-B">Fe 410 W-B</option>
+                        <option value="Fe 410 W-C">Fe 410 W-C</option>
+                        <option value="Fe 440">Fe 440</option>
+                        <option value="Fe 490">Fe 490</option>
+                        <option value="Fe 540">Fe 540</option>
+                        <option value="Fe 570-D">Fe 570-D</option>
+                        <option value="Fe 590-E">Fe 590-E</option>
+                    </select>
+                    <br>
+                    <label for="s">Provided size of weld(s in mm):</label>
+                    <input type="number" id="s" required>
+                    <br>
+                    <button type="button" onclick="Weldeddesignplate()">DESIGN PLATE CONNECTION</button>
+                </form>
 
-        <div class="result" id="result">
-            <h3><u>DESIGN RESULT</u></h3>
-            <br>
-            <p><u>1. WELD SPECIFICATION</u></p>
-            <p>Design stress of weld_yield (f<sub>y</sub>): <span id="fy"></span> N/mm<sup>2</sup></p>
-            <p>Design stress of weld_ultimate (f<sub>u</sub>): <span id="fu"></span> N/mm<sup>2</sup></p>
-            <br>
-            <p><u>2. PLATE SPECIFICATION</u></p>
-            <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-            <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
-            <br>
-            <p><u>3. SIZE OF WELD</u></p>
-            <p>Minimum size : <span id="tmin"></span> mm</p>
-            <p>Maximum size: <span id="tmax"></span> mm</p>
-            <br>
-            <p><u>4. STRENGTH OF WELD</u></p>
-            
-            <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
-            <br>
-            <p>Length of weld : <span id="Lw"></span> mm</p>
+                <div class="result" id="result">
+                    <h3><u>DESIGN RESULT</u></h3>
+                    <br>
+                    <p><u>1. WELD SPECIFICATION</u></p>
+                    <p>Design stress of weld_yield (f<sub>y</sub>): <span id="fy"></span> N/mm<sup>2</sup></p>
+                    <p>Design stress of weld_ultimate (f<sub>u</sub>): <span id="fu"></span> N/mm<sup>2</sup></p>
+                    <br>
+                    <p><u>2. PLATE SPECIFICATION</u></p>
+                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <br>
+                    <p><u>3. SIZE OF WELD</u></p>
+                    <p>Minimum size : <span id="tmin"></span> mm</p>
+                    <p>Maximum size: <span id="tmax"></span> mm</p>
+                    <br>
+                    <p><u>4. STRENGTH OF WELD</u></p>
+                    <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
+                    <br>
+                    <p>Length of weld : <span id="Lw"></span> mm</p>
+                </div>
+            </div>
+            <div class="drawing-section">
+                <img src="Weldedplate.png" alt="Welded Plates Connection">
+            </div>
         </div>
     </div>
 
@@ -448,9 +461,7 @@
                 const Pp = Math.min(b1, b2) * plateThickness * steelYieldStrength / 1.1 / 1000;
 
                 // Length of weld
-                const Lw = P * 1000 / (tt * fwd);
-
-               
+                const Lw =1.1* P * 1000 / (tt * fwd);
 
                 // Update the result section
                 document.getElementById('fy').textContent = fy;
@@ -460,7 +471,6 @@
                 document.getElementById('tmin').textContent = tmin.toFixed(0);
                 document.getElementById('tmax').textContent = tmax.toFixed(0);
                 document.getElementById('Pp').textContent = Pp.toFixed(2);
-               
                 document.getElementById('Lw').textContent = Lw.toFixed(2);
                 
             } catch (error) {
