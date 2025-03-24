@@ -439,9 +439,9 @@
             <div class="L-value"></div>
             <div class="Bs-value"></div>
             <div class="hw-value"></div>
-            <div class="Lin-value"></div>
-             <div class="Lfb-value"></div>
-            <div class="theta-value"></div>
+            <div class="Lin-value"></div> 
+            <div class="Lfb-value"></div> 
+            <div class="theta-value"></div> 
         </div>
 
         <!-- Result Section -->
@@ -689,14 +689,6 @@
             const Rflush=Aflush/Pflush;
             const SS=11*Rflush/Ssf*1000;
             
-
-
-
-
-            
-            
-                
-
             // Display the results
             document.getElementById('B').textContent = B.toFixed(2);
             document.getElementById('L1').textContent = L1.toFixed(2);
@@ -714,13 +706,14 @@
 
             document.getElementById('vflush').textContent = vflush.toFixed(2);
             document.getElementById('SS').textContent = SS.toFixed(2);
-            // Update L and Bs on the image
+          
+            // Text on image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
             document.querySelector('.Bs-value').textContent = `Bs = ${Bs.toFixed(1)} m`;
             document.querySelector('.hw-value').textContent = `hw = ${hw.toFixed(1)} m`;
-            document.querySelector('.Lin-value').textContent = `Lin = ${Lin.toFixed(2)} m`;
-            document.querySelector('.Lfb-value').textContent = `Lfb = ${Lfb.toFixed(2)} m`;
-            document.querySelector('.theta-value').textContent = `θ = ${theta.toFixed(2)} °`;
+            document.querySelector('.Lin-value').textContent = `Lin = ${Lin.toFixed(2)} m`; 
+            document.querySelector('.Lfb-value').textContent = `Lfb = ${Lfb.toFixed(2)} m`; 
+            document.querySelector('.theta-value').textContent = `θ = ${theta.toFixed(2)} °`; 
         }
     </script>
 </body>
