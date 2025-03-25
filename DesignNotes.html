@@ -254,35 +254,15 @@
       }
 
       /* Main Content Container */
-      .main-container {
-        padding: 0 80px; /* Increased padding on both sides */
-        max-width: 1200px; /* Optional: Limit the maximum width of the content */
-        margin: 0 auto; /* Center the container */
-        flex: 1; /* Allow content to grow and push footer down */
-        width: 100%;
-        
-      }
-      
-      /* Content wrapper for padding */
-      .content-wrapper {
-        padding: 0 20px;
+      .main-content {
         flex: 1;
+        padding: 20px 80px;
         width: 100%;
-        
-      }
-
-      /* Content section */
-      .content {
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
-        margin: 20px auto;
-        max-width: 1200px;
-        border-radius: 10px;
-        
+        box-sizing: border-box;
       }
 
       /* Justify text in paragraphs */
-      .main-container p {
+      .main-content p {
         text-align: justify;
       }
 
@@ -315,13 +295,8 @@
           width: 80%;
         }
 
-        .main-container {
-          padding: 0 20px; /* Adjust padding for smaller screens */
-        }
-        
-        .content {
-          padding: 15px;
-          margin: 15px;
+        .main-content {
+          padding: 20px;
         }
       }
     </style>
@@ -362,11 +337,12 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="content-wrapper">
-      <div class="content">
-        <p>DESIGN NOTES</p>
-      </div>
-    </div>
+    <main class="main-content">
+      <h1>Design Notes</h1>
+      <p>Welcome to my design notes section. Here you'll find various engineering design resources, calculations, and reference materials.</p>
+      
+      
+    </main>
 
     <!-- Footer -->
     <footer>
