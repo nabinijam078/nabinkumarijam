@@ -472,68 +472,9 @@
     <p>The relation is given as follows.</p>
     <img src="Stress diagramBS.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
     <p><center>Fig. Stress-Strain diagram of the section.</center></p> 
-    <p>Total compressive force, \( F_c = 0.362{f_{ck}}b{x_u} \).</p>
-    <p>And centroid of the compression block, \( x = 0.416{x_u} \).And \( x_{u,lim} = kd \) </p>
-    <p>Where, \( k = \frac{0.0035}{0.0055+0.87\frac{f_y}{E_s}} \)</p>
-    <p>Moment of resistant for singly reinforced section;  \( M_u = 0.36f_{ck}bk(1-0.42k)d^2 \).</p>
-    <p>The singly and doubly reinforced section shall be differentiated by calculated by moment of resistance as given above. If <i>M<sub>u</sub>>M</i>,Singly reinforced otherwise Doubly reinforced section. </p>
-    <p>The moment of resistance can be calculated by;</p>
-    <p>For singly reinforced section: \( M_u = 0.87{f_y}\frac{p_t}{100}x[1-\frac{1.005{f_y}}{f_{ck}}\frac{p_t}{100}]bd^2 \).</p>
-    <p>Area of reinforcement for singly reinforced section can be calculated by; \( A_st = \frac{f_{ck}}{2f_y}(1-\sqrt(1-4.598\frac{M}{f_{ck}bd^2})) \)</p>
-    
-    <p>The design of doubly reinforced section can be calculated by the following relations</p>
-    \( M_{u2} = M_u-M_{u,lim} \)
-    <br>
-    \( M_{u,lim} = 0.362f_{ck}x_{u,lim}(1-0.416x_{u,lim})d \)
-   <br>
-    \(M_{u2}=Ast_{2}(0.87f_y)(d-d') \)
-   <br>
-    <p>Also, \( M_{u2} = A_{sc} (f_{sc} - f_{cc}) (d - d') \).</p>
-    <p><i>f<sub>sc</sub></i> can be calculated using strain diagram as given below.</p>
-    <img src="Strain diagram.png" alt="curve" class="shape-image" style="width: 300px; height: auto;">
-    <p>Using the stress-strain diagram of steel, f<sub>sc</sub> shall be calculated for strain, ε<sub>sc</sub></p>
-     \(\varepsilon_{sc}=0.0035(1-\frac{d'}{x_{u,lim}}) \)    
-    <p> Or using the following table, <i>f<sub>sc</sub></i> can be calculated. </p>    
-    <p>Stress in Compression reinforcement <i>f<sub>sc</sub></i> in doubly reinforced beams with cold-worked bars</p>
-    <table>
-	<thead>
-            <tr>
-                <th>f<sub>y</sub> N/mm<sup>2</sup></th>
-                <th>d'/d = 0.05</th>
-	        <th>d'/d = 0.10</th>
-		<th>d'/d = 0.15</th>
-		<th>d'/d = 0.20</th>
-		
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-		<td>415</td>
-                <td>355</td>
-                <td>353</td>
-		<td>342</td>
-		<td>329</td>
-		
-            </tr>
-	    <tr>
-		<td>500</td>
-                <td>424</td>
-                <td>412</td>
-		<td>395</td>
-		<td>370</td>
-            </tr>
-	</tbody>
-    </table>
-   
-    
-   <p>This table can be formulated as </p>
-   <p>i) For <i>f<sub>y</sub> = 250 N/mm<sup>2</sup></i></p>
-   \(f_{sc}=217 N/mm^2 \)
-   <p>ii) For <i>f<sub>y</sub> = 415 N/mm<sup>2</sup></i></p>
-   \(f_{sc}=9333(\frac{d'}{d})^3-4600(\frac{d'}{d})^2+486.6(\frac{d'}{d})+341.0 N/mm^2 \)    
-    <p>ii) For <i>f<sub>y</sub> = 500 N/mm<sup>2</sup></i></p>
-   \(f_{sc}=-1300(\frac{d'}{d})^2-33(\frac{d'}{d})+428.7 N/mm^2 \) 
-  <p>\(f_{cc}=0.446f_{ck} \)</p>
+    <p> Constant \( \k=0.156 \) where redistribution does not exceed 10% (this implies a limitation of the neutral axis depth to \(\frac{d}{2}\)); Otherwise \(\K'=0.402(\beta-0.4)-0.18(\beta-0.4)^2 \) where redistribution exceeds 10% </p> 
+	    
+ 
 
   <p><u>SHEAR REINFORCEMENT</u></p>
   <p>Design shear strength of concrete is given by.</p>
