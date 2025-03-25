@@ -477,11 +477,19 @@
     <p><u><b>1. Design of singly reinforced section</b></u></p>
     <p>If <i>K>K'</i>, the section is singly reinforced section and designed as follows</p>
     \( K=\frac{M}{f_{cu}bd^2} \)
-    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K'}{0.9}})d \) but <i>Z</i> should not be greater than <i>0.95d</i></p>
-    <p>Depth of neutral axis \(\x=\frac{z-d}{0.45} \)</p>
+    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K}{0.9}})d \) but <i>Z</i> should not be greater than <i>0.95d</i></p>
+    <p>Depth of neutral axis \(x=\frac{z-d}{0.45} \)</p>
     <p>Area of reinforcement is now given by \(Ast=\frac{M}{f_{cu}K'bd^2} \)</p>
-	    
-
+    
+    <p><u><b>2. Design of Doubly reinforced section</b></u></p>
+    <p>If <i>K'>K </i>, the section is doubly reinforced section and designed as follows</p>
+    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K'}{0.9}})d \) but <i>Z</i> should not be greater than <i>0.776887d</i></p>
+    <p>Depth of neutral axis \(x=\frac{z-d}{0.45} \)</p>
+    <p>Now, area of reinforcement is given by, \(A'_s=\frac{(K-K')f_{cu}bd^2}{0.87f_y(d-d')} \)</p>
+    <p>Total area of tension reinforcement is given by;</p>
+    \( A_s=\frac{K'f_{cu}bd^2}{0.87f_yZ}+A'_s \)
+    <p>Compression reinforcement is given by</p>
+    \(A_{sc}=\frac{M-K'f_{cu}bd^2}{(f_{sc}-0.446f_{cu})(d-d')} \)
   <p><u>SHEAR REINFORCEMENT</u></p>
   <p>Design shear strength of concrete is given by.</p>
 
