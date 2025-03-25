@@ -260,6 +260,7 @@
         max-width: 1200px; /* Optional: Limit the maximum width of the content */
         margin: 0 auto; /* Center the container */
         flex: 1; /* Allow content to grow and push footer down */
+        width: calc(100% - 160px); /* Adjust width to account for padding */
       }
 
         /* Basic styling for the gallery */
@@ -267,6 +268,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
         }
         .gallery .photo-container {
             position: relative;
@@ -391,6 +393,7 @@
 
         .main-container {
           padding: 0 20px; /* Adjust padding for smaller screens */
+          width: calc(100% - 40px); /* Adjust width to account for padding */
         }
       }
     </style>
@@ -428,63 +431,62 @@
       <a href="images.html"><b>IMAGES</b></a>
       <a href="blog.html"><b>PERSONAL BLOG</b></a>
       <a href="Contacts.html"><b>CONTACTS</b></a>
-    </nav
+    </nav>
 
-    <h2><u><b><center>IMAGES</center></b></u></h2>
-    <p><b><center>1. MAI HYDROPOWER PROJECT (22MW), ILAM, NEPAL</center></b></p>
-    <div class="gallery">
-        <div class="photo-container" onclick="openModal(0)">
-            <img src="Headworks Mai HP, Ilam.jpg" alt="Photo 1">
-            <div class="photo-title">Headworks</div>
+    <div class="main-container">
+        <h2><u><b><center>IMAGES</center></b></u></h2>
+        <p><b><center>1. MAI HYDROPOWER PROJECT (22MW), ILAM, NEPAL</center></b></p>
+        <div class="gallery">
+            <div class="photo-container" onclick="openModal(0)">
+                <img src="Headworks Mai HP, Ilam.jpg" alt="Photo 1">
+                <div class="photo-title">Headworks</div>
+            </div>
+            <div class="photo-container" onclick="openModal(1)">
+                <img src="Settling basin Mai HP, Ilam.jpg" alt="Photo 2">
+                <div class="photo-title">Settling basin</div>
+            </div>
+            <div class="photo-container" onclick="openModal(2)">
+                <img src="Approach Culvert, Mai HP, Ilam.jpg" alt="Photo 3">
+                <div class="photo-title">Approach Culvert</div>
+            </div>
+            <div class="photo-container" onclick="openModal(3)">
+                <img src="Surge Shaft Mai HP, Ilam.jpg" alt="Photo 4">
+                <div class="photo-title">Surge Shaft</div>
+            </div>
+          <div class="photo-container" onclick="openModal(4)">
+                <img src="Generator casing Mai HP.jpg" alt="Photo 5">
+                <div class="photo-title">Generator casing</div>
+            </div>
         </div>
-        <div class="photo-container" onclick="openModal(1)">
-            <img src="Settling basin Mai HP, Ilam.jpg" alt="Photo 2">
-            <div class="photo-title">Settling basin</div>
+        <p><b><center>2. KALANGAGAD HYDROELECTRIC PROJECT (15.33 MW), BAJHANG, NEPAL</center></b></p>
+        <div class="gallery">
         </div>
-        <div class="photo-container" onclick="openModal(2)">
-            <img src="Approach Culvert, Mai HP, Ilam.jpg" alt="Photo 3">
-            <div class="photo-title">Approach Culvert</div>
+        <p><b><center>3. UPPER KALANGA HYDROELECTRIC PROJECT (38.46 MW), BAJHANG, NEPAL</center></b></p>
+        <div class="gallery">
         </div>
-        <div class="photo-container" onclick="openModal(3)">
-            <img src="Surge Shaft Mai HP, Ilam.jpg" alt="Photo 4">
-            <div class="photo-title">Surge Shaft</div>
+        <p><b><center>4. UPPER SANIGAD HYDROELECTRIC PROJECT (10.33 MW), BAJHANG, NEPAL</center></b></p>
+        <div class="gallery">
         </div>
-      <div class="photo-container" onclick="openModal(4)">
-            <img src="Generator casing Mai HP.jpg" alt="Photo 5">
-            <div class="photo-title">Generator casing</div>
+        
+        <p><b><center>5. NENGGIRI HYDROELECTRIC PROJECT, MALAYSIA</center></b></p>
+        <div class="gallery">
+            <div class="photo-container" onclick="openModal(5)">
+                <img src="Dam foundation.jpg" alt="Photo 6">
+                <div class="photo-title">Dam foundation</div>
+            </div>
+            <div class="photo-container" onclick="openModal(6)">
+                <img src="Diversion tunnel_inlet.jpg" alt="Photo 7">
+                <div class="photo-title">Diversion tunnel_inlet</div>
+            </div>
+            <div class="photo-container" onclick="openModal(7)">
+                <img src="Mobile crane Capacity 300T.jpg" alt="Photo 8">
+                <div class="photo-title">Mobile crane Capacity 300T</div>
+            </div>
+            <div class="photo-container" onclick="openModal(8)">
+                <img src="Roller Compacted Concrete.jpg" alt="Photo 9">
+                <div class="photo-title">Roller Compacted Concrete</div>
+            </div>
         </div>
-    </div>
-    <p><b><center>2. KALANGAGAD HYDROELECTRIC PROJECT (15.33 MW), BAJHANG, NEPAL</center></b></p>
-    <div class="gallery">
-    </div>
-    <p><b><center>3. UPPER KALANGA HYDROELECTRIC PROJECT (38.46 MW), BAJHANG, NEPAL</center></b></p>
-    <div class="gallery">
-    </div>
-    <p><b><center>4. UPPER SANIGAD HYDROELECTRIC PROJECT (10.33 MW), BAJHANG, NEPAL</center></b></p>
-    <div class="gallery">
-    </div>
-    
-    
-    
-    <p><b><center>5. NENGGIRI HYDROELECTRIC PROJECT, MALAYSIA</center></b></p>
-    <div class="gallery">
-        <div class="photo-container" onclick="openModal(5)">
-            <img src="Dam foundation.jpg" alt="Photo 6">
-            <div class="photo-title">Dam foundation</div>
-        </div>
-        <div class="photo-container" onclick="openModal(6)">
-            <img src="Diversion tunnel_inlet.jpg" alt="Photo 7">
-            <div class="photo-title">Diversion tunnel_inlet</div>
-        </div>
-        <div class="photo-container" onclick="openModal(7)">
-            <img src="Mobile crane Capacity 300T.jpg" alt="Photo 8">
-            <div class="photo-title">Mobile crane Capacity 300T</div>
-        </div>
-        <div class="photo-container" onclick="openModal(8)">
-            <img src="Roller Compacted Concrete.jpg" alt="Photo 9">
-            <div class="photo-title">Roller Compacted Concrete</div>
-        </div>
-      
     </div>
 
     <!-- The Modal -->
