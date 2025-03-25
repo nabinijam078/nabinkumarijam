@@ -8,12 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
-      body {
-        font-family: 'Open Sans', sans-serif;
+      html, body {
+        height: 100%;
         margin: 0;
         padding: 0;
+      }
+      
+      body {
+        font-family: 'Open Sans', sans-serif;
         color: #333;
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
         /* Dynamic Gradient Background */
         background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
         background-size: 400% 400%;
@@ -214,6 +220,7 @@
         text-align: center;
         padding: 20px;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: auto; /* Push footer to bottom */
       }
 
       .social-links {
@@ -251,7 +258,27 @@
         padding: 0 80px; /* Increased padding on both sides */
         max-width: 1200px; /* Optional: Limit the maximum width of the content */
         margin: 0 auto; /* Center the container */
-	flex: 1; /* Allow content to grow and push footer down */
+        flex: 1; /* Allow content to grow and push footer down */
+        width: 100%;
+        
+      }
+      
+      /* Content wrapper for padding */
+      .content-wrapper {
+        padding: 0 20px;
+        flex: 1;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Content section */
+      .content {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        margin: 20px auto;
+        max-width: 1200px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
 
       /* Justify text in paragraphs */
@@ -291,11 +318,16 @@
         .main-container {
           padding: 0 20px; /* Adjust padding for smaller screens */
         }
+        
+        .content {
+          padding: 15px;
+          margin: 15px;
+        }
       }
     </style>
   </head>
   <body>
-	  <!-- Current Time and Date -->
+    <!-- Current Time and Date -->
     <div id="datetime"></div>
     <!-- Header -->
     <header>
@@ -330,9 +362,10 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="content">
-      <p>DESIGN NOTES</p>
-      
+    <div class="content-wrapper">
+      <div class="content">
+        <p>DESIGN NOTES</p>
+      </div>
     </div>
 
     <!-- Footer -->
@@ -357,6 +390,9 @@
         const now = new Date();
         const datetimeElement = document.getElementById('datetime');
         datetimeElement.textContent = now.toLocaleString();
+        
+        // Update year in copyright
+        document.getElementById('year').textContent = now.getFullYear();
       }
 
       // Update the time and date every second
@@ -367,4 +403,3 @@
     </script>
   </body>
 </html>
-
