@@ -254,16 +254,24 @@
       }
 
       /* Main Content Container */
-      .main-content {
+      .content {
         flex: 1;
         padding: 20px 80px;
         width: 100%;
         box-sizing: border-box;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       }
 
       /* Justify text in paragraphs */
-      .main-content p {
-        text-align: justify;
+      .content p {
+        text-align: left;
+        margin: 10px 0;
+      }
+
+      .content a {
+        color: #fff;
+        text-decoration: underline;
       }
 
       /* Responsive Design */
@@ -295,7 +303,7 @@
           width: 80%;
         }
 
-        .main-content {
+        .content {
           padding: 20px;
         }
       }
@@ -344,7 +352,7 @@
       <p>Jhapa, Mechi, Koshi Province, Nepal</p>
       <p>&#128241; +9779841613544 (Nepal)</p>
       <p>&#128241; +601153438082 (Malaysia)</p>
-      <p>&#128386; <a hre="#">nabin078@gmail.com</a></p>
+      <p>&#128386; <a href="mailto:nabin078@gmail.com">nabin078@gmail.com</a></p>
     </div>
 
     <!-- Footer -->
@@ -376,6 +384,9 @@
 
       // Initial call to display the time and date immediately
       updateDateTime();
+      
+      // Set the copyright year
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
