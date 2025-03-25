@@ -457,8 +457,8 @@
      <p><u>STRESS-STRAIN CURVE OF STEEL</u></p>    
      <p>Stress-strain curve is linear in mild steel (Fe250). The relation is shown as given below.</p>
      <img src="SSCurveFe250.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
-     <p><center>Stress-Strain Curve of Mild Steel (Fe250).</center></p>   
-	p><center><b><u>Stress-Strain Curve of Mild Steel (Fe250).</u></b></center></p>      
+     <p><center>Fig.Stress-Strain Curve of Mild Steel (Fe250).</center></p>   
+     <p><center><b><u>Stress-Strain Curve of Mild Steel (Fe250).</u></b></center></p>      
      <table class="data-table" id="Fe250">
      <thead>
             <tr>
@@ -496,7 +496,7 @@
 
     <p>Similarly for Tor Steel, Stress-strain curve is given as follows. The numerical value of this relation has been provided in table below. The intermediate values can be calculation using linear interpolation.</p>
      <img src="SSCurveFe500.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
-     <p><center>Stress-Strain Curve of Tor Steel (Fe415 and Fe500).</center></p> 
+     <p><center>Fig. Stress-Strain Curve of Tor Steel (Fe415 and Fe500).</center></p> 
      <p><center><b><u>Stress-Strain Curve of Tor Steel (Fe415).</u></b></center></p> 
      <table class="data-table" id="Tor Steel">
      <thead>
@@ -572,18 +572,27 @@
     <p><u><b>STRESS AND STRAIN DIAGRAM OF THE SECTION</b></u></p>
     <p>The relation is given as follows.</p>
     <img src="Stress diagram.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
-    <p><center>Stress-Strain diagram of the section.</center></p> 
+    
     <img src="Stress diagram3.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+    <p><center>Fig. Stress-Strain diagram of the section.</center></p> 
     <p>Total compressive force, \( F_c = 0.362{f_{ck}}b{x_u} \).</p>
-    <p>And centroid of the compression block, \( x = 0.416{x_u} \).And \( x_u = kd \) </p>
+    <p>And centroid of the compression block, \( x = 0.416{x_u} \).And \( x_{u,lim} = kd \) </p>
     <p>Where, \( k = \frac{0.0035}{0.0055+0.87\frac{f_y}{E_s}} \)</p>
     <p>Moment of resistant for singly reinforced section;  \( M_u = 0.36f_{ck}bk(1-0.42k)d^2 \).</p>
-    <p>The singly and doubly reinforced section shall be differentiated by calculated by moment of resistance as given above. The moment of resistance can be calculated by;</p>
+    <p>The singly and doubly reinforced section shall be differentiated by calculated by moment of resistance as given above. If <i>M<sub>u</sub>>M</i>,Singly reinforced otherwise Doubly reinforced section. </p>
+    <p>The moment of resistance can be calculated by;</p>
     <p>For singly reinforced section: \( M_u = 0.87{f_y}\frac{p_t}{100}x[1-\frac{1.005{f_y}}{f_{ck}}\frac{p_t}{100}]bd^2 \).</p>
     <p>Area of reinforcement for singly reinforced section can be calculated by; \( A_st = \frac{f_{ck}}{2f_y}(1-\sqrt(1-4.598\frac{M}{f_{ck}bd^2})) \)</p>
     
-    
-    
+    <p>The design of doubly reinforced section can be calculated by the following relations</p>
+    \( M_{u2} = M_u-M_{u,lim} \)
+    \( M_{u,lim} = 0.362f_{ck}x_{u,lim}(1-0.416x_{u,lim})d \)
+    \(M_{u2}=Ast_{2}(0.87f_y)(d-d') \)
+    Also, \M_{u2}=A_{sc}(f_{sc}-f_{cc})(d-d') \)
+    <p>f<sub>sc</sub> can be calculated using strain diagram as given below.</p>
+    <img src="Strain diagram.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
+   <p>Using the stress-strain diagram of steel, f<sub>sc</sub> shall be calculated for strain, ε<sub>sc</sub></p>
+   \(\varepsilon_{sc}=0.0035(1-\frac{d'}{x_{u,lim}}) \)    
     
     
     
