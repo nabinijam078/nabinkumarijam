@@ -8,19 +8,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
       /* General Styles */
-      body {
-        font-family: 'Open Sans', sans-serif;
+      html, body {
+        height: 100%;
         margin: 0;
         padding: 0;
+      }
+      
+      body {
+        font-family: 'Open Sans', sans-serif;
         color: #333;
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
         /* Dynamic Gradient Background */
         background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
         background-size: 400% 400%;
         animation: GradientBackground 15s ease infinite;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
       }
 
       @keyframes GradientBackground {
@@ -217,7 +220,7 @@
         text-align: center;
         padding: 20px;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: auto; /* Push footer to the bottom */
+        margin-top: auto; /* Push footer to bottom */
       }
 
       .social-links {
@@ -251,39 +254,15 @@
       }
 
       /* Main Content Container */
-      .main-container {
-        padding: 0 80px; /* Increased padding on both sides */
-        max-width: 1200px; /* Optional: Limit the maximum width of the content */
-        margin: 0 auto; /* Center the container */
-        flex: 1; /* Allow content to grow and push footer down */
-      }
-
-     
-      
-
-      .content img {
-        float: right;
-        margin: 0 0 20px 20px;
-        border-radius: 10px;
-        width: 150px;
-        height: auto;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 5px solid #555;
-      }
-
-      .content h2 {
-        color: #0078d7;
-        font-size: 1.2rem;
-        margin-top: 0;
-      }
-
-      .content p {
-        font-size: 0.8rem;
-        text-align: justify;
+      .main-content {
+        flex: 1;
+        padding: 20px 80px;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       /* Justify text in paragraphs */
-      .main-container p {
+      .main-content p {
         text-align: justify;
       }
 
@@ -316,8 +295,8 @@
           width: 80%;
         }
 
-        .main-container {
-          padding: 0 20px; /* Adjust padding for smaller screens */
+        .main-content {
+          padding: 20px;
         }
       }
     </style>
@@ -331,37 +310,39 @@
     </header>
 
     <!-- Navigation Bar -->
-    <nav>
+     <nav>
       <a href="Home.html"><b>HOME</b></a>
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
         <div class="dropdown-content">
           <a href="Information.html">MY INFORMATION</a>
           <a href="My background.html">MY BACKGROUND</a>
-          <a href="My works.html">MY WORKS</a>
+	  <a href="My works.html">MY WORKS</a>
         </div>
       </div>
-
-      <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
-        <div class="dropdown-content">
-          <a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
-          <a href="DesignNotes.html">DESIGN NOTES</a>
-          <a href="Others.html">OTHER CALCULATION</a>
-        </div>
+      
+	<div class="dropdown">
+         <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+        	<div class="dropdown-content">
+      		<a href="Civil Engineering Notes.html">CIVIL ENGINEERING NOTES</a>
+		<a href="DesignNotes.html">DESIGN NOTES</a>
+      		<a href="Others.html">OTHER CALCULATION</a>
+	</div>
       </div>
 
       <a href="Downloads.html"><b>DOWNLOADS</b></a>
       <a href="images.html"><b>IMAGES</b></a>
-      <a href="blog.html"><b>PERSONAL BLOG</b></a>
+     <a href="blog.html"><b>PERSONAL BLOG</b></a>
       <a href="Contacts.html"><b>CONTACTS</b></a>
-    </nav
+    </nav>
 
     <!-- Main Content -->
-    <div class="content">
-      <p>This page is under construction</p>
-     
-    </div>
+    <main class="main-content">
+      <h1>THIS PAGE IS UNDER CONSTRUCTION</h1>
+      
+      
+      
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -385,6 +366,9 @@
         const now = new Date();
         const datetimeElement = document.getElementById('datetime');
         datetimeElement.textContent = now.toLocaleString();
+        
+        // Update year in copyright
+        document.getElementById('year').textContent = now.getFullYear();
       }
 
       // Update the time and date every second
