@@ -490,70 +490,14 @@
     \( A_s=\frac{K'f_{cu}bd^2}{0.87f_yZ}+A'_s \)
     <p>Compression reinforcement is given by</p>
     \(A_{sc}=\frac{M-K'f_{cu}bd^2}{(f_{sc}-0.446f_{cu})(d-d')} \)
+    <p>If \frac{d’}{x} exceeds 0.37 (for <i>f<sub>y</sub>=500N/mm<sup>2</sup></i>), the compression stress will be less than <i>f<sub>sc</sub> = 0.87f<sub>y</sub></i> and obtained from stress-strain curve of reinforcement</p>
   <p><u>SHEAR REINFORCEMENT</u></p>
-  <p>Design shear strength of concrete is given by.</p>
+  <p>Design shear stress of section is given by.</p>
+  \(v=\frac{V}{bd} \)
+  <p> In no case, \( v \leq v_{max} \) where \(v_{max}=  max of 0.8\sqrt{f_{cu}} and 5 N/mm^2 \) </p>
 
-  \( \tau_c=\frac{0.85\sqrt(0.8f_{ck})(\sqrt(1+5\beta)-1)}{6\beta} \)
-   <p>The value given in Table 19 of IS 456:2000 has been derived from this equation. the Correction factor for depth shall be incorporated in the above formula. The correction factor is given bu Clause 40.2.1.</p> 
-    <table>
-	<thead>
-            <tr>
-                <th>Overall depth</th>
-                <th>≥ 300</th>
-	        <th>275</th>
-		<th>250</th>
-		<th>225</th>
-		<th>200</th>
-		<th>175</th>
-		<th>≤ 150</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-		<td>K</td>
-                <td>1.00</td>
-                <td>1.05</td>
-		<td>1.10</td>
-		<td>1.15</td>
-		<td>1.20</td>
-		<td>1.25</td>
-		<td>1.30</td>
-            </tr>
-	</tbody>
-    </table>
-   <p>These values can be represented by following relations</p>
-   <p> If \(D \leq 150, K = 1.30 \)</p>
-   <p> If \(D > 300, K = -0.002D+1.6 \)</p>
-   <p> Where \( \beta=\frac{0.8f_{ck}}{6.89p_t} \), which shall not be less than 1.0</p>
-   <p> \( \tau_v=\frac{V}{bD} \)</p>
-   <p> <u>Shear reinforcement requirement for vertical stirrups.</u></p>
-   <p> i) If \( \tau_v<\tau_c \), No requirement of shear reinforcement, however minimum shear reinforcement shall be provided as calculated by the following formula. </p>
-   <p> \( A_{sv}=\frac{0.4S_v}{0.87f_y}b \)</p>
-   <p> ii) If \(\tau_v>\tau_c \), shear reinforcement calculated as </p>
-   <p> \( V_{us}=\frac{0.87f_yA_{sv}d}{S_v} \)</p>
-   <p>In no case \( \tau_v \leq \tau_{c,max} \)</p>
-   <p>The maximum shear strength is given by Table 20 of IS 456:2000.</p>
-   <table>
-	   <thead>
-		   <th> Grade of concrete</th>
-		   <th> M15</th>
-		   <th> M20</th>
-		   <th> M25</th>
-		   <th> M30</th>
-		   <th> M35</th>
-		   <th> M40 and above</th>
-	   </thead>
-	   <tr>
-		   <td>τ<sub>c,max</sub></td>
-		   <td>2.5</td>
-		   <td>2.8</td>
-		   <td>3.1</td>
-		   <td>3.5</td>
-		   <td>3.7</td>
-		   <td>4.0</td>
-	   </tr>
-   </table>
-   <p>Shear capacity of the section depends on concrete grade (<i>f<sub>fck</sub></i>), Area of tension reinforcement (<i>Ast</i>) and depth of section. The shear strength does not increase above M40 and the area of reinforcement increases slighly. Therefore, controlling factor for the shear capacity is depth of section.</p>
+  
+   
    <p><u>MINIMUM AND MAXIMUM REINFORCEMENT</u></p>
    <p>Flexural reinforcement shall not be less than</p>
    <p>As Per IS 456:2000, \(As_{min}=\frac{0.85}{f_y}bd \)</p>
