@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,11 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- MathJax Configuration -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-            /* General Styles */
+      /* General Styles */
       html, body {
         height: 100%;
         margin: 0;
@@ -46,15 +44,6 @@
         color: black;
       }
 
-      /* MathJax formula styling */
-      .math-formula {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 15px;
-        border-radius: 5px;
-        margin: 20px 0;
-        overflow-x: auto;
-      }
-      
       /* Header Styles */
       header {
         background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
@@ -278,71 +267,6 @@
         text-align: justify;
       }
 
-      /* MathJax formula styling */
-      .math-formula {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 15px;
-        border-radius: 5px;
-        margin: 20px 0;
-        overflow-x: auto;
-      }
-
-      /* Shape Gallery */
-      .shape-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin: 30px 0;
-      }
-
-      .shape-card {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 15px;
-        padding: 20px;
-        width: 280px;
-        text-align: center;
-        transition: transform 0.3s ease;
-      }
-
-      .shape-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .shape-image {
-        width: 200px;
-        height: 200px;
-        object-fit: contain;
-        margin: 0 auto 15px;
-        display: block;
-      }
-
-      .shape-title {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: #0078d7;
-      }
-
-      .centroid-marker {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background-color: red;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .image-container {
-        position: relative;
-        display: inline-block;
-      }
-
-          /* Justify text in paragraphs */
-      .main-content p {
-        text-align: justify;
-      }
-
       /* Responsive Design */
       @media (max-width: 768px) {
         .hero h2 {
@@ -375,7 +299,7 @@
         .main-content {
           padding: 20px;
         }
-
+      }
     </style>
   </head>
   <body>
@@ -418,161 +342,20 @@
     <main class="main-content">
       <h2>DESIGN NOTES</h2>
       <h2>Geometrical Properties of Common Shapes</h2>
+     <div class="content main-container">
+      <h2><u><b>DESIGN NOTES</b></u></h2>
+      <a href="Beam.html">1. GEOMETRICAL PROPERTIES OF COMMON SHAPES</a>
+      <br>
+      <a href="Footing.html">2. DESIGN FORMULA OF CONCRETE SECTION AS PER IS 456:2000</a>
+        <br>
       
-      <div class="shape-gallery">
-        <!-- Rectangle -->
-        <div class="shape-card">
-          <h3 class="shape-title">1. Rectangle</h3>
-          <div class="image-container">
-            <img src="Rectangle.png" alt="Rectangle" class="shape-image">
-            <div class="centroid-marker" style="top: 60%; left: 35%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = b \times h \)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = \frac{b}{2} \)</p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{h}{2} \)</p>
-            
-          </div>
-        </div>
-        
-        <!-- Circle -->
-        <div class="shape-card">
-          <h3 class="shape-title">2. Circle</h3>
-          <div class="image-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Circle-withsegments.svg/1200px-Circle-withsegments.svg.png" alt="Circle" class="shape-image">
-            <div class="centroid-marker" style="top: 50%; left: 50%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \pi r^2 \)</p>
-            <p><strong>Centroid:</strong> At center</p>
-           
-          </div>
-        </div>
-        
-        <!-- Triangle -->
-        <div class="shape-card">
-          <h3 class="shape-title">3. Triangle</h3>
-          <div class="image-container">
-            <img src="Triangle.png" alt="Triangle" class="shape-image">
-            <div class="centroid-marker" style="top: 65%; left: 30%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \frac{1}{2} b h \)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = \frac{b}{3} \) </p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{h}{3} \)
-            
-          </div>
-        </div>
-        
-        <!-- Semi-circle -->
-        <div class="shape-card">
-          <h3 class="shape-title">4. Semi-Circle</h3>
-          <div class="image-container">
-            <img src="Semi-circle.png" alt="Semi-Circle" class="shape-image">
-            <div class="centroid-marker" style="top: 50%; left: 48%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \frac{1}{2}\pi r^2 \)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = 0 \) </p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{4R}{3\pi} \)  </p>
-            
-          </div>
-        </div>
-        
-        <!-- Quarter-Circle -->
-        <div class="shape-card">
-          <h3 class="shape-title">5. Quarter-Circle</h3>
-          <div class="image-container">
-            <img src="Quarter_circle.png" alt="Semi-Circle" class="shape-image">
-            <div class="centroid-marker" style="top: 55%; left: 35%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \frac{1}{4} \pi r^2 \)</p>
-	    <p><strong>Centroid:</strong> \( \bar{x} = \frac{4r}{3\pi} \) </p>
-            <p><strong>Centroid:</strong> \( \bar{y} = \frac{4r}{3\pi} \) </p>
-            
-          </div>
-        </div>
-        
-        <!-- Trapezium-1 -->
-        <div class="shape-card">
-          <h3 class="shape-title">6. Trapezium</h3>
-          <div class="image-container">
-            <img src="Trapezium1.png" alt="Trapezium" class="shape-image">
-            <div class="centroid-marker" style="top: 55%; left: 20%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \frac{1}{2} (a + b) h\)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = \frac{a^2 + b^2+ab}{3(a+b)} \)</p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{h(2a+b)}{3(a+b)} \)</p>
-            
-          </div>
-        </div>
+      <a href="Retainingwall.html">3. DESIGN FORMULA OF CONCRETE SECTION AS PER BS 8110:1997</a>
+      <br>
+      <a href="Corbel.html">4. PREPARATION OF INTERACTION DIAGRAM AS PER IS 456:2000</a>
+      <br>
+      <a href="Reinforcement design.html">5. PREPARATION OF INTERACTION DIAGRAM AS PER BS 8110:1997</a>
 
-	<!-- Trapezium-2 -->
-        <div class="shape-card">
-          <h3 class="shape-title">7. Trapezium</h3>
-          <div class="image-container">
-            <img src="Trapezium2.png" alt="Trapezium" class="shape-image">
-            <div class="centroid-marker" style="top: 50%; left: 40%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = \frac{1}{2} (a + b) h\)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = \frac{b^2 -2 a^2+ab}{3(a+b)} \)</p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{h(2a+b)}{3(a+b)} \)</p>
-            
-          </div>
-        </div>
-
-	<!-- Segment -->
-        <div class="shape-card">
-          <h3 class="shape-title">8. Segment</h3>
-          <div class="image-container">
-            <img src="Segment.png" alt="Segment" class="shape-image">
-            <div class="centroid-marker" style="top: 70%; left: 25%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Area:</strong> \( A = R^2 (1 - \frac{\pi}{4}) \)</p>
-            <p><strong>Centroid:</strong> \( \bar{x} = R\frac{(10-3\pi)}{12(1-\frac{\pi}{4})} \)</p>
-	    <p><strong>Centroid:</strong> \( \bar{y} = R\frac{(10-3\pi)}{12(1-\frac{\pi}{4})} \)</p>
-            
-          </div>
-        </div>
-
-	<!-- Pyramid -->
-        <div class="shape-card">
-          <h3 class="shape-title">9. Pyramid</h3>
-          <div class="image-container">
-            <img src="Pyramid.png" alt="Pyramid" class="shape-image">
-            <div class="centroid-marker" style="top: 55%; left: 60%;"></div>
-          </div>
-          <div class="math-formula">
-            <p><strong>Volume:</strong> \( V = \frac{h}{3} (A_1+A_2+\sqrt(A_1A_2)) \)</p>
-            
-	    <p><strong>Centroid:</strong> \( \bar{y} = \frac{h}{4}\frac{(A_1+3A_2+2\sqrt(A_1A_2))}{(A_1+A_2+\sqrt(A_1A_2))} \)</p>
-            
-          </div>
-        </div>
-      </div>
-      
-      <h2>How to Determine Centroid Location</h2>
-      <p>The centroid of a shape represents its geometric center. For simple shapes:</p>
-      <ul>
-        <li><strong>Symmetrical shapes:</strong> Centroid is at the intersection of axes of symmetry</li>
-        <li><strong>Composite shapes:</strong> Use the weighted average of component centroids</li>
-        <li><strong>Irregular shapes:</strong> Divide into simple shapes and use \( \bar{x} = \frac{\sum A_i x_i}{\sum A_i} \), \( \bar{y} = \frac{\sum A_i y_i}{\sum A_i} \)</li>
-      </ul>
-      
-      
-      
-    
-      
-      
-        
-        
-        
-        
-      </div>
+    </div>
 
       
     </main>
