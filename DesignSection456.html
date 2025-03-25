@@ -610,7 +610,7 @@
   <p><u>SHEAR REINFORCEMENT</u></p>
   <p>Design shear strength of concrete is given by.</p>
 
-  \( \tau=\frac{0.85\sqrt(0.8f_{ck})(\sqrt(1+5\beta)-1)}{6\beta} \)
+  \( \tau_c=\frac{0.85\sqrt(0.8f_{ck})(\sqrt(1+5\beta)-1)}{6\beta} \)
    <p>The value given in Table 19 of IS 456:2000 has been derived from this equation. the Correction factor for depth shall be incorporated in the above formula. The correction factor is given bu Clause 40.2.1.</p> 
     <table>
 	<thead>
@@ -649,9 +649,33 @@
    <p> ii) If \(\tau_v>\tau_c \), shear reinforcement calculated as </p>
    <p> \( V_{us}=\frac{0.87f_yA_{sv}d}{S_v} \)</p>
    <p>In no case \( \tau_v \leq \tau_{c,max} \)</p>
-   
-
-
+   <p>The maximum shear strength is given by Table 20 of IS 456:2000.</p>
+   <table>
+	   <thead>
+		   <th> Grade of concrete</th>
+		   <th> M15</th>
+		   <th> M20</th>
+		   <th> M25</th>
+		   <th> M30</th>
+		   <th> M35</th>
+		   <th> M40 and above</th>
+	   </thead>
+	   <tr>
+		   <td>2.5</td>
+		   <td>2.8</td>
+		   <td>3.1</td>
+		   <td>3.5</td>
+		   <td>3.7</td>
+		   <td>4.0</td>
+	   </tr>
+   </table>
+   <p>Shear capacity of the section depends on concrete grade (<i>f<sub>fck</sub></i>), Area of tension reinforcement (<i>Ast</i>) and depth of section. The shear strength does not increase above M40 and the area of reinforcement increases slighly. Therefore, controlling factor for the shear capacity is depth of section.</p>
+   <p><u>MINIMUM AND MAXIMUM REINFORCEMENT</u></p>
+   <p>Flexural reinforcement shall not be less than</p>
+   <p>As Per IS 456:2000, \(As_{min}=\frac{0.85}{f_y}bd \)</p>
+   <p> As per IS 13920: 2016 (6.2.1) \(As_{min}=\frac{0.24\sqrt{f_{ck}}}{f_y}bd \)</p>
+   <p>(26.5.2.1 Minimum reinforcement): The mild steel reinforcement in either direction shall not be less than 0.15% of the total cross sectional area. However, this value can be reduced to 0.12% when high strength deformed bar are used.</p>
+   <p>Maximum reinforcement in flexure = 0.04bD</p>
 
 
 
