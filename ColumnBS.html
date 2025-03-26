@@ -703,6 +703,57 @@
 	    <p><b>CALCULATION</b></p>
 	    <p>Effective length coefficient \(beta=0.75\)</p>
 	    <p> Effective length \(L_e=\beta L=0.75*3.0=2.25m \)</p>
+	    <p>Check for long or short column, for braced column</p>
+	    \(\frac{L_e}{min(b,h)}=\frac{2.25}{0.4}=5.625<15 \)
+		<p>So, the column is short</p>
+		    <p>Ratio of effective depth to overall depth</p>
+		    \(frac{h'}{h}=\frac{362.5}{400}=0.906 \)
+		    <p>Minimum Eccentricity</p>
+		        <table id="designTable">
+        <thead>
+            <tr>
+                <th rowspan="2">Direction</th>
+                <th colspan="2">Eccentricity</th>
+                <th rowspan="2">Check for column design</th>
+            </tr>
+            <tr>
+                <th class="subheader">Geometry</th>
+                <th class="subheader">Forces</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>In width</td>
+                <td>
+                    <div class="calculation">=min(0.05b,20)</div>
+                    <div class="calculation">=min(0.05×400,20)</div>
+                    <div class="calculation">=min(20,20)</div>
+                    <div class="calculation">=20mm</div>
+                </td>
+                <td>
+                    <div class="calculation">=Mₓ/N=50/500×1000</div>
+                    <div class="calculation">=100mm</div>
+                </td>
+                <td rowspan="2" class="conclusion">
+                    Since eccentricity due to forces are greater than minimum eccentricity, 
+                    biaxial column shall be considered for the design
+                </td>
+            </tr>
+            <tr>
+                <td>In depth</td>
+                <td>
+                    <div class="calculation">=min(0.05b,20)</div>
+                    <div class="calculation">=min(0.05×400,20)</div>
+                    <div class="calculation">=min(20,20)</div>
+                    <div class="calculation">=20mm</div>
+                </td>
+                <td>
+                    <div class="calculation">=Mᵧ/N=75/500×1000</div>
+                    <div class="calculation">=150mm</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     </main>
 
     <!-- Footer -->
