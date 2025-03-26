@@ -865,7 +865,7 @@
 				    <td>1</td>
 				    <td>=350-37.5=321.5</td>
 				    <td>\(=\frac{0.0035}{350}312.5=0.0031 \)</td>
-				    <td>\(f_{sc}=361.05 N/mm^2\)</td>
+				    <td>\(=361.05\)</td>
 			    </tr>
 			    <tr>
 				    <td>2</td>
@@ -887,9 +887,114 @@
 			    </tr>
 		    </table>
      <p><i>Negative sign indicates the tension reinforcement</i></p>
+	<p><b>Calculation of compressive and tensile forces</b></p>
+	<p>Compressive force of concrete</p>
+		    \(F_{cc}=0.45f_{cu}bs\)
+	<p>Compressive/Tensile force of steel</p>
+		    \(F_{sti}=(f_{sci}-0.45f_{cu})A_{sci}\)
+	<p>CALCULATION TABLE</p>
+		    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Row no</th>
+                <th rowspan="2">Force (kN)</th>
+                <th colspan="3">Forces</th>
+            </tr>
+            <tr>
+                <th>Concrete</th>
+                <th>Compressive force</th>
+                <th>Tensile force</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>=0.45×25×400×315=1417.5</td>
+                <td>=(f<sub>sc1</sub>-0.45f<sub>cu</sub>) A<sub>sc1</sub><br>=(361.05-0.45×25)×1963.50<br>=686.83</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td>=(361.05-0.45×25)×981.75<br>=343.41</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td>=(191.66-0.45×25)×981.75<br>=177.12</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>=(f<sub>sc1</sub>-0.45f<sub>cu</sub>) A<sub>sc1</sub><br>=(25-0.45*25)×1963.50<br>=27.00</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Total force = 2597.86 kN</strong></td>
+            </tr>
+        </tbody>
+    </table>
+	<p>Bending moments</p>
+		    \(M_c=F_cc(\frac{h}{2}-\frac{s}{2})\)
+	\(M_i=F_{sci}(\frac{h}{2}-d'-(i-1)S_b)\)
+		     <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Row no</th>
+                <th rowspan="2">Force (kN)</th>
+                <th colspan="3">Forces</th>
+            </tr>
+            <tr>
+                <th>Concrete</th>
+                <th>Compressive force</th>
+                <th>Tensile force</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>=0.45×25×400×315=1417.5</td>
+                <td>=(f<sub>sc1</sub>-0.45f<sub>cu</sub>) A<sub>sc1</sub><br>=(361.05-0.45×25)×1963.50<br>=686.83</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td>=(361.05-0.45×25)×981.75<br>=343.41</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td>=(191.66-0.45×25)×981.75<br>=177.12</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td></td>
+                <td></td>
+                <td>=(f<sub>sc1</sub>-0.45f<sub>cu</sub>) A<sub>sc1</sub><br>=(25-0.45*25)×1963.50<br>=27.00</td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>Total force = 2597.86 kN</strong></td>
+            </tr>
+        </tbody>
+    </table>
 
-		
-		    
+		    <p>Similar process shall be carried out different positions of neutral axis. In case of neutral axis lies outside of the sections, the summation of forces and moments are carried out by following formula</p>
+	\(M_1=F_{sc1}(\frac{h}{2}-d')\)
+	\(M_i=F_{sci}(\frac{h}{2}-d'-(i-1)S_b)\)
+		    <p> And so on....</p>
+		    \(M_c=0\)
+		    <p>Total moment</p>
+		    \(M=\sum_{i=1}^n M_i \)
+		    <p>A similar process shall be followed in another axis as well. After doing detailed calculations, following interaction diagram has been achieved.</p>
+		    <img src="IDx.png" alt="curve" class="shape-image" style="width: 600px; height: auto;">
+		<p><center><b>Fig. Interaction diagram at x-axis</b></center></p>
+		    <img src="IDy.png" alt="curve" class="shape-image" style="width: 600px; height: auto;">
+		<p><center><b>Fig. Interaction diagram at y-axis</b></center></p>
     </main>
 
     <!-- Footer -->
