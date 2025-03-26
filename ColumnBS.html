@@ -847,14 +847,46 @@
 		    <p>For example \(x=0.35m\)</p>
 		    \(s=0.9x=0.9*0.35=0.315m\)
 		    <p>Strain:</p>
-		    \(\varepsilon=\frac{0.0035}{x}y=\frac{0.0035}{0.315}y\)
+		    \(\varepsilon=\frac{0.0035}{x}y=\frac{0.0035}{0.35}y\)
 		    <p>Stress:</p>
 		    <p>If \(\varepsilon\leq\frac{0.87f_y}{E_s}\) then</p>
 		    \(f_{sc}=E_s\varepsilon_{sc}\)
 		    <p>Else</p>
 		    \(f_{sc}=0.87f_y\)
-	
-
+	<p>Calculation of Strain and stress at each rows of the rebar</p>
+		    <table>
+			    <thead>
+				    <th>Row no.</th>
+				    <th>Distance of NA to rebar (y) (mm)</th>
+				    <th>Strain</th>
+				    <th>Stress(N/mm<sup>2</sup></th>
+			    </thead>
+			    <tr>
+				    <td>1</td>
+				    <td>=350-37.5=321.5</td>
+				    <td>\(=\frac{0.0035}{350}312.5=0.0031 \)</td>
+				    <td>\(f_{sc}=361.05 N/mm^2\)</td>
+			    </tr>
+			    <tr>
+				    <td>2</td>
+				    <td>=204.17</td>
+				    <td>=0.002</td>
+				    <td>=361.05</td>
+			    </tr>
+			    <tr>
+				    <td>3</td>
+				    <td>=95.83</td>
+				    <td>=0.00026</td>
+				    <td>=191.66</td>
+			    </tr>
+			    <tr>
+				    <td>4</td>
+				    <td>=-12.5</td>
+				    <td>=-0.00012</td>
+				    <td>=-25</td>
+			    </tr>
+		    </table>
+     <p><i>Negative sign indicates the tension reinforcement</i></p>
 
 		
 		    
