@@ -529,12 +529,38 @@
 	<p><b>Computation of Stresses</b></p>
 	<p>At compression rebar</p>
 	    \(f_{sc1}=\varepsilon_{sc1}E_s\)
-	<p>If \(f_{sc1}>0.87f_y\), then \(f_{sc1}=0.87f_y\) Else \(f_{sc1}=\varepsilon_{sc1}E_s\)</p>
+	<p>If \(f_{sc1}\gel 0.87f_y\), then \(f_{sc1}=0.87f_y\) Else \(f_{sc1}=\varepsilon_{sc1}E_s\)</p>
+	  <p>And</p>  
+		 \(f_{sc2}=\varepsilon_{sc2}E_s\)
+	<p>If \(f_{sc2}\gel 0.87f_y\), then \(f_{sc2}=0.87f_y\) Else \(f_{sc2}=\varepsilon_{sc2}E_s\)</p>
+	    <p>And so on........depending upon the number of rows of rebar.</p>
+	<p>At tension rebar</p>
+	    \(f_{st}=\varepsilon_{st}E_s\)
+	    <p>If \(f_{st}\gel0.87f_y \) then \(f_{st}=0.87f_y\) Else \(f_{st}=\varepsilon_{st}E_s\)</p>
 
-
-
-
-
+	    <p><b>Computation of forces</b></p>
+	    <p>Of Concrete:</p>
+	    \(F_{cc}=0.45f_{cu} * 0.9x *b \) <p>and therefore</p> \(F_{cc}=0.405f_{cu}bx \)
+	    <p>Of Compression rebar</p>
+	    \(F_{sc1}=A_{sc1}(f_{sc1}-0.45f_{cu})\)
+	    <p>And</p>
+	    \(F_{sc2}=A_{sc2}(f_{sc2}-0.45f_{cu})\)
+	    <p>And so on……depending on the number of rows of rebar</p>
+	    <p>Of tension rebars</p>
+	    \(F_{st}=A_{st}(f_{st}-0.45f_{cu})\)
+	    <p>Resultant forces in concrete</p>
+	    \(N=F_{sc1}+F_{sc2}+F_{cc}-F_{st}\)
+	    <p>Calculation of moment capacities (Taking moment at center of the section)</p>
+	    <p>Of Compression rebar</p>
+	    \(M_1=F_{sc1}(\frac{h}{2}-d')\)
+	    <p>And</p>
+		\(M_2=F_{sc2}(\frac{h}{2}-d'-S_b)\)
+	    <p>Of Concrete</p>
+		\(M_c=F_cc(\frac{h}{2}-\frac{s}{2})\)
+	    <p>Where \(s=0.9x\)</p>
+	    <p>Of Tension rebar</p>
+	    	\(M_s=F_{st}(h'-\frac{h}{2})\)
+	    	\(M=M_1+M_2+M_c+M_s \)
 	    
 	    
     </main>
