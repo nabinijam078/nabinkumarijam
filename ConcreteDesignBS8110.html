@@ -461,29 +461,30 @@
       <p><u>STRESS-STRAIN CURVE OF CONCRETE</u></p>
      <p>The stress-strain relationship of concrete shall be parabolic and can be represented by following curve.</p>
      <img src="Stress-straincurveBS.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
-     <p><center>Stress-Strain Curve of Concrete</center></p>
+     <p><center><b>Fig. Stress-Strain Relation for Concrete</b></center></p>
      
      <p><u>STRESS-STRAIN CURVE OF STEEL</u></p>    
      <p>Stress-strain curve is linear as given below. The relation is shown as given below.</p>
      <img src="SSCurveFeBS.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
-     <p><center>Fig.Stress-Strain Curve of Steel.</center></p>   
+     <p><center><b>Fig.Stress-Strain Relation for Steel.</b></center></p>   
        
     <p><u><b>STRESS AND STRAIN DIAGRAM OF THE SECTION</b></u></p>
     <p>The relation is given as follows.</p>
     <img src="Stress diagramBS.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
-    <p><center>Fig. Stress-Strain diagram of the section.</center></p> 
+    <p><center><b>Fig. Stress-Strain diagram of the section.</b></center></p> 
     <p> Constant \( K=0.156 \) where redistribution does not exceed 10% (this implies a limitation of the neutral axis depth to \(\frac{d}{2}\)); Otherwise \(K'=0.402(\beta-0.4)-0.18(\beta-0.4)^2 \) where redistribution exceeds 10% </p> 
-    <p>If <i>K>K'</i>, the section is doubly reinforced, otherwise singly reinforced. Where the ratio \(\beta=\frac{moment at the section after distribution}{moment at the section after redistribution} \) </p> 
+    <p>If \(K>K'\), the section is doubly reinforced, otherwise singly reinforced. Where the ratio  </p> 
+	\(\beta=\frac{moment at the section after distribution}{moment at the section after redistribution} \)
     <p><u><b>1. Design of singly reinforced section</b></u></p>
-    <p>If <i>K>K'</i>, the section is singly reinforced section and designed as follows</p>
+    <p>If \(K>K'\), the section is singly reinforced section and designed as follows</p>
     \( K=\frac{M}{f_{cu}bd^2} \)
-    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K}{0.9}})d \) but <i>Z</i> should not be greater than <i>0.95d</i></p>
+    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K}{0.9}})d \) but \(Z\) should not be greater than <i>0.95d</i></p>
     <p>Depth of neutral axis \(x=\frac{z-d}{0.45} \)</p>
     <p>Area of reinforcement is now given by \(Ast=\frac{M}{f_{cu}K'bd^2} \)</p>
     
     <p><u><b>2. Design of Doubly reinforced section</b></u></p>
-    <p>If <i>K'>K </i>, the section is doubly reinforced section and designed as follows</p>
-    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K'}{0.9}})d \) but <i>Z</i> should not be greater than <i>0.776887d</i></p>
+    <p>If \(K'>K\), the section is doubly reinforced section and designed as follows</p>
+    <p>Calulation of moment arm \( z=(0.5+\sqrt{0.25-\frac{K'}{0.9}})d \) but \(Z\) should not be greater than <i>0.776887d</i></p>
     <p>Depth of neutral axis \(x=\frac{z-d}{0.45} \)</p>
     <p>Now, area of reinforcement is given by, \(A'_s=\frac{(K-K')f_{cu}bd^2}{0.87f_y(d-d')} \)</p>
     <p>Total area of tension reinforcement is given by;</p>
@@ -503,18 +504,18 @@
     \( k_2=\frac{400}{d} \leq 0.67 \) <p> For Plain concrete and \( k_2 > 1 \) for reinforced concrete. </p> 
     \( k_3=\frac{f_{cu}}{25} \) <p> and </p>
     \( k_3 \geq 1\)
-    <p><i>f<sub>cu</sub></i> should not be greater than 40 N/mm<sup>2</sup></p>
-    <p><i>V<sub>c</sub></i> is given in <b>Table 3.8 of BS8110.1.</b></p>
+    <p>\( f_{cu}\) should not be greater than 40 N/mm<sup>2</sup></p>
+    <p>\( v_c\) is given in <b>Table 3.8 of BS8110.1.</b></p>
     <p><u>Form and area of shear reinforcement in beam</u></p>
     <p>1. If \(v<0.5v_c \), No shear reinforcement required.</p>
-    <p>2. If <i><b> 0.5v<sub>c</sub> and v<sub>c</sub>+0.5</b> > v </i>, then Minimum links for whole length shall be provided.</p>
+    <p>2. If \( v_c+0.4 \leq v \leq 0.8 \sqrt(f_{cu}) or 5N/mm^2 \), then Minimum links for whole length shall be provided.</p>
     \( A_{gv}\geq \frac{0.4b_vS_v}{0.87f_{yv}} \)
     <p>3. \(v\leq(v_c+0.4)\) and \(v\leq 0.8\sqrt(f_{cu})\) or 5 N/mm<sup>2</sup>.</p>
     \( A_{gv} \geq \frac{b_vS_v(v-v_c)}{0.87f_{yv}}\)
     <p>In case of shear reinforcement in slab \(0.5v_c\) shall be replaced by \(v_c\). Generally, it is not recommended to provide shear reinforcement. Thickness shall be increased if \(v>v_c\).</p>
    
    <p><u>MINIMUM AND MAXIMUM REINFORCEMENT</u></p>
-   <p>As per Table 3.25-Minimum percentage of reinforcement as follows;</p>
+   <p>As per <b>Table 3.25-</b> Minimum percentage of reinforcement as follows;</p>
    <p>Section subjected to pure tension </p>
    <p>1. Tension reinforcement</p> 
 	    \(p_{min} =0.80% \) for \(f_y=250 N/mm^2 \)
