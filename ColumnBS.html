@@ -709,7 +709,8 @@
 		    <p>Ratio of effective depth to overall depth</p>
 		    \(frac{h'}{h}=\frac{362.5}{400}=0.906 \)
 		    <p>Minimum Eccentricity</p>
-		        <table id="designTable">
+		    
+	<table>
         <thead>
             <tr>
                 <th rowspan="2">Direction</th>
@@ -754,6 +755,50 @@
             </tr>
         </tbody>
     </table>
+	<p>Check for dominancy of the moments in the axes.</p>
+ 	<p><u>In width</u></p>
+	<p>Moment per width</p>
+		    \(\frac{M_x}{b'}=\frac{50}{362.5}*1000=137.93kN\)
+	<p><u>In depth</u> </p>
+	<p>Moment per width</p>
+			 \(\frac{M_y}{h'}=\frac{75}{362.5}*1000=206.897kN\)
+	<p>Check for dominancy</p>	
+	<p> Since \(\frac{M_y}{h'}>frac{M_x}{b'}\) , \(M_y\) dominance over \(M_x\).</p>
+		    
+	\(\frac{N}{f_{cu}bh}=\frac{500*1000}{25*400*400}=0.125\)
+	<p>Multiplying factor \(\beta\) shall be calculated using following table</p>
+		    <table>
+			    <thead>
+				    <th>\(\frac{N}{f_{cu}bh}\)</th>
+				    <th>0</th>
+				    <th>0.1</th>
+				    <th>0.2</th>
+				    <th>0.3</th>
+				    <th>0.4</th>
+				    <th>0.5</th>
+				    <th>0.6</th>
+			    </thead>
+			    <tr>
+				    <td>\(\beta\)</td>
+				    <td>1</td>
+				    <td>0.88</td>
+				    <td>0.77</td>
+				    <td>0.65</td>
+				    <td>0.53</td>
+				    <td>0.42</td>
+				    <td>0.30</td>
+			    </tr>
+		    </table>
+		<p>So, \(\beta = 0.853\)</p>
+		<p>Design moment</p>
+		    <p>\(Since,\frac{M_y}{b'}>\frac{M_x}{h'}\), then \(M'_y=M_y+\beta\frac{b'}{h'}M_x \)</p>
+		    \(M'_y=75+0.853*\frac{362.5}{362.5}*75=117.625kNm \)
+		<p>Preparation of Interaction diagram</p>
+
+
+
+
+		    
     </main>
 
     <!-- Footer -->
