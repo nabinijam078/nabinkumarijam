@@ -529,14 +529,14 @@
 	<p><b>Computation of Stresses</b></p>
 	<p>At compression rebar</p>
 	    \(f_{sc1}=\varepsilon_{sc1}E_s\)
-	<p>If \(f_{sc1}\gel 0.87f_y\), then \(f_{sc1}=0.87f_y\) Else \(f_{sc1}=\varepsilon_{sc1}E_s\)</p>
+	<p>If \(f_{sc1}\geq 0.87f_y\), then \(f_{sc1}=0.87f_y\) Else \(f_{sc1}=\varepsilon_{sc1}E_s\)</p>
 	  <p>And</p>  
 		 \(f_{sc2}=\varepsilon_{sc2}E_s\)
-	<p>If \(f_{sc2}\gel 0.87f_y\), then \(f_{sc2}=0.87f_y\) Else \(f_{sc2}=\varepsilon_{sc2}E_s\)</p>
+	<p>If \(f_{sc2}\geq 0.87f_y\), then \(f_{sc2}=0.87f_y\) Else \(f_{sc2}=\varepsilon_{sc2}E_s\)</p>
 	    <p>And so on........depending upon the number of rows of rebar.</p>
 	<p>At tension rebar</p>
 	    \(f_{st}=\varepsilon_{st}E_s\)
-	    <p>If \(f_{st}\gel0.87f_y \) then \(f_{st}=0.87f_y\) Else \(f_{st}=\varepsilon_{st}E_s\)</p>
+	    <p>If \(f_{st}\geq 0.87f_y \) then \(f_{st}=0.87f_y\) Else \(f_{st}=\varepsilon_{st}E_s\)</p>
 
 	    <p><b>Computation of forces</b></p>
 	    <p>Of Concrete:</p>
@@ -556,11 +556,14 @@
 	    <p>And</p>
 		\(M_2=F_{sc2}(\frac{h}{2}-d'-S_b)\)
 	    <p>Of Concrete</p>
-		\(M_c=F_cc(\frac{h}{2}-\frac{s}{2})\)
+		\(M_c=F_{cc}(\frac{h}{2}-\frac{S}{2})\)
 	    <p>Where \(s=0.9x\)</p>
 	    <p>Of Tension rebar</p>
 	    	\(M_s=F_{st}(h'-\frac{h}{2})\)
+	    	<br>
 	    	\(M=M_1+M_2+M_c+M_s \)
+	    <p> <b> ii) When neutral axis lies outside the section</b></p>
+	    <img src="BSOutsideNA.png" alt="curve" class="shape-image" style="width: 800px; height: auto;">
 	    
 	    
     </main>
