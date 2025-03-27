@@ -521,11 +521,15 @@
 	    <p>Centroid x</p>
 	    \(\bar{x}=\frac{b_o}{2}\)
 
-	    <p>Centroid x</p>
+	    <p>Centroid y</p>
 	    \(y_1=\frac{H}{3}\frac{2T_i+b}{T_i+b}+t_s\)
+	    <br>
 	    \(A_1=\frac{1}{2}(b+T_i)H\)
+	    <br>
 	    \(y_2=\frac{H_T}{3}\frac{2T_o+b_o}{T_o+b_o}\)
+	    <br>
 	    \(A_2=\frac{1}{2}(b_o+T_o)H_T\)
+	    <br>
 	    \(\bar{y}=\frac{A_1y_1-A_2y_2}{A_1-A_2}\)
 	    
 	    <p>Silt area, \(A_s\)</p>
@@ -601,12 +605,66 @@
 			    <td>\(M_7=F_7×x_7\)</td>
 		    </tr>
 		    <tr>
-			    <td>Seismic load</td>
+			    <td>8. Seismic load</td>
 			    <td>\(F_8=A_hΥ_cA\)</td>
 			    <td>\(P_8=F_8\)</td>
 			    <td>\(x_8=\bar{y}\)</td>
+			    <td>-</td>
 			    <td>\(M_8=F_8×x_8\)</td>
-			    <td>\(M_8=F_8×x_8\)</td>
+		    </tr>
+	    </table>
+	    <p><u>STABILITY ANALYSIS</u></p>
+	    <p> Factor of safety against sliding</p>
+	    \(FS_s=(C_fL+Ntan(\phi))/T\)
+	    <p>Factor of safety against overturning</p>
+	    \(F_o=\frac{RM}{RO}\)
+	    <p>Eccentricity</p>
+	    \(e=\frac{L}{2}-\frac{M}{V}\)
+	    <p>Minimum bearing pressure</p>
+	    \(\sigma_{min}=\frac{V}{L}(1-\frac{6e}{L})\)
+	    <p>Minimum bearing pressure</p>
+	    \(\sigma_{max}=\frac{V}{L}(1+\frac{6e}{L})\)
+	    <table>
+		    <thead>
+			    <th>Load combination</th>
+			    <th>Horizontal force (kN)</th>
+			    <th>Vertical force (kN)</th>
+			    <th>Total resisting moment (kNm)</th>
+			    <th>Total overturning moment (kNm)</th>
+			    <th>Resultant moment (kNm)</th>
+			    
+		    </thead>
+		    <tr>
+			    <td>1.Without seismic load_Empty case</td>
+			    <td>\(H_1=P_6-P6+P_7-P_7\)</td>
+			    <td>\(V_1=P1\)</td>
+			    <td>\(RM_1=M_1+M_7\)</td>
+			    <td>\(RO_1=M_7\)</td>
+			    <td>\(M_2=RM_1-RO_1\)</td>
+		    </tr>
+		    <tr>
+			    <td>2.Without seismic load_Full case</td>
+			    <td>\(H_2=P_4-P_4+P_5-P_5+P_6-P6+P_7-P_7\)</td>
+			    <td>\(V_2=P_1+P_2+P_3\)</td>
+			    <td>\(RM_2=M_1+M_2+M_3+M_4+M_5+M_6+M_7\)</td>
+			    <td>\(RO_2=M_4+M_5+M_6+M_7\)</td>
+			    <td>\(M_2=RM_2-RO_2\)</td>
+		    </tr>
+		     <tr>
+			    <td>3.With seismic load_Empty case</td>
+			    <td>\(H_3=P_6-P6+P_7-P_7+P_8\)</td>
+			    <td>\(V_3=P1\)</td>
+			    <td>\(RM_3=M_1+M_7\)</td>
+			    <td>\(RO_3=M_7+M_8\)</td>
+			    <td>\(M_3=RM_3-RO_3\)</td>
+		    </tr>
+		    <tr>
+			    <td>2.With seismic load_Full case</td>
+			    <td>\(H_4=P_4-P_4+P_5-P_5+P_6-P6+P_7-P_7+P_8\)</td>
+			    <td>\(V_4=P_1+P_2+P_3\)</td>
+			    <td>\(RM_4=M_1+M_2+M_3+M_4+M_5+M_6+M_7\)</td>
+			    <td>\(RO_4=M_4+M_5+M_6+M_7+M_8\)</td>
+			    <td>\(M_4=RM_2-RO_2\)</td>
 		    </tr>
 	    </table>
     </main>
