@@ -390,6 +390,8 @@
     <main class="main-content">
       <h3><center><u>STRUCTURAL DESIGN OF OPEN CHANNEL</u></center></h3>
       <h3>INPUTS</h3>
+	    <img src="Openchannel.png" alt="curve" class="shape-image" style="width: 300px; height: auto;">
+     <p><center>Trapezoidal section of channel</center></p>
 	    <p><u>GEOMETRY</u></p>
 	    <table>
 		    <tr>
@@ -615,15 +617,17 @@
 	    </table>
 	    <p><u>STABILITY ANALYSIS</u></p>
 	    <p> Factor of safety against sliding</p>
-	    \(FS_s=(C_fL+Ntan(\phi))/T\)
+	    \(FS_s=\frac{(C_fL+Ntan(\phi))}{T}\)
 	    <p>Factor of safety against overturning</p>
 	    \(F_o=\frac{RM}{RO}\)
 	    <p>Eccentricity</p>
 	    \(e=\frac{L}{2}-\frac{M}{V}\)
 	    <p>Minimum bearing pressure</p>
 	    \(\sigma_{min}=\frac{V}{L}(1-\frac{6e}{L})\)
-	    <p>Minimum bearing pressure</p>
+	    <p>Maximum bearing pressure</p>
 	    \(\sigma_{max}=\frac{V}{L}(1+\frac{6e}{L})\)
+	    <br>
+	    <p><u><center>STABILITY ANALYSIS OF OPEN CANAL</center></u></p>
 	    <table>
 		    <thead>
 			    <th>Load combination</th>
@@ -636,7 +640,7 @@
 		    </thead>
 		    <tr>
 			    <td>1.Without seismic load_Empty case</td>
-			    <td>\(H_1=P_6-P6+P_7-P_7\)</td>
+			    <td>\(H_1=P_6-P_6+P_7-P_7\)</td>
 			    <td>\(V_1=P1\)</td>
 			    <td>\(RM_1=M_1+M_7\)</td>
 			    <td>\(RO_1=M_7\)</td>
@@ -653,13 +657,13 @@
 		     <tr>
 			    <td>3.With seismic load_Empty case</td>
 			    <td>\(H_3=P_6-P6+P_7-P_7+P_8\)</td>
-			    <td>\(V_3=P1\)</td>
+			    <td>\(V_3=P_1\)</td>
 			    <td>\(RM_3=M_1+M_7\)</td>
 			    <td>\(RO_3=M_7+M_8\)</td>
 			    <td>\(M_3=RM_3-RO_3\)</td>
 		    </tr>
 		    <tr>
-			    <td>2.With seismic load_Full case</td>
+			    <td>4.With seismic load_Full case</td>
 			    <td>\(H_4=P_4-P_4+P_5-P_5+P_6-P6+P_7-P_7+P_8\)</td>
 			    <td>\(V_4=P_1+P_2+P_3\)</td>
 			    <td>\(RM_4=M_1+M_2+M_3+M_4+M_5+M_6+M_7\)</td>
@@ -667,6 +671,16 @@
 			    <td>\(M_4=RM_2-RO_2\)</td>
 		    </tr>
 	    </table>
+	    <p><u>IN CASE OF SATURATED LOAD, UPLIFT LOAD SHALL BE INCLUDED AND CAN BE CALCULATED AS GIVEN BELOW<u/></p>
+		<p>Depth of water, \(h_{wt}\)</p>
+		    \(h_{wt}=w_wh_WT\)
+		<p>Where'\(h_{WT}\) = Ground water table depth during saturated condition</p>
+		    
+	    <p>At walls</p>
+		    <p>Width of wall where uplift acts</p>
+		    \(b_u=S_sh_{wt}\)
+		    
+		    
     </main>
 
     <!-- Footer -->
