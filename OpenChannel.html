@@ -83,7 +83,7 @@
       }
       
       table {
-        width: 50%;
+        width: 70%;
         margin: 0 auto 20px;
         border-collapse: collapse;
         border: 2px solid #000;
@@ -458,6 +458,11 @@
       <p><u>OTHERS</u></p>
 	    <table>
 		    <tr>
+			    <td>Flow depth</td>
+			     <td>\(h_w\)</td>
+			    <td>\(m\)</td>
+		    </tr>
+		    <tr>
 			    <td>Density of concrete</td>
 			     <td>\(Υ_{c}\)</td>
 			    <td>\(kN/m^3\)</td>
@@ -493,13 +498,16 @@
 	<P> CALCULATION OF DIMENSION OF THE CHANNEL</P>
 	    <p>Total height of channel, \(H_T\)</p>
 	    \(H_T=t_s+H\)
+	    <p> Flow top width, \(T_w\) </p>
+	    \(T_w=2h_wS_s+b\)
 	    <p>Inner top width, \(T_i\)</p>
 	    \(T_i=b+2S_sH\)
 	    <p>Outer top width, \(T_o\)</p>
 	    \(T_o=T_i+2H_TS_s\)
 	 <p>Bottom width of slab, \(b_o\) </p>   
 	    \(b_o=2t_stan(\theta/2)+b\)
-	
+	<p>Flow area, \(A_f\)</p>
+	    \(A_f=\frac{1}{2}h_w(b+T_w)\)
 	<p>Area of channel, \(A\)</p>
 	    \(A=\frac{1}{2}(b_o+T_o)H_T-\frac{1}{2}(b+T_i)H\)
 	<p><u>LOAD CALCULATION</u></p>
@@ -515,8 +523,25 @@
 		    <tr>
 			    <td>1. Self-weight \(F_1\)</td>
 			    <td>\(=Υ_{c}A\)</td>
+			    <td>\(F_1\)</td>
 			    <td>\(x_1=\frac{b_o}{2}\)</td>
 			    <td>\(M_1=F_1×x_1\)</td>
+			    <td>-</td>
+		    </tr>
+		    <tr>
+			    <td>2. Weight of water \(F_2\)</td>
+			    <td>\(F_2=Υ_{w}A_f\)</td>
+			    <td>\(F_2\)</td>
+			    <td>\(x_2=\frac{b_o}{2}\)</td>
+			    <td>\(M_2=F_2×x_2\)</td>
+			    <td>-</td>
+		    </tr>
+		    <tr>
+			    <td>3. Hydrostatic force both side \(F_3\) </td>
+			    <td>\(F_3=Υ_{w}h_w\)</td>
+			    <td>\(P_3=\frac{1}{2}F_3h_w\)</td>
+			    <td>\(x_3=\frac{h_w}{3}\)</td>
+			    <td>\(M_3=F_3×x_3\)</td>
 			    <td>-</td>
 		    </tr>
 	    </table>
