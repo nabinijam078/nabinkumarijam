@@ -513,10 +513,18 @@
 	    \(T_o=T_i+2H_TS_s\)
 	 <p>Bottom width of slab, \(b_o\) </p>   
 	    \(b_o=2t_stan(\theta/2)+b\)
+
+	    <p>CENTROID OF THE SECTION</p>
+             <p>Area of channel, \(A\)</p>
+	    \(A=\frac{1}{2}(b_o+T_o)H_T-\frac{1}{2}(b+T_i)H\)
+
+	    \(\bar_x=\frac{b_o}{2}\)
+	    
+	    <p>Silt area, \(A_s\)</p>
+	    \(A_s=\frac{1}{2}h_w(b+T_s)\)
 	<p>Flow area, \(A_f\)</p>
 	    \(A_f=\frac{1}{2}h_w(b+T_w)\)
-	<p>Area of channel, \(A\)</p>
-	    \(A=\frac{1}{2}(b_o+T_o)H_T-\frac{1}{2}(b+T_i)H\)
+	
 	<p><u>LOAD CALCULATION</u></p>
 	    <p><u>1. NORMAL CONDITION</u></p>
 	    <table>
@@ -546,7 +554,7 @@
 		    </tr>
 		    <tr>
 			    <td>3. Weight of silt </td>
-			    <td>\(F_3=Υ_{w}A_f\)</td>
+			    <td>\(F_3=Υ_{w}A_s\)</td>
 			    <td>\(P_3=F_3\)</td>
 			    <td>\(x_3=\frac{b_o}{2}\)</td>
 			    <td>\(M_3=F_3×x_3\)</td>
@@ -583,6 +591,11 @@
 			    <td>\(x_7=\frac{h_wt}{3}\)</td>
 			    <td>\(M_7=F_7×x_7\)</td>
 			    <td>\(M_7=F_5×x_7\)</td>
+		    </tr>
+		    <tr>
+			    <td>Seismic load</td>
+			    <td>\(F_8=A_hΥ_cA\)</td>
+			    <td>P_8=F_8</td>
 		    </tr>
 	    </table>
     </main>
