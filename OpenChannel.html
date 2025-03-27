@@ -390,7 +390,7 @@
     <main class="main-content">
       <h3><center><u>STRUCTURAL DESIGN OF OPEN CHANNEL</u></center></h3>
       <h3>INPUTS</h3>
-	    <p><b>GEOMETRY</b></p>
+	    <p><u>GEOMETRY</u></p>
 	    <table>
 		    <tr>
 			    <td>Wall thickness</td>
@@ -417,7 +417,7 @@
 			    <td>\(S_s\)</td>
 		    </tr>
 	    </table>
-       <p>GEOTECHNICAL DATA</p>
+       <p><u>GEOTECHNICAL DATA</u></p>
 	    <table>
 		    <tr>
 			    <td>Angle of internal friction of foundation material</td>
@@ -490,10 +490,18 @@
 	    \(\theta=\frac{180}{\pi}\cot(S_s)\)
     
 	<p> If \(\theta\) is greater than \(\phi_b\) then no soil pressure shall act on the structure otherwise the earth pressure shall be considered.</p>    
-	<P> CALCULATION OF OUTER DIMENSION OF THE CHANNEL</P>
-	 <p>Bottom width of slab</p>   
+	<P> CALCULATION OF DIMENSION OF THE CHANNEL</P>
+	    <p>Total height of channel, \(H_T\)</p>
+	    \(H_T=t_s+H\)
+	    <p>Inner top width, \(T_i\)</p>
+	    \(T_i=b+2S_sH\)
+	    <p>Outer top width, \(T_o\)</p>
+	    \(T_o=T_i+2H_TS_s\)
+	 <p>Bottom width of slab, \(b_o\) </p>   
 	    \(b_o=2t_stan(\theta/2)+b\)
-	    
+	
+	<p>Area of channel, \(A\)</p>
+	    \(A=\frac{1}{2}(b_o+T_o)H_T-\frac{1}{2}(b+H)\)
     </main>
 
     <!-- Footer -->
