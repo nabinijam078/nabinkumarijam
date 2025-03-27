@@ -388,10 +388,10 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <h3><center><u>STRUCTURAL DESIGN OF OPEN CHANNEL</u></center></h3>
+      <h2><center><u>STRUCTURAL DESIGN OF OPEN CHANNEL</u></center></h2>
       <h3>INPUTS</h3>
-	   <div style="text-align: center;">
-  <img src="Openchannel.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+<div style="text-align: center;">
+  <img src="Openchannel.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
 </div>
      <p><center>Trapezoidal section of channel</center></p>
 	    <p><u>GEOMETRY</u></p>
@@ -602,7 +602,7 @@
 		    </tr>
 		     <tr>
 			    <td>7. Hydrostatic pressure at both sides (Water table)  </td>
-			    <td>\(F_7=k_rΥ_{d}h_wt (=0)\)</td>
+			    <td>\(F_7=k_rΥ_{w}h_wt (=0)\)</td>
 			    <td>\(P_7=\frac{1}{2}F_7h_wt\)</td>
 			    <td>\(x_7=\frac{h_wt}{3}\)</td>
 			    <td>\(M_7=F_7×x_7\)</td>
@@ -674,15 +674,26 @@
 		    </tr>
 	    </table>
 	    <p><u>IN CASE OF SATURATED LOAD, UPLIFT LOAD SHALL BE INCLUDED AND CAN BE CALCULATED AS GIVEN BELOW<u/></p>
+		    
 		<p>Depth of water, \(h_{wt}\)</p>
-		    \(h_{wt}=w_wh_WT\)
-		<p>Where'\(h_{WT}\) = Ground water table depth during saturated condition</p>
+		    \(h_{wt}=w_wh_{WT}\)
+		    
+		<p>Where, \(h_{WT}\) = Ground water table depth during saturated condition</p>
 		    
 	    <p>At walls</p>
 		    <p>Width of wall where uplift acts</p>
 		    \(b_u=S_sh_{wt}\)
-		    
-		    
+
+	    <p>Uplift force at walls</p>
+		    \(F_{9w}=Υ_{w}h_{wt}b_u\)
+		    <p>Centroid at one side</p>
+		    \(x_{9w1}=\frac{b_u}{3}\)
+		    <p>Centroid at other side</p>
+		    \(x_{9w1}=\frac{b_u}{3}+b_o\)
+	  <p>Uplift at base slab</p>
+		    \(F_{9s}=Υ_{w}h_{wt}b_o\)
+	 <p>Centroid</p>
+		    \(x_{9s}=\frac{b_o}{2}\)
     </main>
 
     <!-- Footer -->
