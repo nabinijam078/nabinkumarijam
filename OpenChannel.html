@@ -511,6 +511,7 @@
 	<p>Area of channel, \(A\)</p>
 	    \(A=\frac{1}{2}(b_o+T_o)H_T-\frac{1}{2}(b+T_i)H\)
 	<p><u>LOAD CALCULATION</u></p>
+	    <p><u>1. NORMAL CONDITION</u></p>
 	    <table>
 		    <thead>
 			    <th> Loads</th>
@@ -521,28 +522,44 @@
 			    <th>Overturning moment(kNm)</th>
 		    </thead>
 		    <tr>
-			    <td>1. Self-weight \(F_1\)</td>
+			    <td>1. Self-weight </td>
 			    <td>\(=Υ_{c}A\)</td>
-			    <td>\(F_1\)</td>
+			    <td>\(P_1=F_1\)</td>
 			    <td>\(x_1=\frac{b_o}{2}\)</td>
 			    <td>\(M_1=F_1×x_1\)</td>
 			    <td>-</td>
 		    </tr>
 		    <tr>
-			    <td>2. Weight of water \(F_2\)</td>
+			    <td>2. Weight of water </td>
 			    <td>\(F_2=Υ_{w}A_f\)</td>
-			    <td>\(F_2\)</td>
+			    <td>\(P_2=F_2\)</td>
 			    <td>\(x_2=\frac{b_o}{2}\)</td>
 			    <td>\(M_2=F_2×x_2\)</td>
 			    <td>-</td>
 		    </tr>
 		    <tr>
-			    <td>3. Hydrostatic force both side \(F_3\) </td>
+			    <td>3. Hydrostatic force at both sides  </td>
 			    <td>\(F_3=Υ_{w}h_w\)</td>
 			    <td>\(P_3=\frac{1}{2}F_3h_w\)</td>
 			    <td>\(x_3=\frac{h_w}{3}\)</td>
 			    <td>\(M_3=F_3×x_3\)</td>
-			    <td>-</td>
+			    <td>\(M_3=F_3×x_3\)</td>
+		    </tr>
+		    <tr>
+			    <td>4. Earth pressure at both sides  </td>
+			    <td>\(F_4=k_rΥ_{d}h_s\)</td>
+			    <td>\(P_4=\frac{1}{2}F_4h_s\)</td>
+			    <td>\(x_4=\frac{h_s}{3}\)</td>
+			    <td>\(M_4=F_4×x_4\)</td>
+			    <td>\(M_4=F_4×x_4\)</td>
+		    </tr>
+		     <tr>
+			    <td>6. Hydrostatic pressure at both sides (Water table)  </td>
+			    <td>\(F_5=k_rΥ_{d}h_wt (=0)\)</td>
+			    <td>\(P_5=\frac{1}{2}F_5h_wt\)</td>
+			    <td>\(x_5=\frac{h_wt}{3}\)</td>
+			    <td>\(M_5=F_5×x_5\)</td>
+			    <td>\(M_5=F_5×x_5\)</td>
 		    </tr>
 	    </table>
     </main>
