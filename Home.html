@@ -214,6 +214,7 @@
         text-align: center;
         padding: 20px;
         box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        position: relative; /* Needed for absolute positioning of counter */
       }
 
       .social-links {
@@ -246,6 +247,22 @@
         color: #333;
       }
 
+      /* Visitor Counter */
+      .visitor-counter {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        background-color: rgba(224, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .visitor-counter p {
+        margin: 0;
+        color: #333;
+        font-size: 0.9rem;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         .hero h2 {
@@ -273,6 +290,12 @@
 
         .card {
           width: 80%;
+        }
+
+        /* Adjust counter for mobile */
+        .visitor-counter {
+          position: static;
+          margin-top: 10px;
         }
       }
     </style>
@@ -372,11 +395,26 @@
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
+      
+      <!-- Visitor Counter (Added) -->
+      <div class="visitor-counter">
+        <p><i class="fas fa-eye"></i> Visits: 
+          <?php
+            $counter_file = 'count.txt';
+            $visits = file_exists($counter_file) ? (int)file_get_contents($counter_file) : 0;
+            $visits++;
+            file_put_contents($counter_file, $visits);
+            echo $visits;
+          ?>
+        </p>
+      </div>
+
       <div class="copyright">
         <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
       </div>
     </footer>
-<!-- JavaScript for Time and Date -->
+
+    <!-- JavaScript for Time and Date -->
     <script>
       function updateDateTime() {
         const now = new Date();
@@ -390,7 +428,8 @@
       // Initial call to display the time and date immediately
       updateDateTime();
 
-   
+      // Set copyright year
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
