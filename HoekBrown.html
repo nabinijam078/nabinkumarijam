@@ -350,9 +350,7 @@
     // Calculate in-situ stresses
     const sigma1 = Y * z/1000;  // Vertical stress at depth z
     
-    
-    // We need to solve σ1 = σ3 + σci*(mb*σ3/σci + s)^a for σ3
-    // This requires numerical solution as it's nonlinear
+    // Numerical solution for σ3 (now allowing negative values)
     let sigma3 = 0; // Initial guess
     const tolerance = 0.001;
     const maxIterations = 100;
@@ -361,28 +359,44 @@
     
     while (error > tolerance && iteration < maxIterations) {
         const term = mb * sigma3 / sigmaci + s;
-        const f = sigma3 + sigmaci * Math.pow(term, a) - sigma1;
-        const df = 1 + sigmaci * a * Math.pow(term, a-1) * (mb/sigmaci);
+        // Handle negative base for exponentiation
+        let term_pow_a;
+        if (term <= 0) {
+            // If term is negative or zero, result might be complex
+            // In practice, we might want to limit this or handle differently
+            term_pow_a = 0;
+        } else {
+            term_pow_a = Math.pow(term, a);
+        }
+        
+        const f = sigma3 + sigmaci * term_pow_a - sigma1;
+        let df;
+        
+        if (term <= 0) {
+            df = 1; // Simplified derivative when term is non-positive
+        } else {
+            df = 1 + sigmaci * a * Math.pow(term, a-1) * (mb/sigmaci);
+        }
+        
         const newSigma3 = sigma3 - f/df;
         
         error = Math.abs(newSigma3 - sigma3);
         sigma3 = newSigma3;
         iteration++;
     }
-    // calculation of sigmat
-	const sigmat=sigmaci/(0.81*mi+7);
-	   
     
+    // calculation of sigmat
+    const sigmat = -sigmaci/(0.81*mi+7); // Note: tensile strength is negative
     
     // Display results
-    document.getElementById('mb').textContent = mb.toFixed(4);
-    document.getElementById('s').textContent = s.toFixed(4);
-    document.getElementById('a').textContent = a.toFixed(4);
+    document.getElementById('mb').textContent = mb.toFixed(2);
+    document.getElementById('s').textContent = s.toFixed(6);
+    document.getElementById('a').textContent = a.toFixed(2);
     document.getElementById('Erm').textContent = Erm.toFixed(1);
     document.getElementById('Erma').textContent = Erma.toFixed(1);
-    document.getElementById('sigma1').textContent = sigma1.toFixed(4);
-    document.getElementById('sigma3').textContent = sigma3.toFixed(4);
-    document.getElementById('sigmat').textContent = sigmat.toFixed(4);
+    document.getElementById('sigma1').textContent = sigma1.toFixed(2);
+    document.getElementById('sigma3').textContent = sigma3.toFixed(2);
+    document.getElementById('sigmat').textContent = sigmat.toFixed(2);
 }
     </script>
 </body>
