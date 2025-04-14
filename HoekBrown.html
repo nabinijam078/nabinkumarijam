@@ -341,7 +341,7 @@
     } else {
         C = Math.pow(sigmaci/100, 0.5);
     }
-    const Erma = Erm * C;
+    const Erma = 1000 * C * Math.pow((10), (GSI - 10) / 40);
     
     const sigma1 = Y * z;
     
