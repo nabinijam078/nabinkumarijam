@@ -275,13 +275,14 @@
             <h3><u>CONSTANTS</u></h3>
             <p><strong> m<sub>b</sub>:</strong> <span id="mb"></span> </p>
             <p><strong>s:</strong> <span id="s"></span> </p>
-	          <p><strong>a:</strong> <span id="a"></span> </p>
+	    <p><strong>a:</strong> <span id="a"></span> </p>
           <h3><u>ROCK MASS MODULUS</u></h3>
-	        <p><strong>Erm:</strong> <span id="Erm"></span> N/mm²</p>
+	  <p><strong>Erm:</strong> <span id="Erm"></span> N/mm²</p>
+	  <p><strong>Erma:</strong> <span id="Erma"></span> N/mm²</p>
           <h3><u>STRESSES</u></h3>
-            <p><strong>Major stress:</strong> <span id="sigma1"></span></p>
-            <p><strong>Minor stress:</strong> <span id="sigma3"></span></p>
-            <p><strong>Tensile strength:</strong> <span id="sigmat"></span></p>
+            <p><strong>Major stress (σ<sub>1</sub>):</strong> <span id="sigma1"></span></p>
+            <p><strong>Minor stress (σ<sub>3</sub>):</strong> <span id="sigma3"></span></p>
+            <p><strong>Tensile strength (σ<sub>t</sub>):</strong> <span id="sigmat"></span></p>
             
         </div>
     </div>
@@ -322,17 +323,26 @@
             const v = parseFloat(document.getElementById('v').value); 
             const D = parseFloat(document.getElementById('D').value); 
             const Y = parseFloat(document.getElementById('Y').value); 
-            
             const z = parseFloat(document.getElementById('z').value); 
-            
-
-
-
+		
+            const mb = mi *Math.exp((GSI - 100) / (28 - 14 * D));
+		const s = Math.exp((GSI - 100) / (9 - 3 * D));
+		const a=1 / 2 + 1 / 6 * (Math.exp(-GSI / 15) - Exp(-20 / 3));
+		const Erm = (10) ^ 5 * (1 - D / 2) / (1 + Math.exp((75 + 25 * D - GSI) / 11));
+		let Erma;
+		if (sigmaci>=100);
+		{C=1;}
+		else;
+		{C = (sigmaci / 100) ^ 0.5;}
+		
+		const sigma1=Y*z;
+		
             // Display results
             document.getElementById('mb').textContent = mb.toFixed(2);
             document.getElementById('s').textContent = s.toFixed(2);
             document.getElementById('a').textContent = a.toFixed(2);
-	          document.getElementById('Erm').textContent = Erm.toFixed(1);
+	    document.getElementById('Erm').textContent = Erm.toFixed(1);
+	    document.getElementById('Erma').textContent = Erma.toFixed(1);
             document.getElementById('sigma1').textContent = sigma1.toFixed(2);
             document.getElementById('sigma3').textContent = sigma3.toFixed(2);
             document.getElementById('sigmat').textContent = sigmat.toFixed(2);
