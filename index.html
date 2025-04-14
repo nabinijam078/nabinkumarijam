@@ -246,6 +246,16 @@
         color: #333;
       }
 
+      .view-counter {
+        background-color: rgba(224, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 10px;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
       /* Responsive Design */
       @media (max-width: 768px) {
         .hero h2 {
@@ -372,11 +382,15 @@
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
+      <div class="view-counter">
+        <p>Total Views: <span id="viewCount">0</span></p>
+      </div>
       <div class="copyright">
         <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
       </div>
     </footer>
-<!-- JavaScript for Time and Date -->
+
+    <!-- JavaScript for Time and Date -->
     <script>
       function updateDateTime() {
         const now = new Date();
@@ -390,7 +404,21 @@
       // Initial call to display the time and date immediately
       updateDateTime();
 
-   
+      // View counter functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get current year for copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // View counter using localStorage
+        let views = localStorage.getItem('pageViews');
+        if (views) {
+          views = parseInt(views) + 1;
+        } else {
+          views = 1;
+        }
+        localStorage.setItem('pageViews', views);
+        document.getElementById('viewCount').textContent = views;
+      });
     </script>
   </body>
 </html>
