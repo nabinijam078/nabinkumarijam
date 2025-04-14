@@ -348,7 +348,7 @@
     const Erma = 1000 * C * Math.pow((10), (GSI - 10) / 40);
     
     // Calculate in-situ stresses
-    const sigma1 = Y * z;  // Vertical stress at depth z
+    const sigma1 = Y * z/1000;  // Vertical stress at depth z
     
     
     // We need to solve σ1 = σ3 + σci*(mb*σ3/σci + s)^a for σ3
