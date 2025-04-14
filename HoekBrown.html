@@ -319,39 +319,43 @@
         // Initial call to display the time and date immediately
         updateDateTime();
 
-        function hoekbrown() {
-            // Input values
-            const sigmaci = parseFloat(document.getElementById('sigmaci').value); 
-            const mi = parseFloat(document.getElementById('mi').value); 
-	    const GSI = parseFloat(document.getElementById('GSI').value); 
-            const v = parseFloat(document.getElementById('v').value); 
-            const D = parseFloat(document.getElementById('D').value); 
-            const Y = parseFloat(document.getElementById('Y').value); 
-            const z = parseFloat(document.getElementById('z').value); 
-		
-            const mb = mi *Math.exp((GSI - 100) / (28 - 14 * D));
-		const s = Math.exp((GSI - 100) / (9 - 3 * D));
-		const a=1 / 2 + 1 / 6 * (Math.exp(-GSI / 15) - Exp(-20 / 3));
-		const Erm = (10) ^ 5 * (1 - D / 2) / (1 + Math.exp((75 + 25 * D - GSI) / 11));
-		let Erma;
-		if (sigmaci>=100);
-		{C=1;}
-		else;
-		{C = (sigmaci / 100) ^ 0.5;}
-		
-		const sigma1=Y*z;
-		
-            // Display results
-            document.getElementById('mb').textContent = mb.toFixed(2);
-            document.getElementById('s').textContent = s.toFixed(2);
-            document.getElementById('a').textContent = a.toFixed(2);
-	    document.getElementById('Erm').textContent = Erm.toFixed(1);
-	    document.getElementById('Erma').textContent = Erma.toFixed(1);
-            document.getElementById('sigma1').textContent = sigma1.toFixed(2);
-            document.getElementById('sigma3').textContent = sigma3.toFixed(2);
-            document.getElementById('sigmat').textContent = sigmat.toFixed(2);
-            
-        }
+    function hoekbrown() {
+    // Input values
+    const sigmaci = parseFloat(document.getElementById('sigmaci').value); 
+    const mi = parseFloat(document.getElementById('mi').value); 
+    const GSI = parseFloat(document.getElementById('GSI').value); 
+    const v = parseFloat(document.getElementById('v').value); 
+    const D = parseFloat(document.getElementById('D').value); 
+    const Y = parseFloat(document.getElementById('Y').value); 
+    const z = parseFloat(document.getElementById('z').value); 
+    
+    // Calculations
+    const mb = mi * Math.exp((GSI - 100) / (28 - 14 * D));
+    const s = Math.exp((GSI - 100) / (9 - 3 * D));
+    const a = 1/2 + 1/6 * (Math.exp(-GSI/15) - Math.exp(-20/3));
+    const Erm = Math.pow(10, 5) * (1 - D/2) / (1 + Math.exp((75 + 25 * D - GSI)/11));
+    
+    let C;
+    if (sigmaci >= 100) {
+        C = 1;
+    } else {
+        C = Math.pow(sigmaci/100, 0.5);
+    }
+    const Erma = Erm * C;
+    
+    const sigma1 = Y * z;
+    
+    
+    // Display results
+    document.getElementById('mb').textContent = mb.toFixed(2);
+    document.getElementById('s').textContent = s.toFixed(2);
+    document.getElementById('a').textContent = a.toFixed(2);
+    document.getElementById('Erm').textContent = Erm.toFixed(1);
+    document.getElementById('Erma').textContent = Erma.toFixed(1);
+    document.getElementById('sigma1').textContent = sigma1.toFixed(2);
+    document.getElementById('sigma3').textContent = sigma3.toFixed(2);
+    document.getElementById('sigmat').textContent = sigmat.toFixed(2);
+}
     </script>
 </body>
 </html>
