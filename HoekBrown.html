@@ -343,12 +343,12 @@
     }
     const Erma = 1000 * C * Math.pow((10), (GSI - 10) / 40);
     
-    const sigma1 = Y * z;
+    const sigma1 = Y * z/1000;
     
     
     // Display results
     document.getElementById('mb').textContent = mb.toFixed(2);
-    document.getElementById('s').textContent = s.toFixed(2);
+    document.getElementById('s').textContent = s.toFixed(6);
     document.getElementById('a').textContent = a.toFixed(2);
     document.getElementById('Erm').textContent = Erm.toFixed(1);
     document.getElementById('Erma').textContent = Erma.toFixed(1);
