@@ -1,1 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Generelized Hoek Brown failure - Nabin Kumar Ijam</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      /* General Styles */
+      * {
+        box-sizing: border-box; /* Normalize box model */
+        margin: 0;
+        padding: 0;
+      }
 
+      body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+        /* Dynamic Gradient Background */
+        background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
+        background-size: 400% 400%;
+        animation: GradientBackground 15s ease infinite;
+      }
+
+      @keyframes GradientBackground {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      h2, h3, h4, h5, h6 {
+        font-family: 'Roboto', sans-serif; /* Heading font */
+        color: black;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      /* Navigation Bar */
+      nav {
+        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #0078d7;
+      }
+
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #0078d7;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Main Content Container */
+      .main-container {
+        padding: 20px 80px; /* Padding on top/bottom and sides */
+        max-width: 1200px; /* Optional: Limit the maximum width of the content */
+        margin: 0 auto; /* Center the container */
+        flex: 1; /* Push footer to the bottom */
+      }
+        /* Main Content */
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow content to grow and push footer down */
+        }
+
+        .content h2 {
+            color: #0078d7;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.8rem; /* Reduced font size for labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem; /* Reduced font size for inputs */
+        }
+
+        p { font-family: Open Sans; font-size: 13px; text-align: justify; }
+        label { font-family: Open Sans; font-size: 13px; text-align: justify; }
+
+      /* Footer Styles */
+      footer {
+        background-color: rgba(224, 255, 255, 0.8); /* Semi-transparent background */
+        color: white;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: auto; /* Push the footer to the bottom */
+      }
+
+      .social-links {
+        margin-bottom: 10px;
+      }
+
+      .social-links a {
+        color: #333;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.8rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: #0078d7;
+      }
+
+      .copyright {
+        background-color: rgba(224, 255, 255, 0.8);
+        padding: 5px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      .copyright p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .main-container {
+          padding: 20px; /* Adjust padding for smaller screens */
+        }
+      }
+   </style>
+  </head>
+  <body>
+    <!-- Current Time and Date -->
+    <div id="datetime"></div>
+    <!-- Header -->
+    <header>
+      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structure & Hydropower</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <a href="Home.html"><b>HOME</b></a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+        <div class="dropdown-content">
+          <a href="Information.html">MY INFORMATION</a>
+          <a href="My background.html">MY BACKGROUND</a>
+          <a href="My works.html">MY WORKS</a>
+        </div>
+      </div>
+      
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+        <div class="dropdown-content">
+          <a href="Civil Engineering Notes.html">CALCULATIONS</a>
+	<a href="DesignNotes.html">DESIGN NOTES</a>
+          <a href="Others.html">OTHER CALCULATION</a>
+        </div>
+      </div>
+
+      <a href="Downloads.html"><b>DOWNLOADS</b></a>
+      <a href="images.html"><b>IMAGES</b></a>
+	<a href="blog.html"><b>PERSONAL BLOG</b></a>
+      <a href="Contacts.html"><b>CONTACTS</b></a>
+    </nav>
+
+
+    <!-- Main Content -->
+    <div class="content">
+        <h3><u>GENERALIZED HOEK-BROWN FAILURE CRITERIA</u></h3>
+      <p><b><u>ROCK MASS </u></b></p>
+        <form id="HoekbrownForm">
+		 <label for="sigmaci">Unconfined compression stress (σ<sub>ci</sub> in MPa):</label>
+                <input type="number" id="sigmaci" required>
+            <br>
+                <label for="mi">Material constant (m<sub>i</sub>):</label>
+                <input type="number" id="mi" required>
+            <br>
+             
+                <label for="GSI">Geological Strength Index(GSI):</label>
+                <input type="number" id="GSI" required>
+            <br>
+                <label for="v">Poisson's ratio (ν):</label>
+                <input type="number" id="v" required>
+            <br>
+                <label for="Y">Density of rock (Υ):</label>
+                <input type="number" id="Y" required>
+            <br>
+               
+                <label for="z">Depth of cover (z in m):</label>
+                <input type="number" id="z"  required>
+            <br>
+            <button type="button" onclick="hoekbrown()"><b><u>CALCULATE</u></b></button>
+        </form>
+
+        <div class="result" id="result">
+            <h3><u>CONSTANTS</u></h3>
+            <p><strong> m<sub>b</sub>:</strong> <span id="mb"></span> </p>
+            <p><strong>s:</strong> <span id="s"></span> </p>
+	          <p><strong>a:</strong> <span id="a"></span> </p>
+          <h3><u>ROCK MASS MODULUS</u></h3>
+	        <p><strong>Erm:</strong> <span id="Erm"></span> N/mm²</p>
+          <h3><u>STRESSES</u></h3>
+            <p><strong>Major stress:</strong> <span id="sigma1"></span></p>
+            <p><strong>Minor stress:</strong> <span id="sigma3"></span></p>
+            <p><strong>Tensile strength:</strong> <span id="sigmat"></span></p>
+            
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/nabin.ijam" target="_blank">
+                <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            </a>
+            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+            </a>
+        </div>
+        <div class="copyright">
+            <p><i>Copyright © Nabin Kumar Ijam</i></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Time and Date -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+
+        function calculateBeamSection() {
+            // Input values
+            const sigmaci = parseFloat(document.getElementById('sigmaci').value); 
+            const mi = parseFloat(document.getElementById('mi').value); 
+            const v = parseFloat(document.getElementById('v').value); 
+            const D = parseFloat(document.getElementById('D').value); 
+            const Y = parseFloat(document.getElementById('Y').value); 
+            
+            const z = parseFloat(document.getElementById('z').value); 
+            
+
+
+
+            // Display results
+            document.getElementById('mb').textContent = mb.toFixed(2);
+            document.getElementById('s').textContent = s.toFixed(2);
+            document.getElementById('a').textContent = a.toFixed(2);
+	          document.getElementById('Erm').textContent = Erm.toFixed(1);
+            document.getElementById('sigma1').textContent = sigma1.toFixed(2);
+            document.getElementById('sigma3').textContent = sigma3.toFixed(2);
+            document.getElementById('sigmat').textContent = sigmat.toFixed(2);
+            
+        }
+    </script>
+</body>
+</html>
