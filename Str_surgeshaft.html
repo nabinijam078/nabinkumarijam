@@ -377,28 +377,29 @@
 	   else if (fck===50){sigmac=12.0;}
 
 	   // Permissible tensile stress in concrete
-	let sigmat;
-	   if (fck===10){sigmac=1.2;}
-	   else if (fck===15){sigmac=2.0;}
-	   else if (fck===20){sigmac=2.8;}
-	   else if (fck===25){sigmac=3.2;}
-	   else if (fck===30){sigmac=3.6;}
-	   else if (fck===35){sigmac=4.0;}
-	   else if (fck===40){sigmac=4.4;}
-	   else if (fck===45){sigmac=4.8;}
-	   else if (fck===50){sigmac=5.2;}
+	let sigmast;
+	   if (fck===10){sigmast=1.2;}
+	   else if (fck===15){sigmast=2.0;}
+	   else if (fck===20){sigmast=2.8;}
+	   else if (fck===25){sigmast=3.2;}
+	   else if (fck===30){sigmast=3.6;}
+	   else if (fck===35){sigmast=4.0;}
+	   else if (fck===40){sigmast=4.4;}
+	   else if (fck===45){sigmast=4.8;}
+	   else if (fck===50){sigmast=5.2;}
+	   
 	   // Persmissible tensile strength of steel
-	   let sigmast;
+	   let sigmat;
 	   if (fy===250) {
-		   if(phi<=20){sigmast=140;}
-		   else {sigmast=130;}
+		   if(phi<=20){sigmat=140;}
+		   else {sigmat=130;}
 	   }
 	   else { 
-		   if (fy===415){sigmast=230;}
-	   else {sigmast=0.55*fy;}
+		   if (fy===415){sigmat=230;}
+	   else {sigmat=0.55*fy;}
 		}
 	   // Modulus of elasticity of concrete
-	   const Ec=5000*Math.pow(fck,.5);
+	   const Ec=5000*Math.pow(fck,0.5);
 	   
     // Display results
     document.getElementById('sigmac').textContent = sigmac.toFixed(2);
