@@ -464,7 +464,7 @@
 	   const Pr=(ER * Mr) / (Mr + 1) / (Ec * Mc *Mc / (Mc*Mc - 1)) * ((d1) *(d1) + (d) *(d)) * ((d1) *(d1) - (d) *(d)) / ((Mc) *(Mc) * (2 * (d1) *(d1))) * sigmat;
 	// Reinforcement design
 	   // Hoop reinforcement
-	   const Ast1=Pon*d/sigmast;
+	   const Ast1=Pon*d*1000/sigmat;
 	   let Ast;
 	   if (Ast1<0.3*t/100*1000){Ast=0.3*t/100*1000;}
 	   else {Ast=Ast1;}
