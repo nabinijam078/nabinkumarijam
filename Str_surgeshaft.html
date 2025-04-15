@@ -248,44 +248,68 @@
         <h3><u>STRUCTURAL DESIGN OF SURGES SHAFT</u></h3>
      
         <form id="HoekbrownForm">
-		 <label for="sigmaci">Unconfined compression stress (σ<sub>ci</sub> in MPa):</label>
-                <input type="number" id="sigmaci" required>
+		 <label for="fck">Concrete grade (f<sub>ck</sub> in MPa):</label>
+                <input type="number" id="fck" required>
             <br>
-                <label for="mi">Material constant (m<sub>i</sub>):</label>
-                <input type="number" id="mi" required>
+                <label for="fy">Steel grade (f<sub>y</sub> in MPa):</label>
+                <input type="number" id="fy" required>
             <br>
              
-                <label for="GSI">Geological Strength Index(GSI):</label>
-                <input type="number" id="GSI" required>
+                <label for="MWL">Upsurge level(MWL in m):</label>
+                <input type="number" id="MWL" required>
             <br>
-                <label for="v">Poisson's ratio (ν):</label>
-                <input type="number" id="v" required>
+                <label for="NWL">Normal water level (NWL in m):</label>
+                <input type="number" id="NWL" required>
 	   <br>
-                <label for="D">Distribution factor (D):</label>
-                <input type="number" id="D" required>
+                <label for="SWL">Static water level (SWL in m):</label>
+                <input type="number" id="SWL" required>
             <br>
-                <label for="Y">Density of rock (Υ):</label>
-                <input type="number" id="Y" required>
+                <label for="DSL">Downsurge level (DSL in m):</label>
+                <input type="number" id="DSL" required>
             <br>
                
-                <label for="z">Depth of cover (z in m):</label>
-                <input type="number" id="z"  required>
+                <label for="IL">Bottom level of shaft (IL in m):</label>
+                <input type="number" id="IL"  required>
+            <br>
+		 <label for="CL">Crown level of tunnel (CL in m):</label>
+                <input type="number" id="CL"  required>
+            <br>
+		 <label for="d">Internal diameter of shaft (d in m):</label>
+                <input type="number" id="d"  required>
+            <br>
+		 <label for="muc">Poisson's ratio of concrete (μ<sub>c</sub> in m):</label>
+                <input type="number" id="muc"  required>
+            <br>
+		 <label for="mur">Poisson's ratio of rock (μ<sub>r</sub> in m):</label>
+                <input type="number" id="mur"  required>
+            <br>
+		 <label for="phi">Diameter of rebar used (φ in mm):</label>
+                <input type="number" id="phi"  required>
+            <br>
+		<label for="t">Maximum thickness of concrete wall (t in mm):</label>
+                <input type="number" id="t"  required>
             <br>
             <button type="button" onclick="surgeshaft()"><b><u>CALCULATE</u></b></button>
         </form>
 
         <div class="result" id="result">
-            <h3><u>CONSTANTS</u></h3>
-            <p><strong> m<sub>b</sub>:</strong> <span id="mb"></span> </p>
-            <p><strong>s:</strong> <span id="s"></span> </p>
-	    <p><strong>a:</strong> <span id="a"></span> </p>
-          <h3><u>ROCK MASS MODULUS</u></h3>
-	  <p><strong>Erm:</strong> <span id="Erm"></span> N/mm²</p>
-	  <p><strong>Erma:</strong> <span id="Erma"></span> N/mm²</p>
+            <h3><u>PERMISSIBLE VALUES</u></h3>
+            <p><strong> Permissible compressive stress of Concrete (σ<sub>c</sub>:</strong> <span id="sigmac"></span> N/mm²</p>
+            <p><strong> Permissible compressive stress of Steel (σ<sub>st</sub>:</strong> <span id="sigmast"></span> N/mm²</p>
+	    <p><strong> Tensile strength of Steel (σ<sub>t</sub>:</strong> <span id="sigmat"></span> N/mm²</p>
+            <p><strong> Modulus of Elasticity of Concrete (E<sub>c</sub>:</strong> <span id="Ec"></span> N/mm²</p>
+		<p><strong> Modulus of Elasticity of Rock (E<sub>R</sub>:</strong> <span id="ER"></span> N/mm²</p>
+          <h3><u>DESIGN OF MAXIMUM THICKNESS AND REINFORCEMENT</u></h3>
+		<p><u>1. NORMAL CONDITION</u></p>
+	  <p><strong>Internal water depth at base of shaft (h<sub>wn</sub>:</strong> <span id="hwn"></span> m</p>
+	  <p><strong>Internal water pressure at base of shaft (P<sub>in</sub>:</strong> <span id="Pin"></span> kN/m²</p>
+	  <p><strong>External water pressure at base of shaft (P<sub>on</sub>:</strong> <span id="Pon"></span> kN/m²</p>
+		<p><u>2. UPSURGE CONDITION</u></p>
+	  <p><strong>Internal water depth at base of shaft (h<sub>wu</sub>:</strong> <span id="hwu"></span> m</p>
+	  <p><strong>Internal water pressure at base of shaft (P<sub>iu</sub>:</strong> <span id="Piu"></span> kN/m²</p>
+	  <p><strong>External water pressure at base of shaft (P<sub>ou</sub>:</strong> <span id="Pou"></span> kN/m²</p>
           <h3><u>STRESSES</u></h3>
-            <p><strong>Major stress (σ<sub>1</sub>):</strong> <span id="sigma1"></span>N/mm²</p>
-            <p><strong>Minor stress (σ<sub>3</sub>):</strong> <span id="sigma3"></span>N/mm²</p>
-            <p><strong>Tensile strength (σ<sub>t</sub>):</strong> <span id="sigmat"></span>N/mm²</p>
+            
             
         </div>
     </div>
