@@ -464,11 +464,11 @@
 	   const Pr=(ER * Mr) / (Mr + 1) / (Ec * Mc *Mc / (Mc*Mc - 1)) * ((d1) *(d1) + (d) *(d)) * ((d1) *(d1) - (d) *(d)) / ((Mc) *(Mc) * (2 * (d1) *(d1))) * sigmat;
 	// Reinforcement design
 	   // Hoop reinforcement
-	   const Ast1=Pon*d*1000/sigmast;
+	   const Ast1=Pon*d/sigmast;
 	   let Ast;
 	   if (Ast1<0.3*t/100*1000){Ast=0.3*t/100*1000;}
 	   else {Ast=Ast1;}
-	   const Astph=3.1416*Math.pow(phih,2)/4*1000/sh;
+	   const Astph=3.1416*Math.pow(phih,2)/4*1000/sh*2;
 	   
 	   // Longitudinal direction reinforcement
 	   const Ast2=Ast/2;
@@ -476,7 +476,7 @@
 	   let Astm;
 	   if (Ast2<Asmin){Astm=Asmin;}
 	   else {Astm=Ast2;}
-	   const Astpl=3.1416*Math.pow(phil,2)/4*1000/sl;
+	   const Astpl=3.1416*Math.pow(phil,2)/4*1000/sl*2;
 	   
     // Display results
     document.getElementById('sigmac').textContent = sigmac.toFixed(2);
