@@ -60,10 +60,7 @@
         font-size: 1.8rem;
       }
 	
-	header h3 {
-        margin: 0;
-        font-size: 0.9rem;
-      }
+	
 
       /* Navigation Bar */
       nav {
@@ -141,6 +138,11 @@
             font-size: 1.2rem;
             margin-top: 0;
         }
+	    header h3 {
+		    color: black;
+        margin-top: 0;
+        font-size: 0.8rem;
+      }
 
         .input-group {
             margin-bottom: 15px;
@@ -291,12 +293,24 @@
 		<label for="ER">Modulus of elasticity of rock (E<sub>R</sub> in N/mm²):</label>
                 <input type="number" id="ER"  required>
             <br>
-		 <label for="phi">Diameter of rebar used (φ in mm):</label>
-                <input type="number" id="phi"  required>
-            <br>
 		<label for="t">Maximum thickness of concrete wall (t in mm):</label>
                 <input type="number" id="t"  required>
             <br>
+		<p><u>1. HOOP REINFORCEMENT</u></p>
+		 <label for="phih">Diameter of hoop reinforcement (φ<sub>h</sub> in mm):</label>
+                <input type="number" id="phih"  required>
+            <br>
+		<label for="sh">Spacing of hoop reinforcement (s<sub>h</sub> in mm):</label>
+                <input type="number" id="sh"  required>
+            <br>
+		<p><u>2. LONGITUDINAL REINFORCEMENT</u></p>
+		<label for="phil">Diameter of longitudinal reinforcement (φ<sub>l</sub> in mm):</label>
+                <input type="number" id="phil"  required>
+            <br>
+		<label for="sl">Spacing of longitudinal reinforcement (s<sub>l</sub> in mm):</label>
+                <input type="number" id="sl"  required>
+            <br>
+		
 		<br>
             <button type="button" onclick="surgeshaft()"><b><u>CALCULATE</u></b></button>
         </form>
@@ -322,9 +336,13 @@
 	  <p><strong>External water pressure at base of shaft (P<sub>ou</sub>):</strong> <span id="Pou"></span> kN/m²</p>
 	 <p><strong>Permissible compressive stress in concrete in Upsurge condition ((σ<sub>cu</sub>):</strong> <span id="sigmacu"></span> N/mm²</p>
 	  <p><strong>Check for permissible stress :</strong> <span id="check2"></span> </p>
-          <h3><u>STRESSES</u></h3>
-            
-            
+          <h3><u>REINFORCEMENT DESIGN</u></h3>
+		<p><u>1. HOOP REINFORCEMENT</u></p>
+           <p><strong>Area of reinforcement (A<sub>st</sub> :</strong> <span id="Ast"></span> mm² </p> 
+            <p><strong>Area of reinforcement provided (A<sub>stph</sub> :</strong> <span id="Astph"></span> mm² </p> 
+		<p><u>2. LONGITUDINAL REINFORCEMENT</u></p>
+           <p><strong>Area of reinforcement (A<sub>stm</sub> :</strong> <span id="Astm"></span> mm² </p> 
+            <p><strong>Area of reinforcement provided (A<sub>stpl</sub> :</strong> <span id="Astpl"></span> mm² </p>
         </div>
     </div>
 
@@ -371,7 +389,10 @@
     const muc = parseFloat(document.getElementById('muc').value); 
     const mur = parseFloat(document.getElementById('mur').value); 
     const ER = parseFloat(document.getElementById('ER').value);
-    const phi = parseFloat(document.getElementById('phi').value);
+    const phil = parseFloat(document.getElementById('phil').value);
+    const sh = parseFloat(document.getElementById('sh').value);
+    const phih = parseFloat(document.getElementById('phih').value);
+    const sl = parseFloat(document.getElementById('sl').value);
     const t = parseFloat(document.getElementById('t').value); 
 
    // Direct Permissible stress of concrete
@@ -441,7 +462,21 @@
 	   const Mr=1/mur;
 	   const Mc=1/muc;
 	   const Pr=(ER * Mr) / (Mr + 1) / (Ec * Mc *Mc / (Mc*Mc - 1)) * ((d1) *(d1) + (d) *(d)) * ((d1) *(d1) - (d) *(d)) / ((Mc) *(Mc) * (2 * (d1) *(d1))) * sigmat;
+	// Reinforcement design
+	   // Hoop reinforcement
+	   const Ast1=Pon*d*1000/sigmast;
+	   let Ast;
+	   if (Ast1<0.3*t/100*1000){Ast=0.3*t/100*1000;}
+	   else {Ast=Ast1;}
+	   const Astph=3.1416*Math.pow(phih,2)/4*1000/sh;
 	   
+	   // Longitudinal direction reinforcement
+	   const Ast2=Ast/2;
+	   const Asmin=0.85*1000*t/fy;
+	   let Astm;
+	   if (Ast2<Asmin){Astm=Asmin;}
+	   else {Astm=Ast2;}
+	   const Astpl=3.1416*Math.pow(phil,2)/4*1000/sl;
 	   
     // Display results
     document.getElementById('sigmac').textContent = sigmac.toFixed(2);
@@ -458,6 +493,11 @@
     document.getElementById('sigmacu').textContent = sigmacu.toFixed(2);   
     document.getElementById('Piu').textContent = Piu.toFixed(2);
     document.getElementById('Pou').textContent = Pou.toFixed(2);
+	   document.getElementById('check2').textContent = check2; 
+	document.getElementById('Ast').textContent = Ast.toFixed(2);   
+	   document.getElementById('Astph').textContent = Astph.toFixed(2);
+	   document.getElementById('Astm').textContent = Astm.toFixed(2); 
+	   document.getElementById('Astpl').textContent = Astpl.toFixed(2);
 }
     </script>
 </body>
