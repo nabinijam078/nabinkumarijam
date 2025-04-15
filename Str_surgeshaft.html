@@ -400,6 +400,23 @@
 		}
 	   // Modulus of elasticity of concrete
 	   const Ec=5000*Math.pow(fck,0.5);
+
+    // NORMAL CONDITION
+    const hwn=SWL-IL;
+	   const Pin=9.81*hwn;
+	   const Pon=0.75*9.81*hwn;
+	   // outer dimension of surgeshaft
+	   const d1=2*t/1000+d;
+	   // stresses for thickness of wall
+	   const sigmaca=Pon/1000*(d1*d1+d*d)/(d1*d1-d*d);
+
+	   // UPSURGE CONDITION
+	   const hwu=MWL-IL;
+	   const Piu=9.81*hwu;
+	   const Pou=0.75*9.81*hwu;
+	   
+	   // stresses for thickness of wall
+	   const sigmacu=Pou/1000*(d1*d1+d*d)/(d1*d1-d*d);
 	   
     // Display results
     document.getElementById('sigmac').textContent = sigmac.toFixed(2);
