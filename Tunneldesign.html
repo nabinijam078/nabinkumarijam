@@ -730,11 +730,34 @@
 	    \(F_5=\frac{143.62}{4.1}=35.03kN/m\)
 	    <p><b>A. Calculation of modulus of subgrade reaction</b></p>
 	    <p>\(n\) = Number of segments in arc = 10 </p>
-	    \(\theta=\frac{l}{r}=\frac{(\frac{π D}{2n})}{r}=\frac{(\frac{π× D}{2× 10})}{\frac{4.1}{2}}=0.314 radian\)
+	    \(\theta=\frac{l}{r}=\frac{(\frac{π D}{2n})}{r}=\frac{(\frac{π× 4.1}{2× 10})}{\frac{4.1}{2}}=0.314 radian\)
+	    <p>Radial stiffness coefficient</p>
+	    \(K_r=\frac{E_r×\theta}{1+m_1}=\frac{(1000×1000×0.314)}{1+0.25}=251200 kN/m\)
+	    <p>Tangential stiffness coefficient</p>
+	    \(K_t=\frac{0.5K_r}{1+m_1}=\frac{0.5×251200}{1+0.25}\)
+	    <p><b>B. Permissible stresses</b></p>
+	    <p>Compressive strength of concrete</p>
+	    \(f_{cc}=0.446f_{ck}=0.446×25=11.15 N/(mm)^2\)
+	    <p>Tensile strength of concrete (IS 456:2000 Clause 6.2.2) </p>
+	    \(f_{ct}=0.7√(f_{ck})=0.7√(25)=3.5N/(mm)^2\)
+	    <p>Tensile strength of steel</p>
+	    \(f_{st}=\frac{f_y}{1.15}=435 N/(mm)^2\)
+	    <p><b>C. Finite Element analysis</b></p>
+	    <p>STAADPro has been used for the analysis.</p>
+	<div style="text-align: center;">
+ 	 <img src="Tunnel10.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+	</div>
+	<p><u><center>Fig. Modelling in STAADPro</center></u></p>
+	<p><b>STAAD Output</b></p>
+	    <p><b>Bending moment diagram</b></p>
+	    <div style="text-align: center;">
+ 	 <img src="Tunnel11.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+	</div>
 
-
-
-
+	    <p><p>Shear force diagram</p></p>
+		<div style="text-align: center;">
+ 	 <img src="Tunnel12.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+	</div>
 
 
 
