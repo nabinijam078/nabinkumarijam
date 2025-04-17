@@ -650,16 +650,20 @@
 	 <p>In the case of other shapes of tunnel including circular, finite element methods shall be carried out.</p>   
 	    <p>To model in finite elements, we have to provide subgrade reaction at the nodes of the structure. Subgrade reaction may be calculated by (As per EM 1110-2-2901)</p>
 	<p>\(\theta\) = Angle made by segments of arc of tunnel</p>
-	\(\theta = \frac{l}{r}=\frac{\frac{π D}{2n}}{r}\)
+	\(\theta = \frac{l}{r}=\frac{(\frac{π D}{2n})}{r}\)
 	<p>Where,</p>
 	    <p>\(D\) = Diameter of tunnel</p>
 	    <p>\(n\) = number of arcs in a tunnel (semi-circle in D-shaped tunnel)</p>
 	    <p>\(r=\frac{D}{2}\) = radius of tunnel</p>
-	    <p>Radial subgrade reaction (Eq. 9-18 of EM 1110-2-2901) <b></b></p>
+	    <p>Radial subgrade reaction <b>(Eq. 9-18 of EM 1110-2-2901) </b></p>
 	    \(K_r=\frac{E_r × \theta}{1+m_1}\)
-
-
-	    
+		<p>Subgrade subgrade reaction at transverse direction <b>(Eq. 9-18 of EM 1110-2-2901) </b></p>
+		\(K_t=\frac{0.5K_r){1+m_1}\)
+	    <p> Where,</p>
+	    <p>\(m_1\) = Poisson's ratio</p>
+	    <p>Thes subgrade reactions shall be provided in the nodes of the structure. Then finite element software shall be used to calculate the moment in the lining. Using moments, reinforcement design or thickness of lining shall be verified.</p>
+	    <br>
+	    <p><b>EXAMPLE</b></p>
 	    
     </main>
 
