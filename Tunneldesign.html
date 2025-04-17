@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	   <!-- MathJax Configuration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
       /* General Styles */
       html, body {
@@ -57,6 +60,47 @@
         margin: 0;
         font-size: 1.8rem;
       }
+	        /* Table Styles */
+      .data-table {
+        width: 40%;
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+      }
+      
+      .data-table th, 
+      .data-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+	border-color:black;
+      }
+      
+      table {
+        width: 80%;
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+      }
+      
+      table th, 
+      table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+	border-color:black;
+      }
+      
+
+      /* MathJax formula styling */
+      .math-formula {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+        overflow-x: auto;
+      }
+
 
       /* Navigation Bar */
       nav {
@@ -342,9 +386,29 @@
     <main class="main-content">
       
       <h2><u><b>STRUCTURAL DESIGN OF A TUNNEL </b></u></h2>
-      
+      <p>Tunnel lining shall be designed based on <b>IS 4880 (Part IV)-1971</b>. </p>
+	<p>As per the code (Provided in 5. LOADING CONDITIONS), the design loading applicable to tunnel linings shall be classified as ‘Normal’ and Extreme’ loading conditions. Design shall be made for ‘Normal’ loading conditions and shall be checked for safety under ‘Extreme’ loading conditions</p>
+      <p>The design loads shall be as follows.</p>
+	    <p><b>1. External rock loads.</b></p>
+	<p>Rock load may be assumed as an equivalent uniformly distributed load over the tunnel soffit over a span equal to the tunnel width or diameter.</p> 
+	    <p>Rock load shall be calculated based on the depth of rock above the crown given as follows.</p>
+	    <p> If \(H_R\leq1.5(B+H_t)\), then \(H_P=H_R\).</p>
+	    <p>Where,</p>
+	    <p>\(H_R\) = Depth of rock above crown (Cover). </p>
+	    <p>\(B\) = Width of tunnel</p>
+	    <p>\(H_t\) = Height of tunnel</p>
+	    <p>\(H_p\) = Designed depth of rock above crown</p>
+	    
 
-      
+
+
+
+
+
+
+
+
+	    
     </main>
 
     <!-- Footer -->
