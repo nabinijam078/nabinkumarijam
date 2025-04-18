@@ -387,7 +387,7 @@
       
       <h2><u><b>STRUCTURAL DESIGN OF SURGE SHAFT</b></u></h2>
 	<p>The design of surge shaft has been carried out based on <b> IS 7357:1974</b>. </p>
-	    <p><b>TYPES OF LINING</b></p>
+	    <p><b><u>TYPES OF LINING</u></b></p>
 	    <p><b>1. Pneumatically applied lining</b></p>
 	    <p>In this category of lining, the concrete mixed of coarse aggregate size less than 5mm, sand and cement, applied pneumatically on the rock surface with or without reinforcement mesh. This type of lining is called sprayed concrete or shotcrete. </p>
 	<p><b>2. Cement concrete lining</b></p>
@@ -397,7 +397,7 @@
 	    <p><b>4. Steel lining</b></p>
 	    <p>Where the surrounding rock is not good or there are several openings of various sizes and shapes piercing the periphery of the surge shaft lining thus introducing concentrations of stresses around such opening, there are chances of even reinforced concrete lining cracking due to concentration of stress and providing chance for sizable seepage of water int the small hill mass around. In such cases, especially if the dips and strikes are unfavorable including soft material along such strikes thereby including slides of hill mass, steel lining shall be provided.</p>
       		<p><b>5. Sandwiched steel lining</b></p>
-	    <p><b>DESIGN LOADS</b></p>
+	    <p><b><u>DESIGN LOADS</u></b></p>
 	    <p>1. Internal water pressure</p>
 	    <p>2. External water pressure </p>
 	    <p>3. External grout pressure (Contact grouting)</p>
@@ -408,7 +408,7 @@
 	    <p>6. Dead load</p>
 	    <p>7. Live load</p>
 	    <p>No live load has been considered in underground surge shaft.</p>
-	    <p><b>STRUCTURAL DESIGN </b></p>
+	    <p><b><u>STRUCTURAL DESIGN </u></b></p>
 	    <p><b>1. Supporting Action of Rock:</b></p>
 	    <p>Reinforced concrete lining transmits pressure to the surrounding rock under ideal conditions of no void and infinite rock mass. The load shared by the rock can be determined by following formula by equating the displacements of outer circumference of the concrete ring with extension of rock boundary.</p>
 	    \(P_r=σ_t\frac{\frac{E_R M_R}{M_R+1}}{\frac{E_c(M_c)^2}{(M_c)^2-1}}[\frac{(b^2+a^2)\frac{b^2-a^2}{(M_c)^2}}{2b^2}]\)
@@ -431,14 +431,14 @@
 	    <p>a) Minimum thickness of 0.3m and</p>
 	    <p>b) Thickness required to resist maximum external pressure.</p>
 	    <p>Considering surge shaft as a thick-walled pipe, the circumferential stress in the lining can be determined by the following formula</p>
-	    \(P_o=σ_c\frac{b^2-a^2}{b^2+a^2}\)
+	    \(P_o=σ_c[\frac{b^2-a^2}{b^2+a^2}]\)
 	    <p>Where,</p>
 		<p>\(P_o\) = External pressure (kg/cm<sup>2</sup>)</p>
 	    	<p>\(σ_c\) = Permissible compressive stress in concrete (kg/cm<sup>2</sup>) </p>
 	    <p><b>3. Reinforcement in lining</b></p>
 	    <p><b>3.1 Hoop reinforcement</b></p>
 	    <p>The hoop reinforcement for circular tank shall be to withstand the total hoop force due to maximum internal water pressure and shall be given by following formula</p>
-	    \(A_{st}=\frac{(P-R_r)×a}{\sigma_{st}}\)
+	    \(A_{st}=\frac{(P-P_r)×a}{\sigma_{st}}\)
 	    <p>Where,</p>
 	    <p>\(P\) = Design pressure (kg/cm<sup>2</sup>)</p>
 	    <p>\(\sigma_{st}\) = Permissible stress in steel (kg/cm<sup>2</sup>) </p>
@@ -628,9 +628,108 @@
   </tbody>
 </table>
 	<p>For Fe500, the permissible stress in direct tension and flexural tension and flexural tension shall be \(0.55f_y\) and the permissible stresses for shear and compression reinforcement shall be as for Fe415.</p>
+<p><b><u>DESIGN EXAMPLE</u></b></p>
+<p><b>Inputs</b></p>
+<table>
+	<tr>
+		<td>Concrete grade</td>
+		<td>\(f_{ck}\)</td>
+		<td>M25</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Steel grade</td>
+		<td>\(f_{y}\)</td>
+		<td>500</td>
+		<td>N/mm<sup>2</sup></td>
+	</tr>
+</table>
+	    <p><center>Hydraulic Parameters</center></p>
+	<table>
+		<tr>
+			<td>Upsurge level</td>
+			<td>MWL</td>
+			<td>1382.08</td>
+			<td>m</td>
+		</tr>
+		<tr>
+			<td>Normal water level</td>
+			<td>NWL</td>
+			<td>1367.60</td>
+			<td>m</td>
+		</tr>
+		<tr>
+			<td>Static water level</td>
+			<td>SWL</td>
+			<td>1363.10</td>
+			<td>m</td>
+		</tr>
+		<tr>
+			<td>Down surge level</td>
+			<td>DWL</td>
+			<td>1347.93</td>
+			<td>m</td>
+		</tr>
+		<tr>
+			<td>Bottom level of shaft</td>
+			<td>IL</td>
+			<td>1337.00</td>
+			<td>m</td>
+		</tr>
+		<tr>
+			<td>Crown level of tunnel</td>
+			<td>CL</td>
+			<td>1341.00</td>
+			<td>m</td>
+			
+		</tr>
+		<tr>
+			<td>Internal diameter of surge shaft</td>
+			<td>d</td>
+			<td>10.00</td>
+			<td>m</td>
+		</tr>
+	</table>
+	<p><b>CALCULATION</b></p>
+	    <p>1. Calculation of permissible stress</p>
+	    <p>For M25 concrete grade</p>
+	    <p>Permissible compressive stress of concrete </p>
+	    \(\sigma_c=6.0 N/mm^2\)
+	    <p>Permissible tensile stress of concrete </p>
+	    \(\sigma_t=3.2 N/mm^2\)
+	    <p>Permissible tensile stress of steel For Fe500.</p>
+	    \(\sigma_{st}=0.55f_y = 0.55×500=275 N/mm^2\)
+	    <p>Elastic modulus of Concrete (as per Clause 6.2.3.1 of IS 456:2000) </p>
+	    \(E_c=5000√f_{ck}=500√25 = 25000 N/mm^2\)
+	    <p>Elastic modulus of rock</p>
+	    \(E_R=4000 N/mm^2\)
+	    <p>Poisson's ratio of rock</p>
+	    \(\mu_R=0.15\)
+	    <p>Poisson's ratio of concrete</p>
+		\(\mu_c=0.20\)
+	    <br>
+	    \(M_R=\frac{1}{\mu_R}\)
+	    <br>
+	    \(M_c=\frac{1}{\mu_c}\)
+	    <p>Assumed thickness of concrete lining</p>
+	    \(t=300mm\)
+	    <br>
+	    \(a=10m\)
+	    <br>
+	    \(b=10+2×0.3=10.6m\)
+	    <p>Stress shared by rock</p>
+	\(P_r=σ_t\frac{\frac{E_R M_R}{M_R+1}}{\frac{E_c(M_c)^2}{(M_c)^2-1}}[\frac{(b^2+a^2)\frac{b^2-a^2}{(M_c)^2}}{2b^2}]\)
+	\(P_r=5.15 N/mm^2\)
+	    <p><b>Checking of lining thickness</b></p>
+	    <p><i>The external pressure is assumed as 75% of internal pressure</i></p>
+	    <p>Upsurge water level at crown of tunnel \(H=1382.08-1341.0=41.08m\)</p>
+	    <p>External water level</p>
+	    \(h_o=41.08× 0.75 = 30.81m\)
+	    \(P_o=\sigma_c[\frac{b^2-a^2}{b^2+a^2}]\)
+	    \(P_o=6.0×[\frac{10.6^2-10.0^2}{10.6^2+10.0^2}]=0.349 N/mm^2\)
+	    
 
-
-
+	    
 	    
     </main>
 
