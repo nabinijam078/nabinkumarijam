@@ -516,84 +516,159 @@
 	    <p><center><b>Fig.: Stress-strain diagram of column when neutral axis lies in the section \(0.9x≤h\).</b></center></p>
        <p><b>Computation of strains </b></p>
        <p>Strain of compression bars</p>
+	     <div style="text-align: center;font-size:20px;">
 	    \(\varepsilon_{sc1}=\frac{x-d'}{x}\varepsilon_{cu} \)
+	     </div>
 	<p>And</p>
+	     <div style="text-align: center;font-size:20px;">
 	\(\varepsilon_{sc2}=\frac{x-d'-S_b}{x}\varepsilon_{cu} \)
+	     </div>
 	<p>And so on........depending upon the number of rows of rebar where \(\varepsilon_{cu} = 0.0035\)</p>
 	    <p>Strain at tensile reinforcement</p>
+	     <div style="text-align: center;font-size:20px;">
 		\(\varepsilon_{st}=\frac{h'-x}{x}\varepsilon_{cu} \)
+	     </div>
 	<p><b>Computation of Stresses</b></p>
 	<p>At compression rebar</p>
+	     <div style="text-align: center;font-size:20px;">
 	    \(f_{sc1}=\varepsilon_{sc1}E_s\)
-	<p>If \(f_{sc1}\geq 0.87f_y\), then \(f_{sc1}=0.87f_y\) Else \(f_{sc1}=\varepsilon_{sc1}E_s\)</p>
+	     </div>
+	<p>If \(f_{sc1}\geq 0.87f_y\), then</p>
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{sc1}=0.87f_y\) 
+	    </div>
+		    <p>Else </p>
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{sc1}=\varepsilon_{sc1}E_s\)
+	    </div>
 	  <p>And</p>  
+	    <div style="text-align: center;font-size:20px;">
 		 \(f_{sc2}=\varepsilon_{sc2}E_s\)
-	<p>If \(f_{sc2}\geq 0.87f_y\), then \(f_{sc2}=0.87f_y\) Else \(f_{sc2}=\varepsilon_{sc2}E_s\)</p>
+	    </div>
+	<p>If \(f_{sc2}\geq 0.87f_y\), then</p> 
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{sc2}=0.87f_y\) 
+	    </div>
+	    <p>Else</p> 
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{sc2}=\varepsilon_{sc2}E_s\)
+	    </div>
 	    <p>And so on........depending upon the number of rows of rebar.</p>
 	<p>At tension rebar</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(f_{st}=\varepsilon_{st}E_s\)
-	    <p>If \(f_{st}\geq 0.87f_y \) then \(f_{st}=0.87f_y\) Else \(f_{st}=\varepsilon_{st}E_s\)</p>
+	    </div>
+	    <p>If \(f_{st}\geq 0.87f_y \) then </p> 
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{st}=0.87f_y\)
+	    </div>
+	    <p>Else</p> 
+	    <div style="text-align: center;font-size:20px;">
+	    \(f_{st}=\varepsilon_{st}E_s\)
+	    </div>
 
 	    <p><b>Computation of forces</b></p>
 	    <p>Of Concrete:</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(F_{cc}=0.45f_{cu} * 0.9x *b \) <p>and therefore</p> \(F_{cc}=0.405f_{cu}bx \)
+	    </div>
 	    <p>Of Compression rebar</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(F_{sc1}=A_{sc1}(f_{sc1}-0.45f_{cu})\)
+	    </div>
 	    <p>And</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(F_{sc2}=A_{sc2}(f_{sc2}-0.45f_{cu})\)
+	    </div>
 	    <p>And so on……depending on the number of rows of rebar</p>
 	    <p>Of tension rebars</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(F_{st}=A_{st}(f_{st}-0.45f_{cu})\)
+	    </div>
 	    <p>Resultant forces in concrete</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(N=F_{sc1}+F_{sc2}+F_{cc}-F_{st}\)
+	    </div>
 	    <p><b>Calculation of moment capacities (Taking moment at center of the section).</b></p>
 	    <p>Of Compression rebar</p>
+    		<div style="text-align: center;font-size:20px;">
 	    \(M_1=F_{sc1}(\frac{h}{2}-d')\)
+		</div>
 	    <p>And</p>
+	    <div style="text-align: center;font-size:20px;">
 		\(M_2=F_{sc2}(\frac{h}{2}-d'-S_b)\)
+	    </div>
 	    <p>Of Concrete</p>
+	    <div style="text-align: center;font-size:20px;">
 		\(M_c=F_{cc}(\frac{h}{2}-\frac{S}{2})\)
+	    </div>
 	    <p>Where \(s=0.9x\)</p>
 	    <p>Of Tension rebar</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(M_s=F_{st}(h'-\frac{h}{2})\)
+		    
 	    	<br>
 	    	\(M=M_1+M_2+M_c+M_s \)
+	    </div>
 	    <p> <b> ii) When neutral axis lies outside the section</b></p>
 	    <img src="BSOutsideNA.png" alt="curve" class="shape-image" style="width: 800px; height: auto;">
 	    <p><center><b>Fig.: Stress-strain diagram of column when neutral axis lies outside the section \(0.9x>h\).</b></center></p>
 	    <p><b>Computation of Strains</b></p>
 	    <p>Row-1</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(\varepsilon_{sc1}=\frac{x-d'}{x}\varepsilon_{cu} \)
+	    </div>
 	    <p>Row-2</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(\varepsilon_{sc2}=\frac{x-d'-S_b}{x}\varepsilon_{cu} \)
+	    </div>
 	    <p>And so on......</p>
 	    <p>Note: all the rebars are on compression side.</p>
 		<p><b>Computation of Stresses</b></p>
 	    	<p>Row-1</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(f_{sc1}=\varepsilon_{sc1}E_s\)
+	    </div>
 	       <p>But not greater than \(0.87f_y\).</p>
 	        <p>Row-2</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(f_{sc2}=\varepsilon_{sc2}E_s\)
+	    </div>
 	       <p>But not greater than \(0.87f_y\).</p>
 	    	<p>And so on......</p>
 	       <p><b>Compression forces</b></p>
 	    	<p>Row-1</p>
+	    <div style="text-align: center;font-size:20px;">
 	    		\(F_{st1}=(f_{sc1}-0.45f_{cu})A_{sc1}\)
+	    </div>
 	    	<p>Row-2</p>
+	    <div style="text-align: center;font-size:20px;">
 	    		\(F_{st2}=(f_{sc2}-0.45f_{cu})A_{sc2}\)
+	    </div>
 	    <p>And so on......</p>
 	    <p>Compressive stress of Concrete</p>
+    <div style="text-align: center;font-size:20px;">
 	    \(F_{cc}=0.45f_{cu}bh\)
+    </div>
 	    <p>Total force at the section</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(N=F_{sc1}+F_{sc2}+F_{sc3}+F_{cc} \)
+	    </div>
 	    <p>Moment at the center of the section</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(M_1=F_{sc1}(\frac{h}{2}-d')\)
 	    <br>
+		    <br>
 	    \(M_2=F_{sc2}(\frac{h}{2}-d'-(i-1)S_b)\)
+	    </div>
 	    <p>And so on............</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(M_c=F_{cc}(\frac{h}{2}-\frac{h}{2}) =0 \)
+	    </div>
 	    <p>Total Moment</p>
+	    <div style="text-align: center;font-size:20px;">
 	    	\(M=M_1+M_2-M_3 \)
+	    </div>
 	    <p>The moment due to rows of reinforcement below half of the section shall be deducted.</p>
 	    <p><b>Description of interaction diagram</b></p>
 	    <p>a) Pure bending</p>
@@ -700,10 +775,14 @@
 	    <p>Effective length coefficient \(beta=0.75\)</p>
 	    <p> Effective length \(L_e=\beta L=0.75*3.0=2.25m \)</p>
 	    <p>Check for long or short column, for braced column</p>
+	    <div style="text-align: center;font-size:20px;">
 	    \(\frac{L_e}{min(b,h)}=\frac{2.25}{0.4}=5.625<15 \)
+	    </div>
 		<p>So, the column is short</p>
 		    <p>Ratio of effective depth to overall depth</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(\frac{h'}{h}=\frac{362.5}{400}=0.906 \)
+	    </div>
 		    <p>Minimum Eccentricity</p>
 		    
 	<table>
@@ -754,14 +833,19 @@
 	<p>Check for dominancy of the moments in the axes.</p>
  	<p><u>In width</u></p>
 	<p>Moment per width</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(\frac{M_x}{b'}=\frac{50}{362.5}*1000=137.93kN\)
+	    </div>
 	<p><u>In depth</u> </p>
 	<p>Moment per width</p>
+	    <div style="text-align: center;font-size:20px;">
 			 \(\frac{M_y}{h'}=\frac{75}{362.5}*1000=206.897kN\)
+	    </div>
 	<p>Check for dominancy</p>	
 	<p> Since \(\frac{M_y}{h'}>\frac{M_x}{b'}\) , \(M_y\) dominance over \(M_x\).</p>
-		    
+		    <div style="text-align: center;font-size:20px;">
 	\(\frac{N}{f_{cu}bh}=\frac{500*1000}{25*400*400}=0.125\)
+		    </div>
 	<p>Multiplying factor \(\beta\) shall be calculated using following table</p>
 		    <table>
 			    <thead>
@@ -837,18 +921,28 @@
 			    </tr>
 		    </table>
 	<p>Spacing of neutral axis from top</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(dx=0.10m\)
+	    </div>
 	<p>Start of NA, \(x_1=0.05\)</p>
 		    <p>Condition-1: When neutral axis lies in section</p>
 		    <p>For example \(x=0.35m\)</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(s=0.9x=0.9*0.35=0.315m\)
+	    </div>
 		    <p>Strain:</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(\varepsilon=\frac{0.0035}{x}y=\frac{0.0035}{0.35}y\)
+	    </div>
 		    <p>Stress:</p>
 		    <p>If \(\varepsilon\leq\frac{0.87f_y}{E_s}\) then</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(f_{sc}=E_s\varepsilon_{sc}\)
+	    </div>
 		    <p>Else</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(f_{sc}=0.87f_y\)
+	    </div>
 	<p>Calculation of Strain and stress at each rows of the rebar</p>
 		    <table>
 			    <thead>
@@ -885,9 +979,13 @@
      <p><i>Negative sign indicates the tension reinforcement</i></p>
 	<p><b>Calculation of compressive and tensile forces</b></p>
 	<p>Compressive force of concrete</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(F_{cc}=0.45f_{cu}bs\)
+	    </div>
 	<p>Compressive/Tensile force of steel</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(F_{sti}=(f_{sci}-0.45f_{cu})A_{sci}\)
+	    </div>
 	<p>CALCULATION TABLE</p>
 		    <table>
         <thead>
@@ -933,9 +1031,13 @@
         </tbody>
     </table>
 	<p>Bending moments</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(M_c=F_cc(\frac{h}{2}-\frac{s}{2})\)
+	    </div>
 		    <br>
+	    <div style="text-align: center;font-size:20px;">
 	\(M_i=F_{sci}(\frac{h}{2}-d'-(i-1)S_b)\)
+	    </div>
 		     <table>
         <thead>
             <tr>
@@ -981,13 +1083,18 @@
     </table>
 
 		    <p>Similar process shall be carried out different positions of neutral axis. In case of neutral axis lies outside of the sections, the summation of forces and moments are carried out by following formula</p>
-	\(M_1=F_{sc1}(\frac{h}{2}-d')\)
+	<div style="text-align: center;font-size:20px;">
+	    \(M_1=F_{sc1}(\frac{h}{2}-d')\)
+		
 		    <br>
 	\(M_i=F_{sci}(\frac{h}{2}-d'-(i-1)S_b)\)
+	</div>
 		    <p> And so on....</p>
 		    \(M_c=0\)
 		    <p>Total moment</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \(M=\sum_{i=1}^n M_i \)
+	    </div>
 		    <p>A similar process shall be followed in another axis as well. After doing detailed calculations, following interaction diagram has been achieved.</p>
 		    <img src="IDx.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
 		<p><center><b>Fig. Interaction diagram at x-axis</b></center></p>
@@ -997,7 +1104,9 @@
     <p><b>Check for linear approximation</b></p>
 		    <p>Moment at x-axis for \(N=500kN\), \(M_{ux}=320.55kNm\)</p>
     			<p>Similarly, Moment at y-axis for \(N=500kN\), \(M_{uy}=320.55kNm\)</p>
+	    <div style="text-align: center;font-size:20px;">
 		    \((\frac{M_x}{M_{ux}})^2+(\frac{M_y}{M_{uy}})^2=(\frac{50}{320.55})^2+(\frac{75}{320.55})^2=0.269<1,OK\)
+	    </div>
 	<p>Result: Assumption of 3% of reinforcement is okay for this section.</p>		    
     </main>
 
