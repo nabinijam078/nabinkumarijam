@@ -533,24 +533,53 @@
 	<p>\(ν\) = Poisson's ratio</p>
 	<p>v)	Calculation of combined circumferential stress</p>
 				<div style="text-align: center;font-size: 20px;">
-				\(\sigma_g=√((σ_x^2+σ_y^2-σ_x  σ_y ) )\)
+				\(\sigma_g=√(σ_x^2+σ_y^2-σ_x  σ_y ) \)
 				</div>
 	<p>If \(\sigma_a>sigma_y\) and \(\sigma_a>\sigma_g\), The assumed thickness of pipe is safe.</p>
 	<P>Design for external pressure (As per IS 11639 Part 2: 1995)</P>
-	<p>A)	Vaughan’s formula</p>
+	<p><b>A)	Vaughan’s formula</b></p>
 				<div style="text-align: center;font-size: 20px;">
-					\(\frac{13K^2}{4E'}(P_{cr})^2+2P_{cr}(1+3K\frac{Y_o}{R}-\frac{F_yK}{2E'})-(\frac{4F_y}{K}-\frac{(F_y)^2}{E'})=0\)
+					\(\frac{13K^2}{4E'}P_{cr}^2+2P_{cr}(1+3K\frac{Y_o}{R}-\frac{F_yK}{2E'})-(\frac{4F_y}{K}-\frac{(F_y)^2}{E'})=0\)
 				</div>
 	<p>Where,</p>
 	<p>\(K\) = ratio of pipe diameter to plate thickness</p>
 	<div style="text-align: left;font-size: 20px;">
 	\(E'=\frac{E_s}{1-(\mu_s)^2}\)
 	</div>
-				
+	<p>\(E_s\) = modulus of elasticity of steel on N/m<sup>2</sup></p>
+	<p>\(mu_s\) = Poisson’s ratio of steel</p>
+	<p>\(P_{cr}\) = critical external pressure at buckling in N/m<sup>2</sup></p>
+	<p>\(Y_o\) = initial gap between steel lining and concrete in m</p>
+	<p>\(R\) = radius of steel liner in m </p>
+	<p>\(F_y\) = yield point stress in steel in N/m<sup>2</sup></p>
+	<br>
 
+	<p><b>B)	Amstutz’s formula</b></p>
+				<div style="text-align: center;font-size: 20px;">
+			\((\frac{f_n}{E'}+\frac{Y_o}{R})[1+\frac{3K^2f_n}{E'}]^2=1.68K\frac{(f_y'-f_n)}{E'}×[1-\frac{K}{4}×\frac{f_y'-f_n}{E'}]\)
+				</div>
+	<p>And</p>
+				<div style="text-align: center;font-size: 20px;">
+				\(1-\frac{P_{cr}K}{2f_n}=0.175\frac{K}{E'}(f_y'-f_n)\)
+				</div>
+	<p>Where,</p>
+				<div style="text-align: left;font-size: 20px;">
+				\(K=\frac{2R}{t}\)
+					<br>
+				\(E'=\frac{E_s}{1-mu_s^2}\)
+					<br>
+					\(f_y'=\frac{f_y}{√(1-μ_s+μ_s^2 )}\)
+				</div>
 
-
-
+ 	<p>\(f_y\) = yield stress in steel in N/m<sup>2</sup></p>
+	<p>\(E_s\) = modulus of elasticity of steel in N/m<sup>2</sup></p>
+	<p>\(mu_s\) = Poisson’s ratio of steel</p>
+	<p>\(R\) = Radius of liner in m</p>
+	<p>\(Y_o\) = initial gap between steel lining and concrete in m</p>
+	<p>\(f_n\) = allowable stress in steel in N/m<sup>2</sup></p>
+	<p>\(P_{cr}\) = critical external pressure at buckling in N/m<sup>2</sup></p>
+	<p>\(t\) = thickness of steel liner in m. </p>
+	<p>The maximum external pressure on the penstock should not exceed two-thirds times the critical external pressure calculated according to Vaughan’s equation or Amstutz’s equation. If the maximum pressure exceeds the value equal to two-thirds times the critical external pressure for unstiffened shell, stiffener should be provided to prevent buckling.</p>
 				
 	    
     </main>
