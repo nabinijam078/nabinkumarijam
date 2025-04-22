@@ -1,196 +1,840 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Retaining wall - Nabin Kumar Ijam</title>
-    <!-- Import Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Import Font Awesome for Icons -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabin Kumar Ijam | Civil & Hydropower Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- MathJax Configuration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        /* General Styles */
+        /* ===== Base Styles ===== */
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #e0f2fe;
+            --dark-blue: #1e40af;
+            --accent-blue: #3b82f6;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #f8fafc;
+            --gradient-blue: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            --section-bg: #f9fbfd;
+        }
+        
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Open sans', sans-serif;
             margin: 0;
-            padding: 0 20px; /* Added padding on both sides */
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-            /* Dynamic Gradient Background */
-            background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
-            background-size: 400% 400%;
-            animation: GradientBackground 15s ease infinite;
+            padding: 0;
+            color: var(--text-medium);
+            line-height: 1.7;
+            background-color: var(--section-bg);
+            scroll-behavior: smooth;
         }
-
-        @keyframes GradientBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            margin-top: 0;
+            font-weight: 700;
         }
-
-        h2, h3, h4, h5, h6 {
-            font-family: 'Roboto', sans-serif; /* Heading font */
-            color: black;
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
         }
-
-        /* Header Styles */
-        header {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-blue);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gradient-blue);
             color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-
-        header h1 {
-            margin: 0;
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        /* ===== Header ===== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
             font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* ===== Navigation ===== */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 8px 0;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+	    
+        .main-container {
+        max-width: 1400px;
+        margin: 40px auto;
+        padding: 0 20px; 
+        line-height: 1.7;
+        color: black;
         }
 
-        /* Navigation Bar */
-        nav {
-            background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
-            padding: 10px;
+        .main-container h2, 
+	.content h2 {
+    	font-family: 'Roboto', serif;
+    	color: var(--text-dark);
+    	padding: 0 10px;
+    	margin-bottom: 20px;
+	}
+
+        .main-container p {
+        margin-bottom: 20px;
+	font-color:black;
+        font-size: 1.1rem;
+        text-align: justify; 
+        text-justify: inter-word; 
+        }
+          /* Table Styles */
+      .data-table {
+        width: 80%;
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+      }
+      
+      .data-table th, 
+      .data-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+	border-color:black;
+      }
+      
+      table {
+        width: 80%;
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+      }
+      
+      table th, 
+      table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+	border-color:black;
+      }
+	  /* MathJax formula styling */
+      .math-formula {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px 0;
+        overflow-x: auto;
+      }
+        /* ===== Hero Section ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
+            padding: 120px 0 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            
+            background-size: cover;
+            opacity: 0.8;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-medium);
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* ===== About Section ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .profile-img-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: 500px;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-img-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+        
+        .about-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-details p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        /* ===== Services/Expertise Section ===== */
+        .services {
+            background: var(--section-bg);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(224, 242, 254, 0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-blue);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover:before {
+            height: 100%;
+        }
+        
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* ===== Projects Section ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            background: white;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 25px;
+            background: white;
+        }
+        
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .project-tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* ===== Contact Section ===== */
+        .contact {
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* ===== Navigation Bar ===== */
+        nav {
+            background-color: var(--text-dark);
+            padding: 12px 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        nav a {
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 5px;
+        }
+        
+        .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
+            padding: 10px 20px;
             font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-
-        nav a:hover {
-            background-color: #0078d7;
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary-blue);
         }
-
+        
         /* Dropdown Menu */
         .dropdown {
             position: relative;
-            display: inline-block;
         }
-
+        
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #333;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
             z-index: 1;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
         }
-
+        
         .dropdown-content a {
-            color: white;
-            padding: 12px 16px;
+            color: var(--text-dark);
+            padding: 12px 20px;
             text-decoration: none;
             display: block;
-            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-
+        
         .dropdown-content a:hover {
-            background-color: #0078d7;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding-left: 25px;
         }
-
+        
         .dropdown:hover .dropdown-content {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        /* Main Content Container */
-        .main-container {
-            padding: 60px; /* Increased padding on the left and right */
-            max-width: 1200px; /* Optional: Limit the maximum width of the content */
-            margin: 20px auto; /* Center the container */
-            flex: 1; /* Push footer to the bottom */
+        
+        .dropbtn {
+            cursor: pointer;
         }
-        /* Image Container */
-        .image-container {
-            width: 40%; /* Adjust the width as needed */
-            display: flex;
-            align-items: flex-start; /* Align image to the top */
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px; /* Optional: Adds rounded corners to the image */
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: rgba(224, 255, 255, 0.8); /* Semi-transparent background */
+        
+        /* ===== Current Time and Date ===== */
+        #datetime {
+            background-color: var(--primary-blue);
             color: white;
             text-align: center;
-            padding: 20px;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: auto; /* Push the footer to the bottom */
-        }
-
-        .social-links {
-            margin-bottom: 10px;
-        }
-
-        .social-links a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.8rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #0078d7;
-        }
-
-        .copyright {
-            background-color: rgba(224, 255, 255, 0.8);
-            padding: 5px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .copyright p {
-            margin: 0;
+            padding: 8px 0;
             font-size: 0.9rem;
-            color: #333;
+            font-weight: 500;
         }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .hero:before {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                padding: 0 30px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-img-container {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
         }
-
-        table, th, td {
-            border: 1px solid #333; /* Added border to table, th, and td */
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2; /* Light gray background for headers */
-        }
-
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
-            .main-container {
-                padding: 20px; /* Adjust padding for smaller screens */
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                display: none;
+                transform: none;
+                border-radius: 0;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            .hero {
+                padding: 100px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -198,340 +842,260 @@
 <body>
     <!-- Current Time and Date -->
     <div id="datetime"></div>
+    
     <!-- Header -->
     <header>
-        <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structure & Hydropower</h1>
+       <div class="container header-container">
+                <div class="logo">
+                
+                | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
+    		</div>
+           
+        </div>
     </header>
-
+    
     <!-- Navigation Bar -->
     <nav>
-        <a href="Home.html"><b>HOME</b></a>
-        <div class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
-            <div class="dropdown-content">
-                <a href="Information.html">MY INFORMATION</a>
-                <a href="My background.html">MY BACKGROUND</a>
-                <a href="My works.html">MY WORKS</a>
-            </div>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="Home.html" class="active"><b>HOME</b></a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+                    <div class="dropdown-content">
+                        <a href="Information.html">MY INFORMATION</a>
+                        <a href="My background.html">MY BACKGROUND</a>
+                        <a href="My works.html">MY WORKS</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+                    <div class="dropdown-content">
+                        <a href="Civil Engineering Notes.html">CALCULATIONS</a>
+                        <a href="DesignNotes.html">DESIGN NOTES</a>
+                        <a href="Others.html">OTHER CALCULATION</a>
+                    </div>
+                </li>
+                <li><a href="Downloads.html"><b>DOWNLOADS</b></a></li>
+                <li><a href="images.html"><b>IMAGES</b></a></li>
+                <li><a href="blog.html"><b>PERSONAL BLOG</b></a></li>
+                <li><a href="Contacts.html"><b>CONTACTS</b></a></li>
+            </ul>
         </div>
-        
-        <div class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
-            <div class="dropdown-content">
-                <a href="Civil Engineering Notes.html">CALCULATIONS</a>
-                <a href="DesignNotes.html">DESIGN NOTES</a>
-                <a href="Others.html">OTHER CALCULATION</a>
-            </div>
-        </div>
-
-        <a href="Downloads.html"><b>DOWNLOADS</b></a>
-        <a href="images.html"><b>IMAGES</b></a>
-        <a href="blog.html"><b>PERSONAL BLOG</b></a>
-        <a href="Contacts.html"><b>CONTACTS</b></a>
     </nav>
 
-    <div class="content">
-        <form id="Stemdimension">
-            <h2><u>STABILITY ANALYSIS OF RETAINING WALL</u></h2>
-            <p><b>1. GEOMETRY OF WALL</b></p>
-            <p>STEM DIMENSION</p>
-            <div class="input-row">
-                <label for="topwidth">Top width (t<sub>w</sub> in m):</label>
-                <input type="number" id="tw" required>
-            </div>
-            <div class="input-row">
-                <label for="bottomwidth">Bottom width (b<sub>w</sub> in m):</label>
-                <input type="number" id="bw" required>
-            </div>
-            <div class="input-row">
-                <label for="height">Height of stem (h in m):</label>
-                <input type="number" id="hw" required>
-            </div>
-            <p>TOE SLAB DIMENSION</p>
-            <div class="input-row">
-                <label for="lengthtoe">Length of toe (L<sub>t</sub> in m):</label>
-                <input type="number" id="lengthtoe" required>
-            </div>
-            <div class="input-row">
-                <label for="ThicknessToe">Thickness of toe (h<sub>t</sub> in m):</label>
-                <input type="number" id="ThicknessToe" required>
-            </div>
-            <p>HEEL SLAB DIMENSION</p>
-            <div class="input-row">
-                <label for="lengthheel">Length of heel (L<sub>h</sub> in m):</label>
-                <input type="number" id="lengthheel" required>
-            </div>
-            <div class="input-row">
-                <label for="Thicknessheel">Thickness of heel (h<sub>h</sub> in m):</label>
-                <input type="number" id="Thicknessheel" required>
-            </div>
-            <p><b>2. GEOTECHNICAL PARAMETER</b></p>
-            <p><b>2.1 Foundation material</b></p>
-            <div class="input-row">
-                <label for="BearingF">Bearing Capacity of foundation material (σ<sub>b</sub> in kN/m<sup>2</sup>):</label>
+     <!-- Main Content -->
+       
+   <div class="main-container">
+        <div class="content">
+            <h2><u>ISOLATED FOOTING FOR BIAXIAL LOADING</u></h2>
+            <form>
+                <h4><u>MATERIAL GRADE</u></h4>
+                <label for="fck">Grade of Concrete (fck in MPa): </label>
+                <select id="fck">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                </select>
+                <label for="fy"><br><br>Grade of Steel (fy in MPa): </label>
+                <select id="fy">
+                    <option value="250">250</option>
+                    <option value="415">415</option>
+                    <option value="500">500</option>
+                </select>
+                <br>
+                <label for="σb"><br>Bearing capacity of soil (σb in kN/m²):</label>
                 <input type="number" id="σb" required>
+                <br>
+                <h4><u>COLUMN AND FOOTING DIMENSIONS</u></h4>
+                <label for="width">Width of Column (b in mm):</label>
+                <input type="number" id="width" required>
+                <br>
+                <label for="depth">Depth of Column (d in mm):</label>
+                <input type="number" id="depth" required>
+                <br>
+                <label for="Length">Length of footing (L in m):</label>
+                <input type="number" id="Length" required>
+                <br>
+                <label for="Breadth">Breadth of footing (B in m):</label>
+                <input type="number" id="Breadth" required>
+                <br>
+                <label for="Thickness">Thickness of footing (h in mm):</label>
+                <input type="number" id="Thickness" required>
+                <br>
+                <h4><u>FACTORED LOADS</u></h4>
+                <label for="AxialLoad">Axial Loading (F in kN):</label>
+                <input type="number" id="AxialLoad" required>
+                <br>
+                <label for="Mx">Moment at x-axis (Mx in kNm):</label>
+                <input type="number" id="Mx" required>
+                <br>
+                <label for="My">Moment at y-axis (My in kNm):</label>
+                <input type="number" id="My" required>
+                <br>
+                <button type="button" onclick="calculateMainRebar()">FOOTING DESIGN</button>
+                <br>
+            </form>
+            <div class="result" id="result">
+                <h2><u>DESIGN RESULTS</u></h2>
+                <p><strong><u>BEARING STRESSES AT FOUR CORNERS:</u></strong></p>
+                <p>σ<sub>1</sub>: <span id="sigma1"></span> kN/m²</p>
+                <p>σ<sub>2</sub>: <span id="sigma2"></span> kN/m²</p>
+                <p>σ<sub>3</sub>: <span id="sigma3"></span> kN/m²</p>
+                <p>σ<sub>4</sub>: <span id="sigma4"></span> kN/m²</p>
+                <p>Check for maximum bearing Stress: <span id="check1"></span></p>
+                <p>Check for minimum bearing Stress: <span id="check2"></span></p>
+                <p><b>1. REINFORCEMENT DESIGN</b></p>
+                <p>Limiting moment, M<sub>u_lim</sub>: <span id="Mu_lim"></span> kNm</p>
+                <p>Moment at edge of column, Mx: <span id="Mu"></span> kNm</p>
+                <p>Moment at edge of column, My: <span id="Muy"></span> kNm</p>
+                <p>Area of main reinforcement at x-axis, A<sub>stx</sub>: <span id="Astx"></span> mm²</p>
+                <p>Area of main reinforcement at y-axis, A<sub>sty</sub>: <span id="Asty"></span> mm²</p>
+                <p><b>2. ONE-WAY SHEAR CHECK</b></p>
+                <p>One-way shear force in x-axis, Fx: <span id="Fx"></span> kN</p>
+                <p>One-way shear force in y-axis, Fy: <span id="Fy"></span> kN</p>
+                <p>Shear reinforcement check in x-axis: <span id="checkx"></span></p>
+                <p>Shear reinforcement check in y-axis: <span id="checky"></span></p>
+                <p><b>3. TWO-WAY SHEAR CHECK</b></p>
+                <p>Punching stress, Fp: <span id="Ftw"></span> N/mm²</p>
+                <p>Punching strength, tau_tw: <span id="tau_tw"></span> N/mm²</p>
+                <p>Check for punching strength: <span id="check_tw"></span></p>
             </div>
-            <div class="input-row">
-                <label for="Frictionf">Angle of internal friction of foundation material (φ<sub>f</sub> in degree):</label>
-                <input type="number" id="φf" required>
-            </div>
-            <div class="input-row">
-                <label for="Cohesionf">Cohesion of foundation material (C<sub>f</sub> in kN/m<sup>2</sup>):</label>
-                <input type="number" id="Cf" required>
-            </div>
-            <p><b>2.2 Backfill material</b></p>
-            <div class="input-row">
-                <label for="Density of soil">Density of soil (Y<sub>s</sub> in kN/m<sup>3</sup>):</label>
-                <input type="number" id="Ys" required>
-            </div>
-            <div class="input-row">
-                <label for="Saturated Density of soil">Saturated Density of soil (Y<sub>sat</sub> in kN/m<sup>3</sup>):</label>
-                <input type="number" id="Ysat" required>
-            </div>
-            <div class="input-row">
-                <label for="InclinationHeel">Inclination of slope at hill side (i<sub>h</sub> in degree):</label>
-                <input type="number" id="ih" required>
-            </div>
-            <div class="input-row">
-                <label for="FricAngle">Angle of internal friction (φ in degree):</label>
-                <input type="number" id="Phi" required>
-            </div>
-            <div class="input-row">
-                <label for="SoilDepthheel">Depth of soil in heel side from top of slab (h<sub>s</sub> in m):</label>
-                <input type="number" id="hs" required>
-            </div>
-            <div class="input-row">
-                <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (h<sub>toe</sub> in m):</label>
-                <input type="number" id="htoe" required>
-            </div>
-            <p><b>3. WATER LEVELS</b></p>
-            <div class="input-row">
-                <label for="WTh">Water depth in heel side from top of slab (WT<sub>h</sub> in m):</label>
-                <input type="number" id="WTh" required>
-            </div>
-            <div class="input-row">
-                <label for="WTt">Water depth in toe side from top of slab (WT<sub>t</sub> in m):</label>
-                <input type="number" id="WTt" required>
-            </div>
-            <p><b>4. OTHERS</b></p>
-            <div class="input-row">
-                <label for="Yc">Density of concrete (Y<sub>c</sub> in kN/m<sup>3</sup>):</label>
-                <input type="number" id="Yc" required>
-            </div>
-            <div class="input-row">
-                <label for="Ah">Horizontal seismic coefficient (A<sub>h</sub>):</label>
-                <input type="number" id="Ah" required>
-            </div>
-            <label for="EPT">Consideration of earth pressure (1-Active & Passive and 2-At rest):</label>
-            <select id="EPT">
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
-            <div class="input-row">
-                <label for="Ps">Passive pressure coefficient (P<sub>s</sub> in %):</label>
-                <input type="number" id="Ps" required>
-            </div>
-            <p></p>
-            <button type="button" onclick="RetainingWallCalc()"><u><b>RETAINING WALL DESIGN</b></u></button>
-        </form>
-        <div class="result" id="result">
-            <h3>DESIGN RESULTS</h3>
-            <p><b>LOAD CALCULATION</b></p>
-            <table>
-                <tr>
-                    <th>SN</th>
-                    <th>Load name</th>
-                    <th>Symbol</th>
-                    <th>Load Intensity</th>
-                    <th>Unit</th>
-                    <th>Load (kN)</th>
-                    <th>Center of Gravity</th>
-                    <th>LoadType</th>
-                    <th>Resisting moment(kNm)</th>
-                    <th>Overturning moment(kNm)</th>
-                </tr>
-                <tr>
-                    <td>1.</td>
-                    <td>Self-weight of the structure</td>
-                    <td>F1</td>
-                    <td><p><span id="F1"></span></span></strong></p></td>
-                    <td>kN</td>
-                    <td><p><span id="P1"></span></span></strong></p></td>
-                    <td><p><span id="x1"></span></span></strong></p></td>
-                    <td>Vertical</td>
-                    <td><p><span id="M1"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2.1</td>
-                    <td>Earth pressure above WT in hill side</td>
-                    <td>F2h1</td>
-                    <td><p><span id="F2h1"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P2h1"></span></span></strong></p></td>
-                    <td><p><span id="x2h1"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td></td>
-                    <td><p><span id="M2h1"></span></span></strong></p></td>
-                </tr>
-                <tr>
-                    <td>2.2</td>
-                    <td>Earth pressure below WT in river side</td>
-                    <td>F2h2</td>
-                    <td><p><span id="F2h2"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P2h2"></span></span></strong></p></td>
-                    <td><p><span id="x2h2"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td></td>
-                    <td><p><span id="M2h2"></span></span></strong></p></td>
-                </tr>
-                <tr>
-                    <td>2.3</td>
-                    <td>Earth pressure above WT in river side</td>
-                    <td>F2r1</td>
-                    <td><p><span id="F2r1"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P2r1"></span></span></strong></p></td>
-                    <td><p><span id="x2r1"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td><p><span id="M2r1"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2.4</td>
-                    <td>Earth pressure below WT in river side</td>
-                    <td>F2r2</td>
-                    <td><p><span id="F2r2"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P2r2"></span></span></strong></p></td>
-                    <td><p><span id="x2r2"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td><p><span id="M2r2"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3.1</td>
-                    <td>Soil load (including water) in hill side</td>
-                    <td>F3h</td>
-                    <td><p><span id="F3h"></span></span></strong></p></td>
-                    <td>kN</td>
-                    <td><p><span id="P3h"></span></span></strong></p></td>
-                    <td><p><span id="x3h"></span></span></strong></p></td>
-                    <td>Vertical</td>
-                    <td><p><span id="M3h"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3.2</td>
-                    <td>Soil load (including water) in river side</td>
-                    <td>F3r</td>
-                    <td><p><span id="F3r"></span></span></strong></p></td>
-                    <td>kN</td>
-                    <td><p><span id="P3r"></span></span></strong></p></td>
-                    <td><p><span id="x3r"></span></span></strong></p></td>
-                    <td>Vertical</td>
-                    <td><p><span id="M3r"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4.1</td>
-                    <td>Hydrostatic pressure at hill side</td>
-                    <td>F4h</td>
-                    <td><p><span id="F4h"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P4h"></span></span></strong></p></td>
-                    <td><p><span id="x4h"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td></td>
-                    <td><p><span id="M4h"></span></span></strong></p></td>
-                </tr>
-                <tr>
-                    <td>4.2</td>
-                    <td>Hydrostatic pressure at river side</td>
-                    <td>F4r</td>
-                    <td><p><span id="F4r"></span></span></strong></p></td>
-                    <td>kN/m</td>
-                    <td><p><span id="P4r"></span></span></strong></p></td>
-                    <td><p><span id="x4r"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td><p><span id="M4r"></span></span></strong></p></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Uplift</td>
-                    <td>F5</td>
-                    <td><p><span id="F5"></span></span></strong></p></td>
-                    <td>kN</td>
-                    <td><p><span id="P5"></span></span></strong></p></td>
-                    <td><p><span id="x5"></span></span></strong></p></td>
-                    <td>Vertical</td>
-                    <td></td>
-                    <td><p><span id="M5"></span></span></strong></p></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Seismic load</td>
-                    <td>F6</td>
-                    <td><p><span id="F6"></span></span></strong></p></td>
-                    <td>kN</td>
-                    <td><p><span id="P6"></span></span></strong></p></td>
-                    <td><p><span id="x6"></span></span></strong></p></td>
-                    <td>Horizontal</td>
-                    <td></td>
-                    <td><p><span id="M6"></span></span></strong></p></td>
-                </tr>
-            </table>
-            <p><b>STABILITY ANALYSIS</b></p>
-            <table>
-                <tr>
-                    <th>SN</th>
-                    <th>Combination</th>
-                    <th>FOS against Sliding</th>
-                    <th>FOS against Overturning</th>
-                    <th>Eccentricity(m)</th>
-                    <th>Minimum bearing pressure(kNm<sup>2</sup>)</th>
-                    <th>Maximum bearing pressure(kNm<sup>2</sup>)</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Normal condition</td>
-                    <td><p><span id="FOSs1"></span></span></strong></p></td>
-                    <td><p><span id="FOSo1"></span></span></strong></p></td>
-                    <td><p><span id="ec1"></span></span></strong></p></td>
-                    <td><p><span id="sigmamin1"></span></span></strong></p></td>
-                    <td><p><span id="sigmamax1"></span></span></strong></p></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Seismic condition</td>
-                    <td><p><span id="FOSs2"></span></span></strong></p></td>
-                    <td><p><span id="FOSo2"></span></span></strong></p></td>
-                    <td><p><span id="ec2"></span></span></strong></p></td>
-                    <td><p><span id="sigmamin2"></span></span></strong></p></td>
-                    <td><p><span id="sigmamax2"></span></span></strong></p></td>
-                </tr>
-            </table>
         </div>
     </div>
-  
+
+
+    <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/nabin.ijam" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
-        <div class="copyright">
-            <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Nabin Kumar Ijam</h3>
+                    <p>Professional Civil Engineer specializing in structural design and hydropower projects with 16+ years of experience creating innovative engineering solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/nabin.ijam" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                       
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#services">Expertise</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Structural Design</a></li>
+                        <li><a href="#">Hydropower Engineering</a></li>
+                        <li><a href="#">Project Management</a></li>
+                        <li><a href="#">Construction Supervision</a></li>
+                        <li><a href="#">Feasibility Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="Civil Engineering Notes.html">Engineering Notes</a></li>
+                        <li><a href="Downloads.html">Downloads</a></li>
+                        <li><a href="blog.html">Personal Blog</a></li>
+                        <li><a href="Downloads.html">Design Codes</a></li>
+                        <li><a href="#">Useful Links</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript for Time and Date -->
     <script>
-        function RetainingWallCalc() {
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
+
+        // Initial call to display the time and date immediately
+        updateDateTime();
+    </script>
+
+    <script>
+        // Current year for copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Form submission handling
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to a server
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
+        }
+ // Calculate Main Rebar
+          function RetainingWallCalc() {
             // Get user inputs
             const tw = parseFloat(document.getElementById('tw').value);
             const bw = parseFloat(document.getElementById('bw').value);
@@ -755,17 +1319,6 @@
             document.getElementById('sigmamax2').textContent = sigmamax2.toFixed(2);
         }
 
-        // Update Time
-        function updateTime() {
-            const now = new Date();
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleString();
-        }
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call
-
-        // Update Copyright Year
-        document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
 </html>
