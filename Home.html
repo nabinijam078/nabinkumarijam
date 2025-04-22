@@ -1,424 +1,1190 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Home - Nabin Kumar Ijam</title>
-    <!-- Import Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Import Font Awesome for Icons -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabin Kumar Ijam | Civil & Hydropower Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-      /* General Styles */
-      body {
-        font-family: 'Open Sans', sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #333;
-        line-height: 1.6;
-        /* Dynamic Gradient Background */
-        background: linear-gradient(270deg, #0078d7, #00bcd4, #4caf50, #ffeb3b);
-        background-size: 400% 400%;
-        animation: GradientBackground 15s ease infinite;
-      }
-
-      @keyframes GradientBackground {
-        0% {
-          background-position: 0% 50%;
+        /* ===== Base Styles ===== */
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #e0f2fe;
+            --dark-blue: #1e40af;
+            --accent-blue: #3b82f6;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #f8fafc;
+            --gradient-blue: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            --section-bg: #f9fbfd;
         }
-        50% {
-          background-position: 100% 50%;
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-medium);
+            line-height: 1.7;
+            background-color: var(--section-bg);
+            scroll-behavior: smooth;
         }
-        100% {
-          background-position: 0% 50%;
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            margin-top: 0;
+            font-weight: 700;
         }
-      }
-
-      h2, h3, h4, h5, h6 {
-        font-family: 'Roboto', sans-serif; /* Heading font */
-        color: black;
-      }
-
-      /* Header Styles */
-      header {
-        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-        color: white;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      header h1 {
-        margin: 0;
-        font-size: 1.8rem;
-      }
-
-      /* Navigation Bar */
-      nav {
-        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
-        padding: 10px;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      nav a {
-        color: white;
-        text-decoration: none;
-        padding: 10px 15px;
-        margin: 0 5px;
-        font-size: 1rem;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-      }
-
-      nav a:hover {
-        background-color: #0078d7;
-      }
-
-      /* Dropdown Menu */
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #333;
-        min-width: 160px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-
-      .dropdown-content a {
-        color: white;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-      }
-
-      .dropdown-content a:hover {
-        background-color: #0078d7;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      /* Hero Section */
-      .hero {
-        background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-        height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-        padding: 20px;
-      }
-
-      .hero h2 {
-        font-size: 3rem;
-        margin: 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .hero p {
-        font-size: 1.5rem;
-        margin: 10px 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-
-      .hero .btn {
-        background-color: #0078d7;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        transition: background-color 0.3s ease;
-      }
-
-      .hero .btn:hover {
-        background-color: #0056b3;
-      }
-
-      /* About Section */
-      .about {
-        display: flex;
-        align-items: center;
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .about img {
-        width: 200px;
-        height: auto;
-        border-radius: 10px;
-        margin-right: 30px;
-        border: 5px solid #0078d7;
-      }
-
-      .about h2 {
-        font-size: 2rem;
-        margin: 0 0 10px;
-      }
-
-      .about p {
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.8;
-      }
-
-      /* Cards Section */
-      .cards {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        margin: 20px auto;
-        max-width: 1200px;
-      }
-
-      .card {
-        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin: 10px;
-        padding: 20px;
-        width: 300px;
-        text-align: center;
-        transition: transform 0.3s ease;
-      }
-
-      .card:hover {
-        transform: translateY(-10px);
-      }
-
-      .card h3 {
-        font-size: 1.5rem;
-        margin: 0 0 10px;
-      }
-
-      .card p {
-        font-size: 1rem;
-        color: #555;
-      }
-
-      /* Footer Styles */
-      footer {
-        background-color: rgba(224, 255, 255, 0.8); /* Semi-transparent background */
-        color: white;
-        text-align: center;
-        padding: 20px;
-        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .social-links {
-        margin-bottom: 10px;
-      }
-
-      .social-links a {
-        color: #333;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 1.8rem;
-        transition: color 0.3s ease;
-      }
-
-      .social-links a:hover {
-        color: #0078d7;
-      }
-
-      .copyright {
-        background-color: rgba(224, 255, 255, 0.8);
-        padding: 5px;
-        border-radius: 5px;
-        display: inline-block;
-        margin-top: 10px;
-      }
-
-      .copyright p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #333;
-      }
-
-      .view-counter {
-        background-color: rgba(224, 255, 255, 0.8);
-        padding: 5px 10px;
-        border-radius: 5px;
-        display: inline-block;
-        margin: 10px;
-        font-size: 0.9rem;
-        color: #333;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .hero h2 {
-          font-size: 2rem;
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
         }
-
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-blue);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gradient-blue);
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        /* ===== Header ===== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* ===== Navigation ===== */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 8px 0;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
+            padding: 120px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            
+            background-size: cover;
+            opacity: 0.8;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
         .hero p {
-          font-size: 1.2rem;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-medium);
         }
-
-        .about {
-          flex-direction: column;
-          text-align: center;
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
-
-        .about img {
-          margin-right: 0;
-          margin-bottom: 20px;
+        
+        /* ===== About Section ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
-
-        .cards {
-          flex-direction: column;
-          align-items: center;
+        
+        .profile-img-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: 500px;
         }
-
-        .card {
-          width: 80%;
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-      }
+        
+        .profile-img-container:hover .profile-img {
+            transform: scale(1.05);
+        }
+        
+        .about-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-details p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        /* ===== Services/Expertise Section ===== */
+        .services {
+            background: var(--section-bg);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(224, 242, 254, 0.5);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-blue);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover:before {
+            height: 100%;
+        }
+        
+        .service-icon {
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* ===== Projects Section ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            background: white;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 25px;
+            background: white;
+        }
+        
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .project-tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* ===== Contact Section ===== */
+        .contact {
+            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* ===== Navigation Bar ===== */
+        nav {
+            background-color: var(--text-dark);
+            padding: 12px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 5px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary-blue);
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            padding-left: 25px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dropbtn {
+            cursor: pointer;
+        }
+        
+        /* ===== Current Time and Date ===== */
+        #datetime {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* ===== Responsive Design ===== */
+        @media (max-width: 992px) {
+            .hero:before {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                padding: 0 30px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-img-container {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                display: none;
+                transform: none;
+                border-radius: 0;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            .hero {
+                padding: 100px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid, .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
-  </head>
-  <body>
-  <!-- Current Time and Date -->
+</head>
+<body>
+    <!-- Current Time and Date -->
     <div id="datetime"></div>
+    
     <!-- Header -->
     <header>
-      <h1>Mr. Nabin Kumar Ijam | Civil Engineer | Structure & Hydropower</h1>
-    </header>
-
-    <!-- Navigation Bar -->
-     <nav>
-       <a href="Home.html"><b>HOME</b></a>
-      <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
-        <div class="dropdown-content">
-          <a href="Information.html">MY INFORMATION</a>
-          <a href="My background.html">MY BACKGROUND</a>
-	  <a href="My works.html">MY WORKS</a>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-project-diagram"></i>
+                Nabin Kumar Ijam
+            </div>
+           
         </div>
-      </div>
-      
-	<div class="dropdown">
-         <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
-        	<div class="dropdown-content">
-      		<a href="Civil Engineering Notes.html">CALCULATIONS</a>
-		<a href="DesignNotes.html">DESIGN NOTES</a>
-      		<a href="Others.html">OTHER CALCULATION</a>
-	</div>
-      </div>
-
-      <a href="Downloads.html"><b>DOWNLOADS</b></a>
-      <a href="images.html"><b>IMAGES</b></a>
-      <a href="blog.html"><b>PERSONAL BLOG</b></a>
-      <a href="Contacts.html"><b>CONTACTS</b></a>
+    </header>
+    
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="Home.html" class="active"><b>HOME</b></a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><b>ABOUT</b></a>
+                    <div class="dropdown-content">
+                        <a href="Information.html">MY INFORMATION</a>
+                        <a href="My background.html">MY BACKGROUND</a>
+                        <a href="My works.html">MY WORKS</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn"><b>ENGINEERING NOTES</b></a>
+                    <div class="dropdown-content">
+                        <a href="Civil Engineering Notes.html">CALCULATIONS</a>
+                        <a href="DesignNotes.html">DESIGN NOTES</a>
+                        <a href="Others.html">OTHER CALCULATION</a>
+                    </div>
+                </li>
+                <li><a href="Downloads.html"><b>DOWNLOADS</b></a></li>
+                <li><a href="images.html"><b>IMAGES</b></a></li>
+                <li><a href="blog.html"><b>PERSONAL BLOG</b></a></li>
+                <li><a href="Contacts.html"><b>CONTACTS</b></a></li>
+            </ul>
+        </div>
     </nav>
 
-
     <!-- Hero Section -->
-    <div class="hero">
-      <div>
-        <h2>Welcome to My Portfolio</h2>
-        <p>Discover my journey, expertise, and projects in Civil Engineering.</p>
-        <a href="Information.html" class="btn">View More</a>
-      </div>
-    </div>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Innovative Civil & Hydropower Engineering Solutions</h1>
+            <p>16+ years of expertise in structural design, hydropower projects, and sustainable infrastructure development</p>
+            <div class="hero-btns">
+                <a href="My works.html" class="btn">View My Work</a>
+                <a href="Contacts.html" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
-    <div class="about">
-      <img src="unnamed.jpg" alt="Nabin Kumar Ijam">
-      <div>
-        <h2>About Me</h2>
-        <p>
-          Name: Nabin Kumar Ijam
-        </p>
-	Country: Nepal
-	<p>
-          Qaulification: Master of Engineering (Civil)
-        </p>
-	<p>
-          Experience: More than 16 years in Hydropower
-        </p>
-	<p>
-          Experties: Hydraulic and Structural design of Hydraulic structure and Structural design
-        </p>
-      </div>
-    </div>
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Dedicated civil engineer with a passion for creating sustainable and resilient infrastructure</p>
+            </div>
+            <div class="about-content">
+                <div class="profile-img-container">
+                    <img src="unnamed.jpg" alt="Nabin Kumar Ijam" class="profile-img">
+                </div>
+                <div class="about-details">
+                    <h3>Professional Civil Engineer</h3>
+                    <p>I am <span class="highlight">Nabin Kumar Ijam</span>, a highly experienced civil engineer specializing in structural design and hydropower projects with over 16 years of hands-on experience in creating innovative engineering solutions.</p>
+                    
+                    <p><strong>Education:</strong> Master of Engineering (Civil)</p>
+                    <p><strong>Location:</strong> Kathmandu, Nepal</p>
+                    
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>
+                            <div>
+                                <h4>Structural Design</h4>
+                                <p>Concrete and Steel structures, Buildings, Hydraulic Structures</p>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div>
+                                <h4>Hydropower</h4>
+                                <p>All the componensts of Hydropower comprised, Dams, Penstocks, Powerhouses</p>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div>
+                                <h4>Analysis</h4>
+                                <p>Structural, Hydraulic, Geotechnical</p>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-hard-hat"></i>
+                            </div>
+                            <div>
+                                <h4>Construction</h4>
+                                <p>Project Management, Supervision, Quality Control</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="CV_Nabin Kumar Ijam.pdf" class="btn">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Cards Section -->
-    <div class="cards">
-      <div class="card">
-        <h3>My Background</h3>
-        <p>Learn about my education, experience, and skills in Civil Engineering.</p>
-	<a href="My background.html">View more..</a>
-      </div>
-      <div class="card">
-        <h3>My Works</h3>
-        <p>Explore the projects I've worked on in Structural and Hydropower Engineering.</p>
-	<a href="My works.html">View more..</a>
-      </div>
-      <div class="card">
-        <h3>Contact Me</h3>
-        <p>Get in touch for collaborations or inquiries.</p>
-	<a href="Contacts.html">View more..</a>
-      </div>
-    </div>
+    <!-- Services/Expertise Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Expertise</h2>
+                <p>Comprehensive engineering services tailored to meet your project requirements</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Structural Design</h3>
+                    <p>Comprehensive structural analysis and design for buildings, bridges, and hydraulic structures using modern software (ETABS, SAP2000, STAAD Pro) and international design codes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Hydropower Engineering</h3>
+                    <p>Complete design and analysis of hydropower components including dams, penstocks, powerhouses, and hydraulic structures with focus on sustainability and efficiency.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>End-to-end project management from feasibility studies to construction supervision, quality control, and commissioning of infrastructure projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>A selection of my most significant engineering projects and achievements</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="Headworks Mai HP, Ilam.jpg" alt="Hydropower Project" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Combined capacity more than 300MW Hydropower Projects</h3>
+                        <p>Complete structural design of dam and powerhouse components for a run-of-river hydropower plant in Nepal.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Hydropower</span>
+                            <span class="project-tag">Structural Design</span>
+                            <span class="project-tag">Nepal</span>
+                        </div>
+                        <a href="My works.html">View Details →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="images.jpeg" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Steel and Concrete building designs</h3>
+                        <p>Pioneer in designing of steel structure building in eastern Nepal.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Concrete Structure</span>
+                            <span class="project-tag">Seismic Design</span>
+                            <span class="project-tag">Steel Structure</span>
+                        </div>
+                        <a href="#">View Details →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="Surge Shaft Mai HP, Ilam.jpg" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3Underground Structures</h3>
+                        <p>Structural Design of a underground structures with structural reinforcement analysis and geological considerations.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Tunnel</span>
+                            <span class="project-tag">Geotechnical</span>
+                            <span class="project-tag">Hydraulic</span>
+                        </div>
+                        <a href="#">View Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Feel free to contact me for project inquiries, collaborations, or professional discussions</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>nabin.ijam@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+977 9841613544 (Nepal)</p>
+				<p>+60 1153438082 (Malaysia)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Kathmandu, Nepal</p>
+				<p>Kuala Lumpur, Malaysia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/nabin.ijam" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Enter subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="Enter your message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-      <div class="social-links">
-        <a href="https://www.facebook.com/nabin.ijam" target="_blank">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-      <div class="view-counter">
-        <p>Total Views: <span id="viewCount">0</span></p>
-      </div>
-      <div class="copyright">
-        <p><i>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</i></p>
-      </div>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Nabin Kumar Ijam</h3>
+                    <p>Professional Civil Engineer specializing in structural design and hydropower projects with 16+ years of experience creating innovative engineering solutions.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/nabin.ijam" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                       
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#services">Expertise</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Structural Design</a></li>
+                        <li><a href="#">Hydropower Engineering</a></li>
+                        <li><a href="#">Project Management</a></li>
+                        <li><a href="#">Construction Supervision</a></li>
+                        <li><a href="#">Feasibility Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="Civil Engineering Notes.html">Engineering Notes</a></li>
+                        <li><a href="Downloads.html">Downloads</a></li>
+                        <li><a href="blog.html">Personal Blog</a></li>
+                        <li><a href="Downloads.html">Design Codes</a></li>
+                        <li><a href="#">Useful Links</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> Nabin Kumar Ijam. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- JavaScript for Time and Date -->
     <script>
-      function updateDateTime() {
-        const now = new Date();
-        const datetimeElement = document.getElementById('datetime');
-        datetimeElement.textContent = now.toLocaleString();
-      }
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const datetimeElement = document.getElementById('datetime');
+            datetimeElement.textContent = now.toLocaleDateString('en-US', options);
+        }
 
-      // Update the time and date every second
-      setInterval(updateDateTime, 1000);
+        // Update the time and date every second
+        setInterval(updateDateTime, 1000);
 
-      // Initial call to display the time and date immediately
-      updateDateTime();
+        // Initial call to display the time and date immediately
+        updateDateTime();
+    </script>
 
-      // View counter functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        // Get current year for copyright
+    <script>
+        // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
         
-        // View counter using localStorage
-        let views = localStorage.getItem('pageViews');
-        if (views) {
-          views = parseInt(views) + 1;
-        } else {
-          views = 1;
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Form submission handling
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to a server
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
         }
-        localStorage.setItem('pageViews', views);
-        document.getElementById('viewCount').textContent = views;
-      });
     </script>
-  </body>
+</body>
 </html>
