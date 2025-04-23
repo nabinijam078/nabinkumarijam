@@ -35,7 +35,36 @@
             background-color: var(--section-bg);
             scroll-behavior: smooth;
         }
-        
+         .two-column-layout {
+        display: flex;
+        gap: 40px;
+        margin-top: 30px;
+    }
+    
+    .input-section {
+        flex: 1;
+    }
+    
+    .drawing-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    
+    .drawing-section img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    @media (max-width: 768px) {
+        .two-column-layout {
+            flex-direction: column;
+        }
+    }
+
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             color: var(--text-dark);
@@ -347,7 +376,7 @@
     </nav>
 
       <!-- Main Content -->
-    <div class="main-container">
+    <div class="two-column-layout">
         <div class="content">
             <div class="input-section">
                 <form id="plateForm">
