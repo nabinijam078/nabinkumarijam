@@ -49,74 +49,73 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px; /* Increased from 20px */
+            padding: 0 60px;
         }
         
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .section-title p {
-            max-width: 700px;
+        /* ===== Content Section Padding ===== */
+        .content {
+            padding: 40px 80px;
+            max-width: 1400px;
             margin: 0 auto;
-            color: var(--text-medium);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #beamSectionForm {
+            padding: 20px;
+        }
+
+        #beamSectionForm label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        #beamSectionForm input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #beamSectionForm button {
+            margin-top: 15px;
+            padding: 12px 24px;
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #beamSectionForm button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .result {
+            padding: 30px;
+            margin-top: 30px;
+            background-color: var(--light-blue);
+            border-radius: 8px;
+        }
+
+        .result p {
+            margin: 15px 0;
             font-size: 1.1rem;
         }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-blue);
-            margin: 20px auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background: var(--gradient-blue);
-            color: white;
-            border-radius: 6px;
+
+        .result span {
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-            position: relative;
-            overflow: hidden;
+            color: var(--dark-blue);
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary-blue);
-            color: var(--primary-blue);
-            box-shadow: none;
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary-blue);
-            color: white;
-        }
-        
+
         /* ===== Header ===== */
         header {
             background: rgba(255, 255, 255, 0.95);
@@ -132,7 +131,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px; /* Increased from 0 */
+            padding: 15px 60px;
         }
         
         .logo {
@@ -144,644 +143,7 @@
             align-items: center;
         }
         
-        .logo i {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-        
         /* ===== Navigation ===== */
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav li {
-            margin-left: 30px;
-            position: relative;
-        }
-        
-        nav a {
-            font-weight: 500;
-            color: var(--text-dark);
-            padding: 8px 0;
-            position: relative;
-            font-size: 1.05rem;
-        }
-        
-        nav a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover:after {
-            width: 100%;
-        }
-        
-        .main-container {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 60px; /* Increased from 20px */
-            line-height: 1.7;
-            color: black;
-        }
-
-        .main-container h2, 
-        .content h2 {
-            font-family: 'Roboto', serif;
-            color: var(--text-dark);
-            padding: 0 30px;
-            margin-bottom: 20px;
-        }
-
-        .main-container p {
-            margin-bottom: 20px;
-            color: black;
-            font-size: 1.1rem;
-            padding: 0 20px;
-            text-align: justify; 
-            text-justify: inter-word; 
-        }
-        
-        /* Table Styles */
-        .data-table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        .data-table th, 
-        .data-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        table th, 
-        table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        /* ===== Corbel Design Layout ===== */
-        .design-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin: 40px 0;
-        }
-        
-        .inputs {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-        }
-        
-        .image-container {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .image-container img {
-            width: 100%;
-            height: auto;
-            max-width: 500px;
-            display: block;
-            margin: 0 auto;
-            border-radius: 5px;
-        }
-        
-        .dimension {
-            position: absolute;
-            font-size: 0.9rem;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 500;
-            pointer-events: none;
-        }
-        
-        .dimension::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 20px;
-            background-color: var(--primary-blue);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .horizontal-dimension::before {
-            bottom: -20px;
-        }
-        
-        .vertical-dimension::before {
-            width: 20px;
-            height: 2px;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .rotated {
-            transform: rotate(-90deg);
-            transform-origin: left top;
-        }
-
-        /* Result Display */
-        .result {
-            width: 100%;
-            margin: 20px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .result h2 {
-            margin-bottom: 20px;
-            color: var(--primary-blue);
-            border-bottom: 2px solid var(--light-blue);
-            padding-bottom: 10px;
-        }
-
-        .result p {
-            margin: 10px 0;
-            font-size: 1.1rem;
-        }
-        
-        .result span {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        /* MathJax formula styling */
-        .math-formula {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-        
-        /* ===== Hero Section ===== */
-        .hero {
-            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
-            padding: 120px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 40%;
-            height: 100%;
-            
-            background-size: cover;
-            opacity: 0.8;
-            z-index: 0;
-        }
-        
-        .hero-content {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            color: var(--text-medium);
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        /* ===== About Section ===== */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .profile-img-container {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            height: 500px;
-        }
-        
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .profile-img-container:hover .profile-img {
-            transform: scale(1.05);
-        }
-        
-        .about-details h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-        
-        .about-details p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        
-        .highlight {
-            color: var(--primary-blue);
-            font-weight: 600;
-        }
-        
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 30px 0;
-        }
-        
-        .skill-item {
-            display: flex;
-            align-items: center;
-        }
-        
-        .skill-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--light-blue);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-        
-        /* ===== Services/Expertise Section ===== */
-        .services {
-            background: var(--section-bg);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(224, 242, 254, 0.5);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .service-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--gradient-blue);
-            transition: height 0.3s ease;
-            z-index: -1;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-        
-        .service-card:hover:before {
-            height: 100%;
-        }
-        
-        .service-icon {
-            font-size: 2.8rem;
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        /* ===== Projects Section ===== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-            background: white;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-img-container {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .project-card:hover .project-img {
-            transform: scale(1.1);
-        }
-        
-        .project-info {
-            padding: 25px;
-            background: white;
-        }
-        
-        .project-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .project-tag {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        /* ===== Contact Section ===== */
-        .contact {
-            background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 50px;
-        }
-        
-        .contact-info {
-            margin-bottom: 30px;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--light-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .contact-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px 20px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            transition: border-color 0.3s ease;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* ===== Footer ===== */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 80px 0 30px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-            padding: 0 40px; /* Added padding */
-        }
-        
-        .footer-col h3 {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .footer-col h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--primary-blue);
-        }
-        
-        .footer-col p {
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* ===== Navigation Bar ===== */
         nav {
             background-color: var(--text-dark);
             padding: 12px 0;
@@ -791,7 +153,7 @@
         .nav-container {
             display: flex;
             justify-content: center;
-            padding: 0 40px; /* Added padding */
+            padding: 0 60px;
         }
         
         .nav-links {
@@ -856,10 +218,6 @@
             transform: translateY(0);
         }
         
-        .dropbtn {
-            cursor: pointer;
-        }
-        
         /* ===== Current Time and Date ===== */
         #datetime {
             background-color: var(--primary-blue);
@@ -870,135 +228,67 @@
             font-weight: 500;
         }
         
+        /* ===== Footer ===== */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 80px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            padding: 0 60px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
         /* ===== Responsive Design ===== */
         @media (max-width: 992px) {
-            .hero:before {
-                width: 100%;
-                opacity: 0.3;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                padding: 0 30px;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-img-container {
-                height: 400px;
-                max-width: 500px;
-                margin: 0 auto;
+            .content {
+                padding: 30px 60px;
             }
         }
         
         @media (max-width: 768px) {
-            .section {
-                padding: 60px 0;
+            .container,
+            .header-container,
+            .nav-container,
+            .footer-container {
+                padding: 0 40px;
             }
             
-            .section-title h2 {
-                font-size: 2rem;
+            .content {
+                padding: 30px 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container,
+            .header-container,
+            .nav-container,
+            .footer-container {
+                padding: 0 30px;
             }
             
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn {
-                width: 100%;
+            .content {
+                padding: 25px 30px;
+            margin: 20px;
+            width: calc(100% - 60px);
             }
             
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                opacity: 1;
-                display: none;
-                transform: none;
-                border-radius: 0;
-            }
-            
-            .dropdown:hover .dropdown-content {
-                display: block;
-                transform: none;
-            }
-            
-            /* Responsive padding adjustments */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 30px;
-            }
-            
-            .main-container {
-                padding: 0 40px;
-            }
-            
-            .design-container {
-                flex-direction: column;
-            }
-            
-            .image-container {
-                order: -1;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo {
-                margin-bottom: 15px;
-            }
-            
-            nav ul {
-                margin-top: 15px;
-            }
-            
-            .hero {
-                padding: 100px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .projects-grid, .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Further reduced padding for mobile */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 20px;
-            }
-            
-            .main-container {
-                padding: 0 25px;
             }
         }
     </style>
@@ -1011,10 +301,8 @@
     <header>
        <div class="container header-container">
                 <div class="logo">
-                
                 | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
     		</div>
-           
         </div>
     </header>
     
@@ -1048,32 +336,30 @@
     </nav>
 
     <!-- Main Content -->
-        <div class="content">
+    <div class="content">
         <h3><u>REINFORCEMENT DESIGN</u></h3>
         <form id="beamSectionForm">
-		 <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
-                <input type="number" id="fck" step="0.1" required>
-            <br>
-                <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
-                <input type="number" id="fy" step="0.1" required>
-            <br>
-             
-                <label for="depth">Overall Depth of slab(d in mm):</label>
-                <input type="number" id="depth" required>
-            <br>
-                <label for="cover">Effective cover (c in mm):</label>
-                <input type="number" id="cover" required>
-            <br>
-                <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
-                <input type="number" id="dm" required>
-            <br>
-               
-                <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
-                <input type="number" id="moment" step="0.01" required>
-            <br>
-                <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
-                <input type="number" id="shear" step="0.01" required>
-            <br>
+            <label for="fck">Characteristic Strength of Concrete (f<sub>ck</sub> in MPa):</label>
+            <input type="number" id="fck" step="0.1" required>
+            
+            <label for="fy">Characteristic Strength of Steel (f<sub>y</sub> in MPa):</label>
+            <input type="number" id="fy" step="0.1" required>
+            
+            <label for="depth">Overall Depth of slab(d in mm):</label>
+            <input type="number" id="depth" required>
+            
+            <label for="cover">Effective cover (c in mm):</label>
+            <input type="number" id="cover" required>
+            
+            <label for="dm">Diameter of main Reinforcement (dm in mm):</label>
+            <input type="number" id="dm" required>
+            
+            <label for="moment">Factored Bending Moment (M<sub>u</sub> in kNm):</label>
+            <input type="number" id="moment" step="0.01" required>
+            
+            <label for="shear">Factored Shear Force (V<sub>u</sub> in kN):</label>
+            <input type="number" id="shear" step="0.01" required>
+            
             <button type="button" onclick="calculateBeamSection()">CALCULATE</button>
         </form>
 
@@ -1081,15 +367,11 @@
             <h3><u>DESIGN RESULT</u></h3>
             <p><strong>Area of Steel Required (A<sub>st</sub>):</strong> <span id="steelArea"></span> mm²</p>
             <p><strong>Spacing of reinforcement(s):</strong> <span id="s1"></span> mm</p>
-	    <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
-	    <p><strong>Nominal shear strength:</strong> <span id="tau_c"></span> N/mm²</p>
+            <p><strong>Nominal shear stress:</strong> <span id="tau_v"></span> N/mm²</p>
+            <p><strong>Nominal shear strength:</strong> <span id="tau_c"></span> N/mm²</p>
             <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
-            
         </div>
     </div>
-
-
-
 
     <!-- Footer -->
     <footer>
@@ -1101,7 +383,6 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/nabin.ijam" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                       
                     </div>
                 </div>
                 
@@ -1126,17 +407,6 @@
                         <li><a href="#">Feasibility Studies</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="Civil Engineering Notes.html">Engineering Notes</a></li>
-                        <li><a href="Downloads.html">Downloads</a></li>
-                        <li><a href="blog.html">Personal Blog</a></li>
-                        <li><a href="Downloads.html">Design Codes</a></li>
-                        <li><a href="#">Useful Links</a></li>
-                    </ul>
-                </div>
             </div>
             
             <div class="copyright">
@@ -1145,8 +415,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
+    <!-- JavaScript -->
     <script>
+        // Current time and date
         function updateDateTime() {
             const now = new Date();
             const options = { 
@@ -1163,121 +434,64 @@
             datetimeElement.textContent = now.toLocaleDateString('en-US', options);
         }
 
-        // Update the time and date every second
         setInterval(updateDateTime, 1000);
-
-        // Initial call to display the time and date immediately
         updateDateTime();
-    </script>
 
-    <script>
         // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would typically send the form data to a server
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
 
+        // Reinforcement Design Calculation
         function calculateBeamSection() {
             // Input values
-            const depth = parseFloat(document.getElementById('depth').value); // D in mm
-            const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
-            const fck = parseFloat(document.getElementById('fck').value); // fck in MPa
-            const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
-            const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
-            
-            const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
-            const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
+            const depth = parseFloat(document.getElementById('depth').value);
+            const cover = parseFloat(document.getElementById('cover').value);
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const dm = parseFloat(document.getElementById('dm').value);
+            const moment = parseFloat(document.getElementById('moment').value);
+            const shear = parseFloat(document.getElementById('shear').value);
 
             // Convert moment to Nmm and shear to N
-            const Mu = moment * 1e6; // kNm to Nmm
-            const Vu = shear * 1e3; // kN to N
+            const Mu = moment * 1e6;
+            const Vu = shear * 1e3;
 
             // Design parameters
-            const fck_design = fck; // Design concrete strength
-            const fy_design = fy; // Design steel strength
-            const depth_e = depth - cover; // Effective depth
-            const Es = 2e5; // Modulus of elasticity of steel
-	    const width=1000; //width of slab
+            const fck_design = fck;
+            const fy_design = fy;
+            const depth_e = depth - cover;
+            const Es = 2e5;
+            const width = 1000;
 
             // Calculate limiting moment (Mu_lim)
             const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
-            const Xu_max = k * depth_e; // For Fe 415 steel
+            const Xu_max = k * depth_e;
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
 
             // Singly reinforced section
-             const Ast = Math.max(((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e),0.85/fy_design*width*depth_e);
+            const Ast = Math.max(
+                ((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * 
+                (fck_design / (2 * fy_design)) * width * depth_e),
+                0.85/fy_design*width*depth_e
+            );
                 
-            // Calculate number of steel bars
-            const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
-            const s1 = A1/Ast*width; // Spacing of reinforcement bar
-            
+            // Calculate spacing of reinforcement
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4;
+            const s1 = A1/Ast*width;
 
             // Shear reinforcement calculation
-            
-            const tau_v = Vu / (width * depth_e); // Shear stress
-            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1); // Your original relation
-            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta); // Shear stress
-            
+            const tau_v = Vu / (width * depth_e);
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100, 1);
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta);
 
-            let shearReinforcement;
-            if (tau_v <= tau_c) {
-                shearReinforcement = "NO";
-            } else {
-                shearReinforcement = "YES"; 
-            } 
+            let shearReinforcement = (tau_v <= tau_c) ? "NO" : "YES";
 
             // Display results
             document.getElementById('steelArea').textContent = Ast.toFixed(1);
             document.getElementById('s1').textContent = s1.toFixed(0);
             document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-	    document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+            document.getElementById('tau_c').textContent = tau_c.toFixed(2);
             document.getElementById('shearReinforcement').textContent = shearReinforcement;
-            
         }
-
-       
     </script>
 </body>
 </html>
