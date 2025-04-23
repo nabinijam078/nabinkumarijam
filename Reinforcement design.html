@@ -478,7 +478,7 @@
 
             // Shear reinforcement calculation
             const tau_v = Vu / (width * depth_e);
-            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100, 1);
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1);
             const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta);
 
             let shearReinforcement = (tau_v <= tau_c) ? "NO" : "YES";
