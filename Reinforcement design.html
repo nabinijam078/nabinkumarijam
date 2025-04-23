@@ -468,11 +468,9 @@
             const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
 
             // Singly reinforced section
-            const Ast = Math.max(
-                ((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * 
-                (fck_design / (2 * fy_design)) * width * depth_e),
-                0.85/fy_design*width*depth_e
-            );
+            const Ast1 = ((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e);
+            const Astmin=0.85/fy_design*width*depth_e;
+            const Ast=Math.max(Ast1,Astmin);
                 
             // Calculate spacing of reinforcement
             const A1 = (Math.PI * Math.pow(dm, 2)) / 4;
