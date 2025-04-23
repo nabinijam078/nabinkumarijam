@@ -9,6 +9,9 @@
     <!-- MathJax Configuration -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	 <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* ===== Base Styles ===== */
         :root {
@@ -483,8 +486,8 @@
         // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
 	
-	/ Function to create span length inputs dynamically
-    function createSpanInputs() {
+	// Function to create span length inputs dynamically
+    	function createSpanInputs() {
       const spans = parseInt(document.getElementById('spans').value);
       const spanInputsDiv = document.getElementById('spanInputs');
       spanInputsDiv.innerHTML = ''; // Clear previous inputs
@@ -699,10 +702,10 @@
         shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} kN</p>`;
       }
       // Display Maximum Values
-  bendingMomentResultsDiv.innerHTML += `<h5>Maximum Span Moment: ${Math.max(...spanMoments).toFixed(2)} kN·m</h5>`;
-  bendingMomentResultsDiv.innerHTML += `<h5>Maximum Support Moment: ${Math.max(...supportMoments).toFixed(2)} kN·m</h5>`;
-  shearForceResultsDiv.innerHTML += `<h5>Maximum Shear Force: ${Math.max(...shearForces).toFixed(2)} kN</h5>`;
-}
+  	bendingMomentResultsDiv.innerHTML += `<h5>Maximum Span Moment: ${Math.max(...spanMoments).toFixed(2)} kN·m</h5>`;
+  	bendingMomentResultsDiv.innerHTML += `<h5>Maximum Support Moment: ${Math.max(...supportMoments).toFixed(2)} kN·m</h5>`;
+  	shearForceResultsDiv.innerHTML += `<h5>Maximum Shear Force: ${Math.max(...shearForces).toFixed(2)} kN</h5>`;
+	}
 	  function Reinforcementdesign() {
             // Input values
             const depth = parseFloat(document.getElementById('depth').value); // D in mm
