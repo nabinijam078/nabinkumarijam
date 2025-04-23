@@ -240,47 +240,131 @@
             text-align: left;
             border-color:black;
         }
-	        .image-container {
-            position: relative;
-            flex: 1;
+        
+        /* ===== Corbel Design Layout ===== */
+        .design-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 40px 0;
         }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
+        
+        .inputs {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+        
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+        
         .dimension {
             position: absolute;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: black;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 5px 10px;
             border-radius: 5px;
+            font-weight: 500;
+            pointer-events: none;
         }
-
+        
+        .dimension::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background-color: var(--primary-blue);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .horizontal-dimension::before {
+            bottom: -20px;
+        }
+        
+        .vertical-dimension::before {
+            width: 20px;
+            height: 2px;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
         .rotated {
             transform: rotate(-90deg);
+            transform-origin: left top;
         }
 
         /* Result Display */
         .result {
-            max-width: 1200px;
+            width: 100%;
             margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .result h2 {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
         }
 
         .result p {
-            margin: 5px 0;
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .result span {
+            font-weight: 600;
+            color: var(--text-dark);
         }
         
         /* MathJax formula styling */
@@ -865,6 +949,14 @@
             .main-container {
                 padding: 0 40px;
             }
+            
+            .design-container {
+                flex-direction: column;
+            }
+            
+            .image-container {
+                order: -1;
+            }
         }
         
         @media (max-width: 576px) {
@@ -955,81 +1047,80 @@
         </div>
     </nav>
 
-     <!-- Main Content -->
-           <div class="content">
-        <!-- Inputs on the left -->
-        <div class="inputs">
-            <h2><b><u>CORBEL DESIGN</u></b></h2>
-            <div class="input-group">
-                <label for="fck">Concrete grade, fck (N/mm<sup>2</sup>):</label>
-                <input type="number" id="fck">
+    <!-- Main Content -->
+    <div class="container">
+        <div class="design-container">
+            <!-- Inputs on the left -->
+            <div class="inputs">
+                <h2><b><u>CORBEL DESIGN</u></b></h2>
+                <div class="input-group">
+                    <label for="fck">Concrete grade, fck (N/mm<sup>2</sup>):</label>
+                    <input type="number" id="fck">
+                </div>
+                <div class="input-group">
+                    <label for="fy">Steel grade, fy (N/mm<sup>2</sup>):</label>
+                    <input type="number" id="fy">
+                </div>
+                <div class="input-group">
+                    <label for="c">Effective cover, c (mm):</label>
+                    <input type="number" id="c">
+                </div>
+                <div class="input-group">
+                    <label for="a">Distance from column, a (mm):</label>
+                    <input type="number" id="a">
+                </div>
+                <div class="input-group">
+                    <label for="V">Load at corbel, V (kN):</label>
+                    <input type="number" id="V">
+                </div>
+                <div class="input-group">
+                    <label for="d">Depth of corbel, d (mm):</label>
+                    <input type="number" id="d">
+                </div>
+                <div class="input-group">
+                    <label for="D">Overall depth, D (mm):</label>
+                    <input type="number" id="D">
+                </div>
+                <div class="input-group">
+                    <label for="b">Column width, b (mm):</label>
+                    <input type="number" id="b">
+                </div>
+                <div class="input-group">
+                    <label for="Phit">Diameter of tension reinforcement, φt (mm):</label>
+                    <input type="number" id="Phit">
+                </div>
+                <div class="input-group">
+                    <label for="Phic">Diameter of compression reinforcement, φc (mm):</label>
+                    <input type="number" id="Phic">
+                </div>
+                <button class="btn" onclick="Design()"><u><b>CORBEL DESIGN</b></u></button>
             </div>
-            <div class="input-group">
-                <label for="fy">Steel grade, fy (N/mm<sup>2</sup>):</label>
-                <input type="number" id="fy">
+
+            <!-- Image on the right -->
+            <div class="image-container">
+                <img src="https://via.placeholder.com/500x400?text=Corbel+Diagram" alt="Corbel Drawing">
+                <div id="a-label" class="dimension horizontal-dimension" style="top: 50px; left: 50%; transform: translateX(-50%);">a = 0mm</div>
+                <div id="V-label" class="dimension" style="top: 20px; left: 70%;">V = 0kN</div>
+                <div id="d-label" class="dimension vertical-dimension rotated" style="top: 50%; left: 80%;">d = 0mm</div>
+                <div id="D-label" class="dimension vertical-dimension rotated" style="top: 70%; left: 80%;">D = 0mm</div>
             </div>
-            <div class="input-group">
-                <label for="c">Effective cover, c (mm):</label>
-                <input type="number" id="c">
-            </div>
-            <div class="input-group">
-                <label for="a">Distance from column, a (mm):</label>
-                <input type="number" id="a">
-            </div>
-            <div class="input-group">
-                <label for="V">Load at corbel, V (kN):</label>
-                <input type="number" id="V">
-            </div>
-            <div class="input-group">
-                <label for="d">Depth of corbel, d (mm):</label>
-                <input type="number" id="d">
-            </div>
-            <div class="input-group">
-                <label for="D">Overall depth, D (mm):</label>
-                <input type="number" id="D">
-            </div>
-            <div class="input-group">
-                <label for="b">Column width, b (mm):</label>
-                <input type="number" id="b">
-            </div>
-            <div class="input-group">
-                <label for="Phit">Diameter of tension reinforcement, φt (mm):</label>
-                <input type="number" id="Phit">
-            </div>
-            <div class="input-group">
-                <label for="Phic">Diameter of compression reinforcement, φc (mm):</label>
-                <input type="number" id="Phic">
-            </div>
-            <button onclick="Design()"><u><b>CORBEL DESIGN</b></u></button>
         </div>
 
-        <!-- Image on the right -->
-        <div class="image-container">
-            <img src="corbel_drawing.png" alt="Corbel Drawing">
-            <div id="a-label" class="dimension" style="top: 70px; left: 200px;"></div>
-            <div id="V-label" class="dimension" style="top: 30px; left: 250px;"></div>
-            <div id="d-label" class="dimension rotated" style="top: 150px; left:330px;"></div>
-            <div id="D-label" class="dimension rotated" style="top: 220px; left: 400px;"></div>
+        <!-- Result Display -->
+        <div class="result">
+            <h2><u>DESIGN RESULTS</u></h2>
+            <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
+            <p>Compressive force, Fc: <span id="Fc">0.00</span> kN</p>
+            <p>Tensile force, Ft: <span id="Ft">0.00</span> kN</p>
+            <p>Area of tensile reinforcement (Ast): <span id="Ast">0.00</span> mm²</p>
+            <p>Number of tensile reinforcement (nt): <span id="nt">0</span></p>
+            <p>Area of compression reinforcement (Asc): <span id="Asc">0.00</span> mm²</p>
+            <p>Number of compression reinforcement (nc): <span id="nc">0</span></p>
+            <p><u>CHECK FOR SHEAR CAPACITY</u></p>
+            <p>Shear capacity of corbel: <span id="scc">0.00</span> kN</p>
+            <p>Check for Shear capacity of corbel: <span id="check">-</span></p>
         </div>
     </div>
-
-    <!-- Result Display -->
-    <div class="result">
-        <h2><u>DESIGN RESULTS</u></h2>
-        <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
-        <p>Compressive force, Fc: <span id="Fc"></span> kN</p>
-        <p>Tensile force, Ft: <span id="Ft"></span> kN</p>
-        <p>Area of tensile reinforcement (Ast): <span id="Ast"></span> mm²</p>
-        <p>Number of tensile reinforcement (nt): <span id="nt"></span></p>
-        <p>Area of compression reinforcement (Asc): <span id="Asc"></span> mm²</p>
-        <p>Number of compression reinforcement (nc): <span id="nc"></span></p>
-        <p><u>CHECK FOR SHEAR CAPACITY</u></p>
-        <p>Shear capacity of corbel: <span id="scc"></span> kN</p>
-        <p>Check for Shear capacity of corbel: <span id="check"></span></p>
-    </div>
-    
-  
-
 
     <!-- Footer -->
     <footer>
@@ -1159,7 +1250,7 @@
             });
         }
 
-	        // Modulus of elasticity for steel
+        // Modulus of elasticity for steel
         const Es = 2e5; // in MPa
 
         function Design() {
@@ -1174,7 +1265,7 @@
             const Phit = parseFloat(document.getElementById('Phit').value) || 0;
             const Phic = parseFloat(document.getElementById('Phic').value) || 0;
 
-            // Update dimension labels
+            // Update dimension labels on the image
             document.getElementById('a-label').textContent = `a = ${a}mm`;
             document.getElementById('V-label').textContent = `V = ${V}kN`;
             document.getElementById('d-label').textContent = `d = ${d}mm`;
@@ -1311,7 +1402,6 @@
 
             return s1.stress + ((strain - s1.strain) / (s2.strain - s1.strain)) * (s2.stress - s1.stress);
         }
-
     </script>
 </body>
 </html>
