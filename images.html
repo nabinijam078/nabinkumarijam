@@ -242,6 +242,110 @@
         text-justify: inter-word; 
         }
         
+        /* Gallery Styles */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .photo-container {
+            width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-container:hover {
+            transform: scale(1.03);
+        }
+        
+        .photo-container img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .photo-title {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            display: block;
+            margin: 60px auto;
+            max-width: 80%;
+            max-height: 80vh;
+        }
+        
+        .modal-title {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #ccc;
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s;
+            user-select: none;
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
         /* ===== Hero Section ===== */
         .hero {
             background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
@@ -649,6 +753,7 @@
         /* ===== Navigation Bar ===== */
         nav {
             background-color: var(--text-dark);
+            color: white;
             padding: 12px 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -801,6 +906,10 @@
                 display: block;
                 transform: none;
             }
+            
+            .modal-content {
+                max-width: 90%;
+            }
         }
         
         @media (max-width: 576px) {
@@ -831,6 +940,10 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .photo-container {
+                width: 100%;
             }
         }
     </style>
@@ -882,24 +995,24 @@
         <h2><u><b><center>IMAGES</center></b></u></h2>
         <p><b><center>1. MAI HYDROPOWER PROJECT (22MW), ILAM, NEPAL</center></b></p>
         <div class="gallery">
-            <div class="photo-container" onclick="openModal(0)">
-                <img src="Headworks Mai HP, Ilam.jpg" alt="Photo 1">
+            <div class="photo-container" onclick="openModal('Headworks Mai HP, Ilam.jpg', 'Headworks')">
+                <img src="Headworks Mai HP, Ilam.jpg" alt="Headworks">
                 <div class="photo-title">Headworks</div>
             </div>
-            <div class="photo-container" onclick="openModal(1)">
-                <img src="Settling basin Mai HP, Ilam.jpg" alt="Photo 2">
+            <div class="photo-container" onclick="openModal('Settling basin Mai HP, Ilam.jpg', 'Settling basin')">
+                <img src="Settling basin Mai HP, Ilam.jpg" alt="Settling basin">
                 <div class="photo-title">Settling basin</div>
             </div>
-            <div class="photo-container" onclick="openModal(2)">
-                <img src="Approach Culvert, Mai HP, Ilam.jpg" alt="Photo 3">
+            <div class="photo-container" onclick="openModal('Approach Culvert, Mai HP, Ilam.jpg', 'Approach Culvert')">
+                <img src="Approach Culvert, Mai HP, Ilam.jpg" alt="Approach Culvert">
                 <div class="photo-title">Approach Culvert</div>
             </div>
-            <div class="photo-container" onclick="openModal(3)">
-                <img src="Surge Shaft Mai HP, Ilam.jpg" alt="Photo 4">
+            <div class="photo-container" onclick="openModal('Surge Shaft Mai HP, Ilam.jpg', 'Surge Shaft')">
+                <img src="Surge Shaft Mai HP, Ilam.jpg" alt="Surge Shaft">
                 <div class="photo-title">Surge Shaft</div>
             </div>
-          <div class="photo-container" onclick="openModal(4)">
-                <img src="Generator casing Mai HP.jpg" alt="Photo 5">
+          <div class="photo-container" onclick="openModal('Generator casing Mai HP.jpg', 'Generator casing')">
+                <img src="Generator casing Mai HP.jpg" alt="Generator casing">
                 <div class="photo-title">Generator casing</div>
             </div>
         </div>
@@ -907,20 +1020,20 @@
         
         <p><b><center>2. NENGGIRI HYDROELECTRIC PROJECT, MALAYSIA</center></b></p>
         <div class="gallery">
-            <div class="photo-container" onclick="openModal(5)">
-                <img src="Dam foundation.jpg" alt="Photo 6">
+            <div class="photo-container" onclick="openModal('Dam foundation.jpg', 'Dam foundation')">
+                <img src="Dam foundation.jpg" alt="Dam foundation">
                 <div class="photo-title">Dam foundation</div>
             </div>
-            <div class="photo-container" onclick="openModal(6)">
-                <img src="Diversion tunnel_inlet.jpg" alt="Photo 7">
+            <div class="photo-container" onclick="openModal('Diversion tunnel_inlet.jpg', 'Diversion tunnel_inlet')">
+                <img src="Diversion tunnel_inlet.jpg" alt="Diversion tunnel_inlet">
                 <div class="photo-title">Diversion tunnel_inlet</div>
             </div>
-            <div class="photo-container" onclick="openModal(7)">
-                <img src="Mobile crane Capacity 300T.jpg" alt="Photo 8">
+            <div class="photo-container" onclick="openModal('Mobile crane Capacity 300T.jpg', 'Mobile crane Capacity 300T')">
+                <img src="Mobile crane Capacity 300T.jpg" alt="Mobile crane Capacity 300T">
                 <div class="photo-title">Mobile crane Capacity 300T</div>
             </div>
-            <div class="photo-container" onclick="openModal(8)">
-                <img src="Roller Compacted Concrete.jpg" alt="Photo 9">
+            <div class="photo-container" onclick="openModal('Roller Compacted Concrete.jpg', 'Roller Compacted Concrete')">
+                <img src="Roller Compacted Concrete.jpg" alt="Roller Compacted Concrete">
                 <div class="photo-title">Roller Compacted Concrete</div>
             </div>
         </div>
@@ -978,10 +1091,10 @@
         </div>
     </footer>
 
- <!-- JavaScript for Modal Functionality -->
+    <!-- JavaScript for Modal Functionality -->
     <script>
         // Array to store photo data (src and title)
-     const photos = [
+        const photos = [
             { src: "Headworks Mai HP, Ilam.jpg", title: "Headworks" },
             { src: "Settling basin Mai HP, Ilam.jpg", title: "Settling basin" },
             { src: "Approach Culvert, Mai HP, Ilam.jpg", title: "Approach Culvert" },
@@ -992,12 +1105,17 @@
             { src: "Mobile crane Capacity 300T.jpg", title: "Mobile crane Capacity 300T" },
             { src: "Roller Compacted Concrete.jpg", title: "Roller Compacted Concrete" },
         ];
+        
         let currentIndex = 0; // Track the current photo index
 
         // Function to open the modal and display the clicked image and title
-        function openModal(index) {
-            currentIndex = index;
-            updateModal();
+        function openModal(src, title) {
+            // Find the index of the clicked photo
+            currentIndex = photos.findIndex(photo => photo.src === src);
+            
+            // Update the modal with the clicked image and title
+            document.getElementById("img01").src = src;
+            document.getElementById("modalTitle").textContent = title;
             document.getElementById("myModal").style.display = "block";
         }
 
@@ -1017,17 +1135,20 @@
             if (currentIndex < 0) {
                 currentIndex = photos.length - 1;
             }
-            updateModal();
+            
+            // Update the modal with the new image and title
+            document.getElementById("img01").src = photos[currentIndex].src;
+            document.getElementById("modalTitle").textContent = photos[currentIndex].title;
         }
 
-        // Function to update the modal content
-        function updateModal() {
-            const modalImg = document.getElementById("img01");
-            const modalTitle = document.getElementById("modalTitle");
-            modalImg.src = photos[currentIndex].src;
-            modalTitle.innerHTML = photos[currentIndex].title;
+        // Close the modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
         }
-
+    </script>
 
     <!-- JavaScript -->
     <script>
@@ -1043,7 +1164,7 @@
                 minute: '2-digit',
                 second: '2-digit',
                 hour12: true
-            };
+   };
             const datetimeElement = document.getElementById('datetime');
             datetimeElement.textContent = now.toLocaleDateString('en-US', options);
         }
