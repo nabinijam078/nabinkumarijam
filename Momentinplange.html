@@ -14,7 +14,6 @@
 
     <style>
         /* ===== Base Styles ===== */
-            /* ===== Base Styles ===== */
         :root {
             --primary-blue: #2563eb;
             --light-blue: #e0f2fe;
@@ -123,7 +122,8 @@
             background: var(--primary-blue);
             color: white;
         }
-	        /* Table Styles */
+        
+        /* Table Styles */
         .data-table {
             width: 30%;
             margin: 0 auto 20px;
@@ -222,24 +222,50 @@
             width: 100%;
         }
         .main-container {
-        max-width: 1400px;
-        margin: 40px auto;
-        padding: 0 20px; /* This adds 40px padding to left and right */
-        line-height: 1.7;
-        color: var(--text-medium);
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.7;
+            color: var(--text-medium);
         }
 
         .main-container h2 {
-        font-family: 'Playfair Display', serif;
-        color: var(--text-dark);
-        margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            margin-bottom: 20px;
         }
 
         .main-container p {
-        margin-bottom: 20px;
-        font-size: 1.1rem;
-        text-align: justify; 
-        text-justify: inter-word; 
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+        
+        /* New styles for content layout */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .input-result-section {
+            flex: 1;
+            max-width: calc(100% - 440px);
+        }
+
+        .drawing-section {
+            flex-shrink: 0;
+            width: 400px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .drawing-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         /* ===== Hero Section ===== */
@@ -755,6 +781,22 @@
                 max-width: 500px;
                 margin: 0 auto;
             }
+
+            /* Responsive styles for content layout */
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .input-result-section {
+                max-width: 100%;
+            }
+            
+            .drawing-section {
+                width: 100%;
+                position: static;
+                order: -1;
+                margin-bottom: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -878,83 +920,84 @@
     </nav>
 
     <!-- Main Content -->
-  
-  <div class="main-container">
-        <div class="content">
-            <div class="input-section">
-                <form id="plateForm">
-                    <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
-                    <label for="P">Designed factored load(P in kN):</label>
-                    <input type="number" id="P" required>
-                    <br>
-                    <label for="x">Eccentricity of load(x in m):</label>
-                    <input type="number" id="x" required>
-                    <br>
-                    <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
-                    <input type="number" id="nn" required>
-                     <br>
-                    <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
-                    <input type="number" id="n1" required>
-                    <br>
-                    <label for="xp">Horizontal spacing of adjacent rows (x<sub>p</sub>):</label>
-                    <input type="number" id="xp" required>
-                    <br>
-                    <p><u>SIZE OF PLATES</u></p>
-                    <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
-                    <input type="number" id="t1" required>
-                    <br>
-                    <label for="t2">Thickness of connecting plate(t<sub>2</sub> in mm):</label>
-                    <input type="number" id="t2" required>
-                    <br>
-                    
-                    <p><u>BOLTS SPECIFICATION</u></p>
-                    <label for="boltGrade">Choose a Bolt Grade:</label>
-                    <select id="boltGrade">
-                        <option value="M12">M12</option>
-                        <option value="M14">M14</option>
-                        <option value="M16">M16</option>
-                        <option value="M18">M18</option>
-                        <option value="M20">M20</option>
-                        <option value="M22">M22</option>
-                        <option value="M24">M24</option>
-                        <option value="M27">M27</option>
-                        <option value="M30">M30</option>
-                        <option value="M33">M33</option>
-                    </select>
-                    <br>
-                    <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
-                    <select id="boltSubGrade">
-                        <option value="4.6">4.6</option>
-                        <option value="4.8">4.8</option>
-                        <option value="5.6">5.6</option>
-                        <option value="5.8">5.8</option>
-                    </select>
-                    <br>
-                    <p><u>STEEL PLATE SPECIFICATION</u></p>
-                    <label for="steelGrade">Choose a Steel Grade:</label>
-                    <select id="steelGrade">
-                        <option value="Fe 290">Fe 290</option>
-                        <option value="Fe 410 W-A">Fe 410 W-A</option>
-                        <option value="Fe 410 W-B">Fe 410 W-B</option>
-                        <option value="Fe 410 W-C">Fe 410 W-C</option>
-                        <option value="Fe 440">Fe 440</option>
-                        <option value="Fe 490">Fe 490</option>
-                        <option value="Fe 540">Fe 540</option>
-                        <option value="Fe 570-D">Fe 570-D</option>
-                        <option value="Fe 590-E">Fe 590-E</option>
-                    </select>
-                    
-                    <br>
-                    <p><u>PROVIDED DATA</u></p>
-                    <p><i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i></p>
-                    <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
-                    <input type="number" id="pt" required>
-                    <br>
-                    <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
-                    <input type="number" id="ed" required>
-                    <br>
-                    <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
-                </form>
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="input-result-section">
+                <div class="input-section">
+                    <form id="plateForm">
+                        <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
+                        <label for="P">Designed factored load(P in kN):</label>
+                        <input type="number" id="P" required>
+                        <br>
+                        <label for="x">Eccentricity of load(x in m):</label>
+                        <input type="number" id="x" required>
+                        <br>
+                        <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+                        <input type="number" id="nn" required>
+                         <br>
+                        <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
+                        <input type="number" id="n1" required>
+                        <br>
+                        <label for="xp">Horizontal spacing of adjacent rows (x<sub>p</sub>):</label>
+                        <input type="number" id="xp" required>
+                        <br>
+                        <p><u>SIZE OF PLATES</u></p>
+                        <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
+                        <input type="number" id="t1" required>
+                        <br>
+                        <label for="t2">Thickness of connecting plate(t<sub>2</sub> in mm):</label>
+                        <input type="number" id="t2" required>
+                        <br>
+                        
+                        <p><u>BOLTS SPECIFICATION</u></p>
+                        <label for="boltGrade">Choose a Bolt Grade:</label>
+                        <select id="boltGrade">
+                            <option value="M12">M12</option>
+                            <option value="M14">M14</option>
+                            <option value="M16">M16</option>
+                            <option value="M18">M18</option>
+                            <option value="M20">M20</option>
+                            <option value="M22">M22</option>
+                            <option value="M24">M24</option>
+                            <option value="M27">M27</option>
+                            <option value="M30">M30</option>
+                            <option value="M33">M33</option>
+                        </select>
+                        <br>
+                        <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
+                        <select id="boltSubGrade">
+                            <option value="4.6">4.6</option>
+                            <option value="4.8">4.8</option>
+                            <option value="5.6">5.6</option>
+                            <option value="5.8">5.8</option>
+                        </select>
+                        <br>
+                        <p><u>STEEL PLATE SPECIFICATION</u></p>
+                        <label for="steelGrade">Choose a Steel Grade:</label>
+                        <select id="steelGrade">
+                            <option value="Fe 290">Fe 290</option>
+                            <option value="Fe 410 W-A">Fe 410 W-A</option>
+                            <option value="Fe 410 W-B">Fe 410 W-B</option>
+                            <option value="Fe 410 W-C">Fe 410 W-C</option>
+                            <option value="Fe 440">Fe 440</option>
+                            <option value="Fe 490">Fe 490</option>
+                            <option value="Fe 540">Fe 540</option>
+                            <option value="Fe 570-D">Fe 570-D</option>
+                            <option value="Fe 590-E">Fe 590-E</option>
+                        </select>
+                        
+                        <br>
+                        <p><u>PROVIDED DATA</u></p>
+                        <p><i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i></p>
+                        <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+                        <input type="number" id="pt" required>
+                        <br>
+                        <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+                        <input type="number" id="ed" required>
+                        <br>
+                        <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+                    </form>
+                </div>
 
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
@@ -1269,7 +1312,7 @@
                     yn = parseFloat(cellC.textContent);
                 }
 
-                const sum1 = (sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)))*(2*n1);
+                const sum1 = (sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2))*(2*n1);
                 const R1 = Math.sqrt(Math.pow(xn, 2) + Math.pow(yn, 2));
 
                 // Direct shear force
