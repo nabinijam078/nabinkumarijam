@@ -217,44 +217,6 @@
             font-size: 1.5rem;
         }
 
-
-
-        
-        /* ===== Navigation ===== */
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        nav li {
-            margin-left: 30px;
-            position: relative;
-        }
-        
-        nav a {
-            font-weight: 500;
-            color: var(--text-dark);
-            padding: 8px 0;
-            position: relative;
-            font-size: 1.05rem;
-        }
-        
-        nav a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover:after {
-            width: 100%;
-        }
         
         .main-container {
             max-width: 1400px;
@@ -345,7 +307,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         .input-group input:focus {
@@ -447,7 +409,41 @@
             overflow-x: auto;
         }
 
-
+	        /* ===== Navigation ===== */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 8px 0;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
 
         
         /* ===== Hero Section ===== */
