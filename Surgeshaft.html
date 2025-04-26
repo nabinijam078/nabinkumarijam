@@ -65,8 +65,7 @@
         }
 
         /* Positioning of texts on the image */
-     
-	        .drawing-section .Ds_input-value,
+     	.drawing-section .Ds_input-value,
         .drawing-section .NWLs-value,
         .drawing-section .MWL-value,
         .drawing-section .USL-value,
@@ -83,16 +82,16 @@
         }
 
         .drawing-section .Ds_input-value {
-            top: 17%; /* Adjust as needed */
+            top: 60%; /* Adjust as needed */
             left: 40%; /* Adjust as needed */
         }
         .drawing-section .NWLs-value {
-            top: 8%; /* Adjust as needed */
+            top: 30%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
 
         .drawing-section .MWL-value {
-            top: 2%; /* Adjust as needed */
+            top: 15%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .USL-value {
@@ -100,11 +99,11 @@
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .DSL-value {
-            top: 15%; /* Adjust as needed */
+            top: 40%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .TCL-value {
-            top: 18%; /* Adjust as needed */
+            top: 50%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .SST-value {
@@ -112,15 +111,10 @@
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .Hss-value {
-            top: 7.5%; /* Adjust as needed */
+            top: 5%; /* Adjust as needed */
             left: 15%; /* Adjust as needed */
         }
 
-
-
-
-
-	
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -1128,11 +1122,11 @@
             <h3 style="text-decoration: underline;">SIMPLE SURGE SHAFT</h3>
             <form id="beamSectionForm">
                 <div class="input-group">
-                    <label for="Q">Design discharge(Q in m<sup>3</sup>/s):</label>
+                    <label for="Q">Design discharge(\(Q\) in m<sup>3</sup>/s):</label>
                     <input type="number" id="Q" required>
                 </div>
                 <div class="input-group">
-                    <label for="Lt">Length of tunnel (L<sub>t</sub> in m):</label>
+                    <label for="Lt">Length of tunnel (\(L_t\) in m):</label>
                     <input type="number" id="Lt" required>
                 </div>
                 <div class="input-group">
@@ -1144,11 +1138,11 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="Dt">Diameter of Tunnel(D<sub>t</sub> in m):</label>
+                    <label for="Dt">Diameter of Tunnel(\(D_t\) in m):</label>
                     <input type="number" id="Dt" required>
                 </div>
                 <div class="input-group">
-                    <label for="n">Manning's Constant (n):</label>
+                    <label for="n">Manning's Constant (\(n\)):</label>
                     <input type="number" id="n" required>
                 </div>
                 <div class="input-group">
@@ -1156,19 +1150,19 @@
                     <input type="number" id="NWL" required>
                 </div>
                 <div class="input-group">
-                    <label for="FS">Factor of Safety (F<sub>s</sub>):</label>
+                    <label for="FS">Factor of Safety (\(F_s\)):</label>
                     <input type="number" id="FS" required>
                 </div>
                 <div class="input-group">
-                    <label for="H">Gross Head (H in m):</label>
+                    <label for="H">Gross Head (\(H\) in m):</label>
                     <input type="number" id="H" required>
                 </div>
                 <div class="input-group">
-                    <label for="T">Free board(T in m):</label>
+                    <label for="T">Free board(\(T\) in m):</label>
                     <input type="number" id="T" required>
                 </div>
                 <div class="input-group">
-                    <label for="Ds_input">Revised Diameter of Surge Shaft (D<sub>rs</sub> in m):</label>
+                    <label for="Ds_input">Revised Diameter of Surge Shaft (\(D_{rs}\) in m):</label>
                     <input type="number" id="Ds_input" required>
                 </div>
                 <button type="button" onclick="SurgeShaft()">SURGE SHAFT DESIGN</button>
@@ -1176,7 +1170,7 @@
 
             <div class="result" id="result">
                 <h3>DESIGN RESULT</h3>
-                <p><strong>Calculated Diameter of Shaft (D<sub>s</sub>):</strong> <span id="Ds"></span> m</p>
+                <p><strong>Calculated Diameter of Shaft (\(D_s\)):</strong> <span id="Ds"></span> m</p>
                 <p><strong>Normal Water level in Surge Shaft (NWLs):</strong> <span id="NWLs"></span> m</p>
                 <p><strong>Maximum water level (MWL):</strong> <span id="MWL"></span> m</p>
                 <p><strong>Upsurge level (USL):</strong> <span id="USL"></span> m</p>
