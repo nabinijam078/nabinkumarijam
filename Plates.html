@@ -925,7 +925,7 @@
         <div class="input-result-section">
                 <form id="plateForm">
                     <h3><u>BOLTED CONNECTION BETWEEN TWO PLATES</u></h3>
-                    <label for="P">Designed factored load(P in kN):</label>
+                    <label for="P">Designed factored load(\(P\) in kN):</label>
                     <input type="number" id="P" required>
                     <br>
                     <label for="ConType">Types of Connection:</label>
@@ -934,21 +934,21 @@
                         <option value="Double-Butt">Double-Butt</option>
                     </select>
                     <br>
-                    <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+                    <label for="nn">Number of shear plane with threads intercepting the shear plane(\(n_n\)):</label>
                     <input type="number" id="nn" required>
                     <br>
                     <p><u>SIZE OF PLATE-1</u></p>
-                    <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
+                    <label for="t1">Thickness of plate(\(t_1\) in mm):</label>
                     <input type="number" id="t1" required>
                     <br>
-                    <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
+                    <label for="b1">Width of plate(\(b_1\) in mm):</label>
                     <input type="number" id="b1" required>
                     <br>
                     <p><u>SIZE OF PLATE-2</u></p>
-                    <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
+                    <label for="t2">Thickness of plate(\(t_2\) in mm):</label>
                     <input type="number" id="t2" required>
                     <br>
-                    <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
+                    <label for="b2">Width of plate(\(b_2\) in mm):</label>
                     <input type="number" id="b2" required>
                     <br>
                     <p><u>BOLTS SPECIFICATION</u></p>
@@ -988,14 +988,14 @@
                         <option value="Fe 590-E">Fe 590-E</option>
                     </select>
                     <br>
-                    <label for="t3">Thickness of packing plate(t<sub>3</sub> in mm):</label>
+                    <label for="t3">Thickness of packing plate(\(t_3\) in mm):</label>
                     <input type="number" id="t3" required>
                     <br>
                     <p><u>PROVIDED DATA</u></p>
-                    <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+                    <label for="pt">Pitch of bolts/holes(\(p_t\) in mm):</label>
                     <input type="number" id="pt" required>
                     <br>
-                    <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+                    <label for="ed">Edge distance of hole(\(e_d\)in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
                     <button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
@@ -1004,27 +1004,27 @@
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <p><u>1. BOLT SPECIFICATION</u></p>
-                    <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
-                    <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
+                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> mm</p>
+                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span> mm</p>
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
                     <p><u>3. PITCH AND EDGE DISTANCE</u></p>
                     <p><u>3.1 Pitch distance</u></p>
-                    <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
-                    <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> mm</p>
+                    <p>Minimum pitch distance (\(p_{min}\): <span id="pmin"></span> mm</p>
                     <p><u>3.2 Edge distance</u></p>
-                    <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
-                    <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> mm</p>
+                    <p>Minimum Edge distance (\(e_{min}\)): <span id="emin"></span> mm</p>
                     <p><u>4. STRENGTH OF A BOLT</u></p>
-                    <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
-                    <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
-                    <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
+                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> N</p>
+                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> N</p>
+                    <p>Strength of a bolt (\(V_{sb}\)): <span id="Vsb"></span> N</p>
                     <p><u>5. NUMBER OF BOLTS</u></p>
-                    <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
-                    <p>Total number of bolts in a row (n<sub>1</sub>): <span id="n1"></span> </p>
+                    <p>Total number of bolts (\(n_b\)): <span id="nb"></span> </p>
+                    <p>Total number of bolts in a row (\(n_1\)): <span id="n1"></span> </p>
                     <p>Number of rows (n<sub>r</sub>): <span id="nr"></span> </p>
                 </div>
             </div>
