@@ -210,7 +210,7 @@
             margin-bottom: 20px;
             color: black;
             font-size: .9rem;
-            padding: 0 10px;
+            padding: 0 5px;
             text-align: justify; 
             text-justify: inter-word; 
         }
@@ -1234,8 +1234,7 @@
 
         // Initial call to display the time and date immediately
         updateDateTime();
-    </script>
-
+    
     function calculateCulvert() {
     // Input values
     const Q = parseFloat(document.getElementById('Q').value); // Design discharge
@@ -1280,6 +1279,8 @@
     document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
     document.getElementById('hu-display').textContent = hu.toFixed(2); // Update hu on the drawing
 }
+    </script>
+
 
 
 
