@@ -72,6 +72,7 @@
         .drawing-section .DSL-value,
         .drawing-section .SST-value,
         .drawing-section .Hss-value,
+	
         .drawing-section .TCL-value {
             position: absolute;
             font-size: .8rem;
@@ -86,24 +87,24 @@
             left: 40%; /* Adjust as needed */
         }
         .drawing-section .NWLs-value {
-            top: 30%; /* Adjust as needed */
+            top: 35%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
 
         .drawing-section .MWL-value {
-            top: 15%; /* Adjust as needed */
+            top: 20%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .USL-value {
-            top: 6%; /* Adjust as needed */
+            top: 10%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .DSL-value {
-            top: 40%; /* Adjust as needed */
+            top: 45%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .TCL-value {
-            top: 50%; /* Adjust as needed */
+            top: 70%; /* Adjust as needed */
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .SST-value {
@@ -111,7 +112,7 @@
             left: 65%; /* Adjust as needed */
         }
         .drawing-section .Hss-value {
-            top: 5%; /* Adjust as needed */
+            top: 55%; /* Adjust as needed */
             left: 15%; /* Adjust as needed */
         }
 
@@ -1401,7 +1402,7 @@ function SurgeShaft() {
     // 3. Calame and Gaden formula
     const Zd3 = -(1 + 0.125 * P0) * Zmax;
     const Zd=Math.min(Zd1,Zd2,Zd3);
-    const DSL=NWL+Zd;
+    const DSL=NWL+Zd;   // downsurge level
 
     // Tunnel crown level
     const S1=1.5*Math.pow(vo,2)/19.62;
@@ -1433,7 +1434,7 @@ function SurgeShaft() {
     document.getElementById('MWL-display').textContent = MWL.toFixed(2); // Maximum water level
     document.getElementById('USL-display').textContent = USL.toFixed(2); // Upsurge level
     document.getElementById('DSL-display').textContent = DSL.toFixed(2); // Downsurge level
-    document.getElementById('TCL-display').textContent = TCL.toFixed(2); // Upsurge level
+    document.getElementById('TCL-display').textContent = TCL.toFixed(2); // Tunnel crown level
     document.getElementById('SST-display').textContent = SST.toFixed(2); // Top level of surge shaft
     document.getElementById('Hss-display').textContent = Hss.toFixed(2); // Top level of surge shaft
 }
