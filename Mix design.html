@@ -239,12 +239,11 @@
             font-weight: 500;
         }
         
-        /* ===== Footer ===== */
+          /* ===== Footer ===== */
         footer {
             background: var(--text-dark);
             color: white;
             padding: 80px 0 30px;
-            margin-top: 60px;
         }
         
         .footer-container {
@@ -252,7 +251,72 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
-            padding: 0 60px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -426,25 +490,25 @@
       <label for="wd">Amount of water decreased by Plastisizer (in %):</label>
       <input type="number" id="wd" required>
       <br>
-      <label for="Sa">Specific gravity of admixture (S<sub>a</sub>):</label>
+      <label for="Sa">Specific gravity of admixture (\(S_a\)):</label>
       <input type="number" id="Sa" required>
       <br>
-      <label for="Sca">Specific gravity of coarse aggregate (S<sub>ca</sub>):</label>
+      <label for="Sca">Specific gravity of coarse aggregate (\(S_{ca}\)):</label>
       <input type="number" id="Sca" required>
       <br>
-      <label for="Sfa">Specific gravity of fine aggregate (S<sub>fa</sub>):</label>
+      <label for="Sfa">Specific gravity of fine aggregate (\(S_fa\)):</label>
       <input type="number" id="Sfa" required>
       <br>
-      <label for="wca">Water absorption of Coarse aggregate (W<sub>ca</sub>):</label>
+      <label for="wca">Water absorption of Coarse aggregate (\(W_{ca}\)):</label>
       <input type="number" id="wca" required>
       <br>
-      <label for="wfa">Water absorption of fine aggregate (W<sub>fa</sub>):</label>
+      <label for="wfa">Water absorption of fine aggregate (\(W_{fa}\)):</label>
       <input type="number" id="wfa" required>
       <br>
-      <label for="mca">Free surface moisture of Coarse aggregate (m<sub>ca</sub>):</label>
+      <label for="mca">Free surface moisture of Coarse aggregate (\(m_{ca}\)):</label>
       <input type="number" id="mca" required>
       <br>
-      <label for="mfa">Free surface moisture of fine aggregate (m<sub>fa</sub>):</label>
+      <label for="mfa">Free surface moisture of fine aggregate (\(m_{fa}\)):</label>
       <input type="number" id="mfa" required>
       <br>
       <label for="ZoneC">Zone of Coarse aggregate:</label>
@@ -470,11 +534,11 @@
       <div id="results" class="results">
         <h3><u>RESULTS</u></h3>
         <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span>MPa</p>
-        <p><strong>Targeted Strength (fs):</strong> <span id="fs"></span> MPa</p>
-        <p><strong>Cement content (C):</strong> <span id="cc"></span> Kg</p>
-        <p><strong>Water content (W):</strong> <span id="W"></span> litre</p>
-        <p><strong>Coarse Aggregate (CA):</strong> <span id="ca"></span> Kg</p>
-        <p><strong>Fine Aggregate (FA):</strong> <span id="fac"></span> Kg</p>
+        <p><strong>Targeted Strength (\(f_s\)):</strong> <span id="fs"></span> MPa</p>
+        <p><strong>Cement content (\(C\)):</strong> <span id="cc"></span> Kg</p>
+        <p><strong>Water content (\(W\)):</strong> <span id="W"></span> litre</p>
+        <p><strong>Coarse Aggregate (\(CA\)):</strong> <span id="ca"></span> Kg</p>
+        <p><strong>Fine Aggregate (\(FA\)):</strong> <span id="fac"></span> Kg</p>
         <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span></p>
       </div>
     </div>
@@ -490,17 +554,18 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/nabin.ijam" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                       
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Information.html">About Me</a></li>
                         <li><a href="#services">Expertise</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="My works.html">Projects</a></li>
+                        <li><a href="Contacts.html">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -514,6 +579,17 @@
                         <li><a href="#">Feasibility Studies</a></li>
                     </ul>
                 </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="Civil Engineering Notes.html">Engineering Notes</a></li>
+                        <li><a href="Downloads.html">Downloads</a></li>
+                        <li><a href="blog.html">Personal Blog</a></li>
+                        <li><a href="Downloads.html">Design Codes</a></li>
+                        <li><a href="#">Useful Links</a></li>
+                    </ul>
+                </div>
             </div>
             
             <div class="copyright">
@@ -521,7 +597,6 @@
             </div>
         </div>
     </footer>
-
     
 
 
