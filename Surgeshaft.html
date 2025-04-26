@@ -40,11 +40,11 @@
             font-weight: 700;
         }
 
-	    .content-wrapper {
-   	 display: flex;
-   	 gap: 80px; 
-   	 align-items: flex-start; 
-	}
+        .content-wrapper {
+            display: flex;
+            gap: 80px; 
+            align-items: flex-start; 
+        }
         
         a {
             text-decoration: none;
@@ -52,7 +52,7 @@
             transition: all 0.3s ease;
         }
         
-	  .drawing-section {
+        .drawing-section {
             width: 35%; /* Drawing section takes 35% of the width */
             position: relative;
         }
@@ -65,15 +65,14 @@
         }
 
         /* Positioning of texts on the image */
-     	.drawing-section .Ds_input-value,
-        .drawing-section .NWLs-value,
-        .drawing-section .MWL-value,
-        .drawing-section .USL-value,
-        .drawing-section .DSL-value,
-        .drawing-section .SST-value,
-        .drawing-section .Hss-value,
-	
-        .drawing-section .TCL-value {
+        #Ds_input-value,
+        #NWLs-value,
+        #MWL-value,
+        #USL-value,
+        #DSL-value,
+        #SST-value,
+        #Hss-value,
+        #TCL-value {
             position: absolute;
             font-size: .8rem;
             color: black;
@@ -82,36 +81,36 @@
             border-radius: 5px;
         }
 
-        .drawing-section .Ds_input-value {
+        #Ds_input-value {
             top: 63%; /* Adjust as needed */
             left: 40%; /* Adjust as needed */
         }
-        .drawing-section .NWLs-value {
+        #NWLs-value {
             top: 35%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
 
-        .drawing-section .MWL-value {
+        #MWL-value {
             top: 20%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
-        .drawing-section .USL-value {
+        #USL-value {
             top: 10%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
-        .drawing-section .DSL-value {
+        #DSL-value {
             top: 50%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
-        .drawing-section .TCL-value {
+        #TCL-value {
             top: 70%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
-        .drawing-section .SST-value {
+        #SST-value {
             top: 0.5%; /* Adjust as needed */
             left: 70%; /* Adjust as needed */
         }
-        .drawing-section .Hss-value {
+        #Hss-value {
             top: 45%; /* Adjust as needed */
             left: 15%; /* Adjust as needed */
         }
@@ -1080,7 +1079,7 @@
                 <div class="logo">
                 
                 | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
-    		</div>
+            </div>
            
         </div>
     </header>
@@ -1118,7 +1117,7 @@
     
   <div class="main-container">
     <div class="content-wrapper">
-	<!-- Input Section -->
+        <!-- Input Section -->
         <div class="input-section">
             <h3 style="text-decoration: underline;">SIMPLE SURGE SHAFT</h3>
             <form id="beamSectionForm">
@@ -1184,14 +1183,14 @@
         <!-- Drawing Section -->
         <div class="drawing-section">
             <img src="Surgeshaft.png" alt="Spillway Drawing">
-            <div class="Ds_input-value" id="Ds_input-value">Ds = <span id="Ds_input-display"></span> m</div>
-            <div class="NWLs-value" id="NWLs-value">NWL = <span id="NWLs-display"></span> m</div>
-            <div class="MWL-value" id="MWL-value">MWL = <span id="MWL-display"></span> m</div>
-            <div class="USL-value" id="USL-value">USL = <span id="USL-display"></span> m</div>
-            <div class="DSL-value" id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
-            <div class="TCL-value" id="TCL-value">TCL = <span id="TCL-display"></span> m</div>
-            <div class="SST-value" id="SST-value">Top = <span id="SST-display"></span> m</div>
-            <div class="Hss-value" id="Hss-value">H = <span id="Hss-display"></span> m</div>
+            <div id="Ds_input-value">Ds = <span id="Ds_input-display"></span> m</div>
+            <div id="NWLs-value">NWL = <span id="NWLs-display"></span> m</div>
+            <div id="MWL-value">MWL = <span id="MWL-display"></span> m</div>
+            <div id="USL-value">USL = <span id="USL-display"></span> m</div>
+            <div id="DSL-value">DSL = <span id="DSL-display"></span> m</div>
+            <div id="TCL-value">TCL = <span id="TCL-display"></span> m</div>
+            <div id="SST-value">Top = <span id="SST-display"></span> m</div>
+            <div id="Hss-value">H = <span id="Hss-display"></span> m</div>
         </div>
 
 
