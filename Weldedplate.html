@@ -925,21 +925,21 @@
         <div class="input-result-section">
                 <form id="plateForm">
                     <h3><u>WELDED CONNECTION BETWEEN TWO PLATES</u></h3>
-                    <label for="P">Designed factored load(P in kN):</label>
+                    <label for="P">Designed factored load(\(P\) in kN):</label>
                     <input type="number" id="P" required>
                     <br>
                     <p><u>SIZE OF PLATE-1</u></p>
-                    <label for="t1">Thickness of plate(t<sub>1</sub> in mm):</label>
+                    <label for="t1">Thickness of plate(\(t_1\) in mm):</label>
                     <input type="number" id="t1" required>
                     <br>
-                    <label for="b1">Width of plate(b<sub>1</sub> in mm):</label>
+                    <label for="b1">Width of plate(\(b_1\) in mm):</label>
                     <input type="number" id="b1" required>
                     <br>
                     <p><u>SIZE OF PLATE-2</u></p>
-                    <label for="t2">Thickness of plate(t<sub>2</sub> in mm):</label>
+                    <label for="t2">Thickness of plate(\(t_2\) in mm):</label>
                     <input type="number" id="t2" required>
                     <br>
-                    <label for="b2">Width of plate(b<sub>2</sub> in mm):</label>
+                    <label for="b2">Width of plate(\(b_2\) in mm):</label>
                     <input type="number" id="b2" required>
                     <br>
                     <label for="Weldtype">Weld Type:</label>
@@ -974,7 +974,7 @@
                         <option value="Fe 590-E">Fe 590-E</option>
                     </select>
                     <br>
-                    <label for="s">Provided size of weld(s in mm):</label>
+                    <label for="s">Provided size of weld(\(s\) in mm):</label>
                     <input type="number" id="s" required>
                     <br>
                     <button type="button" onclick="Weldeddesignplate()">DESIGN PLATE CONNECTION</button>
@@ -984,21 +984,21 @@
                     <h3><u>DESIGN RESULT</u></h3>
                     <br>
                     <p><u>1. WELD SPECIFICATION</u></p>
-                    <p>Design stress of weld_yield (f<sub>y</sub>): <span id="fy"></span> N/mm<sup>2</sup></p>
-                    <p>Design stress of weld_ultimate (f<sub>u</sub>): <span id="fu"></span> N/mm<sup>2</sup></p>
+                    <p>Design stress of weld_yield (\(f_y\)): <span id="fy"></span> N/mm<sup>2</sup></p>
+                    <p>Design stress of weld_ultimate (\(f_u\)): <span id="fu"></span> N/mm<sup>2</sup></p>
                     <br>
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
                     <br>
                     <p><u>3. SIZE OF WELD</u></p>
-                    <p>Minimum size : <span id="tmin"></span> mm</p>
-                    <p>Maximum size: <span id="tmax"></span> mm</p>
+                    <p>Minimum size ((\t_{min}\)) : <span id="tmin"></span> mm</p>
+                    <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> mm</p>
                     <br>
                     <p><u>4. STRENGTH OF WELD</u></p>
-                    <p>Strength of plate (P<sub>p</sub>): <span id="Pp"></span> kN</p>
+                    <p>Strength of plate (\(P_p\)): <span id="Pp"></span> kN</p>
                     <br>
-                    <p>Length of weld : <span id="Lw"></span> mm</p>
+                    <p>Length of weld (\(L_w\)) : <span id="Lw"></span> mm</p>
                 </div>
             </div>
             <div class="drawing-section">
@@ -1007,6 +1007,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-container">
@@ -1016,17 +1017,18 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/nabin.ijam" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.linkedin.com/in/nabin-kumar-ijam-34a23b52/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                       
                     </div>
                 </div>
                 
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
+                        <li><a href="Home.html">Home</a></li>
+                        <li><a href="Information.html">About Me</a></li>
                         <li><a href="#services">Expertise</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="My works.html">Projects</a></li>
+                        <li><a href="Contacts.html">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -1038,6 +1040,17 @@
                         <li><a href="#">Project Management</a></li>
                         <li><a href="#">Construction Supervision</a></li>
                         <li><a href="#">Feasibility Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="Civil Engineering Notes.html">Engineering Notes</a></li>
+                        <li><a href="Downloads.html">Downloads</a></li>
+                        <li><a href="blog.html">Personal Blog</a></li>
+                        <li><a href="Downloads.html">Design Codes</a></li>
+                        <li><a href="#">Useful Links</a></li>
                     </ul>
                 </div>
             </div>
