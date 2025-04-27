@@ -927,26 +927,26 @@
                 <div class="input-section">
                     <form id="plateForm">
                         <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
-                        <label for="P">Designed factored load(P in kN):</label>
+                        <label for="P">Designed factored load(\(P\) in kN):</label>
                         <input type="number" id="P" required>
                         <br>
-                        <label for="x">Eccentricity of load(x in m):</label>
+                        <label for="x">Eccentricity of load(\(x\) in m):</label>
                         <input type="number" id="x" required>
                         <br>
-                        <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+                        <label for="nn">Number of shear plane with threads intercepting the shear plane(\(n_n\)):</label>
                         <input type="number" id="nn" required>
                          <br>
-                        <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
+                        <label for="n1">No. of rows of bolts (\(n_r\)):</label>
                         <input type="number" id="n1" required>
                         <br>
-                        <label for="xp">Horizontal spacing of adjacent rows (x<sub>p</sub>):</label>
+                        <label for="xp">Horizontal spacing of adjacent rows (\(x_p\)):</label>
                         <input type="number" id="xp" required>
                         <br>
                         <p><u>SIZE OF PLATES</u></p>
-                        <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
+                        <label for="t1">Thickness of connected plate(\(t_1\) in mm):</label>
                         <input type="number" id="t1" required>
                         <br>
-                        <label for="t2">Thickness of connecting plate(t<sub>2</sub> in mm):</label>
+                        <label for="t2">Thickness of connecting plate(\(t_2\) in mm):</label>
                         <input type="number" id="t2" required>
                         <br>
                         
@@ -990,10 +990,10 @@
                         <br>
                         <p><u>PROVIDED DATA</u></p>
                         <p><i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i></p>
-                        <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+                        <label for="pt">Pitch of bolts/holes(\(p_t\) in mm):</label>
                         <input type="number" id="pt" required>
                         <br>
-                        <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+                        <label for="ed">Edge distance of hole(\(e_d\) in mm):</label>
                         <input type="number" id="ed" required>
                         <br>
                         <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
@@ -1003,35 +1003,35 @@
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <p><u>1. BOLT SPECIFICATION</u></p>
-                    <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
-                    <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
+                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> mm</p>
+                    <p>Diameter of hole (\D_h\)): <span id="Diahole"></span> mm</p>
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
                     <p><u>3. PITCH AND EDGE DISTANCE</u></p>
                     <p><u>3.1 Pitch distance</u></p>
-                    <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
-                    <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> mm</p>
+                    <p>Minimum pitch distance (\(p_{min}\)): <span id="pmin"></span> mm</p>
                     <p><u>3.2 Edge distance</u></p>
-                    <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
-                    <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> mm</p>
+                    <p>Minimum Edge distance (\(e_{min}\)): <span id="emin"></span> mm</p>
                     <p><u>4. STRENGTH OF A BOLT</u></p>
-                    <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
-                    <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
-                    <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
+                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> N</p>
+                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> N</p>
+                    <p>Strength of a bolt (V_{sb}\)): <span id="Vsb"></span> N</p>
                     
                     <p><u>5. NUMBER OF BOLTS</u></p>
-                    <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
+                    <p>Total number of bolts (\(n_b\)): <span id="nb"></span> </p>
                     <p><u>6. SIZE OF CONNECTING PLATE</u></p>
-                    <p>Width (B): <span id="Bc"></span>m </p>
-                    <p>Width (H): <span id="Hc"></span>m </p>
+                    <p>Width (\(B\)): <span id="Bc"></span>m </p>
+                    <p>Width (\(H\)): <span id="Hc"></span>m </p>
                     <p><u>5. CHECK FOR SHEAR</u></p>
                     
-                    <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
-                    <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span> N </p>
-                    <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span> N </p>
+                    <p>Direct Shear (\(F_2\)): <span id="F2"></span> N </p>
+                    <p>Shear due to moment (\(F_3\)): <span id="F3"></span> N </p>
+                    <p>Shear strength due to combined Shear and moment: (\(V_s\)): <span id="Vs"></span> N </p>
                     <p>Check for shear strength: <span id="check"></span> </p>
 
                     <!-- Table for displaying bolt positions -->
