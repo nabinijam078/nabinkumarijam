@@ -1,6 +1,5 @@
+
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,6 +10,9 @@
     <!-- MathJax Configuration -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* ===== Base Styles ===== */
         :root {
@@ -26,27 +28,24 @@
         }
         
         body {
-            font-family: 'Open sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0px;
             color: var(--text-medium);
             line-height: 1.7;
             background-color: var(--section-bg);
             scroll-behavior: smooth;
         }
-        
+        .main-content {
+            padding: 40px; /* Adjust this value as needed */
+           
+        }
         h1, h2, h3, h4 {
             font-family: 'Roboto', serif;
             color: var(--text-dark);
             margin-top: 0;
             font-weight: 700;
         }
-
-	    .content-wrapper {
-   	 display: flex;
-   	 gap: 80px; 
-   	 align-items: flex-start; 
-	}
         
         a {
             text-decoration: none;
@@ -54,25 +53,10 @@
             transition: all 0.3s ease;
         }
         
-	  .drawing-section {
-            width: 35%; /* Drawing section takes 35% of the width */
-            position: relative;
-        }
-
-        .drawing-section img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Positioning of texts on the image */
-
-	
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px; /* Increased from 20px */
+            padding: 0 20px;
         }
         
         .section {
@@ -140,6 +124,37 @@
             color: white;
         }
         
+        /* Table Styles */
+        .data-table {
+            width: 30%;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #000;
+        }
+        
+        .data-table th, 
+        .data-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+            border-color:black;
+        }
+        
+        table {
+            width: 70%;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #000;
+        }
+        
+        table th, 
+        table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+            border-color:black;
+        }
+        
         /* ===== Header ===== */
         header {
             background: rgba(255, 255, 255, 0.95);
@@ -155,7 +170,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px; /* Increased from 0 */
+            padding: 15px 0;
         }
         
         .logo {
@@ -207,193 +222,51 @@
         nav a:hover:after {
             width: 100%;
         }
-        
         .main-container {
             max-width: 1400px;
             margin: 40px auto;
-            padding: 0 60px;
+            padding: 0 20px;
             line-height: 1.7;
-            color: black;
+            color: var(--text-medium);
         }
 
-        .main-container h2, 
-        .content h2 {
-            font-family: 'Roboto', serif;
+        .main-container h2 {
+            font-family: 'Playfair Display', serif;
             color: var(--text-dark);
-            padding: 0 30px;
             margin-bottom: 20px;
         }
 
         .main-container p {
             margin-bottom: 20px;
-            color: black;
             font-size: 1.1rem;
-            padding: 0 5px;
             text-align: justify; 
             text-justify: inter-word; 
         }
         
-        /* Table Styles */
-        .data-table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        .data-table th, 
-        .data-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        table th, 
-        table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        
-        .design-container {
+        /* New styles for content layout */
+        .content-wrapper {
             display: flex;
-            flex-wrap: wrap;
             gap: 40px;
-            margin: 40px 0;
+            align-items: flex-start;
         }
-        
-        .inputs {
+
+        .input-result-section {
             flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: calc(100% - 440px);
         }
-        
-        .input-group {
-            margin-bottom: 15px;
+
+        .drawing-section {
+            flex-shrink: 0;
+            width: 400px;
+            position: sticky;
+            top: 20px;
         }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-        }
-        
-        .image-container {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-            
-            padding: 20px;
-            border-radius: 10px;
-            
-        }
-        
-        .image-container img {
+
+        .drawing-section img {
             width: 100%;
             height: auto;
-            max-width: 500px;
-            display: block;
-            margin: 0 auto;
-            border-radius: 5px;
-        }
-        
-        .dimension {
-            position: absolute;
-            font-size: 0.9rem;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 500;
-            pointer-events: none;
-        }
-        
-        .dimension::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 20px;
-            background-color: var(--primary-blue);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .horizontal-dimension::before {
-            bottom: -20px;
-        }
-        
-        .vertical-dimension::before {
-            width: 20px;
-            height: 2px;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .rotated {
-            transform: rotate(-90deg);
-            transform-origin: left top;
-        }
-
-        /* Result Display */
-        .result {
-            width: 100%;
-            margin: 20px auto;
-            padding: 0px;
-            border-radius: 10px;
-          }
-
-        .result h2 {
-            margin-bottom: 20px;
-            color: black;
-            padding-bottom: 10px;
-        }
-
-        .result p {
-            
-            font-size: 0.9rem;
-        }
-        
-        .result span {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        /* MathJax formula styling */
-        .math-formula {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         /* ===== Hero Section ===== */
@@ -724,7 +597,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
-            padding: 0 40px; /* Added padding */
         }
         
         .footer-col h3 {
@@ -811,7 +683,6 @@
         .nav-container {
             display: flex;
             justify-content: center;
-            padding: 0 40px; /* Added padding */
         }
         
         .nav-links {
@@ -911,6 +782,22 @@
                 max-width: 500px;
                 margin: 0 auto;
             }
+
+            /* Responsive styles for content layout */
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .input-result-section {
+                max-width: 100%;
+            }
+            
+            .drawing-section {
+                width: 100%;
+                position: static;
+                order: -1;
+                margin-bottom: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -957,26 +844,6 @@
                 display: block;
                 transform: none;
             }
-            
-            /* Responsive padding adjustments */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 30px;
-            }
-            
-            .main-container {
-                padding: 0 40px;
-            }
-            
-            .design-container {
-                flex-direction: column;
-            }
-            
-            .image-container {
-                order: -1;
-            }
         }
         
         @media (max-width: 576px) {
@@ -1008,18 +875,6 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
-            
-            /* Further reduced padding for mobile */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 20px;
-            }
-            
-            .main-container {
-                padding: 0 25px;
-            }
         }
     </style>
 </head>
@@ -1031,10 +886,8 @@
     <header>
        <div class="container header-container">
                 <div class="logo">
-                
                 | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
-    		</div>
-           
+            </div>
         </div>
     </header>
     
@@ -1067,58 +920,142 @@
         </div>
     </nav>
 
-       <div class="main-container">
+    <!-- Main Content -->
+    <div class="main-container">
         <div class="content-wrapper">
-        <h3><u><center>GENERALIZED HOEK-BROWN FAILURE CRITERIA</center></u></h3>
-      <p><b><u>ROCK MASS </u></b></p>
-        <form id="HoekbrownForm">
-		 <label for="sigmaci">Unconfined compression stress (\(sigma_{ci}\) in MPa):</label>
-                <input type="number" id="sigmaci" required>
-            <br>
-                <label for="mi">Material constant (\(m_i\)):</label>
-                <input type="number" id="mi" required>
-            <br>
-             
-                <label for="GSI">Geological Strength Index(GSI):</label>
-                <input type="number" id="GSI" required>
-            <br>
-                <label for="v">Poisson's ratio (\(ν\)):</label>
-                <input type="number" id="v" required>
-	   <br>
-                <label for="D">Distribution factor (\(D\)):</label>
-                <input type="number" id="D" required>
-            <br>
-                <label for="Y">Density of rock (\(Υ\)):</label>
-                <input type="number" id="Y" required>
-            <br>
-               
-                <label for="z">Depth of cover (\(z\) in m):</label>
-                <input type="number" id="z"  required>
-            <br>
-            <button type="button" onclick="hoekbrown()"><b><u>CALCULATE</u></b></button>
-        </form>
+            <div class="input-result-section">
+                <div class="input-section">
+                    <form id="plateForm">
+                        <h3><u>MOMENT CONNECTION IN A PLANE</u></h3>
+                        <label for="P">Designed factored load(P in kN):</label>
+                        <input type="number" id="P" required>
+                        <br>
+                        <label for="x">Eccentricity of load(x in m):</label>
+                        <input type="number" id="x" required>
+                        <br>
+                        <label for="nn">Number of shear plane with threads intercepting the shear plane(n<sub>n</sub>):</label>
+                        <input type="number" id="nn" required>
+                         <br>
+                        <label for="n1">No. of rows of bolts (n<sub>r</sub>):</label>
+                        <input type="number" id="n1" required>
+                        <br>
+                        <label for="xp">Horizontal spacing of adjacent rows (x<sub>p</sub>):</label>
+                        <input type="number" id="xp" required>
+                        <br>
+                        <p><u>SIZE OF PLATES</u></p>
+                        <label for="t1">Thickness of connected plate(t<sub>1</sub> in mm):</label>
+                        <input type="number" id="t1" required>
+                        <br>
+                        <label for="t2">Thickness of connecting plate(t<sub>2</sub> in mm):</label>
+                        <input type="number" id="t2" required>
+                        <br>
+                        
+                        <p><u>BOLTS SPECIFICATION</u></p>
+                        <label for="boltGrade">Choose a Bolt Grade:</label>
+                        <select id="boltGrade">
+                            <option value="M12">M12</option>
+                            <option value="M14">M14</option>
+                            <option value="M16">M16</option>
+                            <option value="M18">M18</option>
+                            <option value="M20">M20</option>
+                            <option value="M22">M22</option>
+                            <option value="M24">M24</option>
+                            <option value="M27">M27</option>
+                            <option value="M30">M30</option>
+                            <option value="M33">M33</option>
+                        </select>
+                        <br>
+                        <label for="boltSubGrade">Choose a Bolt Sub-Grade (e.g., 4.6, 4.8):</label>
+                        <select id="boltSubGrade">
+                            <option value="4.6">4.6</option>
+                            <option value="4.8">4.8</option>
+                            <option value="5.6">5.6</option>
+                            <option value="5.8">5.8</option>
+                        </select>
+                        <br>
+                        <p><u>STEEL PLATE SPECIFICATION</u></p>
+                        <label for="steelGrade">Choose a Steel Grade:</label>
+                        <select id="steelGrade">
+                            <option value="Fe 290">Fe 290</option>
+                            <option value="Fe 410 W-A">Fe 410 W-A</option>
+                            <option value="Fe 410 W-B">Fe 410 W-B</option>
+                            <option value="Fe 410 W-C">Fe 410 W-C</option>
+                            <option value="Fe 440">Fe 440</option>
+                            <option value="Fe 490">Fe 490</option>
+                            <option value="Fe 540">Fe 540</option>
+                            <option value="Fe 570-D">Fe 570-D</option>
+                            <option value="Fe 590-E">Fe 590-E</option>
+                        </select>
+                        
+                        <br>
+                        <p><u>PROVIDED DATA</u></p>
+                        <p><i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i></p>
+                        <label for="pt">Pitch of bolts/holes(p<sub>t</sub> in mm):</label>
+                        <input type="number" id="pt" required>
+                        <br>
+                        <label for="ed">Edge distance of hole(e<sub>d</sub> in mm):</label>
+                        <input type="number" id="ed" required>
+                        <br>
+                        <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+                    </form>
+                </div>
 
-        <div class="result" id="result">
-            <h3><u>CONSTANTS</u></h3>
-            <p><strong> \(m_b\):</strong> <span id="mb"></span> </p>
-            <p><strong>\(s\):</strong> <span id="s"></span> </p>
-	    <p><strong>\(a\):</strong> <span id="a"></span> </p>
-          <h3><u>ROCK MASS MODULUS</u></h3>
-	  <p><strong>\(E_{rm}\):</strong> <span id="Erm"></span> N/mm²</p>
-	  <p><strong>\(E_{rma}\):</strong> <span id="Erma"></span> N/mm²</p>
-          <h3><u>STRESSES</u></h3>
-            <p><strong>Major stress (\(σ_1\)):</strong> <span id="sigma1"></span>N/mm²</p>
-            <p><strong>Minor stress (\(σ_3\)):</strong> <span id="sigma3"></span>N/mm²</p>
-            <p><strong>Tensile strength (\(σ_t\)):</strong> <span id="sigmat"></span>N/mm²</p>
-            
+                <div class="result" id="result">
+                    <h3><u>DESIGN RESULT</u></h3>
+                    <p><u>1. BOLT SPECIFICATION</u></p>
+                    <p>Ultimate strength of bolt (f<sub>u</sub>): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of bolt (f<sub>yb</sub>): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Diameter of bolt (D<sub>b</sub>): <span id="boltdia"></span> mm</p>
+                    <p>Diameter of hole (D<sub>h</sub>): <span id="Diahole"></span> mm</p>
+                    <p><u>2. PLATE SPECIFICATION</u></p>
+                    <p>Ultimate strength of plate (f<sub>up</sub>): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Yield strength of plate (f<sub>y</sub>): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p><u>3. PITCH AND EDGE DISTANCE</u></p>
+                    <p><u>3.1 Pitch distance</u></p>
+                    <p>Maximum pitch distance (p<sub>max</sub>): <span id="pmax"></span> mm</p>
+                    <p>Minimum pitch distance (p<sub>min</sub>): <span id="pmin"></span> mm</p>
+                    <p><u>3.2 Edge distance</u></p>
+                    <p>Maximum Edge distance (e<sub>max</sub>): <span id="emax"></span> mm</p>
+                    <p>Minimum Edge distance (e<sub>min</sub>): <span id="emin"></span> mm</p>
+                    <p><u>4. STRENGTH OF A BOLT</u></p>
+                    <p>Shear Strength (V<sub>dsb</sub>): <span id="Vdsb"></span> N</p>
+                    <p>Bearing Strength (V<sub>dpb</sub>): <span id="Vdpb"></span> N</p>
+                    <p>Strength of a bolt (V<sub>sb</sub>): <span id="Vsb"></span> N</p>
+                    
+                    <p><u>5. NUMBER OF BOLTS</u></p>
+                    <p>Total number of bolts (n<sub>b</sub>): <span id="nb"></span> </p>
+                    <p><u>6. SIZE OF CONNECTING PLATE</u></p>
+                    <p>Width (B): <span id="Bc"></span>m </p>
+                    <p>Width (H): <span id="Hc"></span>m </p>
+                    <p><u>5. CHECK FOR SHEAR</u></p>
+                    
+                    <p>Direct Shear (F<sub>2</sub>): <span id="F2"></span> N </p>
+                    <p>Shear due to moment (F<sub>3</sub>): <span id="F3"></span> N </p>
+                    <p>Shear strength due to combined Shear and moment: (V<sub>s</sub>): <span id="Vs"></span> N </p>
+                    <p>Check for shear strength: <span id="check"></span> </p>
+
+                    <!-- Table for displaying bolt positions -->
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Bolt No.</th>
+                                <th>X (mm)</th>
+                                <th>Y (mm)</th>
+                                <th>r² (mm²)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Drawing Section -->
+            <div class="drawing-section">
+                <img src="Momentinplane.png" alt="connection Drawing">
+            </div>
         </div>
     </div>
- </div>    
-
-
-
-
-
 
     <!-- Footer -->
     <footer>
@@ -1174,10 +1111,9 @@
         </div>
     </footer>
 
-
-
-    <!-- JavaScript for Time and Date -->
+    <!-- JavaScript -->
     <script>
+        // Current time and date
         function updateDateTime() {
             const now = new Date();
             const options = { 
@@ -1194,184 +1130,252 @@
             datetimeElement.textContent = now.toLocaleDateString('en-US', options);
         }
 
-        // Update the time and date every second
         setInterval(updateDateTime, 1000);
-
-        // Initial call to display the time and date immediately
         updateDateTime();
 
-   function hoekbrown() {
-    // Input values
-    const sigmaci = parseFloat(document.getElementById('sigmaci').value); 
-    const mi = parseFloat(document.getElementById('mi').value); 
-    const GSI = parseFloat(document.getElementById('GSI').value); 
-    const v = parseFloat(document.getElementById('v').value); 
-    const D = parseFloat(document.getElementById('D').value); 
-    const Y = parseFloat(document.getElementById('Y').value); 
-    const z = parseFloat(document.getElementById('z').value); 
-    
-    // Calculate Hoek-Brown parameters
-    const mb = mi * Math.exp((GSI - 100) / (28 - 14 * D));
-    const s = Math.exp((GSI - 100) / (9 - 3 * D));
-    const a = 1/2 + 1/6 * (Math.exp(-GSI/15) - Math.exp(-20/3));
-    
-    // Calculate rock mass modulus
-    const Erm = Math.pow(10, 5) * (1 - D/2) / (1 + Math.exp((75 + 25 * D - GSI)/11));
-    
-    // Adjustment factor for modulus
-    let C;
-    if (sigmaci >= 100) {
-        C = 1;
-    } else {
-        C = Math.pow(sigmaci/100, 0.5);
-    }
-
-    const Erma = 1000 * C * Math.pow((10), (GSI - 10) / 40);
-    
-    // Calculate in-situ stresses
-    const sigma1 = Y * z/1000;  // Vertical stress at depth z
-    
-    // Numerical solution for σ3 (now allowing negative values)
-    let sigma3 = 0; // Initial guess
-    const tolerance = 0.001;
-    const maxIterations = 100;
-    let iteration = 0;
-    let error = 1;
-    
-    while (error > tolerance && iteration < maxIterations) {
-        const term = mb * sigma3 / sigmaci + s;
-        // Handle negative base for exponentiation
-        let term_pow_a;
-        if (term <= 0) {
-            // If term is negative or zero, result might be complex
-            // In practice, we might want to limit this or handle differently
-            term_pow_a = 0;
-        } else {
-            term_pow_a = Math.pow(term, a);
-        }
-        
-        const f = sigma3 + sigmaci * term_pow_a - sigma1;
-        let df;
-        
-        if (term <= 0) {
-            df = 1; // Simplified derivative when term is non-positive
-        } else {
-            df = 1 + sigmaci * a * Math.pow(term, a-1) * (mb/sigmaci);
-        }
-        
-        const newSigma3 = sigma3 - f/df;
-        
-        error = Math.abs(newSigma3 - sigma3);
-        sigma3 = newSigma3;
-        iteration++;
-    }
-    
-    // calculation of sigmat
-    const sigmat = sigmaci/(0.81*mi+7); 
-    
-    // Display results
-    document.getElementById('mb').textContent = mb.toFixed(2);
-    document.getElementById('s').textContent = s.toFixed(6);
-    document.getElementById('a').textContent = a.toFixed(2);
-    document.getElementById('Erm').textContent = Erm.toFixed(1);
-    document.getElementById('Erma').textContent = Erma.toFixed(1);
-    document.getElementById('sigma1').textContent = sigma1.toFixed(2);
-    document.getElementById('sigma3').textContent = sigma3.toFixed(2);
-    document.getElementById('sigmat').textContent = sigmat.toFixed(2);
-}
-
-
-
-
-
-
-    </script>
-
-    <script>
         // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+	
+	        // Data for bolt grades
+        const boltData = {
+            M12: { nominalArea: 84.3 },
+            M14: { nominalArea: 115 },
+            M16: { nominalArea: 157 },
+            M18: { nominalArea: 192 },
+            M20: { nominalArea: 245 },
+            M22: { nominalArea: 303 },
+            M24: { nominalArea: 353 },
+            M27: { nominalArea: 459 },
+            M30: { nominalArea: 561 },
+            M33: { nominalArea: 694 },
+        };
+
+        // Data for steel grades
+        const steelData = {
+            "Fe 290": { yieldStrength: { "<20": 165, "20-40": 165, ">40": 165 }, ultimateTensileStrength: 290 },
+            "Fe 410 W-A": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 410 W-B": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 410 W-C": { yieldStrength: { "<20": 250, "20-40": 240, ">40": 230 }, ultimateTensileStrength: 410 },
+            "Fe 440": { yieldStrength: { "<20": 300, "20-40": 290, ">40": 280 }, ultimateTensileStrength: 440 },
+            "Fe 490": { yieldStrength: { "<20": 350, "20-40": 330, ">40": 320 }, ultimateTensileStrength: 490 },
+            "Fe 540": { yieldStrength: { "<20": 410, "20-40": 390, ">40": 380 }, ultimateTensileStrength: 540 },
+            "Fe 570-D": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 570 },
+            "Fe 590-E": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 590 },
+        };
+
+        // Function to handle form submission
+        function Momentinplane() {
+            try {
+                // Retrieve input values
+                const P = parseFloat(document.getElementById('P').value);
+                const x = parseFloat(document.getElementById('x').value);
+                const n1 = parseFloat(document.getElementById('n1').value);
+                const nn = parseFloat(document.getElementById('nn').value);
+                const xp = parseFloat(document.getElementById('xp').value);
+                const t1 = parseFloat(document.getElementById('t1').value);
+                const t2 = parseFloat(document.getElementById('t2').value);
+                const boltGrade = document.getElementById('boltGrade').value;
+                const boltSubGrade = document.getElementById('boltSubGrade').value;
+                const steelGrade = document.getElementById('steelGrade').value;
+                const pt = parseFloat(document.getElementById('pt').value);
+                const ed = parseFloat(document.getElementById('ed').value);
+
+                // Validate inputs
+                if (isNaN(P) || P <= 0 || isNaN(x) || x <= 0 || isNaN(n1) || n1 <= 0 || isNaN(nn) || nn <= 0 ||
+                    isNaN(xp) || xp <= 0 || isNaN(t1) || t1 <= 0 || isNaN(t2) || t2 <= 0 || isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
+                    alert("Please fill all the required fields with valid positive numbers.");
+                    return;
+                }
+
+                // Retrieve bolt and steel properties
+                const boltDetails = boltData[boltGrade];
+                let boltUltimateStrength;
+                if (boltSubGrade === "4.6") {
+                    boltUltimateStrength = 400; // Ultimate strength for 4.6 grade
+                } else if (boltSubGrade === "4.8") {
+                    boltUltimateStrength = 420; // Ultimate strength for 4.8 grade
+                } else if (boltSubGrade === "5.6") {
+                    boltUltimateStrength = 500; // Ultimate strength for 5.6 grade
+                } else {
+                    boltUltimateStrength = 520; // Ultimate strength for other grades (e.g., 5.8)
+                }
+
+                const boltYieldStrength = boltSubGrade === "4.6" ? 240 : 300; // Yield strength logic remains the same
+
+                const plateThickness = Math.min(t1, t2);
+                const steelDetails = steelData[steelGrade];
+                let thicknessCategory;
+                if (plateThickness < 20) {
+                    thicknessCategory = "<20";
+                } else if (plateThickness >= 20 && plateThickness <= 40) {
+                    thicknessCategory = "20-40";
+                } else {
+                    thicknessCategory = ">40";
+                }
+                const steelYieldStrength = steelDetails.yieldStrength[thicknessCategory];
+                const steelUltimateStrength = steelDetails.ultimateTensileStrength;
+
+                // Calculate pitch and edge distances
+                const tp = Math.min(t1, t2);
+                const e1 = 16 * tp;
+                const pmax = Math.min(e1, 200);
+                const boltdia = parseInt(boltGrade.substring(1));
+                const pmin = 2.5 * boltdia;
+
+                let Diahole;
+                if (boltdia >= 12 && boltdia <= 14) {
+                    Diahole = boltdia + 1;
+                } else if (boltdia >= 16 && boltdia <= 22) {
+                    Diahole = boltdia + 2;
+                } else if (boltdia === 24) {
+                    Diahole = boltdia + 2;
+                } else {
+                    Diahole = boltdia + 3;
+                }
+
+                const emin = 1.5 * Diahole;
+                const epsilon = Math.pow(250 / steelYieldStrength, 0.5);
+                const emax = 12 * tp * epsilon;
+
+                // Factored force at each plate of bracket in N
+                const F1 = P * 1000 / 2;
+                // Factored moment at each node in Nmm
+                const M1 = F1 * x * 1000;
+
+                // Strength calculation
+                const Asb = 3.1416 * Math.pow(boltdia, 2) / 4;
+                const Anb = 0.78 * Asb;
+                const ns = 1 - nn;
+                const Ymb = 1.25;
+
+                // Shear strength of bolt
+                const Vnsb = boltUltimateStrength * (Anb * nn + Asb * ns) / Math.pow(3, 0.5);
+                const Vdsb = Vnsb / Ymb;
+
+                // Bearing strength of bolt
+                const k1 = ed / (3 * Diahole);
+                const k2 = pt / (3 * Diahole) - 0.25;
+                const k3 = boltUltimateStrength / steelUltimateStrength;
+                const k4 = 1;
+                const kb = Math.min(k1, k2, k3, k4);
+                const Vnpb = 2.5 * kb * boltdia * tp * steelUltimateStrength;
+                const Vdpb = Vnpb / Ymb;
+
+                // Bolt strength
+                const Vsb = Math.min(Vdpb, Vdsb);
+
+                // Number of bolts
+                const nb = Math.ceil(Math.pow(6 * M1 / (n1 * Vsb * pt), 0.5) / 4) * 4;
+                const nt = nb; // Total number of bolts
+
+                // Connecting plate size
+                const Bc = ed * 2 + xp;
+                const Hc = pt * (nb / 2 - 1) + ed * 2;
+
+                // Centroid of bolts
+                const yb = Hc / 2;
+
+                // Calculate sum of r² and yn
+                let sum = 0;
+                let xn = 0;
+                let yn = 0;
+                const tableBody = document.querySelector("#dataTable tbody");
+                tableBody.innerHTML = ""; // Clear previous table data
+
+                // First row calculation
+                const firstRow = document.createElement("tr");
+                const cellA1 = document.createElement("td");
+                const cellB1 = document.createElement("td");
+                const cellC1 = document.createElement("td");
+                const cellD1 = document.createElement("td");
+
+                cellA1.textContent = 1;
+                cellB1.textContent = (xp / 2).toFixed(1);
+                cellC1.textContent = (pt / 2).toFixed(1);
+                cellD1.textContent = (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2)).toFixed(1);
+
+                firstRow.appendChild(cellA1);
+                firstRow.appendChild(cellB1);
+                firstRow.appendChild(cellC1);
+                firstRow.appendChild(cellD1);
+                tableBody.appendChild(firstRow);
+
+                // Loop for the remaining rows
+                for (let i = 2; i <= nb / 2; i++) {
+                    const row = document.createElement("tr");
+                    const cellA = document.createElement("td");
+                    const cellB = document.createElement("td");
+                    const cellC = document.createElement("td");
+                    const cellD = document.createElement("td");
+
+                    cellA.textContent = i;
+                    cellB.textContent = (xp / 2).toFixed(1);
+                    cellC.textContent = ((i - 1) * pt + (pt / 2)).toFixed(1);
+                    cellD.textContent = (Math.pow(xp / 2, 2) + Math.pow((i - 1) * pt + (pt / 2), 2)).toFixed(1);
+
+                    row.appendChild(cellA);
+                    row.appendChild(cellB);
+                    row.appendChild(cellC);
+                    row.appendChild(cellD);
+                    tableBody.appendChild(row);
+
+                    // Accumulate the sum of column D
+                    sum += parseFloat(cellD.textContent);
+                    xn = parseFloat(cellB.textContent);
+                    yn = parseFloat(cellC.textContent);
+                }
+
+                const sum1 = (sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2))*(2*n1);
+                const R1 = Math.sqrt(Math.pow(xn, 2) + Math.pow(yn, 2));
+
+                // Direct shear force
+                const F2 = F1 / (n1 * nb);
+
+                // Shear due to moment
+                const F3 = (F1 * x * 1000 * R1) / sum1;
+
+                // Angle between extreme bolt and CG
+                const theta = Math.atan(yn / xn);
+
+                // Resultant force
+                const Vs = Math.sqrt(Math.pow(F2, 2) + Math.pow(F3, 2) + 2 * F2 * F3 * Math.cos(theta));
+
+                // Check for shear
+                let check;
+                if (Vs < Vsb) {
+                    check = 'OK';
+                } else {
+                   check = 'Not OK';
+                }
+
+                // Update the result section
+                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
+                document.getElementById('boltYieldStrength').textContent = boltYieldStrength;
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
+                document.getElementById('boltdia').textContent = boltdia;
+                document.getElementById('Diahole').textContent = Diahole;
+                document.getElementById('pmax').textContent = pmax;
+                document.getElementById('pmin').textContent = pmin;
+                document.getElementById('emax').textContent = emax.toFixed(2);
+                document.getElementById('emin').textContent = emin.toFixed(2);
+                document.getElementById('Vdsb').textContent = Vdsb.toFixed(2);
+                document.getElementById('Vdpb').textContent = Vdpb.toFixed(2);
+                document.getElementById('Vsb').textContent = Vsb.toFixed(2);
+                document.getElementById('nb').textContent = nb;
+                document.getElementById('Bc').textContent = Bc;
+                document.getElementById('Hc').textContent = Hc;
                 
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would typically send the form data to a server
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
-
- 
-
-
-    </script>
-</body>
-</html>
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+                document.getElementById('F2').textContent = F2.toFixed(2);
+                document.getElementById('F3').textContent = F3.toFixed(2);
                 
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would typically send the form data to a server
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
+                document.getElementById('Vs').textContent = Vs.toFixed(2);
+                document.getElementById('check').textContent = check;
+            } catch (error) {
+                alert("An error occurred during calculation. Please check your inputs.");
+                console.error(error);
+            }
         }
-
- 
-
-
     </script>
 </body>
 </html>
