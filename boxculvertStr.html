@@ -987,6 +987,9 @@
 <div style="text-align: center;">
   <img src="BC1.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
 </div>	
+
+		
+		 
 		 <p><b><center>Fig. Box Culvert</center></b></p>
 		 <p> Area of top slab</p>
 		<div style="text-align: center;"> 
@@ -1016,6 +1019,31 @@
 		 \(\bar{x}=\frac{(B+2w_b)}{2}\)
 		 </div>
 		 <br>
+<p><u><b>1. CALCULATION OF LOAD INTENSITY FOR STAAD INPUT</b></u></p>
+	<table>
+		<tr>
+			<td>SN</td>
+			<td>Load name</td>
+			<td>Symbol</td>
+			<td>Start value</td>
+			<td>End value</td>
+			<td>Direction</td>
+			<td>Centroid, \(\bar_{x}\)</td>
+			<td>Centroid, \(\bar_{y}\)</td>
+		</tr>
+		<tr>
+			<td>1.</td>
+			<td>Self-Weight</td>
+			<td>\(F_1\)</td>
+			<td>\(F_1=A×\gamma_c\)</td>
+			<td>\(F_1=A×\gamma_c\)</td>
+			<td>Vertical</td>
+			<td>\(x_1=\frac{(B+2w_b)}{2}\)</td>
+			<td>\(x_1=\frac{(B+2w_b)}{2}\)</td>
+		</tr>
+	</table>
+		 <br>
+		 <p><u><b>1. CALCULATION OF LOAD INTENSITY FOR STABILITY ANALYSIS</b></u></p>
     <table>
 	    <tr>
 		    <td>SN</td>
@@ -1030,7 +1058,7 @@
 	     <tr>
 		    <td></td>
 		    <td></td>
-			<td></td>
+		    <td></td>
 		    <td>\(kN\)</td>
 		    <td>\(kN\)</td>
 		    <td>m</td>
@@ -1040,7 +1068,7 @@
 	       <tr>
 		    <td>1.</td>
 		    <td>Self-weight</td>
-			<td>\(F_1\)</td>
+		    <td>\(F_1\)</td>
 		    <td>-</td>
 		    <td>\(F_1=A×\gamma_c\)</td>
 		    <td>\(x_1=\frac{(B+2w_b)}{2}\)</td>
@@ -1052,21 +1080,32 @@
 		    <td>Weight of water inside culvert</td>
 			<td>\(F_2\)</td>
 		    <td>-</td>
-		    <td> If \(h_w>H\) then \(F_2=A_c*\(gamma_w\)\) else \(F_3=\gamma_c×A_{c1}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\) </td>
+		    <td> If \(h_w>H\) then \(F_2=A_c×\gamma_w\) else \(F_2=\gamma_c×A_{c1}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\) </td>
 		    <td>\(x_2=\frac{(B+2w_b)}{2}\)</td>
 		    <td>\(M_2=F_2×x_2\)</td>
 		    <td>-</td>
 	    </tr>
-	       <tr>
+	    <tr>
 		    <td>3.</td>
-		    <td>Weight of soil above culvert</td>
+		    <td>Uplift of inside culvert</td>
 			<td>\(F_3\)</td>
 		    <td>-</td>
-		    <td> If \(h_s=0\) then \(F_3=0\) else \(F_3=\gamma_d×h_s×(B+2w_t)\)</td>
-		    <td>\(x_3=\frac{(B+2w_t)}{2}\)</td>
+		    <td> If \(h_w>H\) then \(F_3=\gamma_w×B×(h_w-H)\) else \(F_3=0\) </td>
+		    <td>\(x_3=\frac{(B+2w_b)}{2}\)</td>
 		    <td>\(M_3=F_3×x_3\)</td>
 		    <td>-</td>
 	    </tr>
+	        <tr>
+		    <td>4.</td>
+		    <td>Hydrostatic force of inside culvert</td>
+			<td>\(F_4\)</td>
+		    <td>-</td>
+		    <td> If \(h_w>H\) then \(F_4=\gamma_w×B×(h_w-H)\) else \(F_3=0\) </td>
+		    <td>\(x_4=\frac{(B+2w_b)}{2}\)</td>
+		    <td>\(M_4=F_3×x_4\)</td>
+		    <td>-</td>
+	    </tr>
+	    
     </table>
     </main>
     <!-- Footer -->
