@@ -124,42 +124,38 @@
             color: white;
         }
 	    
-	        /* Table Styles */
-        .data-table {
-            width: 30%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        .data-table th, 
-        .data-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        table {
-            width: 40%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        table tr, 
-        table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-	table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
+	/* Table Styles */
+       /* Input tables (small width) */
+    .input-table {
+        width: 40%;  /* Adjust this value as needed */
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+    }
+    
+    .input-table th, 
+    .input-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        border-color: black;
+    }
+
+    /* Load calculation tables (larger width) */
+    .load-table {
+        width: 80%;  /* Adjust this value as needed */
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+    }
+    
+    .load-table th, 
+    .load-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        border-color: black;
+    }
         
         /* ===== Header ===== */
         header {
@@ -891,7 +887,7 @@
       <h2><u><b><center>STRUCTURAL ANALYSIS OF BOX CULVERT</center></b></u></h2>
 	<p><u><b></b>INPUTS</b></u></p>
 		 <p><b>1. GEOMETRY</b></p>
-		 <table>
+		 <table class="input-table">
 			 <tr>
 				 <td>Top width of wall</td>
 				 <td>\(w_t\)</td>
@@ -933,7 +929,7 @@
 		 </table>
 <P><b>2. GEOTECHNICAL DATA</b></P>
 		 <p>2.1 FILL MATERIAL</p>
-		 <table>
+		 <table class="input-table">
 			 <tr>
 				<td>Angle of repose</td>
 				<td>\(\phi_s\)</td>	
@@ -961,7 +957,7 @@
 			 
 		 </table>
 <p>2.2 FOUNDATION MATERIAL</p>
-		 <table>
+		 <table class="input-table">
 			 <tr>
 				 <td>Anlge of repose</td>
 				 <td>\(\phi_f\)</td>
@@ -973,7 +969,7 @@
 			 
 		 </table>
 <p><u><b>OTHERS</b></u></p>	
-		 <table>
+		 <table class="input-table">
 			 <tr>
 				 <td>% of passive pressure consideration </td>
 				 <td>\(C_a\)</td>
@@ -1045,7 +1041,7 @@
 		 </div>
 		 <br>
 <p><u><b>1. CALCULATION OF LOAD INTENSITY FOR FINITE ELEMENT SOFTWARE (STAAD) INPUT</b></u></p>
-	<table>
+	<table class="load-table">
 		<tr>
 			<td>SN</td>
 			<td>Load name</td>
@@ -1211,7 +1207,7 @@
 		 </div>
 <p> The load intensity calculated above and their position shall be carefully applied in the Finite Element software (STAAD Pro or any)</p>	 
 <p><u><b>2. CALCULATION OF LOAD INTENSITY FOR STABILITY ANALYSIS</b></u></p>
-    <table>
+    <table calss="load-table">
 	    <tr>
 		    <td>SN</td>
 		    <td>Loads</td>
@@ -1376,7 +1372,7 @@
     </table>
 		 <p><b><u>3. LOAD COMBINATION</u></b></p>
 		 <p>Following load combination shall be carried out for stability analysis.</p>
-		 <table>
+		 <table calss="input-table">
 			 <tr>
 				 <td>Combination number</td>
 				 <td>Load combinations</td>
