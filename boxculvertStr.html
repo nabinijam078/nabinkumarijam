@@ -1035,10 +1035,10 @@
 		 </div>
 		 <p>Centroid of the section,\(\bar{y}\)</p>
 		 <div style="text-align: center;">
-		 \(\bar{y}=\frac{(H+w_t+w-_b)}{2}=\frac{H_t}{2}\)
+		 \(\bar{y}=\frac{(H+w_t+w_b)}{2}=\frac{H_t}{2}\)
 		 </div>
 		 <br>
-<p><u><b>1. CALCULATION OF LOAD INTENSITY FOR STAAD INPUT</b></u></p>
+<p><u><b>1. CALCULATION OF LOAD INTENSITY FOR FINITE ELEMENT SOFTWARE (STAAD) INPUT</b></u></p>
 	<table>
 		<tr>
 			<td>SN</td>
@@ -1193,10 +1193,17 @@
 		
 		
 	</table>
-		 <p>In design of base slab of the culvert, ground reaction shall be calculated as given below.</p>
+		 <p>In design of base slab of the culvert, ground reaction shall require in the calculation and can be calculated as given below.</p>
 
-
-		 
+<p>1. Empty case </p>	
+		 <div style="text-align: center;">
+			 \(G_{emp}=\frac{(P_1+P_7)}{B_t}\)
+		 </div>
+<p>2. Full including silt</p>
+		  <div style="text-align: center;">
+			 \(G_{emp}=\frac{(P_1+P_2+P_5+P_7)}{B_t}\)
+		 </div>
+<p> The load intensity calculated above and their position shall be carefully applied in the Finite Element software (STAAD Pro or any)</p>	 
 <p><u><b>2. CALCULATION OF LOAD INTENSITY FOR STABILITY ANALYSIS</b></u></p>
     <table>
 	    <tr>
