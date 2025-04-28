@@ -1148,16 +1148,27 @@
 			<td>-</td>
 			<td>\(y_9=\frac{h_{wt}}{3}\frac{2F_{9s}+F_{9e}}{F_{9s}+F_{9e}}\) </td>
 		</tr>
-			<tr>
+		<tr>
 			<td>10.</td>
 			<td>Uplift pressure</td>
 			<td>\(F_{10}\)</td>
-			<td>\(F_{10s}=\gamma_{st}h_{wt}\) </td>
-			<td>\(F_{10e}=\gamma_{st}h_{wt}\)</td>
+			<td>\(F_{10s}=\gamma_{w}h_{wt}\) </td>
+			<td>\(F_{10e}=\gamma_{w}h_{wt}\)</td>
 			<td>Vertical</td>
-			<td>\(x_9=\frac{B_t}{3}\frac{2F_{10s}+F_{10e}}{F_{10s}+F_{10e}}\)</td>
+			<td>\(x_10=\frac{B_t}{3}\frac{2F_{10s}+F_{10e}}{F_{10s}+F_{10e}}\)</td>
 			<td></td>
 		</tr>
+		<tr>
+			<td>11.</td>
+			<td>Seismic load</td>
+			<td>\(F_{11}\)</td>
+			<td>- </td>
+			<td>\(F_{11}=A_hF_1\)</td>
+			<td>Horizontal</td>
+			<td>-</td>
+			<td>\(y_{11}=\bar{y}\)</td>
+		</tr>
+		
 		
 	</table>
 		 <br>
@@ -1274,7 +1285,7 @@
 			<td>\(P_{81}=\frac{h_{81}}{2}(F_{81s}+F_{81e})\)</td>
 			<td> -</td>
 			<td>\(y_{81}\)</td>
-			<td>-</td>
+			<td>\(M_{81}=P_{81}×y_{81}\)</td>
 			<td>\(M_{81}=P_{81}×y_{81}\)</td>
 		</tr>
 	    	<tr>
@@ -1284,7 +1295,7 @@
 			<td>\(P_{82}=\frac{h_{wt}}{2}(F_{82s}+F_{82e})\)</td>
 			<td> -</td>
 			<td>\(y_{82}\)</td>
-			<td>-</td>
+			<td>\(M_{82}=P_{82}×y_{82}\)</td>
 			<td>\(M_{82}=P_{82}×y_{82}\)</td>
 		</tr>
 	    	<tr>
@@ -1294,18 +1305,28 @@
 			<td>\(P_{9}=\frac{h_{wt}}{2}(F_{9s}+F_{9e})\)</td>
 			<td> -</td>
 			<td>\(y_9\)</td>
-			<td>-</td>
+			<td>\(M_{9}=P_{9}×y_{9}\)</td>
 			<td>\(M_{9}=P_{9}×y_{9}\)</td>
 		</tr>
-	    		<tr>
+	    	<tr>
 			<td>10.</td>
 			<td>Uplift pressure</td>
 			<td>\(P_{10}\)</td>
 			<td>\(P_{10}=\frac{B_t}{2}(F_{10s}+F_{10e})\)</td>
 			<td> -</td>
 			<td>\(y_10\)</td>
-			<td>-</td>
 			<td>\(M_{10}=P_{10}×x_{10}\)</td>
+			<td>\(M_{10}=P_{10}×x_{10}\)</td>
+		</tr>
+	    	<tr>
+			<td>11.</td>
+			<td>Seismic</td>
+			<td>\(P_{11}\)</td>
+			<td>\(P_{11}=F_{11}\)</td>
+			<td> -</td>
+			<td>\(y_11\)</td>
+			<td>-</td>
+			<td>\(M_{11}=P_{11}×y_{11}\)</td>
 		</tr>
     </table>
     </main>
