@@ -1045,8 +1045,8 @@
 			<td>2.</td>
 			<td>Weight of water inside culvert</td>
 			<td>\(F_2\)</td>
-			<td>If \(h_w>H\) then \(F_{2s}=\frac{A_c×\gamma_w}{B}\) else \(F_{2s}=\frac{\gamma_c×A_{c1}}{B}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
-			<td>If \(h_w>H\) then \(F_{2e}=\frac{A_c×\gamma_w}{B}\) else \(F_{2e}=\frac{\gamma_c×A_{c1}}{B}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
+			<td>If \(h_w>H\) then \(F_{2s}=\frac{A_c×\gamma_w}{B+2w_b}\) else \(F_{2s}=\frac{\gamma_c×A_{c1}}{B+2w_b}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
+			<td>If \(h_w>H\) then \(F_{2e}=\frac{A_c×\gamma_w}{B+2w_b}\) else \(F_{2e}=\frac{\gamma_c×A_{c1}}{B+2w_b}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
 			<td>Vertical</td>
 			<td>\(x_2=\bar{x}\)</td>
 			<td>-</td>
@@ -1144,7 +1144,7 @@
 		    <td>Weight of water inside culvert</td>
 			<td>\(P_2\)</td>
 		    <td>-</td>
-		    <td> \(P_2=F_2B\) </td>
+		    <td> \(P_2=F_2{B+2w_b}\) </td>
 		    <td>\(x_2\)</td>
 		    <td>\(M_2=P_2×x_2\)</td>
 		    <td>-</td>
@@ -1154,7 +1154,7 @@
 		    <td>Uplift of inside culvert</td>
 			<td>\(P_3\)</td>
 		    <td>-</td>
-		    <td> \(P_3=F_3B\) </td>
+		    <td> \(P_3=F_3{B+2w_b}\) </td>
 		    <td>\(x_3\)</td>
 		    <td>\(M_3=P_3×x_3\)</td>
 		    <td>-</td>
@@ -1174,7 +1174,7 @@
 		    <td>Silt load inside culvert</td>
 		     <td>\(P_5\)</td>
 		    <td>-</td>
-		    <td> \(P_5=F_5B\) </td>
+		    <td> \(P_5=F_5{B+2w_b}\) </td>
 		    <td>\(x_5\)</td>
 		    <td>\(M_5=P_5×x_5\)</td>
 		    <td>-</td>
@@ -1188,6 +1188,16 @@
 			<td>\(x_6\)</td>
 			<td>\(M_6=P_6×x_6\)</td>
 			<td>\(M_6=P_6×x_6\)</td>
+		</tr>
+	    	<tr>
+			<td>7.</td>
+			<td>Soil load above culvert</td>
+			<td>\(P_7\)</td>
+			<td>-</td>
+			<td> \(P_7=F_7(B+2W_b)  </td>
+			<td>\(x_7\)</td>
+			<td>\(M_7=P_7×x_7\)</td>
+			<td>-</td>
 		</tr>
 	    
     </table>
