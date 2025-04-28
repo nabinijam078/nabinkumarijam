@@ -1155,12 +1155,12 @@
 			<td>\(F_{10s}=\gamma_{w}h_{wt}\) </td>
 			<td>\(F_{10e}=\gamma_{w}h_{wt}\)</td>
 			<td>Vertical</td>
-			<td>\(x_10=\frac{B_t}{3}\frac{2F_{10s}+F_{10e}}{F_{10s}+F_{10e}}\)</td>
+			<td>\(x_{10}=\frac{B_t}{3}\frac{2F_{10s}+F_{10e}}{F_{10s}+F_{10e}}\)</td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>11.</td>
-			<td>Seismic load</td>
+			<td>Seismic load-EQX</td>
 			<td>\(F_{11}\)</td>
 			<td>- </td>
 			<td>\(F_{11}=A_hF_1\)</td>
@@ -1168,10 +1168,20 @@
 			<td>-</td>
 			<td>\(y_{11}=\bar{y}\)</td>
 		</tr>
+		<tr>
+			<td>12.</td>
+			<td>Seismic load-EQY</td>
+			<td>\(F_{12}\)</td>
+			<td>- </td>
+			<td>\(F_{12}=A_vF_1\)</td>
+			<td>Vertical</td>
+			<td>\(x_{12}=\bar{x}\)</td>
+			<td>-</td>
+		</tr>
 		
 		
 	</table>
-		 <br>
+		 <p>In design of base slab of the culvert, ground reaction shall be calculated as given below.</p>
 
 
 		 
@@ -1314,21 +1324,121 @@
 			<td>\(P_{10}\)</td>
 			<td>\(P_{10}=\frac{B_t}{2}(F_{10s}+F_{10e})\)</td>
 			<td> -</td>
-			<td>\(y_10\)</td>
+			<td>\(y_{10}\)</td>
 			<td>\(M_{10}=P_{10}×x_{10}\)</td>
 			<td>\(M_{10}=P_{10}×x_{10}\)</td>
 		</tr>
 	    	<tr>
 			<td>11.</td>
-			<td>Seismic</td>
+			<td>Seismic-EQX</td>
 			<td>\(P_{11}\)</td>
 			<td>\(P_{11}=F_{11}\)</td>
 			<td> -</td>
-			<td>\(y_11\)</td>
+			<td>\(y_{11}\)</td>
 			<td>-</td>
 			<td>\(M_{11}=P_{11}×y_{11}\)</td>
 		</tr>
+	    <tr>
+			<td>12.</td>
+			<td>Seismic-EQY</td>
+			<td>\(P_{12}\)</td>
+			<td>-</td>
+			<td> \(P_{12}=F_{12}\)</td>
+			<td>\(y_{12}\)</td>
+			<td>-</td>
+			<td>\(M_{12}=P_{12}×x_{12}\)</td>
+		</tr>
     </table>
+		 <p><b><u>3. LOAD COMBINATION</u></b></p>
+		 <p>Following load combination shall be carried out for stability analysis.</p>
+		 <table>
+			 <tr>
+				 <td>Combination number</td>
+				 <td>Load combinations</td>
+			 </tr>
+			 <tr>
+				 <td>1.</td>
+				 <td>Dry Empty</td>
+			 </tr>
+			 <tr>
+				 <td>2.</td>
+				 <td>Dry Full</td>
+			 </tr>
+			 <tr>
+				 <td>3.</td>
+				 <td>Dry Empty with EQX</td>
+			 </tr>
+			 <tr>
+				 <td>4.</td>
+				 <td>Dry Empty with EQ-X</td>
+			 </tr>
+			 <tr>
+				 <td>5.</td>
+				 <td>Dry Empty with EQY</td>
+			 </tr>
+			 <tr>
+				 <td>6.</td>
+				 <td>Dry Empty with EQ-Y</td>
+			 </tr>
+			 <tr>
+				 <td>7.</td>
+				 <td>Dry Full with EQX</td>
+			 </tr>
+			  <tr>
+				 <td>8.</td>
+				 <td>Dry Full with EQ-X</td>
+			 </tr>
+			  <tr>
+				 <td>9.</td>
+				 <td>Dry Full with EQY</td>
+			 </tr>
+			  <tr>
+				 <td>10.</td>
+				 <td>Dry Full with EQ-Y</td>
+			 </tr>
+			  <tr>
+				 <td>11.</td>
+				 <td>Saturated empty</td>
+			 </tr>
+			 <tr>
+				 <td>12.</td>
+				 <td>Saturated Full</td>
+			 </tr>
+			  <tr>
+				 <td>13.</td>
+				 <td>Saturated empty with EQX</td>
+			 </tr>
+			   <tr>
+				 <td>14.</td>
+				 <td>Saturated empty with EQ-X</td>
+			 </tr>
+			   <tr>
+				 <td>15.</td>
+				 <td>Saturated empty with EQY</td>
+			 </tr>
+			  <tr>
+				 <td>16.</td>
+				 <td>Saturated empty with EQ-Y</td>
+			 </tr>
+			  <tr>
+				 <td>17.</td>
+				 <td>Saturated Full with EQX</td>
+			 </tr>
+			   <tr>
+				 <td>18.</td>
+				 <td>Saturated Full with EQ-X</td>
+			 </tr>
+			   <tr>
+				 <td>19.</td>
+				 <td>Saturated Full with EQY</td>
+			 </tr>
+			 <tr>
+				 <td>20.</td>
+				 <td>Saturated Full with EQ-Y</td>
+			 </tr>
+			 
+		 </table>
+		 <p><i>In case of dry and saturation case, the loads shall be calculated to according to depth of Water Table (WT) in above equations (2).</i></p>
     </main>
     <!-- Footer -->
     <footer>
