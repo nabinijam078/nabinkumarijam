@@ -1102,7 +1102,7 @@
 			<td>7.</td>
 			<td>Weight of soil above culvert</td>
 			<td>\(F_7\)</td>
-			<td>if \((h_{wt}-H_t)\geq h_s\), \(F_{7s}=(\gamma_{sat}-\gamma_w)h_s\)  elseif \( h_{wt}\leq H_t, F_{7s}=\gamma_d(h_s-h_{wt})+(\gamma_{st}-\gamma_w)(h_{wt}-H_t\) else \(F_{7s}=\gamma_dh_s\)    </td>
+			<td>if \((h_{wt}-H_t)\geq h_s\), \(F_{7s}=(\gamma_{sat}-\gamma_w)h_s\)  elseif \( h_{wt}\leq H_t, F_{7s}=\gamma_d(h_s-h_{wt})+(\gamma_{st}-\gamma_w)(h_{wt}-H_t) else \(F_{7s}=\gamma_dh_s\)    </td>
 			<td> if \((h_{wt}-H_t)\geq h_s\), \(F_{7e}=(\gamma_{sat}-\gamma_w)h_s\)  elseif \( h_{wt}\leq H_t, F_{7e}=\gamma_d(h_s-h_{wt})+(\gamma_{st}-\gamma_w)(h_{wt}-H_t)\) else \(F_{7e}=\gamma_dh_s\)  </td>
 			<td>Vertical</td>
 			<td>\(x_7=\bar{x}\)</td>
@@ -1127,6 +1127,16 @@
 			<td>Horizontal</td>
 			<td>-</td>
 			<td>\(y_{81}=\frac{h_{81}}{3}\frac{(2F_{81s}+F_{81e})}{(F_{81s}+F_{81e})}\) where if \(h_{wt} \geq H_t\) then \(h_{81}=H_t\) else \(H_t-h_{wt}\) </td>
+		</tr>
+		<tr>
+			<td>8.2</td>
+			<td>Trapezium-2</td>
+			<td>\(F_{82}\)</td>
+			<td>If \(h_{wt} \leq H_t\) then \(F_{82s}=0\) else \(F_{82s}=F_{81e}\)</td>
+			<td>If \(h_{wt} \leq H_t\) then \(F_{82e}=F_{82s}+(\gamma_{sat}-\gamma_w)k_rh_{wt}\) else \(F_{82e}=0\)</td>
+			<td>Horizontal</td>
+			<td>-</td>
+			<td> \(y_{82}=\frac{h_{wt}}{3}\frac{2F_{82s}+F_{82e}}{F_{82s}+F_{82e}}\)</td>
 		</tr>
 	</table>
 		 <br>
