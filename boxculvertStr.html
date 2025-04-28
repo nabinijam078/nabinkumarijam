@@ -1045,20 +1045,20 @@
 			<td>2.</td>
 			<td>Weight of water inside culvert</td>
 			<td>\(F_2\)</td>
-			<td>If \(h_w>H\) then \(F_{2s}=A_c×\gamma_w\) else \(F_{2s}=\gamma_c×A_{c1}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
-			<td>If \(h_w>H\) then \(F_{2e}=A_c×\gamma_w\) else \(F_{2e}=\gamma_c×A_{c1}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
+			<td>If \(h_w>H\) then \(F_{2s}=\frac{A_c×\gamma_w}{B}\) else \(F_{2s}=\frac{\gamma_c×A_{c1}}{B}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
+			<td>If \(h_w>H\) then \(F_{2e}=\frac{A_c×\gamma_w}{B}\) else \(F_{2e}=\frac{\gamma_c×A_{c1}}{B}\) Where, \(A_c=B×H-2w_h^2\) and \(A_{c1}=B×H-w_h^2\)</td>
 			<td>Vertical</td>
-			<td>\(x_1=\bar{x}\)</td>
+			<td>\(x_2=\bar{x}\)</td>
 			<td>-</td>
 		</tr>
 		<tr>
 			<td>3.</td>
 			<td>Uplift inside the culvert</td>
 			<td>\(F_3\)</td>
-			<td>If \(h_w>H\) then \(F_{3s}=\gamma_w×B×(h_w-H)\) else \(F_3=0\) </td>
-			<td>If \(h_w>H\) then \(F_{3e}=\gamma_w×B×(h_w-H)\) else \(F_3=0\) </td>
+			<td>If \(h_w>H\) then \(F_{3s}=\gamma_w×(h_w-H)\) else \(F_3=0\) </td>
+			<td>If \(h_w>H\) then \(F_{3e}=\gamma_w×(h_w-H)\) else \(F_3=0\) </td>
 			<td>Vertical</td>
-			<td>\(x_1=\bar{x}\)</td>
+			<td>\(x_3=\bar{x}\)</td>
 			<td>-</td>
 		</tr>
 		<tr>
@@ -1066,10 +1066,20 @@
 			<td>Hydrostatic pressure inside culvert</td>
 			<td>\(F_4\)</td>
 			<td>If \(h_w>H\) then \(F_{4s}=\gamma_w×(h_w-H)\) else \(F_4=0\) </td>
-			<td> \(F_{4e}\gamma_w×h_w\)  </td>
+			<td> \(F_{4e}=\gamma_w×h_w\)  </td>
 			<td>Horizontal</td>
 			<td>-</td>
-			<td>\(y_1=\frac{h}{3}\frac{(2F_{4s}+F_{4e})}{(F_{4s}+F_{4e})}+t_b\) Where if \(h_w>H\) then \(h=h_w-H\) else \(h=h_w\)</td>
+			<td>\(y_4=\frac{h}{3}\frac{(2F_{4s}+F_{4e})}{(F_{4s}+F_{4e})}+t_b\) Where if \(h_w>H\) then \(h=h_w-H\) else \(h=h_w\)</td>
+		</tr>
+		<tr>
+			<td>5.</td>
+			<td>Silt load inside culvert</td>
+			<td>\(F_5\)</td>
+			<td>\(F_{5s}=(\gamma_{sat}-\gamma_w)h_{silt}\) </td>
+			<td> \(F_{5s}=(\gamma_{sat}-\gamma_w)h_{silt}\)  </td>
+			<td>Vertical</td>
+			<td>\(x_5=\bar{x}\)</td>
+			<td>-</td>
 		</tr>
 		
 	</table>
@@ -1105,7 +1115,7 @@
 		    <td>\(P_1\)</td>
 		    <td>-</td>
 		    <td>\(P_1=F_1\)</td>
-		    <td>\(\x_1\)</td>
+		    <td>\(x_1\)</td>
 		    <td>\(M_1=P_1×x_1\)</td>
 		    <td>-</td>
 	    </tr>
@@ -1114,7 +1124,7 @@
 		    <td>Weight of water inside culvert</td>
 			<td>\(P_2\)</td>
 		    <td>-</td>
-		    <td> \(P_2=F_2\) </td>
+		    <td> \(P_2=F_2B\) </td>
 		    <td>\(x_2=\)</td>
 		    <td>\(M_2=P_2×x_2\)</td>
 		    <td>-</td>
@@ -1124,7 +1134,7 @@
 		    <td>Uplift of inside culvert</td>
 			<td>\(P_3\)</td>
 		    <td>-</td>
-		    <td> \(P_3=F_3\) </td>
+		    <td> \(P_3=F_3B\) </td>
 		    <td>\(x_3\)</td>
 		    <td>\(M_3=P_3×x_3\)</td>
 		    <td>-</td>
@@ -1136,7 +1146,17 @@
 		    <td>\(P_4=\frac{h}{2}(F_{4s}+F_{4e})\)</td>
 		    <td> - </td>
 		    <td>\(x_4\)</td>
-		    <td>\(M_4=F_3×x_4\)</td>
+		    <td>\(M_4=F_4×x_4\)</td>
+		    <td>\(M_4=F_4×x_4\)</td>
+	    </tr>
+	     <tr>
+		    <td>5.</td>
+		    <td>Silt load inside culvert</td>
+		     <td>\(P_5\)</td>
+		    <td>-</td>
+		    <td> \(P_5=F_5B\) </td>
+		    <td>\(x_5\)</td>
+		    <td>\(M_5=F_5×x_5\)</td>
 		    <td>-</td>
 	    </tr>
 	    
