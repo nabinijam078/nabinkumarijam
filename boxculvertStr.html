@@ -1107,7 +1107,7 @@
 			<td>Horizontal load due to silt inside culvert</td>
 			<td>\(F_6\)</td>
 			<td>\(F_{6s}=0\) </td>
-			<td> \(F_{6s}=k_a(\gamma_{sat}-\gamma_w)h_{silt}\)  </td>
+			<td> \(F_{6e}=k_r(\gamma_{sat}-\gamma_w)h_{silt}\)  </td>
 			<td>Horizontal</td>
 			<td>-</td>
 			<td>\(y_6=\frac{h_{silt}}{3}+t_b\)</td>
@@ -1136,7 +1136,7 @@
 			<td>8.1</td>
 			<td>Trapezium-1</td>
 			<td>\(F_{81}\)</td>
-			<td>If \(h_s\leq 0\) then \(F_{81s}=0\) else if \(h_{wt} <(H_t)\) then \(F_{81s}=k_r\gamma_d h_s\) else if \(h_{wt}>H_t\) then \(F_{81s}=k_r\gamma_d(h_s+H_t-h_{wt})+k_r(\gamma_{sat}-\gamma_w)(h_{wt}-H_t)\) else \(F_{81s}=k_r(\gamma_{sat}-\gamma_w)h_s\)</td>
+			<td>If \(h_s\leq 0\) then \(F_{81s}=0\) else if \(h_{wt} <(H_t)\) then \(F_{81s}=k_r\gamma_d h_s\) else if \(h_{wt}>H_t\) then \(F_{81s}=k_r\gamma_d(h_s+H_t-h_{wt})+k_r(\gamma_{sat}-\gamma_w)(h_{wt}-H_t)\) else (\(h_{wt} \geq (H_t+h_s)\)) \(F_{81s}=k_r(\gamma_{sat}-\gamma_w)h_s\)</td>
 			<td>If \(h_{wt} \geq H_t\) then \(F_{81e}=F_{18s}+(\gamma_{sat}-\gamma_w)k_rH_t\) elseif \(F_{81e}=F_{81s}+k_r\gamma_d(H_t-h_{wt})\) </td>
 			<td>Horizontal</td>
 			<td>-</td>
@@ -1146,8 +1146,8 @@
 			<td>8.2</td>
 			<td>Trapezium-2</td>
 			<td>\(F_{82}\)</td>
-			<td>If \(h_{wt} \leq H_t\) then \(F_{82s}=0\) else \(F_{82s}=F_{81e}\)</td>
-			<td>If \(h_{wt} \leq H_t\) then \(F_{82e}=F_{82s}+(\gamma_{sat}-\gamma_w)k_rh_{wt}\) else \(F_{82e}=0\)</td>
+			<td>If \(h_{wt} \geq H_t\) or \(h_{wt}=0\) then \(F_{82s}=0\) else \(F_{82s}=F_{81e}\)</td>
+			<td>If \(h_{wt} \leq H_t\) then \(F_{82e}=F_{82s}+(\gamma_{sat}-\gamma_w)k_rh_{wt}\) else (\(h_{wt} \geq H_t\)) or \(h_{wt}=0\) then  \(F_{82e}=0\)</td>
 			<td>Horizontal</td>
 			<td>-</td>
 			<td> \(y_{82}=\frac{h_{wt}}{3}\frac{2F_{82s}+F_{82e}}{F_{82s}+F_{82e}}\)</td>
