@@ -978,15 +978,15 @@
 			 \(F_{5U}=\frac{1}{2}\gamma_sCC_ph_s^2\)
 		 </div>
 		 <p>Where, \(C\) = Passive pressure contribution</p>
-		 <p>6.	Ice pressure (\(F_6\))</p>
+		 <p><u>6. ICE PRESSURE (\(F_6\))</u></p>
 		 <p>This force can be neglected.</p>
-		 <p>7.	Wind pressure (\(F_7\))</p>
+		 <p><u>7. WIND PRESSURE (\(F_7\))</u></p>
 		 <p>This force can be neglected.</p>
-		 <p>8.	Wave pressure (\(F_8\))</p>
+		 <p><u>8. WAVE PRESSURE (\(F_8\))</u></p>
 		 
 		 <p>Where, \(h_w\)=height of wave and can be found by following chart</p>
 		 <div style="text-align: center;">
-			<img src="wavechart.png" alt="curve" class="shape-image" style="width: 400px; height: auto;"> 
+			<img src="wavechart.png" alt="curve" class="shape-image" style="width: 700px; height: auto;"> 
 		 </div>
 		 <p><center><b>Fig. wave height </b></center></p>
 		 <p><center><i>(Reference IS: 6512:1984 Annex A Figure 5) </i></center></p>
@@ -1000,6 +1000,64 @@
 			\(P_w=20h_w^2\)
 		 </div>
 		 <p>The Centre of application is \(0.375h_w\) above the sill water level.</p>
+		 <div style="text-align: center;">
+			<img src="wavechart1.png" alt="curve" class="shape-image" style="width: 700px; height: auto;"> 
+		 </div>
+		 <p><b><center>Fig. Wave data</center></b></p>
+		 <p><u>9. THERMAL LOAD (\(F_9\))</u></p>
+ <p><b><u>COMBINATION OF LOADS</u></b></p>
+	<p>As per <b></b>IS 6512: 1984</b>, the combination of load shall be carried out as follows.</p>
+		 <table class="input-table">
+			<tr>
+				<td>Comb. no.</td>
+				<td>Combination name</td>
+				<td></td>
+				<td>Loads combination</td>
+			</tr>
+			 <tr>
+				<td>A.</td>
+				<td>Construction condition</td>
+				 <td>C1</td>
+				 <td>F1+F5</td>
+			</tr>
+			 <tr>
+				<td>B.</td>
+				<td>Normal operation condition</td>
+				 <td>C2</td>
+				 <td>F1+F2+F3+F5+F8</td>
+			</tr>
+			  <tr>
+				<td>C.</td>
+				<td>Flood discharge condition</td>
+				<td>C3</td>
+				 <td>F1+F2(flood)+F3 (flood) +F5+F8</td>
+			</tr>
+			   <tr>
+				<td>D.</td>
+				<td>Combination A+ Earthquake</td>
+				   <td>C4</td>
+				 <td>C1+F4</td>
+			</tr>
+			  <tr>
+				<td>E.</td>
+				<td>Combination B+ Earthquake without ice</td>
+				   <td>C5</td>
+				 <td>C2+F4</td>
+			</tr>
+			  <tr>
+				<td>F.</td>
+				<td>Combination C+ Earthquake with extreme uplift (drains inoperative)</td>
+				   <td>C6</td>
+				 <td>C3+F4</td>
+			</tr>
+			 <tr>
+				<td>G.</td>
+				<td>Combination E+ Earthquake with extreme uplift (drains inoperative)</td>
+				   <td>C7</td>
+				 <td>C5+F4</td>
+			</tr>
+			 
+		 </table>
 		 
     </main>
     <!-- Footer -->
