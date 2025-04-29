@@ -897,8 +897,17 @@
 		 </div>
  <p>In case of seismic condition, as per <b>IS1893:1984 Clause 8.1.1</b>, the active pressure coefficient shall be calculated as.</p>
 		  <div style="text-align: center;font-size:20px;">
-		\(C_a=\frac{(1±a_v)(cos(\phi-λ-\alpha))^2}{cos(\lamda)cos(\alpha)^2cos(\delta+\alpha+λ}×[\frac{1}{1+(\frac{sin(\phi)sin(\delta-i-λ)}{cos(\alpha-i)cos(\delta+\alpha+λ)})^{0.5}}]^2\)
+		\(C_a=\frac{(1±a_v)(cos(\phi-λ-\alpha))^2}{cos(λ)cos(\alpha)^2cos(\delta+\alpha+λ}×[\frac{1}{1+(\frac{sin(\phi+\delta)sin(\delta-i-λ)}{cos(\alpha-i)cos(\delta+\alpha+λ)})^{0.5}}]^2\)
 			  </div>
+<p>Where,</p>
+		 <p>\(\alpha\) = Angle which the earth face of the wall makes with the vertical</p>
+		 <p>\(i\) = Slope of earthfill </p>
+		 <p>\(\delta\) = Angle of friction between the wall and earth fill</p>
+		 <p>\(\alpha_h\) = Horizontal seismic coefficient</p>
+		 <p>\(\alpha_v=\frac{2}{3}\apha_h\) = vertical seismic coefficient</p>
+		 <div style="text-align: center;">
+			 <img src="active.png" alt="curve" class="shape-image" style="width: 500px; height: auto;">
+		 </div>
     </main>
     <!-- Footer -->
     <footer>
