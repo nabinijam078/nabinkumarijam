@@ -884,15 +884,57 @@
   
     <main class="main-content">
 	    <h3><b><u>JOINTS IN THE STRUCTURES</u></b></h3>
-	<p>Below figure is the typical frame structure. We solve such types of structures in "Strength of material" in undergraduate degree in the University. The major parameters requires to be structural members are material property, sectional properties, boundary conditions also known as supports and loads.</p>
+	<p>Below figure is the typical frame structure. We solve such types of structures in "Strength of material" in undergraduate degree. The major parameters requires to be structural members are material property, sectional properties, boundary conditions also known as supports and loads.</p>
 	<div style="text-align: center;">
-  	<img src="Structure.png" alt="curve" class="shape-image" style="width: 600px; height: auto;">
+  	<img src="Structure.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	</div>
 	    <p><center><b>Fig. Typical frame structure</b></center></p>
-	<p>Material property is governed by Modulus of Elasticity (\(E_s\), where as sectional properties are governed by Area (\(A\) and Moment of Inertia (\(I\). Axial members in truss, columns, strut require <b>Area</b>, whereas flexural members require Moment of Inertia. Loads are calculated and assigned with the procedures mentioned in the code and general practice. However, it is always complex while selecting the supports in the structures </p> 
+	<p>Material property is governed by Modulus of Elasticity (\(E_s\)), where as sectional properties are governed by Area (\(A\)) and Moment of Inertia (\(I\)). Axial members such as truss, columns, struts etc require <b>Area</b>, whereas flexural members such as beam require <b>Moment of Inertia </b>. Loads are calculated and assigned with the procedures mentioned in the code or general practice. However, it is always complex while selecting the supports in the structures </p> 
 	<p>Mostly, fixed supports in concrete section are comparatively easier than hinge supoort. By extending adequate amount of reinforcement with required development length might fulfill the requirement for fixed support but it is very difficult to make hinge support. Then how to make hinge support at the bottom. Lets have some discussion </p>
-      
-
+      <p>We all know following properties of joints</p>
+	    <table class="data-table">
+		 <tr>
+			 <td rowspan="2">SN</td>
+			 <td rowspan="2">Joint name</td>
+			 <td rowspan="2">Symbol</td>
+			 <td colspan="6">Forces</td>
+			 <td colspan="6">Deflection/rotation</td>
+		 </tr>
+		    
+		    <tr>\(F_x\)</tr>
+		    <tr>\(F_y\)</tr>
+		    <tr>\(F_y\)</tr>
+		    <tr>\(M_x\)</tr>
+		    <tr>\(M_y\)</tr>
+		    <tr>\(M_z\)</tr>
+		    <tr>\(\delta_x\)</tr>
+		    <tr>\(\delta_y\)</tr>
+		    <tr>\(\delta_z\)</tr>
+		    <tr>\(\theta_x\)</tr>
+		    <tr>\(\theta_y\)</tr>
+		    <tr>\(\theta_z\)</tr>
+		    <tr>
+			    <td>1.</td>
+			    <td>Fixed</td>
+			    <td>
+  				<img src="Fixed.png" alt="curve" class="shape-image" style="width: 50px; height: auto;">
+			    </td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+			    <td>1</td>
+		    </tr>
+	    </table>
+	    
+	
 		 
     </main>
     <!-- Footer -->
