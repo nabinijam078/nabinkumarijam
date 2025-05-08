@@ -1070,19 +1070,19 @@
 	<form id="beamSectionForm">
   <h3><u><b>PHYSICAL PROPERTIES OF SOIL</b></u></h3>
 	 <h3><u>INPUTS</u></h3>
-<label for="P">Weight of water(\(W_w\) in gm):</label>
+<label for="Ww">Weight of water(\(W_w\) in gm):</label>
 <input type="number" id="Ww" required>
 <br>
-<label for="P">Weight of solid(\(W_s\) in gm):</label>
+<label for="Ws">Weight of solid(\(W_s\) in gm):</label>
 <input type="number" id="Ws" required>
 	<br>
-<label for="P">Volume of air(\(V_a\) in mm<sup>3</sup>):</label>
+<label for="Va">Volume of air(\(V_a\) in mm<sup>3</sup>):</label>
 <input type="number" id="Va" required>
 	<br>
-<label for="P">Volume of water(\(V_w\) in mm<sup>3</sup>):</label>
+<label for="Vw">Volume of water(\(V_w\) in mm<sup>3</sup>):</label>
 <input type="number" id="Vw" required>
 	<br>
-<label for="P">Volume of solid(\(V_s\) in gm):</label>
+<label for="Vs">Volume of solid(\(V_s\) in gm):</label>
 <input type="number" id="Vs" required>
 <br>
 <button type="button" onclick="calculatesoilproperty()" class="btn">CLICK</button>
@@ -1095,8 +1095,8 @@
 	
     <div class="result" id="result">
         <h3><u>OUTPUTS</u></h3>
-        <p><strong>Void ratio (\(v\)):</strong> <span id="v"></span> </p>
-        <p><strong>Porosity (\(\nu\)):</strong> <span id="nu"></span> </p>
+        <p><strong>Void ratio (\(e\)):</strong> <span id="e"></span> </p>
+        <p><strong>Porosity (\(\n\)):</strong> <span id="n"></span> </p>
         <p><strong>Degree of Saturation(\(S\)):</strong> <span id="S"></span></p>
         <p><strong>Moisture Content (\(w\)):</strong> <span id="w"></span> mm²</p>
         <p><strong>Unit Weight(\(\gamma\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
@@ -1190,9 +1190,48 @@
 
         // Initial call to display the time and date immediately
         updateDateTime();
+      function calculatesoilproperty() {
+        // Input values
+        const Ww = parseFloat(document.getElementById('Ww').value); 
+	const Ws = parseFloat(document.getElementById('Ww').value);
+	const Va = parseFloat(document.getElementById('Va').value);
+	const Vw = parseFloat(document.getElementById('Va').value);  
+	const Vs = parseFloat(document.getElementById('Va').value);
+
+	const W=Ww+Ws;
+	const Vv=Vs+Va;
+	const V=Vv+Vs;
+	      // void ratio
+	const e=Vv/Vs; 	
+	      // Porosity
+	const n=Vv/V;
+	      //Moisture content
+	const w=Ww/Ws;
+	      //Degree of saturation
+	const S=Vw/Vv
+	const gamma_w=1000; //in kg/m3
+	      //  unit weight
+	const gamma=G*(1+w)*gamma_w/(1+e);
+	      //Dry density in kg/m3
+	const gammad=G*gamma_w/(1+e);
+	      //Saturated density in kg/m3
+	const gammasat=G*(1+e)*gamma_w/(1+e);
+	      //Specific gravity
+	const G=S*e/w;
+	      
 
 
+	      // Display results
+       		document.getElementById('e').textContent = e.toFixed(2);
+	  	document.getElementById('n').textContent = n.toFixed(2); 
+	      	document.getElementById('S').textContent = S.toFixed(2);
+	      	document.getElementById('w').textContent = w.toFixed(2);
+	      	document.getElementById('gamma').textContent = gamma.toFixed(2);
+	      	document.getElementById('gammad').textContent = gammad.toFixed(2);
+	      	document.getElementById('gammasat').textContent = gammasat.toFixed(2);
+	      	document.getElementById('G').textContent = G.toFixed(2);
 
+      }
 
 
 
