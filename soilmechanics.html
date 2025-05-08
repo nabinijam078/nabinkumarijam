@@ -1096,7 +1096,7 @@
     <div class="result" id="result">
         <h3><u>OUTPUTS</u></h3>
         <p><strong>Void ratio (\(e\)):</strong> <span id="e"></span> </p>
-        <p><strong>Porosity (\(\n\)):</strong> <span id="n"></span> </p>
+        <p><strong>Porosity (\(n\)):</strong> <span id="n"></span> </p>
         <p><strong>Degree of Saturation(\(S\)):</strong> <span id="S"></span></p>
         <p><strong>Moisture Content (\(w\)):</strong> <span id="w"></span> mm²</p>
         <p><strong>Unit Weight(\(\gamma\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
@@ -1190,6 +1190,8 @@
 
         // Initial call to display the time and date immediately
         updateDateTime();
+
+	    
       function calculatesoilproperty() {
         // Input values
         const Ww = parseFloat(document.getElementById('Ww').value); 
