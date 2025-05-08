@@ -884,13 +884,13 @@
   
     <main class="main-content">
 	    <h3><b><u>JOINTS IN THE STRUCTURES</u></b></h3>
-	<p> Figure given is the typical frame structure. We solve such types of structures in "Strength of material" in Undergraduates. The major parameters require to be structural members are material property, sectional properties, boundary conditions also known as supports and loads.</p>
+	<p> Figure given is the typical frame structure. We solved such types of structures in "Strength of material" in Undergraduates. The major parameters require to be structural members are material property, sectional properties, boundary conditions also known as supports and loads.</p>
 	<div style="text-align: center;">
   	<img src="Structure.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	</div>
 	    <p><center><b>Fig. Typical frame structure</b></center></p>
-	<p>Material property is governed by Modulus of Elasticity (\(E_s\)), where as sectional properties are governed by Area (\(A\)) and Moment of Inertia (\(I\)). Axial members such as truss, columns, struts etc require <b>Area</b>, whereas flexural members such as beam require <b>Moment of Inertia </b>. Loads are calculated and assigned with the procedures mentioned in the code or general practice. However, it is always complex while selecting the supports in the structures </p> 
-	<p>Mostly, fixed supports in concrete section are comparatively easier than hinge supoort. By extending adequate amount of reinforcement with required development length might fulfill the requirement for fixed support but it is very difficult to make hinge support. Then how to make hinge support at the bottom. Lets have some discussion </p>
+	<p>Material property is governed by Modulus of Elasticity (\(E_s\)), where as sectional properties are governed by Area (\(A\)) and Moment of Inertia (\(I\)). Axial members such as trusses, columns, struts etc need <b>Area</b>, whereas flexural members such as beams need <b>Moment of Inertia </b> as the sectional properties. Loads are calculated and assigned according to the procedures mentioned in the codes or general practices. But, selection of the supports in concrete structures is very complex.</p> 
+	<p>Fixed supports in concrete section are comparatively easier to provide practially than hinge supoort. By extending adequate amount of reinforcement with development length might fulfill the requirement for fixed support but it is very difficult to make hinge support. Then how to make hinge support at the bottom. Lets have some discussion </p>
       <p>We all know following properties of joints</p>
 	    <table class="load-table">
 		 <tr>
@@ -972,9 +972,9 @@
 			    <td>1</td>
 		    </tr>
 	    </table>
-	    <p>So the joint in structure should follow the above criteria. The structure also also depends on how the loads tranfer.</p>
+	    <p>The joint in structure should follow the above criteria. The loads tranfer mechanism in the joint should also satisfy.</p>
 	    <p><b><u>1. SUPPORT (JOINT) AT THE BASE OF COLUMN.</u></b></p>
-	    <p>In this case the support shall transfer moments, shear forces and axial forces. Most of the Structural Engineer designs the compression members (columns) and foundation (Either isolated, raft or pile), but not the joint between foundation and compression members.</p>
+	    <p>In this case the support should transfer moments, shear forces and axial forces. Most of the Structural Engineers do only design structural members such as compression members (columns) and foundation (Either isolated, raft or pile), but not the joint between these structural members.</p>
 	    <p> Different codes give the load tranfer mechanism. As per <b>IS 456:2000 (Clause 34.4),<br> the compressive stress in concrete at the base of a column or pedestal shall be considered as being transferred by bearing to the top of pedestal or footing.
 	    The bearing pressure on the loaded area shall not be exceeded the permissible bearing stress in direct compression multiplied by a value equal to </b></p>
 	   <center> \(\sqrt(\frac{A_1}{A_2})\) but no greater than 2. </center>
@@ -988,8 +988,8 @@
 	</div>
 	    <p><center><b>Fig. Column base</b></center></p>
 	<p>Assuming square column and footing</p>
-	    <p>Area \(A_1 = \) max of  (\(b_1^2\) & \(b_2^2\)) </p>
-	    <p> In the figure above, \(A_1 = b_2^2\)</p>
+	    <p>Area \(A_1 = \)  \(b_2^2\) </p>
+	    <br>
 	    <p>\(A_2= b^2\) </p>
 	    <p> Permissible bearing stress is given by </b></p>'
 	    <div style="text-align: center;font-size:20px;">
@@ -999,8 +999,8 @@
 		<div style="text-align: center;font-size:20px">
 	    \(\sigma_{(x,y)} = \frac{P}{A}±\frac{M_x}{I_x}x±\frac{M_xy}{I_y}y\)
 	    </div>
-	    <p>If \(\sigma_{(x,y)} > \sigma_b\), then the reinforcement should transfer the forces (axial, moments and even shear) to the foundation. In the practice, we extend all the reinforcement coming from column to the foundation. However, such types of connection is actually the fixed connection. Then, how can we make hinge connection?</p>
-    	<p>We know that hinge connection have many advantages. In structural analysis point of view, it is easy to calculate. The section may be smaller in size and may require less reinforcement. The requirement of large section and reinforcement in columns are generally due to uniaxial or biaxial moments. So, again question is how to make the support hinge in concrete section.</p>
+	    <p>If \(\sigma_{(x,y)} > \sigma_b\), then the reinforcement should transfer the forces (axial, moments and even shear) to the foundation. In practice, we extend all the reinforcement coming from column to the foundation. Such types of connections are the fixed connection. Then, how can we make hinge/pinned connection?</p>
+    	<p>We know that hinge connection have many advantages. In structural analysis point of view, it is easier to analyze. The section may be smaller in size and may require less reinforcement. The requirement of large section and reinforcement in columns are generally due to uniaxial or biaxial moments. So, again question is how to make the support hinge in concrete section.</p>
     <p>In flexural member, moment of resistance is given by </p>
 	    <div style="text-align: center;">
 		    <img src="beamjoint.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
@@ -1012,7 +1012,7 @@
 	    <div style="text-align: center;font-size:20px;">
 		    \(M_R=0.87f_yA_{st}z\)
 	    </div>
-	    <p> In the above equations, if we consider \(z=0\) then moment of resitance, \(M_R=0\) then this section does not carry any moment in that direction. The section can transfer only tension (or compression) if \(z = 0\) in both direction. This condition is illustratred by following figure. Although it still may carry a small amount of moment. </p>
+	    <p> In the above equations, if we consider \(z=0\) then moment of resitance \(M_R=0\) then this section does not carry any moment in that direction. Therefore, the section can transfer only tension (or compression) if \(z = 0\) in both direction. This condition is illustratred by following figure. Still it may carry a small amount of moment. </p>
 	    <div style="text-align: center;">
 		    <img src="PlanF.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
 	    </div>
@@ -1020,10 +1020,10 @@
 	    <div style="text-align: center;">
 		    <img src="HingeSteel.jpeg" alt="curve" class="shape-image" style="width: 250px; height: auto;">
 	    </div>
-	    <p>However, still the connection between steel and concrete should be designed as the load coming from column to footing and that can be axial force, shear forces due to horizontal componenet of the axial loads.</p>
+	    <p>However, still the connection between steel and concrete should be designed for pure compression & shear due to horizontal component of load coming from column.</p>
     		<p>In case of moment connection at the bottom of column, we have to make some arragement of bolts around the column so that the connection can be fixed. 
-		For fixed (moment) connection, the bolts shall carry moment by the relation \(M_i=P_iz_i\). That means the the bolts shall be sigficantly far from Neutral axis (\(z\) should be large.
-		Mathematically,  \(\sigma_{(x,y)} < \sigma_b\) and some anchors will have tensions (\(P_i\)) and they are far from neutral axis(\(z_i\)). The two types joint are differentiated by following figure.</p>
+		For fixed (moment) connection, the bolts should carry moments \(M_i=P_iz_i\) which is developed the moment arm between the center of section and the bolts . Therefore, the moments connection should have large (\(z\).
+		Mathematically,  \(\sigma_{(x,y)} < \sigma_b\) and some anchors will have tensions (\(P_i\)) and they should have large \(z_i\). The two types joint are differentiated by following figure.</p>
 	    
 	    <div style="text-align: center;">
 		    <img src="Joint.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
@@ -1034,28 +1034,28 @@
 	    
 	    
 	    <p><u><b>2. JOINTS IN TRUSS MEMBERS</b></u></p>
-	    <p>What is the difference between bolted conncection or welded connections in truss? It is not always necessary to become the members connected by bolts is pinned. However, they can be made pinned by providing suitable arrangement. However, the members connected by weld may carry moments and can not treat the connection as the hinge connection.</p>
-	    <p> But due to the nature of truss the joint has very little or almost zero moments. </p>
+	    <p>What is the difference between bolted conncection or welded connections in truss? It is not always necessary to become the members connected by bolts is pinned. However, they can be made pinned by providing suitable arrangement. The members connected by weld may carry moments and such connection can't be treated as the pinned connection.</p>
+	    <p> But due to the nature of truss, even welded joints have very little or almost zero moments. </p>
 	     <div style="text-align: center;">
 		    <img src="Truss1.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	    </div>
-	    <p>Pinned joints have not been assigned in this truss. In this truss, small moments have been observed in the members but they are significantly small that can be neglecting in the joint design and therefore can be designed as welded joint</p>
+	    <p>According to the table above, the moments are significantly small and can be neglected in the joint design and therefore welded joint can be designed in the truss</p>
 	     <div style="text-align: center;">
 		    <img src="result1.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	    </div>
 	    
-	    <p>However, if we provide joint with the release of moments, the joints don't have any moments and should be designed as bolted connection for axial loads only.</p>
+	    <p>We also tested the truss by providing joints with the release of moments as given below.</p>
 	     <div style="text-align: center;">
 		    <img src="Truss2.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	    </div>
-	    And result is
+	    And results found as given in table.
 	     <div style="text-align: center;">
 		    <img src="result2.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
 	    </div>
-	    <p>Therefore, truss joints can be designed as either bolted or welded for axial load as the moments is very small without providing releases. But, it better to provide releases if bolted connections have been used</p>
+	    <p>From the above two examples, we knew that the joints in truss can be designed as both bolt or welded connections.</p>
     <p><u><b>3. COLUMN-BEAM JOINTS</b></u></p>
     <p>In concrete structure, moment connection have been provided in most cases by providing adequate reinforcement with development length. </p>
-    <p><b> IS 13920 - 2016: Ductile detailing of Reinforced Concrete Structures Subjected to Seismic Forces-Code of Practice </b>, gives the detail of the requirement for the moment connection between beam and column.
+    <p><b> IS 13920 - 2016: Ductile detailing of Reinforced Concrete Structures Subjected to Seismic Forces-Code of Practice </b>, gives the detail for the requirement of the moment connection between beam and column.
     As per <b>Clause 6.2.5,</b> At an external joint, top and bottom bars of beams shall be provided with the anchorage length (\(X\)) beyond the inner face of the column, equal to development length of the bar in tension plus 10 times bar diameter minus the allowance for \(90^o\) bends</p>
     <div style="text-align: center;font-size:20px;">
 		    \(X=L_d+10\phi_t-R\)
@@ -1072,7 +1072,7 @@
 	    </p>
 	    <p>In case of steel structures, the joint can be made for shear, small moments and large moments by arranging and providing bolts, cleats, sheets above and below the beam as given in the figure below.</p>
    <div style="text-align: center;">
-		    <img src="ShearConnection.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+		    <img src="ShearConnection.png" alt="curve" class="shape-image" style="width: 450px; height: auto;">
 	    </div>
 	    <p><center><b>Fig. Beam-column joint for Shear</b></center></p>
 	  <div style="text-align: center;">
@@ -1080,7 +1080,7 @@
 	    </div>  
 	    <p><center><b>Fig. Beam-column joint for small moments</b></center></p>
 	      <div style="text-align: center;">
-		    <img src="largemoments.png" alt="curve" class="shape-image" style="width: 250px; height: auto;">
+		    <img src="largemoments.png" alt="curve" class="shape-image" style="width: 300px; height: auto;">
 	    </div> 
     	<p><center><b>Fig. Beam-column joint for large moments</b></center></p>
     
