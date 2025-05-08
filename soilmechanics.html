@@ -1212,67 +1212,74 @@
         updateDateTime();
 
 	    
-      function calculatesoilproperty() {
-        // Input values
-        const Ww = parseFloat(document.getElementById('Ww').value); 
-	const Ws = parseFloat(document.getElementById('Ww').value);
-	const Va = parseFloat(document.getElementById('Va').value);
-	const Vw = parseFloat(document.getElementById('Va').value);  
-	const Vs = parseFloat(document.getElementById('Va').value);
-	const W = parseFloat(document.getElementById('W').value);
-	const V = parseFloat(document.getElementById('V').value);
-	const G = parseFloat(document.getElementById('G').value);
-	      
-	 if (Ww && Ws && Va && Vw && Vs) {
-                // Using Input Option-1
-               	const W=Ww+Ws;
-		const Vv=Vs+Va;
-		const V=Vv+Vs;
-	      // void ratio
-		const e=Vv/Vs; 	
-	      // Porosity
-		const n=Vv/V;
-	      //Moisture content
-		const w=Ww/Ws;
-	      //Degree of saturation
-		const S=Vw/Vv
-		const gamma_w=1000; //in kg/m3
-	      //  unit weight
-		const gamma=G*(1+w)*gamma_w/(1+e);
-	      //Dry density in kg/m3
-		const gammad=G*gamma_w/(1+e);
-	      //Saturated density in kg/m3
-		const gammasat=G*(1+e)*gamma_w/(1+e);
-	      //Specific gravity
-		const G=S*e/w;
-            } 
-	else  {	 
-	      // calculation of Vs
-		const Vs2=Ws/(G*gamma_w);
-		const Vv2=V-Vs2;
-		const e=Vv2/Vs2;
-		const Vw2=V-Vs2;
-		const S=Vw2/Vv2;
-		const gamma=W/V;
-		const gammad=Ws/V;
-		const gamma_w=1000; //in kg/m3
-		//Saturated density in kg/m3
-		const gammasat=G*(1+e)*gamma_w/(1+e);
-		//porosity
-		const n=e/(1+e);
-	}
-	
-	      // Display results
-       		document.getElementById('e').textContent = e.toFixed(2);
-	  	document.getElementById('n').textContent = n.toFixed(2); 
-	      	document.getElementById('S').textContent = S.toFixed(2);
-	      	document.getElementById('w').textContent = w.toFixed(2);
-	      	document.getElementById('gamma').textContent = gamma.toFixed(2);
-	      	document.getElementById('gammad').textContent = gammad.toFixed(2);
-	      	document.getElementById('gammasat').textContent = gammasat.toFixed(2);
-	      	document.getElementById('G').textContent = G.toFixed(2);
+ function calculatesoilproperty() {
+    // Input values for Option 1
+    const Ww1 = parseFloat(document.getElementById('Ww').value) || 0;
+    const Ws1 = parseFloat(document.getElementById('Ws').value) || 0;
+    const Va = parseFloat(document.getElementById('Va').value) || 0;
+    const Vw1 = parseFloat(document.getElementById('Vw').value) || 0;
+    const Vs1 = parseFloat(document.getElementById('Vs').value) || 0;
+    
+    // Input values for Option 2
+    const Ws2 = parseFloat(document.getElementById('Ws2').value) || 0;
+    const W = parseFloat(document.getElementById('W').value) || 0;
+    const V = parseFloat(document.getElementById('V').value) || 0;
+    const G = parseFloat(document.getElementById('G').value) || 0;
+    
+    const gamma_w = 1000; // in kg/m3
+    let e, n, S, w, gamma, gammad, gammasat, G_out;
+    
+    // Check which input option has values
+    if (Ww1 > 0 || Ws1 > 0 || Va > 0 || Vw1 > 0 || Vs1 > 0) {
+        // Using Input Option-1
+        const W = Ww1 + Ws1;
+        const Vv = Va + Vw1;
+        const V_total = Vv + Vs1;
+        
+        // void ratio
+        e = Vv / Vs1;     
+        // Porosity
+        n = Vv / V_total;
+        // Moisture content
+        w = Ww1 / Ws1;
+        // Degree of saturation
+        S = Vw1 / Vv;
+        // unit weight
+        G_out = (S * e) / w;
+        gamma = G_out * (1 + w) * gamma_w / (1 + e);
+        // Dry density in kg/m3
+        gammad = G_out * gamma_w / (1 + e);
+        // Saturated density in kg/m3
+        gammasat = G_out * (1 + e) * gamma_w / (1 + e);
+    } 
+    else if (Ws2 > 0 || W > 0 || V > 0 || G > 0) {
+        // Using Input Option-2
+        const Vs2 = Ws2 / (G * gamma_w);
+        const Vv2 = V - Vs2;
+        e = Vv2 / Vs2;
+        const Vw2 = Ww1 / gamma_w; // Need Ww from somewhere
+        S = Vv2 > 0 ? Vw2 / Vv2 : 0;
+        w = (W - Ws2) / Ws2;
+        gamma = W / V;
+        gammad = Ws2 / V;
+        // Saturated density in kg/m3
+        gammasat = G * (1 + e) * gamma_w / (1 + e);
+        // porosity
+        n = e / (1 + e);
+        G_out = G;
+    }
+    
+    // Display results
+    document.getElementById('e').textContent = e ? e.toFixed(2) : "N/A";
+    document.getElementById('n').textContent = n ? n.toFixed(2) : "N/A"; 
+    document.getElementById('S').textContent = S ? S.toFixed(2) : "N/A";
+    document.getElementById('w').textContent = w ? w.toFixed(2) : "N/A";
+    document.getElementById('gamma').textContent = gamma ? gamma.toFixed(2) : "N/A";
+    document.getElementById('gammad').textContent = gammad ? gammad.toFixed(2) : "N/A";
+    document.getElementById('gammasat').textContent = gammasat ? gammasat.toFixed(2) : "N/A";
+    document.getElementById('G').textContent = G_out ? G_out.toFixed(2) : "N/A";
+}
 
-      }
 
 
 
