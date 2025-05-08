@@ -1070,21 +1070,41 @@
 	<form id="beamSectionForm">
   <h3><u><b>PHYSICAL PROPERTIES OF SOIL</b></u></h3>
 	 <h3><u>INPUTS</u></h3>
-<label for="Ww">Weight of water(\(W_w\) in gm):</label>
-<input type="number" id="Ww" required>
-<br>
-<label for="Ws">Weight of solid(\(W_s\) in gm):</label>
-<input type="number" id="Ws" required>
+		
+<div class="input-set">
+	<p><u>INPUT OPTION-1</u></p>
+	<label for="Ww">Weight of water(\(W_w\) in gm):</label>
+	<input type="number" id="Ww" required>
 	<br>
-<label for="Va">Volume of air(\(V_a\) in mm<sup>3</sup>):</label>
-<input type="number" id="Va" required>
+	<label for="Ws">Weight of solid(\(W_s\) in gm):</label>
+	<input type="number" id="Ws" required>
 	<br>
-<label for="Vw">Volume of water(\(V_w\) in mm<sup>3</sup>):</label>
-<input type="number" id="Vw" required>
+	<label for="Va">Volume of air(\(V_a\) in mm<sup>3</sup>):</label>
+	<input type="number" id="Va" required>
 	<br>
-<label for="Vs">Volume of solid(\(V_s\) in gm):</label>
-<input type="number" id="Vs" required>
-<br>
+	<label for="Vw">Volume of water(\(V_w\) in mm<sup>3</sup>):</label>
+	<input type="number" id="Vw" required>
+	<br>
+	<label for="Vs">Volume of solid(\(V_s\) in gm):</label>
+	<input type="number" id="Vs" required>
+	<br>
+</div>
+<div class="input-set">
+	<p><u>INPUT OPTION-2</u></p>
+	<label for="Ws">Weight of dry soil(\(W_s\) in gm):</label>
+	<input type="number" id="Ws" required>
+	<br>
+	<label for="W">Total weight of sample(\(W\) in gm):</label>
+	<input type="number" id="W" required>
+	<br>
+	<label for="V">Volume of sample before drying(\(V\) in mm<sup>3</sup>):</label>
+	<input type="number" id="V" required>
+	<br>
+	<label for="G">Volume of sample before drying(\(G\)):</label>
+	<input type="number" id="G" required>
+	<br>
+	
+</div>
 <button type="button" onclick="calculatesoilproperty()" class="btn">CLICK</button>
 </form>	
 
@@ -1199,30 +1219,49 @@
 	const Va = parseFloat(document.getElementById('Va').value);
 	const Vw = parseFloat(document.getElementById('Va').value);  
 	const Vs = parseFloat(document.getElementById('Va').value);
-
-	const W=Ww+Ws;
-	const Vv=Vs+Va;
-	const V=Vv+Vs;
-	      // void ratio
-	const e=Vv/Vs; 	
-	      // Porosity
-	const n=Vv/V;
-	      //Moisture content
-	const w=Ww/Ws;
-	      //Degree of saturation
-	const S=Vw/Vv
-	const gamma_w=1000; //in kg/m3
-	      //  unit weight
-	const gamma=G*(1+w)*gamma_w/(1+e);
-	      //Dry density in kg/m3
-	const gammad=G*gamma_w/(1+e);
-	      //Saturated density in kg/m3
-	const gammasat=G*(1+e)*gamma_w/(1+e);
-	      //Specific gravity
-	const G=S*e/w;
+	const W = parseFloat(document.getElementById('W').value);
+	const V = parseFloat(document.getElementById('V').value);
+	const G = parseFloat(document.getElementById('G').value);
 	      
-
-
+	 if (Ww && Ws && Va && Vw && Vs) {
+                // Using Input Option-1
+               	const W=Ww+Ws;
+		const Vv=Vs+Va;
+		const V=Vv+Vs;
+	      // void ratio
+		const e=Vv/Vs; 	
+	      // Porosity
+		const n=Vv/V;
+	      //Moisture content
+		const w=Ww/Ws;
+	      //Degree of saturation
+		const S=Vw/Vv
+		const gamma_w=1000; //in kg/m3
+	      //  unit weight
+		const gamma=G*(1+w)*gamma_w/(1+e);
+	      //Dry density in kg/m3
+		const gammad=G*gamma_w/(1+e);
+	      //Saturated density in kg/m3
+		const gammasat=G*(1+e)*gamma_w/(1+e);
+	      //Specific gravity
+		const G=S*e/w;
+            } 
+	else  {	 
+	      // calculation of Vs
+		const Vs2=Ws/(G*gamma_w);
+		const Vv2=V-Vs2;
+		const e=Vv2/Vs2;
+		const Vw2=V-Vs2;
+		const S=Vw2/Vv2;
+		const gamma=W/V;
+		const gammad=Ws/V;
+		const gamma_w=1000; //in kg/m3
+		//Saturated density in kg/m3
+		const gammasat=G*(1+e)*gamma_w/(1+e);
+		//porosity
+		const n=e/(1+e);
+	}
+	
 	      // Display results
        		document.getElementById('e').textContent = e.toFixed(2);
 	  	document.getElementById('n').textContent = n.toFixed(2); 
