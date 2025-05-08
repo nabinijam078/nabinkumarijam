@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1069,6 +1067,7 @@
 
     <!-- Main Content -->
 <div class="main-container">
+	<form id="beamSectionForm">
   <h3><u><b>PHYSICAL PROPERTIES OF SOIL</b></u></h3>
 	 <h3><u>INPUTS</u></h3>
 <label for="P">Weight of water(\(W_w\) in gm):</label>
@@ -1086,11 +1085,25 @@
 <label for="P">Volume of solid(\(V_s\) in gm):</label>
 <input type="number" id="Vs" required>
 <br>
-	
-  <div style="text-align: center;">
+<button type="button" onclick="calculatesoilproperty()" class="btn">CLICK</button>
+</form>	
+
+<div style="text-align: center;">
    <img src="phasediagram.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
   </div>
-
+<center><b>Fig. Phase diagram of soil</b></center>
+	
+    <div class="result" id="result">
+        <h3><u>OUTPUTS</u></h3>
+        <p><strong>Void ratio (\(v\)):</strong> <span id="v"></span> </p>
+        <p><strong>Porosity (\(\nu\)):</strong> <span id="nu"></span> </p>
+        <p><strong>Degree of Saturation(\(S\)):</strong> <span id="S"></span></p>
+        <p><strong>Moisture Content (\(w\)):</strong> <span id="w"></span> mm²</p>
+        <p><strong>Unit Weight(\(\gamma\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
+        <p><strong>Dry density (\(\gamma_d\)):</strong> <span id="gammad"></span>mm</p>
+        <p><strong>Saturated density (\(\gamma_{sat}\)):</strong> <span id="gammasat"></span>kg/m<sup>3</sup></p>
+	    <p><strong>Specific gravity of solid (\(G\)):</strong> <span id="G"></span></p>
+      </div>
 
 
 </div>
