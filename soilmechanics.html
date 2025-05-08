@@ -1185,8 +1185,6 @@
         </div>
     </footer>
 
-
-
     <!-- JavaScript for Time and Date -->
     <script>
         function updateDateTime() {
@@ -1212,7 +1210,7 @@
         updateDateTime();
 
 	    
- function calculatesoilproperty() {
+function calculatesoilproperty() {
     // Input values for Option 1
     const Ww1 = parseFloat(document.getElementById('Ww').value) || 0;
     const Ws1 = parseFloat(document.getElementById('Ws').value) || 0;
@@ -1230,9 +1228,8 @@
     let e, n, S, w, gamma, gammad, gammasat, G_out;
     
     // Check which input option has values
-    if (Ww1 > 0 || Ws1 > 0 || Va > 0 || Vw1 > 0 || Vs1 > 0) {
+    if (Ww1 > 0 && Ws1 > 0 && Va >= 0 && Vw1 >= 0 && Vs1 > 0) {
         // Using Input Option-1
-        const W = Ww1 + Ws1;
         const Vv = Va + Vw1;
         const V_total = Vv + Vs1;
         
@@ -1243,41 +1240,45 @@
         // Moisture content
         w = Ww1 / Ws1;
         // Degree of saturation
-        S = Vw1 / Vv;
-        // unit weight
+        S = Vv > 0 ? Vw1 / Vv : 0;
+        // Specific gravity
         G_out = (S * e) / w;
-        gamma = G_out * (1 + w) * gamma_w / (1 + e);
-        // Dry density in kg/m3
-        gammad = G_out * gamma_w / (1 + e);
-        // Saturated density in kg/m3
-        gammasat = G_out * (1 + e) * gamma_w / (1 + e);
+        // unit weight (kN/m3)
+        gamma = (G_out * (1 + w) * gamma_w) / (1 + e);
+        // Dry density (kN/m3)
+        gammad = (G_out * gamma_w) / (1 + e);
+        // Saturated density (kN/m3)
+        gammasat = ((G_out + e) * gamma_w) / (1 + e);
     } 
-    else if (Ws2 > 0 || W > 0 || V > 0 || G > 0) {
+    else if (Ws2 > 0 && W > 0 && V > 0 && G > 0) {
         // Using Input Option-2
         const Vs2 = Ws2 / (G * gamma_w);
         const Vv2 = V - Vs2;
         e = Vv2 / Vs2;
-        const Vw2 = Ww1 / gamma_w; // Need Ww from somewhere
-        S = Vv2 > 0 ? Vw2 / Vv2 : 0;
+        // Moisture content
         w = (W - Ws2) / Ws2;
-        gamma = W / V;
-        gammad = Ws2 / V;
-        // Saturated density in kg/m3
-        gammasat = G * (1 + e) * gamma_w / (1 + e);
+        // Assume saturated condition if not provided
+        S = 1; 
+        // unit weight (kN/m3)
+        gamma = (W / V) * 1000; // Convert from g/mm3 to kg/m3
+        // Dry density (kN/m3)
+        gammad = (Ws2 / V) * 1000; // Convert from g/mm3 to kg/m3
+        // Saturated density (kN/m3)
+        gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e);
         // porosity
         n = e / (1 + e);
         G_out = G;
     }
     
     // Display results
-    document.getElementById('e').textContent = e ? e.toFixed(2) : "N/A";
-    document.getElementById('n').textContent = n ? n.toFixed(2) : "N/A"; 
-    document.getElementById('S').textContent = S ? S.toFixed(2) : "N/A";
-    document.getElementById('w').textContent = w ? w.toFixed(2) : "N/A";
-    document.getElementById('gamma').textContent = gamma ? gamma.toFixed(2) : "N/A";
-    document.getElementById('gammad').textContent = gammad ? gammad.toFixed(2) : "N/A";
-    document.getElementById('gammasat').textContent = gammasat ? gammasat.toFixed(2) : "N/A";
-    document.getElementById('G').textContent = G_out ? G_out.toFixed(2) : "N/A";
+    document.getElementById('e').textContent = e !== undefined ? e.toFixed(4) : "N/A";
+    document.getElementById('n').textContent = n !== undefined ? n.toFixed(4) : "N/A"; 
+    document.getElementById('S').textContent = S !== undefined ? (S * 100).toFixed(2) + "%" : "N/A";
+    document.getElementById('w').textContent = w !== undefined ? (w * 100).toFixed(2) + "%" : "N/A";
+    document.getElementById('gamma').textContent = gamma !== undefined ? gamma.toFixed(2) : "N/A";
+    document.getElementById('gammad').textContent = gammad !== undefined ? gammad.toFixed(2) : "N/A";
+    document.getElementById('gammasat').textContent = gammasat !== undefined ? gammasat.toFixed(2) : "N/A";
+    document.getElementById('G').textContent = G_out !== undefined ? G_out.toFixed(2) : "N/A";
 }
 
 
