@@ -1100,130 +1100,128 @@
             "Fe 590-E": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 590 },
         };
 
-        // Function to handle form submission
-        function Weldeddesignplate() {
-            try {
-                // Retrieve input values
-                const P = parseFloat(document.getElementById('P').value);
-                const t1 = parseFloat(document.getElementById('t1').value);
-                const b1 = parseFloat(document.getElementById('b1').value);
-                const t2 = parseFloat(document.getElementById('t2').value);
-                
-                const Weldtype = document.getElementById('Weldtype').value;
-                const Designation = document.getElementById('Designation').value;
-                const WeldMeth = document.getElementById('WeldMeth').value;
-                const steelGrade = document.getElementById('steelGrade').value;
-                const s = parseFloat(document.getElementById('s').value);
+function Weldeddesignplate() {
+    try {
+        // Retrieve input values
+        const P = parseFloat(document.getElementById('P').value);
+        const x = parseFloat(document.getElementById('x').value);
+        const t1 = parseFloat(document.getElementById('t1').value);
+        const h1 = parseFloat(document.getElementById('h1').value);
+        const t2 = parseFloat(document.getElementById('t2').value);
+        
+        const Weldtype = document.getElementById('Weldtype').value;
+        const Designation = document.getElementById('Designation').value;
+        const WeldMeth = document.getElementById('WeldMeth').value;
+        const steelGrade = document.getElementById('steelGrade').value;
+        const s = parseFloat(document.getElementById('s').value);
 
-                // Validate inputs
-               if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(h1) || h1 <= 0 ||
+        // Validate inputs
+        if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(h1) || h1 <= 0 ||
             isNaN(t2) || t2 <= 0 || isNaN(x) || x <= 0 || isNaN(s) || s <= 0) {
             alert("Please fill all the required fields with valid positive numbers.");
             return;
         }
-                
-                // Partial load factor
-                let Ymw;
-                if (WeldMeth === "At site") { Ymw = 1.5; }
-                else { Ymw = 1.25; }
+        
+        // Partial load factor
+        let Ymw;
+        if (WeldMeth === "At site") { Ymw = 1.5; }
+        else { Ymw = 1.25; }
 
-                // Yield strength of weld
-                let fy;
-                if (Designation === "4") { fy = 330; }
-                else { fy = 400; }
+        // Yield strength of weld
+        let fy;
+        if (Designation === "4") { fy = 330; }
+        else { fy = 400; }
 
-                // Ultimate strength of weld
-                let fu;
-                if (Designation === "4") { fu = 410; }
-                else { fu = 510; }
+        // Ultimate strength of weld
+        let fu;
+        if (Designation === "4") { fu = 410; }
+        else { fu = 510; }
 
-                // Weld specification
-                const plateThickness = Math.min(t1, t2);
-                const steelDetails = steelData[steelGrade];
-                let thicknessCategory;
-                if (plateThickness < 20) {
-                    thicknessCategory = "<20";
-                } else if (plateThickness >= 20 && plateThickness <= 40) {
-                    thicknessCategory = "20-40";
-                } else {
-                    thicknessCategory = ">40";
-                }
-                const steelYieldStrength = steelDetails.yieldStrength[thicknessCategory];
-                const steelUltimateStrength = steelDetails.ultimateTensileStrength;
-                
-                // Yield strength of weld
-                const fwn1 = Math.max(fu, steelUltimateStrength);
-                const fwn = fwn1 / Math.sqrt(3);
-                const fwd = fwn / Ymw;
-
-                // Minimum size of weld
-                let tmin;
-                if (Weldtype === "Fillet") {
-                    if (plateThickness <= 10) { tmin = 3; }
-                    else if (plateThickness <= 20) { tmin = 5; }
-                    else if (plateThickness <= 32) { tmin = 6; }
-                    else { tmin = 8; }
-                }
-                else { tmin = s * 0.7; }
-
-                // Maximum size of weld
-                const tmax = plateThickness - 1.5;
-
-                // Effective throat thickness
-                let s1;
-                if (Weldtype === "Fillet") { s1 = 0.7 * s; }
-                else { s1 = 0.7 * tmax; }
-
-                // Thickness of throat
-                const tt = Math.max(s1, 3);
-
-                // Strength of plate
-                const Pp = Math.min(b1, b2) * plateThickness * steelYieldStrength / 1.1 / 1000;
-              
-                // Length of weld
-                const Lw =h1+2*b1;
-
-              // Calculation of centroi in y-axis
-              const xbar=b1*b1/Lw;
-              const ecc=b1+x-b-xbar;
-              
-
-              // Vertical shear stress at weld
-              const Ps=P*1000/(Lw*s);
-
-              // Moment
-              const Mm=P*1000*ecc;
-              const r=math.sqrt(math.pow((b1-xbar),2)+math.pow(h1/2,2));
-
-              //Polar moment of resistance
-              const Ix1=(b1*math.pow(s,3)/12+b1*s*math.pow((h1/2),2))*2;
-              const Ix2=s*math.pow(h1,3)/12;
-              const Ix=Ix1+Ix2;
-              const Iy=h1*math.pow(s,3)/12+h1*s*math.pow(xbar,2)+2*(s*math.pow(b1,3)/12+s*b1*math.pow((b1/2-xbar),2));
-              const Ip=Ix+Iy;
-              const Pb=Mm*r/Ip;
-              const theta=math.asin(h1/2/r);
-
-              //Resultant stress
-              const Pr=math.pow(math.pow(Ps,2)+math.pow(Pb,2)+2*Ps*Pb*math.cos(theta),.5);
-
-                // Update the result section
-                document.getElementById('fy').textContent = fy;
-                document.getElementById('fu').textContent = fu;
-                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
-                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-                document.getElementById('tmin').textContent = tmin.toFixed(0);
-                document.getElementById('tmax').textContent = tmax.toFixed(0);
-                document.getElementById('Pb').textContent = Pb.toFixed(2);
-              document.getElementById('Ps').textContent = Ps.toFixed(2);
-              document.getElementById('Pr').textContent = Pr.toFixed(2);
-                document.getElementById('Lw').textContent = Lw.toFixed(2);
-                
-            } catch (error) {
-                alert("An error occurred during calculation. Please check your inputs.");
-                console.error(error);
-            }
+        // Weld specification
+        const plateThickness = Math.min(t1, t2);
+        const steelDetails = steelData[steelGrade];
+        let thicknessCategory;
+        if (plateThickness < 20) {
+            thicknessCategory = "<20";
+        } else if (plateThickness >= 20 && plateThickness <= 40) {
+            thicknessCategory = "20-40";
+        } else {
+            thicknessCategory = ">40";
         }
+        const steelYieldStrength = steelDetails.yieldStrength[thicknessCategory];
+        const steelUltimateStrength = steelDetails.ultimateTensileStrength;
+        
+        // Yield strength of weld
+        const fwn1 = Math.max(fu, steelUltimateStrength);
+        const fwn = fwn1 / Math.sqrt(3);
+        const fwd = fwn / Ymw;
+
+        // Minimum size of weld
+        let tmin;
+        if (Weldtype === "Fillet") {
+            if (plateThickness <= 10) { tmin = 3; }
+            else if (plateThickness <= 20) { tmin = 5; }
+            else if (plateThickness <= 32) { tmin = 6; }
+            else { tmin = 8; }
+        }
+        else { tmin = s * 0.7; }
+
+        // Maximum size of weld
+        const tmax = plateThickness - 1.5;
+
+        // Effective throat thickness
+        let s1;
+        if (Weldtype === "Fillet") { s1 = 0.7 * s; }
+        else { s1 = 0.7 * tmax; }
+
+        // Thickness of throat
+        const tt = Math.max(s1, 3);
+
+        // Length of weld (assuming b1 is same as h1 or needs to be defined)
+        const b1 = h1; // You need to define this properly based on your design
+        const Lw = h1 + 2 * b1;
+
+        // Calculation of centroid in y-axis
+        const xbar = b1 * b1 / Lw;
+        const ecc = b1 + x - xbar; // Fixed this calculation
+
+        // Vertical shear stress at weld
+        const Ps = P * 1000 / (Lw * s);
+
+        // Moment
+        const Mm = P * 1000 * ecc;
+        const r = Math.sqrt(Math.pow((b1 - xbar), 2) + Math.pow(h1 / 2, 2));
+
+        // Polar moment of resistance
+        const Ix1 = (b1 * Math.pow(s, 3) / 12 + b1 * s * Math.pow((h1 / 2), 2)) * 2;
+        const Ix2 = s * Math.pow(h1, 3) / 12;
+        const Ix = Ix1 + Ix2;
+        const Iy = h1 * Math.pow(s, 3) / 12 + h1 * s * Math.pow(xbar, 2) + 2 * (s * Math.pow(b1, 3) / 12 + s * b1 * Math.pow((b1 / 2 - xbar), 2));
+        const Ip = Ix + Iy;
+        const Pb = Mm * r / Ip;
+        const theta = Math.asin(h1 / 2 / r);
+
+        // Resultant stress
+        const Pr = Math.sqrt(Math.pow(Ps, 2) + Math.pow(Pb, 2) + 2 * Ps * Pb * Math.cos(theta));
+
+        // Update the result section
+        document.getElementById('fy').textContent = fy;
+        document.getElementById('fu').textContent = fu;
+        document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
+        document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
+        document.getElementById('tmin').textContent = tmin.toFixed(0);
+        document.getElementById('tmax').textContent = tmax.toFixed(0);
+        document.getElementById('Pb').textContent = Pb.toFixed(2);
+        document.getElementById('Ps').textContent = Ps.toFixed(2);
+        document.getElementById('Pr').textContent = Pr.toFixed(2);
+        document.getElementById('Lw').textContent = Lw.toFixed(2);
+        
+    } catch (error) {
+        alert("An error occurred during calculation. Please check your inputs.");
+        console.error(error);
+    }
+}
+        
     </script>
 </body>
 </html>
