@@ -997,6 +997,7 @@
                     <p><u>3. SIZE OF WELD</u></p>
                     <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span> mm</p>
                     <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> mm</p>
+		    <p>Maximum size (\(t_t\)): <span id="tt"></span> mm</p>
                     <br>
                     <p><u>4. STRENGTH OF WELD</u></p>
                     <p>Effective Length of weld (\(L_w\)) : <span id="Lw"></span> mm</p>
@@ -1215,6 +1216,7 @@ function Weldeddesignplate() {
         document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
         document.getElementById('tmin').textContent = tmin.toFixed(0);
         document.getElementById('tmax').textContent = tmax.toFixed(0);
+	document.getElementById('tt').textContent = tt.toFixed(0);
         document.getElementById('Pb').textContent = Pb.toFixed(2);
         document.getElementById('Ps').textContent = Ps.toFixed(2);
         document.getElementById('Pr').textContent = Pr.toFixed(2);
