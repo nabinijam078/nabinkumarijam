@@ -1181,7 +1181,7 @@ function Weldeddesignplate() {
         // Thickness of throat
         const tt = Math.max(s1, 3);
 
-        // Length of weld (assuming b1 is same as h1 or needs to be defined)
+        
         
         const Lw = h1 + 2 * b1;
 
@@ -1197,10 +1197,10 @@ function Weldeddesignplate() {
         const r = Math.sqrt(Math.pow((b1 - xbar), 2) + Math.pow(h1 / 2, 2));
 
         // Polar moment of resistance
-        const Ix1 = (b1 * Math.pow(s, 3) / 12 + b1 * s * Math.pow((h1 / 2), 2)) * 2;
-        const Ix2 = s * Math.pow(h1, 3) / 12;
+        const Ix1 = (b1 * Math.pow(tt, 3) / 12 + b1 * tt * Math.pow((h1 / 2), 2)) * 2;
+        const Ix2 = tt * Math.pow(h1, 3) / 12;
         const Ix = Ix1 + Ix2;
-        const Iy = h1 * Math.pow(s, 3) / 12 + h1 * s * Math.pow(xbar, 2) + 2 * (s * Math.pow(b1, 3) / 12 + s * b1 * Math.pow((b1 / 2 - xbar), 2));
+        const Iy = h1 * Math.pow(tt, 3) / 12 + h1 * tt * Math.pow(xbar, 2) + 2 * (tt * Math.pow(b1, 3) / 12 + tt * b1 * Math.pow((b1 / 2 - xbar), 2));
         const Ip = Ix + Iy;
         const Pb = Mm * r / Ip;
         const theta = Math.asin(h1 / 2 / r);
