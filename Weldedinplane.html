@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1117,11 +1116,11 @@
                 const s = parseFloat(document.getElementById('s').value);
 
                 // Validate inputs
-                if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(b1) || b1 <= 0 ||
-                    isNaN(t2) || t2 <= 0 || isNaN(b2) || b2 <= 0 || isNaN(s) || s <= 0) {
-                    alert("Please fill all the required fields with valid positive numbers.");
-                    return;
-                }
+               if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(h1) || h1 <= 0 ||
+            isNaN(t2) || t2 <= 0 || isNaN(x) || x <= 0 || isNaN(s) || s <= 0) {
+            alert("Please fill all the required fields with valid positive numbers.");
+            return;
+        }
                 
                 // Partial load factor
                 let Ymw;
@@ -1186,7 +1185,7 @@
 
               // Calculation of centroi in y-axis
               const xbar=b1*b1/Lw;
-              const ecc=b1+x-b=xbar;
+              const ecc=b1+x-b-xbar;
               
 
               // Vertical shear stress at weld
