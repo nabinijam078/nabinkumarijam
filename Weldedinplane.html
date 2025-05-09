@@ -1004,6 +1004,7 @@
                    <p>Vertical Shear Stress (\(P_s\)) : <span id="Ps"></span> N/mm<sup>2</sup> </p>
                    <p>Torsional stress of weld (\(P_b\)) : <span id="Pb"></span> N/mm<sup>2</sup> </p>
                    <p>Resultant Stress (\(P_r\)) : <span id="Pr"></span> N/mm<sup>2</sup> </p>
+		    <p>Check for strength : <span id="Check"></span> </p>
                 </div>
             </div>
             <div class="drawing-section">
@@ -1208,7 +1209,11 @@ function Weldeddesignplate() {
 
         // Resultant stress
         const Pr = Math.sqrt(Math.pow(Ps, 2) + Math.pow(Pb, 2) + 2 * Ps * Pb * Math.cos(theta));
-
+	// Check for strength
+	    let Check;
+	    if (fwd>Pr){Check="OK";}
+	    else {Check="NOT OK";}
+	    
         // Update the result section
         document.getElementById('fy').textContent = fy;
         document.getElementById('fu').textContent = fu;
@@ -1221,6 +1226,7 @@ function Weldeddesignplate() {
         document.getElementById('Ps').textContent = Ps.toFixed(2);
         document.getElementById('Pr').textContent = Pr.toFixed(2);
         document.getElementById('Lw').textContent = Lw.toFixed(2);
+	document.getElementById('Check').textContent = Check;
         
     } catch (error) {
         alert("An error occurred during calculation. Please check your inputs.");
