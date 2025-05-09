@@ -935,6 +935,9 @@
                     <label for="t1">Thickness of plate(\(t_1\) in mm):</label>
                     <input type="number" id="t1" required>
                     <br>
+		     <label for="b1">Thickness of plate(\(b_1\) in mm):</label>
+                    <input type="number" id="b1" required>
+                    <br>
                     <label for="h1">Height of plate(\(h_1\) in mm):</label>
                     <input type="number" id="h1" required>
                     <br>
@@ -1106,6 +1109,7 @@ function Weldeddesignplate() {
         const P = parseFloat(document.getElementById('P').value);
         const x = parseFloat(document.getElementById('x').value);
         const t1 = parseFloat(document.getElementById('t1').value);
+	const b1 = parseFloat(document.getElementById('b1').value);
         const h1 = parseFloat(document.getElementById('h1').value);
         const t2 = parseFloat(document.getElementById('t2').value);
         
@@ -1116,7 +1120,7 @@ function Weldeddesignplate() {
         const s = parseFloat(document.getElementById('s').value);
 
         // Validate inputs
-        if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(h1) || h1 <= 0 ||
+        if (isNaN(P) || P <= 0 || isNaN(t1) || t1 <= 0 || isNaN(h1) || h1 <= 0 ||b1 <= 0 ||
             isNaN(t2) || t2 <= 0 || isNaN(x) || x <= 0 || isNaN(s) || s <= 0) {
             alert("Please fill all the required fields with valid positive numbers.");
             return;
@@ -1178,12 +1182,12 @@ function Weldeddesignplate() {
         const tt = Math.max(s1, 3);
 
         // Length of weld (assuming b1 is same as h1 or needs to be defined)
-        const b1 = h1; // You need to define this properly based on your design
+        
         const Lw = h1 + 2 * b1;
 
         // Calculation of centroid in y-axis
         const xbar = b1 * b1 / Lw;
-        const ecc = b1 + x - xbar; // Fixed this calculation
+        const ecc = b1 + x - xbar; 
 
         // Vertical shear stress at weld
         const Ps = P * 1000 / (Lw * s);
