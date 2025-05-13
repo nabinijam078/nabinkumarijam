@@ -1122,7 +1122,7 @@
         <p><strong>Unit Weight(\(\gamma\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
         <p><strong>Dry density (\(\gamma_d\)):</strong> <span id="gammad"></span>kg/m<sup>3</sup></p>
         <p><strong>Saturated density (\(\gamma_{sat}\)):</strong> <span id="gammasat"></span>kg/m<sup>3</sup></p>
-	    <p><strong>Specific gravity of solid (\(G\)):</strong> <span id="G"></span></p>
+        <p><strong>Specific gravity of solid (\(G\)):</strong> <span id="G"></span></p>
       </div>
 
 
@@ -1257,8 +1257,8 @@ function calculatesoilproperty() {
         e = Vv2 / Vs2;
         // Moisture content
         w = (W - Ws2) / Ws2;
-        // Assume saturated condition if not provided
-        S = 1; 
+        // Degree of saturation
+        S = w*G/e; 
         // unit weight (kN/m3)
         gamma = (W / V) * 1000; // Convert from g/mm3 to kg/m3
         // Dry density (kN/m3)
