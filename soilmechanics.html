@@ -1065,68 +1065,76 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
-<div class="main-container">
-	<form id="beamSectionForm">
-  <h3><u><b>PHYSICAL PROPERTIES OF SOIL</b></u></h3>
-	 <h3><u>INPUTS</u></h3>
-		
-<div class="input-set">
-	<p><u>INPUT OPTION-1</u></p>
-	<label for="Ww">Weight of water(\(W_w\) in gm):</label>
-	<input type="number" id="Ww" required>
-	<br>
-	<label for="Ws">Weight of solid(\(W_s\) in gm):</label>
-	<input type="number" id="Ws" required>
-	<br>
-	<label for="Va">Volume of air(\(V_a\) in mm<sup>3</sup>):</label>
-	<input type="number" id="Va" required>
-	<br>
-	<label for="Vw">Volume of water(\(V_w\) in mm<sup>3</sup>):</label>
-	<input type="number" id="Vw" required>
-	<br>
-	<label for="Vs">Volume of solid(\(V_s\) in gm):</label>
-	<input type="number" id="Vs" required>
-	<br>
-</div>
-<div class="input-set">
-	<p><u>INPUT OPTION-2</u></p>
-	<label for="Ws2">Weight of dry soil(\(W_s\) in gm):</label>
-	<input type="number" id="Ws" required>
-	<br>
-	<label for="W">Total weight of sample(\(W\) in gm):</label>
-	<input type="number" id="W" required>
-	<br>
-	<label for="V">Volume of sample before drying(\(V\) in mm<sup>3</sup>):</label>
-	<input type="number" id="V" required>
-	<br>
-	<label for="G">Specific gracity of sample(\(G\)):</label>
-	<input type="number" id="G" required>
-	<br>
-	
-</div>
-<button type="button" onclick="calculatesoilproperty()" class="btn">CLICK</button>
-</form>	
+<!-- Main Content -->
+    <div class="main-container">
+        <form id="soilPropertiesForm">
+            <h2><u><b>PHYSICAL PROPERTIES OF SOIL</b></u></h2>
+            <h3><u>INPUTS</u></h3>
+            
+            <div class="input-set">
+                <h4><u>INPUT OPTION-1</u></h4>
+                <div class="input-group">
+                    <label for="Ww">Weight of water (W<sub>w</sub> in gm):</label>
+                    <input type="number" id="Ww" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="Ws1">Weight of solid (W<sub>s</sub> in gm):</label>
+                    <input type="number" id="Ws1" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="Va">Volume of air (V<sub>a</sub> in mm<sup>3</sup>):</label>
+                    <input type="number" id="Va" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="Vw">Volume of water (V<sub>w</sub> in mm<sup>3</sup>):</label>
+                    <input type="number" id="Vw" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="Vs">Volume of solid (V<sub>s</sub> in mm<sup>3</sup>):</label>
+                    <input type="number" id="Vs" step="any">
+                </div>
+            </div>
+            
+            <div class="input-set">
+                <h4><u>INPUT OPTION-2</u></h4>
+                <div class="input-group">
+                    <label for="Ws2">Weight of dry soil (W<sub>s</sub> in gm):</label>
+                    <input type="number" id="Ws2" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="W">Total weight of sample (W in gm):</label>
+                    <input type="number" id="W" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="V">Volume of sample before drying (V in mm<sup>3</sup>):</label>
+                    <input type="number" id="V" step="any">
+                </div>
+                <div class="input-group">
+                    <label for="G">Specific gravity of sample (G):</label>
+                    <input type="number" id="G" step="any">
+                </div>
+            </div>
+            
+            <button type="button" onclick="calculateSoilProperties()" class="btn">CALCULATE</button>
+        </form>
 
-<div style="text-align: center;">
-   <img src="phasediagram.png" alt="curve" class="shape-image" style="width: 350px; height: auto;">
-  </div>
-<center><b>Fig. Phase diagram of soil</b></center>
-	
-    <div class="result" id="result">
-        <h3><u>OUTPUTS</u></h3>
-        <p><strong>Void ratio (\(e\)):</strong> <span id="e"></span> </p>
-        <p><strong>Porosity (\(n\)):</strong> <span id="n"></span> </p>
-        <p><strong>Degree of Saturation(\(S\)):</strong> <span id="S"></span></p>
-        <p><strong>Moisture Content (\(w\)):</strong> <span id="w"></span> </p>
-        <p><strong>Unit Weight(\(\gamma\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
-        <p><strong>Dry density (\(\gamma_d\)):</strong> <span id="gammad"></span>kg/m<sup>3</sup></p>
-        <p><strong>Saturated density (\(\gamma_{sat}\)):</strong> <span id="gammasat"></span>kg/m<sup>3</sup></p>
-        <p><strong>Specific gravity of solid (\(G\)):</strong> <span id="G"></span></p>
-      </div>
-
-
-</div>
+        <div class="center-img">
+            <img src="phasediagram.png" alt="Phase diagram of soil" style="width: 350px; height: auto;">
+            <p><b>Fig. Phase diagram of soil</b></p>
+        </div>
+        
+        <div class="result" id="result">
+            <h3><u>OUTPUTS</u></h3>
+            <p><strong>Void ratio (/(e/)):</strong> <span id="e"></span></p>
+            <p><strong>Porosity (/(n/)):</strong> <span id="n"></span></p>
+            <p><strong>Degree of Saturation (/(S/)):</strong> <span id="S"></span></p>
+            <p><strong>Moisture Content (/(w/)):</strong> <span id="w"></span></p>
+            <p><strong>Unit Weight (/(γ/)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
+            <p><strong>Dry density (/(γ_d/)):</strong> <span id="gammad"></span> kg/m<sup>3</sup></p>
+            <p><strong>Saturated density (/(γ_{sat}/)):</strong> <span id="gammasat"></span> kg/m<sup>3</sup></p>
+            <p><strong>Specific gravity of solid (/(G/)):</strong> <span id="G_out"></span></p>
+        </div>
+    </div>
 
 
 
@@ -1210,79 +1218,80 @@
         updateDateTime();
 
 	    
-function calculatesoilproperty() {
-    // Input values for Option 1
-    const Ww1 = parseFloat(document.getElementById('Ww').value) || 0;
-    const Ws1 = parseFloat(document.getElementById('Ws').value) || 0;
-    const Va = parseFloat(document.getElementById('Va').value) || 0;
-    const Vw1 = parseFloat(document.getElementById('Vw').value) || 0;
-    const Vs1 = parseFloat(document.getElementById('Vs').value) || 0;
-    
-    // Input values for Option 2
-    const Ws2 = parseFloat(document.getElementById('Ws2').value) || 0;
-    const W = parseFloat(document.getElementById('W').value) || 0;
-    const V = parseFloat(document.getElementById('V').value) || 0;
-    const G = parseFloat(document.getElementById('G').value) || 0;
-    
-    const gamma_w = 1000; // in kg/m3
-    let e, n, S, w, gamma, gammad, gammasat, G_out;
-    
-    // Check which input option has values
-    if (Ww1 > 0 && Ws1 > 0 && Va >= 0 && Vw1 >= 0 && Vs1 > 0) {
-        // Using Input Option-1
-        const Vv = Va + Vw1;
-        const V_total = Vv + Vs1;
-        
-        // void ratio
-        e = Vv / Vs1;     
-        // Porosity
-        n = Vv / V_total;
-        // Moisture content
-        w = Ww1 / Ws1;
-        // Degree of saturation
-        S = Vv > 0 ? Vw1 / Vv : 0;
-        // Specific gravity
-        G_out = (S * e) / w;
-        // unit weight (kN/m3)
-        gamma = (G_out * (1 + w) * gamma_w) / (1 + e);
-        // Dry density (kN/m3)
-        gammad = (G_out * gamma_w) / (1 + e);
-        // Saturated density (kN/m3)
-        gammasat = ((G_out + e) * gamma_w) / (1 + e);
-    } 
-    else if (Ws2 > 0 && W > 0 && V > 0 && G > 0) {
-        // Using Input Option-2
-        const Vs2 = Ws2 / (G * gamma_w);
-        const Vv2 = V - Vs2;
-        e = Vv2 / Vs2;
-        // Moisture content
-        w = (W - Ws2) / Ws2;
-        // Degree of saturation
-        S = w*G/e; 
-        // unit weight (kN/m3)
-        gamma = (W / V) * 1000; // Convert from g/mm3 to kg/m3
-        // Dry density (kN/m3)
-        gammad = (Ws2 / V) * 1000; // Convert from g/mm3 to kg/m3
-        // Saturated density (kN/m3)
-        gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e);
-        // porosity
-        n = e / (1 + e);
-        G_out = G;
-    }
-    
-    // Display results
-    document.getElementById('e').textContent = e !== undefined ? e.toFixed(4) : "N/A";
-    document.getElementById('n').textContent = n !== undefined ? n.toFixed(4) : "N/A"; 
-    document.getElementById('S').textContent = S !== undefined ? (S * 100).toFixed(2) + "%" : "N/A";
-    document.getElementById('w').textContent = w !== undefined ? (w * 100).toFixed(2) + "%" : "N/A";
-    document.getElementById('gamma').textContent = gamma !== undefined ? gamma.toFixed(2) : "N/A";
-    document.getElementById('gammad').textContent = gammad !== undefined ? gammad.toFixed(2) : "N/A";
-    document.getElementById('gammasat').textContent = gammasat !== undefined ? gammasat.toFixed(2) : "N/A";
-    document.getElementById('G').textContent = G_out !== undefined ? G_out.toFixed(2) : "N/A";
-}
-
-
-
+ function calculateSoilProperties() {
+            // Input values for Option 1
+            const Ww = parseFloat(document.getElementById('Ww').value) || 0;
+            const Ws1 = parseFloat(document.getElementById('Ws1').value) || 0;
+            const Va = parseFloat(document.getElementById('Va').value) || 0;
+            const Vw = parseFloat(document.getElementById('Vw').value) || 0;
+            const Vs = parseFloat(document.getElementById('Vs').value) || 0;
+            
+            // Input values for Option 2
+            const Ws2 = parseFloat(document.getElementById('Ws2').value) || 0;
+            const W = parseFloat(document.getElementById('W').value) || 0;
+            const V = parseFloat(document.getElementById('V').value) || 0;
+            const G = parseFloat(document.getElementById('G').value) || 0;
+            
+            const gamma_w = 1000; // in kg/m3
+            let e, n, S, w, gamma, gammad, gammasat, G_out;
+            
+            // Check which input option has values
+            if (Ww > 0 && Ws1 > 0 && Va >= 0 && Vw >= 0 && Vs > 0) {
+                // Using Input Option-1
+                const Vv = Va + Vw;
+                const V_total = Vv + Vs;
+                
+                // void ratio
+                e = Vv / Vs;     
+                // Porosity
+                n = Vv / V_total;
+                // Moisture content
+                w = Ww / Ws1;
+                // Degree of saturation
+                S = Vv > 0 ? Vw / Vv : 0;
+                // Specific gravity
+                G_out = (S * e) / w;
+                // unit weight (kg/m3)
+                gamma = (G_out * (1 + w) * gamma_w) / (1 + e);
+                // Dry density (kg/m3)
+                gammad = (G_out * gamma_w) / (1 + e);
+                // Saturated density (kg/m3)
+                gammasat = ((G_out + e) * gamma_w) / (1 + e);
+            } 
+            else if (Ws2 > 0 && W > 0 && V > 0 && G > 0) {
+                // Using Input Option-2
+                const Vs2 = Ws2 / (G * gamma_w);
+                const Vv2 = V - Vs2;
+                e = Vv2 / Vs2;
+                // Moisture content
+                w = (W - Ws2) / Ws2;
+                // Degree of saturation
+                S = w * G / e; 
+                // unit weight (kg/m3)
+                gamma = (W / V) * 1000; // Convert from g/mm3 to kg/m3
+                // Dry density (kg/m3)
+                gammad = (Ws2 / V) * 1000; // Convert from g/mm3 to kg/m3
+                // Saturated density (kg/m3)
+                gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e);
+                // porosity
+                n = e / (1 + e);
+                G_out = G;
+            }
+            else {
+                alert("Please enter values for either Option 1 or Option 2");
+                return;
+            }
+            
+            // Display results
+            document.getElementById('e').textContent = e.toFixed(4);
+            document.getElementById('n').textContent = n.toFixed(4); 
+            document.getElementById('S').textContent = (S * 100).toFixed(2) + "%";
+            document.getElementById('w').textContent = (w * 100).toFixed(2) + "%";
+            document.getElementById('gamma').textContent = gamma.toFixed(2);
+            document.getElementById('gammad').textContent = gammad.toFixed(2);
+            document.getElementById('gammasat').textContent = gammasat.toFixed(2);
+            document.getElementById('G_out').textContent = G_out.toFixed(2);
+        }
 
     </script>
 
