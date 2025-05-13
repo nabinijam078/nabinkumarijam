@@ -993,14 +993,14 @@
                     <p><u>3. SIZE OF WELD</u></p>
                     <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span> mm</p>
                     <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> mm</p>
-		                <p>Maximum size (\(t_t\)): <span id="tt"></span> mm</p>
+		    <p>Maximum size (\(t_t\)): <span id="tt"></span> mm</p>
                     <br>
                     <p><u>4. STRENGTH OF WELD</u></p>
                     
                    <p>Vertical Shear Stress (\(P_s\)) : <span id="Ps"></span> N/mm<sup>2</sup> </p>
                    <p>Torsional stress of weld (\(P_b\)) : <span id="Pb"></span> N/mm<sup>2</sup> </p>
                    <p>Resultant Stress (\(P_r\)) : <span id="Pr"></span> N/mm<sup>2</sup> </p>
-		                <p>Check for strength : <span id="Check"></span> </p>
+		   <p>Check for strength : <span id="Check"></span> </p>
                 </div>
             </div>
             <div class="drawing-section">
@@ -1107,7 +1107,7 @@
         const P = parseFloat(document.getElementById('P').value);
         const x = parseFloat(document.getElementById('x').value);
         const t = parseFloat(document.getElementById('t').value);
-        const d = parseFloat(document.getElementById('h1').value);
+        const d = parseFloat(document.getElementById('d').value);
         const Weldtype = document.getElementById('Weldtype').value;
         const Designation = document.getElementById('Designation').value;
         const WeldMeth = document.getElementById('WeldMeth').value;
@@ -1174,7 +1174,7 @@
         else { s1 = 0.7 * tmax; }
 
         // Thickness of throat
-        const tt = Math.max(s1, 3);
+        const tt = math.max(s1, 3);
 
         // Vertical shear stress at weld
         const Ps = P * 1000 / (2*d*tt);
@@ -1185,7 +1185,7 @@
         
 
         // Resultant stress
-        const Pr = math.pow((math.pow(Pb,2)+math.pow(Ps,2)),.5);
+        const Pr = math.pow((math.pow(Pb,2)+math.pow(Ps,2)),0.5);
           
 	    // Check for strength
 	    let Check;
@@ -1199,11 +1199,10 @@
         document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
         document.getElementById('tmin').textContent = tmin.toFixed(0);
         document.getElementById('tmax').textContent = tmax.toFixed(0);
-	      document.getElementById('tt').textContent = tt.toFixed(0);
+	document.getElementById('tt').textContent = tt.toFixed(0);
         document.getElementById('Pb').textContent = Pb.toFixed(2);
         document.getElementById('Ps').textContent = Ps.toFixed(2);
         document.getElementById('Pr').textContent = Pr.toFixed(2);
-        
 	document.getElementById('Check').textContent = Check;
         
     } catch (error) {
