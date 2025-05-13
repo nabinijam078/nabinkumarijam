@@ -1232,7 +1232,7 @@
             const V = parseFloat(document.getElementById('V').value) || 0;
             const G = parseFloat(document.getElementById('G').value) || 0;
             
-            const gamma_w = 1000; // in kg/m3
+            const gamma_w = 0.001; // in gm/mm3
             let e, n, S, w, gamma, gammad, gammasat, G_out;
             
             // Check which input option has values
@@ -1252,15 +1252,15 @@
                 // Specific gravity
                 G_out = (S * e) / w;
                 // unit weight (kg/m3)
-                gamma = (G_out * (1 + w) * gamma_w) / (1 + e);
+                gamma = (G_out * (1 + w) * gamma_w) / (1 + e)*1000000;
                 // Dry density (kg/m3)
-                gammad = (G_out * gamma_w) / (1 + e);
+                gammad = (G_out * gamma_w) / (1 + e)*1000000;
                 // Saturated density (kg/m3)
-                gammasat = ((G_out + e) * gamma_w) / (1 + e);
+                gammasat = ((G_out + e) * gamma_w) / (1 + e)*1000000;
             } 
             else if (Ws2 > 0 && W > 0 && V > 0 && G > 0) {
                 // Using Input Option-2
-                const Vs2 = Ws2 / (G * gamma_w);
+                const Vs2 = Ws2 / (G * gamma_w); 
                 const Vv2 = V - Vs2;
                 e = Vv2 / Vs2;
                 // Moisture content
@@ -1268,9 +1268,9 @@
                 // Degree of saturation
                 S = w * G / e; 
                 // unit weight (kg/m3)
-                gamma = (W / V) * 1000; // Convert from g/mm3 to kg/m3
+                gamma = (W / V) * 1000000; 
                 // Dry density (kg/m3)
-                gammad = (Ws2 / V) * 1000; // Convert from g/mm3 to kg/m3
+                gammad = (Ws2 / V) * 1000000; // Convert from g/mm3 to kg/m3
                 // Saturated density (kg/m3)
                 gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e);
                 // porosity
@@ -1283,14 +1283,14 @@
             }
             
             // Display results
-            document.getElementById('e').textContent = e.toFixed(4);
-            document.getElementById('n').textContent = n.toFixed(4); 
-            document.getElementById('S').textContent = (S * 100).toFixed(2) + "%";
-            document.getElementById('w').textContent = (w * 100).toFixed(2) + "%";
-            document.getElementById('gamma').textContent = gamma.toFixed(2);
-            document.getElementById('gammad').textContent = gammad.toFixed(2);
-            document.getElementById('gammasat').textContent = gammasat.toFixed(2);
-            document.getElementById('G_out').textContent = G_out.toFixed(2);
+            document.getElementById('e').textContent = e.toFixed(1);
+            document.getElementById('n').textContent = n.toFixed(1); 
+            document.getElementById('S').textContent = (S * 100).toFixed(1) + "%";
+            document.getElementById('w').textContent = (w * 100).toFixed(1) + "%";
+            document.getElementById('gamma').textContent = gamma.toFixed(1);
+            document.getElementById('gammad').textContent = gammad.toFixed(1);
+            document.getElementById('gammasat').textContent = gammasat.toFixed(1);
+            document.getElementById('G_out').textContent = G_out.toFixed(1);
         }
 
     </script>
