@@ -1305,7 +1305,7 @@
                 // Dry density (kg/m3)
                 gammad = (Ws2 / V) * 1000000; // Convert from g/mm3 to kg/m3
                 // Saturated density (kg/m3)
-                gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e);
+                gammasat = ((G * gamma_w) + (e * gamma_w)) / (1 + e)* 1000000;
                 // porosity
                 n = e / (1 + e);
                 G_out = G;
