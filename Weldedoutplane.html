@@ -1171,7 +1171,7 @@ function Weldeddesignplate() {
         const Ps = P * 1000 / (2 * d * tt);
 
         // Polar moment of resistance
-        const Pb = 6 * P * 1000 * x / (2 * tt * d * d);
+        const Pb = 6 * P * 1000 * x*1000 / (2 * tt * d * d);
         
         // Resultant stress
         const Pr = Math.sqrt(Math.pow(Pb, 2) + Math.pow(Ps, 2));
