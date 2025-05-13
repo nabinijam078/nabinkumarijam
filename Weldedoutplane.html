@@ -1101,8 +1101,8 @@
             "Fe 590-E": { yieldStrength: { "<20": 450, "20-40": 430, ">40": 420 }, ultimateTensileStrength: 590 },
         };
 
-        function Weldeddesignplate() {
-        try {
+function Weldeddesignplate() {
+    try {
         // Retrieve input values
         const P = parseFloat(document.getElementById('P').value);
         const x = parseFloat(document.getElementById('x').value);
@@ -1122,22 +1122,15 @@
         }
         
         // Partial load factor
-        let Ymw;
-        if (WeldMeth === "At site") { Ymw = 1.5; }
-        else { Ymw = 1.25; }
+        let Ymw = (WeldMeth === "At site") ? 1.5 : 1.25;
 
         // Yield strength of weld
-        let fy;
-        if (Designation === "4") { fy = 330; }
-        else { fy = 400; }
+        let fy = (Designation === "4") ? 330 : 400;
 
         // Ultimate strength of weld
-        let fu;
-        if (Designation === "4") { fu = 410; }
-        else { fu = 510; }
+        let fu = (Designation === "4") ? 410 : 510;
 
-        // Weld specification
-        
+        // Steel properties
         const steelDetails = steelData[steelGrade];
         let thicknessCategory;
         if (t < 20) {
@@ -1169,41 +1162,35 @@
         const tmax = t - 1.5;
 
         // Effective throat thickness
-        let s1;
-        if (Weldtype === "Fillet") { s1 = 0.7 * s; }
-        else { s1 = 0.7 * tmax; }
+        let s1 = (Weldtype === "Fillet") ? 0.7 * s : 0.7 * tmax;
 
         // Thickness of throat
-        const tt = math.max(s1, 3);
+        const tt = Math.max(s1, 3);
 
         // Vertical shear stress at weld
-        const Ps = P * 1000 / (2*d*tt);
+        const Ps = P * 1000 / (2 * d * tt);
 
         // Polar moment of resistance
-       
-        const Pb = 6*P*1000*x/(2*tt*d*d);
+        const Pb = 6 * P * 1000 * x / (2 * tt * d * d);
         
-
         // Resultant stress
-        const Pr = math.pow((math.pow(Pb,2)+math.pow(Ps,2)),0.5);
+        const Pr = Math.sqrt(Math.pow(Pb, 2) + Math.pow(Ps, 2));
           
-	    // Check for strength
-	    let Check;
-	    if (fwd>Pr){Check="OK";}
-	    else {Check="NOT OK";}
-	    
+        // Check for strength
+        const Check = (fwd > Pr) ? "OK" : "NOT OK";
+        
         // Update the result section
         document.getElementById('fy').textContent = fy;
         document.getElementById('fu').textContent = fu;
         document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
         document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
         document.getElementById('tmin').textContent = tmin.toFixed(0);
-        document.getElementById('tmax').textContent = tmax.toFixed(0);
-	document.getElementById('tt').textContent = tt.toFixed(0);
+        document.getElementById('tmax').textContent = tmax.toFixed(1);
+        document.getElementById('tt').textContent = tt.toFixed(1);
         document.getElementById('Pb').textContent = Pb.toFixed(2);
         document.getElementById('Ps').textContent = Ps.toFixed(2);
         document.getElementById('Pr').textContent = Pr.toFixed(2);
-	document.getElementById('Check').textContent = Check;
+        document.getElementById('Check').textContent = Check;
         
     } catch (error) {
         alert("An error occurred during calculation. Please check your inputs.");
