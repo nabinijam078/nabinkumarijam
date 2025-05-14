@@ -1154,6 +1154,7 @@ function sectionalproperties() {
     const count = parseInt(document.getElementById('pointCount').value);
     const coordinates = [];
     
+    // Collect all coordinates
     for (let i = 0; i < count; i++) {
         const x = parseFloat(document.getElementById(`x${i}`).value);
         const y = parseFloat(document.getElementById(`y${i}`).value);
@@ -1163,83 +1164,77 @@ function sectionalproperties() {
         }
     }
     
-    if (coordinates.length > 0) {
-        // Plot the coordinates
-        plotCoordinates(coordinates);
+    if (coordinates.length < 3) {
+        alert('At least 3 points are required to form a closed shape.');
+        return;
+    }
+    
+    // Plot the coordinates
+    plotCoordinates(coordinates);
+    
+    // Calculate area (A) using shoelace formula
+    let areaSum = 0;
+    for (let i = 0; i < coordinates.length; i++) {
+        const j = (i + 1) % coordinates.length;
+        areaSum += coordinates[i].x * coordinates[j].y - coordinates[j].x * coordinates[i].y;
+    }
+    const A = Math.abs(areaSum / 2);
+    
+    // Calculate centroid (x̄, ȳ)
+    let cxSum = 0, cySum = 0;
+    for (let i = 0; i < coordinates.length; i++) {
+        const j = (i + 1) % coordinates.length;
+        const factor = coordinates[i].x * coordinates[j].y - coordinates[j].x * coordinates[i].y;
+        cxSum += (coordinates[i].x + coordinates[j].x) * factor;
+        cySum += (coordinates[i].y + coordinates[j].y) * factor;
+    }
+    const xbar = cxSum / (6 * A);
+    const ybar = cySum / (6 * A);
+    
+    // Calculate moments of inertia about centroid (Ix, Iy, Ixy)
+    let Ix = 0, Iy = 0, Ixy = 0;
+    for (let i = 0; i < coordinates.length; i++) {
+        const j = (i + 1) % coordinates.length;
+        const xi = coordinates[i].x - xbar;
+        const yi = coordinates[i].y - ybar;
+        const xj = coordinates[j].x - xbar;
+        const yj = coordinates[j].y - ybar;
         
-        // Calculate area (A) using shoelace formula
-        const A = coordinates.reduce((sum, coord, i, arr) => {
-            const next = arr[(i + 1) % arr.length];
-            return sum + (coord.x * next.y - next.x * coord.y);
-        }, 0) / 2;
+        const common = xi * yj - xj * yi;
         
-        const absA = Math.abs(A);
-        
-        // Calculate centroid (x̄, ȳ)
-        const xbar = coordinates.reduce((sum, coord, i, arr) => {
-            const next = arr[(i + 1) % arr.length];
-            return sum + (coord.x + next.x) * (coord.x * next.y - next.x * coord.y);
-        }, 0) / (6 * A);
-        
-        const ybar = coordinates.reduce((sum, coord, i, arr) => {
-            const next = arr[(i + 1) % arr.length];
-            return sum + (coord.y + next.y) * (coord.x * next.y - next.x * coord.y);
-        }, 0) / (6 * A);
-        
-        // Calculate moments of inertia about centroid (Ix, Iy, Ixy)
-        let Ix = 0, Iy = 0, Ixy = 0;
-        
-        for (let i = 0; i < coordinates.length; i++) {
-            const j = (i + 1) % coordinates.length;
-            const xi = coordinates[i].x - xbar;
-            const yi = coordinates[i].y - ybar;
-            const xj = coordinates[j].x - xbar;
-            const yj = coordinates[j].y - ybar;
-            
-            const common = xi * yj - xj * yi;
-            
-            Ix += (yi * yi + yi * yj + yj * yj) * common;
-            Iy += (xi * xi + xi * xj + xj * xj) * common;
-            Ixy += (xi * yj + 2 * xi * yi + 2 * xj * yj + xj * yi) * common;
-        }
-        
-        Ix /= 12;
-        Iy /= 12;
-        Ixy /= 24;
-        
-        // Calculate principal moments and orientation
-        const Iavg = (Ix + Iy) / 2;
-        const R = Math.sqrt(((Ix - Iy) / 2) ** 2 + Ixy ** 2);
-        const Imax = Iavg + R;
-        const Imin = Iavg - R;
-        const theta = Math.atan2(2 * Ixy, Ix - Iy) * 90 / Math.PI;
-        
-        // Display results
-        document.getElementById('A').textContent = absA.toFixed(4);
-        document.getElementById('xbar').textContent = xbar.toFixed(4);
-        document.getElementById('ybar').textContent = ybar.toFixed(4);
-        
-        // Add the moment of inertia results to the output
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `
-            <h3><u>OUTPUT</u></h3>
-            <p><strong>Area of section (\(A\)):</strong> <span>${absA.toFixed(4)}</span> m<sup>2</sup></p>
-            <p><strong>Centroid about x (\(\bar{x}\)):</strong> <span>${xbar.toFixed(4)}</span> m</p>
-            <p><strong>Centroid about y (\(\bar{y}\)):</strong> <span>${ybar.toFixed(4)}</span> m</p>
-            <h4>Moments of Inertia about Centroidal Axes:</h4>
-            <p><strong>I<sub>x</sub> (about x-axis):</strong> ${Ix.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>y</sub> (about y-axis):</strong> ${Iy.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>xy</sub> (product moment):</strong> ${Ixy.toExponential(4)} m<sup>4</sup></p>
-            <h4>Principal Moments of Inertia:</h4>
-            <p><strong>I<sub>max</sub> (maximum):</strong> ${Imax.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>min</sub> (minimum):</strong> ${Imin.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>Principal angle (θ):</strong> ${theta.toFixed(2)}° from x-axis</p>
-        `;
-        
-    } else {
-        alert('Please enter valid coordinates for at least one point.');
+        Ix += (yi * yi + yi * yj + yj * yj) * common;
+        Iy += (xi * xi + xi * xj + xj * xj) * common;
+        Ixy += (xi * yj + 2 * xi * yi + 2 * xj * yj + xj * yi) * common;
+    }
+    
+    Ix = Math.abs(Ix / 12);
+    Iy = Math.abs(Iy / 12);
+    Ixy = Ixy / 24;
+    
+    // Calculate principal moments and orientation
+    const Iavg = (Ix + Iy) / 2;
+    const R = Math.sqrt(Math.pow((Ix - Iy) / 2, 2) + Math.pow(Ixy, 2));
+    const Imax = Iavg + R;
+    const Imin = Iavg - R;
+    const theta = Math.atan2(2 * Ixy, Ix - Iy) * 90 / Math.PI;
+    
+    // Display results
+    document.getElementById('A').textContent = A.toFixed(4);
+    document.getElementById('xbar').textContent = xbar.toFixed(4);
+    document.getElementById('ybar').textContent = ybar.toFixed(4);
+    document.getElementById('Ix').textContent = Ix.toExponential(4);
+    document.getElementById('Iy').textContent = Iy.toExponential(4);
+    document.getElementById('Ixy').textContent = Ixy.toExponential(4);
+    document.getElementById('Imax').textContent = Imax.toExponential(4);
+    document.getElementById('Imin').textContent = Imin.toExponential(4);
+    document.getElementById('theta').textContent = theta.toFixed(2);
+    
+    // Render MathJax to update the mathematical notation
+    if (typeof MathJax !== 'undefined') {
+        MathJax.typeset();
     }
 }
+
 
     </script>
 </body>
