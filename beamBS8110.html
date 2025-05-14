@@ -886,7 +886,68 @@
      <!-- Main Content -->
       <div class="main-container">
       <h3><u><center>BEAM DESIGN AS PER BS 8110: 1997</center></u></h3>
-        
+             <h2><u><center>BEAM DESIGN</center></u></h2>
+      <form id="beamSectionForm">
+       <label for="fck">Grade of Concrete (\(f_{ck}\) in MPa): </label>
+                <select id="fck">
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                </select>
+                <label for="fy"><br><br>Grade of Steel (\(f_y\) in MPa): </label>
+                <select id="fy">
+                    <option value="250">250</option>
+                    <option value="415">415</option>
+                    <option value="500">500</option>
+                </select>
+        <div class="input-group">
+            <label for="width">Width of Beam (\(b\) in mm):</label>
+            <input type="number" id="width" required>
+        </div>
+        <div class="input-group">
+            <label for="depth">Overall Depth of Beam (\(d\) in mm):</label>
+            <input type="number" id="depth" required>
+        </div>
+        <div class="input-group">
+            <label for="cover">Effective cover of beam (\(c\) in mm):</label>
+            <input type="number" id="cover" required>
+        </div>
+        <div class="input-group">
+            <label for="dm">Diameter of main Reinforcement (\(Φ_m\) in mm):</label>
+            <input type="number" id="dm" required>
+        </div>
+        <div class="input-group">
+            <label for="ds">Diameter of Shear Reinforcement (\(Φ_s\) in mm):</label>
+            <input type="number" id="ds" required>
+        </div>
+        <div class="input-group">
+            <label for="nl">Number of legs of shear reinforcement (\(n_l\)):</label>
+            <input type="number" id="nl" required>
+        </div>
+        <div class="input-group">
+            <label for="moment">Factored Bending Moment (\(M_u\) in kNm):</label>
+            <input type="number" id="moment" step="0.01" required>
+        </div>
+        <div class="input-group">
+            <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
+            <input type="number" id="shear" step="0.01" required>
+        </div>
+        <button type="button" onclick="calculateBeamSection()" class="btn">DESIGN SECTION</button>
+      </form>
+
+      <div class="result" id="result">
+        <h3><u>DESIGN RESULT</u></h3>
+        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span> kN.m</p>
+        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
+        <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
+        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
+        <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
+        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
+        <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
+      </div>
     </div>
 
     <!-- Footer -->
