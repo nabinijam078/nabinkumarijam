@@ -903,17 +903,17 @@
 <br>
       <div class="result" id="result">
         <h3><u>OUTPUT</u></h3>
-            <p><strong>Area of section (\(A\)):</strong> <span>${absA.toFixed(4)}</span> m<sup>2</sup></p>
-            <p><strong>Centroid about x (\(\bar{x}\)):</strong> <span>${xbar.toFixed(4)}</span> m</p>
-            <p><strong>Centroid about y (\(\bar{y}\)):</strong> <span>${ybar.toFixed(4)}</span> m</p>
+            <p><strong>Area of section (\(A\)):</strong> <span id="A"></span> m<sup>2</sup></p>
+            <p><strong>Centroid about x (\(\bar{x}\)):</strong> <span id="xbar"></span> m</p>
+            <p><strong>Centroid about y (\(\bar{y}\)):</strong> <span id="ybar"></span> m</p>
             <h4>Moments of Inertia about Centroidal Axes:</h4>
-            <p><strong>I<sub>x</sub> (about x-axis):</strong> ${Ix.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>y</sub> (about y-axis):</strong> ${Iy.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>xy</sub> (product moment):</strong> ${Ixy.toExponential(4)} m<sup>4</sup></p>
+            <p><strong>I<sub>x</sub> (about x-axis):</strong> <span id="Ix"></span> m</p>
+            <p><strong>I<sub>y</sub> (about y-axis):</strong> <span id="Iy"></span> m</p>
+            <p><strong>I<sub>xy</sub> (product moment):</strong> <span id="Ixy"></span> m</p>
             <h4>Principal Moments of Inertia:</h4>
-            <p><strong>I<sub>max</sub> (maximum):</strong> ${Imax.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>I<sub>min</sub> (minimum):</strong> ${Imin.toExponential(4)} m<sup>4</sup></p>
-            <p><strong>Principal angle (θ):</strong> ${theta.toFixed(2)}° from x-axis</p>
+            <p><strong>I<sub>max</sub> (maximum):</strong> <span id="Imax"></span> m</p>
+            <p><strong>I<sub>min</sub> (minimum):</strong> <span id="Imin"></span> m</p>
+            <p><strong>Principal angle (θ):</strong><span id="theta"></span>° from x-axis</p>
        
       </div>
 <div id="chartContainer" style="width: 100%; max-width: 600px; margin: 20px auto;">
