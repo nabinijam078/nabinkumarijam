@@ -948,9 +948,10 @@
         <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
 	<b>2. SHEAR REINFORCEMENT</b>
+	<br>
 	<i>If \(sv=0\), "Minimum Shear reinforcement and if \(sv=1\), Shear force greater than maximum so change the thickness</i>
-	<p>Shear stress (\v\):</strong> <span id="v"></span>N/mm²</p>
-	<p>Shear strength (\v_c\):</strong> <span id="vc"></span>N/mm²</p>
+	<p>Shear stress (\(v\)):</strong> <span id="v"></span>N/mm²</p>
+	<p>Shear strength (\(v_c\)):</strong> <span id="vc"></span>N/mm²</p>
         <p><strong>Shear Reinforcement:</strong> <span id="sv"></span>mm</p>
 	      
         
@@ -1134,9 +1135,9 @@
         }
         Asc = (M - k1*fcu*b*de*de)/((fsc - 0.446*fcu)*(de - cover));
     }
-    
+    const Asta=Math.max(0.13/100*b*de,Ast);
     const Am = Math.PI * Math.pow(dm, 2)/4;
-    const n1 = Math.ceil(Ast/Am); 
+    const n1 = Math.ceil(Asta/Am); 
     const n2 = Math.ceil(Asc/Am); 
     const Astp = n1 * Am;
     
@@ -1151,15 +1152,15 @@
     
     if (v < 0.5*vc) {
         sv = 0;
-    } else if (vc + 0.4 < v) {
+    } else if (vc + 0.4 < v && v< Math.min(0.8*math.pow(fcu,0.5),5) {
         sv = 0.87*fy*Agv/(0.4*b);
     } else {
-        sv = 1;
+        sv = Agv*0.87*fy/(b*(v-vc));
     }
     
     // Display results
     document.getElementById('Mulim').textContent = (k1 * fcu * b * de * de / 1e6).toFixed(3);
-    document.getElementById('steelArea').textContent = Ast.toFixed(1);
+    document.getElementById('steelArea').textContent = Asta.toFixed(1);
     document.getElementById('n1').textContent = n1;
     document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
     document.getElementById('n2').textContent = n2;
