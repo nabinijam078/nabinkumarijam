@@ -940,14 +940,20 @@
 
       <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
+	<b>1. MAIN REINFORCEMENT</b>
+	<p><strong>Section Type:</strong> <span id="sectionType"></span></p>
         <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span> kN.m</p>
         <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
         <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
         <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
+	<b>2. SHEAR REINFORCEMENT</b>
+	<i>If \(sv=0\), "Minimum Shear reinforcement and if \(sv=1\), Shear force greater than maximum so change the thickness</i>
+	<p>Shear stress (\v\):</strong> <span id="v"></span>N/mm²</p>
+	<p>Shear strength (\v_c\):</strong> <span id="vc"></span>N/mm²</p>
         <p><strong>Shear Reinforcement:</strong> <span id="sv"></span>mm</p>
-	      <i>If sv=0, "Minimum Shear reinforcement and if sv=1, Shear force greater than maximum so change the thickness</i>
-        <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
+	      
+        
       </div>
     </div>
 
@@ -1158,6 +1164,8 @@
     document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
     document.getElementById('n2').textContent = n2;
     document.getElementById('sv').textContent = sv.toFixed(0);
+    document.getElementById('v').textContent = v.toFixed(2);
+    document.getElementById('vc').textContent = vc.toFixed(2);
     document.getElementById('sectionType').textContent = sectionType;
 }
 
