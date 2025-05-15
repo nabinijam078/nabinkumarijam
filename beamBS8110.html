@@ -914,11 +914,11 @@
             <input type="number" id="cover" required>
         </div>
         <div class="input-group">
-            <label for="dm">Diameter of main Reinforcement (\(Φ_m\) in mm):</label>
+            <label for="dm">Diameter of main Reinforcement (\(\phi_m\) in mm):</label>
             <input type="number" id="dm" required>
         </div>
         <div class="input-group">
-            <label for="ds">Diameter of Shear Reinforcement (\(Φ_s\) in mm):</label>
+            <label for="ds">Diameter of Shear Reinforcement (\(\phi_s\) in mm):</label>
             <input type="number" id="ds" required>
         </div>
         <div class="input-group">
@@ -933,7 +933,7 @@
             <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
             <input type="number" id="shear" step="0.01" required>
         </div>
-	      <i>Assumed redistribution coefficient is less than 10%</i>
+	      <i>(Assumed redistribution coefficient is less than 10%)</i>
 	      <br>
 	      <br>
         <button type="button" onclick="calculateBeamSection()" class="btn">DESIGN SECTION</button>
@@ -1139,8 +1139,8 @@
     }
     const Asta=Math.max(0.13/100*b*de,Ast);
     const Am = Math.PI * Math.pow(dm, 2)/4;
-    const n1 = Math.ceil(Asta/Am); 
-    const n2 = Math.ceil(Asc/Am); 
+    const n1 = Math.max(Math.ceil(Asta/Am),2); 
+    const n2 = Math.max(Math.ceil(Asc/Am),2); 
     const Astp = n1 * Am;
     
     // Shear reinforcement
