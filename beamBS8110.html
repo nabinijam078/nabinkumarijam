@@ -10,8 +10,7 @@
     <!-- MathJax Configuration -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- Import Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 
     <style>
         /* ===== Base Styles ===== */
@@ -1082,69 +1081,85 @@
                 this.reset();
             });
         }
-	      function calculateBeamSection() {
-        // Input values
-        const width = parseFloat(document.getElementById('width').value); // b in mm
-        const depth = parseFloat(document.getElementById('depth').value); // D in mm
-        const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
-        const fcu = parseFloat(document.getElementById('fcu').value); // fck in MPa
-        const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
-        const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
-        const ds = parseFloat(document.getElementById('ds').value); // Diameter of Shear reinforcement in mm
-        const nl = parseFloat(document.getElementById('nl').value); // Number of legs of shear reinforcement
-        const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
-        const shear = parseFloat(document.getElementById('shear').value); // Vu in kN      
+	    
+     function calculateBeamSection() {
+    // Input values
+    const width = parseFloat(document.getElementById('width').value); // b in mm
+    const depth = parseFloat(document.getElementById('depth').value); // D in mm
+    const cover = parseFloat(document.getElementById('cover').value); // Effective cover in mm
+    const fcu = parseFloat(document.getElementById('fck').value); // Note: Changed from 'fcu' to 'fck' to match HTML
+    const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+    const dm = parseFloat(document.getElementById('dm').value); // Diameter of Main reinforcement in mm
+    const ds = parseFloat(document.getElementById('ds').value); // Diameter of Shear reinforcement in mm
+    const nl = parseFloat(document.getElementById('nl').value); // Number of legs of shear reinforcement
+    const moment = parseFloat(document.getElementById('moment').value); // Mu in kNm
+    const shear = parseFloat(document.getElementById('shear').value); // Vu in kN
 
-	const k1=0.156;
-	// Effective depth
-	const de=depth-cover-dm/2;
-	const M=moment*1e6;
-	const F=shear*1000;
-	const b=width;
-	// Calculated k
-	const k=M/(fcu*b*de*de);
-	// Check for beam type
-	let Ast, Asc, sectionType;
-	if(k1>k){sectionType="Singly";
-		 z=Math.min((0.5+math.sqrt(0.25-k/.9)),0.95)*de;
-		 Ast=M/(0.87*fy*z);
-		 Asc=0;
-		} else {sectiontype="Doubly";
-			z=Math.min((0.5+math.sqrt(0.25-k1/.9)),0.776887)*de;
-			Ast=(k-k1)*fcu*b*de*de/(0.87*fy*(de-cover))+k1*fcu*b*de*de/(0.87*fy*z);
-			x=(de-z)/0.45;
-			esc=(de/x-1)*0.0035;
-			fsc=esc*2e5;
-			let fsc;
-			if (fsc<0.87*fy){fsc=2e5*esc;}
-			else {fsc=0.87*fy;}
-			Asc=(M-k1*fcu*b*de*de)/((fsc-0.446*fcu)*(de-cover));
-		       }
-	const Am=3.1416*math.pow(dm,2)/4;
-	const n1=Math.roundup(Ast/Am,0);
-	const n2=Math.roundup(Asc/Am,0);
-	const Astp=ns*Am;
-	
-        // Shear reinforcement
-	const v=F/(b*de);
-	const k1=Math.max(100*Astp/(b*de),1);
-	const k2=Math.max(400/de,1);
-	const k3=Math.max(fcu/25,1);
-	const vc=0.79*Math.pow(k1,1/3)*Math.pow(k2,1/4)*Math.pow(k3,1/3)/1.25;
-	const Agv=nl*3.1416*Math.pow(ds,2)/4;
-	let sv;
-	if (v<0.5*vc){sv=0;}
-	else if (vc+0.4<v){sv=0.87*fy*Agv/(0.4*b);)
-		else {sv=1}
-	 // Display results
-        document.getElementById('Mulim').textContent = Mulim.toFixed(3);
-        document.getElementById('steelArea').textContent = Ast.toFixed(1);
-        document.getElementById('n1').textContent = n1;
-        document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
-        document.getElementById('n2').textContent = n2;
-        document.getElementById('sv').textContent = shearReinforcement.toFixed(0);
-        document.getElementById('sectionType').textContent = sectionType;
-	      }
+    const k1 = 0.156;
+    // Effective depth
+    const de = depth - cover - dm/2;
+    const M = moment * 1e6;
+    const F = shear * 1000;
+    const b = width;
+    
+    // Calculated k
+    const k = M/(fcu*b*de*de);
+    
+    // Check for beam type
+    let Ast, Asc, sectionType, z, x, esc, fsc;
+    
+    if(k1 > k) {
+        sectionType = "Singly";
+        z = Math.min((0.5 + Math.sqrt(0.25 - k/0.9)), 0.95) * de;
+        Ast = M/(0.87*fy*z);
+        Asc = 0;
+    } else {
+        sectionType = "Doubly";
+        z = Math.min((0.5 + Math.sqrt(0.25 - k1/0.9)), 0.776887) * de;
+        Ast = (k - k1)*fcu*b*de*de/(0.87*fy*(de-cover)) + k1*fcu*b*de*de/(0.87*fy*z);
+        x = (de - z)/0.45;
+        esc = (de/x - 1)*0.0035;
+        fsc = esc*2e5;
+        
+        if (fsc < 0.87*fy) {
+            fsc = 2e5*esc;
+        } else {
+            fsc = 0.87*fy;
+        }
+        Asc = (M - k1*fcu*b*de*de)/((fsc - 0.446*fcu)*(de - cover));
+    }
+    
+    const Am = Math.PI * Math.pow(dm, 2)/4;
+    const n1 = Math.ceil(Ast/Am); 
+    const n2 = Math.ceil(Asc/Am); 
+    const Astp = n1 * Am;
+    
+    // Shear reinforcement
+    const v = F/(b*de);
+    const k1_shear = Math.max(100*Astp/(b*de), 1); 
+    const k2 = Math.max(400/de, 1);
+    const k3 = Math.max(fcu/25, 1);
+    const vc = 0.79*Math.pow(k1_shear, 1/3)*Math.pow(k2, 1/4)*Math.pow(k3, 1/3)/1.25;
+    const Agv = nl * Math.PI * Math.pow(ds, 2)/4;
+    let sv;
+    
+    if (v < 0.5*vc) {
+        sv = 0;
+    } else if (vc + 0.4 < v) {
+        sv = 0.87*fy*Agv/(0.4*b);
+    } else {
+        sv = 1;
+    }
+    
+    // Display results
+    document.getElementById('Mulim').textContent = (k1 * fcu * b * de * de / 1e6).toFixed(3);
+    document.getElementById('steelArea').textContent = Ast.toFixed(1);
+    document.getElementById('n1').textContent = n1;
+    document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+    document.getElementById('n2').textContent = n2;
+    document.getElementById('sv').textContent = sv.toFixed(0);
+    document.getElementById('sectionType').textContent = sectionType;
+}
 
     </script>
 </body>
