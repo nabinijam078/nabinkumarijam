@@ -1089,7 +1089,8 @@
             });
         }
 	    
-     function calculateBeamSection() {
+     
+ function calculateBeamSection() {
     // Input values
     const width = parseFloat(document.getElementById('width').value); // b in mm
     const depth = parseFloat(document.getElementById('depth').value); // D in mm
@@ -1152,7 +1153,7 @@
     
     if (v < 0.5*vc) {
         sv = 0;
-    } else if (vc + 0.4 < v && v< Math.min(0.8*math.pow(fcu,0.5),5) {
+    } else if (vc + 0.4 < v && v < Math.min(0.8*Math.pow(fcu,0.5), 5)) {
         sv = 0.87*fy*Agv/(0.4*b);
     } else {
         sv = Agv*0.87*fy/(b*(v-vc));
