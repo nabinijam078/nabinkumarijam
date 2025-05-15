@@ -946,7 +946,8 @@
         <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
         <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
-        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
+        <p><strong>Shear Reinforcement:</strong> <span id="sv"></span>mm</p>
+	      <i>If sv=0, "Minimum Shear reinforcement and if sv=1, Shear force greater than maximum so change the thickness</i>
         <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
       </div>
     </div>
@@ -1105,21 +1106,44 @@
 	// Check for beam type
 	let Ast, Asc, sectionType;
 	if(k1>k){sectionType="Singly";
-		 z=math.min((0.5+math.sqrt(0.25-k/.9)),0.95)*de;
+		 z=Math.min((0.5+math.sqrt(0.25-k/.9)),0.95)*de;
 		 Ast=M/(0.87*fy*z);
 		 Asc=0;
 		} else {sectiontype="Doubly";
-			z=math.min((0.5+math.sqrt(0.25-k1/.9)),0.776887)*de;
+			z=Math.min((0.5+math.sqrt(0.25-k1/.9)),0.776887)*de;
 			Ast=(k-k1)*fcu*b*de*de/(0.87*fy*(de-cover))+k1*fcu*b*de*de/(0.87*fy*z);
 			x=(de-z)/0.45;
-			
+			esc=(de/x-1)*0.0035;
+			fsc=esc*2e5;
+			let fsc;
+			if (fsc<0.87*fy){fsc=2e5*esc;}
+			else {fsc=0.87*fy;}
 			Asc=(M-k1*fcu*b*de*de)/((fsc-0.446*fcu)*(de-cover));
 		       }
+	const Am=3.1416*math.pow(dm,2)/4;
+	const n1=Math.roundup(Ast/Am,0);
+	const n2=Math.roundup(Asc/Am,0);
+	const Astp=ns*Am;
 	
-        
-       
-
-
+        // Shear reinforcement
+	const v=F/(b*de);
+	const k1=Math.max(100*Astp/(b*de),1);
+	const k2=Math.max(400/de,1);
+	const k3=Math.max(fcu/25,1);
+	const vc=0.79*Math.pow(k1,1/3)*Math.pow(k2,1/4)*Math.pow(k3,1/3)/1.25;
+	const Agv=nl*3.1416*Math.pow(ds,2)/4;
+	let sv;
+	if (v<0.5*vc){sv=0;}
+	else if (vc+0.4<v){sv=0.87*fy*Agv/(0.4*b);)
+		else {sv=1}
+	 // Display results
+        document.getElementById('Mulim').textContent = Mulim.toFixed(3);
+        document.getElementById('steelArea').textContent = Ast.toFixed(1);
+        document.getElementById('n1').textContent = n1;
+        document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+        document.getElementById('n2').textContent = n2;
+        document.getElementById('sv').textContent = shearReinforcement.toFixed(0);
+        document.getElementById('sectionType').textContent = sectionType;
 	      }
 
     </script>
