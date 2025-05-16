@@ -1103,8 +1103,8 @@
                 this.reset();
             });
         }
-	    function calculateBeamSection() {
-    const bw = parseFloat(document.getElementById(bw').value); 
+function calculateBeamSection() {
+    const bw = parseFloat(document.getElementById('bw').value); 
     const dw = parseFloat(document.getElementById('dw').value);
     const tf = parseFloat(document.getElementById('tf').value);	    
     const bf = parseFloat(document.getElementById('bf').value);	  
@@ -1119,85 +1119,94 @@
 
     const k1 = 0.156;
     // Effective depth
-    const depth=dw+df;
+    const depth = dw + tf;
     const de = depth - cover - dm/2;
     const M = moment * 1e6;
     const F = shear * 1000;
-    // calculation of trial k
-    const kt=M/(fcu*bf*Math.pow(de,2));
-    // calculation of lever arm, z
-    const z=Math.min((0.5 + Math.pow((0.25 - kt / 0.9),0.5)) * de, 0.95 * de)
-	// calculation of neutral axis
-    const x=(de-z)/0.45;
-	// calculation of depth of compression block
-     const a=0.9*x;
-   // check for position of neutral axis
-	let position,Ast,Asc,z;
-	if (a<tf){
-		position="Flange as beam";
-		k=kt;
-		Ast=M/(0.87*fy*z);
-		Asc=0;
-	}
-	else {
-		position="Web as beam";
-		Mf = 0.446 * fcu * (bf - bw) * tf * (de - 0.5 * tf);
-		Mw=M-Mf;
-		kw=Mw/(fcu*bw*Math.pow(tw,2));
-		let sectiontype;
-		if (kw<k1){
-			sectiontype="Singly";
-			zw=de * Math.min(0.5 + Math.pow((0.25 - kw / 0.9), 0.5),0.95*de);
-			Ast = Mf  / (0.87 * (de - 0.5 * tf)) + Mw  / (0.87 * fy * zw);
-			Asc=0;
-		}
-		else {
-			sectiontype="Doubly";
-			Muw = 0.156 * fcu * bw * Math.pow(de,2);
-			fs=Math.min(700 * (1 - 2 * cover / de),0.87 * fy);
-			Asc = (Mw - Muw)  / ((fs - 0.446 * fcu) * (de - cover));
-			Ast = Mf / (de - 0.5 * tf)/ (0.87 * fy)  + Muw / (0.777 * de) + (Mw - Muw) / (de - cover);
-			
-		}    
-	    }  
-	// DESIGN OF SHEAR REINFORCEMENT
-	const A1 = (Math.PI * Math.pow(dm, 2)) / 4; 
-        const n1 = Math.max(Math.ceil(Ast / A1), 2); // Number of tensile steel bars
-        const n2 = Math.max(Math.ceil(Asc / A1), 2); // Number of compression steel bars
-	const Astp=n1*A1;
-		    
-		  let pt;
-		    if (a>tf){
-			    pt = Astp / (bf * de) * 100;
-		    } else {
-			    pt = Astp / (bf * de) * 100;
-		    }
-	// Shear force calculation
-		    let v;
-		    if (a>tf){
-			  v = F / (bf * tf + bw * dw);  
-		    } else {
-				 v= F * 1000 / (bf * de);
-		    }
-
-	 const k1_shear = Math.max(pt, 1); 
-    	const k2 = Math.max(400/de, 1);
-    	const k3 = Math.max(fcu/25, 1);
-    	const vc = 0.79*Math.pow(k1_shear, 1/3)*Math.pow(k2, 1/4)*Math.pow(k3, 1/3)/1.25;
-    	const Agv = nl * Math.PI * Math.pow(ds, 2)/4;
-	let sv;
     
-    	if (v < 0.5*vc) {
-        sv = 0.87 * fy * Asv / (bw * 0.4);
-    	} else if (vc + 0.4 < v && v < Math.min(0.8*Math.pow(fcu,0.5), 5)) {
+    // calculation of trial k
+    const kt = M/(fcu*bf*Math.pow(de,2));
+    
+    // calculation of lever arm, z
+    let z = Math.min((0.5 + Math.pow((0.25 - kt / 0.9),0.5)) * de, 0.95 * de);
+    
+    // calculation of neutral axis
+    const x = (de-z)/0.45;
+    
+    // calculation of depth of compression block
+    const a = 0.9*x;
+    
+    // check for position of neutral axis
+    let position, Ast, Asc, sectionType;
+    
+    if (a < tf) {
+        position = "Flange as beam";
+        sectionType = "Singly";
+        Ast = M/(0.87*fy*z);
+        Asc = 0;
+    }
+    else {
+        position = "Web as beam";
+        const Mf = 0.446 * fcu * (bf - bw) * tf * (de - 0.5 * tf);
+        const Mw = M - Mf;
+        const kw = Mw/(fcu*bw*Math.pow(de,2));
+        
+        if (kw < k1) {
+            sectionType = "Singly";
+            const zw = de * Math.min(0.5 + Math.pow((0.25 - kw / 0.9), 0.5), 0.95*de);
+            Ast = Mf / (0.87 * fy * (de - 0.5 * tf)) + Mw / (0.87 * fy * zw);
+            Asc = 0;
+        }
+        else {
+            sectionType = "Doubly";
+            const Muw = 0.156 * fcu * bw * Math.pow(de,2);
+            const fs = Math.min(700 * (1 - 2 * cover / de), 0.87 * fy);
+            Asc = (Mw - Muw) / ((fs - 0.446 * fcu) * (de - cover));
+            Ast = Mf / (0.87 * fy * (de - 0.5 * tf)) + Muw / (0.87 * fy * 0.777 * de) + (Mw - Muw) / (0.87 * fy * (de - cover));
+        }    
+    }  
+    
+    // DESIGN OF SHEAR REINFORCEMENT
+    const A1 = (Math.PI * Math.pow(dm, 2)) / 4; 
+    const n1 = Math.max(Math.ceil(Ast / A1), 2); // Number of tensile steel bars
+    const n2 = Math.max(Math.ceil(Asc / A1), 2); // Number of compression steel bars
+    const Astp = n1*A1;
+    
+    let pt;
+    if (a > tf) {
+        pt = Astp / (bw * de) * 100;
+    } else {
+        pt = Astp / (bf * de) * 100;
+    }
+    
+    // Shear force calculation
+    let v;
+    if (a > tf) {
+        v = F / (bw * de);
+    } else {
+        v = F / (bf * de);
+    }
+
+    const k1_shear = Math.max(pt, 1); 
+    const k2 = Math.max(400/de, 1);
+    const k3 = Math.max(fcu/25, 1);
+    const vc = 0.79*Math.pow(k1_shear, 1/3)*Math.pow(k2, 1/4)*Math.pow(k3, 1/3)/1.25;
+    const Agv = nl * Math.PI * Math.pow(ds, 2)/4;
+    let sv;
+    
+    if (v < 0.5*vc) {
+        sv = 0.87 * fy * Agv / (bw * 0.4);
+    } else if (vc + 0.4 < v && v < Math.min(0.8*Math.pow(fcu,0.5), 5)) {
         sv = 0.87*fy*Agv/(0.4*bw);
-    	} else {
+    } else {
         sv = Agv*0.87*fy/(bw*(v-vc));
-   	 }
-    const svs=Math.min(300,sv);
-	// Display results
+    }
+    
+    const svs = Math.min(300, sv);
+    
+    // Display results
     document.getElementById('position').textContent = position;
-    document.getElementById('steelArea').textContent = Asta.toFixed(1);
+    document.getElementById('steelArea').textContent = Ast.toFixed(1);
     document.getElementById('n1').textContent = n1;
     document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
     document.getElementById('n2').textContent = n2;
@@ -1206,8 +1215,7 @@
     document.getElementById('v').textContent = v.toFixed(2);
     document.getElementById('vc').textContent = vc.toFixed(2);
     document.getElementById('sectionType').textContent = sectionType;
-		    
-	    }
+}
         
     </script>
 </body>
