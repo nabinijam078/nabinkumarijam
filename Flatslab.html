@@ -919,12 +919,12 @@
         </div>
 	    <br>
 	<div class="input-group">
-            <label for="a">Long dimension of column (\(b\) in mm):</label>
+            <label for="b">Long dimension of column (\(b\) in mm):</label>
             <input type="number" id="a" required>
         </div>
 	 <br>
 	<div class="input-group">
-            <label for="b">Short dimension of column (\(d\) in mm):</label>
+            <label for="d">Short dimension of column (\(d\) in mm):</label>
             <input type="number" id="b" required>
         </div>
 	      <br>
@@ -975,180 +975,18 @@
         <h3><u>DESIGN RESULT</u></h3>
 	<b>1.DROP IF PROVIDED </b>
 	<p><strong>Minimum width of drop(\(l_{min}\))</strong> <span id="lmin"></span>m</p> 
-        <p><strong>Ignorace of drop:</strong> <span id="DropI"></span>m</p>
+        <p><strong>Ignorace of drop:</strong> <span id="DropI"></span></p>
 	<p><strong>Width of Column strip :</strong> <span id="ColW"></span>m</p>
 	<b>2. COLUMN HEADS (Clause 3.7.1.3)</b>
 	<p><strong>Length of Column head (\(l_h\)):</strong> <span id="lh"></span>m</p>
-	<p><strong>Effective diameter of column head:</strong> <span id="ColW"></span>m</p>
+	<p><strong>Effective diameter of column head:</strong> <span id="ColWid"></span>m</p>
 	<b>3. DIVISION OF PANEL</b>
 	
 	<p><strong>3.1 Column strip</strong> <span id="ColW"></span>m</p>
 	<p>3.2 Middle strip</p>
-	<p><strong>Long direction (\(l_1\)):</strong> <span id="l1"></span>m</p>
-	<p><strong>Short direction (\(l_2\)):</strong> <span id="l2"></span>m</p>
-	<b>4. CALCULATION OF MOMENTS</b>
-	<p>4.1 MOMENTS </p>
-	<table class="load-table">
-		<tr>
-			<td colspan="2"> Moments </td>
-			<td>x-direction</td>
-			<td>y-direction</td>
-			<td>Clause</td>
-		</tr>
-		<tr>
-			<td colspan="5">Negative moments</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Reduction of support moment</td>
-			<td>Internal support</td>
-			<td>MX1</td>
-			<td>MY1</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>External Support</td>
-			<td>MX2</td>
-			<td>MY2</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td rowspan="3">Design moment at support</td>
-			<td>Outer support</td>
-			<td>MXD1</td>
-			<td>MYD1</td>
-			<td>3.7.2.7 d)</td>
-			
-		</tr>
-		<tr>
-			<td>First interior support</td>
-			<td>MXD2</td>
-			<td>MYD2</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>Interior support</td>
-			<td>MXD3</td>
-			<td>MYD3</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td colspan="5">Positive moments</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Design moment at support</td>
-			<td>Outer support</td>
-			<td>MX3</td>
-			<td>MY3</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>Middle Interior support</td>
-			<td>MX4</td>
-			<td>MY4</td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-	</table>
-		<p>4.2 DISTRIBUTION OF DESIGN MOMENTS IN PANELS OF FLAT SLAB</p>
-		<table class="load-table">
-			<tr>
-			<td rowspan="2">Position</td>
-			<td colspan="2">Column strip</td>
-			<td colspan="2">Mid strip</td>
-			</tr>
-			<tr>
-				<td>Total moment</td>
-				<td>Mt/width</td>
-				<td>Total moment</td>
-				<td>Mt/width</td>
-			</tr>
-			<tr>
-				<td colspan="5">Negative moment</td>
-			</tr>
-			<tr>
-				<td colspan="5">X-direction</td>
-				
-			</tr>
-			<tr>
-				<td>Internal support</td>
-				<td>MDMIx1</td>
-				<td>MDMIx2</td>
-				<td>MDMIx3</td>
-				<td>MDMIx4</td>
-			</tr>
-			<tr>
-				<td>External support</td>
-				<td>MDMEx1</td>
-				<td>MDMEx2</td>
-				<td>MDMEx3</td>
-				<td>MDMEx4</td>
-			</tr>
-			<tr>
-				<td>Outer support</td>
-				<td>MDMOx1</td>
-				<td>MDMOx2</td>
-				<td>MDMOx3</td>
-				<td>MDMOx4</td>
-			</tr>
-			<tr>
-				<td colspan="5"> Y-direction</td>
-			</tr>
-			<tr>
-				<td>Internal support</td>
-				<td>MDMIy1</td>
-				<td>MDMIy2</td>
-				<td>MDMIy3</td>
-				<td>MDMIy4</td>
-			</tr>
-			<tr>
-				<td>External support</td>
-				<td>MDMEy1</td>
-				<td>MDMEy2</td>
-				<td>MDMEy3</td>
-				<td>MDMEy4</td>
-			</tr>
-			<tr>
-				<td>Outer support</td>
-				<td>MDMOy1</td>
-				<td>MDMOy2</td>
-				<td>MDMOy3</td>
-				<td>MDMOy4</td>
-			</tr>
-			<tr>
-				<td colspan="5">Positive moment</td>
-			</tr>
-			<tr>
-				<td colspan="5">X-direction</td>
-			</tr>
-			<tr>
-				<td>Mid of end span</td>
-				<td>MDMESx1</td>
-				<td>MDMESx2</td>
-				<td>MDMESx3</td>
-				<td>MDMESx4</td>
-			</tr>
-			<tr>
-				<td>Mid of interior span</td>
-				<td>MDMISx1</td>
-				<td>MDMISx2</td>
-				<td>MDMISx3</td>
-				<td>MDMISx4</td>
-			</tr>
-			<tr>Y-direction</tr>
-			<tr>
-				<td>Mid of end span</td>
-				<td>MDMESy1</td>
-				<td>MDMESy2</td>
-				<td>MDMESy3</td>
-				<td>MDMESy4</td>
-			</tr>
-			<tr>
-				<td>Mid of interior span</td>
-				<td>MDMISy1</td>
-				<td>MDMISy2</td>
-				<td>MDMISy3</td>
-				<td>MDMISy4</td>
-			</tr>
-		</table>
+	<p><strong>Long direction (\(l_{x1}\)):</strong> <span id="lx1"></span>m</p>
+	<p><strong>Short direction (\(l_{y1}\)):</strong> <span id="ly1"></span>m</p>
+	
 	<p>5. REINFORCEMENT DESIGN</p>
 	
       </div>
@@ -1285,10 +1123,81 @@
             });
         }
 	      
+	 function calculateFlatslab(){
+    // Input values
+    const L1 = parseFloat(document.getElementById('L1').value); 
+    const L2 = parseFloat(document.getElementById('L2').value);
+    const depth=parseFloat(document.getElementById('depth').value);
+    const cover = parseFloat(document.getElementById('cover').value); 
+    const fcu = parseFloat(document.getElementById('fck').value); 
+    const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+    const Ds = parseFloat(document.getElementById('Ds').value); 
+    const b = parseFloat(document.getElementById('b').value);
+    const d = parseFloat(document.getElementById('d').value); 
+    const DL = parseFloat(document.getElementById('DL').value); 
+    const LL = parseFloat(document.getElementById('LL').value);
+    const DropT = parseFloat(document.getElementById('DropT').value);   
+    const DropP = parseFloat(document.getElementById('DropP').value);
+    const lho = parseFloat(document.getElementById('lho').value); //Width of drop
+    const dh = parseFloat(document.getElementById('dh').value); //Depth of drop
 
-	    
-        
-       
+ // Load combination
+	const Q=1.4*DL+1.6*LL;
+// DROP
+	const lh1=Math.max(b,d)+1.5*depth;
+	const lh2=Math.min(L1,L2)/3;
+	const lmin=Math.max(lh1,lh2);
+ 
+// Ignorace of drop
+		 
+	let DropI;
+		if (DropP="YES"){
+			if(lmin>lho){
+				DropI="YES";
+			}else{
+				DropI="NO";
+			}
+			DropI="YES";
+		}
+
+	// Width of column strip 
+	let ColW;
+		 if(DropI="NO"){
+			 ColW=Math.min(L1,L2)/4;
+		 }else{
+			 ColW=lmin;
+		 }
+	// Column head
+	const lhmax=b+2*(dh-40);
+	const lh=Math.min(lhmax,lho*1000);
+	const ColWid=Math.sqrt(4*lh*lh/3.1416);
+	// Division of panel
+	const colS=ColW;
+	//Middle strip
+	const lx1=L1-2*colS;
+	const ly1=L2-2*colS;
+
+
+
+
+
+
+
+
+
+
+
+		 
+	// OUTPUT 
+	document.getElementById('lmin').textContent = lmin.toFixed(2);
+	document.getElementById('DropI').textContent = DropI;
+	document.getElementById('ColW').textContent = ColW.toFixed(2);
+	document.getElementById('lh').textContent = lh.toFixed(2);
+	document.getElementById('ColWid').textContent = ColWid.toFixed(2);
+	document.getElementById('colS').textContent = colS.toFixed(2);
+	document.getElementById('lx1').textContent = lx1.toFixed(2);
+	document.getElementById('ly1').textContent = ly1.toFixed(2);
+	 } 
 
 
 
