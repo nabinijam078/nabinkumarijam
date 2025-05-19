@@ -985,12 +985,175 @@
 	<p><strong>Length of Column head (\(l_h\)):</strong> <span id="lh"></span>m</p>
 	<p><strong>Effective diameter of column head:</strong> <span id="ColWid"></span>m</p>
 	<b>3. DIVISION OF PANEL</b>
-	
-	<p><strong>3.1 Column strip</strong> <span id="ColW"></span>m</p>
+	<p><strong>3.1 Column strip</strong> <span id="colS"></span>m</p>
 	<p>3.2 Middle strip</p>
 	<p><strong>Long direction (\(l_{x1}\)):</strong> <span id="lx1"></span>m</p>
 	<p><strong>Short direction (\(l_{y1}\)):</strong> <span id="ly1"></span>m</p>
-	
+
+	<b>4. CALCULATION OF MOMENTS</b>
+	<p>4.1 MOMENTS </p>
+	<table class="load-table">
+		<tr>
+			<td colspan="2"> Moments </td>
+			<td>x-direction</td>
+			<td>y-direction</td>
+			<td>Clause</td>
+		</tr>
+		<tr>
+			<td colspan="5">Negative moments</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Reduction of support moment</td>
+			<td>Internal support</td>
+			<td>MX1</td>
+			<td>MY1</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td>External Support</td>
+			<td>MX2</td>
+			<td>MY2</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td rowspan="3">Design moment at support</td>
+			<td>Outer support</td>
+			<td>MXD1</td>
+			<td>MYD1</td>
+			<td>3.7.2.7 d)</td>
+			
+		</tr>
+		<tr>
+			<td>First interior support</td>
+			<td>MXD2</td>
+			<td>MYD2</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td>Interior support</td>
+			<td>MXD3</td>
+			<td>MYD3</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td colspan="5">Positive moments</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Design moment at support</td>
+			<td>Outer support</td>
+			<td>MX3</td>
+			<td>MY3</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td>Middle Interior support</td>
+			<td>MX4</td>
+			<td>MY4</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+	</table>
+		<p>4.2 DISTRIBUTION OF DESIGN MOMENTS IN PANELS OF FLAT SLAB</p>
+		<table class="load-table">
+			<tr>
+			<td rowspan="2">Position</td>
+			<td colspan="2">Column strip</td>
+			<td colspan="2">Mid strip</td>
+			</tr>
+			<tr>
+				<td>Total moment</td>
+				<td>Mt/width</td>
+				<td>Total moment</td>
+				<td>Mt/width</td>
+			</tr>
+			<tr>
+				<td colspan="5">Negative moment</td>
+			</tr>
+			<tr>
+				<td colspan="5">X-direction</td>
+				
+			</tr>
+			<tr>
+				<td>Internal support</td>
+				<td>MDMIx1</td>
+				<td>MDMIx2</td>
+				<td>MDMIx3</td>
+				<td>MDMIx4</td>
+			</tr>
+			<tr>
+				<td>External support</td>
+				<td>MDMEx1</td>
+				<td>MDMEx2</td>
+				<td>MDMEx3</td>
+				<td>MDMEx4</td>
+			</tr>
+			<tr>
+				<td>Outer support</td>
+				<td>MDMOx1</td>
+				<td>MDMOx2</td>
+				<td>MDMOx3</td>
+				<td>MDMOx4</td>
+			</tr>
+			<tr>
+				<td colspan="5"> Y-direction</td>
+			</tr>
+			<tr>
+				<td>Internal support</td>
+				<td>MDMIy1</td>
+				<td>MDMIy2</td>
+				<td>MDMIy3</td>
+				<td>MDMIy4</td>
+			</tr>
+			<tr>
+				<td>External support</td>
+				<td>MDMEy1</td>
+				<td>MDMEy2</td>
+				<td>MDMEy3</td>
+				<td>MDMEy4</td>
+			</tr>
+			<tr>
+				<td>Outer support</td>
+				<td>MDMOy1</td>
+				<td>MDMOy2</td>
+				<td>MDMOy3</td>
+				<td>MDMOy4</td>
+			</tr>
+			<tr>
+				<td colspan="5">Positive moment</td>
+			</tr>
+			<tr>
+				<td colspan="5">X-direction</td>
+			</tr>
+			<tr>
+				<td>Mid of end span</td>
+				<td>MDMESx1</td>
+				<td>MDMESx2</td>
+				<td>MDMESx3</td>
+				<td>MDMESx4</td>
+			</tr>
+			<tr>
+				<td>Mid of interior span</td>
+				<td>MDMISx1</td>
+				<td>MDMISx2</td>
+				<td>MDMISx3</td>
+				<td>MDMISx4</td>
+			</tr>
+			<tr>Y-direction</tr>
+			<tr>
+				<td>Mid of end span</td>
+				<td>MDMESy1</td>
+				<td>MDMESy2</td>
+				<td>MDMESy3</td>
+				<td>MDMESy4</td>
+			</tr>
+			<tr>
+				<td>Mid of interior span</td>
+				<td>MDMISy1</td>
+				<td>MDMISy2</td>
+				<td>MDMISy3</td>
+				<td>MDMISy4</td>
+			</tr>
+		</table>
+
 	<p>5. REINFORCEMENT DESIGN</p>
 	
       </div>
@@ -1185,6 +1348,7 @@ function calculateFlatslab(){
     document.getElementById('ColW').textContent = ColW.toFixed(2);
     document.getElementById('lh').textContent = lh.toFixed(2);
     document.getElementById('ColWid').textContent = ColWid.toFixed(2);
+    document.getElementById('colS').textContent = colS.toFixed(2);
     document.getElementById('lx1').textContent = lx1.toFixed(2);
     document.getElementById('ly1').textContent = ly1.toFixed(2);
 }
