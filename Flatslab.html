@@ -1123,81 +1123,67 @@
             });
         }
 	      
-	 function calculateFlatslab(){
+function calculateFlatslab(){
     // Input values
     const L1 = parseFloat(document.getElementById('L1').value); 
     const L2 = parseFloat(document.getElementById('L2').value);
-    const depth=parseFloat(document.getElementById('depth').value);
-    const cover = parseFloat(document.getElementById('cover').value); 
-    const fcu = parseFloat(document.getElementById('fck').value); 
-    const fy = parseFloat(document.getElementById('fy').value); // fy in MPa
+    const cover=parseFloat(document.getElementById('cover').value);
     const Ds = parseFloat(document.getElementById('Ds').value); 
-    const b = parseFloat(document.getElementById('b').value);
-    const d = parseFloat(document.getElementById('d').value); 
+    const fcu = parseFloat(document.getElementById('fck').value); 
+    const fy = parseFloat(document.getElementById('fy').value);
+    const a = parseFloat(document.getElementById('a').value); // Long dimension of column
+    const b = parseFloat(document.getElementById('b').value); // Short dimension of column
     const DL = parseFloat(document.getElementById('DL').value); 
     const LL = parseFloat(document.getElementById('LL').value);
-    const DropT = parseFloat(document.getElementById('DropT').value);   
-    const DropP = parseFloat(document.getElementById('DropP').value);
-    const lho = parseFloat(document.getElementById('lho').value); //Width of drop
-    const dh = parseFloat(document.getElementById('dh').value); //Depth of drop
+    const DropT = document.getElementById('DropT').value;   
+    const DropP = document.getElementById('DropP').value;
+    const lho = parseFloat(document.getElementById('lho').value); // Width of drop
+    const dh = parseFloat(document.getElementById('dh').value); // Depth of drop
 
- // Load combination
-	const Q=1.4*DL+1.6*LL;
-// DROP
-	const lh1=Math.max(b,d)+1.5*depth;
-	const lh2=Math.min(L1,L2)/3;
-	const lmin=Math.max(lh1,lh2);
- 
-// Ignorace of drop
-		 
-	let DropI;
-		if (DropP="YES"){
-			if(lmin>lho){
-				DropI="YES";
-			}else{
-				DropI="NO";
-			}
-			DropI="YES";
-		}
+    // Load combination
+    const Q = 1.4 * DL + 1.6 * LL;
+    
+    // DROP
+    const lh1 = Math.max(a, b) + 1.5 * Ds;
+    const lh2 = Math.min(L1, L2) / 3;
+    const lmin = Math.max(lh1, lh2) / 1000; // Convert to meters
+    
+    // Ignorance of drop
+    let DropI;
+    if (DropP === "YES") {
+        DropI = (lmin > lho) ? "YES" : "NO";
+    } else {
+        DropI = "N/A (No drop provision)";
+    }
 
-	// Width of column strip 
-	let ColW;
-		 if(DropI="NO"){
-			 ColW=Math.min(L1,L2)/4;
-		 }else{
-			 ColW=lmin;
-		 }
-	// Column head
-	const lhmax=b+2*(dh-40);
-	const lh=Math.min(lhmax,lho*1000);
-	const ColWid=Math.sqrt(4*lh*lh/3.1416);
-	// Division of panel
-	const colS=ColW;
-	//Middle strip
-	const lx1=L1-2*colS;
-	const ly1=L2-2*colS;
+    // Width of column strip 
+    let ColW;
+    if (DropI === "NO" || DropP === "NO") {
+        ColW = Math.min(L1, L2) / 4;
+    } else {
+        ColW = lmin;
+    }
+    
+    // Column head
+    const lhmax = (Math.max(a, b) / 1000) + 2 * (dh - 0.040);
+    const lh = Math.min(lhmax, lho);
+    const ColWid = Math.sqrt(4 * lh * lh / Math.PI);
+    
+    // Division of panel
+    const colS = ColW;
+    // Middle strip
+    const lx1 = L1 - 2 * colS;
+    const ly1 = L2 - 2 * colS;
 
-
-
-
-
-
-
-
-
-
-
-		 
-	// OUTPUT 
-	document.getElementById('lmin').textContent = lmin.toFixed(2);
-	document.getElementById('DropI').textContent = DropI;
-	document.getElementById('ColW').textContent = ColW.toFixed(2);
-	document.getElementById('lh').textContent = lh.toFixed(2);
-	document.getElementById('ColWid').textContent = ColWid.toFixed(2);
-	document.getElementById('colS').textContent = colS.toFixed(2);
-	document.getElementById('lx1').textContent = lx1.toFixed(2);
-	document.getElementById('ly1').textContent = ly1.toFixed(2);
-	 } 
+    // OUTPUT 
+    document.getElementById('lmin').textContent = lmin.toFixed(2);
+    document.getElementById('DropI').textContent = DropI;
+    document.getElementById('ColW').textContent = ColW.toFixed(2);
+    document.getElementById('lh').textContent = lh.toFixed(2);
+    document.getElementById('ColWid').textContent = ColWid.toFixed(2);
+    document.getElementById('lx1').textContent = lx1.toFixed(2);
+    document.getElementById('ly1').textContent = ly1.toFixed(2);
+}
 
 
 
