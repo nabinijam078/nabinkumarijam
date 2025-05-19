@@ -1011,22 +1011,22 @@
 		</tr>
 		<tr>
 			<td>External Support</td>
-			<td>MX2</td>
-			<td>MY2</td>
+			<td><p><span id="MX2"></span></span></strong></p></td>
+			<td><p><span id="MY2"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 		</tr>
 		<tr>
 			<td rowspan="3">Design moment at support</td>
 			<td>Outer support</td>
-			<td>MXD1</td>
-			<td>MYD1</td>
+			<td><p><span id="MXD1"></span></span></strong></p></td>
+			<td><p><span id="MYD1"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 			
 		</tr>
 		<tr>
 			<td>First interior support</td>
-			<td>MXD2</td>
-			<td>MYD2</td>
+			<td><p><span id="MXD2"></span></span></strong></p></td>
+			<td><p><span id="MYD2"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 		</tr>
 		<tr>
@@ -1343,8 +1343,15 @@ function calculateFlatslab(){
     const ly1 = L2 - 2 * colS;
 // Moment calculation
 	const W=Q*L1*L2;
-	const MX1=W*ColWid/1000*.15;
-	const MY1=W*ColWid/1000*.15;
+	const MX1=W*ColWid /1000*0.15;
+	const MY1=W*ColWid /1000*0.15;
+	const MX2=MX1/2;
+	const MY2=MY1/2;
+	const MXD1=Math.abs(-.04)*W*L1-MX2;
+	const MYD1=Math.abs(-.04)*W*L2-MY2;
+	const MXD2=0.086*W*L1-MX1;
+	const MYD2=0.086*W*L2-MY1;
+	
     // OUTPUT 
     document.getElementById('lmin').textContent = lmin.toFixed(2);
     document.getElementById('DropI').textContent = DropI;
@@ -1354,6 +1361,12 @@ function calculateFlatslab(){
     document.getElementById('colS').textContent = colS.toFixed(2);
     document.getElementById('lx1').textContent = lx1.toFixed(2);
     document.getElementById('ly1').textContent = ly1.toFixed(2);
+    document.getElementById('MX1').textContent = MX1.toFixed(2);
+    document.getElementById('MY1').textContent = MY1.toFixed(2);
+    document.getElementById('MXD1').textContent = MXD1.toFixed(2);
+    document.getElementById('MYD1').textContent = MYD1.toFixed(2);
+    document.getElementById('MXD2').textContent = MXD2.toFixed(2);
+    document.getElementById('MYD2').textContent = MYD2.toFixed(2);
 }
 
 
