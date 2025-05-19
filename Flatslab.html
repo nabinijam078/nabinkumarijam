@@ -1031,8 +1031,8 @@
 		</tr>
 		<tr>
 			<td>Interior support</td>
-			<td>MXD3</td>
-			<td>MYD3</td>
+			<td><p><span id="MXD3"></span></span></strong></p></td>
+			<td><p><span id="MYD3"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 		</tr>
 		<tr>
@@ -1041,8 +1041,8 @@
 		<tr>
 			<td rowspan="2">Design moment at support</td>
 			<td>Outer support</td>
-			<td>MX3</td>
-			<td>MY3</td>
+			<td><p><span id="MX3"></span></span></strong></p></td>
+			<td><p><span id="MY3"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 		</tr>
 		<tr>
@@ -1351,6 +1351,12 @@ function calculateFlatslab(){
 	const MYD1=Math.abs(-.04)*W*L2-MY2;
 	const MXD2=0.086*W*L1-MX1;
 	const MYD2=0.086*W*L2-MY1;
+	const MXD3=0.063*W*L1-MX1;
+	const MYD3=0.063*W*L2-MY1;
+	const MX3=0.075*W*L1;
+	const MY3=0.075*W*L2;
+	const MX4=0.063*W*L1;
+	const MY4=0.063*W*L2;
 	
     // OUTPUT 
     document.getElementById('lmin').textContent = lmin.toFixed(2);
@@ -1367,6 +1373,8 @@ function calculateFlatslab(){
     document.getElementById('MYD1').textContent = MYD1.toFixed(2);
     document.getElementById('MXD2').textContent = MXD2.toFixed(2);
     document.getElementById('MYD2').textContent = MYD2.toFixed(2);
+    document.getElementById('MXD3').textContent = MXD3.toFixed(2);
+    document.getElementById('MYD3').textContent = MYD3.toFixed(2);
 }
 
 
