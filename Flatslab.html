@@ -1074,10 +1074,10 @@
 			</tr>
 			<tr>
 				<td>Internal support</td>
-				<td>MDMIx1</td>
-				<td>MDMIx2</td>
-				<td>MDMIx3</td>
-				<td>MDMIx4</td>
+				<td><p><span id="MDMIx1"></span></span></strong></p></td>
+				<td><p><span id="MDMIx2"></span></span></strong></p></td>
+				<td><p><span id="MDMIx3"></span></span></strong></p></td>
+				<td><p><span id="MDMIx4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>External support</td>
@@ -1137,7 +1137,7 @@
 				<td>MDMISx3</td>
 				<td>MDMISx4</td>
 			</tr>
-			<tr>Y-direction</tr>
+			
 			<tr>
 				<td>Mid of end span</td>
 				<td>MDMESy1</td>
@@ -1358,6 +1358,13 @@ function calculateFlatslab(){
 	const MX4=0.063*W*L1;
 	const MY4=0.063*W*L2;
 	
+
+	// Design moment
+	const MDMIx1=0.75*MXD1;
+	const MDMIx2=MDMIx1/lho;
+	const MDMIx3=0.75*MXD1;
+	const MDMIx4=MDMIx3*(L2-lho);
+	
     // OUTPUT 
     document.getElementById('lmin').textContent = lmin.toFixed(2);
     document.getElementById('DropI').textContent = DropI;
@@ -1377,6 +1384,10 @@ function calculateFlatslab(){
     document.getElementById('MYD3').textContent = MYD3.toFixed(2);
     document.getElementById('MXD4').textContent = MXD4.toFixed(2);
     document.getElementById('MYD4').textContent = MYD4.toFixed(2);
+    document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2);
+    document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
+    document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
+    document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2);
 }
 
 
