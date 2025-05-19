@@ -1005,8 +1005,8 @@
 		<tr>
 			<td rowspan="2">Reduction of support moment</td>
 			<td>Internal support</td>
-			<td>MX1</td>
-			<td>MY1</td>
+			<td><p><span id="MX1"></span></span></strong></p></td>
+			<td><p><span id="MY1"></span></span></strong></p></td>
 			<td>3.7.2.7 d)</td>
 		</tr>
 		<tr>
@@ -1341,7 +1341,10 @@ function calculateFlatslab(){
     // Middle strip
     const lx1 = L1 - 2 * colS;
     const ly1 = L2 - 2 * colS;
-
+// Moment calculation
+	const W=Q*L1*L2;
+	const MX1=W*ColWid/1000*.15;
+	const MY1=W*ColWid/1000*.15;
     // OUTPUT 
     document.getElementById('lmin').textContent = lmin.toFixed(2);
     document.getElementById('DropI').textContent = DropI;
