@@ -928,6 +928,18 @@
             <input type="number" id="b" required>
         </div>
 	      <br>
+	      <b><u>LOADS</u></b>
+	      
+	<div class="input-group">
+            <label for="DL">Dead load (\(DL\) in kN/m<sup>2</sup>):</label>
+            <input type="number" id="DL" required>
+        </div>
+	<br>
+	<div class="input-group">
+            <label for="LL">Live load (\(LL\) in kN/m<sup>2</sup>):</label>
+            <input type="number" id="DL" required>
+        </div>
+	<br>
 	<label for="DropP">Provision of drop (YES or NO): </label>
                 <select id="DropP">
                     <option value="YES">YES</option>
@@ -940,6 +952,7 @@
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>  
+	<i>Drop width shall be provided after calculation of minimum drop.</i>
 	<div class="input-group">
             <label for="lho">Width of drop (\(l_{ho}\) in m):</label>
             <input type="number" id="lho" required>
@@ -958,11 +971,46 @@
      <img src="Flatslab.png" alt="curve" class="shape-image" style="width: 450px; height: auto;">
 	      </div>
 
-	      <div class="result" id="result">
+	<div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
 	<b>1.DROP IF PROVIDED </b>
-	<p><strong>Minimum width of drop:</strong> <span id="lmin"></span>m</p> 
-        <p><strong>Column width:</strong> <span id="ColW"></span>m</p>
+	<p><strong>Minimum width of drop(\(l_{min}\))</strong> <span id="lmin"></span>m</p> 
+        <p><strong>Ignorace of drop:</strong> <span id="DropI"></span>m</p>
+	<p><strong>Width of Column strip :</strong> <span id="ColW"></span>m</p>
+	<b>2. COLUMN HEADS (Clause 3.7.1.3)</b>
+	<p><strong>Length of Column head (\(l_h\)):</strong> <span id="lh"></span>m</p>
+	<p><strong>Effective diameter of column head:</strong> <span id="ColW"></span>m</p>
+	<b>3. DIVISION OF PANEL</b>
+	
+	<p><strong>3.1 Column strip</strong> <span id="ColW"></span>m</p>
+	<p>3.2 Middle strip</p>
+	<p><strong>Long direction (\(l_1\)):</strong> <span id="l1"></span>m</p>
+	<p><strong>Short direction (\(l_2\)):</strong> <span id="l2"></span>m</p>
+	<b>CALCULATION OF MOMENTS</b>
+	<table>
+		<tr>
+			<td colspan="2"> Moments </td>
+			<td>x-direction</td>
+			<td>y-direction</td>
+			<td>Clause</td>
+		</tr>
+		<tr>
+			<td colspan="5">Negative moments</td>
+		</tr>
+		<tr>
+			<td rowspan="2">Reduction of support moment</td>
+			<td>Internal support</td>
+			<td>MX1</td>
+			<td>MY1</td>
+			<td>3.7.2.7 d)</td>
+		</tr>
+		<tr>
+			<td>External Support</td>
+			<td>MX2</td>
+			<td>MY2</td>
+		</tr>
+		
+	</table>
       </div>
 	      
     </div>
