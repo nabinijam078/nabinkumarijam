@@ -922,8 +922,23 @@
             <label for="dm">Average grain size in mm (\(d_m\) in mm):</label>
             <input type="number" id="dm" required>
         </div>
+	       <br>
+       
+         <label for="Seism">Consideration of seismic condition: </label>
+                <select id="Seism">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+	      <br>
+	      <label for="Struc">Structure: </label>
+                <select id="Struc">
+                    <option value="Piers">Piers</option>
+                    <option value="Abutments">Abutments</option>
+                </select>
+	      
     </div>
     <button type="button" onclick="Scourdepth()" class="btn">SCOUR DEPTH CALCULATION</button>
+	<br>
 	<div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
 	<table class="load-table">
@@ -938,7 +953,7 @@
 		<tr>
 			<td>Silt factor</td>
 			<td>\(f\)</td>
-			<td>\(f=1.76(d_m)^0.5</td>
+			<td>\(f=1.76(d_m)^0.5\)</td>
 			<td><p><strong></strong> <span id="f"></span> </p></td>
 			<td></td>
 			<td>703.2.2</td>
