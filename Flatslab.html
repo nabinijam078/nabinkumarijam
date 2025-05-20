@@ -1388,7 +1388,7 @@
                 }
                 
                 // Column head
-                const lhmax = (Math.max(a, b) / 1000) + 2 * (dh - 0.040);
+                const lhmax = (Math.max(a, b) / 1000) + 2 * (dh/1000 - 0.040);
                 const lh = Math.min(lhmax, lho);
                 const ColWid = Math.sqrt(4 * lh * lh / Math.PI);
                 
