@@ -1081,41 +1081,41 @@
 			</tr>
 			<tr>
 				<td>External support</td>
-				<td>MDMEx1</td>
-				<td>MDMEx2</td>
-				<td>MDMEx3</td>
-				<td>MDMEx4</td>
+				<td><p><span id="MDMEx1"></span></span></strong></p></td>
+				<td><p><span id="MDMEx2"></span></span></strong></p></td>
+				<td><p><span id="MDMEx3"></span></span></strong></p></td>
+				<td><p><span id="MDMEx4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>Outer support</td>
-				<td>MDMOx1</td>
-				<td>MDMOx2</td>
-				<td>MDMOx3</td>
-				<td>MDMOx4</td>
+				<td><p><span id="MDMOx1"></span></span></strong></p></td>
+				<td><p><span id="MDMOx2"></span></span></strong></p></td>
+				<td><p><span id="MDMOx3"></span></span></strong></p></td>
+				<td><p><span id="MDMOx4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td colspan="5"> Y-direction</td>
 			</tr>
 			<tr>
 				<td>Internal support</td>
-				<td>MDMIy1</td>
-				<td>MDMIy2</td>
-				<td>MDMIy3</td>
-				<td>MDMIy4</td>
+				<td><p><span id="MDMIy1"></span></span></strong></p></td>
+				<td><p><span id="MDMIy2"></span></span></strong></p></td>
+				<td><p><span id="MDMIy3"></span></span></strong></p></td>
+				<td><p><span id="MDMIy4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>External support</td>
-				<td>MDMEy1</td>
-				<td>MDMEy2</td>
-				<td>MDMEy3</td>
-				<td>MDMEy4</td>
+				<td><p><span id="MDMEy1"></span></span></strong></p></td>
+				<td><p><span id="MDMEy2"></span></span></strong></p></td>
+				<td><p><span id="MDMEy3"></span></span></strong></p></td>
+				<td><p><span id="MDMEy4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>Outer support</td>
-				<td>MDMOy1</td>
-				<td>MDMOy2</td>
-				<td>MDMOy3</td>
-				<td>MDMOy4</td>
+				<td><p><span id="MDMOy1"></span></span></strong></p></td>
+				<td><p><span id="MDMOy2"></span></span></strong></p></td>
+				<td><p><span id="MDMOy3"></span></span></strong></p></td>
+				<td><p><span id="MDMOy4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td colspan="5">Positive moment</td>
@@ -1125,32 +1125,34 @@
 			</tr>
 			<tr>
 				<td>Mid of end span</td>
-				<td>MDMESx1</td>
-				<td>MDMESx2</td>
-				<td>MDMESx3</td>
-				<td>MDMESx4</td>
+				<td><p><span id="MDMESx1"></span></span></strong></p></td>
+				<td><p><span id="MDMESx2"></span></span></strong></p></td>
+				<td><p><span id="MDMESx3"></span></span></strong></p></td>
+				<td><p><span id="MDMESx4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>Mid of interior span</td>
-				<td>MDMISx1</td>
-				<td>MDMISx2</td>
-				<td>MDMISx3</td>
-				<td>MDMISx4</td>
+				<td><p><span id="MDMISx1"></span></span></strong></p></td>
+				<td><p><span id="MDMISx2"></span></span></strong></p></td>
+				<td><p><span id="MDMISx3"></span></span></strong></p></td>
+				<td><p><span id="MDMISx4"></span></span></strong></p></td>
 			</tr>
-			
+			<tr>
+				<td colspan="5">Y-direction</td>
+			</tr>
 			<tr>
 				<td>Mid of end span</td>
-				<td>MDMESy1</td>
-				<td>MDMESy2</td>
-				<td>MDMESy3</td>
-				<td>MDMESy4</td>
+				<td><p><span id="MDMESy1"></span></span></strong></p></td>
+				<td><p><span id="MDMESy2"></span></span></strong></p></td>
+				<td><p><span id="MDMESy3"></span></span></strong></p></td>
+				<td><p><span id="MDMESy4"></span></span></strong></p></td>
 			</tr>
 			<tr>
 				<td>Mid of interior span</td>
-				<td>MDMISy1</td>
-				<td>MDMISy2</td>
-				<td>MDMISy3</td>
-				<td>MDMISy4</td>
+				<td><p><span id="MDMISy1"></span></span></strong></p></td>
+				<td><p><span id="MDMISy2"></span></span></strong></p></td>
+				<td><p><span id="MDMISy3"></span></span></strong></p></td>
+				<td><p><span id="MDMISy4"></span></span></strong></p></td>
 			</tr>
 		</table>
 
@@ -1343,8 +1345,8 @@ function calculateFlatslab(){
     const ly1 = L2 - 2 * colS;
 // Moment calculation
 	const W=Q*L1*L2;
-	const MX1=W*ColWid /1000*0.15;
-	const MY1=W*ColWid /1000*0.15;
+	const MX1=W*ColWid *0.15;
+	const MY1=W*ColWid *0.15;
 	const MX2=MX1/2;
 	const MY2=MY1/2;
 	const MXD1=Math.abs(-.04)*W*L1-MX2;
@@ -1360,10 +1362,62 @@ function calculateFlatslab(){
 	
 
 	// Design moment
+	// Negative moments
+	//X-direction
 	const MDMIx1=0.75*MXD1;
 	const MDMIx2=MDMIx1/lho;
-	const MDMIx3=0.75*MXD1;
+	const MDMIx3=0.25*MXD1;
 	const MDMIx4=MDMIx3*(L2-lho);
+
+	const MDMEx1=0.75*MXD2;
+	const MDMEx2=MDMEx1/lho;
+	const MDMEx3=0.25*MXD2;
+	const MDMEx4=MDMEx3/(L2-lho);
+
+	const MDMOx1=0.75*MXD3;
+	const MDMOx2=MDMOx1/lho;
+	const MDMOx3=0.25*MXD3;
+	const MDMOx4=MDMOx3/(L2-lho);
+
+	//Y-direction
+	const MDMIy1=0.75*MYD1;
+	const MDMIy2=MDMIy1/lho;
+	const MDMIy3=0.25*MYD1;
+	const MDMIy4=MDMIy3*(L1-lho);
+
+	const MDMEy1=0.75*MYD2;
+	const MDMEy2=MDMEy1/lho;
+	const MDMEy3=0.25*MYD2;
+	const MDMEy4=MDMEy3/(L1-lho);
+
+	const MDMOy1=0.75*MYD3;
+	const MDMOy2=MDMOy1/lho;
+	const MDMOy3=0.25*MYD3;
+	const MDMOy4=MDMOy3/(L1-lho);
+
+	// Positive moments
+	// X-direction
+	const MDMESx1=0.55*MX3;
+	const MDMESx2=MDMESx1/lho;
+	const MDMESx3=0.45*MX3;
+	const MDMESx3=MDMESx3/(L2-lho);
+
+	const MDMISx1=0.55*MX4;
+	const MDMISx2=MDMISx1/lho;
+	const MDMISx3=0.45*MX4;
+	const MDMISx3=MDMISx3/(L2-lho);
+
+	//Y-direction
+	const MDMESy1=0.55*MY3;
+	const MDMESy2=MDMESy1/lho;
+	const MDMESy3=0.45*MY3;
+	const MDMESy3=MDMESy3/(L1-lho);
+
+	const MDMISy1=0.55*MY4;
+	const MDMISy2=MDMISy1/lho;
+	const MDMISy3=0.45*MY4;
+	const MDMISy3=MDMISy3/(L1-lho);
+	
 	
     // OUTPUT 
     document.getElementById('lmin').textContent = lmin.toFixed(2);
@@ -1388,6 +1442,53 @@ function calculateFlatslab(){
     document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
     document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
     document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2);
+
+   document.getElementById('MDMEx1').textContent = MDMEx1.toFixed(2);
+   document.getElementById('MDMEx2').textContent = MDMEx2.toFixed(2);
+   document.getElementById('MDMEx3').textContent = MDMEx3.toFixed(2);
+   document.getElementById('MDMEx4').textContent = MDMEx4.toFixed(2);
+
+   document.getElementById('MDMOx1').textContent = MDMOx1.toFixed(2);
+   document.getElementById('MDMOx2').textContent = MDMOx2.toFixed(2);
+   document.getElementById('MDMOx3').textContent = MDMOx3.toFixed(2);
+   document.getElementById('MDMOx4').textContent = MDMOx4.toFixed(2);
+
+   document.getElementById('MDMIy1').textContent = MDMIy1.toFixed(2);
+   document.getElementById('MDMIy2').textContent = MDMIy2.toFixed(2);
+   document.getElementById('MDMIy3').textContent = MDMIy3.toFixed(2);
+   document.getElementById('MDMIy4').textContent = MDMIy4.toFixed(2);
+
+    document.getElementById('MDMEy1').textContent = MDMEy1.toFixed(2);
+   document.getElementById('MDMEy2').textContent = MDMEy2.toFixed(2);
+   document.getElementById('MDMEy3').textContent = MDMEy3.toFixed(2);
+   document.getElementById('MDMEy4').textContent = MDMEy4.toFixed(2);
+
+   document.getElementById('MDMOy1').textContent = MDMOy1.toFixed(2);
+   document.getElementById('MDMOy2').textContent = MDMOy2.toFixed(2);
+   document.getElementById('MDMOy3').textContent = MDMOy3.toFixed(2);
+   document.getElementById('MDMOy4').textContent = MDMOy4.toFixed(2);
+
+    document.getElementById('MDMESx1').textContent = MDMESx1.toFixed(2);
+   document.getElementById('MDMESx2').textContent = MDMESx2.toFixed(2);
+   document.getElementById('MDMESx3').textContent = MDMESx3.toFixed(2);
+   document.getElementById('MDMESx4').textContent = MDMESx4.toFixed(2);
+
+   document.getElementById('MDMISx1').textContent = MDMISx1.toFixed(2);
+   document.getElementById('MDMISx2').textContent = MDMISx2.toFixed(2);
+   document.getElementById('MDMISx3').textContent = MDMISx3.toFixed(2);
+   document.getElementById('MDMISx4').textContent = MDMISx4.toFixed(2);
+
+   document.getElementById('MDMESy1').textContent = MDMESy1.toFixed(2);
+   document.getElementById('MDMESy2').textContent = MDMESy2.toFixed(2);
+   document.getElementById('MDMESy3').textContent = MDMESy3.toFixed(2);
+   document.getElementById('MDMESy4').textContent = MDMESy4.toFixed(2);
+
+   document.getElementById('MDMISy1').textContent = MDMISy1.toFixed(2);
+   document.getElementById('MDMISy2').textContent = MDMISy2.toFixed(2);
+   document.getElementById('MDMISy3').textContent = MDMISy3.toFixed(2);
+   document.getElementById('MDMISy4').textContent = MDMISy4.toFixed(2);
+	
+	
 }
 
 
