@@ -1240,9 +1240,6 @@
         updateDateTime();
     </script>
 
-
-
-	
     <script>
         // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -1292,205 +1289,228 @@
             });
         }
 	      
-function calculateFlatslab(){
-    // Input values
-    const L1 = parseFloat(document.getElementById('L1').value); 
-    const L2 = parseFloat(document.getElementById('L2').value);
-    const cover=parseFloat(document.getElementById('cover').value);
-    const Ds = parseFloat(document.getElementById('Ds').value); 
-    const fcu = parseFloat(document.getElementById('fck').value); 
-    const fy = parseFloat(document.getElementById('fy').value);
-    const a = parseFloat(document.getElementById('a').value); // Long dimension of column
-    const b = parseFloat(document.getElementById('b').value); // Short dimension of column
-    const DL = parseFloat(document.getElementById('DL').value); 
-    const LL = parseFloat(document.getElementById('LL').value);
-    const DropT = document.getElementById('DropT').value;   
-    const DropP = document.getElementById('DropP').value;
-    const lho = parseFloat(document.getElementById('lho').value); // Width of drop
-    const dh = parseFloat(document.getElementById('dh').value); // Depth of drop
 
-    // Load combination
-    const Q = 1.4 * DL + 1.6 * LL;
-    
-    // DROP
-    const lh1 = Math.max(a, b) + 1.5 * Ds;
-    const lh2 = Math.min(L1, L2) / 3;
-    const lmin = Math.max(lh1, lh2) / 1000; // Convert to meters
-    
-    // Ignorance of drop
-    let DropI;
-    if (DropP === "YES") {
-        DropI = (lmin > lho) ? "YES" : "NO";
-    } else {
-        DropI = "N/A (No drop provision)";
-    }
+        function calculateFlatslab() {
+            console.log("Calculation started..."); // Debugging
+            
+            try {
+                // Input values
+                const L1 = parseFloat(document.getElementById('L1').value); 
+                const L2 = parseFloat(document.getElementById('L2').value);
+                const cover = parseFloat(document.getElementById('cover').value);
+                const Ds = parseFloat(document.getElementById('Ds').value); 
+                const fcu = parseFloat(document.getElementById('fck').value); 
+                const fy = parseFloat(document.getElementById('fy').value);
+                const a = parseFloat(document.getElementById('a').value); // Long dimension of column
+                const b = parseFloat(document.getElementById('b').value); // Short dimension of column
+                const DL = parseFloat(document.getElementById('DL').value); 
+                const LL = parseFloat(document.getElementById('LL').value);
+                const DropT = document.getElementById('DropT').value;   
+                const DropP = document.getElementById('DropP').value;
+                const lho = parseFloat(document.getElementById('lho').value); // Width of drop
+                const dh = parseFloat(document.getElementById('dh').value); // Depth of drop
 
-    // Width of column strip 
-    let ColW;
-    if (DropI === "NO" || DropP === "NO") {
-        ColW = Math.min(L1, L2) / 4;
-    } else {
-        ColW = lmin;
-    }
-    
-    // Column head
-    const lhmax = (Math.max(a, b) / 1000) + 2 * (dh - 0.040);
-    const lh = Math.min(lhmax, lho);
-    const ColWid = Math.sqrt(4 * lh * lh / Math.PI);
-    
-    // Division of panel
-    const colS = ColW;
-    // Middle strip
-    const lx1 = L1 - 2 * colS;
-    const ly1 = L2 - 2 * colS;
-// Moment calculation
-	const W=Q*L1*L2;
-	
-	const MX1=W*ColWid *0.15;
-	const MY1=W*ColWid *0.15;
-	const MX2=MX1/2;
-	const MY2=MY1/2;
-	const MXD1=Math.abs(-.04)*W*L1-MX2;
-	const MYD1=Math.abs(-.04)*W*L2-MY2;
-	const MXD2=0.086*W*L1-MX1;
-	const MYD2=0.086*W*L2-MY1;
-	const MXD3=0.063*W*L1-MX1;
-	const MYD3=0.063*W*L2-MY1;
-	const MX3=0.075*W*L1;
-	const MY3=0.075*W*L2;
-	const MX4=0.063*W*L1;
-	const MY4=0.063*W*L2;
-	
+                // Validate inputs
+                if (isNaN(L1) throw new Error("Long span (L1) is required");
+                if (isNaN(L2)) throw new Error("Short span (L2) is required");
+                if (isNaN(Ds)) throw new Error("Slab depth (Ds) is required");
+                
+                console.log("Inputs validated"); // Debugging
 
-	// Design moment
-	// Negative moments
-	//X-direction
-	const MDMIx1=0.75*MXD1;
-	const MDMIx2=MDMIx1/lho;
-	const MDMIx3=0.25*MXD1;
-	const MDMIx4=MDMIx3*(L2-lho);
+                // Load combination
+                const Q = 1.4 * DL + 1.6 * LL;
+                
+                // DROP calculations
+                const lh1 = Math.max(a, b) + 1.5 * Ds;
+                const lh2 = Math.min(L1, L2) / 3;
+                const lmin = Math.max(lh1, lh2) / 1000; // Convert to meters
+                
+                // Ignorance of drop
+                let DropI;
+                if (DropP === "YES") {
+                    DropI = (lmin > lho) ? "YES" : "NO";
+                } else {
+                    DropI = "N/A (No drop provision)";
+                }
 
-	const MDMEx1=0.75*MXD2;
-	const MDMEx2=MDMEx1/lho;
-	const MDMEx3=0.25*MXD2;
-	const MDMEx4=MDMEx3/(L2-lho);
+                // Width of column strip 
+                let ColW;
+                if (DropI === "NO" || DropP === "NO") {
+                    ColW = Math.min(L1, L2) / 4;
+                } else {
+                    ColW = lmin;
+                }
+                
+                // Column head
+                const lhmax = (Math.max(a, b) / 1000) + 2 * (dh - 0.040);
+                const lh = Math.min(lhmax, lho);
+                const ColWid = Math.sqrt(4 * lh * lh / Math.PI);
+                
+                // Division of panel
+                const colS = ColW;
+                // Middle strip
+                const lx1 = L1 - 2 * colS;
+                const ly1 = L2 - 2 * colS;
 
-	const MDMOx1=0.75*MXD3;
-	const MDMOx2=MDMOx1/lho;
-	const MDMOx3=0.25*MXD3;
-	const MDMOx4=MDMOx3/(L2-lho);
+                // Moment calculation
+                const W = Q * L1 * L2;
+                const MX1 = W * ColWid * 0.15;
+                const MY1 = W * ColWid * 0.15;
+                const MX2 = MX1 / 2;
+                const MY2 = MY1 / 2;
+                const MXD1 = Math.abs(-0.04) * W * L1 - MX2;
+                const MYD1 = Math.abs(-0.04) * W * L2 - MY2;
+                const MXD2 = 0.086 * W * L1 - MX1;
+                const MYD2 = 0.086 * W * L2 - MY1;
+                const MXD3 = 0.063 * W * L1 - MX1;
+                const MYD3 = 0.063 * W * L2 - MY1;
+                const MX3 = 0.075 * W * L1;
+                const MY3 = 0.075 * W * L2;
+                const MX4 = 0.063 * W * L1;
+                const MY4 = 0.063 * W * L2;
+                
+                // Design moment
+                // Negative moments
+                // X-direction
+                const MDMIx1 = 0.75 * MXD1;
+                const MDMIx2 = MDMIx1 / lho;
+                const MDMIx3 = 0.25 * MXD1;
+                const MDMIx4 = MDMIx3 / (L2 - lho);
 
-	//Y-direction
-	const MDMIy1=0.75*MYD1;
-	const MDMIy2=MDMIy1/lho;
-	const MDMIy3=0.25*MYD1;
-	const MDMIy4=MDMIy3*(L1-lho);
+                const MDMEx1 = 0.75 * MXD2;
+                const MDMEx2 = MDMEx1 / lho;
+                const MDMEx3 = 0.25 * MXD2;
+                const MDMEx4 = MDMEx3 / (L2 - lho);
 
-	const MDMEy1=0.75*MYD2;
-	const MDMEy2=MDMEy1/lho;
-	const MDMEy3=0.25*MYD2;
-	const MDMEy4=MDMEy3/(L1-lho);
+                const MDMOx1 = 0.75 * MXD3;
+                const MDMOx2 = MDMOx1 / lho;
+                const MDMOx3 = 0.25 * MXD3;
+                const MDMOx4 = MDMOx3 / (L2 - lho);
 
-	const MDMOy1=0.75*MYD3;
-	const MDMOy2=MDMOy1/lho;
-	const MDMOy3=0.25*MYD3;
-	const MDMOy4=MDMOy3/(L1-lho);
+                // Y-direction
+                const MDMIy1 = 0.75 * MYD1;
+                const MDMIy2 = MDMIy1 / lho;
+                const MDMIy3 = 0.25 * MYD1;
+                const MDMIy4 = MDMIy3 / (L1 - lho);
 
-	// Positive moments
-	// X-direction
-	const MDMESx1=0.55*MX3;
-	const MDMESx2=MDMESx1/lho;
-	const MDMESx3=0.45*MX3;
-	const MDMESx4=MDMESx3/(L2-lho);
+                const MDMEy1 = 0.75 * MYD2;
+                const MDMEy2 = MDMEy1 / lho;
+                const MDMEy3 = 0.25 * MYD2;
+                const MDMEy4 = MDMEy3 / (L1 - lho);
 
-	const MDMISx1=0.55*MX4;
-	const MDMISx2=MDMISx1/lho;
-	const MDMISx3=0.45*MX4;
-	const MDMISx3=MDMISx3/(L2-lho);
+                const MDMOy1 = 0.75 * MYD3;
+                const MDMOy2 = MDMOy1 / lho;
+                const MDMOy3 = 0.25 * MYD3;
+                const MDMOy4 = MDMOy3 / (L1 - lho);
 
-	//Y-direction
-	const MDMESy1=0.55*MY3;
-	const MDMESy2=MDMESy1/lho;
-	const MDMESy3=0.45*MY3;
-	const MDMESy3=MDMESy3/(L1-lho);
+                // Positive moments
+                // X-direction
+                const MDMESx1 = 0.55 * MX3;
+                const MDMESx2 = MDMESx1 / lho;
+                const MDMESx3 = 0.45 * MX3;
+                const MDMESx4 = MDMESx3 / (L2 - lho);
 
-	const MDMISy1=0.55*MY4;
-	const MDMISy2=MDMISy1/lho;
-	const MDMISy3=0.45*MY4;
-	const MDMISy3=MDMISy3/(L1-lho);
-	
-	
-    // OUTPUT 
-    document.getElementById('lmin').textContent = lmin.toFixed(2);
-    document.getElementById('DropI').textContent = DropI;
-    document.getElementById('ColW').textContent = ColW.toFixed(2);
-    document.getElementById('lh').textContent = lh.toFixed(2);
-    document.getElementById('ColWid').textContent = ColWid.toFixed(2);
-    document.getElementById('colS').textContent = colS.toFixed(2);
-    document.getElementById('lx1').textContent = lx1.toFixed(2);
-    document.getElementById('ly1').textContent = ly1.toFixed(2);
-    document.getElementById('MX1').textContent = MX1.toFixed(2);
-    document.getElementById('MY1').textContent = MY1.toFixed(2);
-    document.getElementById('MXD1').textContent = MXD1.toFixed(2);
-    document.getElementById('MYD1').textContent = MYD1.toFixed(2);
-    document.getElementById('MXD2').textContent = MXD2.toFixed(2);
-    document.getElementById('MYD2').textContent = MYD2.toFixed(2);
-    document.getElementById('MXD3').textContent = MXD3.toFixed(2);
-    document.getElementById('MYD3').textContent = MYD3.toFixed(2);
+                const MDMISx1 = 0.55 * MX4;
+                const MDMISx2 = MDMISx1 / lho;
+                const MDMISx3 = 0.45 * MX4;
+                const MDMISx4 = MDMISx3 / (L2 - lho);
+
+                // Y-direction
+                const MDMESy1 = 0.55 * MY3;
+                const MDMESy2 = MDMESy1 / lho;
+                const MDMESy3 = 0.45 * MY3;
+                const MDMESy4 = MDMESy3 / (L1 - lho);
+
+                const MDMISy1 = 0.55 * MY4;
+                const MDMISy2 = MDMISy1 / lho;
+                const MDMISy3 = 0.45 * MY4;
+                const MDMISy4 = MDMISy3 / (L1 - lho);
+
+                // OUTPUT 
+                document.getElementById('lmin').textContent = lmin.toFixed(2);
+                document.getElementById('DropI').textContent = DropI;
+                document.getElementById('ColW').textContent = ColW.toFixed(2);
+                document.getElementById('lh').textContent = lh.toFixed(2);
+                document.getElementById('ColWid').textContent = ColWid.toFixed(2);
+                document.getElementById('colS').textContent = colS.toFixed(2);
+                document.getElementById('lx1').textContent = lx1.toFixed(2);
+                document.getElementById('ly1').textContent = ly1.toFixed(2);
+                document.getElementById('MX1').textContent = MX1.toFixed(2);
+                document.getElementById('MY1').textContent = MY1.toFixed(2);
+                document.getElementById('MX2').textContent = MX2.toFixed(2);
+                document.getElementById('MY2').textContent = MY2.toFixed(2);
+                document.getElementById('MXD1').textContent = MXD1.toFixed(2);
+                document.getElementById('MYD1').textContent = MYD1.toFixed(2);
+                document.getElementById('MXD2').textContent = MXD2.toFixed(2);
+                document.getElementById('MYD2').textContent = MYD2.toFixed(2);
+                document.getElementById('MXD3').textContent = MXD3.toFixed(2);
+                document.getElementById('MYD3').textContent = MYD3.toFixed(2);
+                document.getElementById('MX3').textContent = MX3.toFixed(2);
+                document.getElementById('MY3').textContent = MY3.toFixed(2);
+                document.getElementById('MX4').textContent = MX4.toFixed(2);
+                document.getElementById('MY4').textContent = MY4.toFixed(2);
+                
+                // Negative moments X-direction
+                document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2);
+                document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
+                document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
+                document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2);
+
+                document.getElementById('MDMEx1').textContent = MDMEx1.toFixed(2);
+                document.getElementById('MDMEx2').textContent = MDMEx2.toFixed(2);
+                document.getElementById('MDMEx3').textContent = MDMEx3.toFixed(2);
+                document.getElementById('MDMEx4').textContent = MDMEx4.toFixed(2);
+
+                document.getElementById('MDMOx1').textContent = MDMOx1.toFixed(2);
+                document.getElementById('MDMOx2').textContent = MDMOx2.toFixed(2);
+                document.getElementById('MDMOx3').textContent = MDMOx3.toFixed(2);
+                document.getElementById('MDMOx4').textContent = MDMOx4.toFixed(2);
+
+                // Negative moments Y-direction
+                document.getElementById('MDMIy1').textContent = MDMIy1.toFixed(2);
+                document.getElementById('MDMIy2').textContent = MDMIy2.toFixed(2);
+                document.getElementById('MDMIy3').textContent = MDMIy3.toFixed(2);
+                document.getElementById('MDMIy4').textContent = MDMIy4.toFixed(2);
+
+                document.getElementById('MDMEy1').textContent = MDMEy1.toFixed(2);
+                document.getElementById('MDMEy2').textContent = MDMEy2.toFixed(2);
+                document.getElementById('MDMEy3').textContent = MDMEy3.toFixed(2);
+                document.getElementById('MDMEy4').textContent = MDMEy4.toFixed(2);
+
+                document.getElementById('MDMOy1').textContent = MDMOy1.toFixed(2);
+                document.getElementById('MDMOy2').textContent = MDMOy2.toFixed(2);
+                document.getElementById('MDMOy3').textContent = MDMOy3.toFixed(2);
+                document.getElementById('MDMOy4').textContent = MDMOy4.toFixed(2);
+
+                // Positive moments X-direction
+                document.getElementById('MDMESx1').textContent = MDMESx1.toFixed(2);
+                document.getElementById('MDMESx2').textContent = MDMESx2.toFixed(2);
+                document.getElementById('MDMESx3').textContent = MDMESx3.toFixed(2);
+                document.getElementById('MDMESx4').textContent = MDMESx4.toFixed(2);
+
+                document.getElementById('MDMISx1').textContent = MDMISx1.toFixed(2);
+                document.getElementById('MDMISx2').textContent = MDMISx2.toFixed(2);
+                document.getElementById('MDMISx3').textContent = MDMISx3.toFixed(2);
+                document.getElementById('MDMISx4').textContent = MDMISx4.toFixed(2);
+
+                // Positive moments Y-direction
+                document.getElementById('MDMESy1').textContent = MDMESy1.toFixed(2);
+                document.getElementById('MDMESy2').textContent = MDMESy2.toFixed(2);
+                document.getElementById('MDMESy3').textContent = MDMESy3.toFixed(2);
+                document.getElementById('MDMESy4').textContent = MDMESy4.toFixed(2);
+
+                document.getElementById('MDMISy1').textContent = MDMISy1.toFixed(2);
+                document.getElementById('MDMISy2').textContent = MDMISy2.toFixed(2);
+                document.getElementById('MDMISy3').textContent = MDMISy3.toFixed(2);
+                document.getElementById('MDMISy4').textContent = MDMISy4.toFixed(2);
+
+                console.log("Calculation completed successfully!"); // Debugging
+            } catch (error) {
+                console.error("Error in calculation:", error);
+                alert("An error occurred during calculation: " + error.message);
+            }
+        }
    
-    document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2);
-    document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
-    document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
-    document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2);
-
-   document.getElementById('MDMEx1').textContent = MDMEx1.toFixed(2);
-   document.getElementById('MDMEx2').textContent = MDMEx2.toFixed(2);
-   document.getElementById('MDMEx3').textContent = MDMEx3.toFixed(2);
-   document.getElementById('MDMEx4').textContent = MDMEx4.toFixed(2);
-
-   document.getElementById('MDMOx1').textContent = MDMOx1.toFixed(2);
-   document.getElementById('MDMOx2').textContent = MDMOx2.toFixed(2);
-   document.getElementById('MDMOx3').textContent = MDMOx3.toFixed(2);
-   document.getElementById('MDMOx4').textContent = MDMOx4.toFixed(2);
-
-   document.getElementById('MDMIy1').textContent = MDMIy1.toFixed(2);
-   document.getElementById('MDMIy2').textContent = MDMIy2.toFixed(2);
-   document.getElementById('MDMIy3').textContent = MDMIy3.toFixed(2);
-   document.getElementById('MDMIy4').textContent = MDMIy4.toFixed(2);
-
-    document.getElementById('MDMEy1').textContent = MDMEy1.toFixed(2);
-   document.getElementById('MDMEy2').textContent = MDMEy2.toFixed(2);
-   document.getElementById('MDMEy3').textContent = MDMEy3.toFixed(2);
-   document.getElementById('MDMEy4').textContent = MDMEy4.toFixed(2);
-
-   document.getElementById('MDMOy1').textContent = MDMOy1.toFixed(2);
-   document.getElementById('MDMOy2').textContent = MDMOy2.toFixed(2);
-   document.getElementById('MDMOy3').textContent = MDMOy3.toFixed(2);
-   document.getElementById('MDMOy4').textContent = MDMOy4.toFixed(2);
-
-    document.getElementById('MDMESx1').textContent = MDMESx1.toFixed(2);
-   document.getElementById('MDMESx2').textContent = MDMESx2.toFixed(2);
-   document.getElementById('MDMESx3').textContent = MDMESx3.toFixed(2);
-   document.getElementById('MDMESx4').textContent = MDMESx4.toFixed(2);
-
-   document.getElementById('MDMISx1').textContent = MDMISx1.toFixed(2);
-   document.getElementById('MDMISx2').textContent = MDMISx2.toFixed(2);
-   document.getElementById('MDMISx3').textContent = MDMISx3.toFixed(2);
-   document.getElementById('MDMISx4').textContent = MDMISx4.toFixed(2);
-
-   document.getElementById('MDMESy1').textContent = MDMESy1.toFixed(2);
-   document.getElementById('MDMESy2').textContent = MDMESy2.toFixed(2);
-   document.getElementById('MDMESy3').textContent = MDMESy3.toFixed(2);
-   document.getElementById('MDMESy4').textContent = MDMESy4.toFixed(2);
-
-   document.getElementById('MDMISy1').textContent = MDMISy1.toFixed(2);
-   document.getElementById('MDMISy2').textContent = MDMISy2.toFixed(2);
-   document.getElementById('MDMISy3').textContent = MDMISy3.toFixed(2);
-   document.getElementById('MDMISy4').textContent = MDMISy4.toFixed(2);
-	
-	
-}
-
 
 
 
