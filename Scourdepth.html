@@ -906,6 +906,75 @@
                     <option value="Boulder">Boulder</option>
                 </select>
         <br>
+	      <i>Select the silt size according to the following table</i>
+	      <table class="input-table">
+		     <tr>
+			     <td>Material Type</td>
+			     <td>Fineness</td>
+			     <td>Size of material</td>
+		     </tr> 
+		      <tr>
+			      <td colspan="5">Silt</td>
+			      <td>Very fine</td>
+			      <td>0.05 to 0.08</td>
+		      </tr>
+		      <tr>
+			      <td>Fine</td>
+			      <td>0.12</td>
+			      
+		      </tr>
+		      <tr>
+			      <td>Medium</td>
+			      <td>0.32</td>
+		      </tr>
+		      <tr>
+			      <td colspan="2">Sand</td>
+			      <td>Medium</td>
+			      <td>0.51</td>
+		      </tr>
+		      <tr>
+			      <td>Coarse</td>
+			      <td>0.73</td>
+		      </tr>
+		      <tr>
+			      <td colspan="3">Bajri and sand</td>
+			      <td>Fine</td>
+			      <td>0.89</td>
+			      
+		      </tr>
+		      <tr>
+			      <td>Medium</td>
+			      <td>1.29</td>
+		      </tr>
+		      <tr>
+			      <td>Coarse</td>
+			      <td>2.42</td>
+		      </tr>
+		      <tr>
+			      <td colspan="2">Gravel</td>
+			      <td>Medium</td>
+			      <td>7.28</td>
+			      
+		      </tr>
+		      <tr>
+			      <td>Heavy</td>
+			      <td>26.10</td>
+		      </tr>
+		      <tr>
+			      <td colspan="3">Boulder</td>
+			      <td>Small</td>
+			      <td>50.10</td>
+		      </tr>
+		      <tr>
+			      <td>Medium</td>
+			      <td>72.50</td>
+		      </tr>
+		      <tr>
+			      <td>Large</td>
+			      <td>188.80</td>
+		      </tr>
+	     </table>
+		      
          <label for="Fineness">Fineness: </label>
                 <select id="Fineness">
 			<option value="Fine">Very fine</option>
@@ -1224,36 +1293,12 @@
    	 // Input values
     	const Q = parseFloat(document.getElementById('Q').value); 
     	const L = parseFloat(document.getElementById('L').value); 
-	const MatType = parseFloat(document.getElementById('MatType').value);
-	const Fineness = parseFloat(document.getElementById('Fineness').value);
 	const dm = parseFloat(document.getElementById('dm').value);
 	const Seism=parseFloat(document.getElementById('Seism').value);
 	const Struc=parseFloat(document.getElementById('Struc').value);
 
 	// Size of material according to material type
-	let dm1;
-	if (MatType==="Silt"){
-		if(Fineness==="Very fine"){dm1=0.05 to 0.08;}
-		else if  (Fineness==="Fine"){dm1=0.12;}
-		else if (Fineness==="Medium"){dm1=0.16;}
-		else {dm=0.32;}
-		
-	} else if (MatType==="Sand"){
-		if(Fineness==="Medium"){dm1=0.51;}
-		else {dm1=0.73;}
-	}else if (MatType==="Bajri and sand"){
-		if(Fineness==="Fine"){dm1=0.89;}
-		else if (Fineness==="Medium"){dm1=1.29;}
-		else {dm1=1.2.42;}
-	} else if (MatType==="Gravel"){
-		if(Fineness==="Medium"){dm1=7.28;}
-		else {dm1=26.10;}
 	
-	} else {
-		if(Fineness==="Small"){dm1=50.10;}
-		else if (Fineness==="Medium"){dm1=72.50;}
-		else {dm1=188.8;}
-	}
 	const f=1.76*Math.pow(dm,0.5);
 	// Scour depth
 	const ql=Q/L;
