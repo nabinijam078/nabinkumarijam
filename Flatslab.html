@@ -1015,10 +1015,32 @@
     </div>
     
     <button type="button" onclick="calculateFlatslab()" class="btn">DESIGN OF FLAT SLAB</button>
-
+    <br>
+    <b><u>INPUT VALUES FOR REINFORCEMENT DESIGN</u></b>
+    <div class="input-group">
+        <label for="depth">depth of slab (\(d_{sl}\) in mm):</label>
+        <input type="number" id="depth" required>
+    </div>
+    <br>
+    <div class="input-group">
+        <label for="moment">Input moment (\(M\) in kNm):</label>
+        <input type="number" id="moment" required>
+    </div>
+    <br>
+    <div class="input-group">
+        <label for="phi">Diameter of reinforcement (\(phi\) in mm):</label>
+        <input type="number" id="phi" required>
+    </div>
+    <br>
+    <div class="input-group">
+        <label for="s">Spacing of reinforcement (\(s\) in mm):</label>
+        <input type="number" id="s" required>
+    </div>
+    <br>
+      <button type="button" onclick="calculatereinforcement()" class="btn">REINFORCEMENT DESIGN</button>    
     <br>
     <div style="text-align: center;">
-        <img src="Flatslab.png" alt="Flat Slab Diagram" class="shape-image" style="width: 450px; height: auto;">
+        <img src="Flatslab.png" alt="Flat Slab Diagram" class="shape-image" style="width: 400px; height: auto;">
     </div>
 
     <div class="result" id="result">
@@ -1206,7 +1228,8 @@
         </table>
 
         <p>5. REINFORCEMENT DESIGN</p>
-        
+        <p><strong>Area of reinforcement (\(A_{st)\)):</strong> <span id="Ast"></span> mm<sup>2</sup></p>
+        <p><strong>Area of reinforcement (\(A_{stp)\)):</strong> <span id="Astp"></span> mm<sup>2</sup></p>
       </div>
     </div>
     <!-- Footer -->
@@ -1556,6 +1579,52 @@
                 alert("An error occurred during calculation: " + error.message);
             }
         }
+        function calculatereinforcement() {
+           
+                // Input values
+        const cover = parseFloat(document.getElementById('cover').value);
+        const depth = parseFloat(document.getElementById('depth').value); 
+        const fcu = parseFloat(document.getElementById('fck').value); 
+        const fy = parseFloat(document.getElementById('fy').value);
+        const moment = parseFloat(document.getElementById('moment').value);
+        const phi = parseFloat(document.getElementById('phi').value);
+        const s = parseFloat(document.getElementById('s').value);
+            
+    const k1 = 0.156;
+    // Effective depth
+    const de = depth - cover - dm/2;
+    const M = moment * 1e6;
+    const b = 1000;
+    const k = M/(fcu*b*de*de);
+    
+    // Check for beam type
+    let Ast, Asc, z, x, esc, fsc;
+    
+    if(k1 > k) {
+        
+        z = Math.min((0.5 + Math.sqrt(0.25 - k/0.9)), 0.95) * de;
+        Ast = M/(0.87*fy*z);
+        Asc = 0;
+    } else {
+       
+        z = Math.min((0.5 + Math.sqrt(0.25 - k1/0.9)), 0.776887) * de;
+        Ast = (k - k1)*fcu*b*de*de/(0.87*fy*(de-cover)) + k1*fcu*b*de*de/(0.87*fy*z);
+        x = (de - z)/0.45;
+        esc = (de/x - 1)*0.0035;
+        fsc = esc*2e5;
+        
+        if (fsc < 0.87*fy) {
+            fsc = 2e5*esc;
+        } else {
+            fsc = 0.87*fy;
+        }
+        Asc = (M - k1*fcu*b*de*de)/((fsc - 0.446*fcu)*(de - cover));
+    }
+            const A11=Math.PI*phi*phi/4;
+            const Astp=A11*1000/s;
+            document.getElementById('Ast').textContent = Ast.toFixed(2);
+            document.getElementById('Astp').textContent = Astp.toFixed(2);
+            }
     </script>
 </body>
 </html>
