@@ -1593,7 +1593,7 @@
             
     const k1 = 0.156;
     // Effective depth
-    const de = depth - cover - dm/2;
+    const de = depth - cover - phi/2;
     const M = moment * 1e6;
     const b = 1000;
     const k = M/(fcu*b*de*de);
@@ -1623,6 +1623,8 @@
     }
             const A11=Math.PI*phi*phi/4;
             const Astp=A11*1000/s;
+            
+            // OUTPUT
             document.getElementById('Ast').textContent = Ast.toFixed(2);
             document.getElementById('Astp').textContent = Astp.toFixed(2);
             }
