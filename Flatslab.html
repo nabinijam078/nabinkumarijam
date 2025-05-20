@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +14,6 @@
 
     <style>
         /* ===== Base Styles ===== */
-            /* ===== Base Styles ===== */
         :root {
             --primary-blue: #2563eb;
             --light-blue: #e0f2fe;
@@ -124,8 +122,8 @@
             background: var(--primary-blue);
             color: white;
         }
-	    
-	/* Table Styles */
+        
+    /* Table Styles */
        /* Input tables (small width) */
     .input-table {
         width: 30%;  
@@ -837,6 +835,43 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Input group styling */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .result p {
+            margin: 10px 0;
+        }
+
+        .result strong {
+            color: var(--primary-blue);
+        }
     </style>
 </head>
 <body>
@@ -886,280 +921,292 @@
      <!-- Main Content -->
       <div class="main-container">
       <h3><u><center>DESIGN OF FLAT SLAB AS PER BS 8110: 1997</center></u></h3>
-	<h3><u>INPUTS</u></h3>
-          <label for="fcu">Grade of Concrete (\(f_{cu}\) in MPa): </label>
-                <select id="fck">
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                    <option value="40">40</option>
-                </select>
-                <label for="fy"><br><br>Grade of Steel (\(f_y\) in MPa): </label>
-                <select id="fy">
-                    <option value="250">250</option>
-                    <option value="415">415</option>
-                    <option value="500">500</option>
-                </select>
-	<div class="input-group">
-            <label for="cover">Effective cover (\(c\) in mm):</label>
-            <input type="number" id="cover" required>
-        </div>
-	      <p>GEOMTETRY</p>
-	<div class="input-group">
-            <label for="L1">Long span (\(L_1\) in m):</label>
-            <input type="number" id="L1" required>
-        </div>
-	      <br>
-	<div class="input-group">
-            <label for="L2">Short span (\(L_2\) in m):</label>
-            <input type="number" id="L2" required>
-        </div>
-	     <br>
-	<div class="input-group">
-            <label for="Ds">Depth of slab (\(D_s\) in mm):</label>
-            <input type="number" id="Ds" required>
-        </div>
-	    <br>
-	<div class="input-group">
-            <label for="b">Long dimension of column (\(b\) in mm):</label>
-            <input type="number" id="a" required>
-        </div>
-	 <br>
-	<div class="input-group">
-            <label for="d">Short dimension of column (\(d\) in mm):</label>
-            <input type="number" id="b" required>
-        </div>
-	      <br>
-	      <b><u>LOADS</u></b>
-	      
-	<div class="input-group">
-            <label for="DL">Dead load (\(DL\) in kN/m<sup>2</sup>):</label>
-            <input type="number" id="DL" required>
-        </div>
-	<br>
-	<div class="input-group">
-            <label for="LL">Live load (\(LL\) in kN/m<sup>2</sup>):</label>
-            <input type="number" id="LL" required>
-        </div>
-	<br>
-	<label for="DropP">Provision of drop (YES or NO): </label>
-                <select id="DropP">
-                    <option value="YES">YES</option>
-                    <option value="NO">NO</option>
-                </select>  
-    	 <br>
-	
-	<label for="DropT">If Yes Drop Type (1 or 2): </label>
-                <select id="DropT">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                </select>  
-	<i>Drop width shall be provided after calculation of minimum drop.</i>
-	<div class="input-group">
-            <label for="lho">Width of drop (\(l_{ho}\) in m):</label>
-            <input type="number" id="lho" required>
-        </div>
-	<br>
-	<div class="input-group">
-            <label for="dh">Thickness of drop (\(d_{h}\) in m):</label>
-            <input type="number" id="dh" required>
-        </div>
-	<br>
-	      
-	 <button type="button" onclick="calculateFlatslab()" class="btn">DESIGN OF FLAT SLAB</button>
+    <h3><u>INPUTS</u></h3>
+          <div class="input-group">
+              <label for="fck">Grade of Concrete (\(f_{cu}\) in MPa): </label>
+              <select id="fck">
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="35">35</option>
+                  <option value="40">40</option>
+              </select>
+          </div>
+          
+          <div class="input-group">
+              <label for="fy">Grade of Steel (\(f_y\) in MPa): </label>
+              <select id="fy">
+                  <option value="250">250</option>
+                  <option value="415">415</option>
+                  <option value="500">500</option>
+              </select>
+          </div>
+    
+    <div class="input-group">
+        <label for="cover">Effective cover (\(c\) in mm):</label>
+        <input type="number" id="cover" required>
+    </div>
+    
+    <p>GEOMETRY</p>
+    <div class="input-group">
+        <label for="L1">Long span (\(L_1\) in m):</label>
+        <input type="number" id="L1" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="L2">Short span (\(L_2\) in m):</label>
+        <input type="number" id="L2" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="Ds">Depth of slab (\(D_s\) in mm):</label>
+        <input type="number" id="Ds" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="a">Long dimension of column (\(b\) in mm):</label>
+        <input type="number" id="a" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="b">Short dimension of column (\(d\) in mm):</label>
+        <input type="number" id="b" required>
+    </div>
+    
+    <b><u>LOADS</u></b>
+    
+    <div class="input-group">
+        <label for="DL">Dead load (\(DL\) in kN/m<sup>2</sup>):</label>
+        <input type="number" id="DL" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="LL">Live load (\(LL\) in kN/m<sup>2</sup>):</label>
+        <input type="number" id="LL" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="DropP">Provision of drop (YES or NO): </label>
+        <select id="DropP">
+            <option value="YES">YES</option>
+            <option value="NO">NO</option>
+        </select>  
+    </div>
+    
+    <div class="input-group">
+        <label for="DropT">If Yes Drop Type (1 or 2): </label>
+        <select id="DropT">
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>  
+    </div>
+    
+    <i>Drop width shall be provided after calculation of minimum drop.</i>
+    <div class="input-group">
+        <label for="lho">Width of drop (\(l_{ho}\) in m):</label>
+        <input type="number" id="lho" required>
+    </div>
+    
+    <div class="input-group">
+        <label for="dh">Thickness of drop (\(d_{h}\) in m):</label>
+        <input type="number" id="dh" required>
+    </div>
+    
+    <button type="button" onclick="calculateFlatslab()" class="btn">DESIGN OF FLAT SLAB</button>
 
-	<br>
-	            <div style="text-align: center;">
-     <img src="Flatslab.png" alt="curve" class="shape-image" style="width: 450px; height: auto;">
-	      </div>
+    <br>
+    <div style="text-align: center;">
+        <img src="Flatslab.png" alt="Flat Slab Diagram" class="shape-image" style="width: 450px; height: auto;">
+    </div>
 
-	<div class="result" id="result">
+    <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
-	<b>1.DROP IF PROVIDED </b>
-	<p><strong>Minimum width of drop(\(l_{min}\))</strong> <span id="lmin"></span>m</p> 
-        <p><strong>Ignorace of drop:</strong> <span id="DropI"></span></p>
-	<p><strong>Width of Column strip :</strong> <span id="ColW"></span>m</p>
-	<b>2. COLUMN HEADS (Clause 3.7.1.3)</b>
-	<p><strong>Length of Column head (\(l_h\)):</strong> <span id="lh"></span>m</p>
-	<p><strong>Effective diameter of column head:</strong> <span id="ColWid"></span>m</p>
-	<b>3. DIVISION OF PANEL</b>
-	<p><strong>3.1 Column strip</strong> <span id="colS"></span>m</p>
-	<p>3.2 Middle strip</p>
-	<p><strong>Long direction (\(l_{x1}\)):</strong> <span id="lx1"></span>m</p>
-	<p><strong>Short direction (\(l_{y1}\)):</strong> <span id="ly1"></span>m</p>
+        <b>1.DROP IF PROVIDED </b>
+        <p><strong>Minimum width of drop(\(l_{min}\))</strong> <span id="lmin"></span> m</p> 
+        <p><strong>Ignorance of drop:</strong> <span id="DropI"></span></p>
+        <p><strong>Width of Column strip:</strong> <span id="ColW"></span> m</p>
+        
+        <b>2. COLUMN HEADS (Clause 3.7.1.3)</b>
+        <p><strong>Length of Column head (\(l_h\)):</strong> <span id="lh"></span> m</p>
+        <p><strong>Effective diameter of column head:</strong> <span id="ColWid"></span> m</p>
+        
+        <b>3. DIVISION OF PANEL</b>
+        <p><strong>3.1 Column strip</strong> <span id="colS"></span> m</p>
+        <p>3.2 Middle strip</p>
+        <p><strong>Long direction (\(l_{x1}\)):</strong> <span id="lx1"></span> m</p>
+        <p><strong>Short direction (\(l_{y1}\)):</strong> <span id="ly1"></span> m</p>
 
-	<b>4. CALCULATION OF MOMENTS</b>
-	<p>4.1 MOMENTS </p>
-	<table class="load-table">
-		<tr>
-			<td colspan="2"> Moments </td>
-			<td>x-direction</td>
-			<td>y-direction</td>
-			<td>Clause</td>
-		</tr>
-		<tr>
-			<td colspan="5">Negative moments</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Reduction of support moment</td>
-			<td>Internal support</td>
-			<td><p><span id="MX1"></span></span></strong></p></td>
-			<td><p><span id="MY1"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>External Support</td>
-			<td><p><span id="MX2"></span></span></strong></p></td>
-			<td><p><span id="MY2"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td rowspan="3">Design moment at support</td>
-			<td>Outer support</td>
-			<td><p><span id="MXD1"></span></span></strong></p></td>
-			<td><p><span id="MYD1"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-			
-		</tr>
-		<tr>
-			<td>First interior support</td>
-			<td><p><span id="MXD2"></span></span></strong></p></td>
-			<td><p><span id="MYD2"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>Interior support</td>
-			<td><p><span id="MXD3"></span></span></strong></p></td>
-			<td><p><span id="MYD3"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td colspan="5">Positive moments</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Design moment at support</td>
-			<td>Outer support</td>
-			<td><p><span id="MX3"></span></span></strong></p></td>
-			<td><p><span id="MY3"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-		<tr>
-			<td>Middle Interior support</td>
-			<td><p><span id="MX4"></span></span></strong></p></td>
-			<td><p><span id="MY4"></span></span></strong></p></td>
-			<td>3.7.2.7 d)</td>
-		</tr>
-	</table>
-		<p>4.2 DISTRIBUTION OF DESIGN MOMENTS IN PANELS OF FLAT SLAB</p>
-		<table class="load-table">
-			<tr>
-			<td rowspan="2">Position</td>
-			<td colspan="2">Column strip</td>
-			<td colspan="2">Mid strip</td>
-			</tr>
-			<tr>
-				<td>Total moment</td>
-				<td>Mt/width</td>
-				<td>Total moment</td>
-				<td>Mt/width</td>
-			</tr>
-			<tr>
-				<td colspan="5">Negative moment</td>
-			</tr>
-			<tr>
-				<td colspan="5">X-direction</td>
-				
-			</tr>
-			<tr>
-				<td>Internal support</td>
-				<td><p><span id="MDMIx1"></span></span></strong></p></td>
-				<td><p><span id="MDMIx2"></span></span></strong></p></td>
-				<td><p><span id="MDMIx3"></span></span></strong></p></td>
-				<td><p><span id="MDMIx4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>External support</td>
-				<td><p><span id="MDMEx1"></span></span></strong></p></td>
-				<td><p><span id="MDMEx2"></span></span></strong></p></td>
-				<td><p><span id="MDMEx3"></span></span></strong></p></td>
-				<td><p><span id="MDMEx4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>Outer support</td>
-				<td><p><span id="MDMOx1"></span></span></strong></p></td>
-				<td><p><span id="MDMOx2"></span></span></strong></p></td>
-				<td><p><span id="MDMOx3"></span></span></strong></p></td>
-				<td><p><span id="MDMOx4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td colspan="5"> Y-direction</td>
-			</tr>
-			<tr>
-				<td>Internal support</td>
-				<td><p><span id="MDMIy1"></span></span></strong></p></td>
-				<td><p><span id="MDMIy2"></span></span></strong></p></td>
-				<td><p><span id="MDMIy3"></span></span></strong></p></td>
-				<td><p><span id="MDMIy4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>External support</td>
-				<td><p><span id="MDMEy1"></span></span></strong></p></td>
-				<td><p><span id="MDMEy2"></span></span></strong></p></td>
-				<td><p><span id="MDMEy3"></span></span></strong></p></td>
-				<td><p><span id="MDMEy4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>Outer support</td>
-				<td><p><span id="MDMOy1"></span></span></strong></p></td>
-				<td><p><span id="MDMOy2"></span></span></strong></p></td>
-				<td><p><span id="MDMOy3"></span></span></strong></p></td>
-				<td><p><span id="MDMOy4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td colspan="5">Positive moment</td>
-			</tr>
-			<tr>
-				<td colspan="5">X-direction</td>
-			</tr>
-			<tr>
-				<td>Mid of end span</td>
-				<td><p><span id="MDMESx1"></span></span></strong></p></td>
-				<td><p><span id="MDMESx2"></span></span></strong></p></td>
-				<td><p><span id="MDMESx3"></span></span></strong></p></td>
-				<td><p><span id="MDMESx4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>Mid of interior span</td>
-				<td><p><span id="MDMISx1"></span></span></strong></p></td>
-				<td><p><span id="MDMISx2"></span></span></strong></p></td>
-				<td><p><span id="MDMISx3"></span></span></strong></p></td>
-				<td><p><span id="MDMISx4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td colspan="5">Y-direction</td>
-			</tr>
-			<tr>
-				<td>Mid of end span</td>
-				<td><p><span id="MDMESy1"></span></span></strong></p></td>
-				<td><p><span id="MDMESy2"></span></span></strong></p></td>
-				<td><p><span id="MDMESy3"></span></span></strong></p></td>
-				<td><p><span id="MDMESy4"></span></span></strong></p></td>
-			</tr>
-			<tr>
-				<td>Mid of interior span</td>
-				<td><p><span id="MDMISy1"></span></span></strong></p></td>
-				<td><p><span id="MDMISy2"></span></span></strong></p></td>
-				<td><p><span id="MDMISy3"></span></span></strong></p></td>
-				<td><p><span id="MDMISy4"></span></span></strong></p></td>
-			</tr>
-		</table>
+        <b>4. CALCULATION OF MOMENTS</b>
+        <p>4.1 MOMENTS </p>
+        <table class="load-table">
+            <tr>
+                <td colspan="2"> Moments </td>
+                <td>x-direction</td>
+                <td>y-direction</td>
+                <td>Clause</td>
+            </tr>
+            <tr>
+                <td colspan="5">Negative moments</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Reduction of support moment</td>
+                <td>Internal support</td>
+                <td><p><span id="MX1"></span></span></strong></p></td>
+                <td><p><span id="MY1"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+            <tr>
+                <td>External Support</td>
+                <td><p><span id="MX2"></span></span></strong></p></td>
+                <td><p><span id="MY2"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Design moment at support</td>
+                <td>Outer support</td>
+                <td><p><span id="MXD1"></span></span></strong></p></td>
+                <td><p><span id="MYD1"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+                
+            </tr>
+            <tr>
+                <td>First interior support</td>
+                <td><p><span id="MXD2"></span></span></strong></p></td>
+                <td><p><span id="MYD2"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+            <tr>
+                <td>Interior support</td>
+                <td><p><span id="MXD3"></span></span></strong></p></td>
+                <td><p><span id="MYD3"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+            <tr>
+                <td colspan="5">Positive moments</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Design moment at support</td>
+                <td>Outer support</td>
+                <td><p><span id="MX3"></span></span></strong></p></td>
+                <td><p><span id="MY3"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+            <tr>
+                <td>Middle Interior support</td>
+                <td><p><span id="MX4"></span></span></strong></p></td>
+                <td><p><span id="MY4"></span></span></strong></p></td>
+                <td>3.7.2.7 d)</td>
+            </tr>
+        </table>
+        
+        <p>4.2 DISTRIBUTION OF DESIGN MOMENTS IN PANELS OF FLAT SLAB</p>
+        <table class="load-table">
+            <tr>
+                <td rowspan="2">Position</td>
+                <td colspan="2">Column strip</td>
+                <td colspan="2">Mid strip</td>
+            </tr>
+            <tr>
+                <td>Total moment</td>
+                <td>Mt/width</td>
+                <td>Total moment</td>
+                <td>Mt/width</td>
+            </tr>
+            <tr>
+                <td colspan="5">Negative moment</td>
+            </tr>
+            <tr>
+                <td colspan="5">X-direction</td>
+                
+            </tr>
+            <tr>
+                <td>Internal support</td>
+                <td><p><span id="MDMIx1"></span></span></strong></p></td>
+                <td><p><span id="MDMIx2"></span></span></strong></p></td>
+                <td><p><span id="MDMIx3"></span></span></strong></p></td>
+                <td><p><span id="MDMIx4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>External support</td>
+                <td><p><span id="MDMEx1"></span></span></strong></p></td>
+                <td><p><span id="MDMEx2"></span></span></strong></p></td>
+                <td><p><span id="MDMEx3"></span></span></strong></p></td>
+                <td><p><span id="MDMEx4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>Outer support</td>
+                <td><p><span id="MDMOx1"></span></span></strong></p></td>
+                <td><p><span id="MDMOx2"></span></span></strong></p></td>
+                <td><p><span id="MDMOx3"></span></span></strong></p></td>
+                <td><p><span id="MDMOx4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td colspan="5"> Y-direction</td>
+            </tr>
+            <tr>
+                <td>Internal support</td>
+                <td><p><span id="MDMIy1"></span></span></strong></p></td>
+                <td><p><span id="MDMIy2"></span></span></strong></p></td>
+                <td><p><span id="MDMIy3"></span></span></strong></p></td>
+                <td><p><span id="MDMIy4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>External support</td>
+                <td><p><span id="MDMEy1"></span></span></strong></p></td>
+                <td><p><span id="MDMEy2"></span></span></strong></p></td>
+                <td><p><span id="MDMEy3"></span></span></strong></p></td>
+                <td><p><span id="MDMEy4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>Outer support</td>
+                <td><p><span id="MDMOy1"></span></span></strong></p></td>
+                <td><p><span id="MDMOy2"></span></span></strong></p></td>
+                <td><p><span id="MDMOy3"></span></span></strong></p></td>
+                <td><p><span id="MDMOy4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td colspan="5">Positive moment</td>
+            </tr>
+            <tr>
+                <td colspan="5">X-direction</td>
+            </tr>
+            <tr>
+                <td>Mid of end span</td>
+                <td><p><span id="MDMESx1"></span></span></strong></p></td>
+                <td><p><span id="MDMESx2"></span></span></strong></p></td>
+                <td><p><span id="MDMESx3"></span></span></strong></p></td>
+                <td><p><span id="MDMESx4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>Mid of interior span</td>
+                <td><p><span id="MDMISx1"></span></span></strong></p></td>
+                <td><p><span id="MDMISx2"></span></span></strong></p></td>
+                <td><p><span id="MDMISx3"></span></span></strong></p></td>
+                <td><p><span id="MDMISx4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td colspan="5">Y-direction</td>
+            </tr>
+            <tr>
+                <td>Mid of end span</td>
+                <td><p><span id="MDMESy1"></span></span></strong></p></td>
+                <td><p><span id="MDMESy2"></span></span></strong></p></td>
+                <td><p><span id="MDMESy3"></span></span></strong></p></td>
+                <td><p><span id="MDMESy4"></span></span></strong></p></td>
+            </tr>
+            <tr>
+                <td>Mid of interior span</td>
+                <td><p><span id="MDMISy1"></span></span></strong></p></td>
+                <td><p><span id="MDMISy2"></span></span></strong></p></td>
+                <td><p><span id="MDMISy3"></span></span></strong></p></td>
+                <td><p><span id="MDMISy4"></span></span></strong></p></td>
+            </tr>
+        </table>
 
-	<p>5. REINFORCEMENT DESIGN</p>
-	
+        <p>5. REINFORCEMENT DESIGN</p>
+        
       </div>
-	      
     </div>
     <!-- Footer -->
     <footer>
@@ -1214,8 +1261,7 @@
             </div>
         </div>
     </footer>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- JavaScript for Time and Date -->
+
     <script>
         function updateDateTime() {
             const now = new Date();
@@ -1288,8 +1334,7 @@
                 this.reset();
             });
         }
-	      
-
+        
         function calculateFlatslab() {
             console.log("Calculation started..."); // Debugging
             
@@ -1311,7 +1356,7 @@
                 const dh = parseFloat(document.getElementById('dh').value); // Depth of drop
 
                 // Validate inputs
-                if (isNaN(L1) throw new Error("Long span (L1) is required");
+                if (isNaN(L1)) throw new Error("Long span (L1) is required");
                 if (isNaN(L2)) throw new Error("Short span (L2) is required");
                 if (isNaN(Ds)) throw new Error("Slab depth (Ds) is required");
                 
@@ -1435,74 +1480,74 @@
                 document.getElementById('colS').textContent = colS.toFixed(2);
                 document.getElementById('lx1').textContent = lx1.toFixed(2);
                 document.getElementById('ly1').textContent = ly1.toFixed(2);
-                document.getElementById('MX1').textContent = MX1.toFixed(2);
-                document.getElementById('MY1').textContent = MY1.toFixed(2);
-                document.getElementById('MX2').textContent = MX2.toFixed(2);
-                document.getElementById('MY2').textContent = MY2.toFixed(2);
-                document.getElementById('MXD1').textContent = MXD1.toFixed(2);
-                document.getElementById('MYD1').textContent = MYD1.toFixed(2);
-                document.getElementById('MXD2').textContent = MXD2.toFixed(2);
-                document.getElementById('MYD2').textContent = MYD2.toFixed(2);
-                document.getElementById('MXD3').textContent = MXD3.toFixed(2);
-                document.getElementById('MYD3').textContent = MYD3.toFixed(2);
-                document.getElementById('MX3').textContent = MX3.toFixed(2);
-                document.getElementById('MY3').textContent = MY3.toFixed(2);
-                document.getElementById('MX4').textContent = MX4.toFixed(2);
-                document.getElementById('MY4').textContent = MY4.toFixed(2);
+                document.getElementById('MX1').textContent = MX1.toFixed(2) + " kNm";
+                document.getElementById('MY1').textContent = MY1.toFixed(2) + " kNm";
+                document.getElementById('MX2').textContent = MX2.toFixed(2) + " kNm";
+                document.getElementById('MY2').textContent = MY2.toFixed(2) + " kNm";
+                document.getElementById('MXD1').textContent = MXD1.toFixed(2) + " kNm";
+                document.getElementById('MYD1').textContent = MYD1.toFixed(2) + " kNm";
+                document.getElementById('MXD2').textContent = MXD2.toFixed(2) + " kNm";
+                document.getElementById('MYD2').textContent = MYD2.toFixed(2) + " kNm";
+                document.getElementById('MXD3').textContent = MXD3.toFixed(2) + " kNm";
+                document.getElementById('MYD3').textContent = MYD3.toFixed(2) + " kNm";
+                document.getElementById('MX3').textContent = MX3.toFixed(2) + " kNm";
+                document.getElementById('MY3').textContent = MY3.toFixed(2) + " kNm";
+                document.getElementById('MX4').textContent = MX4.toFixed(2) + " kNm";
+                document.getElementById('MY4').textContent = MY4.toFixed(2) + " kNm";
                 
                 // Negative moments X-direction
-                document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2);
-                document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
-                document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
-                document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2);
+                document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2) + " kNm";
+                document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2) + " kNm";
+                document.getElementById('MDMIx4').textContent = MDMIx4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMEx1').textContent = MDMEx1.toFixed(2);
-                document.getElementById('MDMEx2').textContent = MDMEx2.toFixed(2);
-                document.getElementById('MDMEx3').textContent = MDMEx3.toFixed(2);
-                document.getElementById('MDMEx4').textContent = MDMEx4.toFixed(2);
+                document.getElementById('MDMEx1').textContent = MDMEx1.toFixed(2) + " kNm";
+                document.getElementById('MDMEx2').textContent = MDMEx2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMEx3').textContent = MDMEx3.toFixed(2) + " kNm";
+                document.getElementById('MDMEx4').textContent = MDMEx4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMOx1').textContent = MDMOx1.toFixed(2);
-                document.getElementById('MDMOx2').textContent = MDMOx2.toFixed(2);
-                document.getElementById('MDMOx3').textContent = MDMOx3.toFixed(2);
-                document.getElementById('MDMOx4').textContent = MDMOx4.toFixed(2);
+                document.getElementById('MDMOx1').textContent = MDMOx1.toFixed(2) + " kNm";
+                document.getElementById('MDMOx2').textContent = MDMOx2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMOx3').textContent = MDMOx3.toFixed(2) + " kNm";
+                document.getElementById('MDMOx4').textContent = MDMOx4.toFixed(2) + " kNm/m";
 
                 // Negative moments Y-direction
-                document.getElementById('MDMIy1').textContent = MDMIy1.toFixed(2);
-                document.getElementById('MDMIy2').textContent = MDMIy2.toFixed(2);
-                document.getElementById('MDMIy3').textContent = MDMIy3.toFixed(2);
-                document.getElementById('MDMIy4').textContent = MDMIy4.toFixed(2);
+                document.getElementById('MDMIy1').textContent = MDMIy1.toFixed(2) + " kNm";
+                document.getElementById('MDMIy2').textContent = MDMIy2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMIy3').textContent = MDMIy3.toFixed(2) + " kNm";
+                document.getElementById('MDMIy4').textContent = MDMIy4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMEy1').textContent = MDMEy1.toFixed(2);
-                document.getElementById('MDMEy2').textContent = MDMEy2.toFixed(2);
-                document.getElementById('MDMEy3').textContent = MDMEy3.toFixed(2);
-                document.getElementById('MDMEy4').textContent = MDMEy4.toFixed(2);
+                document.getElementById('MDMEy1').textContent = MDMEy1.toFixed(2) + " kNm";
+                document.getElementById('MDMEy2').textContent = MDMEy2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMEy3').textContent = MDMEy3.toFixed(2) + " kNm";
+                document.getElementById('MDMEy4').textContent = MDMEy4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMOy1').textContent = MDMOy1.toFixed(2);
-                document.getElementById('MDMOy2').textContent = MDMOy2.toFixed(2);
-                document.getElementById('MDMOy3').textContent = MDMOy3.toFixed(2);
-                document.getElementById('MDMOy4').textContent = MDMOy4.toFixed(2);
+                document.getElementById('MDMOy1').textContent = MDMOy1.toFixed(2) + " kNm";
+                document.getElementById('MDMOy2').textContent = MDMOy2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMOy3').textContent = MDMOy3.toFixed(2) + " kNm";
+                document.getElementById('MDMOy4').textContent = MDMOy4.toFixed(2) + " kNm/m";
 
                 // Positive moments X-direction
-                document.getElementById('MDMESx1').textContent = MDMESx1.toFixed(2);
-                document.getElementById('MDMESx2').textContent = MDMESx2.toFixed(2);
-                document.getElementById('MDMESx3').textContent = MDMESx3.toFixed(2);
-                document.getElementById('MDMESx4').textContent = MDMESx4.toFixed(2);
+                document.getElementById('MDMESx1').textContent = MDMESx1.toFixed(2) + " kNm";
+                document.getElementById('MDMESx2').textContent = MDMESx2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMESx3').textContent = MDMESx3.toFixed(2) + " kNm";
+                document.getElementById('MDMESx4').textContent = MDMESx4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMISx1').textContent = MDMISx1.toFixed(2);
-                document.getElementById('MDMISx2').textContent = MDMISx2.toFixed(2);
-                document.getElementById('MDMISx3').textContent = MDMISx3.toFixed(2);
-                document.getElementById('MDMISx4').textContent = MDMISx4.toFixed(2);
+                document.getElementById('MDMISx1').textContent = MDMISx1.toFixed(2) + " kNm";
+                document.getElementById('MDMISx2').textContent = MDMISx2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMISx3').textContent = MDMISx3.toFixed(2) + " kNm";
+                document.getElementById('MDMISx4').textContent = MDMISx4.toFixed(2) + " kNm/m";
 
                 // Positive moments Y-direction
-                document.getElementById('MDMESy1').textContent = MDMESy1.toFixed(2);
-                document.getElementById('MDMESy2').textContent = MDMESy2.toFixed(2);
-                document.getElementById('MDMESy3').textContent = MDMESy3.toFixed(2);
-                document.getElementById('MDMESy4').textContent = MDMESy4.toFixed(2);
+                document.getElementById('MDMESy1').textContent = MDMESy1.toFixed(2) + " kNm";
+                document.getElementById('MDMESy2').textContent = MDMESy2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMESy3').textContent = MDMESy3.toFixed(2) + " kNm";
+                document.getElementById('MDMESy4').textContent = MDMESy4.toFixed(2) + " kNm/m";
 
-                document.getElementById('MDMISy1').textContent = MDMISy1.toFixed(2);
-                document.getElementById('MDMISy2').textContent = MDMISy2.toFixed(2);
-                document.getElementById('MDMISy3').textContent = MDMISy3.toFixed(2);
-                document.getElementById('MDMISy4').textContent = MDMISy4.toFixed(2);
+                document.getElementById('MDMISy1').textContent = MDMISy1.toFixed(2) + " kNm";
+                document.getElementById('MDMISy2').textContent = MDMISy2.toFixed(2) + " kNm/m";
+                document.getElementById('MDMISy3').textContent = MDMISy3.toFixed(2) + " kNm";
+                document.getElementById('MDMISy4').textContent = MDMISy4.toFixed(2) + " kNm/m";
 
                 console.log("Calculation completed successfully!"); // Debugging
             } catch (error) {
@@ -1510,10 +1555,6 @@
                 alert("An error occurred during calculation: " + error.message);
             }
         }
-   
-
-
-
     </script>
 </body>
 </html>
