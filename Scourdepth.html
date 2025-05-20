@@ -1287,7 +1287,7 @@ function Scourdepth() {
     
     // Scour depth
     const ql = Q / L;
-    const R = 1.35 * Math.pow(ql / f, (1/3));
+    const R = 1.35 * Math.pow(ql*ql / f, (1/3));
 
     // Minimum scour depth
     let Rmin;
