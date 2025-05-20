@@ -1345,6 +1345,7 @@ function calculateFlatslab(){
     const ly1 = L2 - 2 * colS;
 // Moment calculation
 	const W=Q*L1*L2;
+	
 	const MX1=W*ColWid *0.15;
 	const MY1=W*ColWid *0.15;
 	const MX2=MX1/2;
@@ -1400,7 +1401,7 @@ function calculateFlatslab(){
 	const MDMESx1=0.55*MX3;
 	const MDMESx2=MDMESx1/lho;
 	const MDMESx3=0.45*MX3;
-	const MDMESx3=MDMESx3/(L2-lho);
+	const MDMESx4=MDMESx3/(L2-lho);
 
 	const MDMISx1=0.55*MX4;
 	const MDMISx2=MDMISx1/lho;
@@ -1436,8 +1437,7 @@ function calculateFlatslab(){
     document.getElementById('MYD2').textContent = MYD2.toFixed(2);
     document.getElementById('MXD3').textContent = MXD3.toFixed(2);
     document.getElementById('MYD3').textContent = MYD3.toFixed(2);
-    document.getElementById('MXD4').textContent = MXD4.toFixed(2);
-    document.getElementById('MYD4').textContent = MYD4.toFixed(2);
+   
     document.getElementById('MDMIx1').textContent = MDMIx1.toFixed(2);
     document.getElementById('MDMIx2').textContent = MDMIx2.toFixed(2);
     document.getElementById('MDMIx3').textContent = MDMIx3.toFixed(2);
