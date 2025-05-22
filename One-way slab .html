@@ -204,7 +204,7 @@
         .main-container p {
             margin-bottom: 20px;
             color: black;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             padding: 0 20px;
             text-align: justify; 
             text-justify: inter-word; 
@@ -915,7 +915,7 @@
         <div class="main-container">
       <div class="content">
         <h3><u><center>ONE-WAY SLAB</center></u></h3>
-        <p><u><b>INPUT FOR SLAB</b></u></p>
+        <u><b>INPUT FOR SLAB</b></u>
         <!-- Input fields -->
         <label for="spans">Number of Spans:</label>
         <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
@@ -923,7 +923,7 @@
         <div id="spanInputs" class="span-inputs">
           <!-- Span length inputs will be dynamically added here -->
         </div>
-        <p><u><b>LOADS</b></u></p>
+        <u><b>LOADS</b></u>
         <label for="DL">Dead load (kN/m):</label>
         <input type="number" id="DL" min="1" value="10">
 
@@ -937,9 +937,9 @@
         </select>
         <br>
        
-        <P><u><b>INPUT FOR REINFORCEMENT DESIGN</b></u></P>
+        <u><b>INPUT FOR REINFORCEMENT DESIGN</b></u>
         <form id="beamSectionForm">
-          <p><u><i>Input Maximum moment either User input or maximum of calculated values</i></u></p>
+          <u><i>Input Maximum moment either User input or maximum of calculated values</i></u>
           <label for="Mmax">Input for maximum moment (\(M_{max}\) in kNm):</label>
           <input type="number" id="Mmax" step="0.1" required>
           <br>
@@ -975,10 +975,10 @@
           <div id="bendingMomentResults"></div>
           <div id="shearForceResults"></div>
           <h4><u>2. REINFORCEMENT DESIGN</u></h4>
-          <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
-          <p><strong>Spacing of reinforcement(\(s\)):</strong> <span id="s1"></span> mm</p>
-          <p><strong>Nominal shear stress (\(v_v\)):</strong> <span id="tau_v"></span> N/mm²</p>
-          <p><strong>Nominal shear strength (\(v_c\)):</strong> <span id="tau_c"></span> N/mm²</p>
+          <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> </p>
+          <p><strong>Spacing of reinforcement(\(s\)):</strong> <span id="s1"></span> </p>
+          <p><strong>Nominal shear stress (\(v_v\)):</strong> <span id="tau_v"></span> </p>
+          <p><strong>Nominal shear strength (\(v_c\)):</strong> <span id="tau_c"></span> </p>
           <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
         </div>
       </div>
@@ -1261,22 +1261,22 @@
       const shearForceResultsDiv = document.getElementById('shearForceResults');
 
       // Display span moments
-      bendingMomentResultsDiv.innerHTML = '<h4>Bending Moments (kN·m):</h4>';
+      bendingMomentResultsDiv.innerHTML = '<h4>Bending Moments (kNm):</h4>';
       bendingMomentResultsDiv.innerHTML += '<h5>Span Moments:</h5>';
       for (let i = 0; i < spanLengths.length; i++) {
-        bendingMomentResultsDiv.innerHTML += `<p>Span ${i + 1}: ${spanMoments[i].toFixed(2)} kN·m</p>`;
+        bendingMomentResultsDiv.innerHTML += `<p>Span ${i + 1}: ${spanMoments[i].toFixed(2)} </p>`;
       }
 
       // Display support moments
-      bendingMomentResultsDiv.innerHTML += '<h4>Support Moments:</h4>';
+      bendingMomentResultsDiv.innerHTML += '<h4>Support Moments (kNm):</h4>';
       for (let i = 0; i < supportMoments.length; i++) {
-        bendingMomentResultsDiv.innerHTML += `<p>Support ${i + 1}: ${supportMoments[i].toFixed(2)} kN·m</p>`;
+        bendingMomentResultsDiv.innerHTML += `<p>Support ${i + 1}: ${supportMoments[i].toFixed(2)} </p>`;
       }
 
       // Display shear forces
       shearForceResultsDiv.innerHTML = '<h4>Shear Forces (kN):</h4>';
       for (let i = 0; i < spanLengths.length; i++) {
-        shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} kN</p>`;
+        shearForceResultsDiv.innerHTML += `<p>Span ${i + 1}: ${shearForces[i].toFixed(2)} </p>`;
       }
       // Display Maximum Values
   	bendingMomentResultsDiv.innerHTML += `<h5>Maximum Span Moment: ${Math.max(...spanMoments).toFixed(2)} kN·m</h5>`;
@@ -1333,10 +1333,10 @@
             } 
 
             // Display results
-            document.getElementById('steelArea').textContent = Ast.toFixed(1);
-            document.getElementById('s1').textContent = s1.toFixed(0);
-            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-	document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+            document.getElementById('steelArea').textContent = Ast.toFixed(1)+" mm²";
+            document.getElementById('s1').textContent = s1.toFixed(0)+" mm";
+            document.getElementById('tau_v').textContent = tau_v.toFixed(2)+" N/mm²";
+	document.getElementById('tau_c').textContent = tau_c.toFixed(2)+" N/mm²";
             document.getElementById('shearReinforcement').textContent = shearReinforcement; 
         }
 
