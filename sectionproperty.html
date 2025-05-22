@@ -904,17 +904,17 @@
 	      <br>
       <div class="result" id="result">
         <h3><u>OUTPUT</u></h3>
-            <p><strong>Area of section (\(A\)):</strong> <span id="A"></span> m<sup>2</sup></p>
-            <p><strong>Centroid about x (\(\bar{x}\)):</strong> <span id="xbar"></span> m</p>
-            <p><strong>Centroid about y (\(\bar{y}\)):</strong> <span id="ybar"></span> m</p>
+            <p><strong>Area of section (\(A\)):</strong> <span id="A"></span> </p>
+            <p><strong>Centroid about x (\(\bar{x}\)):</strong> <span id="xbar"></span> </p>
+            <p><strong>Centroid about y (\(\bar{y}\)):</strong> <span id="ybar"></span> </p>
             <h4>Moments of Inertia about Centroidal Axes:</h4>
-            <p><strong>\(I_x\) (about x-axis):</strong> <span id="Ix"></span> m<sup>4</sup></p>
-            <p><strong>\(I_y\)(about y-axis):</strong> <span id="Iy"></span> m<sup>4</sup></p>
-            <p><strong>\(I_{xy}\) (product moment):</strong> <span id="Ixy"></span> m<sup>4</sup></p>
+            <p><strong>\(I_x\) (about x-axis):</strong> <span id="Ix"></span></p>
+            <p><strong>\(I_y\)(about y-axis):</strong> <span id="Iy"></span> </p>
+            <p><strong>\(I_{xy}\) (product moment):</strong> <span id="Ixy"></span> </p>
             <h4>Principal Moments of Inertia:</h4>
-            <p><strong>\(I_{max}\) (maximum):</strong> <span id="Imax"></span> m<sup>4</sup></p>
-            <p><strong>\(I_{min}\)  (minimum):</strong> <span id="Imin"></span> m<sup>4</sup></p>
-            <p><strong>Principal angle (\(θ\)):</strong><span id="theta"></span>° from x-axis</p>
+            <p><strong>\(I_{max}\) (maximum):</strong> <span id="Imax"></span> </p>
+            <p><strong>\(I_{min}\)  (minimum):</strong> <span id="Imin"></span> </p>
+            <p><strong>Principal angle (\(θ\)):</strong><span id="theta"></span></p>
        
       </div>
 <div id="chartContainer" style="width: 100%; max-width: 600px; margin: 20px auto;">
@@ -1223,12 +1223,12 @@ function sectionalproperties() {
     document.getElementById('A').textContent = A.toFixed(4)+" m²";
     document.getElementById('xbar').textContent = xbar.toFixed(4)+" m";
     document.getElementById('ybar').textContent = ybar.toFixed(4)+" m";
-    document.getElementById('Ix').textContent = Ix.toExponential(4)+" m4";
-    document.getElementById('Iy').textContent = Iy.toExponential(4);
-    document.getElementById('Ixy').textContent = Ixy.toExponential(4);
-    document.getElementById('Imax').textContent = Imax.toExponential(4);
-    document.getElementById('Imin').textContent = Imin.toExponential(4);
-    document.getElementById('theta').textContent = theta.toFixed(2);
+    document.getElementById('Ix').textContent = Ix.toExponential(4)+" m⁴";
+    document.getElementById('Iy').textContent = Iy.toExponential(4) +" m⁴";
+    document.getElementById('Ixy').textContent = Ixy.toExponential(4)+" m⁴";
+    document.getElementById('Imax').textContent = Imax.toExponential(4)+" m⁴";
+    document.getElementById('Imin').textContent = Imin.toExponential(4)+" m⁴";
+    document.getElementById('theta').textContent = theta.toFixed(2)+" ° from x-axis";
     
     // Render MathJax to update the mathematical notation
     if (typeof MathJax !== 'undefined') {
