@@ -991,7 +991,8 @@
                         </select>
                         
                         <br>
-                        <p><u>PROVIDED DATA</u></p>
+                        <u>PROVIDED DATA</u>
+			    <br>
                         <i>First input some values like 50mm for both pitch and edge distance and then after calculation of maximum and minimum values of these parameters again input "pt" and "ed".</i>
 				<br>
                         <label for="pt">Pitch of bolts/holes(\(p_t\) in mm):</label>
@@ -1000,10 +1001,11 @@
                         <label for="ed">Edge distance of hole(\(e_d\) in mm):</label>
                         <input type="number" id="ed" required>
                         <br>
+			    <br>
                         <button type="button" onclick="Momentinplane()" class="btn"><b>DESIGN OF CONNECTION</b></button>
                     </form>
                 </div>
-
+		<br>
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
 			<br>
@@ -1012,7 +1014,7 @@
                     <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> </p>
                     <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span></p>
                     <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> </p>
-                    <p>Diameter of hole (\D_h\)): <span id="Diahole"></span></p>
+                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span></p>
 			<br>
                     <u>2. PLATE SPECIFICATION</u>
 			<br>
