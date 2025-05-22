@@ -429,10 +429,10 @@
 
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
-            <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
-            <p><strong>Spacing of reinforcement(\(s\)):</strong> <span id="s1"></span> mm</p>
-            <p><strong>Nominal shear stress(\(\tau_v\)):</strong> <span id="tau_v"></span> N/mm²</p>
-            <p><strong>Nominal shear strength(\(\tau_c\)):</strong> <span id="tau_c"></span> N/mm²</p>
+            <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> </p>
+            <p><strong>Spacing of reinforcement(\(s\)):</strong> <span id="s1"></span></p>
+            <p><strong>Nominal shear stress(\(\tau_v\)):</strong> <span id="tau_v"></span> </p>
+            <p><strong>Nominal shear strength(\(\tau_c\)):</strong> <span id="tau_c"></span> </p>
             <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
         </div>
     </div>
@@ -560,10 +560,10 @@
             let shearReinforcement = (tau_v <= tau_c) ? "NO" : "YES";
 
             // Display results
-            document.getElementById('steelArea').textContent = Ast.toFixed(1);
-            document.getElementById('s1').textContent = s1.toFixed(0);
-            document.getElementById('tau_v').textContent = tau_v.toFixed(2);
-            document.getElementById('tau_c').textContent = tau_c.toFixed(2);
+            document.getElementById('steelArea').textContent = Ast.toFixed(1)+" mm²";
+            document.getElementById('s1').textContent = s1.toFixed(0)+" mm";
+            document.getElementById('tau_v').textContent = tau_v.toFixed(2)+" N/mm²";
+            document.getElementById('tau_c').textContent = tau_c.toFixed(2)+" N/mm²";
             document.getElementById('shearReinforcement').textContent = shearReinforcement;
         }
     </script>
