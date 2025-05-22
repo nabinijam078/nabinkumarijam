@@ -1110,12 +1110,12 @@
         <div class="result">
             <h2><u>DESIGN RESULTS</u></h2>
             <p><u>DESIGN OF MAIN REINFORCEMENT</u></p>
-            <p>Compressive force, \(F_c\): <span id="Fc">0.00</span> kN</p>
-            <p>Tensile force, \(F_t\): <span id="Ft">0.00</span> kN</p>
-            <p>Area of tensile reinforcement (\(A_{st}\)): <span id="Ast">0.00</span> mm²</p>
-            <p>Number of tensile reinforcement (\(n_t\)): <span id="nt">0</span></p>
-            <p>Area of compression reinforcement (\(A_{sc}\)): <span id="Asc">0.00</span> mm²</p>
-            <p>Number of compression reinforcement (\(n_c\)): <span id="nc">0</span></p>
+            <p>Compressive force, \(F_c\): <span id="Fc"></span></p>
+            <p>Tensile force, \(F_t\): <span id="Ft"></span> kN</p>
+            <p>Area of tensile reinforcement (\(A_{st}\)): <span id="Ast"></span> </p>
+            <p>Number of tensile reinforcement (\(n_t\)): <span id="nt"></span></p>
+            <p>Area of compression reinforcement (\(A_{sc}\)): <span id="Asc"></span> mm²</p>
+            <p>Number of compression reinforcement (\(n_c\)): <span id="nc"></span></p>
             <p><u>CHECK FOR SHEAR CAPACITY</u></p>
             <p>Shear capacity of corbel: <span id="scc">0.00</span> kN</p>
             <p>Check for Shear capacity of corbel: <span id="check">-</span></p>
@@ -1324,13 +1324,13 @@
             }
 
             // Display results
-            document.getElementById('Fc').textContent = Fc.toFixed(2);
-            document.getElementById('Ft').textContent = Ft.toFixed(2);
-            document.getElementById('Ast').textContent = Ast.toFixed(2);
+            document.getElementById('Fc').textContent = Fc.toFixed(2)+" kN";
+            document.getElementById('Ft').textContent = Ft.toFixed(2)+ " kN";
+            document.getElementById('Ast').textContent = Ast.toFixed(2)+" mm²";
             document.getElementById('nt').textContent = nt.toFixed(0);
-            document.getElementById('Asc').textContent = Asc.toFixed(2);
+            document.getElementById('Asc').textContent = Asc.toFixed(2)+" mm²";
             document.getElementById('nc').textContent = nc.toFixed(0);
-            document.getElementById('scc').textContent = scc.toFixed(0);
+            document.getElementById('scc').textContent = scc.toFixed(0)+" kN";
             document.getElementById('check').textContent = check;
         }
 
