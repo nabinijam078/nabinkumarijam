@@ -937,21 +937,24 @@
                     <label for="nn">Number of shear plane with threads intercepting the shear plane(\(n_n\)):</label>
                     <input type="number" id="nn" required>
                     <br>
-                    <p><u>SIZE OF PLATE-1</u></p>
+                    <u>SIZE OF PLATE-1</u>
+			<br>
                     <label for="t1">Thickness of plate(\(t_1\) in mm):</label>
                     <input type="number" id="t1" required>
                     <br>
                     <label for="b1">Width of plate(\(b_1\) in mm):</label>
                     <input type="number" id="b1" required>
                     <br>
-                    <p><u>SIZE OF PLATE-2</u></p>
+                    <u>SIZE OF PLATE-2</u>
+			<br>
                     <label for="t2">Thickness of plate(\(t_2\) in mm):</label>
                     <input type="number" id="t2" required>
                     <br>
                     <label for="b2">Width of plate(\(b_2\) in mm):</label>
                     <input type="number" id="b2" required>
                     <br>
-                    <p><u>BOLTS SPECIFICATION</u></p>
+                    <u>BOLTS SPECIFICATION</u>
+			    <br>
                     <label for="boltGrade">Choose a Bolt Grade:</label>
                     <select id="boltGrade">
                         <option value="M12">M12</option>
@@ -974,7 +977,8 @@
                         <option value="5.8">5.8</option>
                     </select>
                     <br>
-                    <p><u>STEEL PLATE SPECIFICATION</u></p>
+                    <u>STEEL PLATE SPECIFICATION</u>
+			    <br>
                     <label for="steelGrade">Choose a Steel Grade:</label>
                     <select id="steelGrade">
                         <option value="Fe 290">Fe 290</option>
@@ -998,31 +1002,43 @@
                     <label for="ed">Edge distance of hole(\(e_d\)in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
-                    <button type="button" onclick="designplate()">DESIGN PLATE CONNECTION</button>
+                    <button type="button" onclick="designplate()" class="btn">DESIGN PLATE CONNECTION</button>
                 </form>
 
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
-                    <p><u>1. BOLT SPECIFICATION</u></p>
-                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> mm</p>
-                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span> mm</p>
-                    <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
-                    <p><u>3. PITCH AND EDGE DISTANCE</u></p>
-                    <p><u>3.1 Pitch distance</u></p>
-                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> mm</p>
-                    <p>Minimum pitch distance (\(p_{min}\): <span id="pmin"></span> mm</p>
-                    <p><u>3.2 Edge distance</u></p>
-                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> mm</p>
+		<br>
+                    <u>1. BOLT SPECIFICATION</u>
+			<br>
+                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> </p>
+                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> </p>
+                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span></p>
+                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span></p>
+                    <u>2. PLATE SPECIFICATION</u>
+		    <br>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> </p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> </p>
+			<br>
+                    <u>3. PITCH AND EDGE DISTANCE</u>
+			<br>
+                    <u>3.1 Pitch distance</u>
+			<br>
+                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> </p>
+                    <p>Minimum pitch distance (\(p_{min}\): <span id="pmin"></span> </p>
+			<br>
+                    <u>3.2 Edge distance</u>
+			<br>
+                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> </p>
                     <p>Minimum Edge distance (\(e_{min}\)): <span id="emin"></span> mm</p>
-                    <p><u>4. STRENGTH OF A BOLT</u></p>
-                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> N</p>
-                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> N</p>
-                    <p>Strength of a bolt (\(V_{sb}\)): <span id="Vsb"></span> N</p>
-                    <p><u>5. NUMBER OF BOLTS</u></p>
+			<br>
+                    <u>4. STRENGTH OF A BOLT</u>
+			<br>
+                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> </p>
+                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> </p>
+                    <p>Strength of a bolt (\(V_{sb}\)): <span id="Vsb"></span> </p>
+			<br>
+                    <u>5. NUMBER OF BOLTS</u>
+			<br>
                     <p>Total number of bolts (\(n_b\)): <span id="nb"></span> </p>
                     <p>Total number of bolts in a row (\(n_1\)): <span id="n1"></span> </p>
                     <p>Number of rows (\(n_r\)): <span id="nr"></span> </p>
@@ -1246,19 +1262,19 @@
                 const nr = Math.ceil(nb / n1);
 
                 // Update the result section
-                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
-                document.getElementById('boltYieldStrength').textContent = boltYieldStrength;
-                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
-                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-                 document.getElementById('boltdia').textContent = boltdia;
-                document.getElementById('Diahole').textContent = Diahole;
-                document.getElementById('pmax').textContent = pmax;
-                document.getElementById('pmin').textContent = pmin;
-                document.getElementById('emax').textContent = emax.toFixed(2);
-                document.getElementById('emin').textContent = emin.toFixed(2);
-                document.getElementById('Vdsb').textContent = Vdsb.toFixed(2);
-                document.getElementById('Vdpb').textContent = Vdpb.toFixed(2);
-                document.getElementById('Vsb').textContent = Vsb.toFixed(2);
+                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength+" N/mm²";
+                document.getElementById('boltYieldStrength').textContent = boltYieldStrength+" N/mm²";
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength+" N/mm²";
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength+" N/mm²";
+                 document.getElementById('boltdia').textContent = boltdia+" mm";
+                document.getElementById('Diahole').textContent = Diahole+" mm";
+                document.getElementById('pmax').textContent = pmax+" mm";
+                document.getElementById('pmin').textContent = pmin+" mm";
+                document.getElementById('emax').textContent = emax.toFixed(2)+" mm";
+                document.getElementById('emin').textContent = emin.toFixed(2)+" mm";
+                document.getElementById('Vdsb').textContent = Vdsb.toFixed(2)+" N";
+                document.getElementById('Vdpb').textContent = Vdpb.toFixed(2)+" N";
+                document.getElementById('Vsb').textContent = Vsb.toFixed(2)+" N";
                 document.getElementById('nb').textContent = nb;
                 document.getElementById('n1').textContent = n1;
                 document.getElementById('nr').textContent = nr;
