@@ -468,7 +468,7 @@
             <input type="number" id="LL" required>
             <br>
             
-            <button type="button" onclick="Bendingmoment()">DESIGN</button>
+            <button type="button" onclick="Bendingmoment()" class="btn">DESIGN</button>
            <br>
            
         </form>
@@ -477,15 +477,15 @@
         <div class="result" id="result">
             <h3><u>DESIGN RESULT</u></h3>
             <p><u>1. BENDING MOMENTS</u></p>
-            <p>Moment in edge-1 (\(M_1\)): <span id="M1"></span> kN·m</p>
-            <p>Moment in edge-2 (\(M_2\)): <span id="M2"></span> kN·m</p>
-            <p>Moment in edge-3 (\(M_3\)): <span id="M3"></span> kN·m</p>
-            <p>Moment in edge-4 (\(M_4\)): <span id="M4"></span> kN·m</p>
-            <p>Moment in x-direction (\(M_x\)): <span id="Mx"></span> kN·m</p>
-            <p>Moment in y-direction (\(M_y\)): <span id="My"></span> kN·m</p>
-            <p>Maximum moment (\(M_{max}\)): <span id="Mmax"></span> kN·m</p>
+            <p>Moment in edge-1 (\(M_1\)): <span id="M1"></span> </p>
+            <p>Moment in edge-2 (\(M_2\)): <span id="M2"></span> </p>
+            <p>Moment in edge-3 (\(M_3\)): <span id="M3"></span> </p>
+            <p>Moment in edge-4 (\(M_4\)): <span id="M4"></span> </p>
+            <p>Moment in x-direction (\(M_x\)): <span id="Mx"></span> </p>
+            <p>Moment in y-direction (\(M_y\)): <span id="My"></span> </p>
+            <p>Maximum moment (\(M_{max}\)): <span id="Mmax"></span> </p>
             <p><u>2. REINFORCEMENT DESIGN</u></p>
-            <p>Area of Steel Required (\(A_{st}\)): <span id="steelArea"></span> mm²</p>
+            <p>Area of Steel Required (\(A_{st}\)): <span id="steelArea"></span> </p>
             <p>Spacing of reinforcement (\(s\)): <span id="s1"></span> mm</p>
         </div>
     </div>
@@ -652,15 +652,15 @@
             const s1 = (A1 / Ast) * width; // Spacing
 
             //Display result
-            document.getElementById('M1').textContent = M1.toFixed(2);
-            document.getElementById('M2').textContent = M2.toFixed(2);
-            document.getElementById('M3').textContent = M3.toFixed(2);
-            document.getElementById('M4').textContent = M4.toFixed(2);
-            document.getElementById('Mx').textContent = Mx.toFixed(2);
-            document.getElementById('My').textContent = My.toFixed(2);
-            document.getElementById('Mmax').textContent = Mmax.toFixed(2);
-            document.getElementById('steelArea').textContent = Ast.toFixed(2);
-            document.getElementById('s1').textContent = s1.toFixed(0);
+            document.getElementById('M1').textContent = M1.toFixed(2)+" kNm";
+            document.getElementById('M2').textContent = M2.toFixed(2)+" kNm";
+            document.getElementById('M3').textContent = M3.toFixed(2)+" kNm";
+            document.getElementById('M4').textContent = M4.toFixed(2)+" kNm";
+            document.getElementById('Mx').textContent = Mx.toFixed(2)+" kNm";
+            document.getElementById('My').textContent = My.toFixed(2)+" kNm";
+            document.getElementById('Mmax').textContent = Mmax.toFixed(2)+" kNm";
+            document.getElementById('steelArea').textContent = Ast.toFixed(2)+" mm²";
+            document.getElementById('s1').textContent = s1.toFixed(0)+" mm";
 
         }
          
