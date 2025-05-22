@@ -1319,34 +1319,38 @@
                 firstRow.appendChild(cellB1);
                 firstRow.appendChild(cellC1);
                 firstRow.appendChild(cellD1);
-                tableBody.appendChild(firstRow);
+// Clear previous table data
+tableBody.innerHTML = "";
 
-                // Loop for the remaining rows
-                for (let i = 2; i <= nb / 2; i++) {
-                    const row = document.createElement("tr");
-                    const cellA = document.createElement("td");
-                    const cellB = document.createElement("td");
-                    const cellC = document.createElement("td");
-                    const cellD = document.createElement("td");
+let sum1 = 0;
+const boltsPerSide = nb / 2;
 
-                    cellA.textContent = i;
-                    cellB.textContent = (xp / 2).toFixed(1);
-                    cellC.textContent = ((i - 1) * pt + (pt / 2)).toFixed(1);
-                    cellD.textContent = (Math.pow(xp / 2, 2) + Math.pow((i - 1) * pt + (pt / 2), 2)).toFixed(1);
+for (let i = 1; i <= boltsPerSide; i++) {
+    const row = document.createElement("tr");
+    const cellA = document.createElement("td");
+    const cellB = document.createElement("td");
+    const cellC = document.createElement("td");
+    const cellD = document.createElement("td");
 
-                    row.appendChild(cellA);
-                    row.appendChild(cellB);
-                    row.appendChild(cellC);
-                    row.appendChild(cellD);
-                    tableBody.appendChild(row);
+    const xPos = xp / 2;
+    const yPos = (i - 1) * pt + pt / 2;
+    const rSquared = Math.pow(xPos, 2) + Math.pow(yPos, 2);
 
-                    // Accumulate the sum of column D
-                    sum += parseFloat(cellD.textContent);
-                    xn = parseFloat(cellB.textContent);
-                    yn = parseFloat(cellC.textContent);
-                }
+    cellA.textContent = i;
+    cellB.textContent = xPos.toFixed(1);
+    cellC.textContent = yPos.toFixed(1);
+    cellD.textContent = rSquared.toFixed(1);
 
-                const sum1 = (sum + (Math.pow(xp / 2, 2) + Math.pow(pt / 2, 2))*(2*n1);
+    row.appendChild(cellA);
+    row.appendChild(cellB);
+    row.appendChild(cellC);
+    row.appendChild(cellD);
+    tableBody.appendChild(row);
+
+    sum1 += rSquared;
+}
+
+const sum1 = sum1 * 2 * n1; // Multiply by 2 for both sides and n1 for rows
                 const R1 = Math.sqrt(Math.pow(xn, 2) + Math.pow(yn, 2));
 
                 // Direct shear force
