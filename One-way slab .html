@@ -916,6 +916,7 @@
       <div class="content">
         <h3><u><center>ONE-WAY SLAB</center></u></h3>
         <u><b>INPUT FOR SLAB</b></u>
+	<br>
         <!-- Input fields -->
         <label for="spans">Number of Spans:</label>
         <input type="number" id="spans" min="1" value="2" onchange="createSpanInputs()">
@@ -923,7 +924,9 @@
         <div id="spanInputs" class="span-inputs">
           <!-- Span length inputs will be dynamically added here -->
         </div>
+	<br>
         <u><b>LOADS</b></u>
+	<br>
         <label for="DL">Dead load (kN/m):</label>
         <input type="number" id="DL" min="1" value="10">
 
@@ -940,10 +943,11 @@
         <u><b>INPUT FOR REINFORCEMENT DESIGN</b></u>
         <form id="beamSectionForm">
           <u><i>Input Maximum moment either User input or maximum of calculated values</i></u>
+	<br>
           <label for="Mmax">Input for maximum moment (\(M_{max}\) in kNm):</label>
           <input type="number" id="Mmax" step="0.1" required>
           <br>
-          <label for="Fmax">Input for maximum Shear force (\(F_{max}\) in kNm):</label>
+          <label for="Fmax">Input for maximum Shear force (\(F_{max}\) in kN):</label>
           <input type="number" id="Fmax" step="0.1" required>
           <br>
           <label for="fck">Characteristic Strength of Concrete (\(f_ck\) in MPa):</label>
@@ -961,9 +965,10 @@
           <label for="dm">Diameter of main Reinforcement (\(d_m\) in mm):</label>
           <input type="number" id="dm" required>
         </form>
-        <button onclick="updateDrawing()">DESIGN ONE-WAY SLAB</button>
+	<br>
+        <button onclick="updateDrawing()" class="btn">DESIGN ONE-WAY SLAB</button>
         <br>
-        <button onclick="Reinforcementdesign()">REINFORCEMENT DESIGN</button>
+        <button onclick="Reinforcementdesign()" class="btn">REINFORCEMENT DESIGN</button>
         <br>
         <!-- Canvas for drawing -->
         <canvas id="slabCanvas" width="800" height="200"></canvas>
