@@ -1220,10 +1220,10 @@ function sectionalproperties() {
     const theta = Math.atan2(2 * Ixy, Ix - Iy) * 90 / Math.PI;
     
     // Display results
-    document.getElementById('A').textContent = A.toFixed(4);
-    document.getElementById('xbar').textContent = xbar.toFixed(4);
-    document.getElementById('ybar').textContent = ybar.toFixed(4);
-    document.getElementById('Ix').textContent = Ix.toExponential(4);
+    document.getElementById('A').textContent = A.toFixed(4)+" m²";
+    document.getElementById('xbar').textContent = xbar.toFixed(4)+" m";
+    document.getElementById('ybar').textContent = ybar.toFixed(4)+" m";
+    document.getElementById('Ix').textContent = Ix.toExponential(4)+" m4";
     document.getElementById('Iy').textContent = Iy.toExponential(4);
     document.getElementById('Ixy').textContent = Ixy.toExponential(4);
     document.getElementById('Imax').textContent = Imax.toExponential(4);
