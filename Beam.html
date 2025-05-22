@@ -931,12 +931,12 @@
 
       <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
-        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span> kN.m</p>
-        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
+        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span></p>
+        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span></p>
         <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
-        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
+        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span></p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
-        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span>mm</p>
+        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span></p>
         <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
       </div>
     </div>
@@ -1145,12 +1145,12 @@
         } 
 	
         // Display results
-        document.getElementById('Mulim').textContent = Mulim.toFixed(3);
-        document.getElementById('steelArea').textContent = Ast.toFixed(1);
+        document.getElementById('Mulim').textContent = Mulim.toFixed(3)+"kNm";
+        document.getElementById('steelArea').textContent = Ast.toFixed(1)+"mm²";
         document.getElementById('n1').textContent = n1;
-        document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+        document.getElementById('compSteelArea').textContent = Asc.toFixed(1)+"mm²";
         document.getElementById('n2').textContent = n2;
-        document.getElementById('shearReinforcement').textContent = shearReinforcement.toFixed(0);
+        document.getElementById('shearReinforcement').textContent = shearReinforcement.toFixed(0)+"mm";
         document.getElementById('sectionType').textContent = sectionType;
       }
     </script>
