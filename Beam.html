@@ -907,11 +907,11 @@
             <input type="number" id="cover" required>
         </div>
         <div class="input-group">
-            <label for="dm">Diameter of main Reinforcement (\(Φ_m\) in mm):</label>
+            <label for="dm">Diameter of main Reinforcement (\(\phi_m\) in mm):</label>
             <input type="number" id="dm" required>
         </div>
         <div class="input-group">
-            <label for="ds">Diameter of Shear Reinforcement (\(Φ_s\) in mm):</label>
+            <label for="ds">Diameter of Shear Reinforcement (\(\phi_s\) in mm):</label>
             <input type="number" id="ds" required>
         </div>
         <div class="input-group">
@@ -926,9 +926,10 @@
             <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
             <input type="number" id="shear" step="0.01" required>
         </div>
+	<br>
         <button type="button" onclick="calculateBeamSection()" class="btn">DESIGN SECTION</button>
       </form>
-
+	<br>
       <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
         <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span></p>
