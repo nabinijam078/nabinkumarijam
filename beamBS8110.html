@@ -943,18 +943,18 @@
         <h3><u>DESIGN RESULT</u></h3>
 	<b>1. MAIN REINFORCEMENT</b>
 	<p><strong>Section Type:</strong> <span id="sectionType"></span></p>
-        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span> kN.m</p>
-        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> mm²</p>
+        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span> </p>
+        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> </p>
         <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
-        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> mm²</p>
+        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span> </p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
 	<b>2. SHEAR REINFORCEMENT</b>
 	<br>
 	
-	<p>Shear stress (\(v\)):</strong> <span id="v"></span>N/mm²</p>
-	<p>Shear strength (\(v_c\)):</strong> <span id="vc"></span>N/mm²</p>
-        <p><strong>Calculated spacing of Shear Reinforcement:</strong> <span id="sv"></span>mm</p>
-	  <p><strong>Actual spacing of Shear Reinforcement:</strong> <span id="svs"></span>mm</p>    
+	<p>Shear stress (\(v\)):</strong> <span id="v"></span></p>
+	<p>Shear strength (\(v_c\)):</strong> <span id="vc"></span></p>
+        <p><strong>Calculated spacing of Shear Reinforcement:</strong> <span id="sv"></span></p>
+	  <p><strong>Actual spacing of Shear Reinforcement:</strong> <span id="svs"></span></p>    
         
       </div>
     </div>
@@ -1161,15 +1161,15 @@
     }
     const svs=Math.min(300,sv);
     // Display results
-    document.getElementById('Mulim').textContent = (k1 * fcu * b * de * de / 1e6).toFixed(3);
-    document.getElementById('steelArea').textContent = Asta.toFixed(1);
+    document.getElementById('Mulim').textContent = (k1 * fcu * b * de * de / 1e6).toFixed(3)+" kNm";
+    document.getElementById('steelArea').textContent = Asta.toFixed(1)+" mm²";
     document.getElementById('n1').textContent = n1;
-    document.getElementById('compSteelArea').textContent = Asc.toFixed(1);
+    document.getElementById('compSteelArea').textContent = Asc.toFixed(1)+" mm²";
     document.getElementById('n2').textContent = n2;
-    document.getElementById('sv').textContent = sv.toFixed(0);
-    document.getElementById('svs').textContent = svs.toFixed(0);
-    document.getElementById('v').textContent = v.toFixed(2);
-    document.getElementById('vc').textContent = vc.toFixed(2);
+    document.getElementById('sv').textContent = sv.toFixed(0)+" mm";
+    document.getElementById('svs').textContent = svs.toFixed(0)+" mm";
+    document.getElementById('v').textContent = v.toFixed(2)+" N/mm²";
+    document.getElementById('vc').textContent = vc.toFixed(2)+" N/mm²";
     document.getElementById('sectionType').textContent = sectionType;
 }
 
