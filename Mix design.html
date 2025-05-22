@@ -415,7 +415,7 @@
       <h3><u><center>MIX DESIGN</center></u></h3>
       
       <!-- Input fields -->
-      <p><u><b>A.1 STIPULATIONS FOR PROPORTIONING</b></u></p>
+      <u><b>A.1 STIPULATIONS FOR PROPORTIONING</b></u>
       <label for="ConcGrade">Grade of concrete:</label>
       <select id="ConcGrade">
         <option value="15">15</option>
@@ -477,7 +477,7 @@
       </select>
       <br>
       
-      <p><u><b>A.2 TEST DATA FOR MATERIAL</b></u></p>
+      <u><b>A.2 TEST DATA FOR MATERIAL</b></u>
       <label for="Sc">Specific gravity of cement (S<sub>c</sub>):</label>
       <input type="number" id="Sc" required>
       <br>
@@ -527,18 +527,18 @@
         <option value="4">4</option>
       </select>
       <br>
-      <button onclick="Mixdesign()">MIX DESIGN</button>
+      <button onclick="Mixdesign()" class="btn">MIX DESIGN</button>
       <br>
       
       <!-- Results -->
       <div id="results" class="results">
         <h3><u>RESULTS</u></h3>
-        <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span>MPa</p>
-        <p><strong>Targeted Strength (\(f_s\)):</strong> <span id="fs"></span> MPa</p>
-        <p><strong>Cement content (\(C\)):</strong> <span id="cc"></span> Kg</p>
-        <p><strong>Water content (\(W\)):</strong> <span id="W"></span> litre</p>
-        <p><strong>Coarse Aggregate (\(CA\)):</strong> <span id="ca"></span> Kg</p>
-        <p><strong>Fine Aggregate (\(FA\)):</strong> <span id="fac"></span> Kg</p>
+        <p><strong>Recommended concrete grade:</strong> <span id="TargetC"></span></p>
+        <p><strong>Targeted Strength (\(f_s\)):</strong> <span id="fs"></span> </p>
+        <p><strong>Cement content (\(C\)):</strong> <span id="cc"></span> </p>
+        <p><strong>Water content (\(W\)):</strong> <span id="W"></span> </p>
+        <p><strong>Coarse Aggregate (\(CA\)):</strong> <span id="ca"></span> </p>
+        <p><strong>Fine Aggregate (\(FA\)):</strong> <span id="fac"></span> </p>
         <p><strong>Water Cement ratio:</strong> <span id="mwcr"></span></p>
       </div>
     </div>
@@ -807,12 +807,12 @@
         const FA = Vagg * rat3 * Sfa * 1000;
 
         // Display results
-        document.getElementById('TargetC').textContent = TargetC;
-        document.getElementById('fs').textContent = fs.toFixed(2);
-        document.getElementById('cc').textContent = C.toFixed(2);
-        document.getElementById('W').textContent = W.toFixed(2);
-        document.getElementById('ca').textContent = CA.toFixed(2);
-        document.getElementById('fac').textContent = FA.toFixed(2);
+        document.getElementById('TargetC').textContent = TargetC+" MPa";
+        document.getElementById('fs').textContent = fs.toFixed(2)+" MPa";
+        document.getElementById('cc').textContent = C.toFixed(2)+" Kg";
+        document.getElementById('W').textContent = W.toFixed(2)+" litre";
+        document.getElementById('ca').textContent = CA.toFixed(2)+" Kg";
+        document.getElementById('fac').textContent = FA.toFixed(2)+" Kg";
         document.getElementById('mwcr').textContent = rwcr.toFixed(2);
       }
          
