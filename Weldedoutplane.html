@@ -1174,7 +1174,7 @@ function Weldeddesignplate() {
         const Pb = 6 * P * 1000 * x*1000 / (2 * tt * d * d)/1000;
         
         // Resultant stress
-        const Pr = Math.sqrt(Math.pow(Pb, 2) + Math.pow(Ps, 2))/1000;
+        const Pr = Math.sqrt(Math.pow(Pb, 2) + Math.pow(Ps, 2));
           
         // Check for strength
         const Check = (fwd > Pr) ? "OK" : "NOT OK";
