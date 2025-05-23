@@ -34,7 +34,7 @@
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
             color: var(--text-dark);
             margin-top: 0;
             font-weight: 700;
@@ -79,7 +79,7 @@
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: .9rem;
         }
 
         #beamSectionForm button {
@@ -89,7 +89,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -102,13 +102,12 @@
         .result {
             padding: 30px;
             margin-top: 30px;
-            background-color: white;
             border-radius: 8px;
         }
 
         .result p {
             margin: 15px 0;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
         .result span {
@@ -402,6 +401,7 @@
     <!-- Main Content -->
     <div class="content">
         <h3><u><center>REINFORCEMENT DESIGN</center></u></h3>
+        <u><b>INPUTS</b></u>
         <form id="beamSectionForm">
             <label for="fck">Characteristic Strength of Concrete (\(f_{ck}\) in MPa):</label>
             <input type="number" id="fck" step="0.1" required>
