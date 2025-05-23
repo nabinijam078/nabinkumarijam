@@ -1146,6 +1146,7 @@
             <div class="result" id="result">
                 <h3><u>DESIGN RESULT</u></h3>
                 <p><strong>Depth of intake opening (\(h_w\)):</strong> <span id="hw1"></span> </p>
+		<p><strong>Velocity at intake (\(v_f\)):</strong> <span id="v1"></span> </p>
                 <p><strong>Check for approach velcity:</strong> <span id="Check"></span> </p>
             </div>
         </div>
@@ -1369,7 +1370,7 @@
 		const hw2=Qf/(vf*ns*w);
 		const hw3=Math.max(hw,hw2);
             	const hw1 = Math.ceil(hw3);
-
+	
             // Calculate approach velocity
             const v1 = Qf / (ns * w * hw1);
             let Check;
@@ -1385,6 +1386,7 @@
                 return;
             } else {
                 document.getElementById('hw1').textContent = hw1.toFixed(2)+" m";
+		document.getElementById('v1').textContent = v1.toFixed(2)+" m/s";
                 document.getElementById('Check').textContent = Check;
                 document.getElementById('hw-display').textContent = hw1.toFixed(2); 
             }
