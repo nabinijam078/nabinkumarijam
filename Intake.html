@@ -1139,12 +1139,13 @@
                     <input type="number" id="w" required>
 
                 <br>
-                <button type="button" onclick="Intakedesign()">INTAKE DESIGN</button>
+		    <br>
+                <button type="button" onclick="Intakedesign()" class="btn">INTAKE DESIGN</button>
             </form>
-
+		<br>
             <div class="result" id="result">
                 <h3><u>DESIGN RESULT</u></h3>
-                <p><strong>Depth of intake opening (\(h_w\)):</strong> <span id="hw1"></span> m</p>
+                <p><strong>Depth of intake opening (\(h_w\)):</strong> <span id="hw1"></span> </p>
                 <p><strong>Check for approach velcity:</strong> <span id="Check"></span> </p>
             </div>
         </div>
@@ -1389,9 +1390,9 @@
                 alert("Invalid result. Please check input values.");
                 return;
             } else {
-                document.getElementById('hw1').textContent = hw1.toFixed(2);
+                document.getElementById('hw1').textContent = hw1.toFixed(2)+" m";
                 document.getElementById('Check').textContent = Check;
-                document.getElementById('hw-display').textContent = hw1.toFixed(2); // Update hw on the drawing
+                document.getElementById('hw-display').textContent = hw1.toFixed(2); 
             }
         }
 	
