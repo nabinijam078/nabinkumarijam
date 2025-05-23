@@ -1366,7 +1366,7 @@
             }
 
             // Round hw to 2 decimal places
-            const hw1 = Math.ceil(hw * 100) / 100;
+            const hw1 = Math.ceil(hw/10) *10;
 
             // Calculate approach velocity
             const v1 = Qf / (ns * w * hw1);
