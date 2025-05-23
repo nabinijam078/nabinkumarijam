@@ -1095,7 +1095,8 @@
                 <label for="z">Depth of cover (\(z\) in m):</label>
                 <input type="number" id="z"  required>
             <br>
-            <button type="button" onclick="hoekbrown()"><b><u>CALCULATE</u></b></button>
+		<br>
+            <button type="button" onclick="hoekbrown()" class="btn"><u>CALCULATE</u></button>
         </form>
 
         <div class="result" id="result">
@@ -1104,12 +1105,12 @@
             <p><strong>\(s\):</strong> <span id="s"></span> </p>
 	    <p><strong>\(a\):</strong> <span id="a"></span> </p>
           <h3><u>ROCK MASS MODULUS</u></h3>
-	  <p><strong>\(Erm\):</strong> <span id="Erm"></span> N/mm²</p>
-	  <p><strong>\(Erma\):</strong> <span id="Erma"></span> N/mm²</p>
+	  <p><strong>\(Erm\):</strong> <span id="Erm"></span> </p>
+	  <p><strong>\(Erma\):</strong> <span id="Erma"></span> </p>
           <h3><u>STRESSES</u></h3>
-            <p><strong>Major stress (\(σ_1\)):</strong> <span id="sigma1"></span>N/mm²</p>
-            <p><strong>Minor stress (\(σ_3\)):</strong> <span id="sigma3"></span>N/mm²</p>
-            <p><strong>Tensile strength (\(σ_t\)):</strong> <span id="sigmat"></span>N/mm²</p>
+            <p><strong>Major stress (\(σ_1\)):</strong> <span id="sigma1"></span></p>
+            <p><strong>Minor stress (\(σ_3\)):</strong> <span id="sigma3"></span></p>
+            <p><strong>Tensile strength (\(σ_t\)):</strong> <span id="sigmat"></span></p>
             
         </div>
     
@@ -1273,11 +1274,11 @@
     document.getElementById('mb').textContent = mb.toFixed(2);
     document.getElementById('s').textContent = s.toFixed(6);
     document.getElementById('a').textContent = a.toFixed(2);
-    document.getElementById('Erm').textContent = Erm.toFixed(1);
-    document.getElementById('Erma').textContent = Erma.toFixed(1);
-    document.getElementById('sigma1').textContent = sigma1.toFixed(2);
-    document.getElementById('sigma3').textContent = sigma3.toFixed(2);
-    document.getElementById('sigmat').textContent = sigmat.toFixed(2);
+    document.getElementById('Erm').textContent = Erm.toFixed(1)+" N/mm²";
+    document.getElementById('Erma').textContent = Erma.toFixed(1)+" N/mm²";
+    document.getElementById('sigma1').textContent = sigma1.toFixed(2)+" N/mm²";
+    document.getElementById('sigma3').textContent = sigma3.toFixed(2)+" N/mm²";
+    document.getElementById('sigmat').textContent = sigmat.toFixed(2)+" N/mm²";
 }
 
 
