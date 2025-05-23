@@ -1133,7 +1133,8 @@
         <div class="input-section">
             <h3><u><center>HYDRAULIC DESIGN OF SETTLING BASIN</center></u></h3>
             <form id="SBform">
-                <p><u>1. INPUTS</u></p>
+                <u>1. INPUTS</u>
+		    <br>
                 <label for="Q">Design discharge(\(Q\) in m<sup>3</sup>/s):</label>
                 <input type="number" id="Q" required>
                 <br>
@@ -1180,12 +1181,13 @@
                 <label for="bh">Hopper width (\(b_h\) in m):</label>
                 <input type="number" id="bh" required>
                 <br>
-                <p><u>METHOD TO USE THIS CALCULATOR</u></p>
+                <u>METHOD TO USE THIS CALCULATOR</u>
+		    <br>
                  <p><i>Input all the input data except width and length of basin and click on  "SETTLING BASIN DESIGN". </i></p>
                 <p> <i>Then update <b>Basin width (Bs)</b> and again click on "SETTLING BASIN DESIGN" after updating Width.</i></p>
                 <p> <i> Similarly, update <b>Settling basin length (L)</b> after getting calculated L and then click on "SETTLING BASIN DESIGN" again.</i></p>
-               
-                <p><u> REVISED SIZE OF BASIN</u></p>
+               <br>
+                <u> REVISED SIZE OF BASIN</u>
                 <br>
                 <label for="Bs_input">Revised width of basin (\(B_s\) in m):</label>
                 <input type="number" id="Bs_input" required>
@@ -1193,14 +1195,16 @@
                 <label for="L_input">Revised length of basin (\(L\) in m):</label>
                 <input type="number" id="L_input" required>
                 <br>
-                <p><u>2. INPUT FOR INLET TRANSITION</u></p>
+                <u>2. INPUT FOR INLET TRANSITION</u>
+		<br>
                 <label for="theta">Horizontal transition angle (10°-20°) (\(\theta\)):</label>
                 <input type="number" id="theta" required>
                 <br>
                 <label for="ba">Width of approach culvert (\(b_a\) in m):</label>
                 <input type="number" id="ba" required>
                 <br>
-                <p><u>3. INPUT FOR FORBAY</u></p>
+                <u>3. INPUT FOR FORBAY</u>
+			<br>
                 <label for="tr">Retention time (\(t_r\) in minute):</label>
                 <input type="number" id="tr" required>
                 <br>
@@ -1216,7 +1220,8 @@
                 <label for="Do">Diameter or width of canal (Square) (\(D_o\) in m):</label>
                 <input type="number" id="Do" required>
                 <br>
-                <p><u>4. INPUT FOR OUTLET OPENING</u></p>
+                <u>4. INPUT FOR OUTLET OPENING</u>
+			<br>
                 <label for="nout">Number of outlet opening (\(n_{out}\)):</label>
                 <input type="number" id="nout" required>
                 <br>
@@ -1226,7 +1231,8 @@
                 <label for="hopen">Headover from opening (\(h_{open}\) in m):</label>
                 <input type="number" id="hopen" required>
                 <br>
-                <p><u>5. SIDE SPILLWAY</u></p>
+                <u>5. SIDE SPILLWAY</u>
+			<br>
                 <label for="ShapeOpen">Shape of opening (\(Shape_{open}\)):</label>
                 <select id="ShapeOpen">
                     <option value="Broad Sharp edges">Broad Sharp edges</option>
@@ -1240,17 +1246,19 @@
                  <label for="Lside">Length of side spillway (\(L_{side}\) in m):</label>
                 <input type="number" id="Lside" required>
                 <br>
-                <p><u>6. SEDIMENT FLUSHING CANAL</u></p>
+                <u>6. SEDIMENT FLUSHING CANAL</u>
+			<br>
                 <label for="hsf">Depth of canal (\(h_{sf}\) in m):</label>
                 <input type="number" id="hsf" required>
                 <br>
                 <label for="Ssf">Longitudinal slope of flushing canal ( \(S_{sub}\)):</label>
                 <input type="number" id="Ssf" required>
                 <br>
+			<br>
                 <button type="button" onclick="Settingbasin()" class="btn">SETTLING BASIN DESIGN</button>
             </form>
         </div>
-
+	<br>
         <!-- Drawing Section -->
    <div class="drawing-section" style="text-align: center; margin: 20px auto;">
     <img src="Settling basin.png" alt="Settling basin Drawing" style="max-width: 250%; height: auto; display: block; margin: 0 auto;">
@@ -1265,25 +1273,38 @@
         <!-- Result Section -->
         <div class="result" id="result">
             <h3><u>DESIGN RESULTS</u></h3>
-            <p><u>1. SETTLING ZONE</u></p>
-            <p><u>CALCULATED</u></p>
+		
+            <u>1. SETTLING ZONE</u>
+		<br>
+            <u>CALCULATED</u>
+		<br>
             <p><strong>Width of basin (\(B\)):</strong> <span id="B"></span> </p>
             <p><strong>Length of basin (\(L\) ):</strong> <span id="L1"></span> </p>
-            <p><u>PROVIDED</u></p>
+		<br>
+            <u>PROVIDED</u>
+		<br>
             <p><strong>Number of bays:</strong> <span id="nb"></span> </p>
             <p><strong>Width of basin (\(B_s\)):</strong> <span id="Bs"></span> </p>
             <p><strong>Length of basin (\(L\)):</strong> <span id="L"></span> </p>
             <p><strong>Depth of flow (\(h_w\)):</strong> <span id="hw"></span> </p>
             <p><strong>Depth of Settling basin excluding freeboard (\(h_s\)):</strong> <span id="htotal"></span> </p>
-            <p><u>2. INLET TRANSITION</u></p>
+            <br>
+		<u>2. INLET TRANSITION</u>
+		<br>
             <p><strong>Length of inlet transition(\(L_{in}\)):</strong> <span id="Lin"></span> </p>
-            <p><u>3. OUTLET OPENING</u></p>
+		<br>
+            <u>3. OUTLET OPENING</u>
+		<br>
             <p><strong>Depth of opening(\(h_o\)):</strong> <span id="ho"></span> </p>
-            <p><u>4. FORBAY</u></p>
+		<br>
+            <u>4. FORBAY</u>
+		<br>
             <p><strong>Length of forbay(\(h_{fb}\)):</strong> <span id="Lfb"></span> </p>
             <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> </p>
             <p><strong>Water depth at side spillway (\(h_{spill}\)):</strong> <span id="hspill"></span> </p>
-            <p><u>4. SEDIMENT FLUSHING CANAL</u></p>
+		<br>
+            <u>4. SEDIMENT FLUSHING CANAL</u>
+		<br>
             <p><strong>Velocity at flushing canal (\(v_f\)):</strong> <span id="vflush"></span> </p>
             <p><strong>Size of sediment to be transported along flushing canal (\(d_m\)):</strong> <span id="SS"></span> </p>
         </div>
