@@ -936,9 +936,7 @@
                      <br>
                     <label for="n1">No. of rows of bolts (\(n_r\)):</label>
                     <input type="number" id="n1" required>
-                    <br>
-                    <label for="xp">Horizontal spacing of adjacent rows (\(x_p\)):</label>
-                    <input type="number" id="xp" required>
+                    
                     <br>
                     <p><u>SIZE OF PLATES</u></p>
                     <label for="t1">Thickness of connected plate(\(t_1\) in mm):</label>
@@ -994,7 +992,7 @@
                     <label for="ed">Edge distance of hole(\(e_d\) in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
-                    <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+                    <button type="button" onclick="Momentinplane()" class="btn"><b>DESIGN OF CONNECTION</b></button>
                 </form>
 
                 <div class="result" id="result">
@@ -1174,7 +1172,7 @@
                 const x = parseFloat(document.getElementById('x').value);
                 const n1 = parseFloat(document.getElementById('n1').value);
                 const nn = parseFloat(document.getElementById('nn').value);
-                const xp = parseFloat(document.getElementById('xp').value);
+               
                 const t1 = parseFloat(document.getElementById('t1').value);
                 const t2 = parseFloat(document.getElementById('t2').value);
                 const boltGrade = document.getElementById('boltGrade').value;
