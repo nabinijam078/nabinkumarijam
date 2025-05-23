@@ -1163,9 +1163,9 @@
             <p><strong>Porosity (\(n\)):</strong> <span id="n"></span></p>
             <p><strong>Degree of Saturation (\(S\)):</strong> <span id="S"></span></p>
             <p><strong>Moisture Content (\(w\)):</strong> <span id="w"></span></p>
-            <p><strong>Unit Weight (\(γ\)):</strong> <span id="gamma"></span> kg/m<sup>3</sup></p>
-            <p><strong>Dry density (\(γ_d\)):</strong> <span id="gammad"></span> kg/m<sup>3</sup></p>
-            <p><strong>Saturated density (\(γ_{sat}\)):</strong> <span id="gammasat"></span> kg/m<sup>3</sup></p>
+            <p><strong>Unit Weight (\(γ\)):</strong> <span id="gamma"></span> </p>
+            <p><strong>Dry density (\(γ_d\)):</strong> <span id="gammad"></span> </p>
+            <p><strong>Saturated density (\(γ_{sat}\)):</strong> <span id="gammasat"></span> </p>
             <p><strong>Specific gravity of solid (\(G\)):</strong> <span id="G_out"></span></p>
         </div>
     </div>
@@ -1321,9 +1321,9 @@
             document.getElementById('n').textContent = n.toFixed(1); 
             document.getElementById('S').textContent = (S * 100).toFixed(1) + "%";
             document.getElementById('w').textContent = (w * 100).toFixed(1) + "%";
-            document.getElementById('gamma').textContent = gamma.toFixed(1);
-            document.getElementById('gammad').textContent = gammad.toFixed(1);
-            document.getElementById('gammasat').textContent = gammasat.toFixed(1);
+            document.getElementById('gamma').textContent = gamma.toFixed(1)+" kg/m³";
+            document.getElementById('gammad').textContent = gammad.toFixed(1)+" kg/m³";
+            document.getElementById('gammasat').textContent = gammasat.toFixed(1)+" kg/m³";
             document.getElementById('G_out').textContent = G_out.toFixed(1);
         }
 
