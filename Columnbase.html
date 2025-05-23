@@ -1015,41 +1015,42 @@
                     <label for="ed">Edge distance of hole(\(e_d\) in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
-                    <button type="button" onclick="Momentinplane()"><b>DESIGN OF CONNECTION</b></button>
+			<br>
+                    <button type="button" onclick="Momentinplane()" class="btn"><b>DESIGN OF CONNECTION</b></button>
                 </form>
-
+		<br>
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <p><u>1. BOLT SPECIFICATION</u></p>
-                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Minimum Ultimate strength of bolt (\(f_{u,min}\)): <span id="boltMinUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> mm</p>
-                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span> mm</p>
+                    <p>Ultimate strength of bolt (\(f_u\)): <span id="boltUltimateStrength"></span> </p>
+                    <p>Minimum Ultimate strength of bolt (\(f_{u,min}\)): <span id="boltMinUltimateStrength"></span> </p>
+                    <p>Yield strength of bolt (\(f_{yb}\)): <span id="boltYieldStrength"></span> </p>
+                    <p>Diameter of bolt (\(D_b\)): <span id="boltdia"></span> </p>
+                    <p>Diameter of hole (\(D_h\)): <span id="Diahole"></span> </p>
                     <br>
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> </p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> </p>
                     <br>
                     <p><u>3. PITCH AND EDGE DISTANCE</u></p>
                     <p><u>3.1 Pitch distance</u></p>
-                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> mm</p>
-                    <p>Minimum pitch distance (\(p_{min}\)): <span id="pmin"></span> mm</p>
+                    <p>Maximum pitch distance (\(p_{max}\)): <span id="pmax"></span> </p>
+                    <p>Minimum pitch distance (\(p_{min}\)): <span id="pmin"></span> </p>
                     <p><u>3.2 Edge distance</u></p>
-                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> mm</p>
-                    <p>Minimum Edge distance (\(e_{min}\): <span id="emin"></span> mm</p>
+                    <p>Maximum Edge distance (\(e_{max}\)): <span id="emax"></span> </p>
+                    <p>Minimum Edge distance (\(e_{min}\): <span id="emin"></span> </p>
                     <br>
                     <p><u>4. STRESSES AT THE FOUR EDGES OF PLATES</u></p>
-                    <p>\(\sigma_1\): <span id="σ1"></span>N/mm<sup>2</sup> </p>
-                    <p>\(\sigma_2\)</sub> : <span id="σ2"></span>N/mm<sup>2</sup> </p>
-                    <p>\(\sigma_3\) : <span id="σ3"></span>N/mm<sup>2</sup> </p>
-                    <p>\(\sigma_4\) : <span id="σ4"></span>N/mm<sup>2</sup> </p>
+                    <p>\(\sigma_1\): <span id="σ1"></span> </p>
+                    <p>\(\sigma_2\)</sub> : <span id="σ2"></span> </p>
+                    <p>\(\sigma_3\) : <span id="σ3"></span> </p>
+                    <p>\(\sigma_4\) : <span id="σ4"></span> </p>
                     <p>Check for bearing stresses : <span id="check"></span> </p>
                     <br>
                     <p><u>5. STRENGTH OF A BOLT</u></p>
-                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> N</p>
-                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> N</p>
-                    <p>Strength of a bolt (\(V_{sb}\)): <span id="Vsb"></span> N</p>
+                    <p>Shear Strength (\(V_{dsb}\)): <span id="Vdsb"></span> </p>
+                    <p>Bearing Strength (\(V_{dpb}\)): <span id="Vdpb"></span> </p>
+                    <p>Strength of a bolt (\(V_{sb}\)): <span id="Vsb"></span> </p>
                     <br>
                     <p><u>6. CHECK FOR THICKNESS OF PLATE</u></p>
                     <p>Check for thickness of plage : <span id="check1"></span></p>
@@ -1318,24 +1319,24 @@
                       
                 
                 // Update the result section
-                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength;
-                document.getElementById('boltMinUltimateStrength').textContent = boltMinUltimateStrength;
-                document.getElementById('boltYieldStrength').textContent = boltYieldStrength;
-                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
-                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-                document.getElementById('boltdia').textContent = boltdia;
-                document.getElementById('Diahole').textContent = Diahole;
-                document.getElementById('pmax').textContent = pmax;
-                document.getElementById('pmin').textContent = pmin;
-                document.getElementById('emax').textContent = emax.toFixed(1);
-                document.getElementById('emin').textContent = emin.toFixed(1);
-                document.getElementById('Vdsb').textContent = Vdsb.toFixed(1);
-                document.getElementById('Vdpb').textContent = Vdpb.toFixed(1);
-                document.getElementById('Vsb').textContent = Vsb.toFixed(1);
-                document.getElementById('σ1').textContent = σ1.toFixed(1);
-                document.getElementById('σ2').textContent = σ2.toFixed(1);
-                document.getElementById('σ3').textContent = σ3.toFixed(1);
-                document.getElementById('σ4').textContent = σ4.toFixed(1);
+                document.getElementById('boltUltimateStrength').textContent = boltUltimateStrength+" N/mm²";
+                document.getElementById('boltMinUltimateStrength').textContent = boltMinUltimateStrength+" N/mm²";
+                document.getElementById('boltYieldStrength').textContent = boltYieldStrength+" N/mm²";
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength+" N/mm²";
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength+" N/mm²";
+                document.getElementById('boltdia').textContent = boltdia+" mm";
+                document.getElementById('Diahole').textContent = Diahole+" mm";
+                document.getElementById('pmax').textContent = pmax+" mm";
+                document.getElementById('pmin').textContent = pmin+" mm";
+                document.getElementById('emax').textContent = emax.toFixed(1)+" mm";
+                document.getElementById('emin').textContent = emin.toFixed(1)+" mm";
+                document.getElementById('Vdsb').textContent = Vdsb.toFixed(1)+" N";
+                document.getElementById('Vdpb').textContent = Vdpb.toFixed(1)+" N";
+                document.getElementById('Vsb').textContent = Vsb.toFixed(1)+" N";
+                document.getElementById('σ1').textContent = σ1.toFixed(1)+" N/mm²";
+                document.getElementById('σ2').textContent = σ2.toFixed(1)+" N/mm²";
+                document.getElementById('σ3').textContent = σ3.toFixed(1)+" N/mm²";
+                document.getElementById('σ4').textContent = σ4.toFixed(1)+" N/mm²";
                 document.getElementById('check').textContent = check;
                 document.getElementById('check1').textContent = check1;
                 document.getElementById('AnchRod').textContent = AnchRod;
