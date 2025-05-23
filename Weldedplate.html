@@ -977,28 +977,28 @@
                     <label for="s">Provided size of weld(\(s\) in mm):</label>
                     <input type="number" id="s" required>
                     <br>
-                    <button type="button" onclick="Weldeddesignplate()">DESIGN PLATE CONNECTION</button>
+                    <button type="button" onclick="Weldeddesignplate()" class="btn">DESIGN PLATE CONNECTION</button>
                 </form>
 
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <br>
                     <p><u>1. WELD SPECIFICATION</u></p>
-                    <p>Design stress of weld_yield (\(f_y\)): <span id="fy"></span> N/mm<sup>2</sup></p>
-                    <p>Design stress of weld_ultimate (\(f_u\)): <span id="fu"></span> N/mm<sup>2</sup></p>
+                    <p>Design stress of weld_yield (\(f_y\)): <span id="fy"></span> </p>
+                    <p>Design stress of weld_ultimate (\(f_u\)): <span id="fu"></span> </p>
                     <br>
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> </p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> </p>
                     <br>
                     <p><u>3. SIZE OF WELD</u></p>
-                    <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span> mm</p>
-                    <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> mm</p>
+                    <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span> </p>
+                    <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> </p>
                     <br>
                     <p><u>4. STRENGTH OF WELD</u></p>
-                    <p>Strength of plate (\(P_p\)): <span id="Pp"></span> kN</p>
+                    <p>Strength of plate (\(P_p\)): <span id="Pp"></span> </p>
                     <br>
-                    <p>Length of weld (\(L_w\)) : <span id="Lw"></span> mm</p>
+                    <p>Length of weld (\(L_w\)) : <span id="Lw"></span> </p>
                 </div>
             </div>
             <div class="drawing-section">
@@ -1183,14 +1183,14 @@
                 const Lw =1.1* P * 1000 / (tt * fwd);
 
                 // Update the result section
-                document.getElementById('fy').textContent = fy;
-                document.getElementById('fu').textContent = fu;
-                document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
-                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-                document.getElementById('tmin').textContent = tmin.toFixed(0);
-                document.getElementById('tmax').textContent = tmax.toFixed(0);
-                document.getElementById('Pp').textContent = Pp.toFixed(2);
-                document.getElementById('Lw').textContent = Lw.toFixed(2);
+                document.getElementById('fy').textContent = fy+" N/mm²";
+                document.getElementById('fu').textContent = fu+" N/mm²";
+                document.getElementById('steelYieldStrength').textContent = steelYieldStrength+" N/mm²";
+                document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength+" N/mm²";
+                document.getElementById('tmin').textContent = tmin.toFixed(0)+" mm";
+                document.getElementById('tmax').textContent = tmax.toFixed(0)+" mm";
+                document.getElementById('Pp').textContent = Pp.toFixed(2)+" kN";
+                document.getElementById('Lw').textContent = Lw.toFixed(2)+" mm";
                 
             } catch (error) {
                 alert("An error occurred during calculation. Please check your inputs.");
