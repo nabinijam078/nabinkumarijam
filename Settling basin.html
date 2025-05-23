@@ -1247,7 +1247,7 @@
                 <label for="Ssf">Longitudinal slope of flushing canal ( \(S_{sub}\)):</label>
                 <input type="number" id="Ssf" required>
                 <br>
-                <button type="button" onclick="Settingbasin()">SETTLING BASIN DESIGN</button>
+                <button type="button" onclick="Settingbasin()" class="btn">SETTLING BASIN DESIGN</button>
             </form>
         </div>
 
@@ -1267,25 +1267,25 @@
             <h3><u>DESIGN RESULTS</u></h3>
             <p><u>1. SETTLING ZONE</u></p>
             <p><u>CALCULATED</u></p>
-            <p><strong>Width of basin (\(B\)):</strong> <span id="B"></span> m</p>
-            <p><strong>Length of basin (\(L\) ):</strong> <span id="L1"></span> m</p>
+            <p><strong>Width of basin (\(B\)):</strong> <span id="B"></span> </p>
+            <p><strong>Length of basin (\(L\) ):</strong> <span id="L1"></span> </p>
             <p><u>PROVIDED</u></p>
             <p><strong>Number of bays:</strong> <span id="nb"></span> </p>
-            <p><strong>Width of basin (\(B_s\)):</strong> <span id="Bs"></span> m</p>
-            <p><strong>Length of basin (\(L\)):</strong> <span id="L"></span> m</p>
-            <p><strong>Depth of flow (\(h_w\)):</strong> <span id="hw"></span> m</p>
-            <p><strong>Depth of Settling basin excluding freeboard (\(h_s\)):</strong> <span id="htotal"></span> m</p>
+            <p><strong>Width of basin (\(B_s\)):</strong> <span id="Bs"></span> </p>
+            <p><strong>Length of basin (\(L\)):</strong> <span id="L"></span> </p>
+            <p><strong>Depth of flow (\(h_w\)):</strong> <span id="hw"></span> </p>
+            <p><strong>Depth of Settling basin excluding freeboard (\(h_s\)):</strong> <span id="htotal"></span> </p>
             <p><u>2. INLET TRANSITION</u></p>
-            <p><strong>Length of inlet transition(\(L_{in}\)):</strong> <span id="Lin"></span> m</p>
+            <p><strong>Length of inlet transition(\(L_{in}\)):</strong> <span id="Lin"></span> </p>
             <p><u>3. OUTLET OPENING</u></p>
-            <p><strong>Depth of opening(\(h_o\)):</strong> <span id="ho"></span> m</p>
+            <p><strong>Depth of opening(\(h_o\)):</strong> <span id="ho"></span> </p>
             <p><u>4. FORBAY</u></p>
-            <p><strong>Length of forbay(\(h_{fb}\)):</strong> <span id="Lfb"></span> m</p>
-            <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> m</p>
-            <p><strong>Water depth at side spillway (\(h_{spill}\)):</strong> <span id="hspill"></span> m</p>
+            <p><strong>Length of forbay(\(h_{fb}\)):</strong> <span id="Lfb"></span> </p>
+            <p><strong>Sumbergence height at oulet:</strong> <span id="Su"></span> </p>
+            <p><strong>Water depth at side spillway (\(h_{spill}\)):</strong> <span id="hspill"></span> </p>
             <p><u>4. SEDIMENT FLUSHING CANAL</u></p>
-            <p><strong>Velocity at flushing canal (\(v_f\)):</strong> <span id="vflush"></span> m/s</p>
-            <p><strong>Size of sediment to be transported along flushing canal (\(d_m\)):</strong> <span id="SS"></span> mm</p>
+            <p><strong>Velocity at flushing canal (\(v_f\)):</strong> <span id="vflush"></span> </p>
+            <p><strong>Size of sediment to be transported along flushing canal (\(d_m\)):</strong> <span id="SS"></span> </p>
         </div>
     </div>
 	  </div>
@@ -1609,22 +1609,22 @@
             const SS=11*Rflush/Ssf*1000;
             
             // Display the results
-            document.getElementById('B').textContent = B.toFixed(2);
-            document.getElementById('L1').textContent = L1.toFixed(2);
+            document.getElementById('B').textContent = B.toFixed(2)+" m";
+            document.getElementById('L1').textContent = L1.toFixed(2)+" m";
             document.getElementById('nb').textContent = nb.toFixed(2);
-            document.getElementById('Bs').textContent = Bs.toFixed(2);
-            document.getElementById('L').textContent = L.toFixed(2);
-            document.getElementById('hw').textContent = hw.toFixed(2);
+            document.getElementById('Bs').textContent = Bs.toFixed(2)+" m";
+            document.getElementById('L').textContent = L.toFixed(2)+" m";
+            document.getElementById('hw').textContent = hw.toFixed(2)+" m";
             
-            document.getElementById('htotal').textContent = htotal.toFixed(2);
-            document.getElementById('Lin').textContent = Lin.toFixed(2);
-            document.getElementById('ho').textContent = ho.toFixed(2);
-            document.getElementById('Lfb').textContent = Lfb.toFixed(2);
-            document.getElementById('Su').textContent = Su.toFixed(2);
-            document.getElementById('hspill').textContent = hspill.toFixed(2);
+            document.getElementById('htotal').textContent = htotal.toFixed(2)+" m";
+            document.getElementById('Lin').textContent = Lin.toFixed(2)+" m";
+            document.getElementById('ho').textContent = ho.toFixed(2)+" m";
+            document.getElementById('Lfb').textContent = Lfb.toFixed(2)+" m";
+            document.getElementById('Su').textContent = Su.toFixed(2)+" m";
+            document.getElementById('hspill').textContent = hspill.toFixed(2)+" m";
 
-            document.getElementById('vflush').textContent = vflush.toFixed(2);
-            document.getElementById('SS').textContent = SS.toFixed(2);
+            document.getElementById('vflush').textContent = vflush.toFixed(2)+"m/s";
+            document.getElementById('SS').textContent = SS.toFixed(2)+" mm";
           
             // Text on image
             document.querySelector('.L-value').textContent = `L = ${L.toFixed(1)} m`;
