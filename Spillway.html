@@ -1124,13 +1124,14 @@
                     <input type="number" id="WCL" required>
                
                 <br>
-                <button type="button" onclick="calculateHeadovercrest()">Calculate Head Over Crest</button>
+		    <br>
+                <button type="button" onclick="calculateHeadovercrest()" class="btn">Calculate Head Over Crest</button>
             </form>
 
             <div class="result" id="result">
                 <h3><u>DESIGN RESULTS</u></h3>
-                <p><strong>Head over crest (\(h_s\)):</strong> <span id="hs"></span> m</p>
-                <p><strong>High flood level (HFL):</strong> <span id="H"></span> m</p>
+                <p><strong>Head over crest (\(h_s\)):</strong> <span id="hs"></span> </p>
+                <p><strong>High flood level (HFL):</strong> <span id="H"></span> </p>
             </div>
         </div>
 
@@ -1321,8 +1322,8 @@
             if (isNaN(H)) {
                 alert("Calculation failed. Please check input values.");
             } else {
-                document.getElementById('hs').textContent = H.toFixed(3);
-                document.getElementById('H').textContent = (WCL + H).toFixed(2);
+                document.getElementById('hs').textContent = H.toFixed(3)+" m";
+                document.getElementById('H').textContent = (WCL + H).toFixed(2)+" m";
                 document.getElementById('p-display').textContent = P.toFixed(2); // Update P on the drawing
                 document.getElementById('h-display').textContent = H.toFixed(2); // Update H on the drawing
             }
