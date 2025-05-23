@@ -1070,9 +1070,11 @@
     <!-- Main Content -->
 <div class="main-container">
             <h2><u><center>STRUCTURAL DESIGN OF SURGES SHAFT</center></u></h2>
-     
+	<br>
+     <u>INPUTS</u>
+	<br>
         <form id="HoekbrownForm">
-		 <label for="fck">Concrete grade (\(f_ck\) in MPa):</label>
+		 <label for="fck">Concrete grade (\(f_{ck}\) in MPa):</label>
                 <input type="number" id="fck" required>
             <br>
                 <label for="fy">Steel grade (\(f_y\) in MPa):</label>
@@ -1113,14 +1115,16 @@
 		<label for="t">Maximum thickness of concrete wall (\(t\) in mm):</label>
                 <input type="number" id="t"  required>
             <br>
-		<p><u>1. HOOP REINFORCEMENT</u></p>
+		<u>1. HOOP REINFORCEMENT</u>
+		<br>
 		 <label for="phih">Diameter of hoop reinforcement (\(φ_h\) in mm):</label>
                 <input type="number" id="phih"  required>
             <br>
-		<label for="sh">Spacing of hoop reinforcement (\(s_h<\) in mm):</label>
+		<label for="sh">Spacing of hoop reinforcement (\(s_h\) in mm):</label>
                 <input type="number" id="sh"  required>
             <br>
-		<p><u>2. LONGITUDINAL REINFORCEMENT</u></p>
+		<u>2. LONGITUDINAL REINFORCEMENT</u>
+		<br>
 		<label for="phil">Diameter of longitudinal reinforcement (\(φ_l\) in mm):</label>
                 <input type="number" id="phil"  required>
             <br>
@@ -1129,44 +1133,47 @@
             <br>
 		
 		<br>
-            <button type="button" onclick="surgeshaft()"><b><u>CALCULATE</u></b></button>
+            <button type="button" onclick="surgeshaft()" class="btn"><u>CALCULATE</u></button>
         </form>
 	<br>
         <div class="result" id="result">
             <h3><u>PERMISSIBLE VALUES</u></h3>
-            <p><strong> Permissible compressive stress of Concrete (\(σ_c\)):</strong> <span id="sigmac"></span> N/mm²</p>
-            <p><strong> Permissible compressive stress of Steel (\(σ_{st}\)):</strong> <span id="sigmast"></span> N/mm²</p>
-	    <p><strong> Tensile strength of Steel (\(σ_t\)):</strong> <span id="sigmat"></span> N/mm²</p>
-            <p><strong> Modulus of Elasticity of Concrete (\(E_c\)):</strong> <span id="Ec"></span> N/mm²</p>
+            <p><strong> Permissible compressive stress of Concrete (\(σ_c\)):</strong> <span id="sigmac"></span> </p>
+            <p><strong> Permissible compressive stress of Steel (\(σ_{st}\)):</strong> <span id="sigmast"></span> </p>
+	    <p><strong> Tensile strength of Steel (\(σ_t\)):</strong> <span id="sigmat"></span> </p>
+            <p><strong> Modulus of Elasticity of Concrete (\(E_c\)):</strong> <span id="Ec"></span> </p>
 	   
 		
           <h3><u>DESIGN OF MAXIMUM THICKNESS AND REINFORCEMENT</u></h3>
-	  <p><u>1. NORMAL CONDITION</u></p>
-	  <p><strong>Internal water depth at base of shaft (\(h_{wn}\)):</strong> <span id="hwn"></span> m</p>
-	  <p><strong>Internal water pressure at base of shaft (\(P_{in}\)):</strong> <span id="Pin"></span> kN/m²</p>
-	  <p><strong>External water pressure at base of shaft (\(P_{on}\)):</strong> <span id="Pon"></span> kN/m²</p>
-	  <p><strong>Permissible compressive stress in concrete in Normal condition (\(σ_{ca}\)):</strong> <span id="sigmaca"></span> N/mm²</p>
+		<br>
+	  <u>1. NORMAL CONDITION</u>
+		<br>
+	  <p><strong>Internal water depth at base of shaft (\(h_{wn}\)):</strong> <span id="hwn"></span> </p>
+	  <p><strong>Internal water pressure at base of shaft (\(P_{in}\)):</strong> <span id="Pin"></span> </p>
+	  <p><strong>External water pressure at base of shaft (\(P_{on}\)):</strong> <span id="Pon"></span> </p>
+	  <p><strong>Permissible compressive stress in concrete in Normal condition (\(σ_{ca}\)):</strong> <span id="sigmaca"></span> </p>
 	  <p><strong>Check for permissible stress :</strong> <span id="check1"></span> </p>
-	  <p><u>2. UPSURGE CONDITION</u></p>
-	  <p><strong>Internal water depth at base of shaft (\(h_{wu}\)):</strong> <span id="hwu"></span> m</p>
-	  <p><strong>Internal water pressure at base of shaft (\(P_{iu}\)):</strong> <span id="Piu"></span> kN/m²</p>
-	  <p><strong>External water pressure at base of shaft (\(P_{ou}\)):</strong> <span id="Pou"></span> kN/m²</p>
-	 <p><strong>Permissible compressive stress in concrete in Upsurge condition (\(σ_{cu}\)):</strong> <span id="sigmacu"></span> N/mm²</p>
+		<br>
+	  <u>2. UPSURGE CONDITION</u>
+		<br>
+	  <p><strong>Internal water depth at base of shaft (\(h_{wu}\)):</strong> <span id="hwu"></span> </p>
+	  <p><strong>Internal water pressure at base of shaft (\(P_{iu}\)):</strong> <span id="Piu"></span> </p>
+	  <p><strong>External water pressure at base of shaft (\(P_{ou}\)):</strong> <span id="Pou"></span> </p>
+	 <p><strong>Permissible compressive stress in concrete in Upsurge condition (\(σ_{cu}\)):</strong> <span id="sigmacu"></span> </p>
 	  <p><strong>Check for permissible stress :</strong> <span id="check2"></span> </p>
           <h3><u>REINFORCEMENT DESIGN</u></h3>
-		<p><u>1. HOOP REINFORCEMENT</u></p>
-           <p><strong>Area of reinforcement (\(A_{st}\) ):</strong> <span id="Ast"></span> mm² </p> 
-            <p><strong>Area of reinforcement provided (\(A_{stph}\)) :</strong> <span id="Astph"></span> mm² </p> 
-		<p><u>2. LONGITUDINAL REINFORCEMENT</u></p>
-           <p><strong>Area of reinforcement (\(A_{stm}\)) :</strong> <span id="Astm"></span> mm² </p> 
-            <p><strong>Area of reinforcement provided (\(A_{stpl}\)) :</strong> <span id="Astpl"></span> mm² </p>
+		<p></p>
+		<u>1. HOOP REINFORCEMENT</u>
+		<p>
+           <p><strong>Area of reinforcement (\(A_{st}\) ):</strong> <span id="Ast"></span> </p> 
+            <p><strong>Area of reinforcement provided (\(A_{stph}\)) :</strong> <span id="Astph"></span> </p> 
+		<br>
+		<u>2. LONGITUDINAL REINFORCEMENT</u>
+		<br>
+           <p><strong>Area of reinforcement (\(A_{stm}\)) :</strong> <span id="Astm"></span> </p> 
+            <p><strong>Area of reinforcement provided (\(A_{stpl}\)) :</strong> <span id="Astpl"></span> </p>
         </div>
     </div>
-
-
-
-
-
 
     <!-- Footer -->
     <footer>
@@ -1352,25 +1359,25 @@
 	   const Astpl=3.1416*Math.pow(phil,2)/4*1000/sl*2;
 	   
     		// Display results
-    	  document.getElementById('sigmac').textContent = sigmac.toFixed(2);
-    	  document.getElementById('sigmast').textContent = sigmast.toFixed(2);
-    	  document.getElementById('sigmat').textContent = sigmat.toFixed(2);
-    	  document.getElementById('Ec').textContent = Ec.toFixed(1);
+    	  document.getElementById('sigmac').textContent = sigmac.toFixed(2)+" N/mm²";
+    	  document.getElementById('sigmast').textContent = sigmast.toFixed(2)+" N/mm²";
+    	  document.getElementById('sigmat').textContent = sigmat.toFixed(2)+" N/mm²";
+    	  document.getElementById('Ec').textContent = Ec.toFixed(1)+" N/mm²";
     
-    	  document.getElementById('hwn').textContent = hwn.toFixed(2);
-    	  document.getElementById('hwu').textContent = hwu.toFixed(2);
-    	  document.getElementById('Pin').textContent = Pin.toFixed(2);
-    	  document.getElementById('sigmaca').textContent = sigmaca.toFixed(2); 
+    	  document.getElementById('hwn').textContent = hwn.toFixed(2)+" m";
+    	  document.getElementById('hwu').textContent = hwu.toFixed(2)+" m";
+    	  document.getElementById('Pin').textContent = Pin.toFixed(2)+" kN/m²";
+    	  document.getElementById('sigmaca').textContent = sigmaca.toFixed(2)+" N/mm²"; 
 	   document.getElementById('check1').textContent = check1; 
-    	  document.getElementById('Pon').textContent = Pon.toFixed(2);
-    	 document.getElementById('sigmacu').textContent = sigmacu.toFixed(2);   
-    	 document.getElementById('Piu').textContent = Piu.toFixed(2);
-         document.getElementById('Pou').textContent = Pou.toFixed(2);
+    	  document.getElementById('Pon').textContent = Pon.toFixed(2)+" kN/m²";
+    	 document.getElementById('sigmacu').textContent = sigmacu.toFixed(2)+" N/mm²";   
+    	 document.getElementById('Piu').textContent = Piu.toFixed(2)+" kN/m²";
+         document.getElementById('Pou').textContent = Pou.toFixed(2)+" kN/m²";
 	   document.getElementById('check2').textContent = check2; 
-	document.getElementById('Ast').textContent = Ast.toFixed(2);   
-	   document.getElementById('Astph').textContent = Astph.toFixed(2);
-	   document.getElementById('Astm').textContent = Astm.toFixed(2); 
-	   document.getElementById('Astpl').textContent = Astpl.toFixed(2);
+	document.getElementById('Ast').textContent = Ast.toFixed(2)+" mm²";   
+	   document.getElementById('Astph').textContent = Astph.toFixed(2)+" mm²";
+	   document.getElementById('Astm').textContent = Astm.toFixed(2)+" mm²"; 
+	   document.getElementById('Astpl').textContent = Astpl.toFixed(2)+" mm²";
 }
 
 
