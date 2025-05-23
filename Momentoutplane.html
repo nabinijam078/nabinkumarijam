@@ -992,9 +992,10 @@
                     <label for="ed">Edge distance of hole(\(e_d\) in mm):</label>
                     <input type="number" id="ed" required>
                     <br>
+			<br>
                     <button type="button" onclick="Momentinplane()" class="btn"><b>DESIGN OF CONNECTION</b></button>
                 </form>
-
+		<br>
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <p><u>1. BOLT SPECIFICATION</u></p>
@@ -1183,7 +1184,7 @@
 
                 // Validate inputs
                 if (isNaN(P) || P <= 0 || isNaN(x) || x <= 0 || isNaN(n1) || n1 <= 0 || isNaN(nn) || nn <= 0 ||
-                    isNaN(xp) || xp <= 0 || isNaN(t1) || t1 <= 0 || isNaN(t2) || t2 <= 0 || isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
+                      isNaN(t1) || t1 <= 0 || isNaN(t2) || t2 <= 0 || isNaN(pt) || pt <= 0 || isNaN(ed) || ed <= 0) {
                     alert("Please fill all the required fields with valid positive numbers.");
                     return;
                 }
