@@ -1104,9 +1104,9 @@
                 <br>
                     <label for="ds">Size of sediments to be transported (\(d_s\) in mm):</label>
                     <input type="number" id="ds" required>
-                
-                <p><u>CULVERT SIZE</u></p>
-                
+                <br>
+                <u>CULVERT SIZE</u>
+                <br>
                     <label for="w">Width of culvert (\(w\) in m):</label>
                     <input type="number" id="w" required>
                  <br>
@@ -1121,14 +1121,14 @@
                 </select>
                 <br>
                 <br>
-                <button type="button" onclick="calculateCulvert()">CULVERT DESIGN</button>
+                <button type="button" onclick="calculateCulvert()" class="btn">CULVERT DESIGN</button>
                 
             </form>
-
+		<br>
             <div class="result" id="result">
                 <h2>DESIGN RESULT</h2>
-                <p><strong>Depth of flow (\(h_s\)):</strong> <span id="hs"></span> m</p>
-                <p><strong>Velocity of flow (\(v_f\)) :</strong> <span id="vf"></span> m/s</p>
+                <p><strong>Depth of flow (\(h_s\)):</strong> <span id="hs"></span> </p>
+                <p><strong>Velocity of flow (\(v_f\)) :</strong> <span id="vf"></span> </p>
                 <p><strong>Check for limiting velocity :</strong> <span id="check"></span></p>
             </div>
         </div>
@@ -1201,16 +1201,6 @@
             </div>
         </div>
     </footer>
-
-
-
-
-
-
-
-
-
-
     <!-- JavaScript for Time and Date -->
     <script>
         function updateDateTime() {
@@ -1272,8 +1262,8 @@
     }
 
     // Display results
-    document.getElementById('hs').textContent = hs.toFixed(2);
-    document.getElementById('vf').textContent = vf.toFixed(2);
+    document.getElementById('hs').textContent = hs.toFixed(2)+" m";
+    document.getElementById('vf').textContent = vf.toFixed(2)+" m/s";
     document.getElementById('check').textContent = check;
     document.getElementById('p-display').textContent = w.toFixed(2); // Update w on the drawing
     document.getElementById('hw-display').textContent = hw.toFixed(2); // Update hw on the drawing
