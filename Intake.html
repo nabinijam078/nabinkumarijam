@@ -1112,7 +1112,7 @@
                     <label for="ht">Targeted headloss (\(h_t\) in m):</label>
                     <input type="number" id="ht" required>
                 <br>
-               <p><u>TRASHRACK DETAIL</u></p>
+               <u>TRASHRACK DETAIL</u>
                 
                     <label for="t">Thickness of rack (\(t\) in mm):</label>
                     <input type="number" id="t" required>
@@ -1158,14 +1158,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
     <!-- Footer -->
     <footer>
@@ -1374,7 +1366,7 @@
             }
 
             // Round hw to 2 decimal places
-            const hw1 = Math.round(hw * 100) / 100;
+            const hw1 = Math.ceil(hw * 100) / 100;
 
             // Calculate approach velocity
             const v1 = Qf / (ns * w * hw1);
