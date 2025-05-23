@@ -976,29 +976,30 @@
                     <label for="s">Provided size of weld(\(s\) in mm):</label>
                     <input type="number" id="s" required>
                     <br>
-                    <button type="button" onclick="Weldeddesignplate()">DESIGN PLATE CONNECTION</button>
+			<br>
+                    <button type="button" onclick="Weldeddesignplate()" class="btn">DESIGN PLATE CONNECTION</button>
                 </form>
-
+			<br>
                 <div class="result" id="result">
                     <h3><u>DESIGN RESULT</u></h3>
                     <br>
                     <p><u>1. WELD SPECIFICATION</u></p>
-                    <p>Design stress of weld_yield (\(f_y\)): <span id="fy"></span> N/mm<sup>2</sup></p>
-                    <p>Design stress of weld_ultimate (\(f_u\)): <span id="fu"></span> N/mm<sup>2</sup></p>
+                    <p>Design stress of weld_yield (\(f_y\)): <span id="fy"></span> </p>
+                    <p>Design stress of weld_ultimate (\(f_u\)): <span id="fu"></span> </p>
                    
                     <p><u>2. PLATE SPECIFICATION</u></p>
-                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> N/mm<sup>2</sup></p>
-                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span> N/mm<sup>2</sup></p>
+                    <p>Ultimate strength of plate (\(f_{up}\)): <span id="steelUltimateStrength"></span> </p>
+                    <p>Yield strength of plate (\(f_y\)): <span id="steelYieldStrength"></span></p>
                     
                     <p><u>3. SIZE OF WELD</u></p>
-                    <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span> mm</p>
-                    <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> mm</p>
-		    <p>Maximum size (\(t_t\)): <span id="tt"></span> mm</p>
+                    <p>Minimum size (\(t_{min}\)) : <span id="tmin"></span></p>
+                    <p>Maximum size (\(t_{max}\)): <span id="tmax"></span> </p>
+		    <p>Maximum size (\(t_t\)): <span id="tt"></span> </p>
                     
                     <p><u>4. STRENGTH OF WELD</u></p>
-                   <p>Vertical Shear Stress (\(P_s\)) : <span id="Ps"></span> N/mm<sup>2</sup> </p>
-                   <p>Torsional stress of weld (\(P_b\)) : <span id="Pb"></span> N/mm<sup>2</sup> </p>
-                   <p>Resultant Stress (\(P_r\)) : <span id="Pr"></span> N/mm<sup>2</sup> </p>
+                   <p>Vertical Shear Stress (\(P_s\)) : <span id="Ps"></span> </p>
+                   <p>Torsional stress of weld (\(P_b\)) : <span id="Pb"></span>  </p>
+                   <p>Resultant Stress (\(P_r\)) : <span id="Pr"></span>  </p>
 		   <p>Check for strength : <span id="Check"></span> </p>
                 </div>
             </div>
@@ -1179,16 +1180,16 @@ function Weldeddesignplate() {
         const Check = (fwd > Pr) ? "OK" : "NOT OK";
         
         // Update the result section
-        document.getElementById('fy').textContent = fy;
-        document.getElementById('fu').textContent = fu;
-        document.getElementById('steelYieldStrength').textContent = steelYieldStrength;
-        document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength;
-        document.getElementById('tmin').textContent = tmin.toFixed(0);
-        document.getElementById('tmax').textContent = tmax.toFixed(1);
-        document.getElementById('tt').textContent = tt.toFixed(1);
-        document.getElementById('Pb').textContent = Pb.toFixed(2);
-        document.getElementById('Ps').textContent = Ps.toFixed(2);
-        document.getElementById('Pr').textContent = Pr.toFixed(2);
+        document.getElementById('fy').textContent = fy+" N/mm²";
+        document.getElementById('fu').textContent = fu+" N/mm²";
+        document.getElementById('steelYieldStrength').textContent = steelYieldStrength+" N/mm²";
+        document.getElementById('steelUltimateStrength').textContent = steelUltimateStrength+" N/mm²";
+        document.getElementById('tmin').textContent = tmin.toFixed(0)+" mm";
+        document.getElementById('tmax').textContent = tmax.toFixed(1)+" mm";
+        document.getElementById('tt').textContent = tt.toFixed(1)+" mm";
+        document.getElementById('Pb').textContent = Pb.toFixed(2)+" N/mm²";
+        document.getElementById('Ps').textContent = Ps.toFixed(2)+" N/mm²";
+        document.getElementById('Pr').textContent = Pr.toFixed(2)+" N/mm²";
         document.getElementById('Check').textContent = Check;
         
     } catch (error) {
