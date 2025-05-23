@@ -1365,8 +1365,10 @@
                 return;
             }
 
-            // Round hw to 2 decimal places
-            const hw1 = Math.ceil(hw/10);
+            // area of flow according to intake velocity
+		const hw2=Qf/(vf*ns*w);
+		const hw3=Math.max(hw,hw2);
+            	const hw1 = Math.ceil(hw3);
 
             // Calculate approach velocity
             const v1 = Qf / (ns * w * hw1);
