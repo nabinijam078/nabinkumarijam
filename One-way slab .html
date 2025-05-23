@@ -34,7 +34,7 @@
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
             color: var(--text-dark);
             margin-top: 0;
             font-weight: 700;
@@ -49,7 +49,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px; /* Increased from 20px */
+            padding: 0 40px; 
         }
         
         .section {
@@ -188,7 +188,7 @@
         .main-container {
             max-width: 1400px;
             margin: 40px auto;
-            padding: 0 60px; /* Increased from 20px */
+            padding: 0 60px; 
             line-height: 1.7;
             color: black;
         }
@@ -929,7 +929,7 @@
 	<br>
         <label for="DL">Dead load (kN/m):</label>
         <input type="number" id="DL" min="1" value="10">
-
+	<br>
         <label for="LL">Live load (kN/m):</label>
         <input type="number" id="LL" min="1" value="10">
         <br>
@@ -939,7 +939,7 @@
           <option value="notFixed">Imposed Load (Not Fixed)</option>
         </select>
         <br>
-       
+       <br>
         <u><b>INPUT FOR REINFORCEMENT DESIGN</b></u>
         <form id="beamSectionForm">
           <u><i>Input Maximum moment either User input or maximum of calculated values</i></u>
@@ -969,7 +969,7 @@
         <button onclick="updateDrawing()" class="btn">SHEAR FORCE & BENDING MOMENT</button>
         <br>
 	<br>
-	      <br>
+	<br>
         <button onclick="Reinforcementdesign()" class="btn">REINFORCEMENT DESIGN</button>
         <br>
         <!-- Canvas for drawing -->
