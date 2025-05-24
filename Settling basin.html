@@ -9,6 +9,9 @@
     <!-- MathJax Configuration -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* ===== Base Styles ===== */
         :root {
@@ -24,27 +27,24 @@
         }
         
         body {
-            font-family: 'Open sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0px;
             color: var(--text-medium);
             line-height: 1.7;
             background-color: var(--section-bg);
             scroll-behavior: smooth;
         }
-        
+        .main-content {
+            padding: 40px; 
+           
+        }
         h1, h2, h3, h4 {
             font-family: 'Roboto', serif;
             color: var(--text-dark);
             margin-top: 0;
             font-weight: 700;
         }
-
-	 .content-wrapper {
-   	 display: flex;
-   	 gap: 80px; 
-   	 align-items: flex-start; 
-	}
         
         a {
             text-decoration: none;
@@ -52,69 +52,10 @@
             transition: all 0.3s ease;
         }
         
-	  .drawing-section {
-            width: 35%; /* Drawing section takes 35% of the width */
-            position: relative;
-        }
-
-        .drawing-section img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-      
-
-         .drawing-section .L-value,
-        .drawing-section .Bs-value,
-        .drawing-section .Lin-value,
-        .drawing-section .Lfb-value,
-        .drawing-section .theta-value,
-        .drawing-section .hw-value {
-            position: absolute;
-            font-size: 0.8rem;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .drawing-section .L-value {
-            top: 5%; /* Adjust as needed */
-            left:45%; /* Adjust as needed */
-        }
-
-        .drawing-section .Bs-value {
-            top: 20%; /* Adjust as needed */
-            left: 30%; /* Adjust as needed */
-        }
-        .drawing-section .hw-value {
-            top: 45%; /* Adjust as needed */
-            left: 42%; /* Adjust as needed */
-        }
-         
-        
-        .drawing-section .theta-value {
-        top: 12%; /* Adjust as needed */
-        left: 23%; /* Adjust as needed */
-        }
-
-          .drawing-section .Lin-value {
-          top: 5%; /* Adjust as needed */
-          left: 20%; /* Adjust as needed */
-          }
-
-          .drawing-section .Lfb-value {
-          top: 5%; /* Adjust as needed */
-          left: 60%; /* Adjust as needed */
-          }
-
-	
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px; /* Increased from 20px */
+            padding: 0 20px;
         }
         
         .section {
@@ -181,9 +122,37 @@
             background: var(--primary-blue);
             color: white;
         }
-
-
-
+        
+        /* Table Styles */
+        .data-table {
+            width: 30%;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #000;
+        }
+        
+        .data-table th, 
+        .data-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+            border-color:black;
+        }
+        
+        table {
+            width: 70%;
+            margin: 0 auto 20px;
+            border-collapse: collapse;
+            border: 2px solid #000;
+        }
+        
+        table th, 
+        table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+            border-color:black;
+        }
         
         /* ===== Header ===== */
         header {
@@ -200,7 +169,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px; /* Increased from 0 */
+            padding: 15px 0;
         }
         
         .logo {
@@ -216,200 +185,8 @@
             margin-right: 10px;
             font-size: 1.5rem;
         }
-
         
-        .main-container {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 0 60px;
-            line-height: 1.7;
-            color: black;
-        }
-
-        .main-container h2, 
-        .content h2 {
-            font-family: 'Roboto', serif;
-            color: var(--text-dark);
-            padding: 0 30px;
-            margin-bottom: 20px;
-        }
-
-        .main-container p {
-            margin-bottom: 20px;
-            color: black;
-            font-size: 0.9rem;
-            padding: 0 20px;
-            text-align: justify; 
-            text-justify: inter-word; 
-        }
-        
-        /* Table Styles */
-        .data-table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        .data-table th, 
-        .data-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        table {
-            width: 80%;
-            margin: 0 auto 20px;
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-        
-        table th, 
-        table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            border-color:black;
-        }
-        
-        
-        .design-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin: 40px 0;
-        }
-        
-        .inputs {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-        
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-        }
-        
-        .image-container {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-            
-            padding: 20px;
-            border-radius: 10px;
-            
-        }
-        
-        .image-container img {
-            width: 100%;
-            height: auto;
-            max-width: 500px;
-            display: block;
-            margin: 0 auto;
-            border-radius: 5px;
-        }
-        
-        .dimension {
-            position: absolute;
-            font-size: 0.9rem;
-            color: black;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 500;
-            pointer-events: none;
-        }
-        
-        .dimension::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 20px;
-            background-color: var(--primary-blue);
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .horizontal-dimension::before {
-            bottom: -20px;
-        }
-        
-        .vertical-dimension::before {
-            width: 20px;
-            height: 2px;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .rotated {
-            transform: rotate(-90deg);
-            transform-origin: left top;
-        }
-
-        /* Result Display */
-       .result {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 0.9rem; 
-            text-align: center;
-            width: 90%; 
-            box-sizing: border-box; 
-        }
-
-        .result h2 {
-            margin-bottom: 20px;
-            color: var(--primary-blue);
-            border-bottom: 2px solid var(--light-blue);
-            padding-bottom: 10px;
-        }
-
-        .result p {
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-        
-        .result span {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        /* MathJax formula styling */
-        .math-formula {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-
-	        /* ===== Navigation ===== */
+        /* ===== Navigation ===== */
         nav ul {
             display: flex;
             list-style: none;
@@ -444,7 +221,119 @@
         nav a:hover:after {
             width: 100%;
         }
+        .main-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.7;
+            color: var(--text-medium);
+        }
 
+        .main-container h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .main-container p {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+        
+        /* New styles for content layout */
+        .content-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .input-result-section {
+            flex: 1;
+            max-width: calc(100% - 440px);
+        }
+
+       	  .drawing-section {
+            width: 35%; 
+            position: relative;
+        }
+
+        .drawing-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+                 .drawing-section .L-value,
+        .drawing-section .Bs-value,
+        .drawing-section .Lin-value,
+        .drawing-section .Lfb-value,
+        .drawing-section .theta-value,
+        .drawing-section .hw-value {
+            position: absolute;
+            font-size: 0.8rem;
+            color: black;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .drawing-section .L-value {
+            top: 5%; /* Adjust as needed */
+            left:45%; /* Adjust as needed */
+        }
+
+        .drawing-section .Bs-value {
+            top: 20%; /* Adjust as needed */
+            left: 30%; /* Adjust as needed */
+        }
+        .drawing-section .hw-value {
+            top: 45%; /* Adjust as needed */
+            left: 42%; /* Adjust as needed */
+        }
+         
+        
+        .drawing-section .theta-value {
+        top: 12%; /* Adjust as needed */
+        left: 23%; /* Adjust as needed */
+        }
+
+          .drawing-section .Lin-value {
+          top: 5%; /* Adjust as needed */
+          left: 20%; /* Adjust as needed */
+          }
+
+          .drawing-section .Lfb-value {
+          top: 5%; /* Adjust as needed */
+          left: 60%; /* Adjust as needed */
+          }
+	            /* Result Display */
+       .result {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 0.9rem; 
+            text-align: center;
+            width: 90%; 
+            box-sizing: border-box; 
+        }
+
+        .result h2 {
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+        }
+
+        .result p {
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .result span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
         
         /* ===== Hero Section ===== */
         .hero {
@@ -462,7 +351,6 @@
             right: 0;
             width: 40%;
             height: 100%;
-            
             background-size: cover;
             opacity: 0.8;
             z-index: 0;
@@ -491,11 +379,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-
         }
-
-
-
         
         /* ===== About Section ===== */
         .about-content {
@@ -619,10 +503,6 @@
             margin-bottom: 15px;
         }
         
-
-
-
-
         /* ===== Projects Section ===== */
         .projects-grid {
             display: grid;
@@ -782,7 +662,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
-            padding: 0 40px; /* Added padding */
         }
         
         .footer-col h3 {
@@ -869,7 +748,6 @@
         .nav-container {
             display: flex;
             justify-content: center;
-            padding: 0 40px; /* Added padding */
         }
         
         .nav-links {
@@ -969,6 +847,22 @@
                 max-width: 500px;
                 margin: 0 auto;
             }
+
+            /* Responsive styles for content layout */
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .input-result-section {
+                max-width: 100%;
+            }
+            
+            .drawing-section {
+                width: 100%;
+                position: static;
+                order: -1;
+                margin-bottom: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1015,26 +909,6 @@
                 display: block;
                 transform: none;
             }
-            
-            /* Responsive padding adjustments */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 30px;
-            }
-            
-            .main-container {
-                padding: 0 40px;
-            }
-            
-            .design-container {
-                flex-direction: column;
-            }
-            
-            .image-container {
-                order: -1;
-            }
         }
         
         @media (max-width: 576px) {
@@ -1066,18 +940,6 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
-            
-            /* Further reduced padding for mobile */
-            .container,
-            .header-container,
-            .nav-container,
-            .footer-container {
-                padding: 0 20px;
-            }
-            
-            .main-container {
-                padding: 0 25px;
-            }
         }
     </style>
 </head>
@@ -1089,10 +951,8 @@
     <header>
        <div class="container header-container">
                 <div class="logo">
-                
                 | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
-    		</div>
-           
+            </div>
         </div>
     </header>
     
