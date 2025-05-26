@@ -1038,22 +1038,23 @@
                 </div>
 		       <button type="button" onclick="RetainingWallCalc()" class="btn"><b>RETAINING WALL DESIGN</b></button>
             </form>
-
+	<br>
+	<br>
         <b> INPUT FOR REINFORCEMENT DESIGN</b>
 	<br>
         <form id="beamSectionForm">
             <label for="fck">Characteristic Strength of Concrete (\(f_{ck}\) in MPa):</label>
             <input type="number" id="fck" step="0.1" required>
-            
+            <br>
             <label for="fy">Characteristic Strength of Steel (\(f_y\) in MPa):</label>
             <input type="number" id="fy" step="0.1" required>
-            
+            <br>
             <label for="depth">Overall Depth of slab(\(d\) in mm):</label>
             <input type="number" id="depth" required>
-            
+            <br>
             <label for="cover">Effective cover (\(c\) in mm):</label>
             <input type="number" id="cover" required>
-            
+            <br>
             <label for="dm">Diameter of main Reinforcement (\(d_m\) in mm):</label>
             <input type="number" id="dm" required>
 		<br>
@@ -1063,10 +1064,10 @@
 		<br>
             <label for="moment">Factored Bending Moment (\(M_u\) in kNm):</label>
             <input type="number" id="moment" step="0.01" required>
-            
+            <br>
             <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
             <input type="number" id="shear" step="0.01" required>
-            
+            <br>
             <button type="button" onclick="calculateBeamSection()" class="btn">CALCULATE</button>
         </form> 
 </div>
@@ -1257,10 +1258,7 @@
 		<p><strong>Shear force (\(F_{w}\)):</strong> <span id="Fw"></span></p>
 		<p><strong>Moment of resistance (\(M_{w}\)):</strong> <span id="Mw"></span></p>
                
-		<br>
-                <u>3.2 SLAB</u>
-                <p><strong>Shear force (\(F_{s}\)):</strong> <span id="Fs"></span></p>
-		<p><strong>Moment of resistance (\(M_{s}\)):</strong> <span id="Ms"></span></p>
+
 		<br>
         </div>
 	<div class="result" id="result">
@@ -1427,10 +1425,6 @@
             const Ah = parseFloat(document.getElementById('Ah').value);
             const EPT = parseFloat(document.getElementById('EPT').value);
             const Ps = parseFloat(document.getElementById('Ps').value);
-	    const dw = parseFloat(document.getElementById('dw').value);
-	    const sw = parseFloat(document.getElementById('sw').value);
-            const ds = parseFloat(document.getElementById('ds').value);
-	    const ss = parseFloat(document.getElementById('ss').value);
 		
             //Total width of slab
             const B = bw + Lt + Lh;
