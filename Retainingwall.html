@@ -1058,9 +1058,7 @@
             <label for="dm">Diameter of main Reinforcement (\(d_m\) in mm):</label>
             <input type="number" id="dm" required>
 		<br>
-		<br>
-            <i>Input Shear force and bending moment for wall and slab calculated</i>
-		<br>
+            <i>(Input Shear force and bending moment for wall and slab calculated)</i>
 		<br>
             <label for="moment">Factored Bending Moment (\(M_u\) in kNm):</label>
             <input type="number" id="moment" step="0.01" required>
@@ -1257,6 +1255,10 @@
                 <u>3.1 WALL</u>
 		<p><strong>Shear force (\(F_{w}\)):</strong> <span id="Fw"></span></p>
 		<p><strong>Moment of resistance (\(M_{w}\)):</strong> <span id="Mw"></span></p>
+		<br>
+		<u>3.2 SLAB</u>
+		<p><strong>Shear force (\(F_{t}\)):</strong> <span id="Ft1"></span></p>
+		<p><strong>Moment of resistance (\(M_{t}\)):</strong> <span id="Mt"></span></p>
                
         </div>
 	<div class="result" id="result">
@@ -1268,7 +1270,6 @@
             <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
         </div>
     </div>
-
 
     <!-- Footer -->
     <footer>
@@ -1556,18 +1557,42 @@
 
 
             // BENDING MOMENT AND SHEAR FORCES
+		//1. WALL
 		// Total shear force
 	    	const F2h22=F2h1 + (Ysat - 9.81) * ka * (hs - hs1);
 	    	const F2r22 = F2r1 + (Ysat - 9.81) * kp * (htoe - hr1);
             	const Fw=P2h1+0.5 * (F2h1 + F2h22) * (hs - hs1)+0.5 * F4h *  WTh-(P2r1+(F2r1 + F2r22) / 2 * (htoe  - hr1)+0.5 * F4r * WTt);
 	    	const r1=hs1 / 3 + WTh;
 	    	const r2=(2 * F2h1 + F2h22) / (F2h1 + F2h22) * WTh / 3;
-		const r3=hr1 / 3+WTh;
+		const r3=hr1 / 3+WTT;
 	    	const r4=(2 * F2r1 + F2r22) / (F2r1 + F2r22) * WTt / 3;;
 		const r5=WTh/3;
 		const r6=WTt/3;
-		const Mw=P2h1*r1+0.5 * (F2h1 + F2h22) * (hs - hs1)*r2+0.5 * F4h *  WTh*r3-(P2r1*r4+(F2r1 + F2r22) / 2 * (htoe  - hr1)*r5+0.5 * F4r * WTt*r6);
+		const Mw=P2h1*r1+0.5 * (F2h1 + F2h22) * (hs - hs1)*r2+0.5 * F4h *  WTh*r5-(P2r1*r3+(F2r1 + F2r22) / 2 * (htoe  - hr1)*r4+0.5 * F4r * WTt*r6);
 
+		// 2. SLAB
+		
+		let Ft1;
+		if (sigmamin2<sigmamax2){
+			sigmaw1=(sigmamax2-sigmamin2)/B*(B-Lt-ht)+sigmamin2;
+			Ft1=(sigmamax2+sigmaw1)/2*(Lt-ht);
+		} else {
+			sigmaw=(sigmamax2-sigmamin2)/B*(B-Lh-hh)+sigmamin2;
+			Ft1=(sigmamax2+sigmaw1)/2*(Lh-hh);
+		}
+
+		let Mt;
+		if (sigmamin2<sigmamax2){
+			sigmaw=(sigmamax2-sigmamin2)/B*(B-Lt)+sigmamin2;
+			Ft=(sigmamax2+sigmaw)/2*Lt;
+			rt=(sigmamax2+2*sigmaw)/(sigmamax2+sigmaw)*Lt/3;
+			Mt=Ft*rt;
+		} else {
+			sigmaw=(sigmamax2-sigmamin2)/B*(B-Lh)+sigmamin2;
+			Ft=(sigmamax2+sigmaw)/2*Lh;
+			rt=(sigmamax2+2*sigmaw)/(sigmamax2+sigmaw)*Lh/3;
+			Mt=Ft*rt;
+		}
 		
             // Display result
 
@@ -1639,6 +1664,9 @@
 
 	    document.getElementById('Fw').textContent = Fw.toFixed(2)+" kN";
             document.getElementById('Mw').textContent = Mw.toFixed(2)+" kNm";
+		
+	    document.getElementById('Ft1').textContent = Fw1.toFixed(2)+" kN";
+            document.getElementById('Mt').textContent = Mt.toFixed(2)+" kNm";
 	    
         }
 
