@@ -1036,34 +1036,41 @@
                     <label for="Ps">Passive pressure coefficient (\(P_s\) in %):</label>
                     <input type="number" id="Ps" required>
                 </div>
-                <b>5. INPUT FOR REINFORCEMENT DESIGN</b>
-                    <br>
-                  <u>5.1 WALL</u>  
-                    <br>
-                <div class="input-row">
-                    <label for="dw">Diameter of reinforcement (\(\phi_w\) in mm):</label>
-                    <input type="number" id="dw" required>
-                </div>
-                    <br>
-                <div class="input-row">
-                    <label for="sw">Spacing of reinformcent (\(s_w\), in mm):</label>
-                    <input type="number" id="sw" required>
-                </div>
-                <br>
-                         <u>5.2 SLAB</u>  
-                <div class="input-row">
-                    <label for="ds">Diameter of reinforcement (\(\phi_s\) in mm):</label>
-                    <input type="number" id="ds" required>
-                </div>
-                   <br> 
-                <div class="input-row">
-                    <label for="ss">Spacing of reinformcent (\(s_s\), in mm):</label>
-                    <input type="number" id="ss" required>
-                </div>
-                <br>
-                <button type="button" onclick="RetainingWallCalc()" class="btn"><b>RETAINING WALL DESIGN</b></button>
+		       <button type="button" onclick="RetainingWallCalc()" class="btn"><b>RETAINING WALL DESIGN</b></button>
             </form>
-            <br>
+
+        <b> INPUT FOR REINFORCEMENT DESIGN</b>
+	<br>
+        <form id="beamSectionForm">
+            <label for="fck">Characteristic Strength of Concrete (\(f_{ck}\) in MPa):</label>
+            <input type="number" id="fck" step="0.1" required>
+            
+            <label for="fy">Characteristic Strength of Steel (\(f_y\) in MPa):</label>
+            <input type="number" id="fy" step="0.1" required>
+            
+            <label for="depth">Overall Depth of slab(\(d\) in mm):</label>
+            <input type="number" id="depth" required>
+            
+            <label for="cover">Effective cover (\(c\) in mm):</label>
+            <input type="number" id="cover" required>
+            
+            <label for="dm">Diameter of main Reinforcement (\(d_m\) in mm):</label>
+            <input type="number" id="dm" required>
+		<br>
+		<br>
+            <i>Input Shear force and bending moment for wall and slab calculated</i>
+		<br>
+		<br>
+            <label for="moment">Factored Bending Moment (\(M_u\) in kNm):</label>
+            <input type="number" id="moment" step="0.01" required>
+            
+            <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
+            <input type="number" id="shear" step="0.01" required>
+            
+            <button type="button" onclick="calculateBeamSection()" class="btn">CALCULATE</button>
+        </form> 
+</div>
+        <br>  
             <div class="result" id="result">
                 <h3><center>DESIGN RESULTS</center></h3>
                 <p><b>1. LOAD CALCULATION</b></p>
@@ -1243,7 +1250,8 @@
                         <td><p><span id="sigmamax2"></span></span></strong></p></td>
                     </tr>
                 </table>
-                <b>3. REINFORCEMENT DESIGN</b>
+	    
+	        
 		    <br>
                 <u>3.1 WALL</u>
 		<p><strong>Shear force (\(F_{w}\)):</strong> <span id="Fw"></span></p>
@@ -1253,11 +1261,18 @@
                 <u>3.2 SLAB</u>
                 <p><strong>Shear force (\(F_{s}\)):</strong> <span id="Fs"></span></p>
 		<p><strong>Moment of resistance (\(M_{s}\)):</strong> <span id="Ms"></span></p>
-               
-            </div>
-                
+		<br>
+        </div>
+	<div class="result" id="result">
+            <h3><u>REINFORCEMENT DESIGN OUTPUTS</u></h3>
+            <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span> </p>
+            <p><strong>Spacing of reinforcement(\(s\)):</strong> <span id="s1"></span></p>
+            <p><strong>Nominal shear stress(\(\tau_v\)):</strong> <span id="tau_v"></span> </p>
+            <p><strong>Nominal shear strength(\(\tau_c\)):</strong> <span id="tau_c"></span> </p>
+            <p><strong>Shear Reinforcement requirement:</strong> <span id="shearReinforcement"></span></p>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer>
@@ -1633,6 +1648,58 @@
 	    document.getElementById('Fw').textContent = Fw.toFixed(2)+" kN";
             document.getElementById('Mw').textContent = Mw.toFixed(2)+" kNm";
 	    
+        }
+
+	// REINFORCEMENT DESIGN
+	// Reinforcement Design Calculation
+        function calculateBeamSection() {
+            // Input values
+            const depth = parseFloat(document.getElementById('depth').value);
+            const cover = parseFloat(document.getElementById('cover').value);
+            const fck = parseFloat(document.getElementById('fck').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const dm = parseFloat(document.getElementById('dm').value);
+            const moment = parseFloat(document.getElementById('moment').value);
+            const shear = parseFloat(document.getElementById('shear').value);
+
+            // Convert moment to Nmm and shear to N
+            const Mu = moment * 1e6;
+            const Vu = shear * 1e3;
+
+            // Design parameters
+            const fck_design = fck;
+            const fy_design = fy;
+            const depth_e = depth - cover;
+            const Es = 2e5;
+            const width = 1000;
+
+            // Calculate limiting moment (Mu_lim)
+            const k = 0.0035 / (0.0055 + 0.87 * fy_design / Es);
+            const Xu_max = k * depth_e;
+            const Mu_lim = 0.36 * fck_design * width * Xu_max * (depth_e - 0.42 * Xu_max);
+
+            // Singly reinforced section
+            const Ast1 = ((1 - Math.pow(1 - 4.598 * Mu / (fck_design * width * depth_e * depth_e), 0.5)) * (fck_design / (2 * fy_design)) * width * depth_e);
+            const Astmin=0.85/fy_design*width*depth_e;
+            const Ast=Math.max(Ast1,Astmin);
+                
+            // Calculate spacing of reinforcement
+            const A1 = (Math.PI * Math.pow(dm, 2)) / 4;
+            const s1 = A1/Ast*width;
+
+            // Shear reinforcement calculation
+            const tau_v = Vu / (width * depth_e);
+            const beta = Math.max(0.8 * fck_design / (6.89 * (Ast / (width * depth_e)) * 100), 1);
+            const tau_c = 0.85 * Math.sqrt(0.8 * fck_design) * (Math.sqrt(1 + 5 * beta) - 1) / (6 * beta);
+
+            let shearReinforcement = (tau_v <= tau_c) ? "NO" : "YES";
+
+            // Display results
+            document.getElementById('steelArea').textContent = Ast.toFixed(1)+" mm²";
+            document.getElementById('s1').textContent = s1.toFixed(0)+" mm";
+            document.getElementById('tau_v').textContent = tau_v.toFixed(2)+" N/mm²";
+            document.getElementById('tau_c').textContent = tau_c.toFixed(2)+" N/mm²";
+            document.getElementById('shearReinforcement').textContent = shearReinforcement;
         }
     </script>
 </body>
