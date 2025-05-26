@@ -956,7 +956,7 @@
                     <label for="Thicknessheel">Thickness of heel (\(h_h\) in m):</label>
                     <input type="number" id="Thicknessheel" required>
                 </div>
-                
+                <br>
             <div style="text-align: center;">
                  <img src="retainingwall.png" alt="curve" class="shape-image" style="width: 300px; height: auto;">
 	          </div>
@@ -1248,14 +1248,12 @@
                 <u>3.1 WALL</u>
 		<p><strong>Shear force (\(F_{w}\)):</strong> <span id="Fw"></span></p>
 		<p><strong>Moment of resistance (\(M_{w}\)):</strong> <span id="Mw"></span></p>
-                <p><strong>Calculated area of reinforcement (\(Ast_{w}\)):</strong> <span id="Astw"></span></p>
-		<p><strong>Provided area of reinforcement (\(Ast_{p}\)):</strong> <span id="Astwp"></span></p>
-		    <br>
+               
+		<br>
                 <u>3.2 SLAB</u>
                 <p><strong>Shear force (\(F_{s}\)):</strong> <span id="Fs"></span></p>
 		<p><strong>Moment of resistance (\(M_{s}\)):</strong> <span id="Ms"></span></p>
-                <p><strong>Calculated area of reinforcement (\(Ast_{s}\)):</strong> <span id="Asts"></span></p>
-		<p><strong>Provided area of reinforcement (\(Ast_{p}\)):</strong> <span id="Astws"></span></p>
+               
             </div>
                 
         </div>
@@ -1634,8 +1632,7 @@
 
 	    document.getElementById('Fw').textContent = Fw.toFixed(2)+" kN";
             document.getElementById('Mw').textContent = Mw.toFixed(2)+" kNm";
-	    document.getElementById('Fw').textContent = Astw.toFixed(2)+" mm²";
-            document.getElementById('Mw').textContent = Astwp.toFixed(2)+" mm²";
+	    
         }
     </script>
 </body>
