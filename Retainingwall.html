@@ -919,7 +919,8 @@
         <div class="content">
             <form id="Stemdimension">
                 <h2><u><center>STABILITY ANALYSIS OF RETAINING WALL</center></u></h2>
-                <p><b>1. GEOMETRY OF WALL</b></p>
+                <b>1. GEOMETRY OF WALL</b>
+                <br>
                 <p>STEM DIMENSION</p>
                 <div class="input-row">
                     <label for="topwidth">Top width (\(t_w\) in m):</label>
@@ -933,7 +934,9 @@
                     <label for="height">Height of stem (\(h\) in m):</label>
                     <input type="number" id="hw" required>
                 </div>
+                <br>
                 <p>TOE SLAB DIMENSION</p>
+                <br>
                 <div class="input-row">
                     <label for="lengthtoe">Length of toe (\(L_t\) in m):</label>
                     <input type="number" id="lengthtoe" required>
@@ -942,7 +945,9 @@
                     <label for="ThicknessToe">Thickness of toe (\(h_t\) in m):</label>
                     <input type="number" id="ThicknessToe" required>
                 </div>
+                    <br>
                 <p>HEEL SLAB DIMENSION</p>
+                <br>
                 <div class="input-row">
                     <label for="lengthheel">Length of heel (\(L_h\) in m):</label>
                     <input type="number" id="lengthheel" required>
@@ -951,8 +956,16 @@
                     <label for="Thicknessheel">Thickness of heel (\(h_h\) in m):</label>
                     <input type="number" id="Thicknessheel" required>
                 </div>
-                <p><b>2. GEOTECHNICAL PARAMETER</b></p>
-                <p><b>2.1 Foundation material</b></p>
+                
+            <div style="text-align: center;">
+                 <img src="retainingwall.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+	          </div>
+                <b><center>Fig. Retaining wall</center></b>
+                    <br>
+                <b>2. GEOTECHNICAL PARAMETER</b>
+                    <br>
+                <b>2.1 Foundation material</b>
+                    <br>
                 <div class="input-row">
                     <label for="BearingF">Bearing Capacity of foundation material (\(σ_b\) in kN/m<sup>2</sup>):</label>
                     <input type="number" id="σb" required>
@@ -965,7 +978,9 @@
                     <label for="Cohesionf">Cohesion of foundation material (\(C_f\) in kN/m<sup>2</sup>):</label>
                     <input type="number" id="Cf" required>
                 </div>
-                <p><b>2.2 Backfill material</b></p>
+                    <br>
+                <b>2.2 Backfill material</b>
+                    <br>
                 <div class="input-row">
                     <label for="Density of soil">Density of soil (\(Y_s\) in kN/m<sup>3</sup>):</label>
                     <input type="number" id="Ys" required>
@@ -990,7 +1005,9 @@
                     <label for="SoilDepthtoe">Depth of soil in Toe side from top of slab (\(h_{toe}\) in m):</label>
                     <input type="number" id="htoe" required>
                 </div>
-                <p><b>3. WATER LEVELS</b></p>
+                    <br>
+                <b>3. WATER LEVELS</b>
+                    <br>
                 <div class="input-row">
                     <label for="WTh">Water depth in heel side from top of slab (\(WT_h\) in m):</label>
                     <input type="number" id="WTh" required>
@@ -999,7 +1016,9 @@
                     <label for="WTt">Water depth in toe side from top of slab (\(WT_t\) in m):</label>
                     <input type="number" id="WTt" required>
                 </div>
-                <p><b>4. OTHERS</b></p>
+                    <br>
+                <b>4. OTHERS</b>
+                    <br>
                 <div class="input-row">
                     <label for="Yc">Density of concrete (\(Y_c\) in kN/m<sup>3</sup>):</label>
                     <input type="number" id="Yc" required>
@@ -1017,13 +1036,37 @@
                     <label for="Ps">Passive pressure coefficient (\(P_s\) in %):</label>
                     <input type="number" id="Ps" required>
                 </div>
-                <p></p>
-                <button type="button" onclick="RetainingWallCalc()" class="btn"><u><b>RETAINING WALL DESIGN</b></u></button>
+                <b>5. INPUT FOR REINFORCEMENT DESIGN</b>
+                    <br>
+                  <u>5.1 WALL</u>  
+                    <br>
+                <div class="input-row">
+                    <label for="dw">Diameter of reinforcement (\(\phi_w\) in mm):</label>
+                    <input type="number" id="dw" required>
+                </div>
+                    <br>
+                <div class="input-row">
+                    <label for="sw">Spacing of reinformcent (\(\s_w\), in mm):</label>
+                    <input type="number" id="sw" required>
+                </div>
+                <br>
+                         <u>5.2 SLAB</u>  
+                <div class="input-row">
+                    <label for="ds">Diameter of reinforcement (\(\phi_s\) in mm):</label>
+                    <input type="number" id="ds" required>
+                </div>
+                   <br> 
+                <div class="input-row">
+                    <label for="ss">Spacing of reinformcent (\(\s_s\), in mm):</label>
+                    <input type="number" id="ss" required>
+                </div>
+                <br>
+                <button type="button" onclick="RetainingWallCalc()" class="btn"><b>RETAINING WALL DESIGN</b></button>
             </form>
             <br>
             <div class="result" id="result">
                 <h3><center>DESIGN RESULTS</center></h3>
-                <p><b>LOAD CALCULATION</b></p>
+                <p><b>1. LOAD CALCULATION</b></p>
                 <table>
                     <tr>
                         <th>SN</th>
@@ -1170,7 +1213,7 @@
                         <td><p><span id="M6"></span></span></strong></p></td>
                     </tr>
                 </table>
-                <p><b>STABILITY ANALYSIS</b></p>
+                <p><b>2. STABILITY ANALYSIS</b></p>
                 <table>
                     <tr>
                         <th>SN</th>
@@ -1200,7 +1243,13 @@
                         <td><p><span id="sigmamax2"></span></span></strong></p></td>
                     </tr>
                 </table>
+                <b>3. REINFORCEMENT DESIGN</b>
+                <u>3.1 WALL</u>
+                <p><span id="Astw"></span></span></strong></p>
+                <u>3.2 SLAB</u>
+                <p><span id="Asts"></span></span></strong></p>
             </div>
+                
         </div>
     </div>
 
@@ -1487,6 +1536,10 @@
             const ec2 = B / 2 - (MR2 - MO2) / VF2;
             const sigmamin2 = VF2 / B * (1 - 6 * ec2 / B);
             const sigmamax2 = VF2 / B * (1 + 6 * ec2 / B);
+
+
+            // REINFORCEMENT DESIGN
+            //const Mw=
 
             // Display result
 
