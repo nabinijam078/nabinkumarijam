@@ -958,7 +958,7 @@
                 </div>
                 
             <div style="text-align: center;">
-                 <img src="retainingwall.png" alt="curve" class="shape-image" style="width: 400px; height: auto;">
+                 <img src="retainingwall.png" alt="curve" class="shape-image" style="width: 300px; height: auto;">
 	          </div>
                 <b><center>Fig. Retaining wall</center></b>
                     <br>
@@ -1246,10 +1246,16 @@
                 <b>3. REINFORCEMENT DESIGN</b>
 		    <br>
                 <u>3.1 WALL</u>
-                <p><span id="Astw"></span></span></strong></p>
+		<p><strong>Shear force (\(F_{w}\)):</strong> <span id="Fw"></span></p>
+		<p><strong>Moment of resistance (\(M_{w}\)):</strong> <span id="Mw"></span></p>
+                <p><strong>Calculated area of reinforcement (\(Ast_{w}\)):</strong> <span id="Astw"></span></p>
+		<p><strong>Provided area of reinforcement (\(Ast_{p}\)):</strong> <span id="Astwp"></span></p>
 		    <br>
                 <u>3.2 SLAB</u>
-                <p><span id="Asts"></span></span></strong></p>
+                <p><strong>Shear force (\(F_{s}\)):</strong> <span id="Fs"></span></p>
+		<p><strong>Moment of resistance (\(M_{s}\)):</strong> <span id="Ms"></span></p>
+                <p><strong>Calculated area of reinforcement (\(Ast_{s}\)):</strong> <span id="Asts"></span></p>
+		<p><strong>Provided area of reinforcement (\(Ast_{p}\)):</strong> <span id="Astws"></span></p>
             </div>
                 
         </div>
@@ -1408,7 +1414,11 @@
             const Ah = parseFloat(document.getElementById('Ah').value);
             const EPT = parseFloat(document.getElementById('EPT').value);
             const Ps = parseFloat(document.getElementById('Ps').value);
-
+	    const dw = parseFloat(document.getElementById('dw').value);
+	    const sw = parseFloat(document.getElementById('sw').value);
+            const ds = parseFloat(document.getElementById('ds').value);
+	    const ss = parseFloat(document.getElementById('ss').value);
+		
             //Total width of slab
             const B = bw + Lt + Lh;
 
@@ -1541,8 +1551,19 @@
 
 
             // REINFORCEMENT DESIGN
-            //const Mw=
+		// Total shear force
+	    	const F2h22=F2h1 + (Ysat - 9.81) * ka * (hs - hs1);
+	    	const F2r22 = F2r1 + (Ysat - 9.81) * kp * (htoe - hr1);
+            	const Fw=P2h1+0.5 * (F2h1 + F2h22) * (hs - hs1)+0.5 * F4h *  WTh-(P2r1+(F2r1 + F2r22) / 2 * (htoe  - hr1)+0.5 * F4r * WTt);
+	    	const r1=hs1 / 3 + WTh;
+	    	const r2=(2 * F2h1 + F2h22) / (F2h1 + F2h22) * WTh / 3;
+		const r3=hr1 / 3+WTr;
+	    	const r4=(2 * F2r1 + F2r22) / (F2r1 + F2r22) * WTt / 3;;
+		const r5=WTh/3;
+		const r6=WTt/3;
+		const Mw=P2h1*r1+0.5 * (F2h1 + F2h22) * (hs - hs1)*r2+0.5 * F4h *  WTh*r3-(P2r1*r4+(F2r1 + F2r22) / 2 * (htoe  - hr1)*r5+0.5 * F4r * WTt*r6);
 
+		
             // Display result
 
             document.getElementById('F1').textContent = F1.toFixed(2);
@@ -1610,6 +1631,11 @@
             document.getElementById('ec2').textContent = ec2.toFixed(2);
             document.getElementById('sigmamin2').textContent = sigmamin2.toFixed(2);
             document.getElementById('sigmamax2').textContent = sigmamax2.toFixed(2);
+
+	    document.getElementById('Fw').textContent = Fw.toFixed(2)+" kN";
+            document.getElementById('Mw').textContent = Mw.toFixed(2)+" kNm";
+	    document.getElementById('Fw').textContent = Astw.toFixed(2)+" mm²";
+            document.getElementById('Mw').textContent = Astwp.toFixed(2)+" mm²";
         }
     </script>
 </body>
