@@ -1039,6 +1039,7 @@
 		    <br>
 		       <button type="button" onclick="RetainingWallCalc()" class="btn"><b>RETAINING WALL DESIGN</b></button>
             </form>
+		<br>
         <b> INPUT FOR REINFORCEMENT DESIGN</b>
 	<br>
         <form id="beamSectionForm">
@@ -1068,7 +1069,7 @@
             <input type="number" id="shear" step="0.01" required>
             <br>
 	    <br>
-            <button type="button" onclick="calculateBeamSection()" class="btn">CALCULATE</button>
+            <button type="button" onclick="reinforcementdesign()" class="btn">CALCULATE</button>
         </form> 
 </div>
         <br>  
@@ -1643,7 +1644,7 @@
 
 	// REINFORCEMENT DESIGN
 	// Reinforcement Design Calculation
-        function calculateBeamSection() {
+        function reinforcementdesign() {
             // Input values
             const depth = parseFloat(document.getElementById('depth').value);
             const cover = parseFloat(document.getElementById('cover').value);
