@@ -895,11 +895,11 @@
             <label for="fy">Characteristic Strength of Steel (\(f_y\) in MPa):</label>
             <input type="number" id="fy" step="0.1" required>
         </div>
-	      <br>
+	
 	<label for="Exp"><br>Exposure to sorrounding : </label>
                 <select id="Exp">
-                    <option value="Not to Earth">"Not to Earth"</option>
-                    <option value="To Earth">"To Earth"</option>
+                    <option value="Not to Earth">Not to Earth</option>
+                    <option value="To Earth">To Earth</option>
                 </select>
 	      <br>
 	<div class="input-group">
@@ -922,6 +922,10 @@
             <label for="dm">Diameter of main Reinforcement (\(\phi_m\) in mm):</label>
             <input type="number" id="dm" required>
         </div>
+	  <div class="input-group">
+            <label for="nt">Number of layer of tension reinforcement (\(\n_t\)):</label>
+            <input type="number" id="dm" required>
+        </div>
         <div class="input-group">
             <label for="ds">Diameter of Shear Reinforcement (\(\phi_s\) in mm):</label>
             <input type="number" id="ds" required>
@@ -939,7 +943,7 @@
             <input type="number" id="shear" step="0.01" required>
         </div>
 	<br>
-        <button type="button" onclick="calculateBeamSection()" class="btn">DESIGN SECTION</button>
+        <button type="button" onclick="calculateBeamSection()" class="btn">BEAM DESIGN</button>
       </form>
 	<br>
       <div class="result" id="result">
@@ -1081,20 +1085,84 @@
                 this.reset();
             });
         }
-	         function calculateBeamSection() {
-        // Input values
-        const b = parseFloat(document.getElementById('b').value); 
-        const d = parseFloat(document.getElementById('d').value); 
-        const cover = parseFloat(document.getElementById('cover').value); 
-        const fc = parseFloat(document.getElementById('fc').value); 
-        const fy = parseFloat(document.getElementById('fy').value); 
-        const dm = parseFloat(document.getElementById('dm').value); 
-        const ds = parseFloat(document.getElementById('ds').value); 
-        const nl = parseFloat(document.getElementById('nl').value); 
-        const moment = parseFloat(document.getElementById('moment').value); 
-        const shear = parseFloat(document.getElementById('shear').value); 
+function calculateBeamSection() {
+    // Input values
+    const b = parseFloat(document.getElementById('b').value); 
+    const d = parseFloat(document.getElementById('d').value); 
+    const cover = parseFloat(document.getElementById('cover').value); 
+    const fc = parseFloat(document.getElementById('fc').value); 
+    const fy = parseFloat(document.getElementById('fy').value); 
+    const dm = parseFloat(document.getElementById('dm').value); 
+    const nt = parseFloat(document.getElementById('nt').value);
+    const ds = parseFloat(document.getElementById('ds').value); 
+    const nl = parseFloat(document.getElementById('nl').value); 
+    const moment = parseFloat(document.getElementById('moment').value); 
+    const shear = parseFloat(document.getElementById('shear').value); 
 
-		 }
+    // Effective depth
+    const de = d - cover - dm/2;
+    // Modulus of Elasticity of concrete
+    const Ec = 4700 * Math.pow(fc, 0.5);
+    // Modulus of Elasticity of steel
+    const Es = 200000;
+    // Strength reduction factor
+    const phi = 0.9;  // Changed from phi1 to phi for consistency
+    
+    // Calculation of coefficient beta Cl. 10.2.7.3
+    let beta1;
+    if (fc > 28) {
+        beta1 = 0.85 - 0.05 * (fc - 28) / 7;
+    } else { 
+        beta1 = 0.85;
+    }
+    
+    // Coefficient pt
+    const pt = 0.319 * beta1 * fc / fy;  // Fixed: beta1 instead of beta
+    
+    // Nominal strength coefficient of resistance
+    const Rnt = pt * fy * (1 - pt * fy / (1.7 * fc));
+    
+    // Nominal Strength coefficient of resistance Rn
+    const Rn = moment * 1e6 / (phi * b * Math.pow(de, 2));  // Fixed: moment instead of Moment
+    
+    // Singly or Doubly reinforcement beam design
+    let beam, Ast, Asc, section;
+    
+    if (Rnt > Rn) {
+        beam = "Singly";
+        const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de;  // Fixed: Rn instead of Rn1
+        const Asmin = Math.max(0.25 * Math.pow(fc, 0.5) / fy, 1.4 / fy) * b * de;
+        Ast = Math.max(Ast1, Asmin);
+        Asc = 0;
+        const a = Ast * fy / (0.85 * fc * b);
+        const c = a / beta1;
+        const epsilont = 0.003 * (de / c - 1);
+        
+        if (epsilont < 0.005) {
+            section = "Redesign";
+        } else {
+            section = "Redesign by changing section";
+        }
+    } else {
+        beam = "Doubly";
+        let p;
+        if (nt < 2) {
+            p = 0.319 * beta1 * fc / fy;
+        } else {
+            p = 0.319 * beta1 * fc / fy * (de / d); 
+        }
+        
+        const Mnt = p * fy * (1 - 0.59 * p * fy / fc) * b * Math.pow(de, 2) / 1e6;
+        const Mn = moment / phi - Mnt;  // Fixed: moment instead of M
+        const ct = 0.375 * de;
+        const dc = cover + dm / 2;
+        const fsc = Math.min(0.003 * Es * (1 - dc / ct), fy);
+        Asc = Mn * 1e6 / (fsc * (de - dc));
+        Ast = p * b * d + Mn * 1e6 / (fy * (de - dc));
+    }
+    
+   
+}
     </script>
 </body>
 </html>
