@@ -923,7 +923,7 @@
             <input type="number" id="dm" required>
         </div>
 	  <div class="input-group">
-            <label for="nt">Number of layer of tension reinforcement (\(\n_t\)):</label>
+            <label for="nt">Number of layer of tension reinforcement (\(n_t\)):</label>
             <input type="number" id="dm" required>
         </div>
         <div class="input-group">
@@ -948,13 +948,14 @@
 	<br>
       <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
-        <p><strong>Moment of resistance (\(M_{ulim}\)):</strong> <span id="Mulim"></span></p>
-        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="steelArea"></span></p>
+        <p><strong>Nominal moment of resistance (\(R_{n}\)):</strong> <span id="Rn"></span></p>
+	<p><strong>Nominal moment of resistance (\(R_{nt}\)):</strong> <span id="Rnt"></span></p>
+        <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="Ast"></span></p>
         <p><strong>Number of Tensile steel(\(n_s\)):</strong> <span id="n1"></span></p>
-        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="compSteelArea"></span></p>
+        <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="Asc"></span></p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
-        <p><strong>Shear Reinforcement:</strong> <span id="shearReinforcement"></span></p>
-        <p><strong>Section Type:</strong> <span id="sectionType"></span></p>
+        <p><strong>Beam Type:</strong> <span id="beam"></span></p>
+       
       </div>
 	</div>
 
@@ -1117,20 +1118,20 @@ function calculateBeamSection() {
     }
     
     // Coefficient pt
-    const pt = 0.319 * beta1 * fc / fy;  // Fixed: beta1 instead of beta
+    const pt = 0.319 * beta1 * fc / fy;  
     
     // Nominal strength coefficient of resistance
     const Rnt = pt * fy * (1 - pt * fy / (1.7 * fc));
     
     // Nominal Strength coefficient of resistance Rn
-    const Rn = moment * 1e6 / (phi * b * Math.pow(de, 2));  // Fixed: moment instead of Moment
+    const Rn = moment * 1e6 / (phi * b * Math.pow(de, 2));  
     
     // Singly or Doubly reinforcement beam design
     let beam, Ast, Asc, section;
     
     if (Rnt > Rn) {
         beam = "Singly";
-        const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de;  // Fixed: Rn instead of Rn1
+        const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de; 
         const Asmin = Math.max(0.25 * Math.pow(fc, 0.5) / fy, 1.4 / fy) * b * de;
         Ast = Math.max(Ast1, Asmin);
         Asc = 0;
@@ -1159,8 +1160,20 @@ function calculateBeamSection() {
         const fsc = Math.min(0.003 * Es * (1 - dc / ct), fy);
         Asc = Mn * 1e6 / (fsc * (de - dc));
         Ast = p * b * d + Mn * 1e6 / (fy * (de - dc));
+	
     }
-    
+	// Calculate number of steel bars
+        const A1 = (Math.PI * Math.pow(dm, 2)) / 4; // Area of one main reinforcement bar
+        const n1 = Math.max(Math.ceil(Ast / A1), 2); // Number of tensile steel bars
+        const n2 = Math.max(Math.ceil(Asc / A1), 2); // Number of compression steel bars
+	
+        // Outputs
+	document.getElementById('beam').textContent = beam;
+	document.getElementById('Rnt').textContent = Rnt.toFixed(3)+"kNm"; 
+    	document.getElementById('Rn').textContent = Rn.toFixed(3)+"kNm";
+    	document.getElementById('Ast').textContent = Ast.toFixed(3)+"mm²";
+	document.getElementById('Asc').textContent = Asc.toFixed(3)+"mm²";
+	document.getElementById('n1').textContent = n1;
    
 }
     </script>
