@@ -6,8 +6,15 @@
     <title>Nabin Kumar Ijam | Civil & Hydropower Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- MathJax Configuration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         /* ===== Base Styles ===== */
+            /* ===== Base Styles ===== */
         :root {
             --primary-blue: #2563eb;
             --light-blue: #e0f2fe;
@@ -21,17 +28,20 @@
         }
         
         body {
-            font-family: 'Open sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0px;
             color: var(--text-medium);
             line-height: 1.7;
             background-color: var(--section-bg);
             scroll-behavior: smooth;
         }
-        
+        .main-content {
+            padding: 40px; /* Adjust this value as needed */
+           
+        }
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Roboto', serif;
             color: var(--text-dark);
             margin-top: 0;
             font-weight: 700;
@@ -113,6 +123,39 @@
             background: var(--primary-blue);
             color: white;
         }
+	    
+	/* Table Styles */
+       /* Input tables (small width) */
+    .input-table {
+        width: 30%;  
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+    }
+    
+    .input-table th, 
+    .input-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        border-color: black;
+    }
+
+    /* Load calculation tables (larger width) */
+    .load-table {
+        width: 90%;  /* Adjust this value as needed */
+        margin: 0 auto 20px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+    }
+    
+    .load-table th, 
+    .load-table td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: center;
+        border-color: black;
+    }
         
         /* ===== Header ===== */
         header {
@@ -181,60 +224,27 @@
         nav a:hover:after {
             width: 100%;
         }
-	    
         .main-container {
         max-width: 1400px;
         margin: 40px auto;
         padding: 0 20px; 
         line-height: 1.7;
-        color: black;
+        color: var(--text-medium);
         }
 
-        .main-container h2, 
-	.content h2 {
-    	font-family: 'Roboto', serif;
-    	color: var(--text-dark);
-    	padding: 0 10px;
-    	margin-bottom: 20px;
-	}
+        .main-container h2 {
+        font-family: 'Roboto', serif;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+        }
 
         .main-container p {
         margin-bottom: 20px;
-	font-color:black;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         text-align: justify; 
         text-justify: inter-word; 
         }
-          /* Table Styles */
-      .data-table {
-        width: 80%;
-        margin: 0 auto 20px;
-        border-collapse: collapse;
-        border: 2px solid #000;
-      }
-      
-      .data-table th, 
-      .data-table td {
-        border: 1px solid #000;
-        padding: 8px;
-        text-align: left;
-	border-color:black;
-      }
-      
-      table {
-        width: 90%;
-        margin: 0 auto 20px;
-        border-collapse: collapse;
-        border: 2px solid #000;
-      }
-      
-      table th, 
-      table td {
-        border: 1px solid #000;
-        padding: 8px;
-        text-align: left;
-	border-color:black;
-      }
+        
         /* ===== Hero Section ===== */
         .hero {
             background: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(255,255,255,1) 100%);
@@ -838,7 +848,7 @@
                 <div class="logo">
                 
                 | NABIN KUMAR IJAM | Structural & Hydropower Engineer |
-    		</div>
+            </div>
            
         </div>
     </header>
