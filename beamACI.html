@@ -907,12 +907,12 @@
             <input type="number" id="mu" required>
         </div>
         <div class="input-group">
-            <label for="width">Width of Beam (\(b\) in mm):</label>
-            <input type="number" id="width" required>
+            <label for="b">Width of Beam (\(b\) in mm):</label>
+            <input type="number" id="b" required>
         </div>
         <div class="input-group">
-            <label for="depth">Overall Depth of Beam (\(d\) in mm):</label>
-            <input type="number" id="depth" required>
+            <label for="d">Overall Depth of Beam (\(d\) in mm):</label>
+            <input type="number" id="d" required>
         </div>
         <div class="input-group">
             <label for="cover">Effective cover of beam (\(c\) in mm):</label>
@@ -1081,6 +1081,20 @@
                 this.reset();
             });
         }
+	         function calculateBeamSection() {
+        // Input values
+        const b = parseFloat(document.getElementById('b').value); 
+        const d = parseFloat(document.getElementById('d').value); 
+        const cover = parseFloat(document.getElementById('cover').value); 
+        const fc = parseFloat(document.getElementById('fc').value); 
+        const fy = parseFloat(document.getElementById('fy').value); 
+        const dm = parseFloat(document.getElementById('dm').value); 
+        const ds = parseFloat(document.getElementById('ds').value); 
+        const nl = parseFloat(document.getElementById('nl').value); 
+        const moment = parseFloat(document.getElementById('moment').value); 
+        const shear = parseFloat(document.getElementById('shear').value); 
+
+		 }
     </script>
 </body>
 </html>
