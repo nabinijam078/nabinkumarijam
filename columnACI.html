@@ -1064,130 +1064,327 @@
                 this.reset();
             });
         }
-    function calculateBeamSection() {
-    // Input values
-    	const b = parseFloat(document.getElementById('b').value); 
-    	const d = parseFloat(document.getElementById('d').value); 
-    	const cover = parseFloat(document.getElementById('cover').value); 
-    	const fc = parseFloat(document.getElementById('fc').value); 
-    	const fy = parseFloat(document.getElementById('fy').value); 
-	    const fyt = parseFloat(document.getElementById('fyt').value); 
-    	const dm = parseFloat(document.getElementById('dm').value); 
-    	const nt = parseFloat(document.getElementById('nt').value);
-    	const ds = parseFloat(document.getElementById('ds').value); 
-    	const nl = parseFloat(document.getElementById('nl').value); 
-    	const moment = parseFloat(document.getElementById('moment').value); 
-    	const shear = parseFloat(document.getElementById('shear').value); 
 
-    // Effective depth
-    const de = d - cover - dm/2;
-    // Modulus of Elasticity of concrete
-    const Ec = 4700 * Math.pow(fc, 0.5);
-    // Modulus of Elasticity of steel
-    const Es = 200000;
-    // Strength reduction factor
-    const phi = 0.9; 
-    
-    // Calculation of coefficient beta Cl. 10.2.7.3
-    let beta1;
-    if (fc > 28) {
-        beta1 = 0.85 - 0.05 * (fc - 28) / 7;
-    } else { 
-        beta1 = 0.85;
-    }
-    
-    // Coefficient pt
-    const pt = 0.319 * beta1 * fc / fy;  
-    
-    // Nominal strength coefficient of resistance in Nmm
-    const Rnt = pt * fy * (1 - pt * fy / (1.7 * fc));
-    
-    // Nominal Strength coefficient of resistance Rn in Nmm
-    const Rn = moment * 1e6 / (phi * b * Math.pow(de, 2));  
-    
-    // Singly or Doubly reinforcement beam design
-    let beam, Ast, Asc, section;
-    
-    if (Rnt > Rn) {
-        beam = "Singly";
-        const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de; 
-        const Asmin = Math.max(0.25 * Math.pow(fc, 0.5) / fy, 1.4 / fy) * b * de;
-        Ast = Math.max(Ast1, Asmin);
-        Asc = 0;
-        const a = Ast * fy / (0.85 * fc * b);
-        const c = a / beta1;
-        const epsilont = 0.003 * (de / c - 1);
-        
-        if (epsilont < 0.004) {
-            section = "Redesign";
-        } else {
-            section = "Redesign by changing section";
-        }
-    } else {
-        beam = "Doubly";
-        let p;
-        if (nt < 2) {
-            p = 0.319 * beta1 * fc / fy;
-        } else {
-            p = 0.319 * beta1 * fc / fy * (de / d); 
-        }
-        
-        const Mnt = p * fy * (1 - 0.59 * p * fy / fc) * b * Math.pow(de, 2) / 1e6;
-        const Mn = moment / phi - Mnt; 
-        const ct = 0.375 * de;
-        const dc = cover + dm / 2;
-        const fsc = Math.min(0.003 * Es * (1 - dc / ct), fy);
-        Asc = Mn * 1e6 / (fsc * (de - dc));
-        Ast = p * b * d + Mn * 1e6 / (fy * (de - dc));
-	section="NOT APPLICABLE";
-    }
-	// Calculate number of steel bars
-        const A1 = (Math.PI * Math.pow(dm, 2)) / 4; 
-        const n1 = Math.max(Math.ceil(Ast / A1), 2); 
-        const n2 = Math.max(Math.ceil(Asc / A1), 2); 
+	//=======================================CALCULATIONS===============================================
+		document.addEventListener('DOMContentLoaded', function() {
+	    // Set up calculate button
+    		const calculateBtn = document.getElementById('calculate-btn');
+    		calculateBtn.addEventListener('click', calculateAndPlot);
+		});
 
-	// SHEAR REINFORCEMENT
-	const vs=shear*1000/(b*de);
-	
-	// Shear stress provided by concrete, cl.11.2.1.1
-	const vc=0.17*1*Math.pow(fc,0.5);
+	// Material properties
+	const Es = 200000; // Modulus of elasticity of steel in MPa
+	const εcu = 0.003; // Ultimate concrete strain (ACI 318M)
 
-	// spacing of reinforcement
-	const s1=0.33*Math.pow(fc,0.5);
-	let s;
-	if(vs>s1){
-		s=de/4;
-	} else {
-		s=de/2;
-	}
-	
-	//Area of shear reinforcement
-	let Reqmt,Asv;
-	if(vc>vs){
-		Reqmt="NO-PROVIDE MINIMUM REINFORCEMENT";
-		Asv = Math.Max(0.062 * Math.pow(fc, 0.5) * b * s / fyt, 0.25 * b * s / fyt);
-	} else if(vs>vc){
-		Reqmt="FULL";
-		Asv = (vs - vc) * b * s / fyt;
-	} else{
-		Reqmt="MINIMUM";
-		Asv = Math.Max(0.062 * Math.pow(fc, 0.5) * b * s / fyt, 0.25 * b * s / fyt);
-	}
-		
-	
-        // Outputs
-	  document.getElementById('beam').textContent = beam;
-	  document.getElementById('Rnt').textContent = Rnt.toFixed(3)+"kNm"; 
-    document.getElementById('Rn').textContent = Rn.toFixed(3)+"kNm";
-    document.getElementById('Ast').textContent = Ast.toFixed(2)+"mm²";
-	  document.getElementById('Asc').textContent = Asc.toFixed(2)+"mm²";
-	  document.getElementById('n1').textContent = n1;
-	  document.getElementById('n2').textContent = n2;
-	  document.getElementById('s').textContent = s.toFixed(0)+"mm";
-	  document.getElementById('Reqmt').textContent = Reqmt;
-	  document.getElementById('Asv').textContent = Asv.toFixed(2)+"mm²";
-   
+function calculateAndPlot() {
+    // Get input values
+    const b = parseFloat(document.getElementById('width').value);
+    const h = parseFloat(document.getElementById('depth').value);
+    const fc = parseFloat(document.getElementById('fc').value);
+    const fy = parseFloat(document.getElementById('fy').value);
+    const cover = parseFloat(document.getElementById('cover').value);
+    const barsTop = parseInt(document.getElementById('bars-top').value);
+    const barsBottom = parseInt(document.getElementById('bars-bottom').value);
+    const barDia = parseFloat(document.getElementById('bar-dia').value);
+    
+    // Calculate derived properties
+    const barArea = Math.PI * Math.pow(barDia, 2) / 4;
+    const d = h - cover - barDia/2; // Effective depth
+    const AsTop = barsTop * barArea;
+    const AsBottom = barsBottom * barArea;
+    const εy = fy / Es; // Yield strain of steel
+    
+    // Calculate the five key points
+    const points = [
+        calculatePureCompression(b, h, fc, fy, AsTop, AsBottom),		// POINTS-1
+        calculateAtDepth(b, h, fc, fy, d, AsTop, AsBottom),			// POINT-2
+        calculateAtTensileReinf(b, h, fc, fy, d, AsTop, AsBottom),		// POINT-3
+        calculateAtYieldStrain(b, h, fc, fy, d, AsTop, AsBottom, εy),		// POINT-4
+        calculateAtDoubleYieldStrain(b, h, fc, fy, d, AsTop, AsBottom, εy)	// POINT-5
+    ];
+    
+    // Display results
+    displayResults(points);
+    
+    // Plot interaction diagram
+    plotInteractionDiagram(points, fy, fc);
 }
+
+// 1. Pure compression (Point A)
+	function calculatePureCompression(b, h, fc, fy, AsTop, AsBottom) {
+    	const Ag = b * h;
+    	const Ast = AsTop + AsBottom;
+    
+    	// ACI 318M Eq. (22.4.2.2)
+    	const Pn = 0.85 * fc * (Ag - Ast) + fy * Ast;
+    	const Mn = 0;
+    
+    	return {
+        	name: "1. Pure Compression",
+       	 	Pn: Pn / 1000, // kN
+        	Mn: Mn / 1000000, // kNm
+        	c: h, // Neutral axis at bottom
+        	εsTop: -0.003, // Compression
+        	εsBottom: -0.003 // Compression
+    	};
+	}
+
+// 2. At bottom of column (Point B)
+function calculateAtDepth(b, h, fc, fy, d, AsTop, AsBottom) {
+    const c = h; // Neutral axis at bottom
+    const β1 = getBeta1(fc);
+    const a = β1 * c;
+    
+    // Concrete compression force
+    const Cc = 0.85 * fc * b * a;
+    
+    // Steel strains
+    const εsTop = εcu * (c - (h - d)) / c;
+    const εsBottom = εcu * (c - d) / c;
+    
+    // Steel stresses (check if yielding)
+    const fsTop = Math.min(fy, εsTop * Es) * Math.sign(εsTop);
+    const fsBottom = Math.min(fy, εsBottom * Es) * Math.sign(εsBottom);
+    
+    // Steel forces
+    const Cs = AsTop * fsTop;
+    const Ts = AsBottom * fsBottom;
+    
+    // Axial capacity
+    const Pn = Cc + Cs - Ts;
+    
+    // Moment capacity (about centroid)
+    const centroid = h / 2;
+    const Mn = Cc * (centroid - a/2) + 
+               Cs * (centroid - (h - d)) + 
+               Ts * (d - centroid);
+    
+    return {
+        name: "2. At Bottom of Column",
+        Pn: Pn / 1000, // kN
+        Mn: Mn / 1000000, // kNm
+        c: c,
+        εsTop: εsTop,
+        εsBottom: εsBottom
+    };
+}
+
+// 3. At extreme tensile reinforcement (Point C)
+function calculateAtTensileReinf(b, h, fc, fy, d, AsTop, AsBottom) {
+    const c = d; // Neutral axis at tensile reinforcement
+    const β1 = getBeta1(fc);
+    const a = β1 * c;
+    
+    // Concrete compression force
+    const Cc = 0.85 * fc * b * a;
+    
+    // Steel strains
+    const εsTop = εcu * (c - (h - d)) / c;
+    const εsBottom = 0; // Exactly at neutral axis
+    
+    // Steel stresses (check if yielding)
+    const fsTop = Math.min(fy, εsTop * Es) * Math.sign(εsTop);
+    const fsBottom = 0;
+    
+    // Steel forces
+    const Cs = AsTop * fsTop;
+    const Ts = AsBottom * fsBottom;
+    
+    // Axial capacity
+    const Pn = Cc + Cs - Ts;
+    
+    // Moment capacity (about centroid)
+    const centroid = h / 2;
+    const Mn = Cc * (centroid - a/2) + 
+               Cs * (centroid - (h - d)) + 
+               Ts * (d - centroid);
+    
+    return {
+        name: "3. At Tensile Reinforcement",
+        Pn: Pn / 1000, // kN
+        Mn: Mn / 1000000, // kNm
+        c: c,
+        εsTop: εsTop,
+        εsBottom: εsBottom
+    };
+}
+
+// 4. Maximum strain (fy/Es) at extreme tensile reinforcement (Point D)
+function calculateAtYieldStrain(b, h, fc, fy, d, AsTop, AsBottom, εy) {
+    // Find c where εsBottom = εy
+    const εsBottom = εy;
+    const c = (εcu * d) / (εcu + εsBottom);
+    const β1 = getBeta1(fc);
+    const a = β1 * c;
+    
+    // Concrete compression force
+    const Cc = 0.85 * fc * b * a;
+    
+    // Steel strains
+    const εsTop = εcu * (c - (h - d)) / c;
+    
+    // Steel stresses (check if yielding)
+    const fsTop = Math.min(fy, εsTop * Es) * Math.sign(εsTop);
+    const fsBottom = fy; // Exactly at yield
+    
+    // Steel forces
+    const Cs = AsTop * fsTop;
+    const Ts = AsBottom * fsBottom;
+    
+    // Axial capacity
+    const Pn = Cc + Cs - Ts;
+    
+    // Moment capacity (about centroid)
+    const centroid = h / 2;
+    const Mn = Cc * (centroid - a/2) + 
+               Cs * (centroid - (h - d)) + 
+               Ts * (d - centroid);
+    
+    return {
+        name: "4. Yield Strain at Tensile Reinforcement",
+        Pn: Pn / 1000, // kN
+        Mn: Mn / 1000000, // kNm
+        c: c,
+        εsTop: εsTop,
+        εsBottom: εsBottom
+    };
+}
+
+// 5. Strain 2*fy/Es at extreme tensile reinforcement (Point E)
+function calculateAtDoubleYieldStrain(b, h, fc, fy, d, AsTop, AsBottom, εy) {
+    const εsBottom = 2 * εy;
+    const c = (εcu * d) / (εcu + εsBottom);
+    const β1 = getBeta1(fc);
+    const a = β1 * c;
+    
+    // Concrete compression force
+    const Cc = 0.85 * fc * b * a;
+    
+    // Steel strains
+    const εsTop = εcu * (c - (h - d)) / c;
+    
+    // Steel stresses (check if yielding)
+    const fsTop = Math.min(fy, εsTop * Es) * Math.sign(εsTop);
+    const fsBottom = fy; // Beyond yield, stress remains fy
+    
+    // Steel forces
+    const Cs = AsTop * fsTop;
+    const Ts = AsBottom * fsBottom;
+    
+    // Axial capacity
+    const Pn = Cc + Cs - Ts;
+    
+    // Moment capacity (about centroid)
+    const centroid = h / 2;
+    const Mn = Cc * (centroid - a/2) + 
+               Cs * (centroid - (h - d)) + 
+               Ts * (d - centroid);
+    
+    return {
+        name: "5. Double Yield Strain at Tensile Reinforcement",
+        Pn: Pn / 1000, // kN
+        Mn: Mn / 1000000, // kNm
+        c: c,
+        εsTop: εsTop,
+        εsBottom: εsBottom
+    };
+}
+
+// Helper function to get β1 according to ACI 318M
+function getBeta1(fc) {
+    // ACI 318M 22.2.2.4.3
+    if (fc <= 28) return 0.85;
+    if (fc >= 55) return 0.65;
+    return 0.85 - 0.05 * (fc - 28) / 7;
+}
+
+function displayResults(points) {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
+    
+    points.forEach(point => {
+        const pointElement = document.createElement('div');
+        pointElement.className = 'result-point';
+        pointElement.innerHTML = `
+            <h3>${point.name}</h3>
+            <p><strong>Neutral Axis (c):</strong> ${point.c.toFixed(1)} mm</p>
+            <p><strong>Axial Capacity (Pn):</strong> ${point.Pn.toFixed(1)} kN</p>
+            <p><strong>Moment Capacity (Mn):</strong> ${point.Mn.toFixed(2)} kNm</p>
+            <p><strong>Top Steel Strain (εs):</strong> ${point.εsTop.toFixed(6)}</p>
+            <p><strong>Bottom Steel Strain (εs):</strong> ${point.εsBottom.toFixed(6)}</p>
+        `;
+        resultsContainer.appendChild(pointElement);
+    });
+}
+
+function plotInteractionDiagram(points, fy, fc) {
+    const ctx = document.getElementById('interaction-diagram').getContext('2d');
+    
+    // Sort points by moment for proper plotting
+    points.sort((a, b) => a.Mn - b.Mn);
+    
+    // Check if chart already exists and destroy it
+    if (window.interactionChart) {
+        window.interactionChart.destroy();
+    }
+    
+    window.interactionChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: points.map(p => p.name),
+            datasets: [{
+                label: `Interaction Diagram (f'c=${fc}MPa, fy=${fy}MPa)`,
+                data: points.map(p => ({x: p.Mn, y: p.Pn})),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                pointRadius: 6,
+                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Moment Capacity (kNm)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Axial Capacity (kN)'
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const point = points[context.dataIndex];
+                            return [
+                                `Pn: ${point.Pn.toFixed(1)} kN`,
+                                `Mn: ${point.Mn.toFixed(2)} kNm`,
+                                `c: ${point.c.toFixed(1)} mm`
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+	    
     </script>
 </body>
 </html>
