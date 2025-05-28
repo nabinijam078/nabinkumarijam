@@ -1214,6 +1214,9 @@
 
 	//=======================================CALCULATIONS===============================================
 
+// Global variables to store chart instances so we can destroy them before recreating
+let chartX, chartY;
+
 // Helper function to update output fields
 function updateOutput(id, value, fixed = 2) {
     const element = document.getElementById(id);
@@ -1245,16 +1248,21 @@ function calculatePhi(epsilon_t, fy, es) {
     const epsilon_y = fy / es; // Yield strain of steel
 
     // ACI 318M-08 Table 9.3.2.1
-    if (epsilon_t <= 0.002) {
-        // Compression-controlled
-        return 0.65;
-    } else if (epsilon_t >= 0.005) {
+    // Note: epsilon_t is net tensile strain. Compression strain is negative.
+    // For calculating phi, we usually consider the *absolute value* of tensile strain or its positive counterpart.
+    // However, the ACI equations for phi are written with epsilon_t as a positive value for tension.
+    const abs_epsilon_t = Math.abs(epsilon_t); // Use absolute value for comparison with ACI limits
+
+    if (abs_epsilon_t <= epsilon_y) {
+        // Compression-controlled (or close to it)
+        return 0.65; // For tied columns, ACI 9.3.2.1(a)
+    } else if (abs_epsilon_t >= 0.005) {
         // Tension-controlled
-        return 0.90;
+        return 0.90; // ACI 9.3.2.1(c)
     } else {
-        // Transition region
+        // Transition region (epsilon_y < abs_epsilon_t < 0.005)
         // Linear interpolation between 0.65 and 0.90
-        return 0.65 + (epsilon_t - 0.002) * (0.90 - 0.65) / (0.005 - 0.002);
+        return 0.65 + (abs_epsilon_t - epsilon_y) * (0.90 - 0.65) / (0.005 - epsilon_y);
     }
 }
 
@@ -1278,60 +1286,36 @@ function calculateColumn() {
         alert("Number of reinforcement rows must be at least 2 for a valid column section.");
         return;
     }
+    if (d_prime_input >= depth / 2) {
+        alert("Cover to centroid of bar (d') must be less than half the column depth. Please check input values.");
+        return;
+    }
 
-    // ACI 318M-08 Effective f'c (for 0.85*f'c)
-    const fc_effective = fc_prime; // Use f'c directly for this calculation as per ACI
+
     const Ag = b * h;
-
-    // Calculate total number of bars and total steel area
-    // Reinforcement arrangement: equally distributed in all sides
-    // n = 2*nr + (nr-2)*2  => for a square/rectangular column with nr rows on one face.
-    // Assuming nr applies to the longer side, and then bars are placed symmetrically.
-    // This formula applies if 'nr' is the number of bars along ONE face (e.g., if nr=3, it's 3 bars along h side).
-    // For "equally distributed in all sides" and 'nr' meaning rows along the depth of bending,
-    // let's re-evaluate the total number of bars more generally for a rectangular column.
-    // If 'nr' is the number of rows of reinforcement *along the depth of bending*,
-    // and bars are equally distributed on all sides, then:
-    // Corner bars: 4
-    // Intermediate bars on b-faces: 2 * (n_bars_on_b_face - 2)
-    // Intermediate bars on h-faces: 2 * (n_bars_on_h_face - 2)
-    // If 'nr' means the number of layers along the depth (h), and assuming it's for a typical arrangement with 2 bars per row (one at each end)
-    // and corner bars + side bars.
-    // Let's assume 'nr' defines the number of bars along the longer side 'h' (if h > b).
-    // The number of bars on each 'h' side (long side) will be 'nr'.
-    // The number of bars on each 'b' side (short side) will be (nr_for_b_side).
-    // For equal distribution in all sides:
-    // Number of bars on the 'h' face (long face) = nr
-    // Number of bars on the 'b' face (short face) = Math.max(2, Math.floor((b - 2 * d_prime_input) / (h / (nr - 1))) + 1); // rough estimate
-    // This part of the problem statement "n=2*nr+(nr-2)*2" is a bit ambiguous for a generic rectangular column with 'nr' rows *along the depth of bending*.
-    // It seems to imply 'nr' is the number of bars on the long face, and then similar number on short face.
-    // Let's interpret "nr rows of reinforcement" as the number of rows *along the depth of bending*,
-    // and "reinforcement arrangement is equally distributed in all sides" means the *total number of bars* is based on `n = 2*nr+(nr-2)*2`.
-    // This formula means:
-    // If nr = 2 (two rows), n = 2*2 + (2-2)*2 = 4 bars (at corners)
-    // If nr = 3 (three rows), n = 2*3 + (3-2)*2 = 6 + 2 = 8 bars (corners + 1 middle bar on each face)
-    // If nr = 4 (four rows), n = 2*4 + (4-2)*2 = 8 + 4 = 12 bars (corners + 2 middle bars on each face)
-    // This formula `n = 2*nr + (nr-2)*2` calculates total bars for a square/rectangular column where `nr` is the number of bars on the *longer face*
-    // (if nr is effectively the number of longitudinal bars along the sides).
-    // For 'nr' as number of *rows along the depth* (for bending analysis), this becomes more complex.
-
-    // Let's stick to your formula `n = 2*nr+(nr-2)*2` for total number of bars.
-    // And assume 'nr' refers to the number of layers/rows of reinforcement along the depth of bending.
-    // This implies that each "row" in your VBA refers to two bars (one at each end of the row).
-    // And the `n` formula is the *total* number of vertical bars in the column.
 
     const N_total_bars = 2 * nr + (nr - 2) * 2;
     const As_single_bar = getRebarArea(rebarDiameter);
-    const Ast = N_total_bars * As_single_bar;
+    const Ast_total = N_total_bars * As_single_bar;
+
+    // Data for plotting
+    let Pn_Mn_points_X = [];
+    let Pn_Mn_points_Y = [];
+    let phiPn_phiMn_points_X = [];
+    let phiPn_phiMn_points_Y = [];
 
     // Calculate in X-direction (Bending about X-axis, column depth = h, width = b)
-    calculateDirection(h, b, fc_prime, fy, es, d_prime_input, nr, Ast, N_total_bars, rebarDiameter, 'X');
+    calculateDirection(h, b, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'X', Pn_Mn_points_X, phiPn_phiMn_points_X);
 
     // Calculate in Y-direction (Bending about Y-axis, column depth = b, width = h)
-    calculateDirection(b, h, fc_prime, fy, es, d_prime_input, nr, Ast, N_total_bars, rebarDiameter, 'Y');
+    calculateDirection(b, h, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'Y', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
+
+    // Plot the interaction diagrams
+    createInteractionChart('interactionChartX', 'X-Direction Interaction Diagram', Pn_Mn_points_X, phiPn_phiMn_points_X);
+    createInteractionChart('interactionChartY', 'Y-Direction Interaction Diagram', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
 }
 
-function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, directionSuffix) {
+function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, directionSuffix, Pn_Mn_points, phiPn_phiMn_points) {
     // ACI 318M-08 related constants
     const epsilon_cu = 0.003; // Maximum usable strain at extreme concrete compression fiber
     const epsilon_y = fy / es; // Yield strain of steel
@@ -1343,37 +1327,7 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('fc_eff' + directionSuffix, fc_effective);
     updateOutput('beta1' + directionSuffix, beta1);
 
-    // Reinforcement distribution based on 'nr' rows along the depth
-    // Assuming each row has 2 bars (one near each face)
-    // And intermediate bars are distributed if nr > 2
-    const As_per_layer = Ast_total / nr; // This might be tricky if not all layers have same number of bars
-    // A more robust approach for "equally distributed in all sides" with `nr` rows for bending:
-    // This assumes the `nr` rows are concentrated along the depth of bending.
-    // If nr = 2, then it's two layers (top and bottom).
-    // If nr = 3, then top, middle, bottom.
-    // If nr = 4, top, upper-middle, lower-middle, bottom.
-    // The "equally distributed in all sides" part needs to be handled carefully with `n = 2*nr+(nr-2)*2`.
-    // Let's assume the bars are conceptually lumped into `nr` layers for interaction diagram purposes.
-    // Number of bars in each layer: The `N_total_bars` is distributed among `nr` layers.
-    // If `nr` is the number of rows along the depth, and `N_total_bars` is total bars in column,
-    // then bars per layer is `N_total_bars / nr`. This is a simplification for a rectangular column.
-    // ACI generally assumes the number of bars per layer for moment calculations.
-    // For 'equally distributed in all sides', the bars are placed along the perimeter.
-    // If `nr` is the number of layers along the bending depth, then each layer contains `N_total_bars / nr` bars.
-    // However, a typical ACI column interaction diagram assumes bars are in specific layers for bending.
-    // Let's use `nr` as the number of layers perpendicular to the neutral axis.
-    // And assume the total `Ast_total` is distributed among these `nr` layers.
-    // The bars in each layer would be `N_total_bars / nr` * `As_single_bar`.
-    // Given the formula `n = 2*nr+(nr-2)*2`, this implies `nr` is not just layers, but related to the number of bars on a face.
-
-    // Let's try to interpret "nr rows" as layers along the depth and assume `N_total_bars` are distributed.
-    // The rebar distances for `nr` rows:
     const rebarPositions = []; // Distances from the extreme compression fiber
-    let n_bars_per_vertical_face = nr; // Interpreting 'nr' as number of bars on the long face (h side)
-    if (nr < 2) n_bars_per_vertical_face = 2; // At least two bars on a face (corners)
-    updateOutput('n_bars_vertical' + directionSuffix, n_bars_per_vertical_face);
-
-
     const d_first_layer = d_prime_input; // Distance to centroid of first layer
     const d_last_layer = depth - d_prime_input; // Distance to centroid of last layer
 
@@ -1400,23 +1354,12 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('N_total' + directionSuffix, N_total_bars);
     updateOutput('Ast' + directionSuffix, Ast_total);
 
-
-    // Determine the area of steel in each layer for accurate calculation
-    // This is a critical assumption. If `n=2*nr+(nr-2)*2` gives total bars,
-    // and `nr` is number of layers, then As_layer = Ast_total / nr.
-    // But for "equally distributed in all sides", a square/rectangular column
-    // would have bars on all four faces.
-    // For a rectangular column (b x h) with 'nr' rows along 'h' (depth of bending):
-    // Let's assume 'nr' is the number of layers along the depth `depth`.
-    // And `N_total_bars` is distributed such that corner bars are part of end layers,
-    // and side bars are also considered for other layers.
-    // This is where a diagram or more specific definition of `nr` and `n` for layers would be clearer.
-    // For simplicity, let's assume `Ast_total` is distributed equally among `nr` layers.
+    // Assumption: Total steel area distributed equally among 'nr' layers for calculation of forces
     const As_layer = Ast_total / nr;
 
     // --- Core Calculation Function for Pn and Mn given 'c' ---
     const calculatePnMn = (c, depth, width, fc_eff, fy, es, beta1, rebarLayers, As_layer) => {
-        if (c <= 0) return { Pn: NaN, Mn: NaN, phi: NaN, epsilon_t: NaN }; // Avoid division by zero or non-physical c
+        if (c <= 0) return { Pn: NaN, Mn: NaN, phi: NaN, epsilon_t: NaN };
 
         const a = beta1 * c; // Depth of equivalent rectangular stress block
 
@@ -1424,19 +1367,17 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
         let F_c = 0;
         let M_c = 0;
         if (a > 0) { // Concrete only contributes if 'a' is positive
-             F_c = 0.85 * fc_eff * a * width; // Force in concrete (N)
-             M_c = F_c * (depth / 2 - a / 2); // Moment from concrete (N-mm)
+             F_c = 0.85 * fc_eff * Math.min(a, depth) * width; // Force in concrete (N) - a cannot exceed depth
+             M_c = F_c * (depth / 2 - Math.min(a, depth) / 2); // Moment from concrete (N-mm)
         }
+
 
         let F_s_total = 0;
         let M_s_total = 0;
-        let min_epsilon_t = epsilon_cu; // To track epsilon_t for phi factor, initialize with compression extreme fiber
+        let epsilon_t_extreme = -Infinity; // To track epsilon_t for phi factor (most tensile)
 
-        rebarLayers.forEach(d_i => {
-            let strain_steel_i = 0;
-            if (c !== 0) { // Avoid division by zero if c is theoretically 0 (unlikely for practical P-M)
-                strain_steel_i = epsilon_cu * (c - d_i) / c;
-            }
+        rebarLayers.forEach((d_i, index) => {
+            let strain_steel_i = epsilon_cu * (c - d_i) / c;
 
             let stress_steel_i;
             if (Math.abs(strain_steel_i) >= epsilon_y) {
@@ -1448,7 +1389,7 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
             // ACI 318M-08 section 10.2.4: Stress in steel bars in compression block.
             // When concrete is in compression, steel in compression block should be reduced by 0.85f'c
             let F_si;
-            if (d_i <= a) { // Steel layer is within the compression block
+            if (d_i <= a && stress_steel_i > 0) { // Steel layer is within the compression block and in compression
                 F_si = As_layer * (stress_steel_i - 0.85 * fc_eff); // Force in steel layer i (N)
             } else {
                 F_si = As_layer * stress_steel_i; // Force in steel layer i (N)
@@ -1457,32 +1398,39 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
             F_s_total += F_si;
             M_s_total += F_si * (depth / 2 - d_i); // Moment from steel layer i (N-mm)
 
-            // Track strain at the extreme tension steel for phi factor
-            // The strain at the extreme bottom reinforcement (last layer) determines epsilon_t
-            if (d_i === rebarLayers[rebarLayers.length - 1]) {
-                min_epsilon_t = strain_steel_i; // This is the strain at the extreme tension rebar
+            // Update extreme tension strain (largest positive strain or smallest negative strain)
+            if (d_i === rebarLayers[rebarLayers.length - 1]) { // This is the extreme tension layer
+                 epsilon_t_extreme = strain_steel_i;
             }
         });
 
         const Pn = (F_c + F_s_total) / 1000; // kN
         const Mn = (M_c + M_s_total) / 1000000; // kN-m
 
-        const phi_factor = calculatePhi(min_epsilon_t, fy, es);
+        const phi_factor = calculatePhi(epsilon_t_extreme, fy, es);
 
-        return { Pn, Mn, phi: phi_factor, epsilon_t: min_epsilon_t };
+        return { Pn, Mn, phi: phi_factor, epsilon_t: epsilon_t_extreme };
     };
 
 
     // --- Point 1: Pure Compression (c -> infinity, effectively a = depth) ---
     // ACI 318M-08 Eq. 10-1 for tied columns
-    const Pn1 = 0.80 * (0.85 * fc_effective * (Ag - Ast_total) + fy * Ast_total) / 1000; // kN
+    // Pu,max = 0.80 * phi * [0.85 * f'c * (Ag - Ast) + fy * Ast]
+    // Pn,max = [0.85 * f'c * (Ag - Ast) + fy * Ast]
+    const Pn1_nominal = (0.85 * fc_effective * (Ag - Ast_total) + fy * Ast_total) / 1000; // kN
+    const Pn1 = 0.80 * Pn1_nominal; // ACI 10.3.5.2 for tied columns
+    const Mn1 = 0; // Pure axial compression
     const phi_factor1 = 0.65; // Phi for pure compression (tied column)
     const phiPn1 = phi_factor1 * Pn1;
+    const phiMn1 = phi_factor1 * Mn1;
+
     updateOutput('Pn1' + directionSuffix, Pn1);
     updateOutput('phiPn1' + directionSuffix, phiPn1);
+    Pn_Mn_points.push({x: Mn1, y: Pn1});
+    phiPn_phiMn_points.push({x: phiMn1, y: phiPn1});
 
 
-    // --- Point 2: At extreme bottom fiber of concrete (c = depth) ---
+    // --- Point 2: Extreme Bottom Fiber of Concrete (c = depth) ---
     const c2 = depth;
     const { Pn: Pn2, Mn: Mn2, phi: phi2, epsilon_t: epsilon_t2 } = calculatePnMn(c2, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
     updateOutput('c2' + directionSuffix, c2);
@@ -1492,10 +1440,13 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('phi2' + directionSuffix, phi2);
     updateOutput('phiPn2' + directionSuffix, phi2 * Pn2);
     updateOutput('phiMn2' + directionSuffix, phi2 * Mn2);
+    Pn_Mn_points.push({x: Mn2, y: Pn2});
+    phiPn_phiMn_points.push({x: phi2 * Mn2, y: phi2 * Pn2});
 
 
-    // --- Point 3: At extreme bottom reinforcement (c = d_last) ---
-    const c3 = rebarPositions[rebarPositions.length - 1]; // d_last
+    // --- Point 3: Extreme Bottom Reinforcement (c = d_last) ---
+    const d_last = rebarPositions[rebarPositions.length - 1];
+    const c3 = d_last; // Neutral axis at extreme tension steel
     const { Pn: Pn3, Mn: Mn3, phi: phi3, epsilon_t: epsilon_t3 } = calculatePnMn(c3, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
     updateOutput('c3' + directionSuffix, c3);
     updateOutput('a3' + directionSuffix, beta1 * c3);
@@ -1504,11 +1455,11 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('phi3' + directionSuffix, phi3);
     updateOutput('phiPn3' + directionSuffix, phi3 * Pn3);
     updateOutput('phiMn3' + directionSuffix, phi3 * Mn3);
+    Pn_Mn_points.push({x: Mn3, y: Pn3});
+    phiPn_phiMn_points.push({x: phi3 * Mn3, y: phi3 * Pn3});
 
 
     // --- Point 4: Balanced Condition (strain at extreme tension reinforcement = fy/Es) ---
-    const c4_balanced = epsilon_cu * depth / (epsilon_cu + epsilon_y); // This formula gives 'c' for balanced condition if d is the effective depth to tension steel.
-    // For multi-layer reinforcement, epsilon_t at the lowest layer should be epsilon_y.
     const d_extreme_tension = rebarPositions[rebarPositions.length - 1];
     const c4 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_y);
     const { Pn: Pn4, Mn: Mn4, phi: phi4, epsilon_t: epsilon_t4 } = calculatePnMn(c4, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
@@ -1519,11 +1470,13 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('phi4' + directionSuffix, phi4);
     updateOutput('phiPn4' + directionSuffix, phi4 * Pn4);
     updateOutput('phiMn4' + directionSuffix, phi4 * Mn4);
+    Pn_Mn_points.push({x: Mn4, y: Pn4});
+    phiPn_phiMn_points.push({x: phi4 * Mn4, y: phi4 * Pn4});
 
 
     // --- Point 5: Tension Controlled ($\epsilon_t \ge 0.005$) ---
-    const epsilon_t5 = 0.005;
-    const c5 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_t5);
+    const epsilon_t5_desired = 0.005; // ACI tension-controlled limit
+    const c5 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_t5_desired);
     const { Pn: Pn5, Mn: Mn5, phi: phi5, epsilon_t: epsilon_t5_actual } = calculatePnMn(c5, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
     updateOutput('c5' + directionSuffix, c5);
     updateOutput('a5' + directionSuffix, beta1 * c5);
@@ -1532,32 +1485,107 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
     updateOutput('phi5' + directionSuffix, phi5);
     updateOutput('phiPn5' + directionSuffix, phi5 * Pn5);
     updateOutput('phiMn5' + directionSuffix, phi5 * Mn5);
+    Pn_Mn_points.push({x: Mn5, y: Pn5});
+    phiPn_phiMn_points.push({x: phi5 * Mn5, y: phi5 * Pn5});
 
 
     // --- Point 6: Zero Total Strength (Pn = 0) ---
     // This requires a numerical method (like Bisection or Newton-Raphson)
     // to find 'c' where Pn = 0.
     let c_target_for_Pn0 = NaN;
-    let lower_c = d_extreme_tension * 0.001; // Should be small positive or even negative for tension
-    let upper_c = depth * 1.5; // Arbitrary upper bound, ensure it covers likely 'c' for Pn=0
-    let tolerance = 0.01; // Tolerance for Pn to be close to zero (kN)
-    let maxIterations = 200;
+    // For Pn = 0, 'c' is typically small or even negative (for pure tension).
+    // Let's set a reasonable search range for 'c'.
+    // `d_last` is a good lower bound as NA must be near or below last tension bar for zero Pn.
+    // Upper bound can be `d_last * 1.5` or similar.
+    let lower_c = 0.01; // c must be positive for strain calculations
+    let upper_c = d_last; // Starting range from small positive to d_last
 
-    for (let i = 0; i < maxIterations; i++) {
-        const mid_c = (lower_c + upper_c) / 2;
-        const { Pn: current_Pn } = calculatePnMn(mid_c, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+    // If Pn is positive at lower_c, it means the entire range is in compression or positive.
+    // If Pn is negative at upper_c, it means the entire range is in tension or negative.
+    // We need to find 'c' where Pn crosses zero.
 
-        if (Math.abs(current_Pn) < tolerance) {
-            c_target_for_Pn0 = mid_c;
-            break;
-        } else if (current_Pn > 0) {
-            upper_c = mid_c;
+    // Let's iterate over a wider range and ensure we capture the zero crossing.
+    // We need to find a 'c' where Pn switches sign.
+    // If Pn(lower_c) > 0 and Pn(upper_c) < 0.
+    // Re-evaluating search range for Pn=0 point. It might be in tension-controlled zone.
+    // We want Pn = 0. This might involve c < d_last.
+    // A reasonable range for c for Pn=0 would be between a very small positive number and d_last
+    // or even a slightly negative c for pure tension (though ACI strain compatibility usually uses c>0).
+    // Let's search from a point where the column is clearly in tension.
+    // A very small c or even effectively negative c in a P-M diagram can represent pure tension.
+    // However, the `epsilon_cu * (c - d_i) / c` formula breaks down for c=0 or c negative.
+    // For Pn=0, if all steel is in tension, and concrete is not contributing,
+    // Pn would be sum(As*fs).
+    // The previous bisection method finds a c where Pn is zero. It may mean `c` is very small.
+
+    // Let's adjust the bisection method to be more robust for Pn=0,
+    // which can be in a deep tension region where 'c' is very small or theoretically negative.
+    // For practical interaction diagrams, Pn=0 usually means the section is entirely in tension.
+    // We need to find 'c' where sum of forces is 0.
+
+    // To find Pn = 0, we need to search for 'c'. A reasonable upper bound for c for Pn=0
+    // is where the outermost compression bar is at its yield strain in tension.
+    // A robust way would be to start from a very small c and check Pn, then increase.
+    // Or, start from a slightly negative 'c' (for pure tension, meaning NA is outside the section).
+    // For the purpose of plotting, if Pn goes to zero, the moment is the critical value.
+
+    // Let's use an iterative approach from a very small positive c.
+    // Pure tension point is typically handled where Pn becomes 0.
+    // Consider the nominal strength calculation `calculatePnMn(c, ...)`
+    // We need to find c such that `Pn = 0`.
+    let lower_c_iter = 0.01; // Start from a small positive c to avoid division by zero
+    let upper_c_iter = depth * 2; // Arbitrary high value for c
+    let Pn_at_lower = calculatePnMn(lower_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
+    let Pn_at_upper = calculatePnMn(upper_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
+
+    // Check if the range brackets Pn = 0
+    if (Math.sign(Pn_at_lower) === Math.sign(Pn_at_upper)) {
+        // If both are positive or both are negative, adjust range.
+        // For Pn=0, it's typically a tension failure (Pn < 0 or close to 0)
+        // If Pn_at_lower (very small c) is positive, it means something is wrong or the Pn=0 point is at c=0 or negative.
+        // Let's use a simpler approach: calculate Mn at Pn=0.
+        // The Mn at Pn=0 is the nominal flexural strength of the section.
+        // This usually happens when the column is bending as a beam.
+
+        // Re-calculate the iterative solver for Pn=0 to be more robust.
+        // We'll search for 'c' between a small positive value (e.g., 0.001) and `d_last`.
+        // If Pn is positive at `d_last`, then `c` for Pn=0 must be less than `d_last`.
+        // If Pn is negative at `d_last`, then `c` for Pn=0 must be greater than `d_last`.
+        // But for pure tension, c can be very small or even outside section.
+        // Let's define the search range for c more broadly to find the zero-crossing.
+        lower_c_iter = 0.0001; // A very small positive c
+        upper_c_iter = depth * 10; // A large c to ensure we span the range
+
+        // Find initial Pn values
+        let Pn_low = calculatePnMn(lower_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
+        let Pn_high = calculatePnMn(upper_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
+
+        if (Pn_low > 0 && Pn_high > 0) { // All Pn values in the range are positive (compression)
+            // This case might happen if the column is heavily reinforced and always in compression.
+            // For practical purposes, if Pn doesn't go negative, pure tension is not achieved in a simple iterative search.
+            c_target_for_Pn0 = 0.0001; // Set to a minimal C
+        } else if (Pn_low < 0 && Pn_high < 0) { // All Pn values are negative (tension)
+            c_target_for_Pn0 = upper_c_iter; // Set to a maximal C
         } else {
-            lower_c = mid_c;
+            // Standard bisection search
+            for (let i = 0; i < maxIterations; i++) {
+                const mid_c = (lower_c_iter + upper_c_iter) / 2;
+                const { Pn: current_Pn_mid } = calculatePnMn(mid_c, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+
+                if (Math.abs(current_Pn_mid) < tolerance) {
+                    c_target_for_Pn0 = mid_c;
+                    break;
+                } else if (current_Pn_mid > 0) {
+                    lower_c_iter = mid_c; // We need smaller c to get closer to Pn=0 or negative Pn
+                } else { // current_Pn_mid < 0
+                    upper_c_iter = mid_c; // We need larger c to get closer to Pn=0 or positive Pn
+                }
+            }
         }
     }
 
-     const { Pn: Pn6, Mn: Mn6, phi: phi6, epsilon_t: epsilon_t6 } = calculatePnMn(c_target_for_Pn0, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+
+    const { Pn: Pn6, Mn: Mn6, phi: phi6, epsilon_t: epsilon_t6 } = calculatePnMn(c_target_for_Pn0, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
     updateOutput('c6' + directionSuffix, c_target_for_Pn0);
     updateOutput('a6' + directionSuffix, beta1 * c_target_for_Pn0);
     updateOutput('Pn6' + directionSuffix, Pn6); // Should be very close to 0
@@ -1670,8 +1698,6 @@ function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
         chartY = newChart;
     }
 }
-
-
 
 
 
