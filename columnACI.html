@@ -922,11 +922,11 @@
                 <label for="rebarDiameter">Rebar Diameter (mm):</label>
                 <input type="number" id="rebarDiameter" value="25">
             </div>
-            <button onclick="calculateColumn()">Calculate Column Properties</button>
+            <button onclick="calculateColumn()" class="btn">COLUMN DESIGN</button>
         </div>
 
         <div class="output-section">
-            <h2>Calculated Results (Bending about X-axis, i.e., column depth = h)</h2>
+            <h3>1. Calculated Results (Bending about X-axis, i.e., column depth = h)</h3>
             <table class="load-table" id="resultsTableX">
                 <thead>
                     <tr>
@@ -996,7 +996,7 @@
                 </tbody>
             </table>
 
-            <h3>Calculated Results (Bending about Y-axis, i.e., column depth = b)</h3>
+            <h3>2. Calculated Results (Bending about Y-axis, i.e., column depth = b)</h3>
             <table class="load-table" id="resultsTableY">
                 <thead>
                     <tr>
@@ -1068,7 +1068,7 @@
         </div>
 
         <div class="chart-section">
-            <u>INTERACTION DIAGRAM</u>
+            <h3>INTERACTION DIAGRAM</h3>
             <div class="chart-container">
                 <h3>X-Direction (Bending about X-axis)</h3>
                 <canvas id="interactionChartX"></canvas>
