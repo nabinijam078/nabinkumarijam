@@ -895,16 +895,9 @@
             <label for="fy">Characteristic Strength of Steel (\(f_y\) in MPa):</label>
             <input type="number" id="fy" step="0.1" required>
         </div>
-	
-	<label for="Exp"><br>Exposure to sorrounding : </label>
-                <select id="Exp">
-                    <option value="Not to Earth">Not to Earth</option>
-                    <option value="To Earth">To Earth</option>
-                </select>
-	      <br>
 	<div class="input-group">
-            <label for="mu">Poisson's ratio (\(\mu\) in mm):</label>
-            <input type="number" id="mu" required>
+            <label for="fyt">Characteristic Strength of shear Steel (\(f_{yt}\) in MPa):</label>
+            <input type="number" id="fyt" step="0.1" required>
         </div>
         <div class="input-group">
             <label for="b">Width of Beam (\(b\) in mm):</label>
@@ -948,6 +941,9 @@
 	<br>
       <div class="result" id="result">
         <h3><u>DESIGN RESULT</u></h3>
+	      <br>
+	<b><u>1. MAIN REINFORCEMENT</u></b>
+	      <br>
         <p><strong>Nominal moment of resistance (\(R_{n}\)):</strong> <span id="Rn"></span></p>
 	<p><strong>Nominal moment of resistance (\(R_{nt}\)):</strong> <span id="Rnt"></span></p>
         <p><strong>Area of Steel Required (\(A_{st}\)):</strong> <span id="Ast"></span></p>
@@ -955,7 +951,12 @@
         <p><strong>Area of Compression Steel (\(A_{sc}\)):</strong> <span id="Asc"></span></p>
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
         <p><strong>Beam Type:</strong> <span id="beam"></span></p>
-       
+	      <br>
+	<b><u>1. SHEAR REINFORCEMENT</u></b>
+	      <br>
+	<p><strong>Spacing of shear reinforcement (\(s\)):</strong> <span id="s"></span></p>
+	<p><strong>Requirement of shear reinforcement:</strong> <span id="Reqmt"></span></p>     
+       	<p><strong>Area of Shear reinforcement (\(A_{sv}\)):</strong> <span id="Asv"></span></p>
       </div>
 	</div>
 
@@ -1088,17 +1089,18 @@
         }
 function calculateBeamSection() {
     // Input values
-    const b = parseFloat(document.getElementById('b').value); 
-    const d = parseFloat(document.getElementById('d').value); 
-    const cover = parseFloat(document.getElementById('cover').value); 
-    const fc = parseFloat(document.getElementById('fc').value); 
-    const fy = parseFloat(document.getElementById('fy').value); 
-    const dm = parseFloat(document.getElementById('dm').value); 
-    const nt = parseFloat(document.getElementById('nt').value);
-    const ds = parseFloat(document.getElementById('ds').value); 
-    const nl = parseFloat(document.getElementById('nl').value); 
-    const moment = parseFloat(document.getElementById('moment').value); 
-    const shear = parseFloat(document.getElementById('shear').value); 
+    	const b = parseFloat(document.getElementById('b').value); 
+    	const d = parseFloat(document.getElementById('d').value); 
+    	const cover = parseFloat(document.getElementById('cover').value); 
+    	const fc = parseFloat(document.getElementById('fc').value); 
+    	const fy = parseFloat(document.getElementById('fy').value); 
+	const fyt = parseFloat(document.getElementById('fyt').value); 
+    	const dm = parseFloat(document.getElementById('dm').value); 
+    	const nt = parseFloat(document.getElementById('nt').value);
+    	const ds = parseFloat(document.getElementById('ds').value); 
+    	const nl = parseFloat(document.getElementById('nl').value); 
+    	const moment = parseFloat(document.getElementById('moment').value); 
+    	const shear = parseFloat(document.getElementById('shear').value); 
 
     // Effective depth
     const de = d - cover - dm/2;
@@ -1133,8 +1135,8 @@ function calculateBeamSection() {
         beam = "Singly";
         const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de; 
         const Asmin = Math.max(0.25 * Math.pow(fc, 0.5) / fy, 1.4 / fy) * b * de;
-        const Ast = Math.max(Ast1, Asmin);
-        const Asc = 0;
+        Ast = Math.max(Ast1, Asmin);
+        Asc = 0;
         const a = Ast * fy / (0.85 * fc * b);
         const c = a / beta1;
         const epsilont = 0.003 * (de / c - 1);
@@ -1158,23 +1160,56 @@ function calculateBeamSection() {
         const ct = 0.375 * de;
         const dc = cover + dm / 2;
         const fsc = Math.min(0.003 * Es * (1 - dc / ct), fy);
-        const Asc = Mn * 1e6 / (fsc * (de - dc));
-        const Ast = p * b * d + Mn * 1e6 / (fy * (de - dc));
-	const section="NOT APPLICABLE";
+        Asc = Mn * 1e6 / (fsc * (de - dc));
+        Ast = p * b * d + Mn * 1e6 / (fy * (de - dc));
+	section="NOT APPLICABLE";
     }
 	// Calculate number of steel bars
         const A1 = (Math.PI * Math.pow(dm, 2)) / 4; 
         const n1 = Math.max(Math.ceil(Ast / A1), 2); 
         const n2 = Math.max(Math.ceil(Asc / A1), 2); 
+
+	// SHEAR REINFORCEMENT
+	const vs=shear*1000/(b*de);
+	
+	// shear stress provided by concrete, cl.11.2.1.1
+	const vc=0.17*1*math.pow(fc,0.5);
+
+	// spacing of reinforcement
+	const s1=0.33*Math.pow(fc,0.5);
+	let s;
+	if(vs>s1){
+		s=de/4;
+	} else {
+		s=de/2;
+	}
+	
+	
+	//Area of shear reinforcement
+	let Reqmt,Asv;
+	if(vc>vs){
+		Reqmt="NO-PROVIDE MINIMUM REINFORCEMENT";
+		Asv = Math.Max(0.062 * Math.pow(fc, 0.5) * b * s / fyt, 0.25 * b * s / fyt);
+	} else if(vs>vc){
+		Reqmt="FULL";
+		Asv = (vs - vc) * b * s / fyt;
+	} else{
+		Reqmt="MINIMUM";
+		Asv = Math.Max(0.062 * Math.pow(fc, 0.5) * b * s / fyt, 0.25 * b * s / fyt);
+	}
+		
 	
         // Outputs
 	document.getElementById('beam').textContent = beam;
 	document.getElementById('Rnt').textContent = Rnt.toFixed(3)+"kNm"; 
     	document.getElementById('Rn').textContent = Rn.toFixed(3)+"kNm";
-    	document.getElementById('Ast').textContent = Ast.toFixed(3)+"mm²";
-	document.getElementById('Asc').textContent = Asc.toFixed(3)+"mm²";
+    	document.getElementById('Ast').textContent = Ast.toFixed(2)+"mm²";
+	document.getElementById('Asc').textContent = Asc.toFixed(2)+"mm²";
 	document.getElementById('n1').textContent = n1;
 	document.getElementById('n2').textContent = n2;
+	document.getElementById('s').textContent = s.toFixed(2)+"mm";
+	document.getElementById('Reqmt').textContent = Reqmt;
+	document.getElementById('Asv').textContent = Asv.toFixed(2)+"mm²";
    
 }
     </script>
