@@ -903,7 +903,7 @@
                 <input type="number" id="es" value="200000">
             </div>
             <div class="input-group">
-                <label for="columnWidth">Column Dimension (\b\) in mm):</label>
+                <label for="columnWidth">Column Dimension (\(b\) in mm):</label>
                 <input type="number" id="columnWidth" value="400">
             </div>
             <div class="input-group">
@@ -926,7 +926,7 @@
         </div>
 
         <div class="output-section">
-            <h3>Calculated Results (Bending about X-axis, i.e., column depth = h)</h3>
+            <h2>Calculated Results (Bending about X-axis, i.e., column depth = h)</h2>
             <table class="load-table" id="resultsTableX">
                 <thead>
                     <tr>
@@ -941,23 +941,23 @@
                     <tr><td>Number of bars per face (vertical)</td><td id="n_bars_verticalX"></td><td></td></tr>
                     <tr><td>Total Reinforcement Bars (N_total)</td><td id="N_totalX"></td><td></td></tr>
                     <tr><td>Total Steel Area (\(A_{st}\))</td><td id="AstX"></td><td>mm²</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Reinforcement Layer Positions (from compression face)</strong></td></tr>
                     <tbody id="rebarPositionsX"></tbody>
-                    <tr><td></td><td></td><td></td></tr>
+                   
                     <tr><td colspan="3"><strong>Point 1: Pure Compression</strong></td></tr>
                     <tr><td>\(P_n\) </td><td id="Pn1X"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn1X"></td><td>kN</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 2: Extreme Bottom Fiber of Concrete (c = h)</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c2X"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a2X"></td><td>mm</td></tr>
                     <tr><td>\(P_n\) </td><td id="Pn2X"></td><td>kN</td></tr>
                     <tr><td>\(M_n\) </td><td id="Mn2X"></td><td>kN-m</td></tr>
-                    <tr><td>(\phi\) </td><td id="phi2X"></td><td></td></tr>
+                    <tr><td>(\(phi\) </td><td id="phi2X"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn2X"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn2X"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 3: Extreme Bottom Reinforcement (\(c = d_{last}\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c3X"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a3X"></td><td>mm</td></tr>
@@ -966,7 +966,7 @@
                     <tr><td>\(\phi\) </td><td id="phi3X"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn3X"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn3X"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 4: Balanced Condition (\(\epsilon_t = \epsilon_y\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c4X"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a4X"></td><td>mm</td></tr>
@@ -975,7 +975,7 @@
                     <tr><td>\(\phi\) </td><td id="phi4X"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn4X"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn4X"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 5: Tension Controlled (\(\epsilon_t \ge 0.005\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c5X"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a5X"></td><td>mm</td></tr>
@@ -984,7 +984,7 @@
                     <tr><td>\(\phi\) </td><td id="phi5X"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn5X"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn5X"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                   
                     <tr><td colspan="3"><strong>Point 6: Pure Tension (\(P_n = 0\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c6X"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a6X"></td><td>mm</td></tr>
@@ -996,7 +996,7 @@
                 </tbody>
             </table>
 
-            <h2>Calculated Results (Bending about Y-axis, i.e., column depth = b)</h2>
+            <h3>Calculated Results (Bending about Y-axis, i.e., column depth = b)</h3>
             <table class="load-table" id="resultsTableY">
                 <thead>
                     <tr>
@@ -1011,10 +1011,10 @@
                     <tr><td>Number of bars per face (vertical)</td><td id="n_bars_verticalY"></td><td></td></tr>
                     <tr><td>Total Reinforcement Bars (N_total)</td><td id="N_totalY"></td><td></td></tr>
                     <tr><td>Total Steel Area (\(A_{st}\))</td><td id="AstY"></td><td>mm²</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Reinforcement Layer Positions (from compression face)</strong></td></tr>
                     <tbody id="rebarPositionsY"></tbody>
-                    <tr><td></td><td></td><td></td></tr>
+                   
                     <tr><td colspan="3"><strong>Point 1: Pure Compression</strong></td></tr>
                     <tr><td>\(P_n\) </td><td id="Pn1Y"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn1Y"></td><td>kN</td></tr>
@@ -1027,7 +1027,7 @@
                     <tr><td>\(\phi\) </td><td id="phi2Y"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn2Y"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n\) </td><td id="phiMn2Y"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 3: Extreme Bottom Reinforcement (\(c = d_last\))</strong></td></tr>
                     <tr><td>\(c\)</td><td id="c3Y"></td><td>mm</td></tr>
                     <tr><td>\(a\)</td><td id="a3Y"></td><td>mm</td></tr>
@@ -1036,7 +1036,7 @@
                     <tr><td>\(\phi\) </td><td id="phi3Y"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn3Y"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn3Y"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 4: Balanced Condition (\(\epsilon_t = \epsilon_y\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c4Y"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a4Y"></td><td>mm</td></tr>
@@ -1045,7 +1045,7 @@
                     <tr><td>\(\phi\) </td><td id="phi4Y"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn4Y"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\)</td><td id="phiMn4Y"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                   
                     <tr><td colspan="3"><strong>Point 5: Tension Controlled (\(\epsilon_t \ge 0.005\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c5Y"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a5Y"></td><td>mm</td></tr>
@@ -1054,7 +1054,7 @@
                     <tr><td>\(\phi\) </td><td id="phi5Y"></td><td></td></tr>
                     <tr><td>\(\phi_{P_n}\) </td><td id="phiPn5Y"></td><td>kN</td></tr>
                     <tr><td>\(\phi_{M_n}\) </td><td id="phiMn5Y"></td><td>kN-m</td></tr>
-                    <tr><td></td><td></td><td></td></tr>
+                    
                     <tr><td colspan="3"><strong>Point 6: Pure Tension (\(P_n = 0\))</strong></td></tr>
                     <tr><td>\(c\) </td><td id="c6Y"></td><td>mm</td></tr>
                     <tr><td>\(a\) </td><td id="a6Y"></td><td>mm</td></tr>
