@@ -952,7 +952,7 @@
         <p><strong>Number of Compression steel(\(n_c\)):</strong> <span id="n2"></span></p>
         <p><strong>Beam Type:</strong> <span id="beam"></span></p>
 	      <br>
-	<b><u>1. SHEAR REINFORCEMENT</u></b>
+	<b><u>2. SHEAR REINFORCEMENT</u></b>
 	      <br>
 	<p><strong>Spacing of shear reinforcement (\(s\)):</strong> <span id="s"></span></p>
 	<p><strong>Requirement of shear reinforcement:</strong> <span id="Reqmt"></span></p>     
@@ -1172,8 +1172,8 @@ function calculateBeamSection() {
 	// SHEAR REINFORCEMENT
 	const vs=shear*1000/(b*de);
 	
-	// shear stress provided by concrete, cl.11.2.1.1
-	const vc=0.17*1*math.pow(fc,0.5);
+	// Shear stress provided by concrete, cl.11.2.1.1
+	const vc=0.17*1*Math.pow(fc,0.5);
 
 	// spacing of reinforcement
 	const s1=0.33*Math.pow(fc,0.5);
@@ -1183,7 +1183,6 @@ function calculateBeamSection() {
 	} else {
 		s=de/2;
 	}
-	
 	
 	//Area of shear reinforcement
 	let Reqmt,Asv;
@@ -1207,7 +1206,7 @@ function calculateBeamSection() {
 	document.getElementById('Asc').textContent = Asc.toFixed(2)+"mm²";
 	document.getElementById('n1').textContent = n1;
 	document.getElementById('n2').textContent = n2;
-	document.getElementById('s').textContent = s.toFixed(2)+"mm";
+	document.getElementById('s').textContent = s.toFixed(0)+"mm";
 	document.getElementById('Reqmt').textContent = Reqmt;
 	document.getElementById('Asv').textContent = Asv.toFixed(2)+"mm²";
    
