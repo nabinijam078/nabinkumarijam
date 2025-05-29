@@ -881,10 +881,9 @@
             </ul>
         </div>
     </nav>
-<!-- Main Content -->
+           
 
-	
-
+    <!-- Main Content -->
     <div class="container">
         <h3>COLUMN DESIGN (ACI 318M-08)</h3>
 
@@ -1069,20 +1068,16 @@
 
         <div class="chart-section">
             <h3>INTERACTION DIAGRAM</h3>
-            <div class="chart-container">
+            <div class="chart-container" style="height: 400px; width: 100%;">
                 <h3>X-Direction (Bending about X-axis)</h3>
                 <canvas id="interactionChartX"></canvas>
             </div>
-            <div class="chart-container">
+            <div class="chart-container" style="height: 400px; width: 100%;">
                 <h3>Y-Direction (Bending about Y-axis)</h3>
                 <canvas id="interactionChartY"></canvas>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
-
-
-
 
     <!-- Footer -->
     <footer>
@@ -1138,436 +1133,258 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
     <script>
-        function updateDateTime() {
-            const now = new Date();
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-            };
-            const datetimeElement = document.getElementById('datetime');
-            datetimeElement.textContent = now.toLocaleDateString('en-US', options);
+        // Global variables to store chart instances
+        let chartX = null;
+        let chartY = null;
+        const maxIterations = 100;
+        const tolerance = 0.001;
+
+        // Helper function to update output fields
+        function updateOutput(id, value, fixed = 2) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = typeof value === 'number' ? value.toFixed(fixed) : value;
+            }
         }
 
-        // Update the time and date every second
-        setInterval(updateDateTime, 1000);
+        // Function to get rebar area
+        function getRebarArea(diameter) {
+            return Math.PI * (diameter / 2) ** 2;
+        }
 
-        // Initial call to display the time and date immediately
-        updateDateTime();
-    </script>
+        // Function to calculate Beta1 for ACI 318M-08
+        function calculateBeta1(fc_prime) {
+            if (fc_prime <= 28) {
+                return 0.85;
+            } else if (fc_prime >= 55) {
+                return 0.65;
+            } else {
+                return 0.85 - 0.05 * ((fc_prime - 28) / 7);
+            }
+        }
 
-    <script>
-        // Current year for copyright
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
+        // Function to calculate Phi factor for ACI 318M-08
+        function calculatePhi(epsilon_t, fy, es) {
+            const epsilon_y = fy / es;
+            const abs_epsilon_t = Math.abs(epsilon_t);
+
+            if (abs_epsilon_t <= epsilon_y) {
+                return 0.65;
+            } else if (abs_epsilon_t >= 0.005) {
+                return 0.90;
+            } else {
+                return 0.65 + (abs_epsilon_t - epsilon_y) * (0.90 - 0.65) / (0.005 - epsilon_y);
+            }
+        }
+
+        function calculateColumn() {
+            // Get input values
+            const fc_prime = parseFloat(document.getElementById('fc_prime').value);
+            const fy = parseFloat(document.getElementById('fy').value);
+            const es = parseFloat(document.getElementById('es').value);
+            const b = parseFloat(document.getElementById('columnWidth').value);
+            const h = parseFloat(document.getElementById('columnHeight').value);
+            const d_prime_input = parseFloat(document.getElementById('coverToCentroid').value);
+            const nr = parseInt(document.getElementById('numRows').value);
+            const rebarDiameter = parseFloat(document.getElementById('rebarDiameter').value);
+
+            // Validate inputs
+            if (isNaN(fc_prime) || isNaN(fy) || isNaN(es) || isNaN(b) || isNaN(h) || isNaN(d_prime_input) || isNaN(nr) || isNaN(rebarDiameter)) {
+                alert("Please enter valid numerical values for all inputs.");
+                return;
+            }
+            if (nr < 2) {
+                alert("Number of reinforcement rows must be at least 2 for a valid column section.");
+                return;
+            }
+            if (d_prime_input >= h / 2) {
+                alert("Cover to centroid of bar (d') must be less than half the column depth. Please check input values.");
+                return;
+            }
+
+            const Ag = b * h;
+            const N_total_bars = 2 * nr + (nr - 2) * 2;
+            const As_single_bar = getRebarArea(rebarDiameter);
+            const Ast_total = N_total_bars * As_single_bar;
+
+            // Data for plotting
+            let Pn_Mn_points_X = [];
+            let Pn_Mn_points_Y = [];
+            let phiPn_phiMn_points_X = [];
+            let phiPn_phiMn_points_Y = [];
+
+            // Calculate in X-direction (Bending about X-axis, column depth = h, width = b)
+            calculateDirection(h, b, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'X', Pn_Mn_points_X, phiPn_phiMn_points_X);
+
+            // Calculate in Y-direction (Bending about Y-axis, column depth = b, width = h)
+            calculateDirection(b, h, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'Y', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
+
+            // Plot the interaction diagrams
+            createInteractionChart('interactionChartX', 'X-Direction Interaction Diagram', Pn_Mn_points_X, phiPn_phiMn_points_X);
+            createInteractionChart('interactionChartY', 'Y-Direction Interaction Diagram', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
+        }
+
+        function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, directionSuffix, Pn_Mn_points, phiPn_phiMn_points) {
+            const epsilon_cu = 0.003;
+            const epsilon_y = fy / es;
+            const fc_effective = fc_prime;
+            const beta1 = calculateBeta1(fc_prime);
+            const Ag = depth * width;
+
+            updateOutput('fc_eff' + directionSuffix, fc_effective);
+            updateOutput('beta1' + directionSuffix, beta1);
+
+            const rebarPositions = [];
+            const d_first_layer = d_prime_input;
+            const d_last_layer = depth - d_prime_input;
+            let layer_spacing = 0;
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+            if (nr > 1) {
+                layer_spacing = (d_last_layer - d_first_layer) / (nr - 1);
+            }
+
+            for (let i = 0; i < nr; i++) {
+                rebarPositions.push(d_first_layer + i * layer_spacing);
+            }
+
+            // Display rebar positions
+            const rebarPosTableBody = document.getElementById('rebarPositions' + directionSuffix);
+            rebarPosTableBody.innerHTML = '';
+            rebarPositions.forEach((pos, index) => {
+                const row = rebarPosTableBody.insertRow();
+                row.insertCell().textContent = `Layer ${index + 1} (d)`;
+                row.insertCell().textContent = pos.toFixed(2);
+                row.insertCell().textContent = 'mm';
+            });
+
+            updateOutput('N_total' + directionSuffix, N_total_bars);
+            updateOutput('Ast' + directionSuffix, Ast_total);
+            const As_layer = Ast_total / nr;
+
+            // Core Calculation Function for Pn and Mn given 'c'
+            const calculatePnMn = (c, depth, width, fc_eff, fy, es, beta1, rebarLayers, As_layer) => {
+                if (c <= 0) return { Pn: NaN, Mn: NaN, phi: NaN, epsilon_t: NaN };
+
+                const a = beta1 * c;
+                let F_c = 0;
+                let M_c = 0;
                 
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
+                if (a > 0) {
+                    F_c = 0.85 * fc_eff * Math.min(a, depth) * width;
+                    M_c = F_c * (depth / 2 - Math.min(a, depth) / 2);
                 }
-            });
+
+                let F_s_total = 0;
+                let M_s_total = 0;
+                let epsilon_t_extreme = -Infinity;
+
+                rebarLayers.forEach((d_i, index) => {
+                    let strain_steel_i = epsilon_cu * (c - d_i) / c;
+                    let stress_steel_i;
+                    
+                    if (Math.abs(strain_steel_i) >= epsilon_y) {
+                        stress_steel_i = (strain_steel_i > 0 ? 1 : -1) * fy;
+                    } else {
+                        stress_steel_i = strain_steel_i * es;
+                    }
+
+                    let F_si;
+                    if (d_i <= a && stress_steel_i > 0) {
+                        F_si = As_layer * (stress_steel_i - 0.85 * fc_eff);
+                    } else {
+                        F_si = As_layer * stress_steel_i;
+                    }
+
+                    F_s_total += F_si;
+                    M_s_total += F_si * (depth / 2 - d_i);
+
+                    if (d_i === rebarLayers[rebarLayers.length - 1]) {
+                        epsilon_t_extreme = strain_steel_i;
+                    }
+                });
+
+                const Pn = (F_c + F_s_total) / 1000;
+                const Mn = (M_c + M_s_total) / 1000000;
+                const phi_factor = calculatePhi(epsilon_t_extreme, fy, es);
+
+                return { Pn, Mn, phi: phi_factor, epsilon_t: epsilon_t_extreme };
+            };
+
+            // --- Point 1: Pure Compression ---
+            const Pn1_nominal = (0.85 * fc_effective * (Ag - Ast_total) + fy * Ast_total) / 1000;
+            const Pn1 = 0.80 * Pn1_nominal;
+            const Mn1 = 0;
+            const phi_factor1 = 0.65;
+            const phiPn1 = phi_factor1 * Pn1;
+            const phiMn1 = phi_factor1 * Mn1;
+
+            updateOutput('Pn1' + directionSuffix, Pn1);
+            updateOutput('phiPn1' + directionSuffix, phiPn1);
+            Pn_Mn_points.push({x: Mn1, y: Pn1});
+            phiPn_phiMn_points.push({x: phiMn1, y: phiPn1});
+
+            // --- Point 2: Extreme Bottom Fiber of Concrete (c = depth) ---
+            const c2 = depth;
+            const { Pn: Pn2, Mn: Mn2, phi: phi2 } = calculatePnMn(c2, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+            updateOutput('c2' + directionSuffix, c2);
+            updateOutput('a2' + directionSuffix, beta1 * c2);
+            updateOutput('Pn2' + directionSuffix, Pn2);
+            updateOutput('Mn2' + directionSuffix, Mn2);
+            updateOutput('phi2' + directionSuffix, phi2);
+            updateOutput('phiPn2' + directionSuffix, phi2 * Pn2);
+            updateOutput('phiMn2' + directionSuffix, phi2 * Mn2);
+            Pn_Mn_points.push({x: Mn2, y: Pn2});
+            phiPn_phiMn_points.push({x: phi2 * Mn2, y: phi2 * Pn2});
+
+            // --- Point 3: Extreme Bottom Reinforcement (c = d_last) ---
+            const d_last = rebarPositions[rebarPositions.length - 1];
+            const c3 = d_last;
+            const { Pn: Pn3, Mn: Mn3, phi: phi3 } = calculatePnMn(c3, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+            updateOutput('c3' + directionSuffix, c3);
+            updateOutput('a3' + directionSuffix, beta1 * c3);
+            updateOutput('Pn3' + directionSuffix, Pn3);
+            updateOutput('Mn3' + directionSuffix, Mn3);
+            updateOutput('phi3' + directionSuffix, phi3);
+            updateOutput('phiPn3' + directionSuffix, phi3 * Pn3);
+            updateOutput('phiMn3' + directionSuffix, phi3 * Mn3);
+            Pn_Mn_points.push({x: Mn3, y: Pn3});
+            phiPn_phiMn_points.push({x: phi3 * Mn3, y: phi3 * Pn3});
+
+            // --- Point 4: Balanced Condition (strain at extreme tension reinforcement = fy/Es) ---
+            const d_extreme_tension = rebarPositions[rebarPositions.length - 1];
+            const c4 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_y);
+            const { Pn: Pn4, Mn: Mn4, phi: phi4 } = calculatePnMn(c4, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+            updateOutput('c4' + directionSuffix, c4);
+            updateOutput('a4' + directionSuffix, beta1 * c4);
+            updateOutput('Pn4' + directionSuffix, Pn4);
+            updateOutput('Mn4' + directionSuffix, Mn4);
+            updateOutput('phi4' + directionSuffix, phi4);
+            updateOutput('phiPn4' + directionSuffix, phi4 * Pn4);
+            updateOutput('phiMn4' + directionSuffix, phi4 * Mn4);
+            Pn_Mn_points.push({x: Mn4, y: Pn4});
+            phiPn_phiMn_points.push({x: phi4 * Mn4, y: phi4 * Pn4});
+
+            // --- Point 5: Tension Controlled (εt ≥ 0.005) ---
+            const epsilon_t5_desired = 0.005;
+            const c5 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_t5_desired);
+            const { Pn: Pn5, Mn: Mn5, phi: phi5 } = calculatePnMn(c5, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+            updateOutput('c5' + directionSuffix, c5);
+            updateOutput('a5' + directionSuffix, beta1 * c5);
+            updateOutput('Pn5' + directionSuffix, Pn5);
+            updateOutput('Mn5' + directionSuffix, Mn5);
+            updateOutput('phi5' + directionSuffix, phi5);
+            updateOutput('phiPn5' + directionSuffix, phi5 * Pn5);
+            updateOutput('phiMn5' + directionSuffix, phi5 * Mn5);
+            Pn_Mn_points.push({x: Mn5, y: Pn5});
+            phiPn_phiMn_points.push({x: phi5 * Mn5, y: phi5 * Pn5});
+
+            // --- Point 6: Zero Total Strength (Pn = 0) ---
+            let c_target_for_Pn0 = 0.0001; // Default to a very small value
+            let lower_c_iter = 0.0001;
+            let upper_c_iter = depth * 10;
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would typically send the form data to a server
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
-
-	//=======================================CALCULATIONS===============================================
-
-// Global variables to store chart instances so we can destroy them before recreating
-let chartX, chartY;
-
-// Helper function to update output fields
-function updateOutput(id, value, fixed = 2) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.textContent = typeof value === 'number' ? value.toFixed(fixed) : value;
-    }
-}
-
-// Function to get rebar area
-function getRebarArea(diameter) {
-    return Math.PI * (diameter / 2) ** 2;
-}
-
-// Function to calculate Beta1 for ACI 318M-08
-function calculateBeta1(fc_prime) {
-    // ACI 318M-08 10.2.7.3 - MPa units
-    if (fc_prime <= 28) {
-        return 0.85;
-    } else if (fc_prime >= 55) {
-        return 0.65;
-    } else {
-        // Linear interpolation for 28 < f'c < 55 MPa
-        return 0.85 - 0.05 * ((fc_prime - 28) / 7);
-    }
-}
-
-// Function to calculate Phi factor for ACI 318M-08
-function calculatePhi(epsilon_t, fy, es) {
-    const epsilon_y = fy / es; // Yield strain of steel
-
-    // ACI 318M-08 Table 9.3.2.1
-    // Note: epsilon_t is net tensile strain. Compression strain is negative.
-    // For calculating phi, we usually consider the *absolute value* of tensile strain or its positive counterpart.
-    // However, the ACI equations for phi are written with epsilon_t as a positive value for tension.
-    const abs_epsilon_t = Math.abs(epsilon_t); // Use absolute value for comparison with ACI limits
-
-    if (abs_epsilon_t <= epsilon_y) {
-        // Compression-controlled (or close to it)
-        return 0.65; // For tied columns, ACI 9.3.2.1(a)
-    } else if (abs_epsilon_t >= 0.005) {
-        // Tension-controlled
-        return 0.90; // ACI 9.3.2.1(c)
-    } else {
-        // Transition region (epsilon_y < abs_epsilon_t < 0.005)
-        // Linear interpolation between 0.65 and 0.90
-        return 0.65 + (abs_epsilon_t - epsilon_y) * (0.90 - 0.65) / (0.005 - epsilon_y);
-    }
-}
-
-function calculateColumn() {
-    // Get input values
-    const fc_prime = parseFloat(document.getElementById('fc_prime').value);
-    const fy = parseFloat(document.getElementById('fy').value);
-    const es = parseFloat(document.getElementById('es').value);
-    const b = parseFloat(document.getElementById('columnWidth').value); // Column dimension 'b'
-    const h = parseFloat(document.getElementById('columnHeight').value); // Column dimension 'h'
-    const d_prime_input = parseFloat(document.getElementById('coverToCentroid').value); // Cover to centroid of bar
-    const nr = parseInt(document.getElementById('numRows').value); // Number of rows along the depth (h) for bending about X-axis, or along b for bending about Y-axis
-    const rebarDiameter = parseFloat(document.getElementById('rebarDiameter').value);
-
-    // Validate inputs
-    if (isNaN(fc_prime) || isNaN(fy) || isNaN(es) || isNaN(b) || isNaN(h) || isNaN(d_prime_input) || isNaN(nr) || isNaN(rebarDiameter)) {
-        alert("Please enter valid numerical values for all inputs.");
-        return;
-    }
-    if (nr < 2) {
-        alert("Number of reinforcement rows must be at least 2 for a valid column section.");
-        return;
-    }
-    if (d_prime_input >= depth / 2) {
-        alert("Cover to centroid of bar (d') must be less than half the column depth. Please check input values.");
-        return;
-    }
-
-
-    const Ag = b * h;
-
-    const N_total_bars = 2 * nr + (nr - 2) * 2;
-    const As_single_bar = getRebarArea(rebarDiameter);
-    const Ast_total = N_total_bars * As_single_bar;
-
-    // Data for plotting
-    let Pn_Mn_points_X = [];
-    let Pn_Mn_points_Y = [];
-    let phiPn_phiMn_points_X = [];
-    let phiPn_phiMn_points_Y = [];
-
-    // Calculate in X-direction (Bending about X-axis, column depth = h, width = b)
-    calculateDirection(h, b, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'X', Pn_Mn_points_X, phiPn_phiMn_points_X);
-
-    // Calculate in Y-direction (Bending about Y-axis, column depth = b, width = h)
-    calculateDirection(b, h, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, 'Y', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
-
-    // Plot the interaction diagrams
-    createInteractionChart('interactionChartX', 'X-Direction Interaction Diagram', Pn_Mn_points_X, phiPn_phiMn_points_X);
-    createInteractionChart('interactionChartY', 'Y-Direction Interaction Diagram', Pn_Mn_points_Y, phiPn_phiMn_points_Y);
-}
-
-function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, Ast_total, N_total_bars, rebarDiameter, directionSuffix, Pn_Mn_points, phiPn_phiMn_points) {
-    // ACI 318M-08 related constants
-    const epsilon_cu = 0.003; // Maximum usable strain at extreme concrete compression fiber
-    const epsilon_y = fy / es; // Yield strain of steel
-
-    const fc_effective = fc_prime;
-    const beta1 = calculateBeta1(fc_prime);
-    const Ag = depth * width;
-
-    updateOutput('fc_eff' + directionSuffix, fc_effective);
-    updateOutput('beta1' + directionSuffix, beta1);
-
-    const rebarPositions = []; // Distances from the extreme compression fiber
-    const d_first_layer = d_prime_input; // Distance to centroid of first layer
-    const d_last_layer = depth - d_prime_input; // Distance to centroid of last layer
-
-    // Calculate spacing between layers for equal distribution
-    let layer_spacing = 0;
-    if (nr > 1) {
-        layer_spacing = (d_last_layer - d_first_layer) / (nr - 1);
-    }
-
-    for (let i = 0; i < nr; i++) {
-        rebarPositions.push(d_first_layer + i * layer_spacing);
-    }
-
-    // Display rebar positions
-    const rebarPosTableBody = document.getElementById('rebarPositions' + directionSuffix);
-    rebarPosTableBody.innerHTML = ''; // Clear previous results
-    rebarPositions.forEach((pos, index) => {
-        const row = rebarPosTableBody.insertRow();
-        row.insertCell().textContent = `Layer ${index + 1} (d)`;
-        row.insertCell().textContent = pos.toFixed(2);
-        row.insertCell().textContent = 'mm';
-    });
-
-    updateOutput('N_total' + directionSuffix, N_total_bars);
-    updateOutput('Ast' + directionSuffix, Ast_total);
-
-    // Assumption: Total steel area distributed equally among 'nr' layers for calculation of forces
-    const As_layer = Ast_total / nr;
-
-    // --- Core Calculation Function for Pn and Mn given 'c' ---
-    const calculatePnMn = (c, depth, width, fc_eff, fy, es, beta1, rebarLayers, As_layer) => {
-        if (c <= 0) return { Pn: NaN, Mn: NaN, phi: NaN, epsilon_t: NaN };
-
-        const a = beta1 * c; // Depth of equivalent rectangular stress block
-
-        // Concrete contribution
-        let F_c = 0;
-        let M_c = 0;
-        if (a > 0) { // Concrete only contributes if 'a' is positive
-             F_c = 0.85 * fc_eff * Math.min(a, depth) * width; // Force in concrete (N) - a cannot exceed depth
-             M_c = F_c * (depth / 2 - Math.min(a, depth) / 2); // Moment from concrete (N-mm)
-        }
-
-
-        let F_s_total = 0;
-        let M_s_total = 0;
-        let epsilon_t_extreme = -Infinity; // To track epsilon_t for phi factor (most tensile)
-
-        rebarLayers.forEach((d_i, index) => {
-            let strain_steel_i = epsilon_cu * (c - d_i) / c;
-
-            let stress_steel_i;
-            if (Math.abs(strain_steel_i) >= epsilon_y) {
-                stress_steel_i = (strain_steel_i > 0 ? 1 : -1) * fy; // Yielded
-            } else {
-                stress_steel_i = strain_steel_i * es; // Elastic
-            }
-
-            // ACI 318M-08 section 10.2.4: Stress in steel bars in compression block.
-            // When concrete is in compression, steel in compression block should be reduced by 0.85f'c
-            let F_si;
-            if (d_i <= a && stress_steel_i > 0) { // Steel layer is within the compression block and in compression
-                F_si = As_layer * (stress_steel_i - 0.85 * fc_eff); // Force in steel layer i (N)
-            } else {
-                F_si = As_layer * stress_steel_i; // Force in steel layer i (N)
-            }
-
-            F_s_total += F_si;
-            M_s_total += F_si * (depth / 2 - d_i); // Moment from steel layer i (N-mm)
-
-            // Update extreme tension strain (largest positive strain or smallest negative strain)
-            if (d_i === rebarLayers[rebarLayers.length - 1]) { // This is the extreme tension layer
-                 epsilon_t_extreme = strain_steel_i;
-            }
-        });
-
-        const Pn = (F_c + F_s_total) / 1000; // kN
-        const Mn = (M_c + M_s_total) / 1000000; // kN-m
-
-        const phi_factor = calculatePhi(epsilon_t_extreme, fy, es);
-
-        return { Pn, Mn, phi: phi_factor, epsilon_t: epsilon_t_extreme };
-    };
-
-
-    // --- Point 1: Pure Compression (c -> infinity, effectively a = depth) ---
-    // ACI 318M-08 Eq. 10-1 for tied columns
-    // Pu,max = 0.80 * phi * [0.85 * f'c * (Ag - Ast) + fy * Ast]
-    // Pn,max = [0.85 * f'c * (Ag - Ast) + fy * Ast]
-    const Pn1_nominal = (0.85 * fc_effective * (Ag - Ast_total) + fy * Ast_total) / 1000; // kN
-    const Pn1 = 0.80 * Pn1_nominal; // ACI 10.3.5.2 for tied columns
-    const Mn1 = 0; // Pure axial compression
-    const phi_factor1 = 0.65; // Phi for pure compression (tied column)
-    const phiPn1 = phi_factor1 * Pn1;
-    const phiMn1 = phi_factor1 * Mn1;
-
-    updateOutput('Pn1' + directionSuffix, Pn1);
-    updateOutput('phiPn1' + directionSuffix, phiPn1);
-    Pn_Mn_points.push({x: Mn1, y: Pn1});
-    phiPn_phiMn_points.push({x: phiMn1, y: phiPn1});
-
-
-    // --- Point 2: Extreme Bottom Fiber of Concrete (c = depth) ---
-    const c2 = depth;
-    const { Pn: Pn2, Mn: Mn2, phi: phi2, epsilon_t: epsilon_t2 } = calculatePnMn(c2, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-    updateOutput('c2' + directionSuffix, c2);
-    updateOutput('a2' + directionSuffix, beta1 * c2);
-    updateOutput('Pn2' + directionSuffix, Pn2);
-    updateOutput('Mn2' + directionSuffix, Mn2);
-    updateOutput('phi2' + directionSuffix, phi2);
-    updateOutput('phiPn2' + directionSuffix, phi2 * Pn2);
-    updateOutput('phiMn2' + directionSuffix, phi2 * Mn2);
-    Pn_Mn_points.push({x: Mn2, y: Pn2});
-    phiPn_phiMn_points.push({x: phi2 * Mn2, y: phi2 * Pn2});
-
-
-    // --- Point 3: Extreme Bottom Reinforcement (c = d_last) ---
-    const d_last = rebarPositions[rebarPositions.length - 1];
-    const c3 = d_last; // Neutral axis at extreme tension steel
-    const { Pn: Pn3, Mn: Mn3, phi: phi3, epsilon_t: epsilon_t3 } = calculatePnMn(c3, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-    updateOutput('c3' + directionSuffix, c3);
-    updateOutput('a3' + directionSuffix, beta1 * c3);
-    updateOutput('Pn3' + directionSuffix, Pn3);
-    updateOutput('Mn3' + directionSuffix, Mn3);
-    updateOutput('phi3' + directionSuffix, phi3);
-    updateOutput('phiPn3' + directionSuffix, phi3 * Pn3);
-    updateOutput('phiMn3' + directionSuffix, phi3 * Mn3);
-    Pn_Mn_points.push({x: Mn3, y: Pn3});
-    phiPn_phiMn_points.push({x: phi3 * Mn3, y: phi3 * Pn3});
-
-
-    // --- Point 4: Balanced Condition (strain at extreme tension reinforcement = fy/Es) ---
-    const d_extreme_tension = rebarPositions[rebarPositions.length - 1];
-    const c4 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_y);
-    const { Pn: Pn4, Mn: Mn4, phi: phi4, epsilon_t: epsilon_t4 } = calculatePnMn(c4, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-    updateOutput('c4' + directionSuffix, c4);
-    updateOutput('a4' + directionSuffix, beta1 * c4);
-    updateOutput('Pn4' + directionSuffix, Pn4);
-    updateOutput('Mn4' + directionSuffix, Mn4);
-    updateOutput('phi4' + directionSuffix, phi4);
-    updateOutput('phiPn4' + directionSuffix, phi4 * Pn4);
-    updateOutput('phiMn4' + directionSuffix, phi4 * Mn4);
-    Pn_Mn_points.push({x: Mn4, y: Pn4});
-    phiPn_phiMn_points.push({x: phi4 * Mn4, y: phi4 * Pn4});
-
-
-    // --- Point 5: Tension Controlled ($\epsilon_t \ge 0.005$) ---
-    const epsilon_t5_desired = 0.005; // ACI tension-controlled limit
-    const c5 = epsilon_cu * d_extreme_tension / (epsilon_cu + epsilon_t5_desired);
-    const { Pn: Pn5, Mn: Mn5, phi: phi5, epsilon_t: epsilon_t5_actual } = calculatePnMn(c5, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-    updateOutput('c5' + directionSuffix, c5);
-    updateOutput('a5' + directionSuffix, beta1 * c5);
-    updateOutput('Pn5' + directionSuffix, Pn5);
-    updateOutput('Mn5' + directionSuffix, Mn5);
-    updateOutput('phi5' + directionSuffix, phi5);
-    updateOutput('phiPn5' + directionSuffix, phi5 * Pn5);
-    updateOutput('phiMn5' + directionSuffix, phi5 * Mn5);
-    Pn_Mn_points.push({x: Mn5, y: Pn5});
-    phiPn_phiMn_points.push({x: phi5 * Mn5, y: phi5 * Pn5});
-
-
-    // --- Point 6: Zero Total Strength (Pn = 0) ---
-    // This requires a numerical method (like Bisection or Newton-Raphson)
-    // to find 'c' where Pn = 0.
-    let c_target_for_Pn0 = NaN;
-    // For Pn = 0, 'c' is typically small or even negative (for pure tension).
-    // Let's set a reasonable search range for 'c'.
-    // `d_last` is a good lower bound as NA must be near or below last tension bar for zero Pn.
-    // Upper bound can be `d_last * 1.5` or similar.
-    let lower_c = 0.01; // c must be positive for strain calculations
-    let upper_c = d_last; // Starting range from small positive to d_last
-
-    // If Pn is positive at lower_c, it means the entire range is in compression or positive.
-    // If Pn is negative at upper_c, it means the entire range is in tension or negative.
-    // We need to find 'c' where Pn crosses zero.
-
-    // Let's iterate over a wider range and ensure we capture the zero crossing.
-    // We need to find a 'c' where Pn switches sign.
-    // If Pn(lower_c) > 0 and Pn(upper_c) < 0.
-    // Re-evaluating search range for Pn=0 point. It might be in tension-controlled zone.
-    // We want Pn = 0. This might involve c < d_last.
-    // A reasonable range for c for Pn=0 would be between a very small positive number and d_last
-    // or even a slightly negative c for pure tension (though ACI strain compatibility usually uses c>0).
-    // Let's search from a point where the column is clearly in tension.
-    // A very small c or even effectively negative c in a P-M diagram can represent pure tension.
-    // However, the `epsilon_cu * (c - d_i) / c` formula breaks down for c=0 or c negative.
-    // For Pn=0, if all steel is in tension, and concrete is not contributing,
-    // Pn would be sum(As*fs).
-    // The previous bisection method finds a c where Pn is zero. It may mean `c` is very small.
-
-    // Let's adjust the bisection method to be more robust for Pn=0,
-    // which can be in a deep tension region where 'c' is very small or theoretically negative.
-    // For practical interaction diagrams, Pn=0 usually means the section is entirely in tension.
-    // We need to find 'c' where sum of forces is 0.
-
-    // To find Pn = 0, we need to search for 'c'. A reasonable upper bound for c for Pn=0
-    // is where the outermost compression bar is at its yield strain in tension.
-    // A robust way would be to start from a very small c and check Pn, then increase.
-    // Or, start from a slightly negative 'c' (for pure tension, meaning NA is outside the section).
-    // For the purpose of plotting, if Pn goes to zero, the moment is the critical value.
-
-    // Let's use an iterative approach from a very small positive c.
-    // Pure tension point is typically handled where Pn becomes 0.
-    // Consider the nominal strength calculation `calculatePnMn(c, ...)`
-    // We need to find c such that `Pn = 0`.
-    let lower_c_iter = 0.01; // Start from a small positive c to avoid division by zero
-    let upper_c_iter = depth * 2; // Arbitrary high value for c
-    let Pn_at_lower = calculatePnMn(lower_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
-    let Pn_at_upper = calculatePnMn(upper_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
-
-    // Check if the range brackets Pn = 0
-    if (Math.sign(Pn_at_lower) === Math.sign(Pn_at_upper)) {
-        // If both are positive or both are negative, adjust range.
-        // For Pn=0, it's typically a tension failure (Pn < 0 or close to 0)
-        // If Pn_at_lower (very small c) is positive, it means something is wrong or the Pn=0 point is at c=0 or negative.
-        // Let's use a simpler approach: calculate Mn at Pn=0.
-        // The Mn at Pn=0 is the nominal flexural strength of the section.
-        // This usually happens when the column is bending as a beam.
-
-        // Re-calculate the iterative solver for Pn=0 to be more robust.
-        // We'll search for 'c' between a small positive value (e.g., 0.001) and `d_last`.
-        // If Pn is positive at `d_last`, then `c` for Pn=0 must be less than `d_last`.
-        // If Pn is negative at `d_last`, then `c` for Pn=0 must be greater than `d_last`.
-        // But for pure tension, c can be very small or even outside section.
-        // Let's define the search range for c more broadly to find the zero-crossing.
-        lower_c_iter = 0.0001; // A very small positive c
-        upper_c_iter = depth * 10; // A large c to ensure we span the range
-
-        // Find initial Pn values
-        let Pn_low = calculatePnMn(lower_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
-        let Pn_high = calculatePnMn(upper_c_iter, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer).Pn;
-
-        if (Pn_low > 0 && Pn_high > 0) { // All Pn values in the range are positive (compression)
-            // This case might happen if the column is heavily reinforced and always in compression.
-            // For practical purposes, if Pn doesn't go negative, pure tension is not achieved in a simple iterative search.
-            c_target_for_Pn0 = 0.0001; // Set to a minimal C
-        } else if (Pn_low < 0 && Pn_high < 0) { // All Pn values are negative (tension)
-            c_target_for_Pn0 = upper_c_iter; // Set to a maximal C
-        } else {
-            // Standard bisection search
+            // Binary search for c where Pn = 0
             for (let i = 0; i < maxIterations; i++) {
                 const mid_c = (lower_c_iter + upper_c_iter) / 2;
                 const { Pn: current_Pn_mid } = calculatePnMn(mid_c, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
@@ -1576,129 +1393,109 @@ function calculateDirection(depth, width, fc_prime, fy, es, d_prime_input, nr, A
                     c_target_for_Pn0 = mid_c;
                     break;
                 } else if (current_Pn_mid > 0) {
-                    lower_c_iter = mid_c; // We need smaller c to get closer to Pn=0 or negative Pn
-                } else { // current_Pn_mid < 0
-                    upper_c_iter = mid_c; // We need larger c to get closer to Pn=0 or positive Pn
+                    lower_c_iter = mid_c;
+                } else {
+                    upper_c_iter = mid_c;
                 }
             }
+
+            const { Pn: Pn6, Mn: Mn6, phi: phi6 } = calculatePnMn(c_target_for_Pn0, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+            updateOutput('c6' + directionSuffix, c_target_for_Pn0);
+            updateOutput('a6' + directionSuffix, beta1 * c_target_for_Pn0);
+            updateOutput('Pn6' + directionSuffix, Pn6);
+            updateOutput('Mn6' + directionSuffix, Mn6);
+            updateOutput('phi6' + directionSuffix, phi6);
+            updateOutput('phiPn6' + directionSuffix, phi6 * Pn6);
+            updateOutput('phiMn6' + directionSuffix, phi6 * Mn6);
+            Pn_Mn_points.push({x: Mn6, y: Pn6});
+            phiPn_phiMn_points.push({x: phi6 * Mn6, y: phi6 * Pn6});
+
+            // Ensure points are sorted by Mn for correct plotting
+            Pn_Mn_points.sort((a, b) => a.x - b.x);
+            phiPn_phiMn_points.sort((a, b) => a.x - b.x);
         }
-    }
 
+        function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
 
-    const { Pn: Pn6, Mn: Mn6, phi: phi6, epsilon_t: epsilon_t6 } = calculatePnMn(c_target_for_Pn0, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-    updateOutput('c6' + directionSuffix, c_target_for_Pn0);
-    updateOutput('a6' + directionSuffix, beta1 * c_target_for_Pn0);
-    updateOutput('Pn6' + directionSuffix, Pn6); // Should be very close to 0
-    updateOutput('Mn6' + directionSuffix, Mn6);
-    updateOutput('phi6' + directionSuffix, phi6);
-    updateOutput('phiPn6' + directionSuffix, phi6 * Pn6);
-    updateOutput('phiMn6' + directionSuffix, phi6 * Mn6);
-    Pn_Mn_points.push({x: Mn6, y: Pn6});
-    phiPn_phiMn_points.push({x: phi6 * Mn6, y: phi6 * Pn6});
+            // Destroy existing chart if it exists
+            if (canvasId === 'interactionChartX' && chartX) {
+                chartX.destroy();
+            } else if (canvasId === 'interactionChartY' && chartY) {
+                chartY.destroy();
+            }
 
-    // Ensure points are sorted by Mn for correct plotting (Chart.js scatter plot expects this for line drawing)
-    Pn_Mn_points.sort((a, b) => a.x - b.x);
-    phiPn_phiMn_points.sort((a, b) => a.x - b.x);
-}
-
-
-function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
-    const ctx = document.getElementById(canvasId).getContext('2d');
-
-    // Destroy existing chart if it exists
-    if (canvasId === 'interactionChartX' && chartX) {
-        chartX.destroy();
-    } else if (canvasId === 'interactionChartY' && chartY) {
-        chartY.destroy();
-    }
-
-    const newChart = new Chart(ctx, {
-        type: 'scatter', // Use 'scatter' type to plot points (x, y)
-        data: {
-            datasets: [{
-                label: 'Nominal Capacity (Pn vs Mn)',
-                data: PnMnData,
-                borderColor: 'blue',
-                backgroundColor: 'rgba(0, 0, 255, 0.1)',
-                borderWidth: 2,
-                pointRadius: 5,
-                pointBackgroundColor: 'blue',
-                showLine: true, // Connect the points with a line
-                fill: false
-            },
-            {
-                label: 'Design Capacity (phi*Pn vs phi*Mn)',
-                data: phiPnPhiMnData,
-                borderColor: 'red',
-                backgroundColor: 'rgba(255, 0, 0, 0.1)',
-                borderWidth: 2,
-                pointRadius: 5,
-                pointBackgroundColor: 'red',
-                showLine: true, // Connect the points with a line
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                title: {
-                    display: true,
-                    text: title,
-                    font: {
-                        size: 18
-                    }
+            const newChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Nominal Capacity (Pn vs Mn)',
+                            data: PnMnData,
+                            borderColor: 'blue',
+                            backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 5,
+                            pointBackgroundColor: 'blue',
+                            showLine: true,
+                            fill: false
+                        },
+                        {
+                            label: 'Design Capacity (φPn vs φMn)',
+                            data: phiPnPhiMnData,
+                            borderColor: 'red',
+                            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 5,
+                            pointBackgroundColor: 'red',
+                            showLine: true,
+                            fill: false
+                        }
+                    ]
                 },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: title,
+                            font: { size: 18 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: (Mn: ${context.parsed.x.toFixed(2)} kN-m, Pn: ${context.parsed.y.toFixed(2)} kN)`;
+                                }
                             }
-                            if (context.parsed.y !== null) {
-                                label += `(Mn: ${context.parsed.x.toFixed(2)} kN-m, Pn: ${context.parsed.y.toFixed(2)} kN)`;
-                            }
-                            return label;
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: { display: true, text: 'Moment (Mn or φMn) [kN-m]' },
+                            grid: { drawOnChartArea: true }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Axial Load (Pn or φPn) [kN]' },
+                            reverse: false,
+                            grid: { drawOnChartArea: true }
                         }
                     }
                 }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    position: 'bottom',
-                    title: {
-                        display: true,
-                        text: 'Moment (Mn or φMn) [kN-m]'
-                    },
-                    grid: {
-                        drawOnChartArea: true
-                    }
-                },
-                y: {
-                    type: 'linear',
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Axial Load (Pn or φPn) [kN]'
-                    },
-                    reverse: false, // Pn typically increases upwards
-                    grid: {
-                        drawOnChartArea: true
-                    }
-                }
+            });
+
+            if (canvasId === 'interactionChartX') {
+                chartX = newChart;
+            } else if (canvasId === 'interactionChartY') {
+                chartY = newChart;
             }
         }
-    });
 
-    if (canvasId === 'interactionChartX') {
-        chartX = newChart;
-    } else if (canvasId === 'interactionChartY') {
-        chartY = newChart;
-    }
-}
-
+       
 
 
 	    
