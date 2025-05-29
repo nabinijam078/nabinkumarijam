@@ -885,7 +885,8 @@
 
     <!-- Main Content -->
     <div class="container">
-        <h3>COLUMN DESIGN (ACI 318M-08)</h3>
+	    <br>
+        <h3>INTERACTION DIAGRAM OF COLUMN (ACI 318M-08)</h3>
 
         <div class="input-section">
             <u>INPUT PARAMETERS</u>
@@ -921,9 +922,10 @@
                 <label for="rebarDiameter">Rebar Diameter (mm):</label>
                 <input type="number" id="rebarDiameter" value="25">
             </div>
+		<br>
             <button onclick="calculateColumn()" class="btn">COLUMN DESIGN</button>
         </div>
-
+	<br>
         <div class="output-section">
             <h3>1. Calculated Results (Bending about X-axis, i.e., column depth = h)</h3>
             <table class="load-table" id="resultsTableX">
