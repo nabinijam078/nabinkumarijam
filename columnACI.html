@@ -893,11 +893,11 @@
             <u>INPUT PARAMETERS</u>
             <div class="input-group">
                 <label for="fc_prime">Concrete Compressive Strength (\(f'_c\), MPa):</label>
-                <input type="number" id="fc_prime" value="28">
+                <input type="number" id="fc_prime" value="25">
             </div>
             <div class="input-group">
                 <label for="fy">Yield Strength of Steel (\(f_y\), MPa):</label>
-                <input type="number" id="fy" value="420">
+                <input type="number" id="fy" value="500">
             </div>
             <div class="input-group">
                 <label for="es">Modulus of Elasticity of Steel (\(E_s\), MPa):</label>
@@ -905,23 +905,23 @@
             </div>
             <div class="input-group">
                 <label for="columnWidth">Column Dimension (\(b\) in mm):</label>
-                <input type="number" id="columnWidth" value="400">
+                <input type="number" id="columnWidth" value="450">
             </div>
             <div class="input-group">
                 <label for="columnHeight">Column Dimension (\(h\)' in mm):</label>
-                <input type="number" id="columnHeight" value="600">
+                <input type="number" id="columnHeight" value="500">
             </div>
             <div class="input-group">
                 <label for="coverToCentroid">Clear Cover to Centroid of Bar (\(d'\), mm):</label>
-                <input type="number" id="coverToCentroid" value="60">
+                <input type="number" id="coverToCentroid" value="33">
             </div>
             <div class="input-group">
                 <label for="numRows">Number of Reinforcement Rows (\(n_r\), along \(h\) dimension):</label>
-                <input type="number" id="numRows" value="3">
+                <input type="number" id="numRows" value="4">
             </div>
             <div class="input-group">
                 <label for="rebarDiameter">Rebar Diameter (mm):</label>
-                <input type="number" id="rebarDiameter" value="25">
+                <input type="number" id="rebarDiameter" value="16">
             </div>
 		<br>
             <button onclick="calculateColumn()" class="btn">CLICK</button>
@@ -1274,7 +1274,7 @@
                 let M_c = 0;
                 
                 if (a > 0) {
-                    F_c = 0.85 * fc_eff * Math.min(a, depth) * width;
+                    F_c = 0.8*0.85 * fc_eff * Math.min(a, depth) * width;
                     M_c = F_c * (depth / 2 - Math.min(a, depth) / 2);
                 }
 
@@ -1382,122 +1382,144 @@
             Pn_Mn_points.push({x: Mn5, y: Pn5});
             phiPn_phiMn_points.push({x: phi5 * Mn5, y: phi5 * Pn5});
 
-            // --- Point 6: Zero Total Strength (Pn = 0) ---
-            let c_target_for_Pn0 = 0.0001; // Default to a very small value
-            let lower_c_iter = 0.0001;
-            let upper_c_iter = depth * 10;
-            
-            // Binary search for c where Pn = 0
-            for (let i = 0; i < maxIterations; i++) {
-                const mid_c = (lower_c_iter + upper_c_iter) / 2;
-                const { Pn: current_Pn_mid } = calculatePnMn(mid_c, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+// --- Point 6: Find c where Pn = 0 (transition between compression and tension) ---
+let c6_lower = 0.0001; // Small positive value to avoid division by zero
+let c6_upper = depth * 10; // Large enough to cover all possibilities
+let c6 = depth / 2; // Initial guess
+let Pn6 = 0;
+let Mn6 = 0;
+let phi6 = 0.9; // Default to tension-controlled
 
-                if (Math.abs(current_Pn_mid) < tolerance) {
-                    c_target_for_Pn0 = mid_c;
-                    break;
-                } else if (current_Pn_mid > 0) {
-                    lower_c_iter = mid_c;
-                } else {
-                    upper_c_iter = mid_c;
-                }
-            }
+// Binary search to find c where Pn = 0
+for (let i = 0; i < maxIterations; i++) {
+    const result = calculatePnMn(c6, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
+    Pn6 = result.Pn;
+    
+    if (Math.abs(Pn6) < tolerance) {
+        // Found c where Pn ≈ 0
+        Mn6 = result.Mn;
+        phi6 = result.phi;
+        break;
+    } else if (Pn6 > 0) {
+        // Need to decrease c to reduce Pn
+        c6_upper = c6;
+        c6 = (c6_lower + c6) / 2;
+    } else {
+        // Need to increase c to increase Pn
+        c6_lower = c6;
+        c6 = (c6 + c6_upper) / 2;
+    }
+}
 
-            const { Pn: Pn6, Mn: Mn6, phi: phi6 } = calculatePnMn(c_target_for_Pn0, depth, width, fc_effective, fy, es, beta1, rebarPositions, As_layer);
-            updateOutput('c6' + directionSuffix, c_target_for_Pn0);
-            updateOutput('a6' + directionSuffix, beta1 * c_target_for_Pn0);
-            updateOutput('Pn6' + directionSuffix, Pn6);
-            updateOutput('Mn6' + directionSuffix, Mn6);
-            updateOutput('phi6' + directionSuffix, phi6);
-            updateOutput('phiPn6' + directionSuffix, phi6 * Pn6);
-            updateOutput('phiMn6' + directionSuffix, phi6 * Mn6);
-            Pn_Mn_points.push({x: Mn6, y: Pn6});
-            phiPn_phiMn_points.push({x: phi6 * Mn6, y: phi6 * Pn6});
+const a6 = beta1 * c6;
+const phiPn6 = phi6 * Pn6;
+const phiMn6 = phi6 * Mn6;
+
+updateOutput('c6' + directionSuffix, c6);
+updateOutput('a6' + directionSuffix, a6);
+updateOutput('Pn6' + directionSuffix, Pn6);
+updateOutput('Mn6' + directionSuffix, Mn6);
+updateOutput('phi6' + directionSuffix, phi6);
+updateOutput('phiPn6' + directionSuffix, phiPn6);
+updateOutput('phiMn6' + directionSuffix, phiMn6);
+Pn_Mn_points.push({x: Mn6, y: Pn6});
+phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
 
             // Ensure points are sorted by Mn for correct plotting
             Pn_Mn_points.sort((a, b) => a.x - b.x);
             phiPn_phiMn_points.sort((a, b) => a.x - b.x);
         }
 
-        function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
-            const ctx = document.getElementById(canvasId).getContext('2d');
+       function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
 
-            // Destroy existing chart if it exists
-            if (canvasId === 'interactionChartX' && chartX) {
-                chartX.destroy();
-            } else if (canvasId === 'interactionChartY' && chartY) {
-                chartY.destroy();
-            }
+    // Destroy existing chart if it exists
+    if (canvasId === 'interactionChartX' && chartX) {
+        chartX.destroy();
+    } else if (canvasId === 'interactionChartY' && chartY) {
+        chartY.destroy();
+    }
 
-            const newChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [
-                        {
-                            label: 'Nominal Capacity (Pn vs Mn)',
-                            data: PnMnData,
-                            borderColor: 'blue',
-                            backgroundColor: 'rgba(0, 0, 255, 0.1)',
-                            borderWidth: 2,
-                            pointRadius: 5,
-                            pointBackgroundColor: 'blue',
-                            showLine: true,
-                            fill: false
-                        },
-                        {
-                            label: 'Design Capacity (φPn vs φMn)',
-                            data: phiPnPhiMnData,
-                            borderColor: 'red',
-                            backgroundColor: 'rgba(255, 0, 0, 0.1)',
-                            borderWidth: 2,
-                            pointRadius: 5,
-                            pointBackgroundColor: 'red',
-                            showLine: true,
-                            fill: false
-                        }
-                    ]
+    // Sort points in order from Point 1 to Point 6 (pure compression to pure tension)
+    PnMnData.sort((a, b) => b.y - a.y); // Sort by Pn descending (from max compression to max tension)
+    phiPnPhiMnData.sort((a, b) => b.y - a.y); // Sort by φPn descending
+
+    const newChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                {
+                    label: 'Nominal Capacity (Pn vs Mn)',
+                    data: PnMnData,
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'blue',
+                    showLine: true,
+                    fill: false,
+                    tension: 0.1 // Smooth curve between points
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: title,
-                            font: { size: 18 }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.dataset.label}: (Mn: ${context.parsed.x.toFixed(2)} kN-m, Pn: ${context.parsed.y.toFixed(2)} kN)`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            type: 'linear',
-                            position: 'bottom',
-                            title: { display: true, text: 'Moment (Mn or φMn) [kN-m]' },
-                            grid: { drawOnChartArea: true }
-                        },
-                        y: {
-                            type: 'linear',
-                            position: 'left',
-                            title: { display: true, text: 'Axial Load (Pn or φPn) [kN]' },
-                            reverse: false,
-                            grid: { drawOnChartArea: true }
+                {
+                    label: 'Design Capacity (φPn vs φMn)',
+                    data: phiPnPhiMnData,
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255, 0, 0, 0.1)',
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'red',
+                    showLine: true,
+                    fill: false,
+                    tension: 0.1 // Smooth curve between points
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: title,
+                    font: { size: 18 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            // Label points in order from 1 to 6
+                            const pointLabels = ['1: Pure Compression', '2: c = h', '3: c = d_last', 
+                                               '4: Balanced', '5: Tension Controlled', '6: Pure Tension'];
+                            const pointIndex = PnMnData.length - context.dataIndex - 1;
+                            return `${pointLabels[pointIndex]} - ${context.dataset.label}: 
+                                   (Mn: ${context.parsed.x.toFixed(2)} kN-m, Pn: ${context.parsed.y.toFixed(2)} kN)`;
                         }
                     }
                 }
-            });
-
-            if (canvasId === 'interactionChartX') {
-                chartX = newChart;
-            } else if (canvasId === 'interactionChartY') {
-                chartY = newChart;
+            },
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom',
+                    title: { display: true, text: 'Moment (Mn or φMn) [kN-m]' },
+                    grid: { drawOnChartArea: true }
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    title: { display: true, text: 'Axial Load (Pn or φPn) [kN]' },
+                    reverse: false,
+                    grid: { drawOnChartArea: true }
+                }
             }
         }
+    });
 
+    if (canvasId === 'interactionChartX') {
+        chartX = newChart;
+    } else if (canvasId === 'interactionChartY') {
+        chartY = newChart;
+    }
+}
        
 
 
