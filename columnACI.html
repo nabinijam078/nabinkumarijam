@@ -1430,7 +1430,7 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
             phiPn_phiMn_points.sort((a, b) => a.x - b.x);
         }
 
-       function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
+function createInteractionChart(canvasId, title, PnMnData, phiPnPhiMnData) {
     const ctx = document.getElementById(canvasId).getContext('2d');
 
     // Destroy existing chart if it exists
@@ -1441,8 +1441,11 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
     }
 
     // Sort points in order from Point 1 to Point 6 (pure compression to pure tension)
-    PnMnData.sort((a, b) => b.y - a.y); // Sort by Pn descending (from max compression to max tension)
-    phiPnPhiMnData.sort((a, b) => b.y - a.y); // Sort by φPn descending
+    PnMnData.sort((a, b) => b.y - a.y);
+    phiPnPhiMnData.sort((a, b) => b.y - a.y);
+
+    // Find maximum Pn value for axis scaling
+    const maxPn = Math.max(...PnMnData.map(point => point.y), ...phiPnPhiMnData.map(point => point.y));
 
     const newChart = new Chart(ctx, {
         type: 'line',
@@ -1458,7 +1461,7 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
                     pointBackgroundColor: 'blue',
                     showLine: true,
                     fill: false,
-                    tension: 0.1 // Smooth curve between points
+                    tension: 0.1
                 },
                 {
                     label: 'Design Capacity (φPn vs φMn)',
@@ -1470,7 +1473,7 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
                     pointBackgroundColor: 'red',
                     showLine: true,
                     fill: false,
-                    tension: 0.1 // Smooth curve between points
+                    tension: 0.1
                 }
             ]
         },
@@ -1486,7 +1489,6 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            // Label points in order from 1 to 6
                             const pointLabels = ['1: Pure Compression', '2: c = h', '3: c = d_last', 
                                                '4: Balanced', '5: Tension Controlled', '6: Pure Tension'];
                             const pointIndex = PnMnData.length - context.dataIndex - 1;
@@ -1501,14 +1503,16 @@ phiPn_phiMn_points.push({x: phiMn6, y: phiPn6});
                     type: 'linear',
                     position: 'bottom',
                     title: { display: true, text: 'Moment (Mn or φMn) [kN-m]' },
-                    grid: { drawOnChartArea: true }
+                    grid: { drawOnChartArea: true },
+                    min: 0 // Start x-axis from zero
                 },
                 y: {
                     type: 'linear',
                     position: 'left',
                     title: { display: true, text: 'Axial Load (Pn or φPn) [kN]' },
-                    reverse: false,
-                    grid: { drawOnChartArea: true }
+                    grid: { drawOnChartArea: true },
+                    min: 0, // Set minimum y-axis value to 0
+                    max: maxPn * 1.1 // Add 10% padding above max value
                 }
             }
         }
