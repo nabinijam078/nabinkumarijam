@@ -826,6 +826,73 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Password Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .password-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .password-form input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .password-form button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .password-form button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -953,19 +1020,19 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="#"">4. FIXED CONNECTION AT A COLUMN BASE</a></td>
+				<td colspan="2"><a href="#" onclick="return showPasswordPrompt('fixedconnection')">4. FIXED CONNECTION AT A COLUMN BASE</a></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="#"">5. WELDED PLATE CONNECTION</a></td>
+				<td colspan="2"><a href="#" onclick="return showPasswordPrompt('weldedplate')">5. WELDED PLATE CONNECTION</a></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="#"">6. WELDED IN PLANE BRACKET CONNECTION</a></td>
+				<td colspan="2"><a href="#" onclick="return showPasswordPrompt('inplanebracket')">6. WELDED IN PLANE BRACKET CONNECTION</a></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="#"">7. WELDED OUT OF PLANE BRACKET CONNECTION</a></td>
+				<td colspan="2"><a href="#" onclick="return showPasswordPrompt('outplanebracket')">7. WELDED OUT OF PLANE BRACKET CONNECTION</a></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -978,22 +1045,22 @@
 				<td colspan="3"><a href="Intake.html">2. INTAKE</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">3. SETTLING BASIN</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('settlingbasin')">3. SETTLING BASIN</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"> <a href="#">4. PRESSURIZED CULVERT</a></td>
+				<td colspan="3"> <a href="#" onclick="return showPasswordPrompt('pressurizedculvert')">4. PRESSURIZED CULVERT</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">5. STILLING BASIN</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('stillingbasin')">5. STILLING BASIN</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">6. SIMPLE SURGE-SHAFT</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('surgeshaft')">6. SIMPLE SURGE-SHAFT</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">7. ENERGY CALCULATION</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('energycalc')">7. ENERGY CALCULATION</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">8. SCOUR DEPTH CALCULATION</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('scourdepth')">8. SCOUR DEPTH CALCULATION</a></td>
 			</tr>
 			<tr>
 				<td colspan="3"><center><b>5. SOIL MECHANICS & UNDERGROUND STRUCTURE </b></center></td>
@@ -1008,25 +1075,40 @@
 				<td colspan="3"><a href="soilmechanics.html">3. PHYSICAL PROPERTIES OF SOIL</a></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">4. STRUCTURAL DESIGN OF BURIED PIPE</a></td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('buriedpipe')">4. STRUCTURAL DESIGN OF BURIED PIPE</a></td>
 			</tr>
 			<tr>
 				<td colspan="3"><center><b>6. STABILITY ANALYSIS OF HYDRAULIC STRUCTURES</b></center></td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">1. BOX CULVERT</a>  </td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('boxculvert')">1. BOX CULVERT</a>  </td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">2. TRAPEZOIDAL CANAL</a>  </td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('trapezoidalcanal')">2. TRAPEZOIDAL CANAL</a>  </td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">3. SINGLE BAY SETTLING BASIN</a>  </td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('singlebaysettling')">3. SINGLE BAY SETTLING BASIN</a>  </td>
 			</tr>
 			<tr>
-				<td colspan="3"><a href="#">4. TWO BAYS SETTLING BASIN</a>  </td>
+				<td colspan="3"><a href="#" onclick="return showPasswordPrompt('twobaysettling')">4. TWO BAYS SETTLING BASIN</a>  </td>
 			</tr>
 		</table>
 	</div>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Password Required</h2>
+            <p>Please enter the password to access this content:</p>
+            <form class="password-form" onsubmit="return checkPassword(event)">
+                <input type="hidden" id="contentId">
+                <input type="password" id="passwordInput" placeholder="Enter password" required>
+                <button type="submit">Submit</button>
+                <div id="errorMessage" class="error-message">Incorrect password. Please try again.</div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1082,8 +1164,67 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Time and Date -->
+    <!-- JavaScript -->
     <script>
+        // Password protection system
+        const passwordMap = {
+            'settlingbasin': 'basin123',
+            'pressurizedculvert': 'culvert456',
+            'stillingbasin': 'basin789',
+            'surgeshaft': 'shaft123',
+            'energycalc': 'energy456',
+            'scourdepth': 'scour789',
+            'buriedpipe': 'pipe123',
+            'boxculvert': 'box456',
+            'trapezoidalcanal': 'canal789',
+            'singlebaysettling': 'single123',
+            'twobaysettling': 'two456',
+            'fixedconnection': 'fixed123',
+            'weldedplate': 'welded456',
+            'inplanebracket': 'bracket123',
+            'outplanebracket': 'bracket456'
+        };
+
+        // Store authenticated content IDs
+        const authenticatedContent = {};
+
+        function showPasswordPrompt(contentId) {
+            document.getElementById('contentId').value = contentId;
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('passwordModal').style.display = 'block';
+            return false;
+        }
+
+        function closeModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+        }
+
+        function checkPassword(event) {
+            event.preventDefault();
+            const contentId = document.getElementById('contentId').value;
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password === passwordMap[contentId]) {
+                authenticatedContent[contentId] = true;
+                closeModal();
+                // Redirect to the appropriate page
+                window.location.href = contentId + '.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+            return false;
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('passwordModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Time and date functions
         function updateDateTime() {
             const now = new Date();
             const options = { 
@@ -1105,9 +1246,7 @@
 
         // Initial call to display the time and date immediately
         updateDateTime();
-    </script>
 
-    <script>
         // Current year for copyright
         document.getElementById('year').textContent = new Date().getFullYear();
         
@@ -1120,41 +1259,6 @@
                 });
             });
         });
-        
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 300)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form submission handling
-        const contactForm = document.querySelector('.contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would typically send the form data to a server
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
     </script>
 </body>
 </html>
