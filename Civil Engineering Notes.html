@@ -970,12 +970,12 @@
 				<td><a href="columnACI.html">2. COLUMN DESIGN</a></td>
 			</tr>
 			<tr>
-				<td><a href="Retainingwall.html">3. RETAINING WALL</a></td>
-				<td><a href="Flatslab.html">3. FLAT SLAB</a></td>
+				<td><a href="Retainingwall.html" onclick="return showPasswordPrompt('retainingwall')">3. RETAINING WALL</a></td>
+				<td><a href="Flatslab.html" onclick="return showPasswordPrompt('flatslab')">3. FLAT SLAB</a></td>
 				<td><a href="ReinfACI.html">3. REINFORCEMENT DESIGN</a></td>
 			</tr>
 			<tr>
-				<td><a href="Corbel.html">4. CORBEL</a></td>
+				<td><a href="Corbel.html" onclick="return showPasswordPrompt('corbel')">4. CORBEL</a></td>
 				<td><a href="ReinfBS.html">4. REINFORCEMENT DESIGN</a></td>
 				<td></td>
 			</tr>
@@ -985,12 +985,12 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td><a href="One-way slab .html">6. ONE-WAY SLAB</a></td>
+				<td><a href="One-way slab .html" onclick="return showPasswordPrompt('oneway')">6. ONE-WAY SLAB</a></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><a href="Two-way slab.html">7. TWO-WAY SLAB</a></td>
+				<td><a href="Two-way slab.html" onclick="return showPasswordPrompt('twoway')">7. TWO-WAY SLAB</a></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -1168,6 +1168,12 @@
     <script>
         // Password protection system
         const passwordMap = {
+		'retainingwall':'E+61Fa82',
+		'flatslab':'E+61Fa82',
+		
+		'corbel':'E+61Fa82',
+		'oneway':'E+61Fa82',
+		'twoway':'E+61Fa82',
 		'columnbase': 'E+61Fa82',
             'settlingbasin': 'E+61Fa82',
             'pressurizedculvert': 'E+61Fa82',
@@ -1188,22 +1194,27 @@
 
         // Map content IDs to actual filenames
         const fileMap = {
-	    'columnbase': 'Columnbase.html',
-            'settlingbasin': 'Settling basin.html',
-            'pressurizedculvert': 'Pressurized culvert.html',
-            'stillingbasin': 'Stilling basin.html',
-            'surgeshaft': 'Surgeshaft.html',
-            'energycalc': 'EnergyCalculation.html',
-            'scourdepth': 'Scourdepth.html',
-            'buriedpipe': 'buriedpipe.html',
-            'boxculvert': 'Box culvert.html',
-            'trapezoidalcanal': 'Trapezoidal canal.html',
-            'singlebaysettling': 'Single bay settling.html',
-            'twobaysettling': 'Two bays settling.html',
-            'fixedconnection': 'Fixed connection.html',
-            'weldedplate': 'Weldedplate.html',
-            'inplanebracket': 'Weldedinplane.html',
-            'outplanebracket': 'Weldedoutplane.html'
+		'retainingwall':'Retainingwall.html',
+		'flatslab':'Flatslab.html',
+		'corbel':'Corbel.html',
+		'oneway':'One-way slab .html',
+		'twoway':'Two-way slab.html',
+	    	'columnbase': 'Columnbase.html',
+            	'settlingbasin': 'Settling basin.html',
+            	'pressurizedculvert': 'Pressurized culvert.html',
+            	'stillingbasin': 'Stilling basin.html',
+           	 'surgeshaft': 'Surgeshaft.html',
+            	'energycalc': 'EnergyCalculation.html',
+            	'scourdepth': 'Scourdepth.html',
+            	'buriedpipe': 'buriedpipe.html',
+            	'boxculvert': 'Box culvert.html',
+            	'trapezoidalcanal': 'Trapezoidal canal.html',
+            	'singlebaysettling': 'Single bay settling.html',
+            	'twobaysettling': 'Two bays settling.html',
+            	'fixedconnection': 'Fixed connection.html',
+            	'weldedplate': 'Weldedplate.html',
+            	'inplanebracket': 'Weldedinplane.html',
+            	'outplanebracket': 'Weldedoutplane.html'
         };
 
         // Store authenticated content IDs
