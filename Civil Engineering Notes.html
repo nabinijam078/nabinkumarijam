@@ -1020,7 +1020,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="Columnbase.html">4. FIXED CONNECTION AT A COLUMN BASE</a></td>
+				<td colspan="2"><a href="Columnbase.html" onclick="return showPasswordPrompt('columnbase')>4. FIXED CONNECTION AT A COLUMN BASE</a></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -1168,25 +1168,27 @@
     <script>
         // Password protection system
         const passwordMap = {
-            'settlingbasin': 'basin123',
-            'pressurizedculvert': 'culvert456',
-            'stillingbasin': 'basin789',
-            'surgeshaft': 'shaft123',
-            'energycalc': 'energy456',
-            'scourdepth': 'scour789',
-            'buriedpipe': 'pipe123',
-            'boxculvert': 'box456',
-            'trapezoidalcanal': 'canal789',
-            'singlebaysettling': 'single123',
-            'twobaysettling': 'two456',
-            'fixedconnection': 'fixed123',
-            'weldedplate': 'welded456',
-            'inplanebracket': 'bracket123',
-            'outplanebracket': 'bracket456'
+		'columnbase': 'E+61Fa82',
+            'settlingbasin': 'E+61Fa82',
+            'pressurizedculvert': 'E+61Fa82',
+            'stillingbasin': 'E+61Fa82',
+            'surgeshaft': 'E+61Fa82',
+            'energycalc': 'E+61Fa82',
+            'scourdepth': 'E+61Fa82',
+            'buriedpipe': 'E+61Fa82',
+            'boxculvert': 'E+61Fa82',
+            'trapezoidalcanal': 'E+61Fa82',
+            'singlebaysettling': 'E+61Fa82',
+            'twobaysettling': 'E+61Fa82',
+            'fixedconnection': 'E+61Fa82',
+            'weldedplate': 'E+61Fa82',
+            'inplanebracket': 'E+61Fa82',
+            'outplanebracket': 'E+61Fa82'
         };
 
         // Map content IDs to actual filenames
         const fileMap = {
+	    'columnbase': 'Columnbase.html',
             'settlingbasin': 'Settling basin.html',
             'pressurizedculvert': 'Pressurized culvert.html',
             'stillingbasin': 'Stilling basin.html',
