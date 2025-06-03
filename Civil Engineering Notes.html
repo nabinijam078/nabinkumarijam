@@ -1185,6 +1185,25 @@
             'outplanebracket': 'bracket456'
         };
 
+        // Map content IDs to actual filenames
+        const fileMap = {
+            'settlingbasin': 'Settling basin.html',
+            'pressurizedculvert': 'Pressurized culvert.html',
+            'stillingbasin': 'Stilling basin.html',
+            'surgeshaft': 'Surgeshaft.html',
+            'energycalc': 'EnergyCalculation.html',
+            'scourdepth': 'Scourdepth.html',
+            'buriedpipe': 'buriedpipe.html',
+            'boxculvert': 'Box culvert.html',
+            'trapezoidalcanal': 'Trapezoidal canal.html',
+            'singlebaysettling': 'Single bay settling.html',
+            'twobaysettling': 'Two bays settling.html',
+            'fixedconnection': 'Fixed connection.html',
+            'weldedplate': 'Weldedplate.html',
+            'inplanebracket': 'Weldedinplane.html',
+            'outplanebracket': 'Weldedoutplane.html'
+        };
+
         // Store authenticated content IDs
         const authenticatedContent = {};
 
@@ -1208,8 +1227,8 @@
             if (password === passwordMap[contentId]) {
                 authenticatedContent[contentId] = true;
                 closeModal();
-                // Redirect to the appropriate page
-                window.location.href = contentId + '.html';
+                // Redirect to the correct filename
+                window.location.href = fileMap[contentId];
             } else {
                 document.getElementById('errorMessage').style.display = 'block';
             }
