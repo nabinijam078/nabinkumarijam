@@ -885,9 +885,52 @@
 
      <!-- Main Content -->
       <div class="main-container">
-      <h3><u><center>REINFORCEMENT DESIGN</center></u></h3>
-        
-    </div>
+      <h3><u><center>REINFORCEMENT DESIGN AS PER ACI318M</center></u></h3>
+	<u><b>INPUTS</b></u>
+      <form id="reinforcementdesign">
+        <div class="input-group">
+            <label for="fc">Characteristic Strength of Concrete (\(f_{c'}\) in MPa):</label>
+            <input type="number" id="fc" step="0.1" required>
+        </div>
+        <div class="input-group">
+            <label for="fy">Characteristic Strength of Steel (\(f_y\) in MPa):</label>
+            <input type="number" id="fy" step="0.1" required>
+        </div>       
+        <div class="input-group">
+            <label for="h">Overall Depth of Slab (\(h\) in mm):</label>
+            <input type="number" id="h" required>
+        </div>
+        <div class="input-group">
+            <label for="cover">Effective cover of beam (\(c\) in mm):</label>
+            <input type="number" id="cover" required>
+        </div>
+        <div class="input-group">
+            <label for="dm">Diameter of main Reinforcement (\(\phi_m\) in mm):</label>
+            <input type="number" id="dm" required>
+        </div>
+	  <div class="input-group">
+            <label for="space">Number of layer of tension reinforcement :</label>
+            <input type="number" id="space" required>
+        </div>
+        <div class="input-group">
+            <label for="moment">Factored Bending Moment (\(M_u\) in kNm):</label>
+            <input type="number" id="moment" step="0.01" required>
+        </div>
+        <div class="input-group">
+            <label for="shear">Factored Shear Force (\(V_u\) in kN):</label>
+            <input type="number" id="shear" step="0.01" required>
+        </div>
+	<br>
+        <button type="button" onclick="reinforcementdesign()" class="btn">CLICK</button>
+      </form>
+	 <div class="result" id="result">
+        	<h3><u>DESIGN RESULT</u></h3>
+        	<p><strong>Adequacy of Section for Moment:</strong> <span id="beam"></span></p>
+		<p><strong>Area of Reinforcement Required (\(A_{st}\)):</strong> <span id="Ast"></span></p>
+        	<p><strong>Area of Reinforcement Provided (\(A_{stp}\)):</strong> <span id="Astp"></span></p>
+        	<p><strong>Requirement of shear reinforcement:</strong> <span id="Reqmt"></span></p>  
+  	</div>      
+</div>
 
     <!-- Footer -->
     <footer>
@@ -1019,15 +1062,91 @@
                 this.reset();
             });
         }
-	      
+	  function reinforcementdesign() {
+    // Input values
+    	const h = parseFloat(document.getElementById('h').value); 
+    	const cover = parseFloat(document.getElementById('cover').value); 
+    	const fc = parseFloat(document.getElementById('fc').value); 
+    	const fy = parseFloat(document.getElementById('fy').value); 
+    	const dm = parseFloat(document.getElementById('dm').value); 
+    	const space = parseFloat(document.getElementById('space').value);
+    	const moment = parseFloat(document.getElementById('moment').value); 
+    	const shear = parseFloat(document.getElementById('shear').value); 
 
-	    
+    	// Effective depth
+    	const de = h - cover - dm/2;
+    	//Width
+     	const b=1000;
+    	// Modulus of Elasticity of concrete
+    	const Ec = 4700 * Math.pow(fc, 0.5);
+    	// Modulus of Elasticity of steel
+    	const Es = 200000;
+    	// Strength reduction factor
+    	const phi = 0.9; 
+    
+    	// Calculation of coefficient beta Cl. 10.2.7.3
+    	let beta1;
+    	if (fc > 28) {
+        beta1 = 0.85 - 0.05 * (fc - 28) / 7;
+    	} else { 
+        beta1 = 0.85;
+    	}
+    
+    	// Coefficient pt
+    	const pt = 0.319 * beta1 * fc / fy;  
+    
+    	// Nominal strength coefficient of resistance in Nmm
+    	const Rnt = pt * fy * (1 - pt * fy / (1.7 * fc));
+    
+    	// Nominal Strength coefficient of resistance Rn in Nmm
+    	const Rn = moment * 1e6 / (phi * b * Math.pow(de, 2));  
+    
+    	// Singly or Doubly reinforcement beam design
+    	let beam;
+    	if (Rnt > Rn) {
+        	beam = "OK";
+    	} else {
+        	beam = "CHANGE THE THICKNESS";
+        }
+
+        const Ast1 = 0.85 * fc / fy * (1 - Math.pow(1 - 2 * Rn / (0.85 * fc), 0.5)) * b * de; 
+        const Asmin = Math.max(0.25 * Math.pow(fc, 0.5) / fy, 1.4 / fy) * b * de;
+        const Ast = Math.max(Ast1, Asmin);
+	
+        const a = Ast * fy / (0.85 * fc * b);
+        const c = a / beta1;
+        const epsilont = 0.003 * (de / c - 1);
         
-       
+	
+           
+	// Calculate number of steel bars
+        const A1 = (Math.PI * Math.pow(dm, 2)) / 4; 
+	const Astp=b/space*A1;
+         
+	// SHEAR REINFORCEMENT
+	const vs=shear*1000/(b*de);
+	
+	// Shear stress provided by concrete, cl.11.2.1.1
+	const vc=0.17*1*Math.pow(fc,0.5);
 
-
-
-
+	//Area of shear reinforcement
+	let Reqmt,Asv;
+	if(vc>vs){
+		Reqmt="NO";
+		
+	} else {
+		Reqmt="INCREASE THE THICKNESS";
+		
+	} 	
+	
+        // Outputs
+	document.getElementById('beam').textContent = beam;
+    	document.getElementById('Ast').textContent = Ast.toFixed(2)+"mm²";
+	document.getElementById('Astp').textContent = Astp.toFixed(2)+"mm²";
+	document.getElementById('Reqmt').textContent = Reqmt;
+	
+   
+}    
     </script>
 </body>
 </html>
